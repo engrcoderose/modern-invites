@@ -53,3 +53,7 @@ The design uses a custom sage green color palette:
 - Elegant typography with Playfair Display for headings
 - Inter for body text
 
+
+
+
+
