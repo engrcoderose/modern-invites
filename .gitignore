@@ -8,5 +8,4 @@ dist/
 .env.development
 .env.test
 .env.production
-.gitignore
 node_modules
