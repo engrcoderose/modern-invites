@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { motion } from "motion/react";
 
 export default function CallToAction() {
@@ -47,3 +48,4 @@ export default function CallToAction() {
     </section>
   );
 }
+

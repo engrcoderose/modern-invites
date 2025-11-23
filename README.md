@@ -1,60 +1,126 @@
 # Modern Invites
 
-An elegant e-invite website for any occasion, built with React and Tailwind CSS.
+Elegant e-invite website for any occasion - built with Next.js 15, React 19, TypeScript, and Tailwind CSS.
 
-## Features
+## 🚀 Features
 
-- Beautiful, elegant design with sage green color scheme
-- Fully responsive layout
-- Modern UI with smooth animations
-- Tailwind CSS for styling
-- Vite for fast development and building
+- ✨ Beautiful, modern UI with smooth animations (Framer Motion)
+- 📱 Fully responsive design
+- ⚡ Server-side rendering with Next.js 15
+- 🎨 Styled with Tailwind CSS
+- 🔤 Google Fonts integration (Playfair Display & Inter)
+- 📦 Radix UI components for accessibility
+- 🖼️ Optimized images with Next.js Image component
+- 🎯 TypeScript for type safety
 
-## Getting Started
+## 🛠️ Tech Stack
 
-### Installation
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** Radix UI, Lucide React
+- **Animations:** Motion (Framer Motion)
+- **Package Manager:** npm
+
+## 📦 Installation
+
+1. Clone the repository
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Development
+3. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-This will start the development server, typically at `http://localhost:5173`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-### Build
+## 🎯 Available Scripts
 
-```bash
-npm run build
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 📁 Project Structure
+
+```
+modern-invites/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Home page
+│   ├── about/             # About page
+│   └── globals.css        # Global styles
+├── components/            # React components
+│   ├── ui/               # UI components (Accordion, etc.)
+│   ├── Navigation.tsx
+│   ├── Hero.tsx
+│   ├── OurProducts.tsx
+│   ├── FeatureSection.tsx
+│   ├── OccasionsSection.tsx
+│   ├── CallToAction.tsx
+│   ├── FrequentlyAskedQuestions.tsx
+│   ├── AboutUs.tsx
+│   └── Footer.tsx
+├── lib/                   # Utility functions
+│   └── utils.ts
+├── public/               # Static assets
+│   └── images/
+├── next.config.ts        # Next.js configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+└── tsconfig.json         # TypeScript configuration
 ```
 
-### Preview Production Build
+## 🎨 Pages
 
-```bash
-npm run preview
-```
+- **/** - Landing page with hero, features, products, occasions, CTA, and FAQ
+- **/about** - About Us page with mission and vision
 
-## Tech Stack
+## 🔧 Configuration
 
-- React 18
-- Vite
-- Tailwind CSS
-- PostCSS
-- Autoprefixer
+The project uses:
+- Next.js 15 App Router for file-based routing
+- TypeScript for type safety
+- Tailwind CSS with custom color palette (sage & gold)
+- Custom fonts: Playfair Display (elegant) and Inter (sans-serif)
 
-## Color Scheme
+## 📝 Migration Notes
 
-The design uses a custom sage green color palette:
-- Sage 50-950: Various shades of sage green
-- Elegant typography with Playfair Display for headings
-- Inter for body text
+This project was migrated from Vite + React Router to Next.js 15:
+- ✅ All components converted to Next.js compatible format
+- ✅ React Router replaced with Next.js file-based routing
+- ✅ Image optimization with Next.js Image component
+- ✅ Font optimization with next/font
+- ✅ Client components marked with "use client" directive
+- ✅ All animations and interactions preserved
 
+## 🚀 Deployment
 
+The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com):
 
+1. Push your code to GitHub
+2. Import your repository on Vercel
+3. Vercel will automatically detect Next.js and configure the build
+4. Deploy!
 
+Alternatively, you can deploy to:
+- Netlify
+- AWS Amplify
+- Railway
+- Any platform that supports Next.js
 
+## 📄 License
 
+All rights reserved.
+
+## 🤝 Contributing
+
+This is a private project. Contact the repository owner for contribution guidelines.
+
+---
+
+Made with ❤️ for Modern Invites

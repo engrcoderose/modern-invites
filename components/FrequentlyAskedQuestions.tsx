@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -38,11 +39,11 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                Given that all the necessary details are provided, we'll send
-                you initial draft within 2-5 business days. This draft allows
-                you to review and make any necessary changes before we finalize
-                the invitation. Then it will take 2-9 business days to finalize
-                the invitation.
+                Given that all the necessary details are provided, we&apos;ll
+                send you initial draft within 2-5 business days. This draft
+                allows you to review and make any necessary changes before we
+                finalize the invitation. Then it will take 2-9 business days to
+                finalize the invitation.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -85,23 +86,24 @@ export default function FrequentlyAskedQuestions() {
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-5">
             <AccordionTrigger className="text-lg font-medium text-sage-800">
-            What contents do you need to start creating an invitation?
+              What contents do you need to start creating an invitation?
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                To start creating an invitation, you need to provide us with the following details:
-                <ul className="list-disc list-inside">
-                  <li>Type of Event</li>
-                  <li>Event date and time</li>
-                  <li>Event location</li>
-                  <li>Photos</li>
-                  <li>Music</li>
-                  <li>Text content</li>
-                  <li>Dress Code/Color Theme</li>
-                  <li>Gift Request</li>
-                  <li>Additional instructions</li>
-                </ul>
+                To start creating an invitation, you need to provide us with the
+                following details:
               </p>
+              <ul className="list-disc list-inside">
+                <li>Type of Event</li>
+                <li>Event date and time</li>
+                <li>Event location</li>
+                <li>Photos</li>
+                <li>Music</li>
+                <li>Text content</li>
+                <li>Dress Code/Color Theme</li>
+                <li>Gift Request</li>
+                <li>Additional instructions</li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

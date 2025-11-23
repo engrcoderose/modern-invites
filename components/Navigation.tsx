@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "motion/react";
 
 export default function Navigation() {
@@ -13,7 +14,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link to="/">
+            <Link href="/">
               <motion.h1
                 whileHover={{ scale: 1.05 }}
                 className="text-2xl font-elegant font-bold text-sage-700"
@@ -24,7 +25,7 @@ export default function Navigation() {
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              to="/about"
+              href="/about"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               About Us
@@ -54,3 +55,4 @@ export default function Navigation() {
     </motion.nav>
   );
 }
+

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { motion } from "motion/react";
 
 const containerVariants = {
@@ -17,8 +18,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: "easeOut"
+      duration: 0.6
     }
   }
 };
@@ -149,3 +149,4 @@ export default function FeatureSection() {
     </section>
   );
 }
+

@@ -1,4 +1,5 @@
-import React from 'react'
+"use client";
+
 import { motion } from "motion/react";
 
 const containerVariants = {
@@ -58,3 +59,4 @@ export default function OccasionsSection() {
       </section>
     )
 }
+

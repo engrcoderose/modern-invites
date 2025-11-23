@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "motion/react";
-import websiteInvitationsImg from "../../assets/images/website-invitaions.png";
-import readyToPrintImg from "../../assets/images/ready-to-print.png";
+import Image from "next/image";
+import websiteInvitationsImg from "@/public/images/website-invitaions.png";
+import readyToPrintImg from "@/public/images/ready-to-print.png";
 
 export default function OurProducts() {
   return (
@@ -58,10 +61,11 @@ export default function OurProducts() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <img
+            <Image
               src={websiteInvitationsImg}
               alt="Website Invitations on multiple devices"
               className="w-full h-auto"
+              priority
             />
           </motion.div>
         </div>
@@ -75,7 +79,7 @@ export default function OurProducts() {
             transition={{ duration: 0.6 }}
             className="relative order-2 lg:order-1"
           >
-            <img
+            <Image
               src={readyToPrintImg}
               alt="Ready to print invitation designs"
               className="w-full h-auto"
@@ -125,3 +129,4 @@ export default function OurProducts() {
     </section>
   );
 }
+

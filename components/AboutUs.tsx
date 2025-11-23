@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { motion } from "motion/react";
 
 export default function AboutUs() {
@@ -53,7 +54,7 @@ export default function AboutUs() {
               </h3>
               <p className="text-lg md:text-xl text-stone-100 leading-relaxed text-center">
                 To deliver high-quality, modern invitation designs that capture
-                each client's unique vision while providing a smooth,
+                each client&apos;s unique vision while providing a smooth,
                 personalized, and professional experience from start to finish.
               </p>
             </motion.div>
@@ -79,3 +80,4 @@ export default function AboutUs() {
     </section>
   );
 }
+
