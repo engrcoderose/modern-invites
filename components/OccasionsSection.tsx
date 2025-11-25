@@ -34,7 +34,7 @@ export default function OccasionsSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-elegant font-bold text-gray-900 mb-12">
+            <h3 className="text-4xl md:text-5xl font-elegant font-bold text-gray-900 mb-12">
               Perfect for Any Celebration
             </h3>
           </motion.div>
@@ -49,7 +49,7 @@ export default function OccasionsSection() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="text-xl md:text-2xl text-gray-700 font-medium"
+                className="text-xl text-gray-700"
               >
                 {occasion}
               </motion.div>

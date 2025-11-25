@@ -67,19 +67,15 @@ export default function FrequentlyAskedQuestions() {
               Do you offer revisions?
             </AccordionTrigger>
             <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                <ul className="list-disc list-inside">
-                  <li>Yes we offer 2 major revisions for design and layout.</li>
-                  <li>
-                    Our support team offers{" "}
-                    <span className="font-bold">
-                      unlimited content revisions
-                    </span>{" "}
-                    for text, music, and photos, which we aim to complete ASAP
-                    or within 12 hours.
-                  </li>
-                </ul>
-              </p>
+              <ul className="list-disc list-inside leading-relaxed text-gray-600">
+                <li>Yes we offer 2 major revisions for design and layout.</li>
+                <li>
+                  Our support team offers{" "}
+                  <span className="font-bold">unlimited content revisions</span>{" "}
+                  for text, music, and photos, which we aim to complete ASAP or
+                  within 12 hours.
+                </li>
+              </ul>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -93,7 +89,7 @@ export default function FrequentlyAskedQuestions() {
                 To start creating an invitation, you need to provide us with the
                 following details:
               </p>
-              <ul className="list-disc list-inside">
+              <ul className="list-disc list-inside leading-relaxed text-gray-600">
                 <li>Type of Event</li>
                 <li>Event date and time</li>
                 <li>Event location</li>

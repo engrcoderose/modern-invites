@@ -6,6 +6,7 @@ import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
 import OurProducts from "@/components/OurProducts";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
+import HowItWorks from "@/components/HowItWorks";
 
 export default function LandingPage() {
   return (
@@ -15,8 +16,10 @@ export default function LandingPage() {
       <OurProducts />
       <FeatureSection />
       <OccasionsSection />
+      <HowItWorks />
       <CallToAction />
       <FrequentlyAskedQuestions />
+
       <Footer />
     </div>
   );

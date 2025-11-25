@@ -9,9 +9,15 @@ export default function OurProducts() {
   return (
     <section id="products" className="px-4 py-20 sm:px-6 lg:px-8 bg-stone-50">
       <div className="mx-auto max-w-7xl">
-        <h2 className="mb-12 text-4xl font-bold text-center text-gray-900 md:text-5xl font-elegant">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-4xl font-bold text-center text-gray-900 md:text-5xl font-elegant"
+        >
           Our Products
-        </h2>
+        </motion.h2>
         {/* Website Invitation Section */}
         <div className="grid gap-12 items-center mb-32 lg:grid-cols-2">
           <motion.div
@@ -21,7 +27,7 @@ export default function OurProducts() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <h2 className="text-4xl font-bold text-sage-800 md:text-5xl font-elegant">
+            <h2 className="text-3xl font-bold text-sage-800 md:text-4xl font-elegant">
               Website Invitation
             </h2>
             <p className="text-lg leading-relaxed text-gray-700">
@@ -93,7 +99,7 @@ export default function OurProducts() {
             transition={{ duration: 0.6 }}
             className="order-1 space-y-6 lg:order-2"
           >
-            <h2 className="text-4xl font-bold text-sage-800 md:text-5xl font-elegant">
+            <h2 className="text-3xl font-bold text-sage-800 md:text-4xl font-elegant">
               Ready-to-Print Layouts
             </h2>
             <p className="text-lg leading-relaxed text-gray-700">
@@ -129,4 +135,3 @@ export default function OurProducts() {
     </section>
   );
 }
-
