@@ -76,7 +76,7 @@ export default function RSVPForm() {
                   Thank You!
                 </h3>
                 <p className="text-gray-600 text-lg">
-                  Your RSVP has been received. We can't wait to celebrate with
+                  Your RSVP has been received. We can&apos;t wait to celebrate with
                   you!
                 </p>
               </CardContent>
@@ -104,7 +104,7 @@ export default function RSVPForm() {
             RSVP
           </h2>
           <p className="text-gray-600 text-lg">
-            Please let us know if you'll be joining us
+            Please let us know if you&apos;ll be joining us
           </p>
           <div className="w-20 h-1 bg-rose-400 mx-auto mt-4" />
         </motion.div>

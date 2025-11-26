@@ -53,7 +53,7 @@ export default function HeroSection({
           transition={{ duration: 0.8 }}
         >
           <p className="text-sm md:text-base text-white mb-4 tracking-[0.3em] uppercase">
-            We're Getting Married
+            We&apos;re Getting Married
           </p>
 
           <div className="flex items-center justify-center gap-4 mb-6">

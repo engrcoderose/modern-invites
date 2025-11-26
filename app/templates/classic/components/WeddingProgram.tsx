@@ -24,7 +24,7 @@ export default function WeddingProgram({ events }: WeddingProgramProps) {
             Wedding Program
           </h2>
           <p className="text-gray-600">
-            Here's what to expect on our special day
+            Here&apos;s what to expect on our special day
           </p>
           <div className="w-20 h-1 bg-rose-400 mx-auto mt-4" />
         </motion.div>

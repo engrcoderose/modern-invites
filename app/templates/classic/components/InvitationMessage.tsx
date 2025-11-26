@@ -44,7 +44,7 @@ export default function InvitationMessage({
           <div className="max-w-2xl mx-auto text-gray-700 leading-relaxed space-y-4">
             <p className="text-lg">
               After years of love, laughter, and countless memories,
-              we're excited to begin our forever together.
+              we&apos;re excited to begin our forever together.
             </p>
             <p className="text-lg">
               We would be honored to have you join us
