@@ -1,8 +1,8 @@
 import { WeddingData, EntourageMember, TimelineEvent, FAQ } from "../types";
 
 export const weddingData: WeddingData = {
-  bride: "Emily Rose",
-  groom: "James Anderson",
+  bride: "Li Xia",
+  groom: "Eric Anderson",
   weddingDate: new Date("2026-06-20T16:00:00"),
   venue: {
     name: "St. Mary's Cathedral",

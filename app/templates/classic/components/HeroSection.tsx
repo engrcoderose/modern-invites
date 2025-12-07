@@ -52,18 +52,18 @@ export default function HeroSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-sm md:text-base text-white mb-4 tracking-[0.3em] uppercase">
+          <p className="text-lg md:text-xl text-white mb-4 tracking-[0.3em] uppercase">
             We&apos;re Getting Married
           </p>
 
-          <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col items-center justify-center gap-4 mb-6">
             <motion.h1
-              className="text-5xl md:text-7xl font-serif text-white"
+              className="text-5xl md:text-8xl font-serif text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {bride}
+              {groom}
             </motion.h1>
 
             <motion.div
@@ -75,12 +75,12 @@ export default function HeroSection({
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-7xl font-serif text-white"
+              className="text-5xl md:text-8xl font-serif text-white"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {groom}
+              {bride}
             </motion.h1>
           </div>
 
@@ -94,24 +94,35 @@ export default function HeroSection({
               {formattedDate}
             </p>
           </motion.div>
-
+          
           <motion.div
             className="mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <div className="inline-block border-2 border-rose-300 rounded-full px-8 py-3">
-              <p className="text-white text-sm tracking-wide">
-                Join us as we celebrate our love
+            <div className="inline-block px-8 py-3">
+              <p className="text-white text-lg tracking-wide">
+              Join us in our most awaited wedding.
+                <br />
+                We are expecting your attendance.
               </p>
             </div>
           </motion.div>
         </motion.div>
 
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <button className="bg-white text-black px-8 py-3 rounded-full text-lg tracking-wide">RSVP</button>
+        </motion.div>
+
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute left-1/2 transform -translate-x-1/2 py-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}

@@ -14,6 +14,7 @@ import FAQ from "./components/FAQ";
 import UsefulInformation from "./components/UsefulInformation";
 import RSVPForm from "./components/RSVPForm";
 import Footer from "./components/Footer";
+import GalleryOne from "./components/GalleryOne";
 
 // Import data
 import {
@@ -38,6 +39,7 @@ export default function ClassicWeddingTemplate() {
       />
 
       <CountdownTimer targetDate={weddingData.weddingDate} />
+      <GalleryOne />
 
       <InvitationMessage bride={weddingData.bride} groom={weddingData.groom} />
 
