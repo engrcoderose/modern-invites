@@ -15,6 +15,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Modern Invites - Elegant E-Invites for Every Occasion",
   description: "Create beautiful, personalized digital invitations that leave a lasting impression. Perfect for weddings, birthdays, corporate events, and more.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
