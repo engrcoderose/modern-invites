@@ -24,7 +24,7 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                Our website invitation packages ranges from PHP 999 to PHP
+                Our website invitation packages ranges from PHP 699 to PHP
                 2,499. You can choose the template and package that best suits
                 your needs and budget. Each package includes different features,
                 so pick one that suits your event.

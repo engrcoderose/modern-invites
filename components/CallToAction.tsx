@@ -50,7 +50,9 @@ export default function CallToAction() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <button className="group flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-200 mx-auto">
-                Getting started
+                <a href="https://www.facebook.com/pixyartph/">
+                  Getting started
+                </a>
                 <span className="bg-sage-500 rounded-full p-1 group-hover:translate-x-1 transition-transform duration-200">
                   <ArrowRight className="w-4 h-4 text-black" />
                 </span>
