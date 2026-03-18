@@ -42,7 +42,7 @@ export default function OurProducts() {
               celebration.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* <div className="flex flex-wrap gap-4 pt-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -57,7 +57,7 @@ export default function OurProducts() {
               >
                 SEE DEMO
               </motion.button>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div
@@ -113,7 +113,7 @@ export default function OurProducts() {
               print shop. Simply download, personalize, and deliver
               sophistication directly to your guests.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* <div className="flex flex-wrap gap-4 pt-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -128,7 +128,7 @@ export default function OurProducts() {
               >
                 SEE DEMO
               </motion.button>
-            </div>
+            </div> */}
           </motion.div>
         </div>
       </div>
