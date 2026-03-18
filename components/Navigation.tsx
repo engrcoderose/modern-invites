@@ -31,7 +31,7 @@ export default function Navigation() {
               About Us
             </Link>
             <a
-              href="#gallery"
+              href="/gallery"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Gallery

@@ -6,21 +6,33 @@ export default function HowItWorks() {
   const steps = [
     {
       number: "1",
-      title: "Choose Your Design & Confirm Your Slot",
+      title: "Choose Your Design",
       description:
         "Choose from our collection of elegant templates that matches your event and complete your order.",
     },
     {
       number: "2",
-      title: "Send Your Event Details",
+      title: "Design Consultation",
       description:
-        "Fill out the form with your event details and upload any photos or files you want to include.",
+        "We will contact you to discuss your wedding motif, theme and design preferences.",
     },
     {
       number: "3",
-      title: "Review & Receive Your Invitation",
+      title: "Content Submission",
       description:
-        "You'll receive your draft for review. Request revisions if needed, and once approved, your final digital invitation will be delivered—ready to share with your guests.",
+        "You send your photos, story, entourage, and other details to us and we will create a draft for you to review.",
+    },
+    {
+      number: "4",
+      title: "Website Creation",
+      description:
+        "We will create a website invitation for you to review and make any necessary changes before we finalize the invitation.",
+    },
+    {
+      number: "5",
+      title: "Review & Launch",
+      description:
+        "You review the draft and make any necessary changes before we launch the invitation.",
     },
   ];
 
@@ -53,7 +65,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -73,8 +85,8 @@ export default function HowItWorks() {
               </div>
 
               {/* Card */}
-              <div className="bg-gradient-to-br from-sage-100 to-white rounded-2xl p-8 pt-12 border border-sage-100 shadow-md hover:shadow-xl transition-shadow h-full">
-                <h3 className="text-xl font-bold text-sage-800 mb-3 text-center">
+              <div className="bg-gradient-to-br from-sage-100 to-white rounded-2xl p-5 pt-8 border border-sage-100 shadow-md hover:shadow-xl transition-shadow h-full">
+                <h3 className="text-lg font-bold text-sage-800 mb-3 text-center">
                   {step.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-center text-sm">

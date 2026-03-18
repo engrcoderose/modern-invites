@@ -29,7 +29,7 @@ export default function CallToAction() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-5xl font-bold tracking-tight text-sage-950 font-elegant leading-tight"
             >
-              Your Perfect Invitation Awaits!
+              Ready to Start Your Website Invitation?
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
@@ -38,10 +38,9 @@ export default function CallToAction() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-sm text-sage-900 font-medium"
             >
-              Great events start with great invitations. Share your joy with
-              custom digital designs that capture your unique style, while RSVP
-              features keep everything organized and stress-free from the first
-              save-the-date to the final headcount.
+              We create the perfect invitation for your special event. Get custom
+              digital designs that match your style, plus easy RSVP features to
+              keep everything organized—from save-the-date to final guest count.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
