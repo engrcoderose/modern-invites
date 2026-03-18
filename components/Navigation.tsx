@@ -35,7 +35,7 @@ export default function Navigation() {
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Gallery
-            </a> */}
+            </a> 
             <a
               href="https://www.facebook.com/pixyartph/"
               className="text-gray-700 hover:text-sage-600 transition-colors"
