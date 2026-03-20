@@ -78,7 +78,10 @@ export default {
       },
       fontFamily: {
         elegant: ['var(--font-playfair)', 'serif'],
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif']
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        imperial: ['var(--font-imperial)', 'script'],
+        ebGaramond: ['var(--font-eb-garamond)', 'serif'],
+        libreBaskerville: ['var(--font-libre-baskerville)', 'serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

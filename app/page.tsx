@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import OurProducts from "@/components/OurProducts";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import HowItWorks from "@/components/HowItWorks";
-
+// landing page
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b to-white from-sage-50">

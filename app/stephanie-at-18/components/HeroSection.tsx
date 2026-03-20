@@ -3,6 +3,9 @@
 import React from "react";
 import { motion } from "motion/react";
 import { DebutData } from "../types";
+import Image from "next/image";
+import HeroPhoto from "../assets/HeroPhoto.png";
+import HeroBackground from "../assets/bg/hero-background.jpg";
 
 interface HeroSectionProps {
   data: DebutData;
@@ -20,16 +23,18 @@ export default function HeroSection({ data }: HeroSectionProps) {
   });
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-yellow-50 to-yellow-100">
-      {/* Decorative floral elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-yellow-200 rounded-full opacity-20 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-200 rounded-full opacity-20 blur-3xl" />
+    <section className="relative px-10 min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={HeroBackground}
+          alt="Debut hero background"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
       </div>
-
-      {/* Floral decorations */}
-      <div className="absolute top-10 left-10 text-yellow-300 opacity-30 text-8xl">🌸</div>
-      <div className="absolute bottom-20 right-20 text-pink-300 opacity-30 text-6xl">✨</div>
 
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -41,7 +46,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
             transition={{ duration: 0.8 }}
           >
             <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-serif text-gray-800 mb-4"
+              className="font-imperial text-4xl text-[5rem] lg:text-[9rem] text-[#b12a56] mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -49,12 +54,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
               {data.celebrant}&apos;s
             </motion.h1>
             <motion.h2
-              className="text-3xl md:text-5xl lg:text-6xl font-serif text-yellow-600 mb-6"
+              className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#b12a56] mb-6 pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              TURNING EIGHTEEN
+              TURNING EIGHTEEN!
             </motion.h2>
 
             <motion.div
@@ -63,16 +68,16 @@ export default function HeroSection({ data }: HeroSectionProps) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <p className="text-xl md:text-2xl text-gray-700 font-light">
+              <p className="font-libreBaskerville text-xl md:text-2xl text-[#b12a56] font-light">
                 {formattedDate.toUpperCase()}
               </p>
-              <p className="text-lg md:text-xl text-gray-600">
+              <p className="font-libreBaskerville text-lg md:text-xl text-[#b12a56]">
                 TO START {data.eventTime}
               </p>
-              <p className="text-base md:text-lg text-gray-600 mt-4">
+              <p className="font-libreBaskerville text-base md:text-lg text-[#b12a56] mt-4">
                 at {data.venue.name}
               </p>
-              <p className="text-sm md:text-base text-gray-500">
+                <p className="font-libreBaskerville text-sm md:text-base text-[#b12a56]">
                 {data.venue.address}
               </p>
             </motion.div>
@@ -85,18 +90,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Top photo */}
-            <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-96 bg-white p-2 shadow-lg transform rotate-2">
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-400 text-xs sm:text-sm">Photo Placeholder 1</span>
-              </div>
-            </div>
-            {/* Bottom photo */}
-            <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-96 bg-white p-2 shadow-lg transform -rotate-2">
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <span className="text-gray-400 text-xs sm:text-sm">Photo Placeholder 2</span>
-              </div>
-            </div>
+            <Image
+              src={HeroPhoto}
+              alt={`${data.celebrant} hero photo collage`}
+              className="w-full max-w-md md:max-w-lg h-auto object-contain"
+              priority
+            />
           </motion.div>
         </div>
       </div>
