@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { DebutData } from "../types";
+import invitationPhoto from "../assets/2.png";
 
 interface InvitationDetailsProps {
   data: DebutData;
@@ -20,10 +22,7 @@ export default function InvitationDetails({ data }: InvitationDetailsProps) {
   });
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-yellow-50 to-yellow-100 overflow-hidden">
-      {/* Floral decorations */}
-      <div className="absolute top-0 left-0 text-yellow-300 opacity-20 text-6xl">🌺</div>
-      <div className="absolute bottom-0 right-0 text-pink-300 opacity-20 text-6xl">✨</div>
+    <section className="relative py-20 bg-[#fff6d2] overflow-hidden">
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -82,13 +81,16 @@ export default function InvitationDetails({ data }: InvitationDetailsProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="relative w-full h-64 sm:h-80 md:h-96 bg-white p-4 shadow-xl transform rotate-3">
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-400 text-xs sm:text-sm">Photo Placeholder</span>
-                </div>
-                {/* Decorative butterflies */}
-                <div className="absolute -top-4 -right-4 text-pink-300 text-2xl sm:text-3xl">🦋</div>
-                <div className="absolute -bottom-4 -left-4 text-yellow-300 text-xl sm:text-2xl">✨</div>
+              <div className="relative w-full h-64 sm:h-80 md:h-96 transform rotate-3">
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={invitationPhoto}
+                    alt={`${data.celebrant} invitation photo`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>    
               </div>
             </motion.div>
           </div>
