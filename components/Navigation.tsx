@@ -24,6 +24,11 @@ export default function Navigation() {
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-8">
+            <Link href="/"
+              className="text-gray-700 hover:text-sage-600 transition-colors"
+            >
+              Home
+            </Link>
             <Link
               href="/about"
               className="text-gray-700 hover:text-sage-600 transition-colors"
@@ -31,7 +36,7 @@ export default function Navigation() {
               About Us
             </Link>
             <a
-              href="/gallery"
+              // href="/gallery"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Gallery
