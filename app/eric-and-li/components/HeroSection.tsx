@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { Heart } from "lucide-react";
 import heroBackground from "../assets/hero-background.png";
+import weddingInitials from "../assets/deco/eric-and-li-initials.png";
 
 interface HeroSectionProps {
   bride: string;
@@ -36,9 +37,8 @@ export default function HeroSection({
           priority
           quality={90}
         />
-
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neutral-700 via-20% to-black opacity-60" />
 
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -46,19 +46,26 @@ export default function HeroSection({
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-200 rounded-full opacity-10 blur-3xl" />
       </div>
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-lg md:text-xl text-white mb-4 tracking-[0.3em] uppercase">
-            We&apos;re Getting Married
-          </p>
+          <Image
+            src={weddingInitials}
+            alt="Wedding initials"
+            width={120}
+            height={120}
+            className="mx-auto md:w-[170px] md:h-[170px]"
+          />
+          {/* <p className="text-base md:text-xl text-white mb-4 tracking-[0.3em] uppercase">
+            We&apos;re Getting Married!
+          </p> */}
 
-          <div className="flex flex-col items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col md:flex-row md:gap-10 items-center justify-center">
             <motion.h1
-              className="text-5xl md:text-8xl font-serif text-white"
+              className="text-5xl md:text-8xl font-imperial tracking-wide text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -75,7 +82,7 @@ export default function HeroSection({
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-8xl font-serif text-white"
+              className="text-6xl md:text-8xl font-imperial tracking-wide text-white"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -85,25 +92,25 @@ export default function HeroSection({
           </div>
 
           <motion.div
-            className="space-y-2"
+            className="space-y-2 mt-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <p className="text-xl md:text-2xl text-white font-light">
+            <p className="text-xl md:text-3xl text-white font-light uppercase">
               {formattedDate}
             </p>
           </motion.div>
-          
+
           <motion.div
-            className="mt-12"
+            className="mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
             <div className="inline-block px-8 py-3">
-              <p className="text-white text-lg tracking-wide">
-              Join us in our most awaited wedding.
+              <p className="text-white text-base md:text-lg tracking-wide">
+                Join us in our most awaited wedding.
                 <br />
                 We are expecting your attendance.
               </p>
@@ -112,31 +119,33 @@ export default function HeroSection({
         </motion.div>
 
         <motion.div
-          className="mt-12"
+          className="mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <button className="bg-white text-black px-8 py-3 rounded-full text-lg tracking-wide">RSVP</button>
+          <button className="bg-[#ebcc90] text-[#4e2a0d] px-8 py-2 rounded-md text-base md:text-lg tracking-wide">
+            RSVP
+          </button>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute left-1/2 transform -translate-x-1/2 py-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-        >
-          <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-            <motion.div
-              className="w-1.5 h-1.5 bg-white rounded-full"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+      >
+        <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
+          <motion.div
+            className="w-1.5 h-1.5 bg-white rounded-full"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }
-

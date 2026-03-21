@@ -42,7 +42,7 @@ export default function Navigation() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+          isScrolled || isMobileMenuOpen
             ? "bg-white shadow-md py-3"
             : "bg-transparent py-5"
         }`}
@@ -50,14 +50,14 @@ export default function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between w-full">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("#")}
-            className="flex items-center gap-2 text-xl font-serif text-white hover:text-rose-600 transition-colors"
+            className="flex items-center gap-2 text-xl font-serif hover:text-rose-600 transition-colors z-50"
           >
             <Heart className="w-6 h-6 text-rose-500 fill-rose-500" />
-            <span className={isScrolled ? "text-gray-800" : "text-white"}>
+            <span className={isScrolled || isMobileMenuOpen ? "text-gray-800" : "text-white"}>
               E & J
             </span>
           </button>
@@ -80,7 +80,9 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white hover:text-rose-600 transition-colors"
+            className={`md:hidden hover:text-rose-600 transition-colors z-50 ${
+              isScrolled || isMobileMenuOpen ? "text-gray-800" : "text-white"
+            }`}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />

@@ -1,3 +1,4 @@
+import { Instrument_Serif } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -82,6 +83,8 @@ export default {
         imperial: ['var(--font-imperial)', 'script'],
         ebGaramond: ['var(--font-eb-garamond)', 'serif'],
         libreBaskerville: ['var(--font-libre-baskerville)', 'serif'],
+        instrumentSerif: ['var(--font-instrument-serif)', 'serif'],
+        meaCulpa: ['var(--font-mea-culpa)', 'serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
