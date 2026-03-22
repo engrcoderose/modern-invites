@@ -1,81 +1,182 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { Heart, Sparkles, Calendar } from "lucide-react";
 
-interface StoryEvent {
-  title: string;
-  date: string;
-  description: string;
-}
+import ourStoryImage from "../assets/images/our-story-image.jpg";
+import aPromiseForALifetimeImage from "../assets/images/a-promise-for-a-lifetime-image.jpg";
+import ourStoryBackground from "../assets/our-story-background.jpg";
 
-interface OurStoryProps {
-  title: string;
-  content: StoryEvent[];
-}
+import initialsDeco from "../assets/deco/eric-and-li-initials.png";
+import ringsDeco from "../assets/deco/rings.png";
+import giftDeco from "../assets/deco/gift.png";
+import wineBottleDeco from "../assets/deco/wine-bottle.png";
+import flowerDeco from "../assets/deco/flower.png";
+import tulipFlowersDeco from "../assets/deco/tulip-flowers.png";
+import weddingCakeDeco from "../assets/deco/wedding-cake.png";
 
-export default function OurStory({ title, content }: OurStoryProps) {
-  const icons = [Heart, Sparkles, Calendar];
-
+export default function OurStory() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white to-rose-50">
-      <div className="max-w-5xl mx-auto">
+    <section id="our-story" className="w-full flex flex-col">
+      {/* Top Section */}
+      <div
+        className="relative w-full bg-cover bg-no-repeat py-16 md:py-24 px-8 md:px-16 lg:px-24 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12"
+        style={{ backgroundImage: `url(${ourStoryBackground.src})` }}
+      >
+        {/* Decorative Elements
+        <div className="absolute top-8 left-8 w-24 md:w-32 opacity-60">
+          <Image src={flowerDeco} alt="Flower" className="w-full h-auto" />
+        </div>
+        <div className="absolute top-8 right-1/2 w-16 md:w-24 opacity-60">
+          <Image
+            src={weddingCakeDeco}
+            alt="Wedding Cake"
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute top-8 right-8 w-16 md:w-20 opacity-60">
+          <Image
+            src={wineBottleDeco}
+            alt="Wine Bottle"
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute bottom-8 left-8 w-32 md:w-48 opacity-60">
+          <Image
+            src={tulipFlowersDeco}
+            alt="Tulip Flowers"
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="absolute bottom-8 right-8 w-32 md:w-48 opacity-60">
+          <Image src={giftDeco} alt="Gift" className="w-full h-auto" />
+        </div> */}
+
+        {/* Text Content */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="relative z-10 w-full md:w-1/2 flex flex-col gap-6 text-[#4e2a0d]"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
-            {title}
+          <h2 className="text-5xl md:text-7xl font-serif leading-tight">
+            A CHANCE
+            <br />
+            ENCOUNTER
           </h2>
-          <div className="w-20 h-1 bg-rose-400 mx-auto" />
+
+          <div className="flex flex-col gap-4 text-sm md:text-base font-medium leading-relaxed max-w-lg">
+            <p>
+              We first met in December 2018 at a Christmas party in Manila. What
+              began as a friendly chat over coffee turned into endless
+              conversations and spontaneous adventures around the city.
+            </p>
+            <p>
+              After five wonderful years together, filled with road trips, late-
+              night movies, and growing side by side, our love became stronger
+              than ever. On April 14, 2023 at a beach in La Union, under a sky
+              full of stars, John asked the question that changed everything—and
+              Anna joyfully said yes.
+            </p>
+            <p>
+              Now, on June 16, 2025 at Daraga Church, Daraga, Albay, we are so
+              excited to celebrate the beginning of forever with all of you.
+            </p>
+          </div>
         </motion.div>
 
-        <div className="space-y-16">
-          {content.map((event, index) => {
-            const Icon = icons[index % icons.length];
-            const isEven = index % 2 === 0;
+        {/* Image */}
+        <motion.div
+          className="relative z-10 w-full md:w-1/2 aspect-[4/3] md:aspect-[4/3] shadow-xl"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <Image
+            src={ourStoryImage}
+            alt="Our Story"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
+      </div>
 
-            return (
-              <motion.div
-                key={index}
-                className={`flex flex-col md:flex-row gap-8 items-center ${
-                  isEven ? "" : "md:flex-row-reverse"
-                }`}
-                initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 mb-3">
-                    <Icon className="w-5 h-5 text-rose-500" />
-                    <span className="text-sm text-rose-600 font-semibold uppercase tracking-wide">
-                      {event.date}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-serif text-gray-800 mb-4">
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {event.description}
-                  </p>
-                </div>
+      {/* Bottom Section */}
+      <div className="w-full flex flex-col md:flex-row">
+        {/* Left Image */}
+        <motion.div
+          className="w-full md:w-1/2 relative aspect-[4/3] md:aspect-auto md:min-h-[600px]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <Image
+            src={aPromiseForALifetimeImage}
+            alt="A Promise for a Lifetime"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
 
-                <div className="flex-shrink-0">
-                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-rose-200 to-blue-200 flex items-center justify-center shadow-lg">
-                    <Icon className="w-20 h-20 text-white" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Right Content */}
+        <div className="w-full md:w-1/2 bg-[#8c6b42] p-12 md:p-16 lg:p-24 flex flex-col justify-center text-white relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative z-10 flex flex-col gap-8 max-w-lg"
+          >
+            <div className="w-24 md:w-32">
+              <Image
+                src={initialsDeco}
+                alt="E&L Initials"
+                className="w-full h-auto brightness-0 invert"
+              />
+            </div>
+
+            <div className="relative inline-block">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight">
+                A PROMISE
+                <br />
+                FOR LIFE
+              </h2>
+              <div className="absolute -right-8 md:right-16 bottom-0 w-20 md:w-24">
+                <Image
+                  src={ringsDeco}
+                  alt="Rings"
+                  className="w-full h-auto brightness-0 invert"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 text-sm md:text-base font-medium leading-relaxed mt-4">
+              <p>
+                Join us for a day filled with love, laughter, and cherished
+                memories as we unite in marriage.
+              </p>
+              <p>
+                After years of love, laughter, and countless memories, we're
+                excited to begin our forever together. We would be honored to
+                have you join us as we exchange our vows and celebrate this
+                special milestone surrounded by the people we love most.
+              </p>
+              <p>We will exchange our wedding vows on June 20, 2026 at 3pm in Daraga Church.</p>
+              <p>Reception to follow.</p>
+              <p>
+                Kindly RSVP by May 15, 2026 to ensure your spot in our special
+                day.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

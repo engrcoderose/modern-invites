@@ -41,10 +41,10 @@ export default function ClassicWeddingTemplate() {
       <CountdownTimer targetDate={weddingData.weddingDate} />
       <GalleryOne />
 
-      <InvitationMessage bride={weddingData.bride} groom={weddingData.groom} />
+      {/* <InvitationMessage bride={weddingData.bride} groom={weddingData.groom} /> */}
 
       <div id="story">
-        <OurStory title={ourStory.title} content={ourStory.content} />
+        <OurStory />
       </div>
 
       <div id="program">
