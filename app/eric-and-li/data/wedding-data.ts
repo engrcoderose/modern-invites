@@ -1,4 +1,4 @@
-import { WeddingData, EntourageMember, TimelineEvent, FAQ } from "../types";
+import { WeddingData, EntourageMember, EntourageData, TimelineEvent, FAQ } from "../types";
 
 export const weddingData: WeddingData = {
   bride: "Li Xia",
@@ -42,24 +42,9 @@ export const ourStory = {
 
 export const weddingProgram: TimelineEvent[] = [
   {
-    time: "2:00 PM",
-    title: "Guest Arrival",
-    description: "Guests begin to arrive and are seated",
-  },
-  {
     time: "3:00 PM",
     title: "Ceremony Begins",
     description: "The wedding ceremony commences",
-  },
-  {
-    time: "3:45 PM",
-    title: "Ceremony Conclusion",
-    description: "Recessional and congratulations",
-  },
-  {
-    time: "4:30 PM",
-    title: "Cocktail Hour",
-    description: "Light refreshments and mingling at the reception venue",
   },
   {
     time: "6:00 PM",
@@ -83,21 +68,65 @@ export const weddingProgram: TimelineEvent[] = [
   },
 ];
 
-export const entourage: {
-  bridalParty: EntourageMember[];
-  groomsmen: EntourageMember[];
-} = {
-  bridalParty: [
-    { name: "Sarah Johnson", role: "Maid of Honor" },
-    { name: "Jessica Chen", role: "Bridesmaid" },
-    { name: "Amanda Roberts", role: "Bridesmaid" },
-    { name: "Lily Martinez", role: "Bridesmaid" },
+export const entourage: EntourageData = {
+  parents: [
+    { name: "Mr. Robert Anderson" },
+    { name: "Mrs. Susan Anderson" },
+    { name: "Mr. Wei Xia" },
+    { name: "Mrs. Jing Xia" },
   ],
+  principalSponsors: [
+    { name: "Mr. James Wilson" },
+    { name: "Mrs. Patricia Wilson" },
+    { name: "Mr. David Chen" },
+    { name: "Mrs. Mary Chen" },
+    { name: "Mr. Richard Taylor" },
+    { name: "Mrs. Linda Taylor" },
+  ],
+  bestMan: [
+    { name: "Michael Thompson" },
+  ],
+  maidOfHonor: [
+    { name: "Sarah Johnson" },
+  ],
+  secondarySponsors: {
+    veil: [
+      { name: "Thomas Brown" },
+      { name: "Jennifer Davis" },
+    ],
+    cord: [
+      { name: "Christopher Lee" },
+      { name: "Amanda White" },
+    ],
+    candle: [
+      { name: "Daniel Martinez" },
+      { name: "Jessica Taylor" },
+    ],
+  },
   groomsmen: [
-    { name: "Michael Thompson", role: "Best Man" },
-    { name: "David Lee", role: "Groomsman" },
-    { name: "Ryan Wilson", role: "Groomsman" },
-    { name: "Chris Davis", role: "Groomsman" },
+    { name: "David Lee" },
+    { name: "Ryan Wilson" },
+    { name: "Chris Davis" },
+    { name: "Kevin Miller" },
+  ],
+  bridesmaids: [
+    { name: "Jessica Chen" },
+    { name: "Amanda Roberts" },
+    { name: "Lily Martinez" },
+    { name: "Emily Clark" },
+  ],
+  ringBearer: [
+    { name: "Lucas Brown" },
+  ],
+  coinBearer: [
+    { name: "Oliver Smith" },
+  ],
+  bibleBearer: [
+    { name: "Ethan Davis" },
+  ],
+  flowerGirls: [
+    { name: "Mia Wilson" },
+    { name: "Sophia Lee" },
   ],
 };
 

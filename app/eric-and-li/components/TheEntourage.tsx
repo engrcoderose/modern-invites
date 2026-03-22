@@ -2,102 +2,289 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Users } from "lucide-react";
-import { EntourageMember } from "../types";
+import { EntourageData } from "../types";
+import Image from "next/image";
+import bgImage from "../assets/images/wedding-schedule-image.jpg";
 
 interface TheEntourageProps {
-  bridalParty: EntourageMember[];
-  groomsmen: EntourageMember[];
+  data: EntourageData;
 }
 
-export default function TheEntourage({
-  bridalParty,
-  groomsmen,
-}: TheEntourageProps) {
-  const renderMemberCard = (member: EntourageMember, index: number) => (
-    <motion.div
-      key={index}
-      className="text-center"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      <div className="relative mb-4 mx-auto w-32 h-32 md:w-40 md:h-40">
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-rose-200 to-blue-200 flex items-center justify-center shadow-lg">
-          <Users className="w-16 h-16 md:w-20 md:h-20 text-white" />
+export default function TheEntourage({ data }: TheEntourageProps) {
+  const renderNames = (names: { name: string }[], columns: number = 2) => {
+    if (columns === 1) {
+      return (
+        <div className="flex flex-col items-center gap-4 mt-8">
+          {names.map((person, idx) => (
+            <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+              {person.name}
+            </p>
+          ))}
+        </div>
+      );
+    }
+
+    // Split into two columns
+    const mid = Math.ceil(names.length / 2);
+    const col1 = names.slice(0, mid);
+    const col2 = names.slice(mid);
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16 mt-8 max-w-3xl mx-auto">
+        <div className="flex flex-col items-center gap-4">
+          {col1.map((person, idx) => (
+            <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+              {person.name}
+            </p>
+          ))}
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          {col2.map((person, idx) => (
+            <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+              {person.name}
+            </p>
+          ))}
         </div>
       </div>
-      <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-1">
-        {member.name}
-      </h3>
-      <p className="text-sm text-rose-600 uppercase tracking-wide">
-        {member.role}
-      </p>
-    </motion.div>
-  );
+    );
+  };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-rose-50 to-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-24 px-4 min-h-screen">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={bgImage}
+          alt="Entourage Background"
+          fill
+          className="object-cover"
+          quality={100}
+        />
+        {/* Optional overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-[#eae4cc]/50" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
         <motion.div
-          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
+          className="mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
-            The Entourage
+          <h2 className="text-7xl md:text-9xl font-meaCulpa text-[#4e2a0d] mb-4 drop-shadow-lg shadow-white">
+            Entourage
           </h2>
-          <p className="text-gray-600">
-            Meet the special people standing by our side
-          </p>
-          <div className="w-20 h-1 bg-rose-400 mx-auto mt-4" />
         </motion.div>
 
-        {/* Bridal Party */}
-        <div className="mb-16">
-          <motion.h3
-            className="text-3xl font-serif text-center text-gray-800 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        <div className="space-y-20 w-full bg-[#eae4cc]/50 p-8 md:p-16 rounded-3xl backdrop-blur-sm shadow-xl border border-white/50">
+          {/* Parents */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            Bridal Party
-          </motion.h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {bridalParty.map((member, index) => renderMemberCard(member, index))}
-          </div>
-        </div>
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase drop-shadow-sm">
+              With the blessings of our parents
+            </h3>
+            {renderNames(data.parents)}
+          </motion.div>
 
-        {/* Divider */}
-        <div className="flex items-center justify-center my-12">
-          <div className="flex-1 h-px bg-rose-200 max-w-xs" />
-          <div className="mx-4">
-            <Users className="w-6 h-6 text-rose-400" />
-          </div>
-          <div className="flex-1 h-px bg-rose-200 max-w-xs" />
-        </div>
-
-        {/* Groomsmen */}
-        <div>
-          <motion.h3
-            className="text-3xl font-serif text-center text-gray-800 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          {/* Principal Sponsors */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            Groomsmen
-          </motion.h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {groomsmen.map((member, index) => renderMemberCard(member, index))}
-          </div>
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase drop-shadow-sm">
+              Principal Sponsors
+            </h3>
+            <p className="text-[#4e2a0d] font-medium italic font-serif mt-2 text-lg md:text-xl drop-shadow-sm">
+              to stand as witnesses to our vows
+            </p>
+            {renderNames(data.principalSponsors)}
+          </motion.div>
+
+          {/* Best Man & Maid of Honor */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase drop-shadow-sm">
+              Best Man & Maid of Honor
+            </h3>
+            <p className="text-[#4e2a0d] font-medium italic font-serif mt-2 text-lg md:text-xl drop-shadow-sm">
+              to assist us in our needs
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-8 max-w-3xl mx-auto">
+              <div className="flex flex-col items-center gap-4">
+                {data.bestMan.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+              <div className="flex flex-col items-center gap-4">
+                {data.maidOfHonor.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Secondary Sponsors */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-12 drop-shadow-sm">
+              Secondary Sponsors
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto mb-12">
+              <div>
+                <h4 className="text-lg font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-6 drop-shadow-sm">
+                  Veil
+                </h4>
+                <div className="flex flex-col items-center gap-4">
+                  {data.secondarySponsors.veil.map((person, idx) => (
+                    <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                      {person.name}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-lg font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-6 drop-shadow-sm">
+                  Cord
+                </h4>
+                <div className="flex flex-col items-center gap-4">
+                  {data.secondarySponsors.cord.map((person, idx) => (
+                    <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                      {person.name}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-6 drop-shadow-sm">
+                Candle
+              </h4>
+              <div className="flex flex-col items-center gap-4">
+                {data.secondarySponsors.candle.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Groomsmen & Bridesmaids */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto"
+          >
+            <div>
+              <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+                Groomsmen
+              </h3>
+              <div className="flex flex-col items-center gap-4">
+                {data.groomsmen.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+                Bridesmaids
+              </h3>
+              <div className="flex flex-col items-center gap-4">
+                {data.bridesmaids.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Ring & Coin Bearers */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 max-w-3xl mx-auto"
+          >
+            <div>
+              <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+                Ring Bearer
+              </h3>
+              <div className="flex flex-col items-center gap-4">
+                {data.ringBearer.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+                Coin Bearer
+              </h3>
+              <div className="flex flex-col items-center gap-4">
+                {data.coinBearer.map((person, idx) => (
+                  <p key={idx} className="text-[#4e2a0d] font-medium uppercase tracking-widest text-sm md:text-base drop-shadow-sm">
+                    {person.name}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Bible Bearer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+              Bible Bearer
+            </h3>
+            {renderNames(data.bibleBearer, 1)}
+          </motion.div>
+
+          {/* Flower Girls */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-lg md:text-xl font-serif font-bold text-[#4e2a0d] tracking-[0.2em] uppercase mb-8 drop-shadow-sm">
+              Flower Girls
+            </h3>
+            {renderNames(data.flowerGirls, 1)}
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

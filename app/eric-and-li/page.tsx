@@ -51,10 +51,9 @@ export default function ClassicWeddingTemplate() {
         <WeddingProgram events={weddingProgram} />
       </div>
 
-      <TheEntourage
-        bridalParty={entourage.bridalParty}
-        groomsmen={entourage.groomsmen}
-      />
+      <div id="entourage">
+        <TheEntourage data={entourage} />
+      </div>
 
       <div id="location">
         <WeddingLocation

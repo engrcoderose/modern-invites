@@ -21,6 +21,7 @@ export default function Navigation() {
     { label: "Home", href: "#" },
     { label: "Our Story", href: "#story" },
     { label: "Program", href: "#program" },
+    { label: "Entourage", href: "#entourage" },
     { label: "Location", href: "#location" },
     { label: "FAQ", href: "#faq" },
     { label: "RSVP", href: "#rsvp" },
