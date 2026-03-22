@@ -162,7 +162,7 @@ export default function OurStory() {
                 memories as we unite in marriage.
               </p>
               <p>
-                After years of love, laughter, and countless memories, we're
+                After years of love, laughter, and countless memories, we&apos;re
                 excited to begin our forever together. We would be honored to
                 have you join us as we exchange our vows and celebrate this
                 special milestone surrounded by the people we love most.
