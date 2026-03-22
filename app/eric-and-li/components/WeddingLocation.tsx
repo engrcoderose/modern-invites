@@ -2,23 +2,29 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { MapPin, Navigation } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
+import Image, { StaticImageData } from "next/image";
+import bgImage from "../assets/images/walking-couple.jpg";
 
 interface Venue {
   name: string;
   address: string;
   mapUrl: string;
+  image?: string | StaticImageData;
 }
 
 interface WeddingLocationProps {
   ceremony: Venue;
   reception: Venue;
+  bride: string;
+  groom: string;
 }
 
 export default function WeddingLocation({
   ceremony,
   reception,
+  bride,
+  groom,
 }: WeddingLocationProps) {
   const VenueCard = ({
     title,
@@ -30,84 +36,94 @@ export default function WeddingLocation({
     delay: number;
   }) => (
     <motion.div
-      className="bg-white rounded-2xl shadow-lg overflow-hidden"
+      className="flex flex-col items-center text-center"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
     >
-      <div className="bg-gradient-to-br from-rose-400 to-blue-400 p-6">
-        <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">
-          {title}
-        </h3>
-        <MapPin className="w-6 h-6 text-white opacity-80" />
+      <h3 className="text-3xl md:text-4xl font-libreBaskerville text-[#4e2a0d] mb-6">
+        {title}
+      </h3>
+      
+      <div className="w-full aspect-[4/3] relative mb-6 overflow-hidden rounded-md">
+        <Image
+          src={venue.image || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800&auto=format&fit=crop"}
+          alt={venue.name}
+          fill
+          className="object-cover"
+        />
       </div>
 
-      <div className="p-6 md:p-8">
-        <h4 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
-          {venue.name}
-        </h4>
+      <h4 className="text-lg md:text-xl font-libreBaskerville text-[#4e2a0d] mb-4 max-w-[300px]">
+        {venue.name}
+      </h4>
 
-        <div className="flex items-start gap-3 mb-6">
-          <MapPin className="w-5 h-5 text-rose-500 flex-shrink-0 mt-1" />
-          <p className="text-gray-600">{venue.address}</p>
-        </div>
+      <p className="text-xs text-[#4e2a0d] mb-6 max-w-[280px] leading-relaxed">
+        {venue.address}
+      </p>
 
-        <Button
-          asChild
-          className="w-full bg-gradient-to-r from-rose-500 to-blue-500 hover:from-rose-600 hover:to-blue-600 text-white"
-        >
-          <a
-            href={venue.mapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2"
-          >
-            <Navigation className="w-4 h-4" />
-            Get Directions
-          </a>
-        </Button>
-      </div>
+      <a
+        href={venue.mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-2 bg-[#c79d5f] hover:bg-[#c79d5f]/80 text-white px-8 py-2.5 rounded-full text-xs font-medium tracking-wide transition-colors"
+      >
+        View Map <MapPin className="w-3.5 h-3.5 text-white" />
+      </a>
     </motion.div>
   );
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-white to-rose-50">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-32 pb-20">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={bgImage}
+          alt="Walking Couple"
+          fill
+          className="object-cover object-top"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-white/40 to-white" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 mt-20">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
-            Wedding Location & Reception
-          </h2>
-          <p className="text-gray-600">
-            Join us at these beautiful venues
+          <p className="text-sm tracking-[0.2em] text-white uppercase mb-2 font-medium drop-shadow-md">
+            {groom.split(' ')[0]} and {bride.split(' ')[0]}
           </p>
-          <div className="w-20 h-1 bg-rose-400 mx-auto mt-4" />
+          <h2 className="text-6xl md:text-8xl font-imperial text-white drop-shadow-lg">
+            Join Us!
+          </h2>
+          <div className="w-16 h-[1px] bg-white mx-auto mt-6" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <VenueCard title="Ceremony" venue={ceremony} delay={0} />
-          <VenueCard title="Reception" venue={reception} delay={0.2} />
-        </div>
-
         <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 lg:p-16 w-full max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="bg-blue-50 rounded-lg p-6 max-w-2xl mx-auto">
-            <p className="text-gray-700">
-              <span className="font-semibold">Pro tip:</span> We recommend
-              arriving 30 minutes early to find parking and get settled before
-              the ceremony begins!
-            </p>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <VenueCard 
+              title="Ceremony" 
+              venue={ceremony} 
+              delay={0.3} 
+            />
+            <VenueCard 
+              title="Reception" 
+              venue={reception} 
+              delay={0.5} 
+            />
           </div>
         </motion.div>
       </div>

@@ -2,7 +2,10 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Shirt, Palette } from "lucide-react";
+
+import Image from "next/image";
+import dressCodeImage from "../assets/deco/dress-code.png";
+import giftImage from "../assets/deco/gift.png";
 
 interface AttireColorsProps {
   dresscode: string;
@@ -15,118 +18,92 @@ export default function AttireColors({
   colors,
   description,
 }: AttireColorsProps) {
-  const colorMap: Record<string, string> = {
-    "Navy Blue": "bg-blue-900",
-    "Dusty Rose": "bg-rose-300",
-    Gold: "bg-yellow-500",
-    White: "bg-white border-2 border-gray-300",
-    Black: "bg-black",
-    Green: "bg-green-600",
-    Purple: "bg-purple-600",
-    Red: "bg-red-600",
-  };
-
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-5xl mx-auto">
+    <section className="py-24 px-4 bg-[#98754A] text-white overflow-hidden">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* Left Column */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="text-center md:text-left flex flex-col items-center"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
-            Attire & Colors
+          <h3 className="text-sm font-sans tracking-[0.2em] mb-2 uppercase">
+            Attire and Colors
+          </h3>
+          <h2 className="text-6xl md:text-7xl font-serif mb-12 uppercase tracking-wide">
+            Dress Code
           </h2>
-          <div className="w-20 h-1 bg-rose-400 mx-auto" />
+          
+          {/* Illustration - Barong and Dress */}
+          <div className="flex justify-center opacity-80 mt-8">
+            <Image 
+              src={dressCodeImage} 
+              alt="Dress Code Illustration" 
+              width={250} 
+              height={250}
+              className="object-contain"
+            />
+          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Dress Code */}
-          <motion.div
-            className="bg-gradient-to-br from-rose-50 to-blue-50 rounded-2xl p-8 shadow-lg"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-rose-400 p-3 rounded-full">
-                <Shirt className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-serif text-gray-800">Dress Code</h3>
-            </div>
-            <p className="text-3xl font-semibold text-rose-600 mb-4">
-              {dresscode}
-            </p>
-            <div className="space-y-3 text-gray-700">
-              <div className="flex items-start gap-2">
-                <span className="text-rose-500 font-bold">•</span>
-                <p>Ladies: Floor-length gowns or cocktail dresses</p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-rose-500 font-bold">•</span>
-                <p>Gentlemen: Suits or tuxedos</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Wedding Colors */}
-          <motion.div
-            className="bg-gradient-to-br from-blue-50 to-rose-50 rounded-2xl p-8 shadow-lg"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-blue-400 p-3 rounded-full">
-                <Palette className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-serif text-gray-800">
-                Wedding Colors
-              </h3>
-            </div>
-            <p className="text-gray-600 mb-6">
-              Our color palette for the celebration
-            </p>
-            <div className="flex gap-4 justify-center">
-              {colors.map((color, index) => (
-                <motion.div
-                  key={index}
-                  className="text-center"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <div
-                    className={`w-20 h-20 rounded-full shadow-lg mb-2 ${
-                      colorMap[color] || "bg-gray-300"
-                    }`}
-                  />
-                  <p className="text-sm text-gray-700 font-medium">{color}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Description */}
+        {/* Right Column */}
         <motion.div
-          className="bg-gradient-to-r from-rose-100 via-pink-50 to-blue-100 rounded-2xl p-8 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="flex flex-col gap-12"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-gray-700 leading-relaxed max-w-3xl mx-auto">
-            {description}
-          </p>
+          {/* Colors Section */}
+          <div className="border-t border-white/30 pt-8 flex flex-col md:flex-row gap-8 md:gap-16">
+            <h3 className="text-xl font-bold tracking-wider w-32 shrink-0">COLORS</h3>
+            <div className="flex flex-col items-center md:items-start w-full">
+              <p className="text-lg mb-8 text-center md:text-left">
+                We would love to see you in<br />these shades:
+              </p>
+              <div className="flex gap-12 justify-center md:justify-start w-full">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-24 h-24 rounded-full bg-[#E8D3A2]" />
+                  <span className="font-serif tracking-widest text-lg uppercase">Beige</span>
+                </div>
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-24 h-24 rounded-full bg-[#1A1A1A]" />
+                  <span className="font-serif tracking-widest text-lg uppercase">Black</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Attire Section */}
+          <div className="border-t border-white/30 pt-8 flex flex-col md:flex-row gap-8 md:gap-16 relative">
+            <h3 className="text-xl font-bold tracking-wider w-32 shrink-0">ATTIRE</h3>
+            <div className="flex flex-col gap-8 w-full">
+              <div>
+                <h4 className="text-lg mb-2 uppercase tracking-wide">Principal Sponsors:</h4>
+                <p className="text-lg opacity-90">Gents: Barong and Black Slacks</p>
+                <p className="text-lg opacity-90">Ladies: Beige Gown</p>
+              </div>
+              <div>
+                <h4 className="text-lg mb-2 uppercase tracking-wide">Guests:</h4>
+                <p className="text-lg opacity-90">Semi-Formal</p>
+              </div>
+            </div>
+            
+            {/* Gift Illustration */}
+            <div className="absolute bottom-0 right-0 opacity-80 hidden md:block">
+              <Image 
+                src={giftImage} 
+                alt="Gift Illustration" 
+                width={120} 
+                height={120}
+                className="object-contain"
+              />
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
-

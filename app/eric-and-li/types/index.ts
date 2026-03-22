@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 // Types for Classic Wedding Template
 
 export interface WeddingData {
@@ -8,11 +10,13 @@ export interface WeddingData {
     name: string;
     address: string;
     mapUrl: string;
+    image?: string | StaticImageData;
   };
   reception: {
     name: string;
     address: string;
     mapUrl: string;
+    image?: string | StaticImageData;
   };
 }
 

@@ -59,6 +59,8 @@ export default function ClassicWeddingTemplate() {
         <WeddingLocation
           ceremony={weddingData.venue}
           reception={weddingData.reception}
+          bride={weddingData.bride}
+          groom={weddingData.groom}
         />
       </div>
 

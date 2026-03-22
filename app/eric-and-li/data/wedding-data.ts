@@ -1,18 +1,21 @@
 import { WeddingData, EntourageMember, EntourageData, TimelineEvent, FAQ } from "../types";
+import churchImage from "../assets/images/church.jpg";
 
 export const weddingData: WeddingData = {
   bride: "Li Xia",
   groom: "Eric Anderson",
   weddingDate: new Date("2026-06-20T16:00:00"),
   venue: {
-    name: "St. Mary's Cathedral",
-    address: "123 Church Street, Downtown, NY 10001",
+    name: "Saint Joseph Parish Church",
+    address: "Km 45.5 Emilio Aguinaldo Hwy, Lalaan 1, 4118, Silang, Cavite, Philippines",
     mapUrl: "https://maps.google.com",
+    image: churchImage,
   },
   reception: {
-    name: "Grand Ballroom at The Plaza",
-    address: "456 Plaza Avenue, Downtown, NY 10002",
+    name: "Virdis Garden",
+    address: "A. Mabini St, Amadeo, 4119 Cavite, Philippines",
     mapUrl: "https://maps.google.com",
+    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop",
   },
 };
 
