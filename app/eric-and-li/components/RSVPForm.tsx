@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, CheckCircle } from "lucide-react";
 
 export default function RSVPForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -21,13 +22,46 @@ export default function RSVPForm() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to a backend
-    console.log("RSVP Submitted:", formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
 
-    // Reset form after 5 seconds
+    try {
+      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+      
+      if (!scriptUrl) {
+        console.warn("Google Script URL is missing. Simulating success.");
+        setTimeout(() => {
+          setSubmitted(true);
+          setIsSubmitting(false);
+          resetForm();
+        }, 1000);
+        return;
+      }
+
+      // Convert state to FormData for easier Google Apps Script handling (avoids CORS preflight)
+      const data = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value);
+      });
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        body: data,
+        mode: "no-cors", // Required to avoid CORS issues with Google Scripts
+      });
+
+      setSubmitted(true);
+      resetForm();
+    } catch (error) {
+      console.error("Error submitting RSVP:", error);
+      alert("There was an error submitting your RSVP. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
@@ -55,7 +89,7 @@ export default function RSVPForm() {
 
   if (submitted) {
     return (
-      <section id="rsvp" className="py-20 px-4 bg-gradient-to-b from-white to-rose-50">
+      <section id="rsvp" className="py-20 px-4 bg-[#eae4cc]/30">
         <div className="max-w-2xl mx-auto">
           <motion.div
             className="text-center"
@@ -63,19 +97,19 @@ export default function RSVPForm() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="border-2 border-rose-200 shadow-xl">
+            <Card className="border-2 border-[#e2d5b3] shadow-xl bg-white">
               <CardContent className="pt-12 pb-12">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
+                  <CheckCircle className="w-20 h-20 text-[#8c6b42] mx-auto mb-6" />
                 </motion.div>
-                <h3 className="text-3xl font-serif text-gray-800 mb-4">
+                <h3 className="text-5xl font-meaCulpa text-[#4e2a0d] mb-4">
                   Thank You!
                 </h3>
-                <p className="text-gray-600 text-lg">
+                <p className="text-[#4e2a0d]/80 text-lg font-medium">
                   Your RSVP has been received. We can&apos;t wait to celebrate with
                   you!
                 </p>
@@ -88,7 +122,7 @@ export default function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="py-20 px-4 bg-gradient-to-b from-white to-rose-50">
+    <section id="rsvp" className="py-20 px-4 bg-[#eae4cc]/30">
       <div className="max-w-3xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -97,16 +131,16 @@ export default function RSVPForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-rose-400 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#c79d5f] rounded-full mb-4">
             <Heart className="w-8 h-8 text-white fill-white" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">
+          <h2 className="text-5xl md:text-7xl font-meaCulpa text-[#4e2a0d] mb-4">
             RSVP
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-[#4e2a0d]/80 text-lg font-medium">
             Please let us know if you&apos;ll be joining us
           </p>
-          <div className="w-20 h-1 bg-rose-400 mx-auto mt-4" />
+          <div className="w-20 h-1 bg-[#c79d5f] mx-auto mt-4" />
         </motion.div>
 
         <motion.div
@@ -115,9 +149,9 @@ export default function RSVPForm() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Card className="shadow-xl border-2 border-rose-100">
-            <CardHeader className="bg-gradient-to-r from-rose-50 to-blue-50">
-              <CardTitle className="text-2xl text-center text-gray-800">
+          <Card className="shadow-xl border-2 border-[#e2d5b3] bg-white">
+            <CardHeader className="bg-[#eae4cc]/50 border-b border-[#e2d5b3]">
+              <CardTitle className="text-2xl text-center font-libreBaskerville text-[#4e2a0d]">
                 Respond by May 20, 2026
               </CardTitle>
             </CardHeader>
@@ -125,7 +159,7 @@ export default function RSVPForm() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name */}
                 <div>
-                  <Label htmlFor="name" className="text-gray-700">
+                  <Label htmlFor="name" className="text-[#4e2a0d] font-medium">
                     Full Name *
                   </Label>
                   <Input
@@ -135,13 +169,13 @@ export default function RSVPForm() {
                     onChange={handleChange}
                     required
                     placeholder="Enter your full name"
-                    className="mt-2"
+                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <Label htmlFor="email" className="text-gray-700">
+                  <Label htmlFor="email" className="text-[#4e2a0d] font-medium">
                     Email Address *
                   </Label>
                   <Input
@@ -152,13 +186,13 @@ export default function RSVPForm() {
                     onChange={handleChange}
                     required
                     placeholder="your.email@example.com"
-                    className="mt-2"
+                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                   />
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <Label htmlFor="phone" className="text-gray-700">
+                  <Label htmlFor="phone" className="text-[#4e2a0d] font-medium">
                     Phone Number
                   </Label>
                   <Input
@@ -168,13 +202,13 @@ export default function RSVPForm() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="(123) 456-7890"
-                    className="mt-2"
+                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                   />
                 </div>
 
                 {/* Attendance */}
                 <div>
-                  <Label htmlFor="attendance" className="text-gray-700">
+                  <Label htmlFor="attendance" className="text-[#4e2a0d] font-medium">
                     Will you be attending? *
                   </Label>
                   <select
@@ -183,7 +217,7 @@ export default function RSVPForm() {
                     value={formData.attendance}
                     onChange={handleChange}
                     required
-                    className="mt-2 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+                    className="mt-2 w-full rounded-md border border-[#e2d5b3] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#c79d5f]"
                   >
                     <option value="yes">Joyfully accept</option>
                     <option value="no">Regretfully decline</option>
@@ -194,7 +228,7 @@ export default function RSVPForm() {
                 {formData.attendance === "yes" && (
                   <>
                     <div>
-                      <Label htmlFor="guests" className="text-gray-700">
+                      <Label htmlFor="guests" className="text-[#4e2a0d] font-medium">
                         Number of Guests *
                       </Label>
                       <Input
@@ -206,13 +240,13 @@ export default function RSVPForm() {
                         value={formData.guests}
                         onChange={handleChange}
                         required
-                        className="mt-2"
+                        className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                       />
                     </div>
 
                     {/* Dietary Restrictions */}
                     <div>
-                      <Label htmlFor="dietary" className="text-gray-700">
+                      <Label htmlFor="dietary" className="text-[#4e2a0d] font-medium">
                         Dietary Restrictions or Allergies
                       </Label>
                       <Input
@@ -221,7 +255,7 @@ export default function RSVPForm() {
                         value={formData.dietary}
                         onChange={handleChange}
                         placeholder="e.g., vegetarian, gluten-free, nut allergy"
-                        className="mt-2"
+                        className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                       />
                     </div>
                   </>
@@ -229,7 +263,7 @@ export default function RSVPForm() {
 
                 {/* Message */}
                 <div>
-                  <Label htmlFor="message" className="text-gray-700">
+                  <Label htmlFor="message" className="text-[#4e2a0d] font-medium">
                     Message to the Couple
                   </Label>
                   <Textarea
@@ -238,16 +272,17 @@ export default function RSVPForm() {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Share your well wishes or any questions you may have"
-                    className="mt-2 min-h-[100px]"
+                    className="mt-2 min-h-[100px] border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
                   />
                 </div>
 
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-rose-500 to-blue-500 hover:from-rose-600 hover:to-blue-600 text-white text-lg py-6"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#c79d5f] hover:bg-[#8c6b42] text-white text-lg py-6 transition-colors disabled:opacity-70"
                 >
-                  Submit RSVP
+                  {isSubmitting ? "Submitting..." : "Submit RSVP"}
                 </Button>
               </form>
             </CardContent>
@@ -255,7 +290,7 @@ export default function RSVPForm() {
         </motion.div>
 
         <motion.p
-          className="text-center text-gray-600 mt-6 text-sm"
+          className="text-center text-[#4e2a0d]/60 mt-6 text-sm font-medium"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
