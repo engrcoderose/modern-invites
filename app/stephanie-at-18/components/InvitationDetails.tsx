@@ -12,9 +12,9 @@ interface InvitationDetailsProps {
 
 export default function InvitationDetails({ data }: InvitationDetailsProps) {
   const formattedDate = data.eventDate.toLocaleDateString("en-US", {
-    year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "2-digit",
+    year: "numeric",
   });
 
   const dayOfWeek = data.eventDate.toLocaleDateString("en-US", {
@@ -22,78 +22,63 @@ export default function InvitationDetails({ data }: InvitationDetailsProps) {
   });
 
   return (
-    <section className="relative py-20 bg-[#fff6d2] overflow-hidden">
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
+    <section className="relative py-16 bg-[#fff6d2] overflow-hidden">
+      <div className="w-full px-8 md:px-14 relative z-10">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Left side - Message */}
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="space-y-16 md:w-[550px] mx-auto"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-8">
-              You are Invited!
+            <h2 className="text-5xl md:text-6xl font-meaCulpa text-[#ac243d] not-semibold">
+              ✦ You are Invited! ✦
             </h2>
+
+            <p className="text-lg md:text-xl font-petitFormalScript text-[#ac243d] leading-relaxed text-justify text-wrap font-semibold">
+              As I celebrate one of the most special milestones in my life, I
+              would be truly grateful to have you by my side. <br /> <br /> Join
+              me for a magical night filled with laughter, memories, and the
+              people who matter most to me. <br /> <br /> Your presence will
+              make this moment even more unforgettable. 💗
+            </p>
+
+            <div className="pt-4 space-y-2 text-center">
+              <p className="text-base md:text-lg font-petitFormalScript italic text-[#ac243d] font-semibold">
+                <span className="not-italic font-bold">Date:</span>{" "}
+                {formattedDate}
+              </p>
+              <p className="text-base md:text-lg font-petitFormalScript italic text-[#ac243d] font-semibold">
+                <span className="not-italic font-bold">Time:</span>{" "}
+                {dayOfWeek} | {data.eventTime}
+              </p>
+              <p className="text-base md:text-lg font-petitFormalScript italic text-[#ac243d] font-semibold">
+                <span className="not-italic font-bold">Where:</span>{" "}
+                {data.venue.name}, {data.venue.address}
+              </p>
+            </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left side - Message */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="text-lg text-gray-700 leading-relaxed">
-                As I celebrate one of the most special milestones in my life, I would be most grateful to have you by my side.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Join me for a magical night filled with laughter, memories, and the people who matter most to me.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                This precious gift will make this special occasion truly unforgettable.
-              </p>
-
-              <div className="mt-8 space-y-3 pt-6 border-t border-yellow-300">
-                <p className="text-base text-gray-600">
-                  <span className="font-semibold">Date:</span> {formattedDate}
-                </p>
-                <p className="text-base text-gray-600">
-                  <span className="font-semibold">Time:</span> {dayOfWeek} | {data.eventTime}
-                </p>
-                <p className="text-base text-gray-600">
-                  <span className="font-semibold">Venue:</span> {data.venue.name}
-                </p>
-                <p className="text-sm text-gray-500">
-                  {data.venue.address}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Right side - Photo */}
-            <motion.div
-              className="relative mt-8 md:mt-0"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="relative w-full h-64 sm:h-80 md:h-96 transform rotate-3">
-                <div className="relative w-full h-full overflow-hidden">
-                  <Image
-                    src={invitationPhoto}
-                    alt={`${data.celebrant} invitation photo`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>    
-              </div>
-            </motion.div>
-          </div>
+          {/* Right side - Photo */}
+          <motion.div
+            className="relative flex justify-center items-center"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative w-full h-[450px] md:h-[800px]">
+              <Image
+                src={invitationPhoto}
+                alt={`${data.celebrant} invitation photo`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

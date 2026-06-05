@@ -85,6 +85,7 @@ export default {
         libreBaskerville: ['var(--font-libre-baskerville)', 'serif'],
         instrumentSerif: ['var(--font-instrument-serif)', 'serif'],
         meaCulpa: ['var(--font-mea-culpa)', 'serif'],
+        petitFormalScript: ['var(--font-petit-formal-script)', 'cursive'],
       },
       borderRadius: {
         lg: 'var(--radius)',

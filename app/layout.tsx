@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Imperial_Script, Libre_Baskerville, Instrument_Serif, Mea_Culpa } from "next/font/google";
+import { Inter, Playfair_Display, Imperial_Script, Libre_Baskerville, Instrument_Serif, Mea_Culpa, Petit_Formal_Script } from "next/font/google";
 import "./globals.css";
 
 
@@ -37,6 +37,12 @@ const meaCulpa = Mea_Culpa({
   variable: "--font-mea-culpa",
 });
 
+const petitFormalScript = Petit_Formal_Script({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-petit-formal-script",
+});
+
 export const metadata: Metadata = {
   title: "Modern Invites - Elegant E-Invites for Every Occasion",
   description: "Create beautiful, personalized digital invitations that leave a lasting impression. Perfect for weddings, birthdays, corporate events, and more.",
@@ -45,6 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} ${imperial.variable} ${libreBaskerville.variable} ${instrumentSerif.variable} ${meaCulpa.variable} font-sans antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${playfair.variable} ${imperial.variable} ${libreBaskerville.variable} ${instrumentSerif.variable} ${meaCulpa.variable} ${petitFormalScript.variable} font-sans antialiased overflow-x-hidden`}>
         {children}
       </body>
     </html>
