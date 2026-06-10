@@ -13,7 +13,7 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
   const detailBoxes = [
     {
       icon: Gift,
-      title: "GIFT HOW",
+      title: "GIFT NOTE",
       text: details.giftMessage,
       bgColor: "bg-pink-50",
       borderColor: "border-pink-300",
@@ -28,18 +28,18 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
     {
       icon: Hash,
       title: "MY HASHTAG",
-      text: `Capture your memories & share them on social media using our official hashtag: ${details.hashtag}`,
+      text: "Capture your memories & share them on social media using our official hashtag:",
+      hashtag: details.hashtag,
       bgColor: "bg-pink-50",
       borderColor: "border-pink-300",
     },
   ];
 
   return (
-    <section id="rsvp" className="relative py-20 bg-gradient-to-b from-yellow-100 to-yellow-50 overflow-hidden">
-      {/* Floral decorations */}
-      <div className="absolute top-0 left-0 text-pink-300 opacity-20 text-6xl">✨</div>
-      <div className="absolute top-0 right-0 text-pink-300 opacity-20 text-6xl">✨</div>
-
+    <section
+      id="rsvp"
+      className="relative py-20 bg-gradient-to-b from-yellow-100 to-yellow-50 overflow-hidden"
+    >
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-12"
@@ -48,9 +48,13 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-8">
-            OTHER DETAILS
-          </h2>
+          <p className="text-base md:text-xl font-libreBaskerville text-[#ac243d] mb-5 uppercase">
+            Other Useful Information
+          </p>
+          <div className="w-16 h-1 bg-yellow-400 mx-auto mb-4"></div>
+          <p className="text-5xl md:text-8xl font-meaCulpa text-[#ac243d]">
+            Other Details
+          </p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
@@ -71,9 +75,18 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
                     <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center">
                       <Icon className="w-6 h-6 text-pink-600" />
                     </div>
-                    <h3 className="text-lg font-serif text-gray-800">{box.title}</h3>
+                    <h3 className="text-lg font-serif text-gray-800">
+                      {box.title}
+                    </h3>
                   </div>
-                  <p className="text-sm text-gray-700 leading-relaxed">{box.text}</p>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {box.text}
+                  </p>
+                  {"hashtag" in box && box.hashtag && (
+                    <p className="mt-16 text-center text-2xl md:text-3xl font-libreBaskerville font-bold text-[#ac243d]">
+                      {box.hashtag}
+                    </p>
+                  )}
                 </motion.div>
               );
             })}

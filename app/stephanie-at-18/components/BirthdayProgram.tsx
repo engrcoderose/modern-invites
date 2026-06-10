@@ -3,6 +3,10 @@
 import React from "react";
 import { motion } from "motion/react";
 import { BirthdayProgram as BirthdayProgramType } from "../types";
+import programBg from "../assets/bg/yellow-bg-long.jpg";
+import Image from "next/image";
+import dress from "../assets/step-design-assets/green-dress.png";
+import outfit from '../assets/outfits/yellow-outfit-3.jpg'
 
 interface BirthdayProgramProps {
   program: BirthdayProgramType;
@@ -10,20 +14,24 @@ interface BirthdayProgramProps {
 
 export default function BirthdayProgram({ program }: BirthdayProgramProps) {
   const sections = [
-    { key: "roses" as const, icon: "🌹", color: "text-red-600" },
-    { key: "blueBills" as const, icon: "💵", color: "text-blue-600" },
-    { key: "treasures" as const, icon: "💎", color: "text-purple-600" },
-    { key: "candles" as const, icon: "🕯️", color: "text-yellow-600" },
+    { key: "roses" as const, color: "text-red-600" },
+    { key: "blueBills" as const, color: "text-blue-600" },
+    { key: "treasures" as const, color: "text-purple-600" },
+    { key: "candles" as const, color: "text-yellow-600" },
   ];
 
   return (
-    <section id="birthday-program" className="relative py-20 bg-gradient-to-b from-yellow-50 to-yellow-100 overflow-hidden">
+    <section id="birthday-program" className="relative py-20 overflow-hidden">
       {/* Background image effect */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-400 text-sm">Background Photo Placeholder</span>
-        </div>
+      <div className="absolute inset-0">
+        <Image
+          src={outfit}
+          alt="Program background"
+          fill
+          className="object-cover opacity-8"
+        />
       </div>
+      <div className="absolute inset-0 bg-[#fdea9f] opacity-80"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -33,12 +41,21 @@ export default function BirthdayProgram({ program }: BirthdayProgramProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-2">
-            DEBUTANTE
-          </h2>
-          <h3 className="text-2xl md:text-3xl font-serif text-gray-700">
+          <div className="mb-5">
+            <Image
+            src={dress}
+            alt="dress"
+            width={100}
+            height={100}
+            className="object-contain flex justify-center items-center mx-auto"
+            />
+          </div>
+          <p className="text-base md:text-xl font-libreBaskerville text-[#ac243d] mb-5">
+            STEPHANIE AT 18
+          </p>
+          <p className="text-5xl md:text-8xl font-meaCulpa text-[#ac243d]">
             Birthday Program
-          </h3>
+          </p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto space-y-12">
@@ -54,7 +71,7 @@ export default function BirthdayProgram({ program }: BirthdayProgramProps) {
                 transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="text-4xl">{section.icon}</span>
+                  {/* <span className="text-4xl">{section.icon}</span> */}
                   <h4 className={`text-2xl md:text-3xl font-serif ${section.color}`}>
                     {programSection.title}
                   </h4>

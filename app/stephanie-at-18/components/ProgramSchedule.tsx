@@ -34,12 +34,12 @@ export default function ProgramSchedule({ schedule }: ProgramScheduleProps) {
       </div>
 
       {/* Roses — top left */}
-      <div className="absolute top-0 left-0 w-48 md:w-64 z-10">
+      <div className="absolute top-0 left-0 w-24 md:w-64 z-10">
         <Image src={programRoses} alt="Roses decoration" className="object-contain" />
       </div>
 
       {/* Roses — top right (mirrored) */}
-      <div className="absolute top-0 right-0 w-48 md:w-64 z-10 scale-x-[-1]">
+      <div className="absolute top-0 right-0 w-24 md:w-64 z-10 scale-x-[-1]">
         <Image src={programRoses} alt="Roses decoration" className="object-contain" />
       </div>
 
@@ -55,7 +55,7 @@ export default function ProgramSchedule({ schedule }: ProgramScheduleProps) {
             November 08, 2026
           </p>
           <div className="w-16 h-1 bg-yellow-400 mx-auto mb-4"></div>
-          <p className="text-2xl md:text-8xl font-meaCulpa text-[#ac243d]">
+          <p className="text-5xl md:text-8xl font-meaCulpa text-[#ac243d]">
             Program Schedule
           </p>
         </motion.div>

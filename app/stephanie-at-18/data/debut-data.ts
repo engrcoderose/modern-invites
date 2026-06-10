@@ -1,4 +1,10 @@
-import { DebutData, ProgramSchedule, BirthdayProgram, AttireInfo, OtherDetails } from "../types";
+import {
+  DebutData,
+  ProgramSchedule,
+  BirthdayProgram,
+  AttireInfo,
+  OtherDetails,
+} from "../types";
 
 export const debutData: DebutData = {
   celebrant: "Stephanie",
@@ -7,7 +13,7 @@ export const debutData: DebutData = {
   venue: {
     name: "Rara, Yellow Polo Event Place",
     address: "Purok 6, Sta. Lucia, Sta. Ana, Pampanga",
-    mapUrl: "https://maps.google.com",
+    mapUrl: "https://maps.app.goo.gl/4X1KTsBjLARBJiNc8",
   },
 };
 
@@ -21,7 +27,8 @@ export const programSchedule: ProgramSchedule = {
 export const birthdayProgram: BirthdayProgram = {
   roses: {
     title: "18 ROSES",
-    description: "The 18 Roses symbolize the 18 gentlemen who will be part of the debutante's life. Each rose represents a year of her life, and the dance signifies her journey into womanhood.",
+    description:
+      "The 18 Roses symbolize the 18 gentlemen who will be part of the debutante's life. Each rose represents a year of her life, and the dance signifies her journey into womanhood.",
     participants: [
       "Patrick Gana",
       "Sean Michael Macaraeg",
@@ -45,7 +52,8 @@ export const birthdayProgram: BirthdayProgram = {
   },
   blueBills: {
     title: "18 BLUE BILLS",
-    description: "The 18 Blue Bills symbolize the 18 gentlemen who will give the debutante a gift of money. Each gift represents a wish for her prosperity and success in her future endeavors.",
+    description:
+      "The 18 Blue Bills symbolize the 18 gentlemen who will give the debutante a gift of money. Each gift represents a wish for her prosperity and success in her future endeavors.",
     participants: [
       "Angelo Manalo",
       "J.R. Sanchez",
@@ -69,7 +77,8 @@ export const birthdayProgram: BirthdayProgram = {
   },
   treasures: {
     title: "18 TREASURES",
-    description: "The 18 Treasures symbolize the 18 ladies who will give the debutante a gift that represents a significant aspect of her life. Each gift holds a special meaning and serves as a reminder of their friendship and support.",
+    description:
+      "The 18 Treasures symbolize the 18 ladies who will give the debutante a gift that represents a significant aspect of her life. Each gift holds a special meaning and serves as a reminder of their friendship and support.",
     participants: [
       "Rocelle Macaraeg",
       "Jermaine S. Bacani",
@@ -93,7 +102,8 @@ export const birthdayProgram: BirthdayProgram = {
   },
   candles: {
     title: "18 CANDLES",
-    description: "The 18 Candles symbolize the 18 ladies who will light a candle for the debutante. Each candle represents a wish for her future, and the light signifies their guidance and support as she embarks on a new chapter.",
+    description:
+      "The 18 Candles symbolize the 18 ladies who will light a candle for the debutante. Each candle represents a wish for her future, and the light signifies their guidance and support as she embarks on a new chapter.",
     participants: [
       "Kristel Joy Macaraeg",
       "Samantha Policarpio",
@@ -118,19 +128,23 @@ export const birthdayProgram: BirthdayProgram = {
 };
 
 export const attireInfo: AttireInfo = {
-  dresscode: "chic in any style you love — and make sure to wear something yellow to match the celebration's theme",
-  colors: ["#F4D03F", "#F7DC6F", "#F9E79F"], // Yellow shades
-  description: "Dress code: chic in any style you love — and make sure to wear something yellow to match the celebration's theme.",
+  dresscode:
+    "Dress comfortably in any style you love — just make sure to wear something yellow to match the celebration's theme.",
+  colors: ["#F4D03F", "#F7DC6F", "#F9E79F"],
+  description:
+    "Dress comfortably in any style you love — just make sure to wear something yellow to match the celebration's theme.",
 };
 
 export const otherDetails: OtherDetails = {
-  giftMessage: "Your presence is the greatest gift you could ever give me. However, should you wish to honor me with a present, a monetary gift would be greatly appreciated as it will help me start my journey into adulthood. Thank you for your generosity!",
-  unpluggedMessage: "We would love for you to be fully present with us during this special occasion. We kindly request that you put away your phones and cameras during the ceremony and program proper. We have professional photographers and videographers to capture every moment. Thank you for your understanding!",
-  hashtag: "#StephGotHerEighteen",
+  giftMessage:
+    "Whether it is a thoughtful present, a heartfelt card, or even a kind gesture, your presence and participation in this special day mean the world to her. Please feel free to express your love and support in whatever way you choose—your thoughtfulness is the greatest gift of all!",
+  unpluggedMessage:
+    "We would love for you to be fully present with us during this special occasion. We kindly request that you put away your phones and cameras during the ceremony and program proper. We have professional photographers and videographers to capture every moment. Thank you for your understanding!",
+  hashtag: "#StephIntoEighteen",
 };
 
 export const receptionAddress = {
   name: "SWEET PLACE RENTAL",
   address: "Purok 6, Sta. Lucia, Sta. Ana, Pampanga",
-  mapUrl: "https://maps.google.com",
+  mapUrl: "https://maps.app.goo.gl/4X1KTsBjLARBJiNc8",
 };
