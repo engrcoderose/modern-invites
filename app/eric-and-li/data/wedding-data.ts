@@ -4,7 +4,7 @@ import churchImage from "../assets/images/church.jpg";
 export const weddingData: WeddingData = {
   bride: "Li Xia",
   groom: "Eric Anderson",
-  weddingDate: new Date("2026-06-20T16:00:00"),
+  weddingDate: new Date("2030-06-20T16:00:00"),
   venue: {
     name: "Saint Joseph Parish Church",
     address: "Km 45.5 Emilio Aguinaldo Hwy, Lalaan 1, 4118, Silang, Cavite, Philippines",

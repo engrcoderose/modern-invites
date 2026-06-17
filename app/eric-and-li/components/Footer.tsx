@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <h3 className="text-5xl font-imperial mb-2">Eric & Li</h3>
             <p className="text-[#eae4cc] text-sm tracking-wider font-medium">
-              JUNE 20, 2026
+              JUNE 20, 2030
             </p>
           </div>
 

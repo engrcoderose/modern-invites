@@ -114,7 +114,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Modern Invites. All rights
             reserved.
           </p>
-          <p>Powered by <a href="https://www.pixyartph.com" target="_blank" className="text-sage-400 hover:text-sage-300 transition-colors">Pixy Art Creative Solutions</a></p>
+          <p>Powered by <a href="https://www.tuldokdigital.com" target="_blank" className="text-sage-400 hover:text-sage-300 transition-colors">Tuldok Digital Solutions</a></p>
         </motion.div>
       </div>
     </footer>
