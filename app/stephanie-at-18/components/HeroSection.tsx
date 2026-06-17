@@ -37,10 +37,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-5 items-center justify-items-center">
           {/* Left side - Text content */}
           <motion.div
-            className="text-center md:text-left"
+            className=" flex flex-col items-center text-center md:text-left md:items-start justify-center"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -77,7 +77,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
               <p className="font-libreBaskerville text-base md:text-lg text-[#b12a56] mt-4">
                 at {data.venue.name}
               </p>
-                <p className="font-libreBaskerville text-sm md:text-base text-[#b12a56]">
+              <p className="font-libreBaskerville text-sm md:text-base text-[#b12a56]">
                 {data.venue.address}
               </p>
             </motion.div>
@@ -85,7 +85,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
           {/* Right side - Photos */}
           <motion.div
-            className="flex flex-col gap-4 items-center md:items-start"
+            className="flex flex-col gap-4 items-center"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

@@ -52,3 +52,8 @@ export interface OtherDetails {
   unpluggedMessage: string;
   hashtag: string;
 }
+
+export interface RSVPInfo {
+  subtitle: string;
+  deadline: string;
+}

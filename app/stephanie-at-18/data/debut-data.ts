@@ -4,6 +4,7 @@ import {
   BirthdayProgram,
   AttireInfo,
   OtherDetails,
+  RSVPInfo,
 } from "../types";
 
 export const debutData: DebutData = {
@@ -141,6 +142,11 @@ export const otherDetails: OtherDetails = {
   unpluggedMessage:
     "We would love for you to be fully present with us during this special occasion. We kindly request that you put away your phones and cameras during the ceremony and program proper. We have professional photographers and videographers to capture every moment. Thank you for your understanding!",
   hashtag: "#StephIntoEighteen",
+};
+
+export const rsvpInfo: RSVPInfo = {
+  subtitle: "Please let us know if you'll be joining us",
+  deadline: "August 25, 2023",
 };
 
 export const receptionAddress = {

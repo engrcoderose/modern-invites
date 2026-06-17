@@ -23,6 +23,7 @@ export default function Navigation() {
     { label: "Birthday Program", href: "#birthday-program" },
     { label: "Location", href: "#location" },
     { label: "Dress Code", href: "#dress-code" },
+    { label: "Other Details", href: "#other-details" },
     { label: "RSVP", href: "#rsvp" },
   ];
 
@@ -54,11 +55,11 @@ export default function Navigation() {
           {/* Logo */}
           <button
             onClick={() => scrollToSection("#")}
-            className="flex items-center gap-2 text-xl font-serif hover:text-yellow-600 transition-colors"
+            className="flex items-center gap-2 text-xl font-meaCulpa hover:text-yellow-600 transition-colors"
           >
-            <Sparkles className={`w-6 h-6 ${isScrolled ? "text-yellow-500" : "text-yellow-300"}`} />
-            <span className={isScrolled ? "text-gray-800" : "text-white"}>
-              Debut
+            {/* <Sparkles className={`w-6 h-6 ${isScrolled ? "text-yellow-500" : "text-yellow-300"}`} /> */}
+            <span className={isScrolled ? "text-gray-800" : "text-[#ac243d]"}>
+              Stephanie At 18
             </span>
           </button>
 
@@ -69,7 +70,7 @@ export default function Navigation() {
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
                 className={`text-sm font-medium transition-colors hover:text-yellow-600 ${
-                  isScrolled ? "text-gray-700" : "text-white"
+                  isScrolled ? "text-gray-700" : "text-[#ac243d]"
                 }`}
               >
                 {item.label}
@@ -81,7 +82,7 @@ export default function Navigation() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden transition-colors ${
-              isScrolled ? "text-gray-800" : "text-white"
+              isScrolled ? "text-gray-800" : "text-[#ac243d]"
             }`}
           >
             {isMobileMenuOpen ? (
@@ -106,7 +107,7 @@ export default function Navigation() {
               <motion.button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-2xl font-serif text-gray-800 hover:text-yellow-600 transition-colors"
+                className="text-2xl font-meaCulpa text-gray-800 hover:text-yellow-600 transition-colors"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}

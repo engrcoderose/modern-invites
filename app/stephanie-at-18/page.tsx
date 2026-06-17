@@ -11,6 +11,7 @@ import BirthdayProgram from "./components/BirthdayProgram";
 import ReceptionAddress from "./components/ReceptionAddress";
 import DressCode from "./components/DressCode";
 import OtherDetails from "./components/OtherDetails";
+import RSVPSection from "./components/RSVPSection";
 
 // Import data
 import {
@@ -19,6 +20,7 @@ import {
   birthdayProgram,
   attireInfo,
   otherDetails,
+  rsvpInfo,
   receptionAddress,
 } from "./data/debut-data";
 
@@ -48,6 +50,8 @@ export default function SimpleTemplate() {
       <DressCode attire={attireInfo} />
 
       <OtherDetails details={otherDetails} />
+
+      <RSVPSection rsvp={rsvpInfo} />
 
       <Footer />
     </div>

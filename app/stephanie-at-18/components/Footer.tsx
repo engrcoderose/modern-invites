@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Message */}
           <div className="max-w-md mx-auto">
             <p className="text-gray-700 text-sm leading-relaxed">
-              Rara Events Center © {currentYear}. All Rights Reserved.
+              Modern Invites © {currentYear}. All Rights Reserved.{" "}
             </p>
           </div>
 
@@ -27,7 +27,22 @@ export default function Footer() {
 
           {/* Credits */}
           <p className="text-gray-600 text-xs">
-            Made with <span className="text-yellow-600">❤️</span> by Modern Invites
+            Made by{" "}
+            <a
+              href="https://www.moderninvites.com"
+              target="_blank"
+              className="text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              Modern Invites
+            </a>
+            <br />
+            <a
+              href="https://www.moderninvites.com"
+              target="_blank"
+              className="text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              www.moderninvites.com
+            </a>
           </p>
         </div>
       </div>

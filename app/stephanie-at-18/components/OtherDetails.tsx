@@ -37,7 +37,7 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
 
   return (
     <section
-      id="rsvp"
+      id="other-details"
       className="relative py-20 bg-gradient-to-b from-yellow-100 to-yellow-50 overflow-hidden"
     >
       <div className="container mx-auto px-4 relative z-10">
@@ -91,22 +91,6 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
               );
             })}
           </div>
-
-          {/* RSVP Section */}
-          <motion.div
-            className="max-w-2xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-lg text-gray-700 mb-6">
-              Do you have any special requests or dietary restrictions?
-            </p>
-            <button className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full text-lg font-medium transition-colors">
-              RSVP
-            </button>
-          </motion.div>
         </div>
       </div>
     </section>

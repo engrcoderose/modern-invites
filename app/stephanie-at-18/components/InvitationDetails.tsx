@@ -33,7 +33,7 @@ export default function InvitationDetails({ data }: InvitationDetailsProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl md:text-6xl font-meaCulpa text-[#ac243d] not-semibold">
+            <h2 className="text-4xl text-center md:text-left md:text-6xl font-meaCulpa text-[#ac243d] not-semibold">
               ✦ You are Invited! ✦
             </h2>
 
