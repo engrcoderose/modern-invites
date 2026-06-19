@@ -58,7 +58,7 @@ export default function OtherDetails({ details }: OtherDetailsProps) {
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          {/* Three detail boxes */}
+          
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {detailBoxes.map((box, index) => {
               const Icon = box.icon;
