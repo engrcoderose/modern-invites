@@ -76,7 +76,11 @@ export default function ClassicWeddingTemplate() {
 
       <UsefulInformation infoItems={usefulInfo} />
 
-      <RSVPForm />
+      <RSVPForm
+        bride={weddingData.bride}
+        groom={weddingData.groom}
+        rsvpDeadline="May 20, 2026"
+      />
 
       <Footer />
     </div>

@@ -64,7 +64,7 @@ export default function FAQ({ faqs }: FAQProps) {
           </Accordion>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           className="mt-12 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -80,7 +80,7 @@ export default function FAQ({ faqs }: FAQProps) {
               Contact us
             </a>
           </p>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

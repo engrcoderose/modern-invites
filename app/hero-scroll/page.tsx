@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
+import RingFocus from "./assets/ring-focus.jpg";
 
 export default function HeroScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,8 @@ export default function HeroScroll() {
   // Move headline up as user scrolls through the hero track
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"]);
 
+  const textY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"]);
+
   return (
     <div className="bg-black text-white antialiased">
       {/* Scroll runway container */}
@@ -37,7 +40,7 @@ export default function HeroScroll() {
           >
             <Image
               className="absolute inset-0 h-full w-full object-cover"
-              src="https://plus.unsplash.com/premium_photo-1661963139522-22525f644234?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src={RingFocus}
               alt="Prague Night"
               fill
             />
@@ -50,10 +53,16 @@ export default function HeroScroll() {
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <motion.h1 
               style={{ y: textY }}
-              className="text-[12vw] font-black tracking-tighter uppercase leading-none font-sans select-none drop-shadow-2xl"
+              className="text-[12vw] font-black leading-none font-imperial select-none drop-shadow-2xl"
             >
-              Prague
+              Eric and Li
             </motion.h1>
+            <motion.p
+              style={{ y: textY }}
+              className="text-lg font-light tracking-tighter uppercase leading-none font-sans select-none drop-shadow-2xl"
+            >
+              are getting married on October 15, 2030!
+            </motion.p>
           </div>
           
         </div>

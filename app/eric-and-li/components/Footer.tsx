@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Credits */}
           <p className="text-[#eae4cc]/40 text-xs font-medium">
-            Made with <Heart className="w-3 h-3 inline fill-[#c79d5f] text-[#c79d5f]" /> by Modern Invites
+            Made by <a href="https://www.moderninvites.com" target="_blank" className="text-[#eae4cc]/40 hover:text-[#eae4cc]/60 transition-colors">Modern Invites</a>
           </p>
         </div>
       </div>

@@ -1,24 +1,38 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, CheckCircle } from "lucide-react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
+import coupleImage from "../assets/images/walking-couple.jpg";
 
-export default function RSVPForm() {
+interface RSVPFormProps {
+  bride: string;
+  groom: string;
+  rsvpDeadline: string;
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+export default function RSVPForm({
+  bride,
+  groom,
+  rsvpDeadline,
+}: RSVPFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    phone: "",
-    guests: "1",
-    attendance: "yes",
-    dietary: "",
+    attendance: "",
     message: "",
   });
 
@@ -28,7 +42,17 @@ export default function RSVPForm() {
 
     try {
       const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
-      
+
+      const payload = {
+        name: formData.name,
+        email: "",
+        phone: "",
+        guests: formData.attendance === "yes" ? "1" : "0",
+        attendance: formData.attendance,
+        dietary: "",
+        message: formData.message,
+      };
+
       if (!scriptUrl) {
         console.warn("Google Script URL is missing. Simulating success.");
         setTimeout(() => {
@@ -39,16 +63,15 @@ export default function RSVPForm() {
         return;
       }
 
-      // Convert state to FormData for easier Google Apps Script handling (avoids CORS preflight)
       const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
+      Object.entries(payload).forEach(([key, value]) => {
         data.append(key, value);
       });
 
       await fetch(scriptUrl, {
         method: "POST",
         body: data,
-        mode: "no-cors", // Required to avoid CORS issues with Google Scripts
+        mode: "no-cors",
       });
 
       setSubmitted(true);
@@ -64,15 +87,7 @@ export default function RSVPForm() {
   const resetForm = () => {
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        guests: "1",
-        attendance: "yes",
-        dietary: "",
-        message: "",
-      });
+      setFormData({ name: "", attendance: "", message: "" });
     }, 5000);
   };
 
@@ -87,219 +102,196 @@ export default function RSVPForm() {
     });
   };
 
-  if (submitted) {
-    return (
-      <section id="rsvp" className="py-20 px-4 bg-[#eae4cc]/30">
-        <div className="max-w-2xl mx-auto">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="border-2 border-[#e2d5b3] shadow-xl bg-white">
-              <CardContent className="pt-12 pb-12">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <CheckCircle className="w-20 h-20 text-[#8c6b42] mx-auto mb-6" />
-                </motion.div>
-                <h3 className="text-5xl font-meaCulpa text-[#4e2a0d] mb-4">
-                  Thank You!
-                </h3>
-                <p className="text-[#4e2a0d]/80 text-lg font-medium">
-                  Your RSVP has been received. We can&apos;t wait to celebrate with
-                  you!
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
+  const fieldClassName =
+    "w-full rounded-lg border border-neutral-200 bg-white px-4 py-3 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-[#c79d5f] focus:outline-none transition-colors";
 
   return (
-    <section id="rsvp" className="py-20 px-4 bg-[#eae4cc]/30">
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-[#c79d5f] rounded-full mb-4">
-            <Heart className="w-8 h-8 text-white fill-white" />
-          </div>
-          <h2 className="text-5xl md:text-7xl font-meaCulpa text-[#4e2a0d] mb-4">
-            RSVP
-          </h2>
-          <p className="text-[#4e2a0d]/80 text-lg font-medium">
-            Please let us know if you&apos;ll be joining us
-          </p>
-          <div className="w-20 h-1 bg-[#c79d5f] mx-auto mt-4" />
-        </motion.div>
+    <section id="rsvp" className="bg-[#eae4cc]/30 py-16 md:py-24 px-4 md:px-8 overflow-hidden">
+      <AnimatePresence mode="wait">
+        {submitted ? (
+          <motion.div
+            key="success"
+            className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.div
+              className="max-w-md"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.p
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-[#c79d5f] text-sm mb-6"
+              >
+                {groom} <span className="mx-1">♥</span> {bride}
+              </motion.p>
+              <motion.h2
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-5xl md:text-6xl font-libreBaskerville italic font-bold text-neutral-900 mb-6"
+              >
+                Thank You
+              </motion.h2>
+              <motion.p
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-neutral-600 leading-relaxed"
+              >
+                Your RSVP has been received. We can&apos;t wait to celebrate with
+                you!
+              </motion.p>
+            </motion.div>
+            <motion.div
+              className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl"
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <Image
+                src={coupleImage}
+                alt={`${groom} and ${bride}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="form"
+            className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              className="max-w-md"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+            >
+              <motion.p
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-[#c79d5f] text-sm mb-6"
+              >
+                {groom} <span className="mx-1">♥</span> {bride}
+              </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Card className="shadow-xl border-2 border-[#e2d5b3] bg-white">
-            <CardHeader className="bg-[#eae4cc]/50 border-b border-[#e2d5b3]">
-              <CardTitle className="text-2xl text-center font-libreBaskerville text-[#4e2a0d]">
-                Respond by May 20, 2026
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name */}
-                <div>
-                  <Label htmlFor="name" className="text-[#4e2a0d] font-medium">
-                    Full Name *
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your full name"
-                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                  />
-                </div>
+              <motion.h2
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-5xl md:text-6xl font-libreBaskerville italic font-bold text-neutral-900 mb-6"
+              >
+                RSVP
+              </motion.h2>
 
-                {/* Email */}
-                <div>
-                  <Label htmlFor="email" className="text-[#4e2a0d] font-medium">
-                    Email Address *
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@example.com"
-                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                  />
-                </div>
+              <motion.p
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="text-neutral-600 text-sm md:text-base leading-relaxed mb-8"
+              >
+                We are excited to celebrate our wedding with our closest family
+                and friends. Kindly RSVP on or before{" "}
+                <span className="font-semibold text-neutral-800">
+                  {rsvpDeadline}
+                </span>
+                . Thank you!
+              </motion.p>
 
-                {/* Phone */}
-                <div>
-                  <Label htmlFor="phone" className="text-[#4e2a0d] font-medium">
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(123) 456-7890"
-                    className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                  />
-                </div>
+              <motion.form
+                variants={staggerContainer}
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
+                <motion.input
+                  variants={fadeUp}
+                  transition={{ duration: 0.45 }}
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="Full Name"
+                  className={fieldClassName}
+                />
 
-                {/* Attendance */}
-                <div>
-                  <Label htmlFor="attendance" className="text-[#4e2a0d] font-medium">
-                    Will you be attending? *
-                  </Label>
-                  <select
-                    id="attendance"
-                    name="attendance"
-                    value={formData.attendance}
-                    onChange={handleChange}
-                    required
-                    className="mt-2 w-full rounded-md border border-[#e2d5b3] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#c79d5f]"
-                  >
-                    <option value="yes">Joyfully accept</option>
-                    <option value="no">Regretfully decline</option>
-                  </select>
-                </div>
+                <motion.select
+                  variants={fadeUp}
+                  transition={{ duration: 0.45 }}
+                  id="attendance"
+                  name="attendance"
+                  value={formData.attendance}
+                  onChange={handleChange}
+                  required
+                  className={`${fieldClassName} ${!formData.attendance ? "text-neutral-400" : ""}`}
+                >
+                  <option value="" disabled>
+                    Are you attending?
+                  </option>
+                  <option value="yes">Yes, I will attend</option>
+                  <option value="no">No, I cannot attend</option>
+                </motion.select>
 
-                {/* Number of Guests */}
-                {formData.attendance === "yes" && (
-                  <>
-                    <div>
-                      <Label htmlFor="guests" className="text-[#4e2a0d] font-medium">
-                        Number of Guests *
-                      </Label>
-                      <Input
-                        id="guests"
-                        name="guests"
-                        type="number"
-                        min="1"
-                        max="5"
-                        value={formData.guests}
-                        onChange={handleChange}
-                        required
-                        className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                      />
-                    </div>
+                <motion.textarea
+                  variants={fadeUp}
+                  transition={{ duration: 0.45 }}
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Write a Message"
+                  rows={5}
+                  className={`${fieldClassName} resize-none`}
+                />
 
-                    {/* Dietary Restrictions */}
-                    <div>
-                      <Label htmlFor="dietary" className="text-[#4e2a0d] font-medium">
-                        Dietary Restrictions or Allergies
-                      </Label>
-                      <Input
-                        id="dietary"
-                        name="dietary"
-                        value={formData.dietary}
-                        onChange={handleChange}
-                        placeholder="e.g., vegetarian, gluten-free, nut allergy"
-                        className="mt-2 border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                      />
-                    </div>
-                  </>
-                )}
-
-                {/* Message */}
-                <div>
-                  <Label htmlFor="message" className="text-[#4e2a0d] font-medium">
-                    Message to the Couple
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Share your well wishes or any questions you may have"
-                    className="mt-2 min-h-[100px] border-[#e2d5b3] focus-visible:ring-[#c79d5f]"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <Button
+                <motion.button
+                  variants={fadeUp}
+                  transition={{ duration: 0.45 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#c79d5f] hover:bg-[#8c6b42] text-white text-lg py-6 transition-colors disabled:opacity-70"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className="w-full rounded-lg bg-[#c79d5f] py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-60"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit RSVP"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </motion.div>
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </motion.button>
+              </motion.form>
+            </motion.div>
 
-        <motion.p
-          className="text-center text-[#4e2a0d]/60 mt-6 text-sm font-medium"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          * Required fields
-        </motion.p>
-      </div>
+            <motion.div
+              className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            >
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <Image
+                  src={coupleImage}
+                  alt={`${groom} and ${bride}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-
