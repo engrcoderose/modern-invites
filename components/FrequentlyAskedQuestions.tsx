@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 
 export default function FrequentlyAskedQuestions() {
   return (
@@ -24,10 +25,17 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                Our website invitation packages ranges from PHP 699 to PHP
-                2,499. You can choose the template and package that best suits
-                your needs and budget. Each package includes different features,
-                so pick one that suits your event.
+                Our website invitation packages ranges from ₱999 to ₱ 3, 999.
+                You can choose the template and package that best suits your
+                needs and budget. Each package includes different features, so
+                pick one that suits your event. See our{" "}
+                <Link
+                  href="/pricing"
+                  className="text-sage-600 underline font-bold hover:text-sage-700"
+                >
+                  pricing page
+                </Link>{" "}
+                for more details.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -39,11 +47,11 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                Given that all the necessary details are provided, we&apos;ll
-                send you initial draft within 2-5 business days. This draft
-                allows you to review and make any necessary changes before we
-                finalize the invitation. Then it will take 2-9 business days to
-                finalize the invitation.
+                Digital Invitations: 2–5 business days. <br /> Full Website
+                Packages: 1–7 business days. <br /> Premium Packages: 2–4 weeks
+                (may vary depending on workload). <br />{" "}
+                <span className="font-bold">Note:</span> The turnaround period
+                begins only after all materials have been received.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -55,8 +63,9 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <p className="leading-relaxed text-gray-600">
-                Yes we require 50% down payment. The remaining 50% is payable
-                after the website completion.
+                Yes we require a 50% non-refundable downpayment to secure your
+                slot and initiate the design process. The remaining 50% is
+                payable after the website is completed.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -68,13 +77,7 @@ export default function FrequentlyAskedQuestions() {
             </AccordionTrigger>
             <AccordionContent>
               <ul className="list-disc list-inside leading-relaxed text-gray-600">
-                <li>Yes we offer 2 major revisions for design and layout.</li>
-                <li>
-                  Our support team offers{" "}
-                  <span className="font-bold">unlimited content revisions</span>{" "}
-                  for text, music, and photos, which we aim to complete ASAP or
-                  within 12 hours.
-                </li>
+                <li>Yes we offer revisions based on the package you choose.</li>
               </ul>
             </AccordionContent>
           </AccordionItem>
@@ -100,6 +103,32 @@ export default function FrequentlyAskedQuestions() {
                 <li>Gift Request</li>
                 <li>Additional instructions</li>
               </ul>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-6">
+            <AccordionTrigger className="text-lg font-medium text-sage-800">
+              What can I customize in the design template?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p className="leading-relaxed text-gray-600">
+                Customize colors, fonts, photos, countdowns, event details,
+                location to match your style perfectly.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-7">
+            <AccordionTrigger className="text-lg font-medium text-sage-800">
+              Who will create/edit the website invitation?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p className="leading-relaxed text-gray-600">
+                Our team will handle the invitation creation and revisions,
+                including updates, edits, and uploads.
+              </p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

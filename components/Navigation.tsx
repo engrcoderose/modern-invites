@@ -35,14 +35,20 @@ export default function Navigation() {
             >
               About Us
             </Link>
+            <Link
+              href="/pricing"
+              className="text-gray-700 hover:text-sage-600 transition-colors"
+            >
+              Pricing
+            </Link>
             <a
               // href="/gallery"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Gallery
-            </a> 
+            </a>
             <a
-              href="https://www.facebook.com/pixyartph/"
+              href="https://www.facebook.com/moderneenvites/"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Contact Us
@@ -51,7 +57,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-sage-600 text-white px-6 py-2 rounded-full hover:bg-sage-700 transition-colors"
-              onClick={() => window.open("https://www.facebook.com/pixyartph/", "_blank")}
+              onClick={() => window.open("https://www.facebook.com/moderneenvites/", "_blank")}
             >
               Get Started
             </motion.button>
