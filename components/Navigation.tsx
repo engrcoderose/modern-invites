@@ -41,12 +41,18 @@ export default function Navigation() {
             >
               Pricing
             </Link>
-            <a
+            <Link
+              href="/portfolio"
+              className="text-gray-700 hover:text-sage-600 transition-colors"
+            >
+              Portfolio
+            </Link>
+            {/* <a
               // href="/gallery"
               className="text-gray-700 hover:text-sage-600 transition-colors"
             >
               Gallery
-            </a>
+            </a> */}
             <a
               href="https://www.facebook.com/moderneenvites/"
               className="text-gray-700 hover:text-sage-600 transition-colors"
