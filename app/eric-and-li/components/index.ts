@@ -13,4 +13,4 @@ export { default as UsefulInformation } from "./UsefulInformation";
 export { default as RSVPForm } from "./RSVPForm";
 export { default as Footer } from "./Footer";
 export { default as GalleryOne } from "./GalleryOne";
-
+export { default as BackgroundMusic } from "./BackgroundMusic";
