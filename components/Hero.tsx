@@ -33,7 +33,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <motion.a
-          href="/portfolio"
+              href="/portfolio"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-sage-600 text-sage-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-sage-400 hover:text-white hover:border-none transition-all"
@@ -46,4 +46,3 @@ export default function Hero() {
     </section>
   );
 }
-
