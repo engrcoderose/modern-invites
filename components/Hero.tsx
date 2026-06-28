@@ -32,13 +32,14 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.button
+            <motion.a
+          href="/portfolio"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-sage-600 text-sage-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-sage-400 hover:text-white hover:border-none transition-all"
             >
               See Our Sample Works
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>
