@@ -19,6 +19,7 @@ export default function HeroSection({
   weddingDate,
 }: HeroSectionProps) {
   const formattedDate = weddingDate.toLocaleDateString("en-US", {
+    timeZone: "UTC",
     weekday: "long",
     year: "numeric",
     month: "long",

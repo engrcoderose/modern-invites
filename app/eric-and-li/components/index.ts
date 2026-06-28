@@ -14,3 +14,5 @@ export { default as RSVPForm } from "./RSVPForm";
 export { default as Footer } from "./Footer";
 export { default as GalleryOne } from "./GalleryOne";
 export { default as BackgroundMusic } from "./BackgroundMusic";
+export { default as EnvelopeIntro } from "./EnvelopeIntro";
+export { default as weddingHashtag } from "./WeddingHashtag";

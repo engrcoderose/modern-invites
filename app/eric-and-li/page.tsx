@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import CountdownTimer from "./components/CountdownTimer";
@@ -15,6 +15,9 @@ import UsefulInformation from "./components/UsefulInformation";
 import RSVPForm from "./components/RSVPForm";
 import Footer from "./components/Footer";
 import GalleryOne from "./components/GalleryOne";
+import BackgroundMusic from "./components/BackgroundMusic";
+import WeddingHashtag from "./components/WeddingHashtag";
+import EnvelopeIntro from "./components/EnvelopeIntro";
 
 // Import data
 import {
@@ -28,10 +31,27 @@ import {
 } from "./data/wedding-data";
 
 export default function ClassicWeddingTemplate() {
+  const [invitationOpened, setInvitationOpened] = useState(false);
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <Navigation />
+      {/* <EnvelopeIntro
+        bride={weddingData.bride}
+        groom={weddingData.groom}
+        onOpened={() => setInvitationOpened(true)}
+      /> */}
 
+      <Navigation />
+      {/* {invitationOpened ? <BackgroundMusic /> : null} */}
+      <BackgroundMusic />
       <HeroSection
         bride={weddingData.bride}
         groom={weddingData.groom}
@@ -69,6 +89,8 @@ export default function ClassicWeddingTemplate() {
         colors={attireInfo.colors}
         description={attireInfo.description}
       />
+
+      <WeddingHashtag/>
 
       <div id="faq">
         <FAQ faqs={faqs} />

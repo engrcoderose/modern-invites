@@ -58,8 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} ${imperial.variable} ${libreBaskerville.variable} ${instrumentSerif.variable} ${meaCulpa.variable} ${petitFormalScript.variable} font-sans antialiased overflow-x-hidden`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${inter.variable} ${playfair.variable} ${imperial.variable} ${libreBaskerville.variable} ${instrumentSerif.variable} ${meaCulpa.variable} ${petitFormalScript.variable} font-sans antialiased overflow-x-hidden`}
+      >
         {children}
       </body>
     </html>

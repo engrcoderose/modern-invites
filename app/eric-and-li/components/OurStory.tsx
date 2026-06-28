@@ -10,11 +10,6 @@ import ourStoryBackground from "../assets/our-story-background.jpg";
 
 import initialsDeco from "../assets/deco/eric-and-li-initials.png";
 import ringsDeco from "../assets/deco/rings.png";
-import giftDeco from "../assets/deco/gift.png";
-import wineBottleDeco from "../assets/deco/wine-bottle.png";
-import flowerDeco from "../assets/deco/flower.png";
-import tulipFlowersDeco from "../assets/deco/tulip-flowers.png";
-import weddingCakeDeco from "../assets/deco/wedding-cake.png";
 
 export default function OurStory() {
   return (
