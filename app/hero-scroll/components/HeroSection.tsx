@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "motion/react";
 import Image from "next/image";
 import RingFocus from "../assets/ring-focus.jpg";
@@ -45,6 +45,7 @@ export default function HeroSection({
   const textY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"]);
 
   const isInView = useInView(textRef, { once: true });
+  const [loaded, setLoaded] = useState(false);
 
   const letters = bride.split("");
   const letters2 = groom.split("");
@@ -68,7 +69,7 @@ export default function HeroSection({
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="bg-black text-white antialiased"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -83,19 +84,32 @@ export default function HeroSection({
             style={{ scale, opacity }}
             className="absolute inset-0 h-full w-full will-change-transform"
           >
-            <Image
+            {/* <Image
               className="absolute inset-0 h-full w-full object-cover"
               src={RingFocus}
               alt="Prague Night"
               fill
-            />
+            /> */}
+            <motion.video
+              src="/videos/hero-scroll.mp4"
+              style={{
+                scale,
+                opacity: loaded ? opacity : 0,
+              }}
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              onLoadedData={() => setLoaded(true)}
+            ></motion.video>
 
             {/* Subtle dark ambient vignette overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
           </motion.div>
 
           {/* Foreground Hero Text */}
-          <motion.div 
+          <motion.div
             ref={textRef}
             variants={container}
             initial="hidden"
