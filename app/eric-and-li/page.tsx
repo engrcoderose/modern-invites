@@ -43,68 +43,75 @@ export default function ClassicWeddingTemplate() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      {/* <EnvelopeIntro
+      <EnvelopeIntro
         bride={weddingData.bride}
         groom={weddingData.groom}
         onOpened={() => setInvitationOpened(true)}
-      /> */}
-
-      <Navigation />
-      {/* {invitationOpened ? <BackgroundMusic /> : null} */}
-      <BackgroundMusic />
-      <HeroSection
-        bride={weddingData.bride}
-        groom={weddingData.groom}
-        weddingDate={weddingData.weddingDate}
       />
 
-      <CountdownTimer targetDate={weddingData.weddingDate} />
-      <GalleryOne />
+      {invitationOpened ? (
+        <>
+          <Navigation />
+          <BackgroundMusic />
+          <HeroSection
+            bride={weddingData.bride}
+            groom={weddingData.groom}
+            weddingDate={weddingData.weddingDate}
+          />
+        </>
+      ) : null}
 
-      {/* <InvitationMessage bride={weddingData.bride} groom={weddingData.groom} /> */}
+      {invitationOpened ? (
+        <>
+          <CountdownTimer targetDate={weddingData.weddingDate} />
+          <GalleryOne />
 
-      <div id="story">
-        <OurStory />
-      </div>
+          {/* <InvitationMessage bride={weddingData.bride} groom={weddingData.groom} /> */}
 
-      <div id="program">
-        <WeddingProgram events={weddingProgram} />
-      </div>
+          <div id="story">
+            <OurStory />
+          </div>
 
-      <div id="entourage">
-        <TheEntourage data={entourage} />
-      </div>
+          <div id="program">
+            <WeddingProgram events={weddingProgram} />
+          </div>
 
-      <div id="location">
-        <WeddingLocation
-          ceremony={weddingData.venue}
-          reception={weddingData.reception}
-          bride={weddingData.bride}
-          groom={weddingData.groom}
-        />
-      </div>
+          <div id="entourage">
+            <TheEntourage data={entourage} />
+          </div>
 
-      <AttireColors
-        dresscode={attireInfo.dresscode}
-        colors={attireInfo.colors}
-        description={attireInfo.description}
-      />
+          <div id="location">
+            <WeddingLocation
+              ceremony={weddingData.venue}
+              reception={weddingData.reception}
+              bride={weddingData.bride}
+              groom={weddingData.groom}
+            />
+          </div>
 
-      <WeddingHashtag/>
+          <AttireColors
+            dresscode={attireInfo.dresscode}
+            colors={attireInfo.colors}
+            description={attireInfo.description}
+          />
 
-      <div id="faq">
-        <FAQ faqs={faqs} />
-      </div>
+          <WeddingHashtag/>
 
-      <UsefulInformation infoItems={usefulInfo} />
+          <div id="faq">
+            <FAQ faqs={faqs} />
+          </div>
 
-      <RSVPForm
-        bride={weddingData.bride}
-        groom={weddingData.groom}
-        rsvpDeadline="May 20, 2026"
-      />
+          <UsefulInformation infoItems={usefulInfo} />
 
-      <Footer />
+          <RSVPForm
+            bride={weddingData.bride}
+            groom={weddingData.groom}
+            rsvpDeadline="May 20, 2026"
+          />
+
+          <Footer />
+        </>
+      ) : null}
     </div>
   );
 }
