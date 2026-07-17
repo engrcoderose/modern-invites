@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
@@ -11,9 +12,8 @@ import BirthdayProgram from "./components/BirthdayProgram";
 import ReceptionAddress from "./components/ReceptionAddress";
 import DressCode from "./components/DressCode";
 import OtherDetails from "./components/OtherDetails";
-import RSVPSection from "./components/RSVPSection";
+import SmartRSVPSection from "./components/SmartRSVPSection";
 
-// Import data
 import {
   debutData,
   programSchedule,
@@ -51,7 +51,7 @@ export default function SimpleTemplate() {
 
       <OtherDetails details={otherDetails} />
 
-      <RSVPSection rsvp={rsvpInfo} />
+      <SmartRSVPSection rsvp={rsvpInfo} eventSlug="stephanie-at-18" />
 
       <Footer />
     </div>
