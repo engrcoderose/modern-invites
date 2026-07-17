@@ -18,6 +18,9 @@ interface SearchStepProps {
   onNameChange: (value: string) => void;
   onSearch: () => Promise<void>;
   onReset: () => void;
+  loadingInvitationId: number | null;
+  partyError: string;
+  onSelectMatch: (match: SearchMatch) => Promise<void>;
 }
 
 export function SearchStep({
@@ -29,6 +32,9 @@ export function SearchStep({
   onNameChange,
   onSearch,
   onReset,
+  loadingInvitationId,
+  partyError,
+  onSelectMatch,
 }: SearchStepProps) {
   function handleSubmit(submitEvent: FormEvent<HTMLFormElement>) {
     submitEvent.preventDefault();
@@ -102,7 +108,20 @@ export function SearchStep({
           </Button>
         </form>
 
-        <SearchResults matches={matches} />
+        <SearchResults
+          matches={matches}
+          loadingInvitationId={loadingInvitationId}
+          onSelect={onSelectMatch}
+        />
+
+        {partyError && (
+          <div
+            role="alert"
+            className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          >
+            {partyError}
+          </div>
+        )}
 
         <div className="border-t border-gray-100 pt-5 text-center">
           <Button

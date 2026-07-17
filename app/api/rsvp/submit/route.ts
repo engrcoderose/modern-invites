@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
+import {
+  isRsvpDeadlinePassed,
+  isValidOptionalEmail,
+} from "@/lib/rsvp/security";
 import { createSupabaseServerClient } from "@/lib/supabase";
 
 type AttendanceStatus = "attending" | "declined";
@@ -42,6 +47,15 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export async function POST(request: NextRequest) {
+  const policyError = enforceRsvpRequestPolicy(request, {
+    scope: "rsvp-submit",
+    rateLimit: { limit: 10, windowMs: 10 * 60 * 1000 },
+  });
+
+  if (policyError) {
+    return policyError;
+  }
+
   let body: SubmitRequestBody;
 
   // Read the JSON request.
@@ -168,6 +182,16 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message: "The email address is too long.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (!isValidOptionalEmail(email)) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Please enter a valid email address.",
       },
       { status: 400 },
     );
@@ -338,7 +362,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!event.is_open) {
+    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
       return NextResponse.json(
         {
           success: false,

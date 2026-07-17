@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
+import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
 import { createSupabaseServerClient } from "@/lib/supabase";
 
 interface AccessRequestBody {
@@ -7,7 +9,23 @@ interface AccessRequestBody {
   code?: unknown;
 }
 
+interface VerifiedEventRow {
+  event_id: number;
+  event_name: string;
+  rsvp_deadline: string | null;
+  is_open: boolean;
+}
+
 export async function POST(request: NextRequest) {
+  const policyError = enforceRsvpRequestPolicy(request, {
+    scope: "rsvp-access",
+    rateLimit: { limit: 10, windowMs: 5 * 60 * 1000 },
+  });
+
+  if (policyError) {
+    return policyError;
+  }
+
   let body: AccessRequestBody;
 
   // ==========================================
@@ -98,7 +116,7 @@ export async function POST(request: NextRequest) {
     }
 
     // A table-returning PostgreSQL function returns an array.
-    const event = data?.[0];
+    const event = ((data ?? []) as VerifiedEventRow[])[0];
 
     // No row means the slug or code did not match.
     if (!event) {
@@ -113,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     // A matching row with is_open=false means the event
     // exists and the code is correct, but RSVPs are closed.
-    if (!event.is_open) {
+    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
       return NextResponse.json(
         {
           success: false,

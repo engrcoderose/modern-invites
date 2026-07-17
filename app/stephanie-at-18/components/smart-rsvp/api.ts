@@ -1,4 +1,13 @@
-import type { AccessResponse, EventInformation, SearchResponse } from "./types";
+import type {
+  AccessResponse,
+  EventInformation,
+  PartyInformation,
+  PartyResponse,
+  SearchResponse,
+  SubmissionSummary,
+  SubmitResponse,
+  SubmitRsvpPayload,
+} from "./types";
 
 async function postJson<T>(url: string, body: unknown): Promise<T> {
   const response = await fetch(url, {
@@ -62,4 +71,36 @@ export async function requestGuestSearch(
   }
 
   return result;
+}
+
+export async function requestInvitationParty(
+  slug: string,
+  code: string,
+  invitationId: number,
+  matchedFullName: string,
+): Promise<PartyInformation> {
+  const result = await postJson<PartyResponse>("/api/rsvp/party", {
+    slug,
+    code,
+    invitationId,
+    matchedFullName,
+  });
+
+  if (!result.success || !result.party) {
+    throw new Error(result.message || "Unable to load the selected party.");
+  }
+
+  return result.party;
+}
+
+export async function requestRsvpSubmission(
+  payload: SubmitRsvpPayload,
+): Promise<SubmissionSummary> {
+  const result = await postJson<SubmitResponse>("/api/rsvp/submit", payload);
+
+  if (!result.success || !result.summary) {
+    throw new Error(result.message || "Unable to save the RSVP.");
+  }
+
+  return result.summary;
 }

@@ -4,11 +4,10 @@ import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
 import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
 import { createSupabaseServerClient } from "@/lib/supabase";
 
-interface PartyRequestBody {
+interface SearchRequestBody {
   slug?: unknown;
   code?: unknown;
-  invitationId?: unknown;
-  matchedFullName?: unknown;
+  fullName?: unknown;
 }
 
 interface VerifiedEventRow {
@@ -18,19 +17,15 @@ interface VerifiedEventRow {
   is_open: boolean;
 }
 
-interface PartyRow {
+interface SearchInvitationRow {
+  invitation_id: number;
   household_name: string;
-  max_attendees: number;
-  guest_id: number;
-  guest_full_name: string;
-  guest_type: "adult" | "child";
-  attendance_status: "pending" | "attending" | "declined";
-  dietary_restrictions: string | null;
+  matched_guest_name: string;
 }
 
 export async function POST(request: NextRequest) {
   const policyError = enforceRsvpRequestPolicy(request, {
-    scope: "rsvp-party",
+    scope: "rsvp-search",
     rateLimit: { limit: 30, windowMs: 5 * 60 * 1000 },
   });
 
@@ -38,7 +33,7 @@ export async function POST(request: NextRequest) {
     return policyError;
   }
 
-  let body: PartyRequestBody;
+  let body: SearchRequestBody;
 
   // Read the request body.
   try {
@@ -53,17 +48,16 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Check that the required values have the correct types.
+  // Validate the required input types.
   if (
     typeof body.slug !== "string" ||
     typeof body.code !== "string" ||
-    typeof body.invitationId !== "number" ||
-    typeof body.matchedFullName !== "string"
+    typeof body.fullName !== "string"
   ) {
     return NextResponse.json(
       {
         success: false,
-        message: "The party request is incomplete.",
+        message: "Event, RSVP code, and full name are required.",
       },
       { status: 400 },
     );
@@ -72,10 +66,10 @@ export async function POST(request: NextRequest) {
   // Normalize the submitted values.
   const slug = body.slug.trim().toLowerCase();
   const code = body.code.trim();
-  const invitationId = body.invitationId;
-  const matchedFullName = body.matchedFullName.trim().replace(/\s+/g, " ");
 
-  // Validate the event slug and RSVP code.
+  const fullName = body.fullName.trim().replace(/\s+/g, " ");
+
+  // Validate the slug and code lengths.
   if (
     slug.length < 1 ||
     slug.length > 100 ||
@@ -91,23 +85,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Validate the invitation ID.
-  if (!Number.isSafeInteger(invitationId) || invitationId < 1) {
+  // Require a reasonable complete name.
+  if (fullName.length < 3 || fullName.length > 150) {
     return NextResponse.json(
       {
         success: false,
-        message: "Invalid invitation selection.",
-      },
-      { status: 400 },
-    );
-  }
-
-  // Validate the searched guest name.
-  if (matchedFullName.length < 3 || matchedFullName.length > 150) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Invalid guest name.",
+        message: "Please enter your complete invited name.",
       },
       { status: 400 },
     );
@@ -124,7 +107,7 @@ export async function POST(request: NextRequest) {
       });
 
     if (verificationError) {
-      console.error("Party access verification failed:", {
+      console.error("RSVP search verification failed:", {
         code: verificationError.code,
         message: verificationError.message,
         details: verificationError.details,
@@ -144,7 +127,7 @@ export async function POST(request: NextRequest) {
 
     const event = verifiedEvents[0];
 
-    // No event means the code or slug did not match.
+    // No row means the slug or code did not match.
     if (!event) {
       return NextResponse.json(
         {
@@ -155,7 +138,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // The event exists, but its RSVP is closed.
+    // A matching event can still be closed.
     if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
       return NextResponse.json(
         {
@@ -166,73 +149,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Load the selected invitation's party.
-    const { data: rawPartyRows, error: partyError } = await supabase.rpc(
-      "get_invitation_party",
-      {
+    // Search for the exact guest name within the
+    // verified event.
+    const { data: rawMatchingInvitations, error: searchError } =
+      await supabase.rpc("search_guest_invitation", {
         p_event_id: event.event_id,
-        p_invitation_id: invitationId,
-        p_matched_full_name: matchedFullName,
-      },
-    );
+        p_full_name: fullName,
+      });
 
-    if (partyError) {
-      console.error("Party loading failed:", {
-        code: partyError.code,
-        message: partyError.message,
-        details: partyError.details,
-        hint: partyError.hint,
+    if (searchError) {
+      console.error("Guest-name search failed:", {
+        code: searchError.code,
+        message: searchError.message,
+        details: searchError.details,
+        hint: searchError.hint,
       });
 
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to load the selected party.",
+          message: "Unable to search the guest list.",
         },
         { status: 500 },
       );
     }
 
-    // Give the raw Supabase result its TypeScript type.
-    const partyRows = (rawPartyRows ?? []) as PartyRow[];
+    const matchingInvitations = (rawMatchingInvitations ??
+      []) as SearchInvitationRow[];
 
-    // No rows means the invitation ID, event, and name
-    // did not match each other.
-    if (partyRows.length === 0) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The selected invitation could not be verified.",
-        },
-        { status: 404 },
-      );
-    }
-
-    // Household information is repeated on each row.
-    const firstRow = partyRows[0];
-
-    // Convert database snake_case names to frontend camelCase.
-    const guests = partyRows.map((row) => ({
-      id: row.guest_id,
-      fullName: row.guest_full_name,
-      guestType: row.guest_type,
-      attendanceStatus: row.attendance_status,
-      dietaryRestrictions: row.dietary_restrictions,
+    const matches = matchingInvitations.map((invitation) => ({
+      invitationId: invitation.invitation_id,
+      householdName: invitation.household_name,
+      matchedGuestName: invitation.matched_guest_name,
     }));
 
     return NextResponse.json(
       {
         success: true,
-        party: {
-          householdName: firstRow.household_name,
-          maxAttendees: firstRow.max_attendees,
-          guests,
-        },
+        matches,
+        message:
+          matches.length === 0
+            ? "We could not find that exact name on the guest list."
+            : undefined,
       },
       { status: 200 },
     );
   } catch (error) {
-    console.error("Unexpected party-loading error:", error);
+    console.error("Unexpected RSVP search error:", error);
 
     return NextResponse.json(
       {

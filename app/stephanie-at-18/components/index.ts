@@ -9,3 +9,4 @@ export { default as ReceptionAddress } from "./ReceptionAddress";
 export { default as DressCode } from "./DressCode";
 export { default as OtherDetails } from "./OtherDetails";
 export { default as RSVPSection } from "./RSVPSection";
+export { default as SmartRSVPSection } from "./SmartRSVPSection";
