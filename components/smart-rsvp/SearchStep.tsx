@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import type { FormEvent } from "react";
 import { CheckCircle2, Loader2, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -42,13 +42,13 @@ export function SearchStep({
   }
 
   return (
-    <Card className="border-2 border-pink-300 bg-white shadow-xl">
-      <CardHeader className="border-b border-pink-200 bg-pink-50 text-center">
+    <Card className="border-2 border-[var(--smart-rsvp-border)] bg-white shadow-xl">
+      <CardHeader className="border-b border-[var(--smart-rsvp-border-soft)] bg-[var(--smart-rsvp-soft)] text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-green-600" />
 
         <p className="text-sm font-medium text-green-700">RSVP code verified</p>
 
-        <CardTitle className="mt-2 font-libreBaskerville text-2xl text-[#ac243d]">
+        <CardTitle className="mt-2 font-libreBaskerville text-2xl text-[var(--smart-rsvp-heading)]">
           Find Your Invitation
         </CardTitle>
 
@@ -92,7 +92,7 @@ export function SearchStep({
           <Button
             type="submit"
             disabled={isSearching || fullName.trim().length < 3}
-            className="w-full rounded-full bg-pink-500 py-6 text-lg text-white hover:bg-pink-600"
+            className="w-full rounded-full bg-[var(--smart-rsvp-accent)] py-6 text-lg text-white hover:bg-[var(--smart-rsvp-accent-hover)]"
           >
             {isSearching ? (
               <>

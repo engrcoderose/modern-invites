@@ -18,7 +18,7 @@ export function SearchResults({
   }
 
   return (
-    <div className="space-y-3 border-t border-pink-100 pt-6">
+    <div className="space-y-3 border-t border-[var(--smart-rsvp-border-soft)] pt-6">
       <p className="text-sm font-medium text-gray-700">
         {matches.length === 1
           ? "We found your invitation:"
@@ -36,14 +36,14 @@ export function SearchResults({
             onClick={() => {
               void onSelect(match);
             }}
-            className="w-full rounded-lg border border-pink-200 bg-pink-50 p-4 text-left transition hover:border-pink-400 hover:bg-pink-100 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-lg border border-[var(--smart-rsvp-border-soft)] bg-[var(--smart-rsvp-soft)] p-4 text-left transition hover:border-[var(--smart-rsvp-border)] hover:bg-[var(--smart-rsvp-soft-strong)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-100">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--smart-rsvp-soft-strong)]">
                 {isLoading ? (
-                  <Loader2 className="h-5 w-5 animate-spin text-pink-600" />
+                  <Loader2 className="h-5 w-5 animate-spin text-[var(--smart-rsvp-accent)]" />
                 ) : (
-                  <UsersRound className="h-5 w-5 text-pink-600" />
+                  <UsersRound className="h-5 w-5 text-[var(--smart-rsvp-accent)]" />
                 )}
               </div>
 
@@ -57,7 +57,7 @@ export function SearchResults({
                 </p>
               </div>
 
-              <span className="text-sm font-medium text-pink-600">
+              <span className="text-sm font-medium text-[var(--smart-rsvp-accent)]">
                 {isLoading ? "Loading..." : "Select"}
               </span>
             </div>

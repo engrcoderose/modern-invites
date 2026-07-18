@@ -26,7 +26,7 @@ export function GuestAttendanceList({
   return (
     <div
       aria-label="Invited party members"
-      className="max-h-[26rem] divide-y divide-gray-100 overflow-y-auto overscroll-contain rounded-lg border border-pink-100"
+      className="max-h-[26rem] divide-y divide-gray-100 overflow-y-auto overscroll-contain rounded-lg border border-[var(--smart-rsvp-border-soft)]"
     >
       {guests.map((guest) => {
         const response = responses[guest.id];
@@ -35,8 +35,8 @@ export function GuestAttendanceList({
         return (
           <div key={guest.id} className="space-y-3 px-4 py-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-100">
-                <UserRound className="h-5 w-5 text-pink-600" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--smart-rsvp-soft-strong)]">
+                <UserRound className="h-5 w-5 text-[var(--smart-rsvp-accent)]" />
               </div>
 
               <div className="min-w-0 flex-1">

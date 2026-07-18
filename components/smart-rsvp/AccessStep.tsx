@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import type { FormEvent } from "react";
 import { Loader2, LockKeyhole } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -27,13 +27,13 @@ export function AccessStep({
   }
 
   return (
-    <Card className="border-2 border-pink-300 bg-white shadow-xl">
-      <CardHeader className="border-b border-pink-200 bg-pink-50 text-center">
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-pink-100">
-          <LockKeyhole className="h-6 w-6 text-pink-600" />
+    <Card className="border-2 border-[var(--smart-rsvp-border)] bg-white shadow-xl">
+      <CardHeader className="border-b border-[var(--smart-rsvp-border-soft)] bg-[var(--smart-rsvp-soft)] text-center">
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--smart-rsvp-soft-strong)]">
+          <LockKeyhole className="h-6 w-6 text-[var(--smart-rsvp-accent)]" />
         </div>
 
-        <CardTitle className="font-libreBaskerville text-2xl text-[#ac243d]">
+        <CardTitle className="font-libreBaskerville text-2xl text-[var(--smart-rsvp-heading)]">
           Enter Your RSVP Code
         </CardTitle>
 
@@ -76,7 +76,7 @@ export function AccessStep({
           <Button
             type="submit"
             disabled={isCheckingCode || rsvpCode.trim().length === 0}
-            className="w-full rounded-full bg-pink-500 py-6 text-lg text-white hover:bg-pink-600"
+            className="w-full rounded-full bg-[var(--smart-rsvp-accent)] py-6 text-lg text-white hover:bg-[var(--smart-rsvp-accent-hover)]"
           >
             {isCheckingCode ? (
               <>

@@ -106,7 +106,8 @@ export default function ClassicWeddingTemplate() {
           <RSVPForm
             bride={weddingData.bride}
             groom={weddingData.groom}
-            rsvpDeadline="May 20, 2026"
+            rsvpDeadline="May 20, 2030"
+            eventSlug="eric-and-li"
           />
 
           <Footer />

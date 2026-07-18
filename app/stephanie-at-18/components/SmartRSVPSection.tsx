@@ -1,10 +1,11 @@
 "use client";
 
-import { RSVPInfo } from "../types";
-import { AccessStep } from "./smart-rsvp/AccessStep";
-import { SearchStep } from "./smart-rsvp/SearchStep";
-import { useSmartRsvp } from "./smart-rsvp/useSmartRsvp";
-import { PartyStep } from "./smart-rsvp/PartyStep";
+import {
+  debutSmartRsvpTheme,
+  SmartRsvpFlow,
+} from "@/components/smart-rsvp";
+
+import type { RSVPInfo } from "../types";
 
 interface SmartRSVPSectionProps {
   rsvp: RSVPInfo;
@@ -15,35 +16,6 @@ export default function SmartRSVPSection({
   rsvp,
   eventSlug,
 }: SmartRSVPSectionProps) {
-  const {
-    stage,
-    event,
-
-    rsvpCode,
-    fullName,
-    searchMatches,
-
-    isCheckingCode,
-    isSearching,
-
-    accessError,
-    searchError,
-
-    updateRsvpCode,
-    updateFullName,
-
-    verifyAccess,
-    searchGuest,
-    reset,
-
-    party,
-    selectedMatch,
-    loadingInvitationId,
-    partyError,
-    selectInvitation,
-    returnToSearch,
-  } = useSmartRsvp(eventSlug);
-
   return (
     <section
       id="rsvp"
@@ -63,42 +35,10 @@ export default function SmartRSVPSection({
         </div>
 
         <div className="mx-auto max-w-xl">
-          {stage === "access" && (
-            <AccessStep
-              rsvpCode={rsvpCode}
-              isCheckingCode={isCheckingCode}
-              errorMessage={accessError}
-              onCodeChange={updateRsvpCode}
-              onSubmit={verifyAccess}
-            />
-          )}
-
-          {stage === "search" && event && (
-            <SearchStep
-              event={event}
-              fullName={fullName}
-              matches={searchMatches}
-              isSearching={isSearching}
-              loadingInvitationId={loadingInvitationId}
-              errorMessage={searchError}
-              partyError={partyError}
-              onNameChange={updateFullName}
-              onSearch={searchGuest}
-              onSelectMatch={selectInvitation}
-              onReset={reset}
-            />
-          )}
-          {stage === "party" && event && party && selectedMatch && (
-            <PartyStep
-              event={event}
-              eventSlug={eventSlug}
-              rsvpCode={rsvpCode}
-              selectedMatch={selectedMatch}
-              party={party}
-              onBack={returnToSearch}
-              onReset={reset}
-            />
-          )}
+          <SmartRsvpFlow
+            eventSlug={eventSlug}
+            theme={debutSmartRsvpTheme}
+          />
         </div>
       </div>
     </section>
