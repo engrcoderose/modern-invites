@@ -1,20 +1,25 @@
+import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Pricing from "@/components/Pricing";
+import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
+import FinalCta from "@/components/landing/FinalCta";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Pricing & Packages – Modern Invites",
+export const metadata: Metadata = {
+  title: "Pricing & Packages | Modern Invites",
   description:
-    "Beautiful, handcrafted digital invitations for weddings, debuts, baptismals, and more. Transparent pricing with no hidden fees.",
+    "Compare Modern Invites website invitation packages, included features, revision allowances, and one-time pricing.",
 };
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sage-50 to-white">
+    <div className="min-h-screen overflow-hidden bg-ivory text-ink">
       <Navigation />
-      <div className="pt-16">
+      <main>
         <Pricing />
-      </div>
+        <FrequentlyAskedQuestions />
+        <FinalCta />
+      </main>
       <Footer />
     </div>
   );
