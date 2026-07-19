@@ -1,5 +1,5 @@
-import { Instrument_Serif } from "next/font/google";
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -11,6 +11,24 @@ export default {
   theme: {
     extend: {
       colors: {
+        ivory: '#f8f5ef',
+        ink: {
+          DEFAULT: '#202421',
+          muted: '#66706a',
+        },
+        forest: {
+          DEFAULT: '#173d32',
+          light: '#204b3e',
+        },
+        eucalyptus: {
+          DEFAULT: '#6f927f',
+          dark: '#527362',
+        },
+        champagne: {
+          DEFAULT: '#c7a96b',
+          light: '#ead8ae',
+          dark: '#9d7f47',
+        },
         sage: {
           '50': '#f0f7f4',
           '100': '#dceee4',
@@ -116,6 +134,6 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
 

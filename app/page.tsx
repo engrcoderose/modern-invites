@@ -1,27 +1,31 @@
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import FeatureSection from "@/components/FeatureSection";
-import OccasionsSection from "@/components/OccasionsSection";
-import CallToAction from "@/components/CallToAction";
 import Footer from "@/components/Footer";
-import OurProducts from "@/components/OurProducts";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
-import HowItWorks from "@/components/HowItWorks";
-// landing page
+import FeatureShowcase from "@/components/landing/FeatureShowcase";
+import FeaturedInvitations from "@/components/landing/FeaturedInvitations";
+import FinalCta from "@/components/landing/FinalCta";
+import HeroSection from "@/components/landing/HeroSection";
+import PricingPreview from "@/components/landing/PricingPreview";
+import ProcessSection from "@/components/landing/ProcessSection";
+import ProductExperiences from "@/components/landing/ProductExperiences";
+import TrustBar from "@/components/landing/TrustBar";
+
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b to-white from-sage-50">
+    <div className="min-h-screen overflow-hidden bg-ivory text-ink">
       <Navigation />
-      <Hero />
-      <OurProducts />
-      <FeatureSection />
-      <OccasionsSection />
-      <HowItWorks />
-      <CallToAction />
-      <FrequentlyAskedQuestions />
-
+      <main>
+        <HeroSection />
+        <TrustBar />
+        <FeaturedInvitations />
+        <ProductExperiences />
+        <FeatureShowcase />
+        <ProcessSection />
+        <PricingPreview />
+        <FrequentlyAskedQuestions />
+        <FinalCta />
+      </main>
       <Footer />
     </div>
   );
 }
-

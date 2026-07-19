@@ -1,178 +1,129 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircleHeart, X } from "lucide-react";
+import { motion, useScroll, useSpring } from "motion/react";
+import { CONTACT_URL } from "@/lib/site";
+
+const navigationItems = [
+  { label: "Work", href: "/#featured-work" },
+  { label: "Services", href: "/#services" },
+  { label: "How it works", href: "/#process" },
+  { label: "Pricing", href: "/pricing" },
+];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 30,
+    mass: 0.25,
+  });
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
     };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-sm"
-          : "bg-white/70 backdrop-blur-md"
+          ? "border-forest/10 bg-ivory/92 shadow-[0_8px_28px_-22px_rgba(23,61,50,0.5)] backdrop-blur-xl"
+          : "border-transparent bg-ivory/70 backdrop-blur-md"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/">
-              <motion.h1
-                whileHover={{ scale: 1.05 }}
-                className="text-2xl font-elegant font-bold text-sage-700"
-              >
-                Modern Invites
-              </motion.h1>
-            </Link>
-          </div>
+      <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+        <Link href="/" className="group inline-flex items-center gap-3" aria-label="Modern Invites home">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest font-instrumentSerif text-lg italic text-white transition group-hover:rotate-6">
+            M
+          </span>
+          <span className="font-instrumentSerif text-2xl tracking-[-0.02em] text-forest">Modern Invites</span>
+        </Link>
 
-          {/* desktop navigatiom */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              Home
+        <div className="hidden items-center gap-8 lg:flex">
+          {navigationItems.map((item) => (
+            <Link key={item.label} href={item.href} className="text-xs font-semibold text-ink-muted transition hover:text-forest">
+              {item.label}
             </Link>
-            <Link
-              href="/about"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/portfolio"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              Portfolio
-            </Link>
-            {/* <a
-              // href="/gallery"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              Gallery
-            </a> */}
-            <a
-              href="https://www.facebook.com/moderneenvites/"
-              className="text-gray-700 hover:text-sage-600 transition-colors"
-            >
-              Contact Us
-            </a>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-sage-600 text-white px-6 py-2 rounded-full hover:bg-sage-700 transition-colors"
-              onClick={() =>
-                window.open(
-                  "https://www.facebook.com/moderneenvites/",
-                  "_blank",
-                )
-              }
-            >
-              Get Started
-            </motion.button>
-          </div>
-
-          {/* mobile navigation */}
-          <button
-            className="md:hidden text-sage-700"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          ))}
         </div>
-        <motion.div
-          initial={false}
-          animate={{
-            height: isMobileMenuOpen ? "auto" : 0,
-            opacity: isMobileMenuOpen ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="overflow-hidden md:hidden"
+
+        <div className="hidden lg:block">
+          <Link
+            href={CONTACT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-10 items-center gap-2 rounded-full bg-forest px-5 py-2 text-xs font-bold text-white transition hover:-translate-y-0.5 hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2"
+          >
+            Start your invitation
+            <MessageCircleHeart className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest lg:hidden"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
         >
-          <div className="flex flex-col py-4 space-y-4">
-            <Link
-              href="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-gray-700 hover:text-sage-600"
-            >
-              Home
-            </Link>
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
 
+      <div
+        id="mobile-navigation"
+        className={`grid transition-[grid-template-rows,opacity] duration-300 lg:hidden ${
+          isMobileMenuOpen ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-forest/10 bg-ivory px-4 py-5 sm:px-6">
+            <div className="flex flex-col gap-1">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-xl px-3 py-3 text-sm font-semibold text-ink transition hover:bg-white hover:text-forest"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
             <Link
-              href="/about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-gray-700 hover:text-sage-600"
-            >
-              About Us
-            </Link>
-
-            <Link
-              href="/pricing"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-gray-700 hover:text-sage-600"
-            >
-              Pricing
-            </Link>
-
-            <Link
-              href="/portfolio"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-gray-700 hover:text-sage-600"
-            >
-              Portfolio
-            </Link>
-
-            <a
-              href="https://www.facebook.com/moderneenvites/"
+              href={CONTACT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-sage-600"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-5 py-3 text-sm font-bold text-white"
             >
-              Contact Us
-            </a>
-
-            <button
-              className="bg-sage-600 text-white rounded-full py-3"
-              onClick={() => {
-                window.open(
-                  "https://www.facebook.com/moderneenvites/",
-                  "_blank",
-                );
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Get Started
-            </button>
+              Start your invitation
+              <MessageCircleHeart className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.nav>
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-champagne"
+        style={{ scaleX: smoothProgress }}
+      />
+    </header>
   );
 }

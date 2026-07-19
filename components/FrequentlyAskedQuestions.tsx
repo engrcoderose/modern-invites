@@ -1,137 +1,99 @@
 "use client";
 
+import Link from "next/link";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import Link from "next/link";
+import ScrollReveal from "@/components/landing/ScrollReveal";
+
+const questions = [
+  {
+    question: "How much does a website invitation cost?",
+    answer: (
+      <p>
+        Packages currently range from ₱799 to ₱3,199, depending on the design
+        and features you need. See the complete comparison on our{" "}
+        <Link href="/pricing" className="font-semibold text-forest underline underline-offset-4">
+          pricing page
+        </Link>
+        .
+      </p>
+    ),
+  },
+  {
+    question: "How long will my invitation take?",
+    answer: (
+      <p>
+        Most website invitations are completed within 3–7 business days. More
+        elaborate custom projects can take longer. Your turnaround begins once
+        we receive all required content and materials.
+      </p>
+    ),
+  },
+  {
+    question: "What do I need to send before you begin?",
+    answer: (
+      <p>
+        We’ll ask for your event details, photos, preferred music, wording,
+        motif or color palette, dress code, program, and any special
+        instructions. We’ll guide you through the list after booking.
+      </p>
+    ),
+  },
+  {
+    question: "Can I request revisions?",
+    answer: (
+      <p>
+        Yes. Revision rounds are included according to your selected package,
+        and we’ll send a draft for approval before your invitation is launched.
+      </p>
+    ),
+  },
+  {
+    question: "Do you require a down payment?",
+    answer: (
+      <p>
+        Yes. A 50% non-refundable down payment secures your slot and starts the
+        design process. The remaining balance is due when the website is
+        completed.
+      </p>
+    ),
+  },
+];
 
 export default function FrequentlyAskedQuestions() {
   return (
-    <section
-      id="frequently-asked-questions"
-      className="px-4 py-24 sm:px-6 lg:px-8 bg-stone-50"
-    >
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-16 text-4xl text-center text-gray-900 font-elegant md:text-5xl">
-          Frequently Asked Questions
-        </h2>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              What are your rates?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                Our website invitation packages ranges from ₱999 to ₱ 3, 999.
-                You can choose the template and package that best suits your
-                needs and budget. Each package includes different features, so
-                pick one that suits your event. See our{" "}
-                <Link
-                  href="/pricing"
-                  className="text-sage-600 underline font-bold hover:text-sage-700"
-                >
-                  pricing page
-                </Link>{" "}
-                for more details.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-2">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              How long does it take to create an invitation?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                Digital Invitations: 2–5 business days. <br /> Full Website
-                Packages: 1–7 business days. <br /> Premium Packages: 2–4 weeks
-                (may vary depending on workload). <br />{" "}
-                <span className="font-bold">Note:</span> The turnaround period
-                begins only after all materials have been received.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-3">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              Do you require down payment?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                Yes we require a 50% non-refundable downpayment to secure your
-                slot and initiate the design process. The remaining 50% is
-                payable after the website is completed.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-4">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              Do you offer revisions?
-            </AccordionTrigger>
-            <AccordionContent>
-              <ul className="list-disc list-inside leading-relaxed text-gray-600">
-                <li>Yes we offer revisions based on the package you choose.</li>
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-5">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              What contents do you need to start creating an invitation?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                To start creating an invitation, you need to provide us with the
-                following details:
-              </p>
-              <ul className="list-disc list-inside leading-relaxed text-gray-600">
-                <li>Type of Event</li>
-                <li>Event date and time</li>
-                <li>Event location</li>
-                <li>Photos</li>
-                <li>Music</li>
-                <li>Text content</li>
-                <li>Dress Code/Color Theme</li>
-                <li>Gift Request</li>
-                <li>Additional instructions</li>
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-6">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              What can I customize in the design template?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                Customize colors, fonts, photos, countdowns, event details,
-                location to match your style perfectly.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-7">
-            <AccordionTrigger className="text-lg font-medium text-sage-800">
-              Who will create/edit the website invitation?
-            </AccordionTrigger>
-            <AccordionContent>
-              <p className="leading-relaxed text-gray-600">
-                Our team will handle the invitation creation and revisions,
-                including updates, edits, and uploads.
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+    <section id="faq" className="scroll-mt-24 bg-ivory px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
+        <ScrollReveal direction="left">
+          <div>
+            <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.28em] text-eucalyptus-dark">Good to know</p>
+            <h2 className="font-instrumentSerif text-5xl leading-[1.02] tracking-[-0.02em] text-ink sm:text-6xl">
+              A few questions, <span className="italic text-eucalyptus-dark">answered.</span>
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-7 text-ink-muted">
+              Still deciding what fits your event? Send us a message and we’ll help you choose.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal direction="right" delay={0.08}>
+          <Accordion type="single" collapsible className="border-t border-forest/15">
+            {questions.map((item, index) => (
+              <AccordionItem key={item.question} value={`item-${index}`} className="border-forest/15">
+                <AccordionTrigger className="py-6 text-left font-instrumentSerif text-xl font-normal text-ink hover:no-underline sm:text-2xl">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="max-w-2xl pb-6 text-sm leading-7 text-ink-muted sm:text-base">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </ScrollReveal>
       </div>
     </section>
   );

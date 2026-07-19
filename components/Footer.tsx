@@ -1,123 +1,57 @@
-"use client";
+import Link from "next/link";
+import { Facebook, Heart } from "lucide-react";
+import { CONTACT_URL } from "@/lib/site";
 
-import { motion } from "motion/react";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
+const footerLinks = [
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/#faq" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-4 gap-8 mb-8"
-        >
-          <motion.div variants={itemVariants}>
-            <h4 className="text-2xl font-elegant font-bold text-white mb-4">
-              Modern Invites
-            </h4>
-            <p className="text-gray-400">
-              Creating elegant digital invitations for every special moment.
-            </p>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h5 className="font-semibold text-white mb-4">Product</h5>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Templates
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Pricing
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h5 className="font-semibold text-white mb-4">Company</h5>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <h5 className="font-semibold text-white mb-4">Support</h5>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-sage-400 transition-colors">
-                  Terms
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="border-t border-gray-800 pt-8 text-center text-gray-400"
-        >
-          <p>
-            &copy; {new Date().getFullYear()} Modern Invites. All rights
-            reserved.
+    <footer className="bg-[#102e26] px-4 py-12 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-10 border-b border-white/10 pb-10 md:flex-row md:items-end">
+          <div className="max-w-sm">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Modern Invites home">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white font-instrumentSerif text-xl italic text-forest">M</span>
+              <span className="font-instrumentSerif text-3xl">Modern Invites</span>
+            </Link>
+            <p className="mt-4 text-sm leading-6 text-white/50">Personalized invitation websites for weddings, debuts, birthdays, and life’s most meaningful celebrations.</p>
+          </div>
+
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-9">
+            <nav className="flex flex-wrap gap-x-6 gap-y-3" aria-label="Footer navigation">
+              {footerLinks.map((link) => (
+                <Link key={link.label} href={link.href} className="text-xs font-semibold text-white/60 transition hover:text-white">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href={CONTACT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Modern Invites on Facebook"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/70 transition hover:border-white/40 hover:text-white"
+            >
+              <Facebook className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between gap-3 pt-7 text-[0.68rem] text-white/35 sm:flex-row sm:items-center">
+          <p>© {new Date().getFullYear()} Modern Invites. All rights reserved.</p>
+          <p className="inline-flex items-center gap-1.5">
+            Crafted with <Heart className="h-3 w-3 text-champagne-light" fill="currentColor" aria-hidden="true" /> by{" "}
+            <Link href="https://www.tuldokdigital.com" target="_blank" rel="noopener noreferrer" className="text-white/55 transition hover:text-white">
+              Tuldok Digital Solutions
+            </Link>
           </p>
-          <p>Powered by <a href="https://www.tuldokdigital.com" target="_blank" className="text-sage-400 hover:text-sage-300 transition-colors">Tuldok Digital Solutions</a></p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
 }
-

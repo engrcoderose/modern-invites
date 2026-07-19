@@ -44,8 +44,9 @@ const petitFormalScript = Petit_Formal_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Modern Invites - Elegant E-Invites for Every Occasion",
-  description: "Create beautiful, personalized digital invitations that leave a lasting impression. Perfect for weddings, birthdays, corporate events, and more.",
+  title: "Modern Invites | Personalized Invitation Websites",
+  description:
+    "Personalized invitation websites for weddings, debuts, birthdays, and meaningful celebrations. Custom-designed, mobile-ready, and easy to share.",
   icons: {
     icon: "/icon.png",
   },
