@@ -1,0 +1,121 @@
+.burgundy-invitation {
+  --burgundy: #5a1024;
+  --maroon: #3b0917;
+  --champagne: #d8bd83;
+  --parchment: #f5efe6;
+  color: #32151b;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.burgundy-invitation > section:not(#top):not(#cinematic) {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 900px;
+}
+
+@supports selector(body:has(*)) {
+  body:has(.opening-screen:not(.opening-screen--closing)) {
+    overflow: hidden;
+  }
+}
+
+.burgundy-invitation .opening-screen {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.burgundy-invitation .opening-screen--closing {
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+.burgundy-invitation .hero-grain {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.22) 0 0.6px, transparent 0.8px),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.13) 0 0.5px, transparent 0.7px);
+  background-position: 0 0, 7px 11px;
+  background-size: 13px 13px, 17px 17px;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.burgundy-invitation .hero-text-reveal {
+  animation: hero-text-reveal 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.burgundy-invitation .opening-reveal {
+  animation: opening-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.burgundy-invitation .ambient-mark {
+  animation: ambient-mark-drift 14s ease-in-out infinite alternate;
+}
+
+.burgundy-invitation .ambient-wash {
+  animation: ambient-wash-drift 12s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes hero-text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes opening-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambient-mark-drift {
+  from { transform: translate3d(-2%, -1%, 0) rotate(-2deg); }
+  to { transform: translate3d(3%, 3%, 0) rotate(2deg); }
+}
+
+@keyframes ambient-wash-drift {
+  from { opacity: 0.72; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.08); }
+}
+
+.burgundy-invitation input:-webkit-autofill,
+.burgundy-invitation input:-webkit-autofill:hover,
+.burgundy-invitation input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  box-shadow: 0 0 0 1000px #3b0917 inset;
+  transition: background-color 9999s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .burgundy-invitation video {
+    display: none;
+  }
+
+  .burgundy-invitation .scroll-reveal,
+  .burgundy-invitation .image-scroll-reveal > figure,
+  .burgundy-invitation .hero-scroll-media,
+  .burgundy-invitation .hero-scroll-content,
+  .burgundy-invitation .ambient-mark,
+  .burgundy-invitation .ambient-wash {
+    animation: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
