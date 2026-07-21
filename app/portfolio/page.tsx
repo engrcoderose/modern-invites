@@ -10,8 +10,25 @@ import stephHeroBg from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
 import ericHeroBg from "@/app/eric-and-li/assets/hero-background.png";
 import stephaniePhoto from "@/app/stephanie-at-18/assets/HeroPhoto.png";
 import ericCoupleImg from "@/app/eric-and-li/assets/images/gallery-one-couple.jpg";
+import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple.jpg";
+import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
 
 const portfolioItems = [
+  {
+    id: "isabella-and-daniel",
+    title: "Isabella & Daniel",
+    category: "Wedding Invitation",
+    date: "March 14, 2027",
+    venue: "The Transfiguration of Christ Parish · Antipolo",
+    description:
+      "A modern luxury wedding experience in rich burgundy and champagne gold—featuring a cinematic welcome, music, smooth scroll storytelling, an elegant entourage, dress-code guide, gallery, and RSVP.",
+    href: "/isabella-and-daniel",
+    bgImage: isabellaBackground,
+    previewImage: isabellaCouple,
+    accent: "#5a1024",
+    accentLight: "#f6ebe8",
+    tags: ["Wedding", "Modern Luxury", "Burgundy & Gold"],
+  },
   {
     id: "stephanie-at-18",
     title: "Stephanie at 18",

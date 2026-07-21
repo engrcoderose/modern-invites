@@ -5,6 +5,8 @@ import ericCouple from "@/app/eric-and-li/assets/images/gallery-one-couple.jpg";
 import ericBackground from "@/app/eric-and-li/assets/hero-background.png";
 import stephaniePortrait from "@/app/stephanie-at-18/assets/HeroPhoto.png";
 import stephanieBackground from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
+import isabellaPortrait from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
+import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple.jpg";
 import SectionHeading from "./SectionHeading";
 import ScrollReveal from "./ScrollReveal";
 
@@ -15,11 +17,21 @@ type Invitation = {
   href: string;
   portrait: StaticImageData;
   background: StaticImageData;
-  tone: "forest" | "berry";
+  tone: "forest" | "berry" | "burgundy";
   features: string[];
 };
 
 const invitations: Invitation[] = [
+  {
+    title: "Isabella & Daniel",
+    category: "Wedding invitation",
+    description: "A cinematic burgundy wedding experience with smooth-scroll storytelling, music, elegant details, and guest RSVP.",
+    href: "/isabella-and-daniel",
+    portrait: isabellaPortrait,
+    background: isabellaBackground,
+    tone: "burgundy",
+    features: ["Countdown", "RSVP", "Dress code", "Music"],
+  },
   {
     title: "Eric & Li",
     category: "Wedding invitation",
@@ -62,14 +74,15 @@ export default function FeaturedInvitations() {
           </ScrollReveal>
         </div>
 
-        <div className="mt-14 grid gap-7 lg:grid-cols-2">
+        <div className="mt-14 grid gap-7 lg:grid-cols-3">
           {invitations.map((invitation, index) => {
             const isForest = invitation.tone === "forest";
+            const isBurgundy = invitation.tone === "burgundy";
 
             return (
               <ScrollReveal key={invitation.title} delay={index * 0.12} direction={index === 0 ? "left" : "right"} className="h-full">
                 <article
-                  className={`group relative min-h-[38rem] overflow-hidden rounded-[2rem] ${isForest ? "bg-forest" : "bg-[#6e2334]"}`}
+                  className={`group relative min-h-[38rem] overflow-hidden rounded-[2rem] ${isForest ? "bg-forest" : isBurgundy ? "bg-[#430b18]" : "bg-[#6e2334]"}`}
                 >
                 <Image
                   src={invitation.background}
@@ -80,7 +93,7 @@ export default function FeaturedInvitations() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/10" />
                 <div className="absolute inset-x-0 top-0 flex h-[68%] items-center justify-center p-8">
-                  <div className={`relative h-full w-[58%] max-w-[17rem] rotate-[-2deg] overflow-hidden rounded-t-[9rem] rounded-b-[1.25rem] border-[6px] shadow-2xl transition duration-500 group-hover:rotate-0 group-hover:scale-[1.02] ${isForest ? "border-[#d6bd8b]" : "border-[#f2d77c]"}`}>
+                  <div className={`relative h-full w-[58%] max-w-[17rem] rotate-[-2deg] overflow-hidden rounded-t-[9rem] rounded-b-[1.25rem] border-[6px] shadow-2xl transition duration-500 group-hover:rotate-0 group-hover:scale-[1.02] ${isForest ? "border-[#d6bd8b]" : isBurgundy ? "border-[#d8bd83]" : "border-[#f2d77c]"}`}>
                     <Image
                       src={invitation.portrait}
                       alt={`${invitation.title} invitation preview`}
