@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { faqData, weddingProgram, weddingTwoData } from "./data/wedding-two-data";
 import Navigation from "./components/Navigation";
 import OpeningScreen from "./components/OpeningScreen";
+import BackgroundMusic from "./components/BackgroundMusic";
 import ScrollProgress from "./components/ScrollProgress";
 import HeroSection from "./components/HeroSection";
 import InvitationSection from "./components/InvitationSection";
@@ -31,6 +32,7 @@ export default function HeroScrollInvitation() {
   return (
     <main className="burgundy-invitation overflow-x-clip bg-[#f5efe6]">
       <OpeningScreen bride={wedding.bride} groom={wedding.groom} dateDisplay={wedding.dateDisplay} />
+      <BackgroundMusic />
       <ScrollProgress />
       <Navigation initials={`${wedding.bride[0]} / ${wedding.groom[0]}`} />
       <HeroSection bride={wedding.bride} groom={wedding.groom} dateDisplay={wedding.dateDisplay} location={wedding.locationDisplay} />

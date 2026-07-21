@@ -37,7 +37,7 @@ export default function CinematicBreak() {
               src="/images/hero-scroll-cinematic.jpg"
               alt="Isabella and Daniel sharing a joyful moment"
               fill
-              unoptimized
+              quality={82}
               sizes="100vw"
               className="object-cover"
             />
