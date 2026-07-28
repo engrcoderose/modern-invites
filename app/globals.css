@@ -1,3 +1,5 @@
+@import "./nylgen-and-kersee/styles/theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

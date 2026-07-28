@@ -1,0 +1,53 @@
+.wedding-theme {
+  --wedding-color-ivory: 250 247 239;
+  --wedding-color-paper: 255 253 248;
+  --wedding-color-mist: 239 244 235;
+  --wedding-color-sage-soft: 217 231 211;
+  --wedding-color-sage: 103 126 91;
+  --wedding-color-sage-deep: 76 99 68;
+  --wedding-color-ink: 55 67 55;
+  --wedding-color-gold: 180 148 96;
+  --wedding-color-line: 151 169 142;
+
+  --wedding-space-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --wedding-space-section-sm: clamp(4rem, 9vw, 7rem);
+  --wedding-space-section: clamp(6rem, 14vw, 11rem);
+
+  --wedding-radius-control: 0.35rem;
+  --wedding-radius-card: 1.25rem;
+
+  --wedding-shadow-card:
+    0 1px 2px rgb(55 67 55 / 0.04),
+    0 18px 60px rgb(76 99 68 / 0.08);
+  --wedding-shadow-soft: 0 28px 90px rgb(76 99 68 / 0.12);
+
+  --wedding-duration-fast: 180ms;
+  --wedding-duration-base: 420ms;
+  --wedding-duration-slow: 760ms;
+  --wedding-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: rgb(var(--wedding-color-ink));
+  background-color: rgb(var(--wedding-color-ivory));
+  font-family: var(--font-libre-baskerville), Georgia, serif;
+}
+
+.wedding-theme ::selection {
+  color: rgb(var(--wedding-color-sage-deep));
+  background: rgb(var(--wedding-color-sage-soft));
+}
+
+.wedding-theme :focus-visible {
+  outline: 2px solid rgb(var(--wedding-color-sage));
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-theme *,
+  .wedding-theme *::before,
+  .wedding-theme *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
