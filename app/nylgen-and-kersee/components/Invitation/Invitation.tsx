@@ -35,7 +35,7 @@ export function Invitation({ data }: InvitationProps) {
             initial={reduceMotion ? false : { opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
           >
             <div
               aria-hidden="true"
@@ -71,7 +71,7 @@ export function Invitation({ data }: InvitationProps) {
             initial={reduceMotion ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.15, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mb-6 flex items-center gap-3 text-wedding-sage">
               <span className="h-px w-8 bg-wedding-line" aria-hidden="true" />

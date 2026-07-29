@@ -1,6 +1,6 @@
 "use client";
 
-import { Flower2, Leaf, Sparkles } from "lucide-react";
+import { Flower2, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import type { WeddingData } from "../../data/weddingData";
@@ -23,10 +23,6 @@ export function Attire({ data }: AttireProps) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-80 [background-image:radial-gradient(circle_at_5%_12%,rgb(var(--wedding-color-sage-soft)/.75),transparent_24%),radial-gradient(circle_at_96%_86%,rgb(var(--wedding-color-mist)),transparent_30%)]"
       />
-      <Leaf
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-12 top-20 size-52 rotate-[38deg] stroke-[0.45] text-wedding-sage/15 sm:-left-8 sm:size-64"
-      />
       <Flower2
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-16 -right-12 size-60 -rotate-12 stroke-[0.4] text-wedding-sage/15 sm:size-72"
@@ -38,7 +34,7 @@ export function Attire({ data }: AttireProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="relative isolate flex min-h-[34rem] flex-col justify-between overflow-hidden bg-wedding-sage-deep px-7 py-12 text-wedding-paper sm:px-12 sm:py-16 lg:min-h-[43rem]">
             <div
@@ -49,11 +45,6 @@ export function Attire({ data }: AttireProps) {
               aria-hidden="true"
               className="absolute inset-x-0 bottom-0 -z-20 h-2/3 bg-[radial-gradient(circle_at_50%_100%,rgb(var(--wedding-color-sage)/.9),transparent_65%)]"
             />
-            <Leaf
-              aria-hidden="true"
-              className="absolute -right-12 -top-9 -z-10 size-48 rotate-[145deg] stroke-[0.5] text-wedding-paper/15"
-            />
-
             <div className="flex items-center gap-3 text-wedding-paper/75">
               <Sparkles className="size-4 stroke-[1.15]" aria-hidden="true" />
               <p className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.3em]">
@@ -133,8 +124,8 @@ export function Attire({ data }: AttireProps) {
                     visible: { opacity: 1, y: 0 },
                   }}
                   transition={{
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: 0.9,
+                    ease: [0.16, 1, 0.3, 1],
                   }}
                 >
                   <span
@@ -164,7 +155,10 @@ export function Attire({ data }: AttireProps) {
 
             <div className="mt-9 flex items-center gap-4 text-wedding-gold">
               <span className="h-px flex-1 bg-wedding-line/50" />
-              <Leaf className="size-4 rotate-45 stroke-[1]" aria-hidden="true" />
+              <span
+                className="size-1.5 rotate-45 border border-wedding-gold/80"
+                aria-hidden="true"
+              />
               <span className="h-px flex-1 bg-wedding-line/50" />
             </div>
           </div>

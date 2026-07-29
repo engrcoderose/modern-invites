@@ -1,0 +1,1 @@
+export { OpeningScreen } from "./OpeningScreen";

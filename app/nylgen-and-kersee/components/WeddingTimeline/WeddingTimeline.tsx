@@ -45,7 +45,7 @@ export function WeddingTimeline({ data }: WeddingTimelineProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="font-sans text-[0.62rem] font-medium uppercase tracking-[0.3em] text-wedding-sage">
             From vows to dancing
@@ -79,9 +79,9 @@ export function WeddingTimeline({ data }: WeddingTimelineProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.45 }}
                   transition={{
-                    duration: 0.65,
+                    duration: 0.95,
                     delay: index * 0.04,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.16, 1, 0.3, 1],
                   }}
                 >
                   <p className="flex h-8 items-end font-wedding-display text-base tracking-[0.06em] text-wedding-sage-deep xl:text-lg">
@@ -129,9 +129,9 @@ export function WeddingTimeline({ data }: WeddingTimelineProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.45 }}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.9,
                     delay: index * 0.035,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.16, 1, 0.3, 1],
                   }}
                 >
                   <div className="relative z-10 grid size-12 place-items-center rounded-full border border-wedding-line/70 bg-wedding-paper text-wedding-sage-deep shadow-wedding-card">

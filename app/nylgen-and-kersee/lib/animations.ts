@@ -1,9 +1,9 @@
 import type { Transition, Variants } from "framer-motion";
 
-export const botanicalEase = [0.22, 1, 0.36, 1] as const;
+export const botanicalEase = [0.16, 1, 0.3, 1] as const;
 
 export const weddingTransition: Transition = {
-  duration: 0.76,
+  duration: 1.05,
   ease: botanicalEase,
 };
 
@@ -16,10 +16,11 @@ export const fadeIn: Variants = {
 };
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: weddingTransition,
   },
 };

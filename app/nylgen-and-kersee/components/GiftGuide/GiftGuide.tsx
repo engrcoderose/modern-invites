@@ -26,7 +26,7 @@ export function GiftGuide({ data }: GiftGuideProps) {
           initial={reduceMotion ? false : { opacity: 0, scale: 0.985 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
         >
           <Leaf
             aria-hidden="true"

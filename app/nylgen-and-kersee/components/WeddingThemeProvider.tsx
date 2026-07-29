@@ -16,7 +16,7 @@ export function WeddingThemeProvider({
   return (
     <MotionConfig
       reducedMotion="user"
-      transition={{ duration: 0.76, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
     >
       <div
         className={cn(

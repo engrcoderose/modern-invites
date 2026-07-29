@@ -1,75 +1,20 @@
 "use client";
 
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import Image from "next/image";
-import { Camera, CheckCircle2, Hash, ImagePlus, Leaf } from "lucide-react";
+import { Camera, Hash } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import QRCode from "react-qr-code";
 
 import type { WeddingData } from "../../data/weddingData";
-import { Button, Container, Heading, Section } from "../ui";
+import clientLogo from "../../assets/initials.webp";
+import photoUploadQrCode from "../../assets/photo-upload-qr-code.png";
+import { Container, Heading, Section } from "../ui";
 
 type HashtagProps = {
   data: Pick<WeddingData, "socialSharing">;
 };
 
-type SelectedPhoto = {
-  name: string;
-  url: string;
-};
-
 export function Hashtag({ data }: HashtagProps) {
-  const [qrValue, setQrValue] = useState(data.socialSharing.uploadPath);
-  const [photos, setPhotos] = useState<SelectedPhoto[]>([]);
-  const [statusMessage, setStatusMessage] = useState("");
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const destination =
-      data.socialSharing.albumUrl ??
-      `${window.location.origin}${data.socialSharing.uploadPath}`;
-    setQrValue(destination);
-  }, [data.socialSharing.albumUrl, data.socialSharing.uploadPath]);
-
-  useEffect(
-    () => () => {
-      photos.forEach((photo) => URL.revokeObjectURL(photo.url));
-    },
-    [photos],
-  );
-
-  const selectPhotos = (event: ChangeEvent<HTMLInputElement>) => {
-    photos.forEach((photo) => URL.revokeObjectURL(photo.url));
-
-    const selected = Array.from(event.target.files ?? [])
-      .slice(0, 6)
-      .map((file) => ({
-        name: file.name,
-        url: URL.createObjectURL(file),
-      }));
-
-    setPhotos(selected);
-    setStatusMessage("");
-  };
-
-  const submitPhotos = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (photos.length === 0) {
-      setStatusMessage("Choose at least one photo to continue.");
-      return;
-    }
-
-    if (data.socialSharing.albumUrl) {
-      window.open(data.socialSharing.albumUrl, "_blank", "noopener,noreferrer");
-      setStatusMessage("Your shared album has opened in a new tab.");
-      return;
-    }
-
-    setStatusMessage(
-      "Your photos are ready. The shared album connection will be enabled here before the celebration.",
-    );
-  };
 
   return (
     <Section
@@ -83,143 +28,132 @@ export function Hashtag({ data }: HashtagProps) {
       />
 
       <Container size="wide" className="relative">
-        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <motion.div
-            className="mx-auto flex max-w-xl flex-col items-center text-center lg:items-start lg:text-left"
-            initial={reduceMotion ? false : { opacity: 0, x: -24 }}
+            className="flex flex-col items-center text-center lg:items-start lg:text-left"
+            initial={reduceMotion ? false : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-3 text-wedding-paper/70">
               <Hash className="size-4 stroke-[1.2]" aria-hidden="true" />
               <p className="font-sans text-[0.62rem] font-medium uppercase tracking-[0.3em]">
                 Share the celebration
               </p>
+              <span
+                className="hidden h-px w-16 bg-wedding-paper/35 sm:block"
+                aria-hidden="true"
+              />
             </div>
+
             <Heading
               id="hashtag-heading"
               as="h2"
               variant="script"
               align="center"
-              className="mt-5 text-[clamp(4rem,9vw,7rem)] text-wedding-paper lg:text-left"
+              className="mt-5 text-[clamp(4.5rem,9vw,7.5rem)] text-wedding-paper lg:text-left"
             >
               Capture the love
             </Heading>
-            <p className="mt-5 font-wedding-body text-sm leading-8 tracking-[0.06em] text-wedding-paper/75 sm:text-base">
+
+            <p className="mt-6 max-w-xl font-wedding-body text-sm leading-8 tracking-[0.06em] text-wedding-paper/80 sm:text-base">
               {data.socialSharing.message}
             </p>
-            <p className="mt-7 break-all font-wedding-display text-2xl tracking-[0.04em] text-wedding-paper sm:text-3xl">
-              {data.socialSharing.hashtag}
-            </p>
 
-            <div className="mt-9 flex items-center gap-5 rounded-wedding border border-wedding-paper/20 bg-wedding-paper/10 p-4 backdrop-blur-sm">
-              <div className="rounded-wedding-control bg-wedding-paper p-3">
-                <QRCode
-                  value={qrValue}
-                  size={132}
-                  level="M"
-                  bgColor="#FFFDF8"
-                  fgColor="#4C6344"
-                  aria-label="QR code for the wedding photo upload area"
-                />
-              </div>
-              <div className="max-w-[11rem] text-left">
-                <Camera
-                  className="mb-3 size-5 stroke-[1.2] text-wedding-paper"
-                  aria-hidden="true"
-                />
-                <p className="font-sans text-[0.6rem] uppercase leading-5 tracking-[0.2em] text-wedding-paper/75">
-                  Scan to open the photo upload area
-                </p>
-              </div>
+            <div className="mt-8 w-full max-w-xl border-y border-wedding-paper/25 py-5">
+              <p className="font-sans text-[0.55rem] uppercase tracking-[0.28em] text-wedding-paper/55">
+                Our wedding hashtag
+              </p>
+              <p className="mt-3 break-all font-wedding-display text-2xl leading-tight tracking-[0.025em] text-wedding-paper sm:text-3xl">
+                {data.socialSharing.hashtag}
+              </p>
+            </div>
+
+            <div className="mt-8 flex items-center gap-3 text-wedding-paper/65">
+              <span
+                className="size-1.5 rotate-45 border border-wedding-paper/60"
+                aria-hidden="true"
+              />
+              <p className="font-sans text-[0.56rem] uppercase tracking-[0.22em]">
+                Every photograph becomes part of our story
+              </p>
             </div>
           </motion.div>
 
           <motion.div
-            id="photo-upload"
-            className="rounded-wedding border border-wedding-paper/25 bg-wedding-paper p-5 text-wedding-ink shadow-wedding-soft sm:p-8"
-            initial={reduceMotion ? false : { opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="relative mx-auto w-full max-w-[27rem]"
+            initial={reduceMotion ? false : { opacity: 0, x: 30, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{
-              duration: 0.85,
+              duration: 1.15,
               delay: 0.12,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
-            <div className="text-center">
-              <ImagePlus
-                className="mx-auto size-7 stroke-[1.1] text-wedding-sage"
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 rounded-[999px_999px_2rem_2rem] border border-wedding-paper/25 sm:-inset-5"
+            />
+            <div className="relative overflow-hidden rounded-[999px_999px_1.5rem_1.5rem] border border-wedding-line/35 bg-wedding-paper px-7 pb-9 pt-12 text-center text-wedding-ink shadow-wedding-soft sm:px-10 sm:pb-11 sm:pt-14">
+              <div
                 aria-hidden="true"
+                className="absolute -left-14 -top-14 size-40 rounded-full border border-wedding-line/20"
               />
-              <h3 className="mt-3 font-wedding-display text-3xl text-wedding-sage-deep">
-                Add your moments
-              </h3>
-              <p className="mx-auto mt-2 max-w-md font-wedding-body text-xs leading-6 text-wedding-ink/65">
-                Select up to six photos. The final shared-album destination can
-                be connected without changing this section.
-              </p>
-            </div>
+              <div
+                aria-hidden="true"
+                className="absolute -right-8 top-24 size-24 rounded-full border border-wedding-line/20"
+              />
 
-            <form onSubmit={submitPhotos} className="mt-7">
-              <label
-                htmlFor="wedding-photos"
-                className="flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-wedding-control border border-dashed border-wedding-line bg-wedding-mist/55 px-5 py-7 text-center transition hover:bg-wedding-sage-soft/45"
-              >
-                <Camera
-                  className="size-6 stroke-[1.1] text-wedding-sage"
+              <div className="relative mx-auto size-16 overflow-hidden rounded-full border border-wedding-line/45 bg-wedding-ivory shadow-wedding-card">
+                <Image
+                  src={clientLogo}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
+              </div>
+
+              <p className="mt-6 font-sans text-[0.56rem] font-medium uppercase tracking-[0.28em] text-wedding-sage">
+                Our shared album
+              </p>
+              <h3 className="mt-3 font-wedding-display text-3xl text-wedding-sage-deep sm:text-4xl">
+                Share your moments
+              </h3>
+
+              <div className="mx-auto my-6 flex items-center gap-3 text-wedding-line">
+                <span className="h-px flex-1 bg-current/60" />
+                <span
+                  className="size-1.5 rotate-45 border border-current"
                   aria-hidden="true"
                 />
-                <span className="mt-3 font-sans text-[0.62rem] font-medium uppercase tracking-[0.2em] text-wedding-sage-deep">
-                  Choose photos
-                </span>
-                <span className="mt-1 font-wedding-body text-xs text-wedding-ink/55">
-                  JPG, PNG, HEIC, or WEBP
-                </span>
-                <input
-                  id="wedding-photos"
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="sr-only"
-                  onChange={selectPhotos}
+                <span className="h-px flex-1 bg-current/60" />
+              </div>
+
+              <div className="mx-auto w-fit rounded-[1.25rem] border border-wedding-line/35 bg-white p-3 shadow-[0_14px_45px_rgb(76_99_68/.12)]">
+                <Image
+                  src={photoUploadQrCode}
+                  alt="QR code for the wedding photo album"
+                  width={196}
+                  height={196}
+                  className="size-44 object-contain sm:size-48"
                 />
-              </label>
+              </div>
 
-              {photos.length > 0 ? (
-                <div className="mt-4 grid grid-cols-3 gap-2">
-                  {photos.map((photo) => (
-                    <div
-                      key={`${photo.name}-${photo.url}`}
-                      className="relative aspect-square overflow-hidden rounded-wedding-control bg-wedding-mist"
-                    >
-                      <Image
-                        src={photo.url}
-                        alt={`Selected upload: ${photo.name}`}
-                        fill
-                        unoptimized
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : null}
+              <Camera
+                className="mx-auto mt-6 size-5 stroke-[1.15] text-wedding-sage"
+                aria-hidden="true"
+              />
+              <p className="mx-auto mt-3 max-w-[15rem] font-sans text-[0.57rem] uppercase leading-5 tracking-[0.2em] text-wedding-sage-deep">
+                Scan the code and add your favorite photographs
+              </p>
 
-              <Button type="submit" className="mt-5 w-full">
-                Continue to upload
-              </Button>
-
-              {statusMessage ? (
-                <p
-                  role="status"
-                  className="mt-4 flex items-start gap-2 rounded-wedding-control bg-wedding-mist px-4 py-3 font-wedding-body text-xs leading-5 text-wedding-sage-deep"
-                >
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 stroke-[1.3]" />
-                  {statusMessage}
-                </p>
-              ) : null}
-            </form>
+              <p className="mt-6 font-wedding-script text-3xl text-wedding-gold">
+                Nylgen &amp; Kersee
+              </p>
+            </div>
           </motion.div>
         </div>
       </Container>

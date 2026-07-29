@@ -92,7 +92,7 @@ export function RSVP({ data }: RSVPProps) {
             initial={reduceMotion ? false : { opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center justify-center gap-3 text-wedding-sage lg:justify-start">
               <MailCheck
@@ -135,9 +135,9 @@ export function RSVP({ data }: RSVPProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: 0.85,
+              duration: 1.1,
               delay: 0.1,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.16, 1, 0.3, 1],
             }}
           >
             <AnimatePresence mode="wait">

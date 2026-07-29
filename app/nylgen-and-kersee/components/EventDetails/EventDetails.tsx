@@ -1,16 +1,18 @@
 "use client";
 
+import Image, { type StaticImageData } from "next/image";
 import {
   CalendarDays,
   Church,
   Clock3,
-  Leaf,
   MapPin,
   PartyPopper,
 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import type { WeddingData } from "../../data/weddingData";
+import churchQrCode from "../../assets/church-qr-code.png";
+import venueQrCode from "../../assets/venue-qr-code.png";
 import { Button, Card, Container, Heading, Section } from "../ui";
 
 type EventDetailsProps = {
@@ -23,6 +25,7 @@ type VenueCardProps = {
   address: string | null;
   time: string;
   mapUrl: string | null;
+  qrCode: StaticImageData;
   icon: typeof Church;
   index: number;
   reduceMotion: boolean | null;
@@ -34,6 +37,7 @@ function VenueCard({
   address,
   time,
   mapUrl,
+  qrCode,
   icon: Icon,
   index,
   reduceMotion,
@@ -44,15 +48,15 @@ function VenueCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{
-        duration: 0.8,
+        duration: 1.1,
         delay: index * 0.12,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       <Card
         variant="elevated"
         padding="lg"
-        className="relative flex h-full min-h-[29rem] flex-col items-center overflow-hidden text-center"
+        className="relative flex h-full min-h-[38rem] flex-col items-center overflow-hidden text-center"
       >
         <div
           aria-hidden="true"
@@ -80,7 +84,10 @@ function VenueCard({
 
         <div className="my-7 flex w-full items-center gap-3 text-wedding-line">
           <span className="h-px flex-1 bg-current/55" />
-          <Leaf className="size-4 stroke-[1]" />
+          <span
+            className="size-1.5 rotate-45 border border-current/80"
+            aria-hidden="true"
+          />
           <span className="h-px flex-1 bg-current/55" />
         </div>
 
@@ -92,27 +99,39 @@ function VenueCard({
             />
             {time}
           </p>
-          <p className="flex items-center justify-center gap-2">
+          <p className="flex items-start justify-center gap-1.5">
             <MapPin
-              className="size-4 shrink-0 stroke-[1.25] text-wedding-sage"
+              className="mt-1 size-4 shrink-0 stroke-[1.25] text-wedding-sage"
               aria-hidden="true"
             />
-            {address ?? "Detailed directions will be shared soon"}
+            <span className="max-w-sm text-left">
+              {address ?? "Detailed directions will be shared soon"}
+            </span>
           </p>
         </div>
 
         <div className="mt-auto pt-8">
-          {mapUrl ? (
-            <Button asChild variant="secondary">
-              <a href={mapUrl} target="_blank" rel="noreferrer">
-                View map
-              </a>
-            </Button>
-          ) : (
-            <p className="font-sans text-[0.58rem] uppercase tracking-[0.2em] text-wedding-sage/75">
-              Map details to follow
+          <div className="flex flex-col items-center">
+            <div className="rounded-wedding border border-wedding-line/35 bg-white p-3 shadow-wedding-card">
+              <Image
+                src={qrCode}
+                alt={`QR code for directions to ${name}`}
+                width={116}
+                height={116}
+                className="size-[116px] object-contain"
+              />
+            </div>
+            <p className="mt-4 font-sans text-[0.56rem] font-medium uppercase tracking-[0.2em] text-wedding-sage">
+              Scan for directions
             </p>
-          )}
+            {mapUrl ? (
+              <Button asChild variant="secondary" className="mt-4">
+                <a href={mapUrl} target="_blank" rel="noreferrer">
+                  Open map
+                </a>
+              </Button>
+            ) : null}
+          </div>
         </div>
       </Card>
     </motion.article>
@@ -139,7 +158,7 @@ export function EventDetails({ data }: EventDetailsProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="flex items-center gap-3 text-wedding-sage">
             <span className="h-px w-8 bg-wedding-line" aria-hidden="true" />
@@ -175,6 +194,7 @@ export function EventDetails({ data }: EventDetailsProps) {
             address={data.event.ceremony.address}
             time={data.event.ceremonyTime}
             mapUrl={data.event.ceremony.mapUrl}
+            qrCode={churchQrCode}
             icon={Church}
             index={0}
             reduceMotion={reduceMotion}
@@ -185,6 +205,7 @@ export function EventDetails({ data }: EventDetailsProps) {
             address={data.event.reception.address}
             time={data.event.receptionTime}
             mapUrl={data.event.reception.mapUrl}
+            qrCode={venueQrCode}
             icon={PartyPopper}
             index={1}
             reduceMotion={reduceMotion}

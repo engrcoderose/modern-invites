@@ -122,7 +122,7 @@ export const weddingData = {
     receptionTime: "4 o'clock in the afternoon",
     ceremony: {
       name: "Nuestra Señora Delos Remedios Parish",
-      address: null,
+      address: "Mercury St., ADB Subdivision, Brgy. Del Remedio, San Pablo City",
       mapUrl: null,
     },
     reception: {
@@ -239,6 +239,14 @@ export const weddingData = {
       sponsorTwo: { name: "Mrs. Arleen Anlacan" },
     },
     {
+      sponsorOne: { name: "Mr. Arnel Cosinas" },
+      sponsorTwo: { name: "Mrs. Maria Melanie Cosinas" },
+    },
+    {
+      sponsorOne: { name: "Mr. Carmelo Maghirang" },
+      sponsorTwo: { name: "Mrs. Emerita Maghirang" },
+    },
+    {
       sponsorOne: { name: "Mr. Elmer Maghirang" },
       sponsorTwo: { name: "Mrs. Fannie Maghirang" },
     },
@@ -247,24 +255,20 @@ export const weddingData = {
       sponsorTwo: { name: "Mrs. Karyl Ann Bondad" },
     },
     {
-      sponsorOne: { name: "Mr. Ariel Cosinas" },
-      sponsorTwo: { name: "Mrs. Maria Melanie Cosinas" },
-    },
-    {
       sponsorOne: { name: "Mr. Jimmy De Mesa" },
       sponsorTwo: { name: "Mrs. Lucy De Mesa" },
-    },
-    {
-      sponsorOne: { name: "Mr. Carmelo Maghirang" },
-      sponsorTwo: { name: "Mrs. Emerita Maghirang" },
     },
     {
       sponsorOne: { name: "Mr. Lorenzo Atienza" },
       sponsorTwo: { name: "Mrs. Gemma Fontanilla" },
     },
     {
-      sponsorOne: { name: "Mr. T.J. Ciar", needsConfirmation: true },
-      sponsorTwo: { name: "Mrs. Bena Ciar", needsConfirmation: true },
+      sponsorOne: { name: "Mr. Philip Jones Berguila" },
+      sponsorTwo: { name: "Mrs. Amihan Bondad" },
+    },
+    {
+      sponsorOne: { name: "Mr. Teejay Allan Ciar" },
+      sponsorTwo: { name: "Mrs. Rovelyn Ciar" },
     },
   ],
   giftGuide: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Crown, Leaf, Sparkles } from "lucide-react";
+import { Crown, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import type { WeddingData } from "../../data/weddingData";
@@ -14,11 +14,6 @@ export function Entourage({ data }: EntourageProps) {
   const reduceMotion = useReducedMotion();
   const familyGroups = data.weddingParty.slice(0, 2);
   const weddingParty = data.weddingParty.slice(2);
-  const hasUnconfirmedNames = data.principalSponsors.some(
-    ({ sponsorOne, sponsorTwo }) =>
-      sponsorOne.needsConfirmation || sponsorTwo.needsConfirmation,
-  );
-
   return (
     <Section
       id="entourage"
@@ -36,7 +31,7 @@ export function Entourage({ data }: EntourageProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="flex items-center gap-3 text-wedding-sage">
             <span className="h-px w-8 bg-wedding-line" aria-hidden="true" />
@@ -53,7 +48,7 @@ export function Entourage({ data }: EntourageProps) {
             align="center"
             className="mt-5 text-[clamp(4rem,9vw,7rem)]"
           >
-            Our wedding entourage
+            Our wedding Entourage
           </Heading>
           <p className="mt-4 max-w-xl font-wedding-body text-sm leading-7 tracking-[0.06em] text-wedding-ink/70 sm:text-base">
             With grateful hearts, we honor the family and friends who have
@@ -80,8 +75,8 @@ export function Entourage({ data }: EntourageProps) {
                   opacity: 1,
                   y: 0,
                   transition: {
-                    duration: 0.7,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: 0.95,
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 },
               }}
@@ -112,10 +107,10 @@ export function Entourage({ data }: EntourageProps) {
         <Divider className="my-14" />
 
         <div className="text-center">
-          <Sparkles
+          {/* <Sparkles
             className="mx-auto size-5 stroke-[1] text-wedding-gold"
             aria-hidden="true"
-          />
+          /> */}
           <h3 className="mt-4 font-wedding-script text-5xl text-wedding-sage-deep sm:text-6xl">
             Principal Sponsors
           </h3>
@@ -127,24 +122,17 @@ export function Entourage({ data }: EntourageProps) {
               >
                 <span className="text-right">
                   {sponsorOne.name}
-                  {sponsorOne.needsConfirmation ? "*" : ""}
                 </span>
-                <Leaf
-                  className="size-3.5 stroke-[1] text-wedding-sage"
+                <span
+                  className="size-1.5 rotate-45 border border-wedding-sage/80"
                   aria-hidden="true"
                 />
                 <span className="text-left">
                   {sponsorTwo.name}
-                  {sponsorTwo.needsConfirmation ? "*" : ""}
                 </span>
               </div>
             ))}
           </div>
-          {hasUnconfirmedNames ? (
-            <p className="mt-5 font-sans text-[0.58rem] uppercase tracking-[0.16em] text-wedding-sage/70">
-              * Name spelling awaiting final confirmation
-            </p>
-          ) : null}
         </div>
 
         <Divider className="my-14" />
@@ -168,7 +156,7 @@ export function Entourage({ data }: EntourageProps) {
                 visible: {
                   opacity: 1,
                   y: 0,
-                  transition: { duration: 0.6 },
+                  transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
             >

@@ -108,7 +108,7 @@ export function Gallery({ data }: GalleryProps) {
             initial={reduceMotion ? false : { opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-3 text-wedding-sage">
               <span className="h-px w-8 bg-wedding-line" aria-hidden="true" />
@@ -155,8 +155,8 @@ export function Gallery({ data }: GalleryProps) {
                     opacity: 1,
                     y: 0,
                     transition: {
-                      duration: 0.75,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: 1.05,
+                      ease: [0.16, 1, 0.3, 1],
                     },
                   },
                 }}

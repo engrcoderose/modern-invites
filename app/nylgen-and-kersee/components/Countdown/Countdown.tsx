@@ -95,7 +95,7 @@ export function Countdown({ data }: CountdownProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="flex items-center gap-3 text-wedding-paper/70">
             <span className="h-px w-8 bg-wedding-paper/35" aria-hidden="true" />
