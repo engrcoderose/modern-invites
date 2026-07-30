@@ -36,4 +36,9 @@ export interface ClientDashboardRepository {
     eventId: number,
     guestId: number,
   ): Promise<void>;
+  deleteHousehold(
+    userId: string,
+    eventId: number,
+    householdId: number,
+  ): Promise<void>;
 }

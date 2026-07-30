@@ -79,33 +79,61 @@ export function AddGuestForm({
               <option value="">Create a new household</option>
               {households.map((household) => (
                 <option key={household.id} value={household.id}>
-                  {household.name} ({household.guestCount}{" "}
-                  {household.guestCount === 1 ? "guest" : "guests"})
+                  {household.name} ({household.guestCount} of{" "}
+                  {household.maxAttendees} guests)
                 </option>
               ))}
             </select>
             <p className="text-xs text-ink-muted">
               Choose an existing household to keep party members
-              together.
+              together. Each option shows added guests against its
+              maximum.
             </p>
           </div>
 
           {householdSelection === "new" ? (
-            <div className="space-y-2">
-              <Label htmlFor="new-household-name">
-                New household name
-              </Label>
-              <Input
-                id="new-household-name"
-                name="householdName"
-                required
-                maxLength={120}
-                placeholder="e.g. The Santos Family"
-                className="bg-white"
-              />
+            <div className="grid grid-cols-[minmax(0,1fr)_8rem] gap-3">
+              <div className="space-y-2">
+                <Label htmlFor="new-household-name">
+                  New household name
+                </Label>
+                <Input
+                  id="new-household-name"
+                  name="householdName"
+                  required
+                  maxLength={120}
+                  placeholder="e.g. The Santos Family"
+                  className="bg-white"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="new-maximum-guests">
+                  Maximum guests
+                </Label>
+                <Input
+                  id="new-maximum-guests"
+                  name="maximumGuests"
+                  required
+                  type="number"
+                  inputMode="numeric"
+                  min={1}
+                  max={1000}
+                  step={1}
+                  placeholder="e.g. 4"
+                  className="bg-white"
+                />
+              </div>
+
+              <p className="col-span-2 text-xs text-ink-muted">
+                Include this first guest in the household maximum.
+              </p>
             </div>
           ) : (
-            <input type="hidden" name="householdName" value="" />
+            <>
+              <input type="hidden" name="householdName" value="" />
+              <input type="hidden" name="maximumGuests" value="" />
+            </>
           )}
 
           <div className="grid grid-cols-2 gap-3">

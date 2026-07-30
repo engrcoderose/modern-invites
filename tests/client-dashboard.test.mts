@@ -5,6 +5,7 @@ import { exportEventRsvpWorkbook } from "../features/dashboard/application/expor
 import {
   createDashboardGuest,
   GuestManagementError,
+  deleteDashboardHousehold,
   updateDashboardGuest,
 } from "../features/dashboard/application/manage-dashboard-guests.ts";
 import type {
@@ -35,6 +36,7 @@ class FakeDashboardRepository implements ClientDashboardRepository {
   events: AssignedDashboardEvent[] = [assignedEvent];
   createdGuests: CreateDashboardGuestCommand[] = [];
   updatedGuests: UpdateDashboardGuestCommand[] = [];
+  deletedHouseholdIds: number[] = [];
 
   async listAssignedEvents() {
     return this.events;
@@ -71,6 +73,14 @@ class FakeDashboardRepository implements ClientDashboardRepository {
   }
 
   async deleteGuest() {}
+
+  async deleteHousehold(
+    _userId: string,
+    _eventId: number,
+    householdId: number,
+  ) {
+    this.deletedHouseholdIds.push(householdId);
+  }
 }
 
 class FakeWorkbookExporter implements RsvpWorkbookExporter {
@@ -91,6 +101,7 @@ const createCommand: CreateDashboardGuestCommand = {
   eventId: assignedEvent.id,
   invitationId: null,
   householdName: "Santos Family",
+  maximumGuests: 4,
   fullName: "Ana Santos",
   guestType: "adult",
   dietaryRestrictions: null,
@@ -116,12 +127,58 @@ test("owner access can add a guest to an existing household", async () => {
     ...createCommand,
     invitationId: 9,
     householdName: null,
+    maximumGuests: null,
     fullName: "Ruby Grace Liwanag",
   };
 
   await createDashboardGuest(repository, "client-user-id", command);
 
   assert.deepEqual(repository.createdGuests, [command]);
+});
+
+test("a new household preserves its selected maximum guest count", async () => {
+  const repository = new FakeDashboardRepository();
+
+  await createDashboardGuest(
+    repository,
+    "client-user-id",
+    createCommand,
+  );
+
+  assert.equal(repository.createdGuests[0]?.maximumGuests, 4);
+});
+
+test("an owner can remove an assigned household", async () => {
+  const repository = new FakeDashboardRepository();
+
+  await deleteDashboardHousehold(
+    repository,
+    "client-user-id",
+    assignedEvent.id,
+    12,
+  );
+
+  assert.deepEqual(repository.deletedHouseholdIds, [12]);
+});
+
+test("a viewer cannot remove a household", async () => {
+  const repository = new FakeDashboardRepository();
+  repository.role = "viewer";
+
+  await assert.rejects(
+    () =>
+      deleteDashboardHousehold(
+        repository,
+        "client-user-id",
+        assignedEvent.id,
+        12,
+      ),
+    (error: unknown) =>
+      error instanceof GuestManagementError &&
+      error.code === "forbidden",
+  );
+
+  assert.deepEqual(repository.deletedHouseholdIds, []);
 });
 
 test("editor access can update a dashboard guest", async () => {

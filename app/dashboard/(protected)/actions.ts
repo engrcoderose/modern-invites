@@ -10,6 +10,7 @@ import { createSupabaseClientAuthRepository } from "@/features/auth/infrastructu
 import {
   createDashboardGuest,
   deleteDashboardGuest,
+  deleteDashboardHousehold,
   updateDashboardGuest,
 } from "@/features/dashboard/application/manage-dashboard-guests";
 import { createSupabaseClientDashboardRepository } from "@/features/dashboard/infrastructure/supabase-client-dashboard-repository";
@@ -23,6 +24,7 @@ export async function logoutClientAction(): Promise<void> {
 
 const eventIdSchema = z.coerce.number().int().positive();
 const guestIdSchema = z.coerce.number().int().positive();
+const householdIdSchema = z.coerce.number().int().positive();
 const guestTypeSchema = z.enum(["adult", "child"]);
 const attendanceStatusSchema = z.enum([
   "pending",
@@ -57,6 +59,18 @@ const createGuestSchema = z.object({
       .max(120, "The household name is too long.")
       .nullable(),
   ),
+  maximumGuests: z.preprocess(
+    (value) =>
+      typeof value === "string" && value.trim() !== ""
+        ? value
+        : null,
+    z.coerce
+      .number()
+      .int("Maximum guests must be a whole number.")
+      .min(1, "Maximum guests must be at least 1.")
+      .max(1000, "Maximum guests cannot exceed 1,000.")
+      .nullable(),
+  ),
   fullName: z
     .string()
     .trim()
@@ -70,6 +84,14 @@ const createGuestSchema = z.object({
       code: "custom",
       path: ["householdName"],
       message: "Enter a name for the new household.",
+    });
+  }
+
+  if (!value.invitationId && !value.maximumGuests) {
+    context.addIssue({
+      code: "custom",
+      path: ["maximumGuests"],
+      message: "Enter the maximum guests for the new household.",
     });
   }
 });
@@ -90,6 +112,11 @@ const updateGuestSchema = z.object({
 const deleteGuestSchema = z.object({
   eventId: eventIdSchema,
   guestId: guestIdSchema,
+});
+
+const deleteHouseholdSchema = z.object({
+  eventId: eventIdSchema,
+  householdId: householdIdSchema,
 });
 
 async function getAuthorizedClientContext() {
@@ -122,6 +149,7 @@ export async function createGuestAction(
     eventId: formData.get("eventId"),
     invitationId: formData.get("invitationId"),
     householdName: formData.get("householdName"),
+    maximumGuests: formData.get("maximumGuests"),
     fullName: formData.get("fullName"),
     guestType: formData.get("guestType"),
     dietaryRestrictions: formData.get("dietaryRestrictions"),
@@ -242,6 +270,46 @@ export async function deleteGuestAction(
     console.error("Dashboard guest deletion failed:", error);
     return invalidFormState(
       "The guest could not be removed. Check your permission and try again.",
+    );
+  }
+}
+
+export async function deleteHouseholdAction(
+  _previousState: GuestMutationState,
+  formData: FormData,
+): Promise<GuestMutationState> {
+  const parsed = deleteHouseholdSchema.safeParse({
+    eventId: formData.get("eventId"),
+    householdId: formData.get("householdId"),
+  });
+
+  if (!parsed.success) {
+    return invalidFormState("The household information is invalid.");
+  }
+
+  try {
+    const context = await getAuthorizedClientContext();
+
+    if (!context) {
+      return invalidFormState("Your session has expired. Sign in again.");
+    }
+
+    await deleteDashboardHousehold(
+      context.dashboardRepository,
+      context.userId,
+      parsed.data.eventId,
+      parsed.data.householdId,
+    );
+    revalidatePath(`/dashboard/events/${parsed.data.eventId}`);
+
+    return {
+      status: "success",
+      message: "Household removed successfully.",
+    };
+  } catch (error) {
+    console.error("Dashboard household deletion failed:", error);
+    return invalidFormState(
+      "The household could not be removed. Check your permission and try again.",
     );
   }
 }

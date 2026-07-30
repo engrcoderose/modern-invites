@@ -17,10 +17,12 @@ import { DashboardRealtimeRefresh } from "@/features/dashboard/presentation/dash
 import { DashboardSummaryCards } from "@/features/dashboard/presentation/dashboard-summary";
 import { GuestFilters } from "@/features/dashboard/presentation/guest-filters";
 import { GuestTable } from "@/features/dashboard/presentation/guest-table";
+import { ManageHouseholds } from "@/features/dashboard/presentation/manage-households";
 
 import {
   createGuestAction,
   deleteGuestAction,
+  deleteHouseholdAction,
   updateGuestAction,
 } from "../../actions";
 
@@ -159,11 +161,18 @@ export default async function WeddingDashboardPage({
               attendanceStatus={attendanceStatus}
             />
             {canManage ? (
-              <AddGuestForm
-                eventId={eventId}
-                households={workspace.households}
-                action={createGuestAction}
-              />
+              <>
+                <ManageHouseholds
+                  eventId={eventId}
+                  households={workspace.households}
+                  action={deleteHouseholdAction}
+                />
+                <AddGuestForm
+                  eventId={eventId}
+                  households={workspace.households}
+                  action={createGuestAction}
+                />
+              </>
             ) : null}
           </div>
         </div>

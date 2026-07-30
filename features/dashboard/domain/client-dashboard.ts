@@ -70,6 +70,7 @@ export interface CreateDashboardGuestCommand {
   eventId: number;
   invitationId: number | null;
   householdName: string | null;
+  maximumGuests: number | null;
   fullName: string;
   guestType: DashboardGuestType;
   dietaryRestrictions: string | null;

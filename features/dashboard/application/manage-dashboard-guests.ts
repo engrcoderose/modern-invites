@@ -59,3 +59,17 @@ export async function deleteDashboardGuest(
   await requireGuestManager(repository, userId, eventId);
   await repository.deleteGuest(userId, eventId, guestId);
 }
+
+export async function deleteDashboardHousehold(
+  repository: ClientDashboardRepository,
+  userId: string,
+  eventId: number,
+  householdId: number,
+) {
+  await requireGuestManager(repository, userId, eventId);
+  await repository.deleteHousehold(
+    userId,
+    eventId,
+    householdId,
+  );
+}

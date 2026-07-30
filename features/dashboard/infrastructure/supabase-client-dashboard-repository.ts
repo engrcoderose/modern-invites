@@ -494,13 +494,19 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
           throw new Error("A household name is required.");
         }
 
+        if (!command.maximumGuests) {
+          throw new Error(
+            "A maximum guest count is required for a new household.",
+          );
+        }
+
         const { data: invitation, error: invitationError } =
           await supabase
             .from("invitations")
             .insert({
               event_id: command.eventId,
               household_name: command.householdName,
-              max_attendees: 1,
+              max_attendees: command.maximumGuests,
             })
             .select("id")
             .single();
@@ -603,6 +609,26 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
 
       if (error || !data) {
         throw new Error("Unable to delete the guest.");
+      }
+    },
+
+    async deleteHousehold(userId, eventId, householdId) {
+      await requireWritableMembership(userId, eventId);
+
+      const { data, error } = await supabase.rpc(
+        "delete_event_household",
+        {
+          p_event_id: eventId,
+          p_invitation_id: householdId,
+        },
+      );
+
+      const result = data as {
+        success?: boolean;
+      } | null;
+
+      if (error || !result?.success) {
+        throw new Error("Unable to delete the household.");
       }
     },
   };
