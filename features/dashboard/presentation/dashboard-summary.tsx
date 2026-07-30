@@ -53,22 +53,25 @@ export function DashboardSummaryCards({
   summary,
 }: DashboardSummaryCardsProps) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-2.5 sm:gap-4 xl:grid-cols-5">
       {summaryConfig.map(
         ({ key, label, icon: Icon, color, background }) => (
-          <Card key={key} className="border-black/10 bg-white shadow-sm">
-            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-ink-muted">
+          <Card
+            key={key}
+            className="min-w-0 border-black/10 bg-white shadow-sm"
+          >
+            <CardHeader className="flex-row items-center justify-between space-y-0 p-4 pb-2 sm:p-6 sm:pb-2">
+              <CardTitle className="text-xs font-medium text-ink-muted sm:text-sm">
                 {label}
               </CardTitle>
               <span
-                className={`flex size-9 items-center justify-center rounded-full ${background} ${color}`}
+                className={`flex size-8 shrink-0 items-center justify-center rounded-full sm:size-9 ${background} ${color}`}
               >
                 <Icon aria-hidden="true" className="size-4" />
               </span>
             </CardHeader>
-            <CardContent>
-              <p className={`text-3xl font-semibold ${color}`}>
+            <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+              <p className={`text-2xl font-semibold sm:text-3xl ${color}`}>
                 {summary[key]}
               </p>
             </CardContent>
@@ -76,17 +79,17 @@ export function DashboardSummaryCards({
         ),
       )}
 
-      <Card className="border-black/10 bg-forest text-white shadow-sm">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium text-white/75">
+      <Card className="col-span-2 border-black/10 bg-forest text-white shadow-sm xl:col-span-1">
+        <CardHeader className="flex-row items-center justify-between space-y-0 p-4 pb-2 sm:p-6 sm:pb-2">
+          <CardTitle className="text-xs font-medium text-white/75 sm:text-sm">
             RSVP submissions
           </CardTitle>
-          <span className="flex size-9 items-center justify-center rounded-full bg-white/10 text-champagne-light">
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-champagne-light sm:size-9">
             <MailCheck aria-hidden="true" className="size-4" />
           </span>
         </CardHeader>
-        <CardContent>
-          <p className="text-3xl font-semibold">
+        <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+          <p className="text-2xl font-semibold sm:text-3xl">
             {summary.submittedRsvps}
             <span className="ml-1 text-sm font-normal text-white/60">
               / {summary.totalInvitations}

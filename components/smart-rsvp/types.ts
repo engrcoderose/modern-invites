@@ -1,4 +1,5 @@
 export type RsvpAccessMode = "shared_code" | "name_search";
+export type RsvpResponseMode = "household" | "individual";
 
 export type RSVPStage =
   | "initializing"
@@ -11,6 +12,7 @@ export interface EventInformation {
   slug: string;
   rsvpDeadline: string | null;
   accessMode: RsvpAccessMode;
+  responseMode: RsvpResponseMode;
 }
 
 export interface SearchMatch {
@@ -50,6 +52,9 @@ export interface PartyGuest {
 export interface PartyInformation {
   householdName: string;
   maxAttendees: number;
+  responseMode: RsvpResponseMode;
+  responseLocked: boolean;
+  respondedAt: string | null;
   guests: PartyGuest[];
 }
 

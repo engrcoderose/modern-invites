@@ -57,6 +57,7 @@ interface RsvpRow {
 
 interface EventAccessModeRow {
   rsvp_access_mode: "shared_code" | "name_search";
+  rsvp_response_mode: "household" | "individual";
 }
 
 interface HouseholdRow {
@@ -259,7 +260,7 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
     const { data: eventAccessData, error: eventAccessError } =
       await supabase
         .from("events")
-        .select("rsvp_access_mode")
+        .select("rsvp_access_mode, rsvp_response_mode")
         .eq("id", eventId)
         .maybeSingle();
 
@@ -277,7 +278,7 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
       const invitation = getInvitation(guest.invitations);
       const rsvp = latestRsvps.get(guest.invitation_id);
       const usesIndividualResponses =
-        eventAccess.rsvp_access_mode === "name_search";
+        eventAccess.rsvp_response_mode === "individual";
 
       return {
         id: guest.id,

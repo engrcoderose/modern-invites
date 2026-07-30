@@ -57,7 +57,10 @@ export async function resolveRsvpEventAccess(
   return isClosed(verifiedEvent)
     ? { status: "closed" }
     : {
-        status: "authorized",
-        event: verifiedEvent,
-      };
+      status: "authorized",
+      event: {
+        ...verifiedEvent,
+        responseMode: configuredEvent.responseMode,
+      },
+    };
 }

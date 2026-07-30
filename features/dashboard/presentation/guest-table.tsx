@@ -346,7 +346,7 @@ export function GuestTable({
                   </td>
                   <td className="px-5 py-4">
                     <span
-                      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ring-1 ring-inset ${statusStyles[guest.attendanceStatus]}`}
+                      className={`inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium leading-none ring-1 ring-inset ${statusStyles[guest.attendanceStatus]}`}
                     >
                       {statusLabels[guest.attendanceStatus]}
                     </span>
@@ -375,13 +375,13 @@ export function GuestTable({
             of {guestPage.total} guests
           </p>
 
-          <div className="flex items-center gap-2">
+          <div className="grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:w-auto sm:grid-cols-[auto_auto_auto]">
             <Button
               asChild={guestPage.page > 1}
               variant="outline"
               size="sm"
               disabled={guestPage.page <= 1}
-              className="bg-white"
+              className="min-w-0 whitespace-nowrap bg-white px-2 sm:px-3"
             >
               {guestPage.page > 1 ? (
                 <Link
@@ -396,14 +396,14 @@ export function GuestTable({
                   Previous
                 </Link>
               ) : (
-                <span>
+                <span className="inline-flex items-center gap-1 whitespace-nowrap">
                   <ChevronLeft aria-hidden="true" />
                   Previous
                 </span>
               )}
             </Button>
 
-            <span className="px-2 text-xs text-ink-muted">
+            <span className="whitespace-nowrap px-1 text-center text-xs text-ink-muted sm:px-2">
               Page {guestPage.page} of {guestPage.totalPages}
             </span>
 
@@ -412,7 +412,7 @@ export function GuestTable({
               variant="outline"
               size="sm"
               disabled={guestPage.page >= guestPage.totalPages}
-              className="bg-white"
+              className="min-w-0 whitespace-nowrap bg-white px-2 sm:px-3"
             >
               {guestPage.page < guestPage.totalPages ? (
                 <Link
@@ -427,7 +427,7 @@ export function GuestTable({
                   <ChevronRight aria-hidden="true" />
                 </Link>
               ) : (
-                <span>
+                <span className="inline-flex items-center gap-1 whitespace-nowrap">
                   Next
                   <ChevronRight aria-hidden="true" />
                 </span>

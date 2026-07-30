@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import type { DashboardHousehold } from "@/features/dashboard/domain/client-dashboard";
 import type { GuestMutationAction } from "./guest-mutation.types";
 import { initialGuestMutationState } from "./guest-mutation.types";
+import { useDismissibleDetails } from "./use-dismissible-details";
 
 interface AddGuestFormProps {
   eventId: number;
@@ -26,15 +27,16 @@ export function AddGuestForm({
     initialGuestMutationState,
   );
   const [householdSelection, setHouseholdSelection] = useState("new");
+  const detailsRef = useDismissibleDetails();
 
   return (
-    <details className="group relative">
+    <details ref={detailsRef} className="group relative">
       <summary className="flex h-10 cursor-pointer list-none items-center justify-center gap-2 rounded-md bg-forest px-4 text-sm font-medium text-white shadow transition-colors hover:bg-forest-light">
         <Plus aria-hidden="true" className="size-4" />
         Add guest
       </summary>
 
-      <div className="absolute right-0 top-12 z-30 w-[min(24rem,calc(100vw-2rem))] rounded-2xl border border-black/10 bg-white p-5 shadow-2xl">
+      <div className="fixed inset-x-4 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-auto max-w-md -translate-y-1/2 overflow-y-auto rounded-2xl border border-black/10 bg-white p-5 shadow-2xl sm:absolute sm:inset-x-auto sm:left-0 sm:top-12 sm:max-h-[calc(100vh-6rem)] sm:w-[min(24rem,calc(100vw-2rem))] sm:max-w-none sm:translate-y-0 lg:left-auto lg:right-0">
         <div className="mb-5 flex items-center gap-3">
           <span className="flex size-10 items-center justify-center rounded-full bg-eucalyptus/10 text-forest">
             <UserPlus aria-hidden="true" className="size-5" />

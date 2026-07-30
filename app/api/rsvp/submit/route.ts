@@ -47,6 +47,10 @@ interface GuestResponseStateRow {
   responded_at: string | null;
 }
 
+interface HouseholdResponseStateRow {
+  id: number;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -376,7 +380,7 @@ export async function POST(request: NextRequest) {
         });
 
       if (partyError) {
-        console.error("Individual RSVP verification failed:", {
+        console.error("Name-search RSVP verification failed:", {
           code: partyError.code,
           message: partyError.message,
           details: partyError.details,
@@ -401,7 +405,7 @@ export async function POST(request: NextRequest) {
 
       if (
         !canSubmitGuestResponses(
-          access.event.accessMode,
+          access.event.responseMode,
           matchedFullName,
           partyGuests,
           databaseGuestResponses.map((response) => response.guest_id),
@@ -410,64 +414,115 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           {
             success: false,
-            message: "You may only respond for your own invited name.",
+            message:
+              access.event.responseMode === "individual"
+                ? "You may only respond for your own invited name."
+                : "Please answer for every member of your household.",
           },
           { status: 403 },
         );
       }
 
-      const individualResponse = databaseGuestResponses[0];
-      const { data: responseState, error: responseStateError } =
-        await supabase
-          .from("guests")
-          .select("responded_at")
-          .eq("id", individualResponse.guest_id)
-          .eq("invitation_id", invitationId)
-          .maybeSingle();
+      if (access.event.responseMode === "individual") {
+        const individualResponse = databaseGuestResponses[0];
+        const { data: responseState, error: responseStateError } =
+          await supabase
+            .from("guests")
+            .select("responded_at")
+            .eq("id", individualResponse.guest_id)
+            .eq("invitation_id", invitationId)
+            .maybeSingle();
 
-      if (responseStateError || !responseState) {
-        return NextResponse.json(
+        if (responseStateError || !responseState) {
+          return NextResponse.json(
+            {
+              success: false,
+              message: "Unable to verify the RSVP response status.",
+            },
+            { status: 400 },
+          );
+        }
+
+        if (
+          isRsvpResponseLocked(
+            (responseState as GuestResponseStateRow).responded_at,
+          )
+        ) {
+          return NextResponse.json(
+            {
+              success: false,
+              message:
+                "Your RSVP has already been received. Please contact the couple to request a change.",
+            },
+            { status: 409 },
+          );
+        }
+
+        const result = await supabase.rpc(
+          "submit_locked_individual_guest_rsvp",
           {
-            success: false,
-            message: "Unable to verify the RSVP response status.",
+            p_event_id: access.event.eventId,
+            p_invitation_id: invitationId,
+            p_matched_full_name: matchedFullName,
+            p_guest_id: individualResponse.guest_id,
+            p_status: individualResponse.status,
+            p_dietary_restrictions:
+              individualResponse.dietary_restrictions,
+            p_email: email,
+            p_phone: phone,
+            p_message: message,
           },
-          { status: 400 },
         );
-      }
 
-      if (
-        isRsvpResponseLocked(
-          (responseState as GuestResponseStateRow).responded_at,
-        )
-      ) {
-        return NextResponse.json(
+        rawSubmissionResult = result.data;
+        submissionError = result.error;
+      } else {
+        const { data: existingRsvp, error: responseStateError } =
+          await supabase
+            .from("rsvps")
+            .select("id")
+            .eq("invitation_id", invitationId)
+            .order("updated_at", { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        if (responseStateError) {
+          return NextResponse.json(
+            {
+              success: false,
+              message: "Unable to verify the RSVP response status.",
+            },
+            { status: 400 },
+          );
+        }
+
+        if ((existingRsvp as HouseholdResponseStateRow | null)?.id) {
+          return NextResponse.json(
+            {
+              success: false,
+              message:
+                "Your household RSVP has already been received. Please contact the couple to request a change.",
+            },
+            { status: 409 },
+          );
+        }
+
+        const result = await supabase.rpc(
+          "submit_locked_household_rsvp",
           {
-            success: false,
-            message:
-              "Your RSVP has already been received. Please contact the couple to request a change.",
-          },
-          { status: 409 },
-        );
-      }
-
-      const result = await supabase.rpc(
-        "submit_locked_individual_guest_rsvp",
-        {
           p_event_id: access.event.eventId,
           p_invitation_id: invitationId,
           p_matched_full_name: matchedFullName,
-          p_guest_id: individualResponse.guest_id,
-          p_status: individualResponse.status,
-          p_dietary_restrictions:
-            individualResponse.dietary_restrictions,
           p_email: email,
           p_phone: phone,
           p_message: message,
-        },
-      );
+            p_guest_responses: databaseGuestResponses,
+          },
+        );
 
-      rawSubmissionResult = result.data;
-      submissionError = result.error;
+        rawSubmissionResult = result.data;
+        submissionError = result.error;
+      }
     } else {
       const result = await supabase.rpc("submit_invitation_rsvp", {
         p_event_id: access.event.eventId,
@@ -504,6 +559,7 @@ export async function POST(request: NextRequest) {
         "The same guest cannot appear more than once.",
         "One or more guests do not belong to this invitation.",
         "Please answer for every member of your party.",
+        "Please answer for every member of your household.",
         "You may only respond for your own invited name.",
         "Your RSVP has already been received.",
       ];
@@ -512,6 +568,9 @@ export async function POST(request: NextRequest) {
         safeExactMessages.includes(submissionError.message) ||
         submissionError.message.startsWith(
           "Your RSVP has already been received.",
+        ) ||
+        submissionError.message.startsWith(
+          "Your household RSVP has already been received.",
         ) ||
         submissionError.message.startsWith(
           "This invitation allows a maximum of",

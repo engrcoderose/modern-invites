@@ -3,6 +3,7 @@ import "server-only";
 import type {
   RsvpAccessMode,
   RsvpEventAccessConfiguration,
+  RsvpResponseMode,
 } from "@/features/rsvp/domain/rsvp-event-access";
 import type { RsvpEventAccessRepository } from "@/features/rsvp/domain/rsvp-event-access-repository";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -14,6 +15,7 @@ interface EventConfigurationRow {
   rsvp_deadline: string | null;
   is_active: boolean;
   rsvp_access_mode: RsvpAccessMode;
+  rsvp_response_mode: RsvpResponseMode;
 }
 
 interface VerifiedEventRow {
@@ -33,6 +35,7 @@ function toConfiguration(
     rsvpDeadline: row.rsvp_deadline,
     isActive: row.is_active,
     accessMode: row.rsvp_access_mode,
+    responseMode: row.rsvp_response_mode,
   };
 }
 
@@ -44,7 +47,7 @@ export function createSupabaseRsvpEventAccessRepository(): RsvpEventAccessReposi
       const { data, error } = await supabase
         .from("events")
         .select(
-          "id, name, slug, rsvp_deadline, is_active, rsvp_access_mode",
+          "id, name, slug, rsvp_deadline, is_active, rsvp_access_mode, rsvp_response_mode",
         )
         .eq("slug", slug)
         .maybeSingle();
@@ -84,6 +87,7 @@ export function createSupabaseRsvpEventAccessRepository(): RsvpEventAccessReposi
         rsvpDeadline: verified.rsvp_deadline,
         isActive: verified.is_open,
         accessMode: "shared_code",
+        responseMode: "household",
       };
     },
   };

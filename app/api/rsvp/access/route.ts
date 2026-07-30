@@ -121,6 +121,7 @@ export async function POST(request: NextRequest) {
           slug,
           rsvpDeadline: access.event.rsvpDeadline,
           accessMode: access.event.accessMode,
+          responseMode: access.event.responseMode,
         },
       },
       { status: 200 },

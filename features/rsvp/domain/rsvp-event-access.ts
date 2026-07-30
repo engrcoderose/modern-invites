@@ -1,4 +1,5 @@
 export type RsvpAccessMode = "shared_code" | "name_search";
+export type RsvpResponseMode = "household" | "individual";
 
 export interface RsvpEventAccessConfiguration {
   eventId: number;
@@ -7,6 +8,7 @@ export interface RsvpEventAccessConfiguration {
   rsvpDeadline: string | null;
   isActive: boolean;
   accessMode: RsvpAccessMode;
+  responseMode: RsvpResponseMode;
 }
 
 export type RsvpEventAccessResult =

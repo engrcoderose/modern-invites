@@ -41,6 +41,7 @@ function createEvent(
     rsvpDeadline: "2099-01-27",
     isActive: true,
     accessMode,
+    responseMode: "household",
     ...overrides,
   };
 }
@@ -84,6 +85,30 @@ test("a shared-code event uses database code verification", async () => {
 
   assert.equal(result.status, "authorized");
   assert.equal(repository.verifyCount, 1);
+});
+
+test("access verification preserves the configured response mode", async () => {
+  const configuredEvent = createEvent("shared_code", {
+    responseMode: "individual",
+  });
+  const verifiedEvent = createEvent("shared_code", {
+    responseMode: "household",
+  });
+  const repository = new FakeRsvpEventAccessRepository(
+    configuredEvent,
+    verifiedEvent,
+  );
+
+  const result = await resolveRsvpEventAccess(repository, {
+    slug: configuredEvent.slug,
+    code: "VALID-CODE",
+  });
+
+  assert.equal(result.status, "authorized");
+
+  if (result.status === "authorized") {
+    assert.equal(result.event.responseMode, "individual");
+  }
 });
 
 test("an inactive name-search event remains closed", async () => {

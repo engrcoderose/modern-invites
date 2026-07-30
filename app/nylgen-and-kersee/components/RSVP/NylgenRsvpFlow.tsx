@@ -302,6 +302,8 @@ function PartyPanel({
     responses,
     email,
     phone,
+    answeredCount,
+    attendingCount,
     allAnswered,
     exceedsMaximum,
     isSubmitting,
@@ -318,6 +320,7 @@ function PartyPanel({
     selectedMatch,
     party,
   });
+  const isHouseholdResponse = party.responseMode === "household";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -342,10 +345,19 @@ function PartyPanel({
           {confirmationMessage}
         </p>
         <div className="mt-6 border-y border-wedding-line/35 px-8 py-4 font-wedding-body text-sm text-wedding-ink/70">
-          {selectedMatch.matchedGuestName}:{" "}
-          {submittedStatus === "attending"
-            ? "Joyfully attending"
-            : "Regretfully unable to attend"}
+          {isHouseholdResponse ? (
+            <>
+              {summary.attendingCount} attending &middot;{" "}
+              {summary.declinedCount} unable to attend
+            </>
+          ) : (
+            <>
+              {selectedMatch.matchedGuestName}:{" "}
+              {submittedStatus === "attending"
+                ? "Joyfully attending"
+                : "Regretfully unable to attend"}
+            </>
+          )}
         </div>
         <button
           type="button"
@@ -362,7 +374,14 @@ function PartyPanel({
     (guest) => guest.hasResponded,
   );
 
-  if (respondedGuest) {
+  if (party.responseLocked) {
+    const attendingNames = party.guests
+      .filter((guest) => guest.attendanceStatus === "attending")
+      .map((guest) => guest.fullName);
+    const declinedNames = party.guests
+      .filter((guest) => guest.attendanceStatus === "declined")
+      .map((guest) => guest.fullName);
+
     return (
       <PaperPanel className="flex min-h-[32rem] flex-col items-center justify-center text-center">
         <div className="grid size-16 place-items-center rounded-full border border-wedding-line bg-wedding-mist text-wedding-sage-deep">
@@ -376,27 +395,63 @@ function PartyPanel({
           Already Received
         </h3>
         <p className="mt-4 max-w-md font-wedding-body text-sm italic leading-7 text-wedding-ink/65">
-          You have already sent your RSVP,{" "}
-          {respondedGuest.fullName}. Your response is confirmed.
+          You have already sent{" "}
+          {isHouseholdResponse ? "this household RSVP" : "your RSVP"},{" "}
+          {selectedMatch.matchedGuestName}. The response is confirmed.
         </p>
 
         <dl className="mt-7 w-full border-l-2 border-wedding-gold/55 bg-wedding-mist/60 px-5 py-5 text-left font-wedding-body text-sm leading-7 text-wedding-ink/70">
           <div className="flex flex-wrap gap-x-2">
             <dt className="font-semibold text-wedding-sage-deep">
-              Guest:
-            </dt>
-            <dd>{respondedGuest.fullName}</dd>
-          </div>
-          <div className="flex flex-wrap gap-x-2">
-            <dt className="font-semibold text-wedding-sage-deep">
-              Response:
+              {isHouseholdResponse ? "Guests:" : "Guest:"}
             </dt>
             <dd>
-              {respondedGuest.attendanceStatus === "attending"
-                ? "Joyfully attending"
-                : "Regretfully unable to attend"}
+              {isHouseholdResponse
+                ? party.guests.map((guest) => guest.fullName).join(", ")
+                : respondedGuest?.fullName}
             </dd>
           </div>
+          {isHouseholdResponse ? (
+            <>
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-semibold text-wedding-sage-deep">
+                  Attending:
+                </dt>
+                <dd>
+                  {attendingNames.length > 0
+                    ? attendingNames.join(", ")
+                    : "None"}
+                </dd>
+              </div>
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-semibold text-wedding-sage-deep">
+                  Not attending:
+                </dt>
+                <dd>
+                  {declinedNames.length > 0
+                    ? declinedNames.join(", ")
+                    : "None"}
+                </dd>
+              </div>
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-semibold text-wedding-sage-deep">
+                  Party of:
+                </dt>
+                <dd>{party.guests.length} guests</dd>
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-wrap gap-x-2">
+              <dt className="font-semibold text-wedding-sage-deep">
+                Response:
+              </dt>
+              <dd>
+                {respondedGuest?.attendanceStatus === "attending"
+                  ? "Joyfully attending"
+                  : "Regretfully unable to attend"}
+              </dd>
+            </div>
+          )}
           <div className="flex flex-wrap gap-x-2">
             <dt className="font-semibold text-wedding-sage-deep">
               Household:
@@ -407,7 +462,11 @@ function PartyPanel({
             <dt className="font-semibold text-wedding-sage-deep">
               Submitted:
             </dt>
-            <dd>{formatSubmittedAt(respondedGuest.respondedAt)}</dd>
+            <dd>
+              {formatSubmittedAt(
+                party.respondedAt ?? respondedGuest?.respondedAt ?? null,
+              )}
+            </dd>
           </div>
         </dl>
 
@@ -421,7 +480,7 @@ function PartyPanel({
           onClick={onReset}
           className="mt-7 font-sans text-[0.6rem] uppercase tracking-[0.24em] text-wedding-sage underline decoration-wedding-line underline-offset-8"
         >
-          Search another guest
+          Search another household
         </button>
       </PaperPanel>
     );
@@ -431,18 +490,28 @@ function PartyPanel({
     <PaperPanel>
       <div className="text-center">
         <p className="font-sans text-[0.62rem] font-medium uppercase tracking-[0.28em] text-wedding-sage">
-          Your invitation
+          {isHouseholdResponse ? "Your household" : "Your invitation"}
         </p>
         <h3 className="mt-4 font-wedding-display text-4xl text-wedding-sage-deep">
-          {selectedMatch.matchedGuestName}
+          {isHouseholdResponse
+            ? party.householdName
+            : selectedMatch.matchedGuestName}
         </h3>
         <p className="mt-3 font-wedding-body text-sm leading-7 text-wedding-ink/65">
-          Please submit only your own response for {event.name}. Other
-          members of {party.householdName} can search their names and
-          respond separately.
+          {isHouseholdResponse
+            ? `Please respond for everyone listed in your household for ${event.name}.`
+            : `Please submit only your own response for ${event.name}. Other members of ${party.householdName} can search their names and respond separately.`}
         </p>
         <p className="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.16em] text-wedding-sage">
-          Individual RSVP
+          {isHouseholdResponse ? (
+            <>
+              {answeredCount} of {party.guests.length} answered &middot;{" "}
+              {attendingCount} attending &middot; Maximum{" "}
+              {party.maxAttendees}
+            </>
+          ) : (
+            "Individual RSVP"
+          )}
         </p>
       </div>
 
@@ -553,7 +622,9 @@ function PartyPanel({
 
         {!allAnswered ? (
           <p className="font-wedding-body text-sm text-amber-700">
-            Please select your attendance response.
+            {isHouseholdResponse
+              ? "Please answer for every member of your household."
+              : "Please select your attendance response."}
           </p>
         ) : null}
 
@@ -578,7 +649,11 @@ function PartyPanel({
           type="submit"
           className={primaryButtonClass}
         >
-          {isSubmitting ? "Saving your reply" : "Send my response"}
+          {isSubmitting
+            ? "Saving your reply"
+            : isHouseholdResponse
+              ? "Send our responses"
+              : "Send my response"}
           {isSubmitting ? (
             <LoaderCircle className="size-4 animate-spin" />
           ) : (

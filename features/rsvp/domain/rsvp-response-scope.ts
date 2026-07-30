@@ -1,4 +1,4 @@
-import type { RsvpAccessMode } from "./rsvp-event-access";
+import type { RsvpResponseMode } from "./rsvp-event-access";
 
 export interface ResponseScopeGuest {
   id: number;
@@ -10,11 +10,11 @@ function normalizeInvitedName(value: string) {
 }
 
 export function getGuestsAllowedForResponse<TGuest extends ResponseScopeGuest>(
-  accessMode: RsvpAccessMode,
+  responseMode: RsvpResponseMode,
   matchedFullName: string,
   guests: TGuest[],
 ) {
-  if (accessMode === "shared_code") {
+  if (responseMode === "household") {
     return guests;
   }
 
@@ -27,18 +27,18 @@ export function getGuestsAllowedForResponse<TGuest extends ResponseScopeGuest>(
 }
 
 export function canSubmitGuestResponses(
-  accessMode: RsvpAccessMode,
+  responseMode: RsvpResponseMode,
   matchedFullName: string,
   partyGuests: ResponseScopeGuest[],
   submittedGuestIds: number[],
 ) {
   const allowedGuests = getGuestsAllowedForResponse(
-    accessMode,
+    responseMode,
     matchedFullName,
     partyGuests,
   );
 
-  if (accessMode === "name_search" && allowedGuests.length !== 1) {
+  if (responseMode === "individual" && allowedGuests.length !== 1) {
     return false;
   }
 

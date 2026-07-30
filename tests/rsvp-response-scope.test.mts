@@ -16,7 +16,7 @@ const householdGuests = [
 test("name-search access returns only the searched guest", () => {
   assert.deepEqual(
     getGuestsAllowedForResponse(
-      "name_search",
+      "individual",
       "  ROSE   ANN LIWANAG ",
       householdGuests,
     ),
@@ -27,7 +27,7 @@ test("name-search access returns only the searched guest", () => {
 test("a name-search guest cannot submit another household member's response", () => {
   assert.equal(
     canSubmitGuestResponses(
-      "name_search",
+      "individual",
       "Rose Ann Liwanag",
       householdGuests,
       [90],
@@ -37,7 +37,7 @@ test("a name-search guest cannot submit another household member's response", ()
 
   assert.equal(
     canSubmitGuestResponses(
-      "name_search",
+      "individual",
       "Rose Ann Liwanag",
       householdGuests,
       [89],
@@ -49,7 +49,7 @@ test("a name-search guest cannot submit another household member's response", ()
 test("ambiguous duplicate names cannot authorize an individual response", () => {
   assert.equal(
     canSubmitGuestResponses(
-      "name_search",
+      "individual",
       "Alex Santos",
       [
         { id: 1, fullName: "Alex Santos" },
@@ -61,10 +61,10 @@ test("ambiguous duplicate names cannot authorize an individual response", () => 
   );
 });
 
-test("shared-code access retains the complete household response scope", () => {
+test("household response mode retains the complete invitation party", () => {
   assert.deepEqual(
     getGuestsAllowedForResponse(
-      "shared_code",
+      "household",
       "Rose Ann Liwanag",
       householdGuests,
     ),
@@ -73,7 +73,7 @@ test("shared-code access retains the complete household response scope", () => {
 
   assert.equal(
     canSubmitGuestResponses(
-      "shared_code",
+      "household",
       "Rose Ann Liwanag",
       householdGuests,
       [89, 90],

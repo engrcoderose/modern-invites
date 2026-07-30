@@ -29,6 +29,11 @@ interface GuestResponseStateRow {
   responded_at: string | null;
 }
 
+interface HouseholdRsvpRow {
+  submitted_at: string;
+  updated_at: string;
+}
+
 export async function POST(request: NextRequest) {
   const policyError = enforceRsvpRequestPolicy(request, {
     scope: "rsvp-party",
@@ -200,16 +205,15 @@ export async function POST(request: NextRequest) {
     }));
 
     const allowedGuests = getGuestsAllowedForResponse(
-      access.event.accessMode,
+      access.event.responseMode,
       matchedFullName,
       partyGuests,
     );
 
-    // A name-search event represents one guest acting for
-    // themselves. Refuse ambiguous duplicate names instead of
-    // exposing or allowing changes to another guest's response.
+    // Individual responses require one uniquely matched guest.
+    // Household responses retain every guest on the invitation.
     if (
-      access.event.accessMode === "name_search" &&
+      access.event.responseMode === "individual" &&
       allowedGuests.length !== 1
     ) {
       return NextResponse.json(
@@ -265,15 +269,59 @@ export async function POST(request: NextRequest) {
       };
     });
 
+    let householdRespondedAt: string | null = null;
+
+    // Nylgen and Kersee use name verification followed by one locked
+    // household response. Shared-code events retain their existing
+    // update behavior.
+    if (
+      access.event.accessMode === "name_search" &&
+      access.event.responseMode === "household"
+    ) {
+      const { data: householdRsvp, error: householdRsvpError } =
+        await supabase
+          .from("rsvps")
+          .select("submitted_at, updated_at")
+          .eq("invitation_id", invitationId)
+          .order("updated_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+      if (householdRsvpError) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Unable to verify the household RSVP status.",
+          },
+          { status: 500 },
+        );
+      }
+
+      const rsvp = householdRsvp as HouseholdRsvpRow | null;
+      householdRespondedAt =
+        rsvp?.updated_at ?? rsvp?.submitted_at ?? null;
+    }
+
+    const individualRespondedAt =
+      guests.find((guest) => guest.respondedAt)?.respondedAt ?? null;
+    const responseLocked =
+      access.event.responseMode === "household"
+        ? householdRespondedAt !== null
+        : individualRespondedAt !== null;
+
     return NextResponse.json(
       {
         success: true,
         party: {
           householdName: firstRow.household_name,
           maxAttendees:
-            access.event.accessMode === "name_search"
+            access.event.responseMode === "individual"
               ? 1
               : firstRow.max_attendees,
+          responseMode: access.event.responseMode,
+          responseLocked,
+          respondedAt:
+            householdRespondedAt ?? individualRespondedAt,
           guests,
         },
       },

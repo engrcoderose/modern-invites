@@ -88,7 +88,7 @@ export default async function WeddingDashboardPage({
     eventId,
     {
       page,
-      pageSize: 25,
+      pageSize: 15,
       search,
       attendanceStatus,
     },
@@ -144,37 +144,36 @@ export default async function WeddingDashboardPage({
       <DashboardSummaryCards summary={workspace.summary} />
 
       <section className="space-y-4">
-        <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-          <div>
-            <h2 className="font-elegant text-3xl font-medium text-forest">
-              Guest list and RSVPs
-            </h2>
-            <p className="mt-1 text-sm text-ink-muted">
-              Search responses and keep planning details up to date.
-            </p>
-          </div>
+        <div>
+          <h2 className="font-elegant text-3xl font-medium text-forest">
+            Guest list and RSVPs
+          </h2>
+          <p className="mt-1 text-sm text-ink-muted">
+            Search responses and keep planning details up to date.
+          </p>
+        </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <GuestFilters
-              eventId={eventId}
-              search={search}
-              attendanceStatus={attendanceStatus}
-            />
-            {canManage ? (
-              <>
-                <ManageHouseholds
-                  eventId={eventId}
-                  households={workspace.households}
-                  action={deleteHouseholdAction}
-                />
-                <AddGuestForm
-                  eventId={eventId}
-                  households={workspace.households}
-                  action={createGuestAction}
-                />
-              </>
-            ) : null}
-          </div>
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <GuestFilters
+            eventId={eventId}
+            search={search}
+            attendanceStatus={attendanceStatus}
+          />
+
+          {canManage ? (
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <ManageHouseholds
+                eventId={eventId}
+                households={workspace.households}
+                action={deleteHouseholdAction}
+              />
+              <AddGuestForm
+                eventId={eventId}
+                households={workspace.households}
+                action={createGuestAction}
+              />
+            </div>
+          ) : null}
         </div>
 
         <GuestTable
