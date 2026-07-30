@@ -7,10 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run test:rsvp && npm run test:auth && npm run test:clients",
+    "test": "npm run test:rsvp && npm run test:auth && npm run test:client-auth && npm run test:clients && npm run test:dashboard",
     "test:rsvp": "node --experimental-strip-types --test tests/rsvp-security.test.mts",
     "test:auth": "node --experimental-strip-types --test tests/admin-auth.test.mts",
-    "test:clients": "node --experimental-strip-types --test tests/client-provisioning.test.mts"
+    "test:client-auth": "node --experimental-strip-types --test tests/client-auth.test.mts",
+    "test:clients": "node --experimental-strip-types --test tests/client-provisioning.test.mts",
+    "test:dashboard": "node --experimental-strip-types --test tests/client-dashboard.test.mts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
