@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
 import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
-import { createSupabaseServerClient } from "@/lib/supabase";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface AccessRequestBody {
   slug?: unknown;
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
   // ==========================================
 
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = createSupabaseAdminClient();
 
     const { data, error } = await supabase.rpc(
       "verify_event_rsvp_code",

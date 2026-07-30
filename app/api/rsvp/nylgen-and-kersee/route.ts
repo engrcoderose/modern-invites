@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
 import { isValidOptionalEmail } from "@/lib/rsvp/security";
-import { createSupabaseServerClient } from "@/lib/supabase";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type AttendanceStatus = "attending" | "declined";
 
@@ -97,7 +97,7 @@ export async function POST(request: NextRequest) {
     process.env.NYLGEN_KERSEE_RSVP_TABLE ?? "nylgen_kersee_rsvps";
 
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = createSupabaseAdminClient();
     const { error } = await supabase.from(tableName).insert({
       attendee_name: attendeeName,
       attendance_status: attendance satisfies AttendanceStatus,

@@ -5,7 +5,7 @@ import {
   isRsvpDeadlinePassed,
   isValidOptionalEmail,
 } from "@/lib/rsvp/security";
-import { createSupabaseServerClient } from "@/lib/supabase";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type AttendanceStatus = "attending" | "declined";
 
@@ -322,7 +322,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = createSupabaseAdminClient();
 
     // Verify the shared event code again.
     const { data: rawVerifiedEvents, error: verificationError } =

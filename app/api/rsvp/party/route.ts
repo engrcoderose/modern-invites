@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
 import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
-import { createSupabaseServerClient } from "@/lib/supabase";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface PartyRequestBody {
   slug?: unknown;
@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createSupabaseServerClient();
+    const supabase = createSupabaseAdminClient();
 
     // Verify the shared RSVP code.
     const { data: rawVerifiedEvents, error: verificationError } =
