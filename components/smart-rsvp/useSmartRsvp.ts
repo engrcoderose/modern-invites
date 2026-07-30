@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   requestGuestSearch,
@@ -8,13 +8,20 @@ import {
 import type {
   EventInformation,
   PartyInformation,
+  RsvpAccessMode,
   RSVPStage,
   SearchMatch,
 } from "./types";
 import { normalizeGuestName, normalizeRsvpCode } from "./utils";
 
-export function useSmartRsvp(eventSlug: string) {
-  const [stage, setStage] = useState<RSVPStage>("access");
+export function useSmartRsvp(
+  eventSlug: string,
+  initialAccessMode: RsvpAccessMode,
+) {
+  const [stage, setStage] = useState<RSVPStage>(
+    initialAccessMode === "name_search" ? "initializing" : "access",
+  );
+  const initializedSlug = useRef<string | null>(null);
 
   const [rsvpCode, setRsvpCode] = useState("");
   const [fullName, setFullName] = useState("");
@@ -40,6 +47,43 @@ export function useSmartRsvp(eventSlug: string) {
   const [searchError, setSearchError] = useState("");
 
   const [partyError, setPartyError] = useState("");
+
+  const initializeNameSearch = useCallback(async () => {
+    setStage("initializing");
+    setIsCheckingCode(true);
+    setAccessError("");
+
+    try {
+      const configuredEvent = await requestRsvpAccess(eventSlug, "");
+
+      if (configuredEvent.accessMode !== "name_search") {
+        throw new Error("This invitation requires an RSVP code.");
+      }
+
+      setEvent(configuredEvent);
+      setStage("search");
+    } catch (error) {
+      setAccessError(
+        error instanceof Error
+          ? error.message
+          : "Unable to open RSVP search.",
+      );
+    } finally {
+      setIsCheckingCode(false);
+    }
+  }, [eventSlug]);
+
+  useEffect(() => {
+    if (
+      initialAccessMode !== "name_search" ||
+      initializedSlug.current === eventSlug
+    ) {
+      return;
+    }
+
+    initializedSlug.current = eventSlug;
+    void initializeNameSearch();
+  }, [eventSlug, initialAccessMode, initializeNameSearch]);
 
   function updateRsvpCode(value: string) {
     setRsvpCode(value.toUpperCase());
@@ -170,11 +214,8 @@ export function useSmartRsvp(eventSlug: string) {
   }
 
   function reset() {
-    setStage("access");
-
     setRsvpCode("");
     setFullName("");
-    setEvent(null);
 
     setSearchMatches([]);
     setSelectedMatch(null);
@@ -187,6 +228,14 @@ export function useSmartRsvp(eventSlug: string) {
     setIsCheckingCode(false);
     setIsSearching(false);
     setLoadingInvitationId(null);
+
+    if (initialAccessMode === "name_search") {
+      setStage(event ? "search" : "initializing");
+      return;
+    }
+
+    setEvent(null);
+    setStage("access");
   }
 
   return {
@@ -211,6 +260,7 @@ export function useSmartRsvp(eventSlug: string) {
     updateFullName,
 
     verifyAccess,
+    initializeNameSearch,
     searchGuest,
     selectInvitation,
 

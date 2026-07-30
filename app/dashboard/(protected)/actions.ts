@@ -40,11 +40,23 @@ const optionalNotesSchema = z.preprocess(
 
 const createGuestSchema = z.object({
   eventId: eventIdSchema,
-  householdName: z
-    .string()
-    .trim()
-    .min(1, "Enter a household name.")
-    .max(120, "The household name is too long."),
+  invitationId: z.preprocess(
+    (value) =>
+      typeof value === "string" && value.trim() !== ""
+        ? value
+        : null,
+    z.coerce.number().int().positive().nullable(),
+  ),
+  householdName: z.preprocess(
+    (value) =>
+      typeof value === "string" && value.trim() !== ""
+        ? value.trim()
+        : null,
+    z
+      .string()
+      .max(120, "The household name is too long.")
+      .nullable(),
+  ),
   fullName: z
     .string()
     .trim()
@@ -52,6 +64,14 @@ const createGuestSchema = z.object({
     .max(120, "The guest name is too long."),
   guestType: guestTypeSchema,
   dietaryRestrictions: optionalNotesSchema,
+}).superRefine((value, context) => {
+  if (!value.invitationId && !value.householdName) {
+    context.addIssue({
+      code: "custom",
+      path: ["householdName"],
+      message: "Enter a name for the new household.",
+    });
+  }
 });
 
 const updateGuestSchema = z.object({
@@ -100,6 +120,7 @@ export async function createGuestAction(
 ): Promise<GuestMutationState> {
   const parsed = createGuestSchema.safeParse({
     eventId: formData.get("eventId"),
+    invitationId: formData.get("invitationId"),
     householdName: formData.get("householdName"),
     fullName: formData.get("fullName"),
     guestType: formData.get("guestType"),

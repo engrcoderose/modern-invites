@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { resolveRsvpEventAccess } from "@/features/rsvp/application/resolve-rsvp-event-access";
+import { createSupabaseRsvpEventAccessRepository } from "@/features/rsvp/infrastructure/supabase-rsvp-event-access-repository";
+import { getGuestsAllowedForResponse } from "@/features/rsvp/domain/rsvp-response-scope";
+import { isRsvpResponseLocked } from "@/features/rsvp/domain/rsvp-response-lock";
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
-import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface PartyRequestBody {
@@ -9,13 +12,6 @@ interface PartyRequestBody {
   code?: unknown;
   invitationId?: unknown;
   matchedFullName?: unknown;
-}
-
-interface VerifiedEventRow {
-  event_id: number;
-  event_name: string;
-  rsvp_deadline: string | null;
-  is_open: boolean;
 }
 
 interface PartyRow {
@@ -26,6 +22,11 @@ interface PartyRow {
   guest_type: "adult" | "child";
   attendance_status: "pending" | "attending" | "declined";
   dietary_restrictions: string | null;
+}
+
+interface GuestResponseStateRow {
+  id: number;
+  responded_at: string | null;
 }
 
 export async function POST(request: NextRequest) {
@@ -56,7 +57,9 @@ export async function POST(request: NextRequest) {
   // Check that the required values have the correct types.
   if (
     typeof body.slug !== "string" ||
-    typeof body.code !== "string" ||
+    (body.code !== undefined &&
+      body.code !== null &&
+      typeof body.code !== "string") ||
     typeof body.invitationId !== "number" ||
     typeof body.matchedFullName !== "string"
   ) {
@@ -71,7 +74,7 @@ export async function POST(request: NextRequest) {
 
   // Normalize the submitted values.
   const slug = body.slug.trim().toLowerCase();
-  const code = body.code.trim();
+  const code = typeof body.code === "string" ? body.code.trim() : "";
   const invitationId = body.invitationId;
   const matchedFullName = body.matchedFullName.trim().replace(/\s+/g, " ");
 
@@ -79,7 +82,6 @@ export async function POST(request: NextRequest) {
   if (
     slug.length < 1 ||
     slug.length > 100 ||
-    code.length < 1 ||
     code.length > 64
   ) {
     return NextResponse.json(
@@ -114,49 +116,24 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createSupabaseAdminClient();
+    const access = await resolveRsvpEventAccess(
+      createSupabaseRsvpEventAccessRepository(),
+      { slug, code },
+    );
 
-    // Verify the shared RSVP code.
-    const { data: rawVerifiedEvents, error: verificationError } =
-      await supabase.rpc("verify_event_rsvp_code", {
-        p_slug: slug,
-        p_code: code,
-      });
-
-    if (verificationError) {
-      console.error("Party access verification failed:", {
-        code: verificationError.code,
-        message: verificationError.message,
-        details: verificationError.details,
-        hint: verificationError.hint,
-      });
-
+    if (access.status === "denied") {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to verify the RSVP code.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const verifiedEvents = (rawVerifiedEvents ?? []) as VerifiedEventRow[];
-
-    const event = verifiedEvents[0];
-
-    // No event means the code or slug did not match.
-    if (!event) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The RSVP code is incorrect.",
+          message: code
+            ? "The RSVP code is incorrect."
+            : "Unable to verify this invitation.",
         },
         { status: 401 },
       );
     }
 
-    // The event exists, but its RSVP is closed.
-    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
+    if (access.status === "closed") {
       return NextResponse.json(
         {
           success: false,
@@ -166,11 +143,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createSupabaseAdminClient();
+
     // Load the selected invitation's party.
     const { data: rawPartyRows, error: partyError } = await supabase.rpc(
       "get_invitation_party",
       {
-        p_event_id: event.event_id,
+        p_event_id: access.event.eventId,
         p_invitation_id: invitationId,
         p_matched_full_name: matchedFullName,
       },
@@ -212,7 +191,7 @@ export async function POST(request: NextRequest) {
     const firstRow = partyRows[0];
 
     // Convert database snake_case names to frontend camelCase.
-    const guests = partyRows.map((row) => ({
+    const partyGuests = partyRows.map((row) => ({
       id: row.guest_id,
       fullName: row.guest_full_name,
       guestType: row.guest_type,
@@ -220,12 +199,81 @@ export async function POST(request: NextRequest) {
       dietaryRestrictions: row.dietary_restrictions,
     }));
 
+    const allowedGuests = getGuestsAllowedForResponse(
+      access.event.accessMode,
+      matchedFullName,
+      partyGuests,
+    );
+
+    // A name-search event represents one guest acting for
+    // themselves. Refuse ambiguous duplicate names instead of
+    // exposing or allowing changes to another guest's response.
+    if (
+      access.event.accessMode === "name_search" &&
+      allowedGuests.length !== 1
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "This guest name could not be uniquely verified. Please contact the couple.",
+        },
+        { status: 409 },
+      );
+    }
+
+    const { data: rawResponseStates, error: responseStateError } =
+      await supabase
+        .from("guests")
+        .select("id, responded_at")
+        .in(
+          "id",
+          allowedGuests.map((guest) => guest.id),
+        );
+
+    if (responseStateError) {
+      console.error("Guest response-state loading failed:", {
+        code: responseStateError.code,
+        message: responseStateError.message,
+        details: responseStateError.details,
+        hint: responseStateError.hint,
+      });
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to verify the RSVP response status.",
+        },
+        { status: 500 },
+      );
+    }
+
+    const responseStateByGuestId = new Map(
+      ((rawResponseStates ?? []) as GuestResponseStateRow[]).map(
+        (guest) => [guest.id, guest.responded_at],
+      ),
+    );
+
+    const guests = allowedGuests.map((guest) => {
+      const respondedAt =
+        responseStateByGuestId.get(guest.id) ?? null;
+
+      return {
+        ...guest,
+        hasResponded: isRsvpResponseLocked(respondedAt),
+        respondedAt,
+      };
+    });
+
     return NextResponse.json(
       {
         success: true,
         party: {
           householdName: firstRow.household_name,
-          maxAttendees: firstRow.max_attendees,
+          maxAttendees:
+            access.event.accessMode === "name_search"
+              ? 1
+              : firstRow.max_attendees,
           guests,
         },
       },

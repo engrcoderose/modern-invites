@@ -1,19 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { resolveRsvpEventAccess } from "@/features/rsvp/application/resolve-rsvp-event-access";
+import { createSupabaseRsvpEventAccessRepository } from "@/features/rsvp/infrastructure/supabase-rsvp-event-access-repository";
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
-import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface AccessRequestBody {
   slug?: unknown;
   code?: unknown;
-}
-
-interface VerifiedEventRow {
-  event_id: number;
-  event_name: string;
-  rsvp_deadline: string | null;
-  is_open: boolean;
 }
 
 export async function POST(request: NextRequest) {
@@ -50,7 +43,9 @@ export async function POST(request: NextRequest) {
 
   if (
     typeof body.slug !== "string" ||
-    typeof body.code !== "string"
+    (body.code !== undefined &&
+      body.code !== null &&
+      typeof body.code !== "string")
   ) {
     return NextResponse.json(
       {
@@ -62,7 +57,7 @@ export async function POST(request: NextRequest) {
   }
 
   const slug = body.slug.trim().toLowerCase();
-  const code = body.code.trim();
+  const code = typeof body.code === "string" ? body.code.trim() : "";
 
   // ==========================================
   // 3. Validate basic input lengths
@@ -71,7 +66,6 @@ export async function POST(request: NextRequest) {
   if (
     slug.length < 1 ||
     slug.length > 100 ||
-    code.length < 1 ||
     code.length > 64
   ) {
     return NextResponse.json(
@@ -88,50 +82,24 @@ export async function POST(request: NextRequest) {
   // ==========================================
 
   try {
-    const supabase = createSupabaseAdminClient();
-
-    const { data, error } = await supabase.rpc(
-      "verify_event_rsvp_code",
-      {
-        p_slug: slug,
-        p_code: code,
-      },
+    const access = await resolveRsvpEventAccess(
+      createSupabaseRsvpEventAccessRepository(),
+      { slug, code },
     );
 
-    if (error) {
-      console.error("RSVP access verification failed:", {
-        code: error.code,
-        message: error.message,
-        details: error.details,
-        hint: error.hint,
-      });
-
+    if (access.status === "denied") {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to verify the RSVP code.",
-        },
-        { status: 500 },
-      );
-    }
-
-    // A table-returning PostgreSQL function returns an array.
-    const event = ((data ?? []) as VerifiedEventRow[])[0];
-
-    // No row means the slug or code did not match.
-    if (!event) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The RSVP code is incorrect.",
+          message: code
+            ? "The RSVP code is incorrect."
+            : "RSVP access is unavailable.",
         },
         { status: 401 },
       );
     }
 
-    // A matching row with is_open=false means the event
-    // exists and the code is correct, but RSVPs are closed.
-    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
+    if (access.status === "closed") {
       return NextResponse.json(
         {
           success: false,
@@ -149,9 +117,10 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         event: {
-          name: event.event_name,
+          name: access.event.eventName,
           slug,
-          rsvpDeadline: event.rsvp_deadline,
+          rsvpDeadline: access.event.rsvpDeadline,
+          accessMode: access.event.accessMode,
         },
       },
       { status: 200 },

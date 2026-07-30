@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { resolveRsvpEventAccess } from "@/features/rsvp/application/resolve-rsvp-event-access";
+import {
+  summarizeHouseholdAttendance,
+  type HouseholdAttendanceStatus,
+} from "@/features/rsvp/domain/household-attendance-summary";
+import { createSupabaseRsvpEventAccessRepository } from "@/features/rsvp/infrastructure/supabase-rsvp-event-access-repository";
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
-import { isRsvpDeadlinePassed } from "@/lib/rsvp/security";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface SearchRequestBody {
@@ -10,17 +15,20 @@ interface SearchRequestBody {
   fullName?: unknown;
 }
 
-interface VerifiedEventRow {
-  event_id: number;
-  event_name: string;
-  rsvp_deadline: string | null;
-  is_open: boolean;
-}
-
 interface SearchInvitationRow {
   invitation_id: number;
   household_name: string;
   matched_guest_name: string;
+}
+
+interface HouseholdSummaryRow {
+  id: number;
+  max_attendees: number;
+  guests:
+    | {
+        attendance_status: HouseholdAttendanceStatus;
+      }[]
+    | null;
 }
 
 export async function POST(request: NextRequest) {
@@ -51,7 +59,9 @@ export async function POST(request: NextRequest) {
   // Validate the required input types.
   if (
     typeof body.slug !== "string" ||
-    typeof body.code !== "string" ||
+    (body.code !== undefined &&
+      body.code !== null &&
+      typeof body.code !== "string") ||
     typeof body.fullName !== "string"
   ) {
     return NextResponse.json(
@@ -65,7 +75,7 @@ export async function POST(request: NextRequest) {
 
   // Normalize the submitted values.
   const slug = body.slug.trim().toLowerCase();
-  const code = body.code.trim();
+  const code = typeof body.code === "string" ? body.code.trim() : "";
 
   const fullName = body.fullName.trim().replace(/\s+/g, " ");
 
@@ -73,7 +83,6 @@ export async function POST(request: NextRequest) {
   if (
     slug.length < 1 ||
     slug.length > 100 ||
-    code.length < 1 ||
     code.length > 64
   ) {
     return NextResponse.json(
@@ -97,49 +106,24 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createSupabaseAdminClient();
+    const access = await resolveRsvpEventAccess(
+      createSupabaseRsvpEventAccessRepository(),
+      { slug, code },
+    );
 
-    // Verify the shared RSVP code.
-    const { data: rawVerifiedEvents, error: verificationError } =
-      await supabase.rpc("verify_event_rsvp_code", {
-        p_slug: slug,
-        p_code: code,
-      });
-
-    if (verificationError) {
-      console.error("RSVP search verification failed:", {
-        code: verificationError.code,
-        message: verificationError.message,
-        details: verificationError.details,
-        hint: verificationError.hint,
-      });
-
+    if (access.status === "denied") {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to verify the RSVP code.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const verifiedEvents = (rawVerifiedEvents ?? []) as VerifiedEventRow[];
-
-    const event = verifiedEvents[0];
-
-    // No row means the slug or code did not match.
-    if (!event) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The RSVP code is incorrect.",
+          message: code
+            ? "The RSVP code is incorrect."
+            : "Unable to verify this invitation.",
         },
         { status: 401 },
       );
     }
 
-    // A matching event can still be closed.
-    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
+    if (access.status === "closed") {
       return NextResponse.json(
         {
           success: false,
@@ -149,11 +133,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const supabase = createSupabaseAdminClient();
+
     // Search for the exact guest name within the
     // verified event.
     const { data: rawMatchingInvitations, error: searchError } =
       await supabase.rpc("search_guest_invitation", {
-        p_event_id: event.event_id,
+        p_event_id: access.event.eventId,
         p_full_name: fullName,
       });
 
@@ -177,11 +163,73 @@ export async function POST(request: NextRequest) {
     const matchingInvitations = (rawMatchingInvitations ??
       []) as SearchInvitationRow[];
 
-    const matches = matchingInvitations.map((invitation) => ({
-      invitationId: invitation.invitation_id,
-      householdName: invitation.household_name,
-      matchedGuestName: invitation.matched_guest_name,
-    }));
+    const invitationIds = [
+      ...new Set(
+        matchingInvitations.map(
+          (invitation) => invitation.invitation_id,
+        ),
+      ),
+    ];
+
+    const summariesByInvitationId = new Map<
+      number,
+      ReturnType<typeof summarizeHouseholdAttendance>
+    >();
+
+    if (invitationIds.length > 0) {
+      const { data: rawSummaryRows, error: summaryError } =
+        await supabase
+          .from("invitations")
+          .select("id, max_attendees, guests(attendance_status)")
+          .eq("event_id", access.event.eventId)
+          .in("id", invitationIds);
+
+      if (summaryError) {
+        console.error("Household RSVP summary failed:", {
+          code: summaryError.code,
+          message: summaryError.message,
+          details: summaryError.details,
+          hint: summaryError.hint,
+        });
+
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Unable to load the household RSVP summary.",
+          },
+          { status: 500 },
+        );
+      }
+
+      for (const row of (rawSummaryRows ?? []) as HouseholdSummaryRow[]) {
+        summariesByInvitationId.set(
+          row.id,
+          summarizeHouseholdAttendance(
+            row.max_attendees,
+            (row.guests ?? []).map(
+              (guest) => guest.attendance_status,
+            ),
+          ),
+        );
+      }
+    }
+
+    const matches = matchingInvitations.flatMap((invitation) => {
+      const householdSummary = summariesByInvitationId.get(
+        invitation.invitation_id,
+      );
+
+      if (!householdSummary) {
+        return [];
+      }
+
+      return {
+        invitationId: invitation.invitation_id,
+        householdName: invitation.household_name,
+        matchedGuestName: invitation.matched_guest_name,
+        householdSummary,
+      };
+    });
 
     return NextResponse.json(
       {

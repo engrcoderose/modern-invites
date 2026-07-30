@@ -161,6 +161,7 @@ export default async function WeddingDashboardPage({
             {canManage ? (
               <AddGuestForm
                 eventId={eventId}
+                households={workspace.households}
                 action={createGuestAction}
               />
             ) : null}

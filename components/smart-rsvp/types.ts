@@ -1,15 +1,28 @@
-export type RSVPStage = "access" | "search" | "party";
+export type RsvpAccessMode = "shared_code" | "name_search";
+
+export type RSVPStage =
+  | "initializing"
+  | "access"
+  | "search"
+  | "party";
 
 export interface EventInformation {
   name: string;
   slug: string;
   rsvpDeadline: string | null;
+  accessMode: RsvpAccessMode;
 }
 
 export interface SearchMatch {
   invitationId: number;
   householdName: string;
   matchedGuestName: string;
+  householdSummary: {
+    maximumGuests: number;
+    attendingGuests: number;
+    declinedGuests: number;
+    pendingGuests: number;
+  };
 }
 
 export interface AccessResponse {
@@ -30,6 +43,8 @@ export interface PartyGuest {
   guestType: "adult" | "child";
   attendanceStatus: "pending" | "attending" | "declined";
   dietaryRestrictions: string | null;
+  hasResponded: boolean;
+  respondedAt: string | null;
 }
 
 export interface PartyInformation {

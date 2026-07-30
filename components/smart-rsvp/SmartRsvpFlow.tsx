@@ -5,16 +5,19 @@ import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 import { AccessStep } from "./AccessStep";
+import { InitializationStep } from "./InitializationStep";
 import { PartyStep } from "./PartyStep";
 import { SearchStep } from "./SearchStep";
 import type { SmartRsvpTheme } from "./theme";
 import { debutSmartRsvpTheme } from "./theme";
+import type { RsvpAccessMode } from "./types";
 import { useSmartRsvp } from "./useSmartRsvp";
 
 interface SmartRsvpFlowProps {
   eventSlug: string;
   theme?: SmartRsvpTheme;
   className?: string;
+  accessMode?: RsvpAccessMode;
 }
 
 type SmartRsvpThemeProperties = CSSProperties & {
@@ -43,6 +46,7 @@ export function SmartRsvpFlow({
   eventSlug,
   theme = debutSmartRsvpTheme,
   className,
+  accessMode = "shared_code",
 }: SmartRsvpFlowProps) {
   const {
     stage,
@@ -61,17 +65,25 @@ export function SmartRsvpFlow({
     updateRsvpCode,
     updateFullName,
     verifyAccess,
+    initializeNameSearch,
     searchGuest,
     selectInvitation,
     returnToSearch,
     reset,
-  } = useSmartRsvp(eventSlug);
+  } = useSmartRsvp(eventSlug, accessMode);
 
   return (
     <div
       className={cn("w-full", className)}
       style={createThemeProperties(theme)}
     >
+      {stage === "initializing" && (
+        <InitializationStep
+          errorMessage={accessError}
+          onRetry={initializeNameSearch}
+        />
+      )}
+
       {stage === "access" && (
         <AccessStep
           rsvpCode={rsvpCode}

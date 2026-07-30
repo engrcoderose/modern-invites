@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "npm run test:rsvp && npm run test:auth && npm run test:client-auth && npm run test:clients && npm run test:dashboard",
-    "test:rsvp": "node --experimental-strip-types --test tests/rsvp-security.test.mts",
+    "test:rsvp": "node --experimental-strip-types --test tests/rsvp-security.test.mts tests/rsvp-event-access.test.mts tests/rsvp-response-scope.test.mts",
     "test:auth": "node --experimental-strip-types --test tests/admin-auth.test.mts",
     "test:client-auth": "node --experimental-strip-types --test tests/client-auth.test.mts",
     "test:clients": "node --experimental-strip-types --test tests/client-provisioning.test.mts",

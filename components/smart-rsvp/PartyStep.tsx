@@ -211,7 +211,9 @@ export function PartyStep({
             disabled={isSubmitting}
             className="flex-1 text-gray-500"
           >
-            Use a Different Code
+            {event.accessMode === "shared_code"
+              ? "Use a Different Code"
+              : "Start Over"}
           </Button>
         </div>
       </CardContent>

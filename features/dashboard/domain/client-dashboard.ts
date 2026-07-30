@@ -52,15 +52,24 @@ export interface DashboardGuestPage {
   totalPages: number;
 }
 
+export interface DashboardHousehold {
+  id: number;
+  name: string;
+  maxAttendees: number;
+  guestCount: number;
+}
+
 export interface ClientEventWorkspace {
   event: AssignedDashboardEvent;
   summary: DashboardSummary;
   guestPage: DashboardGuestPage;
+  households: DashboardHousehold[];
 }
 
 export interface CreateDashboardGuestCommand {
   eventId: number;
-  householdName: string;
+  invitationId: number | null;
+  householdName: string | null;
   fullName: string;
   guestType: DashboardGuestType;
   dietaryRestrictions: string | null;

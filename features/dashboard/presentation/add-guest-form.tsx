@@ -1,24 +1,31 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { Loader2, Plus, UserPlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import type { DashboardHousehold } from "@/features/dashboard/domain/client-dashboard";
 import type { GuestMutationAction } from "./guest-mutation.types";
 import { initialGuestMutationState } from "./guest-mutation.types";
 
 interface AddGuestFormProps {
   eventId: number;
+  households: DashboardHousehold[];
   action: GuestMutationAction;
 }
 
-export function AddGuestForm({ eventId, action }: AddGuestFormProps) {
+export function AddGuestForm({
+  eventId,
+  households,
+  action,
+}: AddGuestFormProps) {
   const [state, formAction, isPending] = useActionState(
     action,
     initialGuestMutationState,
   );
+  const [householdSelection, setHouseholdSelection] = useState("new");
 
   return (
     <details className="group relative">
@@ -55,16 +62,51 @@ export function AddGuestForm({ eventId, action }: AddGuestFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="new-household-name">Household name</Label>
-            <Input
-              id="new-household-name"
-              name="householdName"
-              required
-              maxLength={120}
-              placeholder="e.g. The Santos Family"
-              className="bg-white"
-            />
+            <Label htmlFor="household-selection">Household</Label>
+            <select
+              id="household-selection"
+              name="invitationId"
+              value={
+                householdSelection === "new"
+                  ? ""
+                  : householdSelection
+              }
+              onChange={(event) =>
+                setHouseholdSelection(event.target.value || "new")
+              }
+              className="h-9 w-full rounded-md border border-input bg-white px-3 text-sm shadow-sm"
+            >
+              <option value="">Create a new household</option>
+              {households.map((household) => (
+                <option key={household.id} value={household.id}>
+                  {household.name} ({household.guestCount}{" "}
+                  {household.guestCount === 1 ? "guest" : "guests"})
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-ink-muted">
+              Choose an existing household to keep party members
+              together.
+            </p>
           </div>
+
+          {householdSelection === "new" ? (
+            <div className="space-y-2">
+              <Label htmlFor="new-household-name">
+                New household name
+              </Label>
+              <Input
+                id="new-household-name"
+                name="householdName"
+                required
+                maxLength={120}
+                placeholder="e.g. The Santos Family"
+                className="bg-white"
+              />
+            </div>
+          ) : (
+            <input type="hidden" name="householdName" value="" />
+          )}
 
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">

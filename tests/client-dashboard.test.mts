@@ -89,6 +89,7 @@ class FakeWorkbookExporter implements RsvpWorkbookExporter {
 
 const createCommand: CreateDashboardGuestCommand = {
   eventId: assignedEvent.id,
+  invitationId: null,
   householdName: "Santos Family",
   fullName: "Ana Santos",
   guestType: "adult",
@@ -107,6 +108,20 @@ test("viewer access cannot create dashboard guests", async () => {
       error.code === "forbidden",
   );
   assert.equal(repository.createdGuests.length, 0);
+});
+
+test("owner access can add a guest to an existing household", async () => {
+  const repository = new FakeDashboardRepository();
+  const command: CreateDashboardGuestCommand = {
+    ...createCommand,
+    invitationId: 9,
+    householdName: null,
+    fullName: "Ruby Grace Liwanag",
+  };
+
+  await createDashboardGuest(repository, "client-user-id", command);
+
+  assert.deepEqual(repository.createdGuests, [command]);
 });
 
 test("editor access can update a dashboard guest", async () => {

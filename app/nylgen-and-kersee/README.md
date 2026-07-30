@@ -19,7 +19,7 @@ nylgen-and-kersee/
 │   ├── WeddingTimeline/       Celebration schedule
 │   ├── GiftGuide/             Gift message
 │   ├── Hashtag/               Hashtag, QR, and photo upload handoff
-│   ├── RSVP/                  Simple required-fields RSVP form
+│   ├── RSVP/                  Smart household RSVP integration
 │   ├── Footer/                Closing navigation and monogram
 │   ├── ui/                    Reusable design-system primitives
 │   └── WeddingThemeProvider.tsx
@@ -37,7 +37,12 @@ reduced-motion behavior are active. Compose later sections from the exports in
 
 ## RSVP tracking
 
-The RSVP form posts to `/api/rsvp/nylgen-and-kersee`. Apply
-`docs/nylgen-and-kersee-rsvp.sql` in Supabase to create the private response
-table. The server route validates every required field and writes with the
-server-only Supabase key; the browser receives no direct database access.
+The invitation uses the shared Smart RSVP flow in `components/smart-rsvp`.
+This event is configured with `rsvp_access_mode = 'name_search'`, so guests
+start with exact invited-name verification instead of a shared RSVP code.
+Responses are stored in the normalized `events`, `invitations`, `guests`, and
+`rsvps` tables and appear in the client dashboard.
+
+The older `/api/rsvp/nylgen-and-kersee` endpoint and
+`docs/nylgen-and-kersee-rsvp.sql` are retained temporarily for rollback only;
+the invitation UI no longer calls them.

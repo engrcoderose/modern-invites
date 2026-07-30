@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { resolveRsvpEventAccess } from "@/features/rsvp/application/resolve-rsvp-event-access";
+import { createSupabaseRsvpEventAccessRepository } from "@/features/rsvp/infrastructure/supabase-rsvp-event-access-repository";
+import { canSubmitGuestResponses } from "@/features/rsvp/domain/rsvp-response-scope";
+import { isRsvpResponseLocked } from "@/features/rsvp/domain/rsvp-response-lock";
 import { enforceRsvpRequestPolicy } from "@/lib/rsvp/request-policy";
 import {
-  isRsvpDeadlinePassed,
   isValidOptionalEmail,
 } from "@/lib/rsvp/security";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -20,13 +23,6 @@ interface SubmitRequestBody {
   guestResponses?: unknown;
 }
 
-interface VerifiedEventRow {
-  event_id: number;
-  event_name: string;
-  rsvp_deadline: string | null;
-  is_open: boolean;
-}
-
 interface DatabaseGuestResponse {
   guest_id: number;
   status: AttendanceStatus;
@@ -40,6 +36,15 @@ interface SubmissionResult {
   attending_count: number;
   declined_count: number;
   max_attendees: number;
+}
+
+interface PartyGuestRow {
+  guest_id: number;
+  guest_full_name: string;
+}
+
+interface GuestResponseStateRow {
+  responded_at: string | null;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -74,7 +79,9 @@ export async function POST(request: NextRequest) {
   // Validate the main required fields.
   if (
     typeof body.slug !== "string" ||
-    typeof body.code !== "string" ||
+    (body.code !== undefined &&
+      body.code !== null &&
+      typeof body.code !== "string") ||
     typeof body.invitationId !== "number" ||
     typeof body.matchedFullName !== "string"
   ) {
@@ -130,7 +137,7 @@ export async function POST(request: NextRequest) {
   }
 
   const slug = body.slug.trim().toLowerCase();
-  const code = body.code.trim();
+  const code = typeof body.code === "string" ? body.code.trim() : "";
   const invitationId = body.invitationId;
 
   const matchedFullName = body.matchedFullName.trim().replace(/\s+/g, " ");
@@ -145,7 +152,6 @@ export async function POST(request: NextRequest) {
   if (
     slug.length < 1 ||
     slug.length > 100 ||
-    code.length < 1 ||
     code.length > 64
   ) {
     return NextResponse.json(
@@ -322,47 +328,24 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createSupabaseAdminClient();
+    const access = await resolveRsvpEventAccess(
+      createSupabaseRsvpEventAccessRepository(),
+      { slug, code },
+    );
 
-    // Verify the shared event code again.
-    const { data: rawVerifiedEvents, error: verificationError } =
-      await supabase.rpc("verify_event_rsvp_code", {
-        p_slug: slug,
-        p_code: code,
-      });
-
-    if (verificationError) {
-      console.error("Submission verification failed:", {
-        code: verificationError.code,
-        message: verificationError.message,
-        details: verificationError.details,
-        hint: verificationError.hint,
-      });
-
+    if (access.status === "denied") {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to verify the RSVP code.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const verifiedEvents = (rawVerifiedEvents ?? []) as VerifiedEventRow[];
-
-    const event = verifiedEvents[0];
-
-    if (!event) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "The RSVP code is incorrect.",
+          message: code
+            ? "The RSVP code is incorrect."
+            : "Unable to verify this invitation.",
         },
         { status: 401 },
       );
     }
 
-    if (!event.is_open || isRsvpDeadlinePassed(event.rsvp_deadline)) {
+    if (access.status === "closed") {
       return NextResponse.json(
         {
           success: false,
@@ -372,10 +355,122 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Submit the validated responses to PostgreSQL.
-    const { data: rawSubmissionResult, error: submissionError } =
-      await supabase.rpc("submit_invitation_rsvp", {
-        p_event_id: event.event_id,
+    const supabase = createSupabaseAdminClient();
+
+    let rawSubmissionResult: unknown;
+    let submissionError: {
+      code?: string;
+      message: string;
+      details?: string;
+      hint?: string;
+    } | null;
+
+    if (access.event.accessMode === "name_search") {
+      // Re-load the invitation on the server. The browser is not
+      // trusted to decide which guest it may update.
+      const { data: rawPartyRows, error: partyError } =
+        await supabase.rpc("get_invitation_party", {
+          p_event_id: access.event.eventId,
+          p_invitation_id: invitationId,
+          p_matched_full_name: matchedFullName,
+        });
+
+      if (partyError) {
+        console.error("Individual RSVP verification failed:", {
+          code: partyError.code,
+          message: partyError.message,
+          details: partyError.details,
+          hint: partyError.hint,
+        });
+
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Unable to verify this guest.",
+          },
+          { status: 400 },
+        );
+      }
+
+      const partyGuests = ((rawPartyRows ?? []) as PartyGuestRow[]).map(
+        (guest) => ({
+          id: guest.guest_id,
+          fullName: guest.guest_full_name,
+        }),
+      );
+
+      if (
+        !canSubmitGuestResponses(
+          access.event.accessMode,
+          matchedFullName,
+          partyGuests,
+          databaseGuestResponses.map((response) => response.guest_id),
+        )
+      ) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "You may only respond for your own invited name.",
+          },
+          { status: 403 },
+        );
+      }
+
+      const individualResponse = databaseGuestResponses[0];
+      const { data: responseState, error: responseStateError } =
+        await supabase
+          .from("guests")
+          .select("responded_at")
+          .eq("id", individualResponse.guest_id)
+          .eq("invitation_id", invitationId)
+          .maybeSingle();
+
+      if (responseStateError || !responseState) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Unable to verify the RSVP response status.",
+          },
+          { status: 400 },
+        );
+      }
+
+      if (
+        isRsvpResponseLocked(
+          (responseState as GuestResponseStateRow).responded_at,
+        )
+      ) {
+        return NextResponse.json(
+          {
+            success: false,
+            message:
+              "Your RSVP has already been received. Please contact the couple to request a change.",
+          },
+          { status: 409 },
+        );
+      }
+
+      const result = await supabase.rpc(
+        "submit_locked_individual_guest_rsvp",
+        {
+          p_event_id: access.event.eventId,
+          p_invitation_id: invitationId,
+          p_matched_full_name: matchedFullName,
+          p_guest_id: individualResponse.guest_id,
+          p_status: individualResponse.status,
+          p_dietary_restrictions:
+            individualResponse.dietary_restrictions,
+          p_email: email,
+          p_phone: phone,
+          p_message: message,
+        },
+      );
+
+      rawSubmissionResult = result.data;
+      submissionError = result.error;
+    } else {
+      const result = await supabase.rpc("submit_invitation_rsvp", {
+        p_event_id: access.event.eventId,
         p_invitation_id: invitationId,
         p_matched_full_name: matchedFullName,
         p_email: email,
@@ -383,6 +478,10 @@ export async function POST(request: NextRequest) {
         p_message: message,
         p_guest_responses: databaseGuestResponses,
       });
+
+      rawSubmissionResult = result.data;
+      submissionError = result.error;
+    }
 
     if (submissionError) {
       console.error("RSVP database submission failed:", {
@@ -405,10 +504,15 @@ export async function POST(request: NextRequest) {
         "The same guest cannot appear more than once.",
         "One or more guests do not belong to this invitation.",
         "Please answer for every member of your party.",
+        "You may only respond for your own invited name.",
+        "Your RSVP has already been received.",
       ];
 
       const isSafeMessage =
         safeExactMessages.includes(submissionError.message) ||
+        submissionError.message.startsWith(
+          "Your RSVP has already been received.",
+        ) ||
         submissionError.message.startsWith(
           "This invitation allows a maximum of",
         );

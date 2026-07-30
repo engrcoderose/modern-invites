@@ -46,7 +46,11 @@ export function SearchStep({
       <CardHeader className="border-b border-[var(--smart-rsvp-border-soft)] bg-[var(--smart-rsvp-soft)] text-center">
         <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-green-600" />
 
-        <p className="text-sm font-medium text-green-700">RSVP code verified</p>
+        <p className="text-sm font-medium text-green-700">
+          {event.accessMode === "shared_code"
+            ? "RSVP code verified"
+            : "Guest list verification"}
+        </p>
 
         <CardTitle className="mt-2 font-libreBaskerville text-2xl text-[var(--smart-rsvp-heading)]">
           Find Your Invitation
@@ -123,17 +127,19 @@ export function SearchStep({
           </div>
         )}
 
-        <div className="border-t border-gray-100 pt-5 text-center">
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={onReset}
-            disabled={isSearching}
-            className="text-gray-500"
-          >
-            Use a Different RSVP Code
-          </Button>
-        </div>
+        {event.accessMode === "shared_code" ? (
+          <div className="border-t border-gray-100 pt-5 text-center">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={onReset}
+              disabled={isSearching}
+              className="text-gray-500"
+            >
+              Use a Different RSVP Code
+            </Button>
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   );

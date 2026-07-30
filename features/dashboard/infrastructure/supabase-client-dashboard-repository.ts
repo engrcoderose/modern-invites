@@ -8,6 +8,7 @@ import type {
   DashboardGuest,
   DashboardGuestPage,
   DashboardGuestQuery,
+  DashboardHousehold,
 } from "@/features/dashboard/domain/client-dashboard";
 import type { ClientDashboardRepository } from "@/features/dashboard/domain/client-dashboard-repository";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -38,6 +39,10 @@ interface GuestRow {
   guest_type: "adult" | "child";
   attendance_status: DashboardAttendanceStatus;
   dietary_restrictions: string | null;
+  rsvp_email: string | null;
+  rsvp_phone: string | null;
+  rsvp_message: string | null;
+  responded_at: string | null;
   invitations: InvitationRelation | InvitationRelation[];
 }
 
@@ -48,6 +53,23 @@ interface RsvpRow {
   message: string | null;
   submitted_at: string;
   updated_at: string;
+}
+
+interface EventAccessModeRow {
+  rsvp_access_mode: "shared_code" | "name_search";
+}
+
+interface HouseholdRow {
+  id: number;
+  household_name: string;
+  max_attendees: number;
+  guests:
+    | {
+        count: number;
+      }[]
+    | {
+        count: number;
+      };
 }
 
 function getInvitation(
@@ -205,6 +227,10 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
           "guest_type",
           "attendance_status",
           "dietary_restrictions",
+          "rsvp_email",
+          "rsvp_phone",
+          "rsvp_message",
+          "responded_at",
           "invitations!inner(id, event_id, household_name, max_attendees)",
         ].join(","),
         { count: "exact" },
@@ -230,6 +256,18 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
       throw new Error("Unable to load the guest list.");
     }
 
+    const { data: eventAccessData, error: eventAccessError } =
+      await supabase
+        .from("events")
+        .select("rsvp_access_mode")
+        .eq("id", eventId)
+        .maybeSingle();
+
+    if (eventAccessError || !eventAccessData) {
+      throw new Error("Unable to load the event RSVP configuration.");
+    }
+
+    const eventAccess = eventAccessData as EventAccessModeRow;
     const guestRows = (data ?? []) as unknown as GuestRow[];
     const latestRsvps = await loadLatestRsvps([
       ...new Set(guestRows.map((guest) => guest.invitation_id)),
@@ -238,6 +276,8 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
     const guests = guestRows.map((guest): DashboardGuest => {
       const invitation = getInvitation(guest.invitations);
       const rsvp = latestRsvps.get(guest.invitation_id);
+      const usesIndividualResponses =
+        eventAccess.rsvp_access_mode === "name_search";
 
       return {
         id: guest.id,
@@ -248,10 +288,18 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         guestType: guest.guest_type,
         attendanceStatus: guest.attendance_status,
         dietaryRestrictions: guest.dietary_restrictions,
-        email: rsvp?.email ?? null,
-        phone: rsvp?.phone ?? null,
-        message: rsvp?.message ?? null,
-        submittedAt: rsvp?.submitted_at ?? null,
+        email:
+          guest.rsvp_email ??
+          (usesIndividualResponses ? null : rsvp?.email ?? null),
+        phone:
+          guest.rsvp_phone ??
+          (usesIndividualResponses ? null : rsvp?.phone ?? null),
+        message:
+          guest.rsvp_message ??
+          (usesIndividualResponses ? null : rsvp?.message ?? null),
+        submittedAt:
+          guest.responded_at ??
+          (usesIndividualResponses ? null : rsvp?.submitted_at ?? null),
       };
     });
 
@@ -294,6 +342,41 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
     }
   }
 
+  async function getHousehold(
+    invitationId: number,
+    eventId: number,
+  ) {
+    const { data, error } = await supabase
+      .from("invitations")
+      .select("id, household_name, max_attendees, guests(count)")
+      .eq("id", invitationId)
+      .eq("event_id", eventId)
+      .maybeSingle();
+
+    if (error) {
+      throw new Error("Unable to verify the household.");
+    }
+
+    if (!data) {
+      throw new Error("The selected household was not found.");
+    }
+
+    return data as unknown as HouseholdRow;
+  }
+
+  function toHousehold(row: HouseholdRow): DashboardHousehold {
+    const countRelation = Array.isArray(row.guests)
+      ? row.guests[0]
+      : row.guests;
+
+    return {
+      id: row.id,
+      name: row.household_name,
+      maxAttendees: row.max_attendees,
+      guestCount: countRelation?.count ?? 0,
+    };
+  }
+
   return {
     listAssignedEvents,
     getEventRole,
@@ -325,8 +408,12 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         countGuests(eventId, "pending"),
         supabase
           .from("invitations")
-          .select("id", { count: "exact", head: true })
-          .eq("event_id", eventId),
+          .select(
+            "id, household_name, max_attendees, guests(count)",
+            { count: "exact" },
+          )
+          .eq("event_id", eventId)
+          .order("household_name"),
         supabase
           .from("rsvps")
           .select("id, invitations!inner(event_id)", {
@@ -352,6 +439,9 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
           submittedRsvps: rsvpResult.count ?? 0,
         },
         guestPage,
+        households: (
+          (invitationResult.data ?? []) as unknown as HouseholdRow[]
+        ).map(toHousehold),
       };
     },
 
@@ -393,34 +483,88 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
     async createGuest(userId, command) {
       await requireWritableMembership(userId, command.eventId);
 
-      const { data: invitation, error: invitationError } = await supabase
-        .from("invitations")
+      let invitationId = command.invitationId;
+      let createdInvitationId: number | null = null;
+      let household: HouseholdRow | null = null;
+
+      if (invitationId) {
+        household = await getHousehold(invitationId, command.eventId);
+      } else {
+        if (!command.householdName) {
+          throw new Error("A household name is required.");
+        }
+
+        const { data: invitation, error: invitationError } =
+          await supabase
+            .from("invitations")
+            .insert({
+              event_id: command.eventId,
+              household_name: command.householdName,
+              max_attendees: 1,
+            })
+            .select("id")
+            .single();
+
+        if (invitationError || !invitation) {
+          throw new Error("Unable to create the guest household.");
+        }
+
+        invitationId = invitation.id as number;
+        createdInvitationId = invitationId;
+      }
+
+      const { data: guest, error: guestError } = await supabase
+        .from("guests")
         .insert({
-          event_id: command.eventId,
-          household_name: command.householdName,
-          max_attendees: 1,
+          invitation_id: invitationId,
+          full_name: command.fullName,
+          guest_type: command.guestType,
+          attendance_status: "pending",
+          dietary_restrictions: command.dietaryRestrictions,
         })
         .select("id")
         .single();
 
-      if (invitationError || !invitation) {
-        throw new Error("Unable to create the guest household.");
+      if (guestError || !guest) {
+        if (createdInvitationId) {
+          await supabase
+            .from("invitations")
+            .delete()
+            .eq("id", createdInvitationId);
+        }
+        throw new Error("Unable to create the guest.");
       }
 
-      const { error: guestError } = await supabase.from("guests").insert({
-        invitation_id: invitation.id,
-        full_name: command.fullName,
-        guest_type: command.guestType,
-        attendance_status: "pending",
-        dietary_restrictions: command.dietaryRestrictions,
-      });
+      if (household) {
+        const { count: currentGuestCount, error: countError } =
+          await supabase
+            .from("guests")
+            .select("id", { count: "exact", head: true })
+            .eq("invitation_id", household.id);
 
-      if (guestError) {
-        await supabase
-          .from("invitations")
-          .delete()
-          .eq("id", invitation.id);
-        throw new Error("Unable to create the guest.");
+        if (countError) {
+          await supabase.from("guests").delete().eq("id", guest.id);
+          throw new Error("Unable to verify the household capacity.");
+        }
+
+        const expectedGuestCount = currentGuestCount ?? 0;
+
+        if (expectedGuestCount > household.max_attendees) {
+          const { error: capacityError } = await supabase
+            .from("invitations")
+            .update({
+              max_attendees: expectedGuestCount,
+              updated_at: new Date().toISOString(),
+            })
+            .eq("id", household.id);
+
+          if (capacityError) {
+            await supabase.from("guests").delete().eq("id", guest.id);
+            throw new Error(
+              "Unable to update the household capacity.",
+            );
+          }
+        }
       }
     },
 

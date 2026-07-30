@@ -27,3 +27,13 @@ export const weddingSmartRsvpTheme: SmartRsvpTheme = {
   soft: "#faf7ef",
   softStrong: "#f1e9d8",
 };
+
+export const nylgenKerseeSmartRsvpTheme: SmartRsvpTheme = {
+  accent: "#4c6344",
+  accentHover: "#677e5b",
+  heading: "#374337",
+  border: "#97a98e",
+  borderSoft: "#d9e7d3",
+  soft: "#eff4eb",
+  softStrong: "#d9e7d3",
+};
