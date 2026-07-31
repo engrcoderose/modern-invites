@@ -127,7 +127,7 @@ export const weddingData = {
     },
     reception: {
       name: "E.M. Resort",
-      address: "Sta. Filomena, San Pablo City",
+      address: "St. John Ville Subd, San Juan San Pablo City",
       mapUrl: null,
     },
   },
