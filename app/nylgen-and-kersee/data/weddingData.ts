@@ -296,7 +296,7 @@ export const weddingData = {
   socialSharing: {
     message:
       "We would love for you to capture and share your moments from our special day. Use our wedding hashtag or scan the QR code to upload your photos to our album.",
-    hashtag: "#NYLGENfoundhisKERSEEylahaan",
+    hashtag: "#NYLGENfoundhisKERSEEyahan",
     albumUrl: null,
     uploadPath: "/nylgen-and-kersee#photo-upload",
     qrCodeAsset: null,
