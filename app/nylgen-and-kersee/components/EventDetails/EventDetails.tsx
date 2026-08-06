@@ -29,6 +29,7 @@ type VenueCardProps = {
   icon: typeof Church;
   index: number;
   reduceMotion: boolean | null;
+  note?: string;
 };
 
 function VenueCard({
@@ -41,6 +42,7 @@ function VenueCard({
   icon: Icon,
   index,
   reduceMotion,
+  note,
 }: VenueCardProps) {
   return (
     <motion.article
@@ -131,6 +133,17 @@ function VenueCard({
                 </a>
               </Button>
             ) : null}
+            <div
+              className={`w-full max-w-sm md:min-h-[4.75rem] ${
+                note ? "mt-6" : "hidden md:mt-6 md:block"
+              }`}
+            >
+              {note ? (
+                <p className="border-t border-wedding-line/35 pt-4 font-wedding-body text-sm font-medium leading-6 tracking-[0.04em] text-wedding-sage-deep">
+                  {note}
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
       </Card>
@@ -198,6 +211,7 @@ export function EventDetails({ data }: EventDetailsProps) {
             icon={Church}
             index={0}
             reduceMotion={reduceMotion}
+            note={data.event.ceremony.note}
           />
           <VenueCard
             eyebrow="The reception"

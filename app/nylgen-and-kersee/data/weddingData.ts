@@ -41,6 +41,7 @@ export type WeddingData = {
       name: string;
       address: string | null;
       mapUrl: string | null;
+      note: string;
     };
     reception: {
       name: string;
@@ -124,6 +125,7 @@ export const weddingData = {
       name: "Nuestra Señora Delos Remedios Parish",
       address: "Mercury St., ADB Subdivision, Brgy. Del Remedio, San Pablo City",
       mapUrl: null,
+      note: "Please arrive at the church 30 minutes before the ceremony.",
     },
     reception: {
       name: "E.M. Resort",
@@ -193,8 +195,8 @@ export const weddingData = {
     {
       role: "Candle",
       people: [
-        { name: "Amando Santos IV" },
-        { name: "Maidy Santos-Satorre" },
+        { name: "Russlyn Arabelle Isles" },
+        { name: "Gian Judiel Bondad" },
       ],
     },
     {
@@ -210,14 +212,15 @@ export const weddingData = {
     },
     {
       role: "Little Bride",
-      people: [{ name: "Elmira Maghirang" }],
+      people: [{ name: "Elmira Marri Lim" }],
     },
     {
       role: "Flower Girls",
       people: [
-        { name: "Lizzy Kiara Anlacan" },
-        { name: "Amara Maghirang" },
-        { name: "Amari Anlacan" },
+        { name: "Katharine Charlotte Lagos" },
+        { name: "Maria Sephyra Andrea Casal" },
+        { name: "Zyanah Amarah Maghirang" },
+        { name: "Sky Precious Faith Berguila" },
       ],
     },
     {
@@ -226,11 +229,11 @@ export const weddingData = {
     },
     {
       role: "Bible Bearer",
-      people: [{ name: "Kylo Anlacan" }],
+      people: [{ name: "Charlie Jeshua Vetus" }],
     },
     {
       role: "Coin Bearer",
-      people: [{ name: "Charlie Jeshua Betus" }],
+      people: [{ name: "Jameson Brylle Prudencio" }],
     },
   ],
   principalSponsors: [
