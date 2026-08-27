@@ -12,8 +12,25 @@ import stephaniePhoto from "@/app/stephanie-at-18/assets/HeroPhoto.png";
 import ericCoupleImg from "@/app/eric-and-li/assets/images/gallery-one-couple.jpg";
 import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple.jpg";
 import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
+import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
+import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
 
 const portfolioItems = [
+  {
+    id: "nylgen-and-kersee",
+    title: "Nylgen & Kersee",
+    category: "Wedding Invitation",
+    date: "February 27, 2027",
+    venue: "Nuestra Señora Delos Remedios Parish · San Pablo City",
+    description:
+      "A botanical ivory-and-sage wedding invitation for Nylgen and Kersee—featuring a cinematic welcome, background music, live countdown, event details, entourage, gallery, attire guide, gift guide, and personalized RSVP experience.",
+    href: "/nylgen-and-kersee",
+    bgImage: nylgenKerseeBackground,
+    previewImage: nylgenKerseeCouple,
+    accent: "#455f4b",
+    accentLight: "#f3f5ed",
+    tags: ["Wedding", "Botanical", "Ivory & Sage"],
+  },
   {
     id: "isabella-and-daniel",
     title: "Isabella & Daniel",

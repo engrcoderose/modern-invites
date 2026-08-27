@@ -40,31 +40,47 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
       <h3 className="mt-5 font-instrumentSerif text-4xl leading-none sm:text-5xl">
         {packageDetails.name}
       </h3>
-      <p className={`mt-3 min-h-11 text-sm leading-6 ${isFeatured ? "text-white/60" : "text-ink-muted"}`}>
+      <p
+        className={`mt-3 min-h-11 text-sm leading-6 ${isFeatured ? "text-white/60" : "text-ink-muted"}`}
+      >
         {packageDetails.tagline}
       </p>
 
       <div className="mt-8 flex items-end gap-1.5">
-        <span className={`mb-2 text-lg ${isFeatured ? "text-white/55" : "text-ink-muted"}`}>₱</span>
+        <span
+          className={`mb-2 text-lg ${isFeatured ? "text-white/55" : "text-ink-muted"}`}
+        >
+          ₱
+        </span>
         <span className="font-instrumentSerif text-6xl leading-none tracking-[-0.03em]">
           {packageDetails.price}
         </span>
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-        <span className={`line-through ${isFeatured ? "text-white/35" : "text-ink-muted/60"}`}>
+        <span
+          className={`line-through ${isFeatured ? "text-white/35" : "text-ink-muted/60"}`}
+        >
           ₱{packageDetails.originalPrice}
         </span>
-        <span className={`font-semibold ${isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"}`}>
+        <span
+          className={`font-semibold ${isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"}`}
+        >
           one-time payment
         </span>
       </div>
 
-      <p className={`mt-6 text-sm leading-6 ${isFeatured ? "text-white/65" : "text-ink-muted"}`}>
+      <p
+        className={`mt-6 text-sm leading-6 ${isFeatured ? "text-white/65" : "text-ink-muted"}`}
+      >
         {packageDetails.description}
       </p>
-      <div className={`my-7 h-px ${isFeatured ? "bg-white/10" : "bg-forest/10"}`} />
+      <div
+        className={`my-7 h-px ${isFeatured ? "bg-white/10" : "bg-forest/10"}`}
+      />
 
-      <p className={`mb-4 text-[0.62rem] font-bold uppercase tracking-[0.2em] ${isFeatured ? "text-white/45" : "text-ink-muted/70"}`}>
+      <p
+        className={`mb-4 text-[0.62rem] font-bold uppercase tracking-[0.2em] ${isFeatured ? "text-white/45" : "text-ink-muted/70"}`}
+      >
         What’s included
       </p>
       <ul className="flex-1 space-y-3.5">
@@ -77,10 +93,16 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
           >
             <span
               className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${
-                isFeatured ? "bg-champagne/20 text-champagne-light" : "bg-eucalyptus/15 text-forest"
+                isFeatured
+                  ? "bg-champagne/20 text-champagne-light"
+                  : "bg-eucalyptus/15 text-forest"
               }`}
             >
-              <Check className="h-2.5 w-2.5" strokeWidth={2.5} aria-hidden="true" />
+              <Check
+                className="h-2.5 w-2.5"
+                strokeWidth={2.5}
+                aria-hidden="true"
+              />
             </span>
             {feature}
           </li>
