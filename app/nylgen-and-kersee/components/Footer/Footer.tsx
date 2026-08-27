@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Heart, Leaf } from "lucide-react";
 
 import type { WeddingData } from "../../data/weddingData";
@@ -78,12 +79,12 @@ export function Footer({ data }: FooterProps) {
 
         <p className="mt-10 border-t border-wedding-paper/10 pt-5 text-center font-sans text-[0.5rem] uppercase tracking-[0.16em] text-wedding-paper/35">
           Powered by{" "}
-          <a
+          <Link
             href="/"
             className="text-wedding-paper/60 underline decoration-wedding-paper/25 underline-offset-4 transition hover:text-wedding-paper focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-wedding-paper/70"
           >
             Modern Invites
-          </a>
+          </Link>
         </p>
       </Container>
     </footer>
