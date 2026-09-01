@@ -23,6 +23,30 @@ import { weddingData } from "./data/weddingData";
 export const metadata: Metadata = {
   title: `${weddingData.couple.groom.firstName} & ${weddingData.couple.bride.firstName} | ${weddingData.event.dateDisplay}`,
   description: weddingData.meta.description,
+  alternates: {
+    canonical: `/${weddingData.meta.slug}`,
+  },
+  openGraph: {
+    type: "website",
+    url: `/${weddingData.meta.slug}`,
+    title: `${weddingData.couple.groom.firstName} & ${weddingData.couple.bride.firstName}`,
+    description: weddingData.meta.description,
+    siteName: "Modern Invites",
+    images: [
+      {
+        url: `/${weddingData.meta.slug}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: `${weddingData.couple.groom.firstName} and ${weddingData.couple.bride.firstName}'s wedding invitation`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${weddingData.couple.groom.firstName} & ${weddingData.couple.bride.firstName}`,
+    description: weddingData.meta.description,
+    images: [`/${weddingData.meta.slug}/opengraph-image`],
+  },
 };
 
 export default function NylgenAndKerseeInvitation() {

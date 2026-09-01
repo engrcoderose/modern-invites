@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createInvitationMetadata } from "@/lib/invitation-metadata";
 import { faqData, weddingProgram, weddingTwoData } from "./data/wedding-two-data";
 import Navigation from "./components/Navigation";
 import OpeningScreen from "./components/OpeningScreen";
@@ -21,10 +22,12 @@ import InLoveCouple from "./assets/inlove-couple.jpg";
 import Portrait from "./assets/pexels-camera-treasure-928922-16841002.jpg";
 import "./wedding.css";
 
-export const metadata: Metadata = {
-  title: "Isabella & Daniel | 14 March 2027",
-  description: "Join Isabella and Daniel for their wedding celebration in Antipolo on March 14, 2027.",
-};
+export const metadata: Metadata = createInvitationMetadata({
+  slug: "isabella-and-daniel",
+  title: "Isabella & Daniel | March 14, 2027",
+  description:
+    "Join Isabella and Daniel for their wedding celebration in Antipolo on March 14, 2027.",
+});
 
 export default function HeroScrollInvitation() {
   const wedding = weddingTwoData;
