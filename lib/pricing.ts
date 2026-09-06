@@ -49,7 +49,8 @@ export const PRICING_PACKAGES: PricingPackage[] = [
     tagline: "The most loved package for couples",
     description:
       "A richer, story-led invitation with immersive details and interactions.",
-    price: "1,999",
+    price: "1,499",
+    originalPrice: "2,499",
     featured: true,
     bestFor: "Story-rich weddings and events",
     highlight: "Music, maps, and premium motion",

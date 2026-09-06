@@ -44,6 +44,7 @@ const petitFormalScript = Petit_Formal_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.moderninvites.com"),
   title: "Modern Invites | Personalized Invitation Websites",
   description:
     "Personalized invitation websites for weddings, debuts, birthdays, and meaningful celebrations. Custom-designed, mobile-ready, and easy to share.",
