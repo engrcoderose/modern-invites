@@ -6,6 +6,7 @@ export type PricingPackage = {
   tagline: string;
   description: string;
   price: string;
+  originalPrice?: string;
   features: string[];
   featured?: boolean;
   bestFor: string;
