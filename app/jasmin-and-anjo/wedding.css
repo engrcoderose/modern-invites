@@ -33,19 +33,33 @@
 
 .floral-invitation .hero-grain {
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.22) 0 0.6px, transparent 0.8px),
-    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.13) 0 0.5px, transparent 0.7px);
-  background-position: 0 0, 7px 11px;
-  background-size: 13px 13px, 17px 17px;
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 255, 255, 0.22) 0 0.6px,
+      transparent 0.8px
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(255, 255, 255, 0.13) 0 0.5px,
+      transparent 0.7px
+    );
+  background-position:
+    0 0,
+    7px 11px;
+  background-size:
+    13px 13px,
+    17px 17px;
   mix-blend-mode: soft-light;
   pointer-events: none;
 }
 
 .floral-invitation .hero-text-reveal {
-  animation: hero-text-reveal 2.00s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hero-text-reveal 2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.floral-invitation .hero-scroll-content:not(.hero-copy-ready) .hero-text-reveal {
+.floral-invitation
+  .hero-scroll-content:not(.hero-copy-ready)
+  .hero-text-reveal {
   animation-play-state: paused;
 }
 
@@ -136,7 +150,7 @@
   }
 
   .floral-invitation .scroll-reveal,
-  .floral-invitation .image-scroll-reveal>figure,
+  .floral-invitation .image-scroll-reveal > figure,
   .floral-invitation .hero-scroll-media,
   .floral-invitation .hero-scroll-content,
   .floral-invitation .ambient-mark,
@@ -156,7 +170,7 @@
   right: -80px;
   top: 35px;
   width: 290px;
-  opacity: .35;
+  opacity: 0.35;
   transform: rotate(175deg);
 }
 
@@ -164,19 +178,27 @@
   left: -100px;
   bottom: -60px;
   width: 330px;
-  opacity: .35;
+  opacity: 0.35;
   transform: rotate(15deg);
 }
 
 .floral-invitation #invitation {
-  background-image: radial-gradient(ellipse at 95% 5%, #f3e3e6aa, transparent 55%);
+  background-image: radial-gradient(
+    ellipse at 95% 5%,
+    #f3e3e6aa,
+    transparent 55%
+  );
 }
 
 .floral-invitation #dress-code {
-  background-image: radial-gradient(ellipse at 0% 100%, #dfe7d199, transparent 65%);
+  background-image: radial-gradient(
+    ellipse at 0% 100%,
+    #dfe7d199,
+    transparent 65%
+  );
 }
 
-.floral-invitation .invitation-content>section:not(#top):not(#cinematic) {
+.floral-invitation .invitation-content > section:not(#top):not(#cinematic) {
   scroll-margin-top: 78px;
 }
 
@@ -189,19 +211,18 @@
   outline-offset: 5px;
 }
 
-.floral-invitation label:has(input[type=radio]:focus-visible) {
+.floral-invitation label:has(input[type="radio"]:focus-visible) {
   outline: 2px solid #eac8cd;
   outline-offset: 4px;
 }
 
-@media (prefers-reduced-motion:no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   html:has(.floral-invitation) {
     scroll-behavior: smooth;
   }
 }
 
-@media (prefers-reduced-motion:reduce) {
-
+@media (prefers-reduced-motion: reduce) {
   .floral-invitation *,
   .floral-invitation *:before,
   .floral-invitation *:after {
@@ -221,7 +242,13 @@
   margin-top: 64px;
   overflow: hidden;
   isolation: isolate;
-  mask-image: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 9%,
+    #000 91%,
+    transparent
+  );
 }
 
 .floral-invitation .flow-gallery-track {
@@ -244,7 +271,7 @@
 }
 
 .floral-invitation .flow-gallery-photo img {
-  transition: transform .65s ease;
+  transition: transform 0.65s ease;
 }
 
 .floral-invitation .flow-gallery-photo:hover img {
@@ -256,7 +283,7 @@
   animation-play-state: paused;
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .floral-invitation .flow-gallery-wall:hover .flow-gallery-track {
     animation-play-state: paused;
   }
@@ -287,7 +314,7 @@
   }
 }
 
-@media(max-width:640px) {
+@media (max-width: 640px) {
   .floral-invitation .flow-gallery-wall {
     --gallery-gap: 7px;
     height: 440px;
@@ -300,7 +327,7 @@
   }
 }
 
-@media(prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
   .floral-invitation .flow-gallery-wall {
     height: auto;
     max-height: none;
@@ -330,7 +357,7 @@
 }
 
 .floral-invitation .opening-photo-wash {
-  background: rgba(67, 84, 63, .34);
+  background: rgba(67, 84, 63, 0.34);
 }
 
 .floral-invitation .opening-florals {
@@ -362,11 +389,11 @@
   }
 
   .floral-invitation .opening-floral-bloom {
-    animation: opening-floral-unfurl 8s cubic-bezier(.22, .61, .36, 1) both;
+    animation: opening-floral-unfurl 8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
   }
 
   .floral-invitation .opening-florals--right .opening-floral-bloom {
-    animation-delay: .8s;
+    animation-delay: 0.8s;
   }
 
   .floral-invitation .opening-florals img {
@@ -379,7 +406,9 @@
     animation-duration: 11s;
   }
 
-  .floral-invitation .opening-screen:not(.opening-screen--ready) :is(.opening-photo, .opening-floral-bloom, .opening-florals img) {
+  .floral-invitation
+    .opening-screen:not(.opening-screen--ready)
+    :is(.opening-photo, .opening-floral-bloom, .opening-florals img) {
     animation-play-state: paused;
   }
 }
@@ -390,7 +419,7 @@
   }
 
   to {
-    transform: scale(1.085) translate3d(-.5%, .35%, 0);
+    transform: scale(1.085) translate3d(-0.5%, 0.35%, 0);
   }
 }
 
@@ -398,11 +427,11 @@
   0% {
     opacity: 0;
     clip-path: inset(100% 0 0);
-    transform: scale(.72, .88);
+    transform: scale(0.72, 0.88);
   }
 
   25% {
-    opacity: .75;
+    opacity: 0.75;
   }
 
   65% {
@@ -419,17 +448,17 @@
 
 @keyframes opening-floral-breathe {
   from {
-    transform: scaleX(.985) rotate(-.4deg);
+    transform: scaleX(0.985) rotate(-0.4deg);
   }
 
   to {
-    transform: scaleX(1.035) rotate(.65deg);
+    transform: scaleX(1.035) rotate(0.65deg);
   }
 }
 
 .floral-invitation .opening-copy {
   display: grid;
-  grid-template-rows: 1fr 2.5fr .8fr 1fr 1fr;
+  grid-template-rows: 1fr 2.5fr 0.8fr 1fr 1fr;
   height: 100%;
   min-height: 620px;
   padding: 9vh 12% 7vh;
@@ -437,7 +466,7 @@
 }
 
 .floral-invitation .opening-couple {
-  gap: .18em;
+  gap: 0.18em;
   animation-delay: 100ms;
 }
 
@@ -454,7 +483,9 @@
 }
 
 .floral-invitation .opening-button {
-  transition: background .2s, transform .2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .floral-invitation .opening-button:hover {
@@ -479,18 +510,18 @@
   }
 
   .floral-invitation .opening-photo-wash {
-    background: rgba(40, 62, 46, .43);
+    background: rgba(40, 62, 46, 0.43);
   }
 
   .floral-invitation .opening-couple {
     flex-wrap: wrap;
-    column-gap: .13em;
+    column-gap: 0.13em;
     row-gap: 0;
     font-size: clamp(70px, 19vw, 110px);
-    line-height: .9;
+    line-height: 0.9;
   }
 
-  .floral-invitation .opening-couple>span:last-child {
+  .floral-invitation .opening-couple > span:last-child {
     flex-basis: 100%;
   }
 
@@ -499,11 +530,11 @@
     font-size: 13px;
   }
 
-  .floral-invitation .opening-details>span:first-child {
+  .floral-invitation .opening-details > span:first-child {
     display: block;
   }
 
-  .floral-invitation .opening-details>span:nth-child(2) {
+  .floral-invitation .opening-details > span:nth-child(2) {
     display: none;
   }
 
@@ -556,86 +587,340 @@
   opacity: 0;
   transition: opacity 1.8s ease-in-out;
 }
-.floral-invitation .garden-hero-slide[data-active="true"] { opacity: 1; }
+.floral-invitation .garden-hero-slide[data-active="true"] {
+  opacity: 1;
+}
 .floral-invitation .garden-hero-photo {
   object-position: var(--photo-position);
   animation: garden-photo-drift 20s ease-in-out infinite alternate;
   animation-play-state: paused;
 }
-.floral-invitation .garden-hero[data-playing="true"] .garden-hero-photo { animation-play-state: running; }
+.floral-invitation .garden-hero[data-playing="true"] .garden-hero-photo {
+  animation-play-state: running;
+}
 .floral-invitation .garden-hero-wash {
   background: linear-gradient(180deg, #304b3e40, #71816850 45%, #344d3b50);
 }
-.floral-invitation .garden-hero-copy { padding-top: clamp(110px, 14svh, 180px); text-shadow: 0 1px 8px #263d3530; }
-.floral-invitation .garden-hero-flowers { height: 48%; }
-.floral-invitation .garden-hero-reveal { animation: garden-copy-enter 1.8s .35s both; animation-play-state: paused; }
-.floral-invitation .garden-hero-names { animation-delay: .55s; }
-.floral-invitation .garden-hero-details { animation-delay: .8s; }
-.floral-invitation .garden-hero[data-opened="true"] .garden-hero-reveal { animation-play-state: running; }
+.floral-invitation .garden-hero-copy {
+  padding-top: clamp(110px, 14svh, 180px);
+  text-shadow: 0 1px 8px #263d3530;
+}
+.floral-invitation .garden-hero-flowers {
+  height: 48%;
+}
+.floral-invitation .garden-hero-reveal {
+  animation: garden-copy-enter 1.8s 0.35s both;
+  animation-play-state: paused;
+}
+.floral-invitation .garden-hero-names {
+  animation-delay: 0.55s;
+}
+.floral-invitation .garden-hero-details {
+  animation-delay: 0.8s;
+}
+.floral-invitation .garden-hero[data-opened="true"] .garden-hero-reveal {
+  animation-play-state: running;
+}
 @keyframes garden-photo-drift {
-  from { transform: scale(1.015); }
-  to { transform: scale(1.075); }
+  from {
+    transform: scale(1.015);
+  }
+  to {
+    transform: scale(1.075);
+  }
 }
 @keyframes garden-copy-enter {
-  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 @media (max-width: 600px) {
-  .floral-invitation .garden-hero { min-height: 700px; }
-  .floral-invitation .garden-hero-photo { object-position: var(--phone-photo-position); }
-  .floral-invitation .garden-hero-copy { height: 100%; justify-content: center; padding: 72px 24px 120px; }
-  .floral-invitation .garden-hero-names { flex-direction: column; align-items: center; gap: .25em; margin: 24px 0; font-size: clamp(72px, 18vw, 100px); line-height: 1.05; }
-  .floral-invitation .garden-hero-names > span:nth-child(2) { font-size: .55em; line-height: .9; }
-  .floral-invitation .garden-hero-flowers { width: 850px; height: 32%; left: 50%; right: auto; transform: translateX(-50%); }
+  .floral-invitation .garden-hero {
+    min-height: 700px;
+  }
+  .floral-invitation .garden-hero-photo {
+    object-position: var(--phone-photo-position);
+  }
+  .floral-invitation .garden-hero-copy {
+    height: 100%;
+    justify-content: center;
+    padding: 72px 24px 120px;
+  }
+  .floral-invitation .garden-hero-names {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25em;
+    margin: 24px 0;
+    font-size: clamp(72px, 18vw, 100px);
+    line-height: 1.05;
+  }
+  .floral-invitation .garden-hero-names > span:nth-child(2) {
+    font-size: 0.55em;
+    line-height: 0.9;
+  }
+  .floral-invitation .garden-hero-flowers {
+    width: 850px;
+    height: 32%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
 }
 @media (max-height: 500px) and (min-width: 601px) {
-  .floral-invitation .garden-hero { min-height: 520px; }
-  .floral-invitation .garden-hero-copy { padding-top: 75px; }
-  .floral-invitation .garden-hero-names { font-size: 110px; margin: 12px 0; }
+  .floral-invitation .garden-hero {
+    min-height: 520px;
+  }
+  .floral-invitation .garden-hero-copy {
+    padding-top: 75px;
+  }
+  .floral-invitation .garden-hero-names {
+    font-size: 110px;
+    margin: 12px 0;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .floral-invitation .garden-hero-photo,
-  .floral-invitation .garden-hero-reveal { animation: none; transform: none; filter: none; }
-  .floral-invitation .garden-hero-slide { transition: none; }
+  .floral-invitation .garden-hero-reveal {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+  .floral-invitation .garden-hero-slide {
+    transition: none;
+  }
 }
 
 /* Illustrated vertical wedding program, with a scroll-following dotted path. */
-.floral-invitation .wedding-timeline { margin-top:100px; padding:44px 24px; border:1px solid #ead7e1; border-radius:28px; background:linear-gradient(135deg,#f6e9ed,#edf0e6); scroll-margin-top:90px; }
-.floral-invitation .timeline-paper { max-width:660px; margin:0 auto; padding:52px 46px 36px; border:1px solid #e3dad0; border-radius:24px; background:#fffdf7; box-shadow:0 14px 55px #62445106; }
-.floral-invitation .timeline-heading { text-align:center; }
-.floral-invitation .timeline-heading>p { font-size:9px; letter-spacing:.25em; text-transform:uppercase; color:#946879; }
-.floral-invitation .timeline-heading h2 { font-family:var(--font-instrument-serif),serif; font-size:54px; font-weight:400; line-height:1.08; margin:15px 0 14px; color:#624451; }
-.floral-invitation .timeline-heading h2 em { font-family:var(--font-mea-culpa),cursive; font-weight:400; color:#946879; }
-.floral-invitation .timeline-heading>span { display:block; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#756770; }
-.floral-invitation .timeline-heading small { display:block; margin-top:15px; font-size:10px; color:#756770; }
-.floral-invitation .timeline-events { --timeline-axis:37%; position:relative; list-style:none; margin:42px 0 0; padding:0; }
-.floral-invitation .timeline-rail { position:absolute; top:0; bottom:0; left:var(--timeline-axis); width:2px; background:repeating-linear-gradient(to bottom,#9b9f89 0 2px,transparent 2px 8px); }
-.floral-invitation .timeline-traveler { position:absolute; left:50%; width:12px; height:12px; border-radius:50%; background:#7d9368; transform:translate(-50%,-50%); box-shadow:0 0 0 5px #fffdf7; }
-.floral-invitation .timeline-event { display:grid; grid-template-columns:var(--timeline-axis) 1fr; align-items:center; min-height:175px; padding:22px 0; }
-.floral-invitation .timeline-art { display:flex; justify-content:center; padding-right:24px; }
-.floral-invitation .timeline-illustration { width:110px; height:110px; position:relative; display:grid; place-items:center; color:#819274; }
-.floral-invitation .timeline-watercolor { position:absolute; inset:20px 10px 15px; border-radius:47% 53% 65% 35%; background:radial-gradient(ellipse,#d9e1cb90,transparent 72%); transform:rotate(-15deg); }
-.floral-invitation .timeline-illustration>svg:not(.timeline-leaves) { position:relative; }
-.floral-invitation .timeline-illustration-2 { color:#a28597; }
-.floral-invitation .timeline-illustration-3 { color:#b2997b; }
-.floral-invitation .timeline-illustration-4 { color:#8d98ad; }
-.floral-invitation .timeline-leaves { position:absolute; bottom:0; left:20px; width:80px; height:35px; }
-.floral-invitation .timeline-bouquet { width:110px; height:110px; object-fit:contain; }
-.floral-invitation .timeline-event-copy { padding-left:32px; }
-.floral-invitation .timeline-event-copy time { font-family:var(--font-instrument-serif),serif; font-size:25px; color:#624451; }
-.floral-invitation .timeline-event-copy h3 { margin-top:9px; font-size:10px; font-weight:500; line-height:1.8; letter-spacing:.14em; text-transform:uppercase; color:#624451; }
-.floral-invitation .timeline-event-copy p { margin-top:8px; max-width:240px; font-family:var(--font-instrument-serif),serif; font-size:17px; line-height:1.5; color:#756770; }
-.floral-invitation .timeline-signoff { text-align:center; margin:40px 0 0; font-family:var(--font-mea-culpa),cursive; font-size:29px; color:#946879; }
-@media(max-width:600px) { .floral-invitation .wedding-timeline { margin-top:64px; padding:16px 10px; border-radius:20px; } .floral-invitation .timeline-paper { padding:34px 15px 28px; border-radius:17px; } .floral-invitation .timeline-heading h2 { font-size:40px; } .floral-invitation .timeline-heading small { font-size:9px; } .floral-invitation .timeline-events { --timeline-axis:32%; margin-top:30px; } .floral-invitation .timeline-event { min-height:165px; } .floral-invitation .timeline-art { padding-right:12px; } .floral-invitation .timeline-illustration,.floral-invitation .timeline-bouquet { width:68px; height:84px; } .floral-invitation .timeline-illustration>svg:not(.timeline-leaves) { width:49px; height:49px; } .floral-invitation .timeline-leaves { width:58px; left:9px; bottom:0; } .floral-invitation .timeline-event-copy { padding-left:20px; } .floral-invitation .timeline-event-copy time { font-size:22px; } .floral-invitation .timeline-event-copy h3 { font-size:9px; letter-spacing:.09em; } .floral-invitation .timeline-event-copy p { font-size:15px; } .floral-invitation .timeline-signoff { font-size:24px; } }
-@media(prefers-reduced-motion:reduce) { .floral-invitation .timeline-traveler { display:none; } }
-
-/* Gently tilted instant prints on a seamless, left-moving photo strip. */
-.floral-invitation .polaroid-window { overflow:hidden; padding:38px 0 28px; mask-image:linear-gradient(to right,transparent,#000 4%,#000 96%,transparent); }
-.floral-invitation .polaroid-track { display:flex; width:max-content; animation:polaroid-drift-left 55s linear infinite; will-change:transform; }
-.floral-invitation .polaroid-group { display:flex; align-items:center; justify-content:space-around; flex-shrink:0; min-width:100vw; gap:30px; padding:14px 15px; }
-.floral-invitation .polaroid-print { flex:0 0 264px; width:264px; margin:0; padding:13px 13px 27px; background:#fffdf8; border:1px solid #ede7df; box-shadow:0 7px 15px #62445115,0 2px 4px #62445110; transform:rotate(var(--print-tilt)); }
-.floral-invitation .polaroid-window[data-paused="true"] .polaroid-track { animation-play-state:paused; }
-@media(hover:hover) { .floral-invitation .polaroid-window:hover .polaroid-track { animation-play-state:paused; } }
-@keyframes polaroid-drift-left { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-@media(max-width:600px) { .floral-invitation .polaroid-print { flex-basis:196px; width:196px; padding:10px 10px 24px; } .floral-invitation .polaroid-group { gap:22px; padding-inline:11px; } .floral-invitation .polaroid-window { padding-top:28px; } .floral-invitation .polaroid-print figcaption { font-size:24px; } }
-@media(prefers-reduced-motion:reduce) { .floral-invitation .polaroid-window { mask-image:none; } .floral-invitation .polaroid-track { width:100%; animation:none; transform:none; will-change:auto; } .floral-invitation .polaroid-group { min-width:0; width:100%; flex-wrap:wrap; gap:30px; padding:16px 24px; } .floral-invitation .polaroid-group[aria-hidden="true"] { display:none; } }
+.floral-invitation .wedding-timeline {
+  margin-top: 100px;
+  padding: 44px 24px;
+  border: 1px solid #ead7e1;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #f6e9ed, #edf0e6);
+  scroll-margin-top: 90px;
+}
+.floral-invitation .timeline-paper {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 52px 46px 36px;
+  border: 1px solid #e3dad0;
+  border-radius: 24px;
+  background: #fffdf7;
+  box-shadow: 0 14px 55px #62445106;
+}
+.floral-invitation .timeline-heading {
+  text-align: center;
+}
+.floral-invitation .timeline-heading > p {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #946879;
+}
+.floral-invitation .timeline-heading h2 {
+  font-family: var(--font-instrument-serif), serif;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1.08;
+  margin: 15px 0 14px;
+  color: #624451;
+}
+.floral-invitation .timeline-heading h2 em {
+  font-family: var(--font-mea-culpa), cursive;
+  font-weight: 400;
+  color: #946879;
+}
+.floral-invitation .timeline-heading > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #756770;
+}
+.floral-invitation .timeline-heading small {
+  display: block;
+  margin-top: 15px;
+  font-size: 10px;
+  color: #756770;
+}
+.floral-invitation .timeline-events {
+  --timeline-axis: 37%;
+  position: relative;
+  list-style: none;
+  margin: 42px 0 0;
+  padding: 0;
+}
+.floral-invitation .timeline-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--timeline-axis);
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #9b9f89 0 2px,
+    transparent 2px 8px
+  );
+}
+.floral-invitation .timeline-traveler {
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #7d9368;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 5px #fffdf7;
+}
+.floral-invitation .timeline-event {
+  display: grid;
+  grid-template-columns: var(--timeline-axis) 1fr;
+  align-items: center;
+  min-height: 175px;
+  padding: 22px 0;
+}
+.floral-invitation .timeline-art {
+  display: flex;
+  justify-content: center;
+  padding-right: 24px;
+}
+.floral-invitation .timeline-illustration {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #819274;
+}
+.floral-invitation .timeline-watercolor {
+  position: absolute;
+  inset: 20px 10px 15px;
+  border-radius: 47% 53% 65% 35%;
+  background: radial-gradient(ellipse, #d9e1cb90, transparent 72%);
+  transform: rotate(-15deg);
+}
+.floral-invitation .timeline-illustration > svg:not(.timeline-leaves) {
+  position: relative;
+}
+.floral-invitation .timeline-illustration-2 {
+  color: #a28597;
+}
+.floral-invitation .timeline-illustration-3 {
+  color: #b2997b;
+}
+.floral-invitation .timeline-illustration-4 {
+  color: #8d98ad;
+}
+.floral-invitation .timeline-leaves {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  width: 80px;
+  height: 35px;
+}
+.floral-invitation .timeline-bouquet {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+.floral-invitation .timeline-event-copy {
+  padding-left: 32px;
+}
+.floral-invitation .timeline-event-copy time {
+  font-family: var(--font-instrument-serif), serif;
+  font-size: 25px;
+  color: #624451;
+}
+.floral-invitation .timeline-event-copy h3 {
+  margin-top: 9px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #624451;
+}
+.floral-invitation .timeline-event-copy p {
+  margin-top: 8px;
+  max-width: 240px;
+  font-family: var(--font-instrument-serif), serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #756770;
+}
+.floral-invitation .timeline-signoff {
+  text-align: center;
+  margin: 40px 0 0;
+  font-family: var(--font-mea-culpa), cursive;
+  font-size: 29px;
+  color: #946879;
+}
+@media (max-width: 600px) {
+  .floral-invitation .wedding-timeline {
+    margin-top: 64px;
+    padding: 16px 10px;
+    border-radius: 20px;
+  }
+  .floral-invitation .timeline-paper {
+    padding: 34px 15px 28px;
+    border-radius: 17px;
+  }
+  .floral-invitation .timeline-heading h2 {
+    font-size: 40px;
+  }
+  .floral-invitation .timeline-heading small {
+    font-size: 9px;
+  }
+  .floral-invitation .timeline-events {
+    --timeline-axis: 32%;
+    margin-top: 30px;
+  }
+  .floral-invitation .timeline-event {
+    min-height: 165px;
+  }
+  .floral-invitation .timeline-art {
+    padding-right: 12px;
+  }
+  .floral-invitation .timeline-illustration,
+  .floral-invitation .timeline-bouquet {
+    width: 68px;
+    height: 84px;
+  }
+  .floral-invitation .timeline-illustration > svg:not(.timeline-leaves) {
+    width: 49px;
+    height: 49px;
+  }
+  .floral-invitation .timeline-leaves {
+    width: 58px;
+    left: 9px;
+    bottom: 0;
+  }
+  .floral-invitation .timeline-event-copy {
+    padding-left: 20px;
+  }
+  .floral-invitation .timeline-event-copy time {
+    font-size: 22px;
+  }
+  .floral-invitation .timeline-event-copy h3 {
+    font-size: 9px;
+    letter-spacing: 0.09em;
+  }
+  .floral-invitation .timeline-event-copy p {
+    font-size: 15px;
+  }
+  .floral-invitation .timeline-signoff {
+    font-size: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floral-invitation .timeline-traveler {
+    display: none;
+  }
+}
