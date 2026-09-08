@@ -4,7 +4,7 @@ import SectionLabel from "./SectionLabel";
 interface EntourageSectionProps {
   brideFullName: string;
   groomFullName: string;
-  groups: { role: string; names: string[] }[];
+  groups: { role: string; names: string[]; }[];
 }
 
 export default function EntourageSection({ brideFullName, groomFullName, groups }: EntourageSectionProps) {

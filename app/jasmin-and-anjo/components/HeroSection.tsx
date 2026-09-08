@@ -1,16 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Walking, Together, Garden, Sitting, Embrace } from "../prenup-media";
 import Image, { type StaticImageData } from "next/image";
 import { useInView, useReducedMotion } from "motion/react";
 import { Pause, Play } from "lucide-react";
+import { usePageVisibility } from "../hooks/usePageVisibility";
 import { invitationOpenedEvent } from "../lib/events";
 import Flowers from "../assets/images/designs/down-flowers.png";
-import Walking from "../assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import Together from "../assets/images/prenup/pexels-king-caplis-471600979-36266073.jpg";
-import Garden from "../assets/images/prenup/pexels-king-caplis-471600979-36266077.jpg";
-import Sitting from "../assets/images/prenup/pexels-king-caplis-471600979-36396114.jpg";
-import Embrace from "../assets/images/prenup/pexels-king-caplis-471600979-36266135.jpg";
 
 interface HeroSlide {
   src: StaticImageData;
@@ -41,19 +38,15 @@ export default function HeroSection({ bride, groom, dateDisplay, location }: Her
   const [opened, setOpened] = useState(false);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [pageVisible, setPageVisible] = useState(true);
+  const pageVisible = usePageVisibility();
   const [loaded, setLoaded] = useState<number[]>([]);
   const playing = opened && inView && pageVisible && !paused && !reduceMotion;
 
   useEffect(() => {
     const open = () => setOpened(true);
-    const updateVisibility = () => setPageVisible(!document.hidden);
-    updateVisibility();
     window.addEventListener(invitationOpenedEvent, open);
-    document.addEventListener("visibilitychange", updateVisibility);
     return () => {
       window.removeEventListener(invitationOpenedEvent, open);
-      document.removeEventListener("visibilitychange", updateVisibility);
     };
   }, []);
 
@@ -70,7 +63,7 @@ export default function HeroSection({ bride, groom, dateDisplay, location }: Her
       ref={hero}
       aria-label="Anjo and Jasmin wedding photo slideshow"
       aria-roledescription="carousel"
-      className="garden-hero relative isolate overflow-hidden bg-[#263d35] text-[#ffe1ee]"
+      className="garden-hero h-svh min-h-[680px] max-[600px]:min-h-[700px] [@media(max-height:500px)_and_(min-width:601px)]:min-h-[520px] relative isolate overflow-hidden bg-[#263d35] text-[#ffe1ee]"
       data-opened={opened}
       data-playing={playing}
     >
@@ -92,16 +85,16 @@ export default function HeroSection({ bride, groom, dateDisplay, location }: Her
               loading="eager"
               quality={85}
               sizes="100vw"
-              className="garden-hero-photo object-cover"
+              className="garden-hero-photo object-cover [object-position:var(--photo-position)] max-[600px]:[object-position:var(--phone-photo-position)]"
               style={{ "--photo-position": slide.position, "--phone-photo-position": slide.mobilePosition } as CSSProperties}
               onLoad={() => setLoaded(current => current.includes(index) ? current : [...current, index])}
             />
           </div>
         ))}
       </div>
-      <div className="garden-hero-wash pointer-events-none absolute inset-0" aria-hidden="true" />
+      <div className="bg-[linear-gradient(180deg,#304b3e40,#71816850_45%,#344d3b50)] pointer-events-none absolute inset-0" aria-hidden="true" />
 
-      <div className="garden-hero-copy relative z-10 flex flex-col items-center px-6 text-center">
+      <div className="pt-[clamp(110px,14svh,180px)] [text-shadow:0_1px_8px_#263d3530] max-[600px]:h-full max-[600px]:justify-center max-[600px]:px-6 max-[600px]:pt-[72px] max-[600px]:pb-[120px] [@media(max-height:500px)_and_(min-width:601px)]:pt-[75px] relative z-10 flex flex-col items-center px-6 text-center">
         <div className="garden-hero-reveal relative flex flex-col items-center max-[600px]:-top-3">
           <svg viewBox="0 0 420 90" className="w-[min(70vw,420px)] overflow-visible" aria-label="The wedding" role="img">
             <defs>
@@ -113,8 +106,8 @@ export default function HeroSection({ bride, groom, dateDisplay, location }: Her
           </svg>
           <span className="font-imperial text-[clamp(30px,3.5vw,44px)] leading-none">of</span>
         </div>
-        <h1 className="garden-hero-names garden-hero-reveal my-6 flex items-baseline justify-center gap-[.16em] whitespace-nowrap [font-family:var(--font-mea-culpa),cursive] text-[clamp(80px,12.5vw,185px)] font-normal not-italic leading-[1.1] sm:my-8" aria-label={`${groom} and ${bride}`}>
-          <span>{groom}</span><span className="text-[.8em]">&amp;</span><span>{bride}</span>
+        <h1 className="garden-hero-names garden-hero-reveal max-[600px]:flex-col max-[600px]:items-center max-[600px]:gap-[.25em] max-[600px]:my-6 max-[600px]:text-[clamp(72px,18vw,100px)] max-[600px]:leading-[1.05] [@media(max-height:500px)_and_(min-width:601px)]:text-[110px] [@media(max-height:500px)_and_(min-width:601px)]:my-3 my-6 flex items-baseline justify-center gap-[.16em] whitespace-nowrap [font-family:var(--font-mea-culpa),cursive] text-[clamp(80px,12.5vw,185px)] font-normal not-italic leading-[1.1] sm:my-8" aria-label={`${groom} and ${bride}`}>
+          <span>{groom}</span><span className="text-[.8em] max-[600px]:text-[.55em] max-[600px]:leading-[.9]">&amp;</span><span>{bride}</span>
         </h1>
         <p className="garden-hero-details garden-hero-reveal max-w-[90vw] font-sans text-[clamp(13px,1.65vw,21px)] leading-relaxed tracking-[.025em]">
           <span className="block sm:inline">{dateDisplay}</span>
@@ -123,7 +116,7 @@ export default function HeroSection({ bride, groom, dateDisplay, location }: Her
         </p>
       </div>
 
-      <div className="garden-hero-flowers pointer-events-none absolute inset-x-0 bottom-0 z-[5] opacity-[.65]" aria-hidden="true">
+      <div className="h-[48%] max-[600px]:w-[850px] max-[600px]:h-[32%] max-[600px]:left-1/2 max-[600px]:right-auto max-[600px]:-translate-x-1/2 pointer-events-none absolute inset-x-0 bottom-0 z-[5] opacity-[.65]" aria-hidden="true">
         <Image src={Flowers} alt="" fill sizes="100vw" className="object-fill" />
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type PropsWithChildren } from "react";
+import { useEffect, useRef, useState, type PropsWithChildren } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 
 interface RevealProps extends PropsWithChildren {
@@ -29,10 +29,8 @@ export default function Reveal({ children, className, delay = 0, y = 36, scale =
       animate={!interactive || reduceMotion || inView ? visible : hidden}
       transition={{ duration: 1.05, delay: inView ? delay : 0, ease: [0.16, 1, 0.3, 1] }}
       style={{
-        "--reveal-y": `${y}px`,
-        "--reveal-scale": scale,
         willChange: interactive && !inView ? "opacity, transform" : "auto",
-      } as CSSProperties}
+      }}
     >
       {children}
     </motion.div>

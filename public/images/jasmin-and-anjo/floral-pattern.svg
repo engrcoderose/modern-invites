@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" fill="none">
+  <defs>
+    <g id="leaf" fill="#fffef7" fill-opacity=".75">
+      <path d="M0 0C-13-3-18-15-14-25C-3-21 3-11 0 0Z"/>
+      <path d="M0 0C8-12 18-15 24-12C20-2 10 2 0 0Z"/>
+    </g>
+    <g id="flower" stroke="#fffef7" stroke-width=".85" fill="#fffef7" fill-opacity=".32">
+      <path d="M0 2C-13-3-18-15-10-19C-4-23 1-12 0 2ZM0 2C-5-11 0-25 8-21C15-17 8-5 0 2ZM0 2C7-13 21-17 23-8C24 0 11 4 0 2ZM0 2C16-3 27 5 21 12C15 17 5 11 0 2ZM0 2C14 8 16 22 7 23C-1 23-3 11 0 2ZM0 2C4 17-6 27-12 20C-17 14-9 5 0 2ZM0 2C-10 14-23 13-23 5C-22-3-9-4 0 2Z"/>
+      <circle cy="2" r="4" fill-opacity=".8"/>
+      <path d="M-3-3-7-12M3-3 7-13M6 1 16-5M5 5 15 10M1 7 6 16M-3 7-8 15M-5 2-15 5" fill="none"/>
+    </g>
+    <g id="sprig" stroke="#fffef7" stroke-width="1.1" stroke-linecap="round">
+      <path d="M0 80C20 55-15 28 9 0M2 62C19 49 35 57 41 35M3 29C-15 28-22 18-24 5"/>
+      <use href="#leaf" transform="translate(5 44) rotate(-20) scale(.55)" stroke="none"/>
+      <use href="#leaf" transform="translate(27 52) rotate(35) scale(.5)" stroke="none"/>
+      <use href="#leaf" transform="translate(-13 24) rotate(-65) scale(.45)" stroke="none"/>
+      <use href="#flower" transform="translate(9 0) scale(.55)"/>
+      <use href="#flower" transform="translate(41 35) rotate(30) scale(.4)"/>
+    </g>
+  </defs>
+  <g stroke="#fffef7" stroke-width="1.25" stroke-opacity=".8">
+    <path d="M70-20C25 45 130 75 82 145S25 245 90 290S130 375 70 420M250-20C310 50 200 100 265 168S320 270 252 323S205 380 250 420"/>
+    <path d="M83 144C140 139 155 99 179 74M81 282C130 254 162 278 183 240M269 172C217 183 200 159 177 151M252 323C303 344 322 322 344 290"/>
+  </g>
+  <g>
+    <use href="#leaf" transform="translate(79 76) rotate(-25) scale(.85)"/>
+    <use href="#leaf" transform="translate(67 196) rotate(40) scale(.7)"/>
+    <use href="#leaf" transform="translate(108 339) rotate(-20) scale(.8)"/>
+    <use href="#leaf" transform="translate(260 95) rotate(65) scale(.8)"/>
+    <use href="#leaf" transform="translate(291 250) rotate(-45) scale(.7)"/>
+    <use href="#leaf" transform="translate(224 375) rotate(25) scale(.8)"/>
+    <use href="#leaf" transform="translate(130 121) rotate(45) scale(.65)"/>
+    <use href="#leaf" transform="translate(143 266) rotate(65) scale(.6)"/>
+    <use href="#flower" transform="translate(83 144) rotate(15) scale(.9)"/>
+    <use href="#flower" transform="translate(107 339) rotate(-30) scale(.75)"/>
+    <use href="#flower" transform="translate(266 168) rotate(45)"/>
+    <use href="#flower" transform="translate(254 323) rotate(-15) scale(.8)"/>
+    <use href="#sprig" transform="translate(163 63) rotate(12)"/>
+    <use href="#sprig" transform="translate(175 231) rotate(22) scale(.8)"/>
+    <use href="#sprig" transform="translate(14 20) rotate(-18) scale(.65)"/>
+    <use href="#sprig" transform="translate(323 280) rotate(30) scale(.8)"/>
+  </g>
+</svg>

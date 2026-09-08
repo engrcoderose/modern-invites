@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import Reveal from "./motion/Reveal";
 import SectionPetals from "./SectionPetals";
@@ -68,7 +68,7 @@ export default function CountdownSection({ date, brideFullName, groomFullName }:
         <p className="mt-4 text-xs text-[#616b60]">November 21, 2026 · Ceremony time to be confirmed</p>
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-px bg-[#637b65]/15 sm:grid-cols-4">
           {values.map(([value, label], index) => (
-            <motion.div key={label} initial={false} whileInView={{ opacity: [0, 1], y: [16, 0] }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.7 }} style={{ "--reveal-y": "24px", "--reveal-scale": 0.96 } as CSSProperties} className="scroll-reveal bg-[#e5eadd] px-3 py-7 sm:py-9">
+            <motion.div key={label} initial={false} whileInView={{ opacity: [0, 1], y: [16, 0] }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.7 }} className="scroll-reveal bg-[#e5eadd] px-3 py-7 sm:py-9">
               <span className="block font-instrumentSerif text-5xl tabular-nums sm:text-6xl">{String(value).padStart(2, "0")}</span>
               <span className="mt-2 block text-[0.55rem] uppercase tracking-[0.28em] text-[#616b60]">{label}</span>
             </motion.div>

@@ -38,9 +38,8 @@ export default function Navigation({ initials }: NavigationProps) {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       inert={!scrolled}
       aria-hidden={!scrolled}
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding] duration-500 ${
-        scrolled ? "border-b border-[#d7acb9]/50 bg-[#f2dce0]/95 py-3 backdrop-blur-xl" : "bg-[#f2dce0] py-5 sm:py-7"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,padding] duration-500 ${scrolled ? "border-b border-[#d7acb9]/50 bg-[#f2dce0]/95 py-3 backdrop-blur-xl" : "bg-[#f2dce0] py-5 sm:py-7"
+        }`}
     >
       <div className="mx-auto flex max-w-[92rem] items-center justify-between px-5 sm:px-8 lg:px-12">
         <a href="#top" className="font-instrumentSerif text-2xl tracking-[0.12em] text-[#624451]" aria-label="Back to top">

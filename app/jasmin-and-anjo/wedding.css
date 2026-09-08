@@ -1,12 +1,12 @@
-/* Use Tailwind in components for text, colors, spacing, and controls.
-   Keep coordinated layouts, decorative effects, and motion in this file. */
-
+/* Tailwind owns layout, typography, colors, and responsive formatting.
+   CSS owns coordinated animation, masks, textures, and document-level behavior. */
 @supports selector(body:has(*)) {
   body:has(.floral-invitation .opening-screen:not(.opening-screen--closing)) {
     overflow: hidden;
   }
 }
 
+/* Invitation cover entrance and exit. */
 .floral-invitation .opening-screen {
   opacity: 1;
   transform: scale(1);
@@ -16,7 +16,6 @@
 }
 
 .floral-invitation .opening-screen--closing {
-  pointer-events: none;
   opacity: 0;
   transform: scale(1.025);
 }
@@ -26,11 +25,10 @@
 }
 
 .floral-invitation .music-bar {
-  height: 1.25rem;
-  transform-origin: center;
   animation: music-bar-pulse 0.9s ease-in-out infinite alternate;
 }
 
+/* Shared paper-grain texture. */
 .floral-invitation .hero-grain {
   background-image:
     radial-gradient(
@@ -53,41 +51,13 @@
   pointer-events: none;
 }
 
-.floral-invitation .hero-text-reveal {
-  animation: hero-text-reveal 2s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.floral-invitation
-  .hero-scroll-content:not(.hero-copy-ready)
-  .hero-text-reveal {
-  animation-play-state: paused;
-}
-
 .floral-invitation .opening-reveal {
   animation: opening-reveal 2.1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.floral-invitation .ambient-mark {
-  animation: ambient-mark-drift 14s ease-in-out infinite alternate;
 }
 
 .floral-invitation .ambient-wash {
   animation: ambient-wash-drift 12s ease-in-out infinite alternate;
   transform-origin: center;
-}
-
-@keyframes hero-text-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-    filter: blur(5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
 }
 
 @keyframes opening-reveal {
@@ -114,16 +84,6 @@
   }
 }
 
-@keyframes ambient-mark-drift {
-  from {
-    transform: translate3d(-2%, -1%, 0) rotate(-2deg);
-  }
-
-  to {
-    transform: translate3d(3%, 3%, 0) rotate(2deg);
-  }
-}
-
 @keyframes ambient-wash-drift {
   from {
     opacity: 0.72;
@@ -136,11 +96,12 @@
   }
 }
 
+/* Document-level browser and accessibility behavior. */
 .floral-invitation input:-webkit-autofill,
 .floral-invitation input:-webkit-autofill:hover,
 .floral-invitation input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #fff;
-  box-shadow: 0 0 0 1000px #263d35 inset;
+  -webkit-text-fill-color: #624451;
+  box-shadow: 0 0 0 1000px #fffdfa inset;
   transition: background-color 9999s ease-out;
 }
 
@@ -148,58 +109,6 @@
   .floral-invitation video {
     display: none;
   }
-
-  .floral-invitation .scroll-reveal,
-  .floral-invitation .image-scroll-reveal > figure,
-  .floral-invitation .hero-scroll-media,
-  .floral-invitation .hero-scroll-content,
-  .floral-invitation .ambient-mark,
-  .floral-invitation .ambient-wash,
-  .floral-invitation .hero-name-line {
-    animation: none !important;
-    clip-path: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* Jasmin & Anjo: botanical accents over the cinematic invitation layout. */
-
-.floral-invitation .floral-invitation-sprig {
-  right: -80px;
-  top: 35px;
-  width: 290px;
-  opacity: 0.35;
-  transform: rotate(175deg);
-}
-
-.floral-invitation .floral-attire-sprig {
-  left: -100px;
-  bottom: -60px;
-  width: 330px;
-  opacity: 0.35;
-  transform: rotate(15deg);
-}
-
-.floral-invitation #invitation {
-  background-image: radial-gradient(
-    ellipse at 95% 5%,
-    #f3e3e6aa,
-    transparent 55%
-  );
-}
-
-.floral-invitation #dress-code {
-  background-image: radial-gradient(
-    ellipse at 0% 100%,
-    #dfe7d199,
-    transparent 65%
-  );
-}
-
-.floral-invitation .invitation-content > section:not(#top):not(#cinematic) {
-  scroll-margin-top: 78px;
 }
 
 .floral-invitation input:focus-visible,
@@ -230,18 +139,8 @@
     transition: none !important;
   }
 }
-
-/* Continuous, opposing photo columns with soft edges, as in the video reference. */
+/* Opposing gallery columns and edge masks. */
 .floral-invitation .flow-gallery-wall {
-  --gallery-gap: 14px;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gallery-gap);
-  height: clamp(420px, 58vw, 740px);
-  margin-top: 64px;
-  overflow: hidden;
-  isolation: isolate;
   mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -252,30 +151,17 @@
 }
 
 .floral-invitation .flow-gallery-track {
-  animation: gallery-flow-up 48s linear infinite;
+  animation: gallery-flow-up 60s linear infinite;
   will-change: transform;
 }
 
 .floral-invitation .flow-gallery-column:nth-child(2) .flow-gallery-track {
   animation-name: gallery-flow-down;
-  animation-duration: 56s;
+  animation-duration: 70s;
 }
 
 .floral-invitation .flow-gallery-column:nth-child(3) .flow-gallery-track {
-  animation-duration: 52s;
-}
-
-.floral-invitation .flow-gallery-sequence {
-  gap: var(--gallery-gap);
-  padding-bottom: var(--gallery-gap);
-}
-
-.floral-invitation .flow-gallery-photo img {
-  transition: transform 0.65s ease;
-}
-
-.floral-invitation .flow-gallery-photo:hover img {
-  transform: scale(1.035);
+  animation-duration: 65s;
 }
 
 .floral-invitation .flow-gallery-wall[data-paused="true"] .flow-gallery-track,
@@ -287,11 +173,6 @@
   .floral-invitation .flow-gallery-wall:hover .flow-gallery-track {
     animation-play-state: paused;
   }
-}
-
-.floral-invitation .flow-gallery-dialog::backdrop {
-  background: #1e332ad9;
-  backdrop-filter: blur(7px);
 }
 
 @keyframes gallery-flow-up {
@@ -314,25 +195,39 @@
   }
 }
 
+/* On phones, the same photo sequences become three opposing horizontal rows. */
 @media (max-width: 640px) {
-  .floral-invitation .flow-gallery-wall {
-    --gallery-gap: 7px;
-    height: 440px;
-    margin-top: 38px;
+  .floral-invitation .flow-gallery-wall { mask-image: none; }
+  .floral-invitation .flow-gallery-column {
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
   }
-
-  .floral-invitation .flow-gallery-photo {
-    min-height: 0;
-    border-radius: 4px;
+  .floral-invitation .flow-gallery-track {
+    animation-name: gallery-flow-left;
+    animation-duration: 52.5s;
+  }
+  .floral-invitation .flow-gallery-column:nth-child(2) .flow-gallery-track {
+    animation-name: gallery-flow-right;
+    animation-duration: 60s;
+  }
+  .floral-invitation .flow-gallery-column:nth-child(3) .flow-gallery-track {
+    animation-duration: 56.25s;
   }
 }
 
+@keyframes gallery-flow-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes gallery-flow-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .floral-invitation .flow-gallery-wall {
-    height: auto;
-    max-height: none;
+  .floral-invitation .flow-gallery-wall,
+  .floral-invitation .flow-gallery-column {
     mask-image: none;
-    overflow: visible;
   }
 
   .floral-invitation .flow-gallery-track {
@@ -340,47 +235,8 @@
     transform: none;
     will-change: auto;
   }
-
-  .floral-invitation .flow-gallery-sequence[aria-hidden="true"] {
-    display: none;
-  }
-
-  .floral-invitation .flow-gallery-photo img {
-    transition: none;
-  }
 }
 
-/* Photo invitation cover, inspired by the couple's floral reference. */
-
-.floral-invitation .opening-photo {
-  object-position: center 52%;
-}
-
-.floral-invitation .opening-photo-wash {
-  background: rgba(67, 84, 63, 0.34);
-}
-
-.floral-invitation .opening-florals {
-  width: clamp(140px, 19vw, 260px);
-}
-
-.floral-invitation .opening-florals img {
-  object-fit: fill;
-  filter: url(#opening-floral-cutout);
-}
-
-.floral-invitation .opening-floral-bloom {
-  transform-origin: 50% 100%;
-}
-
-.floral-invitation .opening-florals--left {
-  left: -5.7%;
-  transform: scaleX(-1);
-}
-
-.floral-invitation .opening-florals--right {
-  right: -5.7%;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .floral-invitation .opening-photo {
@@ -413,6 +269,7 @@
   }
 }
 
+/* Opening photo drift and floral unfurl. */
 @keyframes opening-photo-drift {
   from {
     transform: scale(1.015) translate3d(0, 0, 0);
@@ -456,17 +313,7 @@
   }
 }
 
-.floral-invitation .opening-copy {
-  display: grid;
-  grid-template-rows: 1fr 2.5fr 0.8fr 1fr 1fr;
-  height: 100%;
-  min-height: 620px;
-  padding: 9vh 12% 7vh;
-  text-shadow: 0 1px 5px #263d3538;
-}
-
 .floral-invitation .opening-couple {
-  gap: 0.18em;
   animation-delay: 100ms;
 }
 
@@ -482,107 +329,12 @@
   animation-delay: 400ms;
 }
 
-.floral-invitation .opening-button {
-  transition:
-    background 0.2s,
-    transform 0.2s;
-}
-
-.floral-invitation .opening-button:hover {
-  background: #d8b3ca99;
-  transform: translateY(-2px);
-}
-
-.floral-invitation .opening-button:focus-visible {
-  outline: 2px solid #fff4f8;
-  outline-offset: 5px;
-}
-
-@media (max-width: 600px) {
-  .floral-invitation .opening-copy {
-    min-height: 640px;
-    padding: 9svh 35px 6svh;
-    grid-template-rows: 1fr 2.4fr 1fr 1fr 1fr;
-  }
-
-  .floral-invitation .opening-photo {
-    object-position: 54% center;
-  }
-
-  .floral-invitation .opening-photo-wash {
-    background: rgba(40, 62, 46, 0.43);
-  }
-
-  .floral-invitation .opening-couple {
-    flex-wrap: wrap;
-    column-gap: 0.13em;
-    row-gap: 0;
-    font-size: clamp(70px, 19vw, 110px);
-    line-height: 0.9;
-  }
-
-  .floral-invitation .opening-couple > span:last-child {
-    flex-basis: 100%;
-  }
-
-  .floral-invitation .opening-details {
-    max-width: 280px;
-    font-size: 13px;
-  }
-
-  .floral-invitation .opening-details > span:first-child {
-    display: block;
-  }
-
-  .floral-invitation .opening-details > span:nth-child(2) {
-    display: none;
-  }
-
-  .floral-invitation .opening-florals {
-    width: 150px;
-  }
-
-  .floral-invitation .opening-florals--left {
-    left: -60px;
-  }
-
-  .floral-invitation .opening-florals--right {
-    right: -60px;
-  }
-
-  .floral-invitation .opening-button {
-    min-height: 54px;
-    padding: 14px 25px;
-  }
-}
-
-@media (max-height: 500px) and (min-width: 601px) {
-  .floral-invitation .opening-copy {
-    min-height: 460px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-  }
-
-  .floral-invitation .opening-couple {
-    font-size: 100px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .floral-invitation .opening-reveal {
     animation: none;
   }
-
-  .floral-invitation .opening-button {
-    transition: none;
-  }
 }
-
-/* Garden hero: layered crossfades, soft photo motion, and a floral foreground. */
-.floral-invitation .garden-hero {
-  min-height: 680px;
-  height: 100svh;
-}
+/* Hero crossfades and staggered copy. */
 .floral-invitation .garden-hero-slide {
   opacity: 0;
   transition: opacity 1.8s ease-in-out;
@@ -591,22 +343,11 @@
   opacity: 1;
 }
 .floral-invitation .garden-hero-photo {
-  object-position: var(--photo-position);
   animation: garden-photo-drift 20s ease-in-out infinite alternate;
   animation-play-state: paused;
 }
 .floral-invitation .garden-hero[data-playing="true"] .garden-hero-photo {
   animation-play-state: running;
-}
-.floral-invitation .garden-hero-wash {
-  background: linear-gradient(180deg, #304b3e40, #71816850 45%, #344d3b50);
-}
-.floral-invitation .garden-hero-copy {
-  padding-top: clamp(110px, 14svh, 180px);
-  text-shadow: 0 1px 8px #263d3530;
-}
-.floral-invitation .garden-hero-flowers {
-  height: 48%;
 }
 .floral-invitation .garden-hero-reveal {
   animation: garden-copy-enter 1.8s 0.35s both;
@@ -641,50 +382,6 @@
     filter: blur(0);
   }
 }
-@media (max-width: 600px) {
-  .floral-invitation .garden-hero {
-    min-height: 700px;
-  }
-  .floral-invitation .garden-hero-photo {
-    object-position: var(--phone-photo-position);
-  }
-  .floral-invitation .garden-hero-copy {
-    height: 100%;
-    justify-content: center;
-    padding: 72px 24px 120px;
-  }
-  .floral-invitation .garden-hero-names {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25em;
-    margin: 24px 0;
-    font-size: clamp(72px, 18vw, 100px);
-    line-height: 1.05;
-  }
-  .floral-invitation .garden-hero-names > span:nth-child(2) {
-    font-size: 0.55em;
-    line-height: 0.9;
-  }
-  .floral-invitation .garden-hero-flowers {
-    width: 850px;
-    height: 32%;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-  }
-}
-@media (max-height: 500px) and (min-width: 601px) {
-  .floral-invitation .garden-hero {
-    min-height: 520px;
-  }
-  .floral-invitation .garden-hero-copy {
-    padding-top: 75px;
-  }
-  .floral-invitation .garden-hero-names {
-    font-size: 110px;
-    margin: 12px 0;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .floral-invitation .garden-hero-photo,
   .floral-invitation .garden-hero-reveal {
@@ -696,231 +393,64 @@
     transition: none;
   }
 }
+/* Staggered footer entrance when the section reaches the viewport. */
+@media (prefers-reduced-motion: no-preference) {
+  .floral-invitation .footer-scroll[data-visible="true"] .footer-scroll-item {
+    animation: footer-scroll-enter 1.1s var(--footer-delay, 0s) cubic-bezier(.16, 1, .3, 1) both;
+  }
+  .floral-invitation .footer-scroll-item:nth-child(2) { --footer-delay: .1s; }
+  .floral-invitation .footer-scroll-item:nth-child(3) { --footer-delay: .2s; }
+  .floral-invitation .footer-scroll-item:nth-child(4) { --footer-delay: .3s; }
+  .floral-invitation .footer-scroll-item:nth-child(5) { --footer-delay: .4s; }
+  .floral-invitation .footer-scroll-item:nth-child(6) { --footer-delay: .5s; }
+  .floral-invitation .footer-scroll[data-visible="true"] .footer-flower-reveal {
+    animation: footer-scroll-enter 1.5s .3s cubic-bezier(.16, 1, .3, 1) both;
+  }
+}
 
-/* Illustrated vertical wedding program, with a scroll-following dotted path. */
-.floral-invitation .wedding-timeline {
-  margin-top: 100px;
-  padding: 44px 24px;
-  border: 1px solid #ead7e1;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #f6e9ed, #edf0e6);
-  scroll-margin-top: 90px;
+@keyframes footer-scroll-enter {
+  from { opacity: 0; transform: translateY(32px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
-.floral-invitation .timeline-paper {
-  max-width: 660px;
-  margin: 0 auto;
-  padding: 52px 46px 36px;
-  border: 1px solid #e3dad0;
-  border-radius: 24px;
-  background: #fffdf7;
-  box-shadow: 0 14px 55px #62445106;
-}
-.floral-invitation .timeline-heading {
-  text-align: center;
-}
-.floral-invitation .timeline-heading > p {
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #946879;
-}
-.floral-invitation .timeline-heading h2 {
-  font-family: var(--font-instrument-serif), serif;
-  font-size: 54px;
-  font-weight: 400;
-  line-height: 1.08;
-  margin: 15px 0 14px;
-  color: #624451;
-}
-.floral-invitation .timeline-heading h2 em {
-  font-family: var(--font-mea-culpa), cursive;
-  font-weight: 400;
-  color: #946879;
-}
-.floral-invitation .timeline-heading > span {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #756770;
-}
-.floral-invitation .timeline-heading small {
-  display: block;
-  margin-top: 15px;
-  font-size: 10px;
-  color: #756770;
-}
-.floral-invitation .timeline-events {
-  --timeline-axis: 37%;
-  position: relative;
-  list-style: none;
-  margin: 42px 0 0;
-  padding: 0;
-}
-.floral-invitation .timeline-rail {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--timeline-axis);
-  width: 2px;
-  background: repeating-linear-gradient(
-    to bottom,
-    #9b9f89 0 2px,
-    transparent 2px 8px
-  );
-}
-.floral-invitation .timeline-traveler {
-  position: absolute;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #7d9368;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 5px #fffdf7;
-}
-.floral-invitation .timeline-event {
-  display: grid;
-  grid-template-columns: var(--timeline-axis) 1fr;
-  align-items: center;
-  min-height: 175px;
-  padding: 22px 0;
-}
-.floral-invitation .timeline-art {
-  display: flex;
-  justify-content: center;
-  padding-right: 24px;
-}
-.floral-invitation .timeline-illustration {
-  width: 110px;
-  height: 110px;
-  position: relative;
-  display: grid;
-  place-items: center;
-  color: #819274;
-}
-.floral-invitation .timeline-watercolor {
-  position: absolute;
-  inset: 20px 10px 15px;
-  border-radius: 47% 53% 65% 35%;
-  background: radial-gradient(ellipse, #d9e1cb90, transparent 72%);
-  transform: rotate(-15deg);
-}
-.floral-invitation .timeline-illustration > svg:not(.timeline-leaves) {
-  position: relative;
-}
-.floral-invitation .timeline-illustration-2 {
-  color: #a28597;
-}
-.floral-invitation .timeline-illustration-3 {
-  color: #b2997b;
-}
-.floral-invitation .timeline-illustration-4 {
-  color: #8d98ad;
-}
-.floral-invitation .timeline-leaves {
-  position: absolute;
-  bottom: 0;
-  left: 20px;
-  width: 80px;
-  height: 35px;
-}
-.floral-invitation .timeline-bouquet {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-}
-.floral-invitation .timeline-event-copy {
-  padding-left: 32px;
-}
-.floral-invitation .timeline-event-copy time {
-  font-family: var(--font-instrument-serif), serif;
-  font-size: 25px;
-  color: #624451;
-}
-.floral-invitation .timeline-event-copy h3 {
-  margin-top: 9px;
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 1.8;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #624451;
-}
-.floral-invitation .timeline-event-copy p {
-  margin-top: 8px;
-  max-width: 240px;
-  font-family: var(--font-instrument-serif), serif;
-  font-size: 17px;
-  line-height: 1.5;
-  color: #756770;
-}
-.floral-invitation .timeline-signoff {
-  text-align: center;
-  margin: 40px 0 0;
-  font-family: var(--font-mea-culpa), cursive;
-  font-size: 29px;
-  color: #946879;
-}
-@media (max-width: 600px) {
-  .floral-invitation .wedding-timeline {
-    margin-top: 64px;
-    padding: 16px 10px;
-    border-radius: 20px;
+
+/* A slow breeze through the footer flowers, anchored at the stems. */
+@media (prefers-reduced-motion: no-preference) {
+  .floral-invitation .footer-flower-sway {
+    animation: footer-flower-breeze 7s ease-in-out infinite alternate;
   }
-  .floral-invitation .timeline-paper {
-    padding: 34px 15px 28px;
-    border-radius: 17px;
+}
+
+@keyframes footer-flower-breeze {
+  0% { transform: skewX(-1.5deg) translateX(-4px) scaleY(1); }
+  50% { transform: skewX(.4deg) translateX(1px) scaleY(1.015); }
+  100% { transform: skewX(1.5deg) translateX(4px) scaleY(1); }
+}
+
+/* Seamless leftward Polaroid motion. */
+.floral-invitation .polaroid-window {
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+.floral-invitation .polaroid-track {
+  animation: polaroid-drift-left 55s linear infinite;
+  will-change: transform;
+}
+.floral-invitation .polaroid-window[data-paused="true"] .polaroid-track {
+  animation-play-state: paused;
+}
+@media (hover: hover) {
+  .floral-invitation .polaroid-window:hover .polaroid-track {
+    animation-play-state: paused;
   }
-  .floral-invitation .timeline-heading h2 {
-    font-size: 40px;
-  }
-  .floral-invitation .timeline-heading small {
-    font-size: 9px;
-  }
-  .floral-invitation .timeline-events {
-    --timeline-axis: 32%;
-    margin-top: 30px;
-  }
-  .floral-invitation .timeline-event {
-    min-height: 165px;
-  }
-  .floral-invitation .timeline-art {
-    padding-right: 12px;
-  }
-  .floral-invitation .timeline-illustration,
-  .floral-invitation .timeline-bouquet {
-    width: 68px;
-    height: 84px;
-  }
-  .floral-invitation .timeline-illustration > svg:not(.timeline-leaves) {
-    width: 49px;
-    height: 49px;
-  }
-  .floral-invitation .timeline-leaves {
-    width: 58px;
-    left: 9px;
-    bottom: 0;
-  }
-  .floral-invitation .timeline-event-copy {
-    padding-left: 20px;
-  }
-  .floral-invitation .timeline-event-copy time {
-    font-size: 22px;
-  }
-  .floral-invitation .timeline-event-copy h3 {
-    font-size: 9px;
-    letter-spacing: 0.09em;
-  }
-  .floral-invitation .timeline-event-copy p {
-    font-size: 15px;
-  }
-  .floral-invitation .timeline-signoff {
-    font-size: 24px;
-  }
+}
+@keyframes polaroid-drift-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .floral-invitation .timeline-traveler {
-    display: none;
+  .floral-invitation .polaroid-window { mask-image: none; }
+  .floral-invitation .polaroid-track {
+    animation: none;
+    transform: none;
+    will-change: auto;
   }
 }

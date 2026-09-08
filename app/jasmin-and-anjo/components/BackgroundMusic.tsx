@@ -95,7 +95,7 @@ export default function BackgroundMusic() {
               [0, 1, 2, 3].map((bar) => (
                 <span
                   key={bar}
-                  className={`w-[2px] rounded-full bg-current ${playing ? "music-bar" : "h-1.5 opacity-55"}`}
+                  className={`w-[2px] rounded-full bg-current ${playing ? "music-bar h-5 origin-center" : "h-1.5 opacity-55"}`}
                   style={{ animationDelay: `${bar * 120}ms` }}
                 />
               ))

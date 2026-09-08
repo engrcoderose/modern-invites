@@ -17,9 +17,9 @@ export default function InvitationSection({ message, videoSrc, poster }: Invitat
     <section
       id="invitation"
       aria-labelledby="invitation-title"
-      className="relative overflow-hidden bg-[#fbf8f1] px-5 py-24 text-[#33473d] sm:px-8 sm:py-32 lg:px-12"
+      className="relative overflow-hidden bg-[#fbf8f1] bg-[radial-gradient(ellipse_at_95%_5%,#f3e3e6aa,transparent_55%)] px-5 py-24 text-[#33473d] sm:px-8 sm:py-32 lg:px-12"
     >
-      <Botanicals className="floral-invitation-sprig" />
+      <Botanicals className="-right-20 top-[35px] w-[290px] rotate-[175deg] opacity-[.35]" />
       <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
         <Reveal>
           <h2 id="invitation-title" className="max-w-5xl font-instrumentSerif text-[clamp(3.4rem,7vw,7.2rem)] leading-[0.95] tracking-[-0.045em]">

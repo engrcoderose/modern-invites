@@ -1,16 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties } from "react";
+import { Walking, Together, Garden, Sitting, Embrace, Portrait } from "../prenup-media";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
+import { usePageVisibility } from "../hooks/usePageVisibility";
 import SectionPetals from "./SectionPetals";
-import Walking from "../assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import Together from "../assets/images/prenup/pexels-king-caplis-471600979-36266073.jpg";
-import Garden from "../assets/images/prenup/pexels-king-caplis-471600979-36266077.jpg";
-import Sitting from "../assets/images/prenup/pexels-king-caplis-471600979-36396114.jpg";
-import Embrace from "../assets/images/prenup/pexels-king-caplis-471600979-36266135.jpg";
-import Portrait from "../assets/images/prenup/pexels-king-caplis-471600979-36266064.jpg";
 
 const photos = [
   { src: Walking, caption: "Hand in hand", position: "50% 45%", tilt: -4 },
@@ -31,13 +27,7 @@ export default function PolaroidStrip() {
   const inView = useInView(section, { margin: "100px" });
   const reduceMotion = useReducedMotion();
   const [paused, setPaused] = useState(false);
-  const [visible, setVisible] = useState(true);
-  useEffect(() => {
-    const update = () => setVisible(!document.hidden);
-    update();
-    document.addEventListener("visibilitychange", update);
-    return () => document.removeEventListener("visibilitychange", update);
-  }, []);
+  const visible = usePageVisibility();
 
   return (
     <section
@@ -73,20 +63,20 @@ export default function PolaroidStrip() {
         )}
       </header>
       <div
-        className="polaroid-window relative"
+        className="polaroid-window relative overflow-hidden pt-[38px] pb-7 max-[600px]:pt-7"
         data-paused={paused || !visible || !inView}
       >
-        <div className="polaroid-track">
+        <div className="polaroid-track flex w-max motion-reduce:w-full">
           {[0, 1].map((copy) => (
             <div
-              className="polaroid-group"
+              className="flex min-w-[100vw] shrink-0 items-center justify-around gap-[30px] px-[15px] py-3.5 max-[600px]:gap-[22px] max-[600px]:px-[11px] motion-reduce:min-w-0 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:gap-[30px] motion-reduce:px-6 motion-reduce:py-4 motion-reduce:aria-hidden:hidden"
               key={copy}
               aria-hidden={copy === 1 ? true : undefined}
             >
               {photos.map((photo) => (
                 <figure
                   key={photo.caption}
-                  className="polaroid-print"
+                  className="polaroid-print m-0 w-[264px] flex-[0_0_264px] rotate-[var(--print-tilt)] border border-[#ede7df] bg-[#fffdf8] px-[13px] pt-[13px] pb-[27px] shadow-[0_7px_15px_#62445115,0_2px_4px_#62445110] max-[600px]:w-[196px] max-[600px]:basis-[196px] max-[600px]:px-2.5 max-[600px]:pt-2.5 max-[600px]:pb-6"
                   style={
                     { "--print-tilt": `${photo.tilt}deg` } as CSSProperties
                   }
@@ -103,7 +93,7 @@ export default function PolaroidStrip() {
                       style={{ objectPosition: photo.position }}
                     />
                   </div>
-                  <figcaption className="pt-4 text-center font-meaCulpa text-[27px] leading-none text-[#756770]">
+                  <figcaption className="pt-4 text-center font-meaCulpa text-[27px] max-[600px]:text-2xl leading-none text-[#756770]">
                     {photo.caption}
                   </figcaption>
                 </figure>

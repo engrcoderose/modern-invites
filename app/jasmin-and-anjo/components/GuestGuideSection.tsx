@@ -1,16 +1,14 @@
-import { Baby, CameraOff, Gift, Plus, Users } from "lucide-react";
-import type { FAQ } from "../types";
+import { Baby, CameraOff, Gift, Users } from "lucide-react";
 import Reveal from "./motion/Reveal";
 import SectionLabel from "./SectionLabel";
 
 interface GuestGuideSectionProps {
-  notes: { title: string; description: string }[];
-  faqs: FAQ[];
+  notes: { title: string; description: string; }[];
 }
 
 const icons = [CameraOff, Users, Baby, Gift];
 
-export default function GuestGuideSection({ notes, faqs }: GuestGuideSectionProps) {
+export default function GuestGuideSection({ notes }: GuestGuideSectionProps) {
   return (
     <section className="bg-[#fbf8f1] px-5 py-24 text-[#33473d] sm:px-8 sm:py-32 lg:px-12 lg:py-44">
       <div className="mx-auto max-w-7xl">
@@ -35,21 +33,7 @@ export default function GuestGuideSection({ notes, faqs }: GuestGuideSectionProp
           })}
         </div>
 
-        {/* <div className="mt-20 grid gap-12 lg:mt-28 lg:grid-cols-[.55fr_1fr]">
-          <Reveal><div><p className="font-meaCulpa text-5xl text-[#637b65]">Questions, answered</p><p className="mt-4 text-xs uppercase tracking-[0.25em] text-[#616b60]">Before the day arrives</p></div></Reveal>
-          <div className="border-t border-[#637b65]/15">
-            {faqs.map((faq) => (
-              <Reveal key={faq.question}>
-                <details className="group border-b border-[#637b65]/15 py-6">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-instrumentSerif text-2xl marker:hidden">
-                    {faq.question}<Plus size={17} strokeWidth={1.4} className="shrink-0 text-[#637b65] transition-transform group-open:rotate-45" />
-                  </summary>
-                  <p className="max-w-2xl pb-2 pt-4 text-sm leading-7 text-[#616b60]">{faq.answer}</p>
-                </details>
-              </Reveal>
-            ))}
-          </div>
-        </div> */}
+
       </div>
     </section>
   );
