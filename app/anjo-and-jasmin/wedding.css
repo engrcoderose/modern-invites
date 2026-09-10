@@ -1,0 +1,36 @@
+.classic-garden-invitation section[id] { scroll-margin-top: 5rem; }
+.classic-garden-invitation .music-bar { animation: aj-music-pulse .9s ease-in-out infinite alternate; }
+@keyframes aj-music-pulse { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
+
+/* The shared strip keeps its original square prints and responsive layout. */
+.classic-garden-invitation .polaroid-window {
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+.classic-garden-invitation .polaroid-track {
+  animation: aj-polaroid-drift-left 55s linear infinite;
+  will-change: transform;
+}
+.classic-garden-invitation .polaroid-window[data-paused="true"] .polaroid-track {
+  animation-play-state: paused;
+}
+@media (hover: hover) {
+  .classic-garden-invitation .polaroid-window:hover .polaroid-track {
+    animation-play-state: paused;
+  }
+}
+@keyframes aj-polaroid-drift-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .classic-garden-invitation .polaroid-window { mask-image: none; }
+  .classic-garden-invitation .polaroid-track {
+    transform: none;
+    will-change: auto;
+  }
+  .classic-garden-invitation *, .classic-garden-invitation *::before, .classic-garden-invitation *::after {
+    animation: none !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
