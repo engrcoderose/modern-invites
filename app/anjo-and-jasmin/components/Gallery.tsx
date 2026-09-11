@@ -5,7 +5,7 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { gallery } from "../media";
 import type { GalleryImage } from "../../jasmin-and-anjo/types";
-import Botanicals from "../../jasmin-and-anjo/components/Botanicals";
+import FloralAccent from "./FloralAccent";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
 
 export default function Gallery() {
@@ -30,7 +30,7 @@ export default function Gallery() {
     return (
       <button
         type="button"
-        className="group relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden bg-[#eadfe4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#946879]"
+        className="group relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden border-[6px] border-[#fffdf8] bg-[#eadfe4] shadow-[0_5px_20px_-8px_#62445133] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#946879] sm:border-8"
         aria-label={`View photograph: ${photo.alt}`}
         onClick={(e) => {
           opener.current = e.currentTarget;
@@ -51,10 +51,9 @@ export default function Gallery() {
   return (
     <section
       id="gallery"
-      className="relative overflow-hidden bg-[#f8edf0] px-5 py-20 sm:px-12 sm:py-24"
+      className="relative overflow-hidden bg-[#ece3de] px-5 py-20 sm:px-12 sm:py-24"
     >
-      <Botanicals className="-left-28 top-24 w-56 opacity-50" />
-      <Botanicals className="-right-28 bottom-24 w-56 rotate-180 opacity-50" />
+      <FloralAccent kind="pink" className="-right-10 bottom-6 w-40 -rotate-45 opacity-80 sm:w-56" />
       <div className="relative mx-auto max-w-5xl">
         <Reveal className="mb-8 text-center">
           {/* <p className="text-[10px] uppercase tracking-[.25em]">

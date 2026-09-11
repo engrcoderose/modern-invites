@@ -34,3 +34,58 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Gentle hero entrance and photo movement follow the slideshow playback state. */
+.classic-garden-invitation .hero-reveal {
+  animation-name: aj-hero-reveal;
+  animation-duration: 1800ms;
+  animation-timing-function: cubic-bezier(.16, 1, .3, 1);
+  animation-fill-mode: both;
+}
+.classic-garden-invitation .hero-name {
+  animation-name: aj-hero-name-unveil;
+  animation-duration: 2600ms;
+}
+.classic-garden-invitation .hero-ampersand {
+  animation-name: aj-hero-ampersand;
+  animation-duration: 2200ms;
+}
+.classic-garden-invitation .hero-photo {
+  animation: aj-hero-zoom 12s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+.classic-garden-invitation #top[data-playing="true"] [data-active="true"] .hero-photo {
+  animation-play-state: running;
+}
+.classic-garden-invitation .hero-scroll-cue {
+  animation: aj-hero-scroll 2400ms ease-in-out infinite;
+  animation-play-state: paused;
+}
+.classic-garden-invitation #top[data-playing="true"] .hero-scroll-cue {
+  animation-play-state: running;
+}
+.classic-garden-invitation #top[data-visible="false"] .hero-reveal {
+  animation-play-state: paused;
+}
+@keyframes aj-hero-reveal {
+  from { opacity: 0; transform: translateY(12px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+/* Reveal each complete name to retain the script font's connected strokes. */
+@keyframes aj-hero-name-unveil {
+  from { opacity: 0; clip-path: inset(-35% 110% -35% -25%); transform: translateY(8px) rotate(-1deg); filter: blur(2px); }
+  45% { opacity: 1; filter: blur(0); }
+  to { opacity: 1; clip-path: inset(-35% -25% -35% -25%); transform: translateY(0) rotate(0); filter: blur(0); }
+}
+@keyframes aj-hero-ampersand {
+  from { opacity: 0; transform: scale(.9); filter: blur(3px); text-shadow: 0 0 22px #f3c3cf80; }
+  to { opacity: 1; transform: scale(1); filter: blur(0); text-shadow: 0 0 0 transparent; }
+}
+@keyframes aj-hero-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.075); }
+}
+@keyframes aj-hero-scroll {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50% { transform: translateY(12px); opacity: 1; }
+}

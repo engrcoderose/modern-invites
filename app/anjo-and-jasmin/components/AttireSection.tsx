@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
 import { attireDressCode, mensAttire } from "../data";
+import FloralAccent from "./FloralAccent";
 
 interface AttireSectionProps {
   title: string;
@@ -13,13 +14,15 @@ export default function AttireSection({ title, description, colors }: AttireSect
     <section id="dress-code" aria-labelledby="attire-title" className="relative scroll-mt-20 overflow-hidden bg-[#faf5ef] bg-[radial-gradient(ellipse_at_0%_100%,#dfe7d199,transparent_65%)] px-5 py-20 text-[#624451] sm:px-8 sm:py-28 lg:px-12">
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-3xl lg:max-w-4xl text-center">
+          <div aria-hidden="true" className="relative mx-auto mb-6 h-28 w-20 sm:h-36 sm:w-24"><FloralAccent kind="rose" className="inset-0 w-full" sizes="96px" /></div>
           <p className="text-[10px] lg:text-sm uppercase tracking-[.3em] text-[#946879]">The dress code</p>
           <h2 id="attire-title" className="mx-auto mt-6 max-w-2xl lg:max-w-4xl font-instrumentSerif text-[clamp(3.2rem,6vw,5.5rem)] xl:text-8xl leading-[1.02] tracking-[-.035em]">{title}</h2>
           <p className="mt-5 font-meaCulpa text-4xl lg:text-5xl text-[#946879]">{attireDressCode}</p>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 lg:text-xl lg:leading-9 text-[#756770]">{description} Men’s attire: {mensAttire}</p>
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 lg:text-xl lg:leading-9 text-[#756770]">{description} Menâ€™s attire: {mensAttire}</p>
         </Reveal>
 
-        <Reveal delay={0.08} className="mx-auto mt-10 max-w-3xl lg:max-w-4xl rounded-[2rem] border border-[#e8d9dc] bg-white/60 px-5 py-7 sm:px-9">
+        <Reveal delay={0.08} className="relative mx-auto mt-10 max-w-3xl rounded-t-[3rem] rounded-b-xl border border-[#d8c9bd] bg-[#fffdf8] px-5 py-8 shadow-[5px_6px_0_#e4d4d655] sm:px-9 lg:max-w-4xl">
+          <span aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-t-[2.5rem] rounded-b-md border border-[#ebe1d8]" />
           <p className="text-center text-[9px] lg:text-sm uppercase tracking-[.25em] text-[#946879]">Dress color code palette</p>
           <ul className="mt-6 flex flex-wrap justify-center gap-x-4 gap-y-5 sm:gap-x-6">
             {colors.map(({ name, color }) => (
@@ -36,7 +39,7 @@ export default function AttireSection({ title, description, colors }: AttireSect
           <p className="text-[10px] lg:text-sm uppercase tracking-[.25em] text-[#946879]">A little outfit inspiration</p>
           <span className="h-px w-12 bg-[#d7bdc7]" />
         </div>
-        <Reveal className="mt-7 overflow-hidden rounded-[1.75rem] border border-[#e5dadd] bg-white">
+        <Reveal className="mt-7 overflow-hidden border border-[#e5dadd] bg-white p-2 shadow-[0_12px_40px_-25px_#62445155] sm:p-4">
           <Image
             src="/images/anjo-and-jasmin/new_dresscode_sample.jpg"
             width={1478}

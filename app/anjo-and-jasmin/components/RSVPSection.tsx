@@ -5,7 +5,7 @@ import { Together } from "../../jasmin-and-anjo/prenup-media";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, Check, Mail } from "lucide-react";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
-import SectionPetals from "../../jasmin-and-anjo/components/SectionPetals";
+import FloralAccent from "./FloralAccent";
 
 interface RSVPSectionProps {
   deadline: string;
@@ -31,7 +31,7 @@ export default function RSVPSection({ deadline }: RSVPSectionProps) {
 
   return (
     <section id="rsvp" aria-labelledby="rsvp-title" className="relative overflow-hidden border-t border-[#ead7df] bg-[#f5e9ed] bg-[radial-gradient(ellipse_at_top_left,#fff9f4,transparent_65%)] px-5 py-20 text-[#624451] sm:px-8 sm:py-28 lg:px-12 lg:py-32">
-      <SectionPetals />
+      <FloralAccent kind="blue" className="-left-12 top-20 w-36 -rotate-12 opacity-60 sm:w-56" />
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
           <p className="text-[10px] uppercase tracking-[.3em] text-[#946879] sm:text-xs">A seat, a smile, a celebration</p>
@@ -67,7 +67,7 @@ export default function RSVPSection({ deadline }: RSVPSectionProps) {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="pb-2">
                 <h3 className="font-instrumentSerif text-4xl lg:text-5xl">Kindly reply</h3>
-                <p className="mt-3 text-sm leading-6 text-[#876675]">RSVP preview · Replies are not sent or saved yet.</p>
+                <p className="mt-3 text-sm leading-6 text-[#876675]">RSVP preview Â· Replies are not sent or saved yet.</p>
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className={labelClass}>First name<input ref={firstNameInput} required name="firstName" autoComplete="given-name" value={response.firstName} onChange={e => setResponse({ ...response, firstName: e.target.value })} className={fieldClass} placeholder="First name" /></label>
@@ -83,13 +83,16 @@ export default function RSVPSection({ deadline }: RSVPSectionProps) {
                   ))}
                 </div>
               </fieldset>
-              <label className={labelClass}>A note for the couple <span className="font-normal text-[#876675]">(optional)</span><textarea name="message" rows={3} value={response.message} onChange={e => setResponse({ ...response, message: e.target.value })} className={`${fieldClass} resize-y leading-7`} placeholder="A wish, a song, or something we should know…" /></label>
+              <label className={labelClass}>A note for the couple <span className="font-normal text-[#876675]">(optional)</span><textarea name="message" rows={3} value={response.message} onChange={e => setResponse({ ...response, message: e.target.value })} className={`${fieldClass} resize-y leading-7`} placeholder="A wish, a song, or something we should knowâ€¦" /></label>
               <button type="submit" className="group flex min-h-14 w-full items-center justify-center gap-3 rounded-full bg-[#946879] px-6 py-4 text-sm font-medium text-[#fffaf3] transition-colors hover:bg-[#7e5666] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#946879] sm:text-base">Preview my response<ArrowRight size={18} aria-hidden="true" className="transition-transform group-hover:translate-x-1" /></button>
             </form>
           )}
             </div>
           </div>
         </Reveal>
+      </div>
+      <div aria-hidden="true" className="relative mx-auto -mb-20 mt-12 aspect-[1366/396] max-w-6xl sm:-mb-28 sm:mt-16 lg:-mb-32">
+        <FloralAccent kind="wildflowers" className="inset-x-0 bottom-0 w-full" sizes="(max-width: 1024px) 95vw, 1152px" />
       </div>
     </section>
   );

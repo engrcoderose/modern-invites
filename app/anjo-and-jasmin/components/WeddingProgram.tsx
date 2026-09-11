@@ -2,28 +2,20 @@
 
 import { useRef } from "react";
 import { wedding } from "../data";
-import { Camera, Church, Music2, Wine } from "lucide-react";
+import FloralAccent from "./FloralAccent";
+import Image from "next/image";
+import { timelineIllustrations } from "../media";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import type { TimelineEvent } from "../../jasmin-and-anjo/types";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
 
 function Illustration({ index }: { index: number; }) {
-  if (index === 1) return (
-    <svg viewBox="0 0 110 110" fill="none" aria-hidden="true" className="h-[110px] w-[110px] max-[600px]:h-[84px] max-[600px]:w-[68px]">
-      <ellipse cx="55" cy="65" rx="38" ry="35" fill="#f5ebd8" fillOpacity=".55" />
-      <circle cx="55" cy="65" r="26" stroke="#b69a68" strokeWidth="3" />
-      <circle cx="55" cy="65" r="21" stroke="#d8c49a" strokeWidth="1.2" />
-      <path d="M40 27L46 19H64L70 27L55 43Z" fill="#f9e7ec" stroke="#b69a68" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M40 27H70M46 19L50 27L55 43L60 27L64 19M50 27L55 19L60 27" stroke="#c8ae91" strokeWidth="1" strokeLinejoin="round" />
-      <path d="M55 7V11M31 18L35 22M79 18L75 22" stroke="#c8ae91" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
+  const source = timelineIllustrations[index] ?? timelineIllustrations[3];
+  return (
+    <div className="relative h-[110px] w-[110px] shrink-0 max-[600px]:h-[84px] max-[600px]:w-[68px]">
+      <Image src={source} alt="" aria-hidden="true" fill sizes="(max-width: 600px) 68px, 110px" className="object-contain" />
+    </div>
   );
-  const Icon = [Church, Church, Camera, Wine, Music2][index % 5];
-  return <div className={`relative grid h-[110px] w-[110px] place-items-center max-[600px]:h-[84px] max-[600px]:w-[68px] ${["text-[#819274]", "text-[#819274]", "text-[#a28597]", "text-[#b2997b]", "text-[#8d98ad]"][index % 5]}`}>
-    <span className="absolute inset-x-2.5 top-5 bottom-[15px] -rotate-[15deg] rounded-[47%_53%_65%_35%] bg-[radial-gradient(ellipse,#d9e1cb90,transparent_72%)]" />
-    <Icon size={68} strokeWidth={1} className="relative max-[600px]:h-[49px] max-[600px]:w-[49px]" aria-hidden="true" />
-    <svg className="absolute bottom-0 left-5 h-[35px] w-20 max-[600px]:left-[9px] max-[600px]:w-[58px]" viewBox="0 0 90 40" fill="none" aria-hidden="true"><path d="M8 34C27 36 45 26 63 7M24 32C12 28 12 20 14 16C22 18 26 23 24 32ZM36 26C35 15 40 10 45 9C47 17 44 23 36 26ZM48 19C57 22 67 18 70 14C61 11 54 12 48 19Z" stroke="#889779" strokeWidth="1" fill="#b9c7aa" fillOpacity=".65" /></svg>
-  </div>;
 }
 
 export default function WeddingProgram({ events: program }: { events: TimelineEvent[]; }) {
@@ -34,13 +26,15 @@ export default function WeddingProgram({ events: program }: { events: TimelineEv
   const markerTop = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   if (!program.length) return null;
-  return <section id="program" className="bg-[#fbf8f1] px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="wedding-timeline-title">
-    <div className="mx-auto max-w-[660px] rounded-3xl border border-[#e3dad0] bg-[#fffdf7] px-[46px] pt-[52px] pb-9 shadow-[0_14px_55px_#62445106] max-[600px]:rounded-[17px] max-[600px]:px-[15px] max-[600px]:pt-[34px] max-[600px]:pb-7">
+  return <section id="program" className="relative overflow-hidden bg-[#e9edf0] bg-[radial-gradient(ellipse_at_center,#faf7f1,transparent_75%)] px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="wedding-timeline-title">
+    <FloralAccent kind="blue" className="-right-12 bottom-24 w-44 opacity-65 sm:right-[calc(50%-450px)] sm:w-64" />
+    <div className="relative mx-auto max-w-[660px] rounded-t-[5rem] rounded-b-xl border border-[#c7cfc7] bg-[#fffdf7] px-[46px] pt-[60px] pb-9 shadow-[0_14px_55px_#62445112] max-[600px]:rounded-t-[3rem] max-[600px]:px-[15px] max-[600px]:pt-[42px] max-[600px]:pb-7">
+      <FloralAccent kind="daisies" className="-top-10 left-1/2 w-24 -translate-x-1/2 rotate-12" sizes="96px" />
       <header className="text-center">
         <p className="text-[9px] uppercase tracking-[.25em] text-[#946879]">A day to remember</p>
         <h2 id="wedding-timeline-title" className="mt-[15px] mb-3.5 font-instrumentSerif text-[54px] font-normal leading-[1.08] text-[#624451] max-[600px]:text-[40px]">Wedding <em className="font-meaCulpa font-normal text-[#946879]">timeline</em></h2>
         <span className="block text-[10px] uppercase tracking-[.18em] text-[#756770]">{wedding.dateDisplay}</span>
-        <small className="mt-[15px] block text-[10px] text-[#756770] max-[600px]:text-[9px]">{wedding.time} ceremony · Other program times are samples</small>
+        <small className="mt-[15px] block text-[10px] leading-5 text-[#756770] max-[600px]:text-[9px]">2:30 PM church arrival · {wedding.time} ceremony<br />Reception times are samples</small>
       </header>
       <ol ref={listRef} className="relative mt-[42px] list-none p-0 [--timeline-axis:37%] max-[600px]:mt-[30px] max-[600px]:[--timeline-axis:32%]">
         <li className="absolute inset-y-0 left-[var(--timeline-axis)] w-0.5 bg-[repeating-linear-gradient(to_bottom,#9b9f89_0_2px,transparent_2px_8px)]" aria-hidden="true">

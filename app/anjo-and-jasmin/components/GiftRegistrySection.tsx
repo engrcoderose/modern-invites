@@ -1,26 +1,25 @@
-import { ArrowUpRight, Gift, Heart } from "lucide-react";
+import { ArrowUpRight, Gift } from "lucide-react";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
 import SectionPetals from "../../jasmin-and-anjo/components/SectionPetals";
 import { giftRegistries } from "../data";
 
 export default function GiftRegistrySection() {
   return (
-    <section id="gifts" aria-labelledby="gift-title" className="relative overflow-hidden bg-[#fbf8f1] px-6 py-20 text-[#624451] sm:px-10 sm:py-28">
+    <section id="gifts" aria-labelledby="gift-title" className="relative overflow-hidden bg-[#fbf8f1] px-5 py-12 text-[#624451] sm:px-8 sm:py-16">
       <SectionPetals variant="pink" />
-      <Reveal className="relative mx-auto max-w-4xl text-center">
-        <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#cba4b6]/40 bg-[#f8edf0]">
-          <Gift size={26} strokeWidth={1.2} aria-hidden="true" />
+      <Reveal className="relative mx-auto max-w-5xl text-center">
+        <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-[#d8b9c7]/60 bg-[#f8edf0] sm:h-20 sm:w-20">
+          <Gift size={28} strokeWidth={1.2} aria-hidden="true" />
         </div>
-        <p className="mt-7 text-[10px] uppercase tracking-[.3em] text-[#946879] sm:text-xs">A little note on giving</p>
-        <h2 id="gift-title" className="mt-5 font-instrumentSerif text-5xl leading-tight sm:text-6xl lg:text-7xl">
-          Your presence is our<br /><span className="font-meaCulpa text-[#946879]">greatest gift.</span>
-        </h2>
-        <p className="mx-auto mt-7 max-w-2xl text-sm leading-8 text-[#756770] lg:text-lg">
+        <p className="mt-8 text-[10px] uppercase tracking-[.3em] text-[#946879] sm:text-sm">A little note on giving</p>
+        <h3 id="gift-title" className="mt-6 font-instrumentSerif text-[clamp(3rem,7vw,7rem)] font-normal leading-[1.08] tracking-[-.025em]">
+          Your presence is our<br /><span className="mt-4 block font-meaCulpa text-[#946879] sm:mt-6">greatest gift.</span>
+        </h3>
+        <p className="mx-auto mt-8 max-w-4xl text-sm leading-8 text-[#756770] sm:text-lg sm:leading-9 lg:text-xl">
           Having you beside us as we begin our married life means more than words can say. Your love, laughter, and warm wishes will make our celebration truly special.
         </p>
-        <div className="mt-12 rounded-2xl border border-[#cba4b6]/30 bg-white/60 px-6 py-8 sm:px-10 sm:py-10">
-          <h3 className="font-instrumentSerif text-3xl sm:text-4xl">Gift Registry</h3>
-          <p className="mt-3 text-sm text-[#946879]">For those who wish to give</p>
+        <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-[#cba4b6]/30 bg-[#fffdfb]/90 px-5 py-7 sm:mt-12 sm:px-10 sm:py-9">
+          <h4 className="font-instrumentSerif text-3xl text-[#624451] sm:text-4xl">For those who wish to give</h4>
           {giftRegistries.length > 0 ? (
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {giftRegistries.map(registry => (
@@ -33,12 +32,11 @@ export default function GiftRegistrySection() {
               ))}
             </ul>
           ) : (
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-8 text-[#756770]">
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-[#756770] sm:text-lg">
               Our gift preferences and any registry details will be shared here soon. Thank you for thinking of us with so much love.
             </p>
           )}
         </div>
-        <Heart size={16} strokeWidth={1.2} aria-hidden="true" className="mx-auto mt-8 text-[#b98c9d]" />
       </Reveal>
     </section>
   );

@@ -8,6 +8,15 @@ export const wedding = {
   time: "3:00 PM",
   countdownDate: "2026-11-21T15:00:00+08:00",
   receptionFloor: "2/F",
+  // Confirmed church arrival and ceremony, followed by the Eric and Li sample reception.
+  program: [
+    { time: "2:30 PM", title: "Arrival at the Church", description: "Arrive at the church and settle in before the ceremony." },
+    { time: "3:00 PM", title: "Wedding Ceremony", description: "The wedding ceremony commences" },
+    { time: "6:00 PM", title: "Reception Dinner", description: "Dinner service begins" },
+    { time: "7:30 PM", title: "First Dance & Toasts", description: "Special dances and speeches" },
+    { time: "8:00 PM", title: "Dance Party", description: "Let's celebrate on the dance floor!" },
+    { time: "11:00 PM", title: "Grand Exit", description: "Sparkler send-off" },
+  ],
   // Sampled from the seven swatches in the supplied dress-code reference.
   palette: [
     { name: "Champagne", color: "#ede2c6" },
@@ -25,6 +34,10 @@ export const attireDressCode = "Cocktail / semi-formal";
 export const attireDescription = "We kindly request that our guests wear cocktail/semi-formal attire in these colors on our special day.";
 export const mensAttire = "Long-sleeved shirts in any shade of pastel, paired with pants.";
 export const rsvpDeadline = "Our RSVP deadline and response details will be shared soon.";
+export const unpluggedCeremony = {
+  title: "Unplugged Ceremony",
+  description: "We invite you to be fully present as we say our vows. Kindly silence and put away your phones and cameras during the ceremony, and let our photographers capture these special moments. Thank you for sharing this moment with us.",
+};
 
 export interface EntouragePreparation {
   group: string;
@@ -65,7 +78,7 @@ export const giftRegistries: GiftRegistry[] = [];
 export const faqs = [
   {
     question: "When is the wedding?",
-    answer: `Our wedding is on ${wedding.date} at ${wedding.time} (Philippine time). The other times shown in the wedding timeline are a sample program.`,
+    answer: `Our wedding is on ${wedding.date} at ${wedding.time} (Philippine time). Please arrive at the church at 2:30 PM. The reception times shown in the wedding timeline are a sample program.`,
   },
   {
     question: "Where are the ceremony and reception?",
