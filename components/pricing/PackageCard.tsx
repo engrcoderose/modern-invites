@@ -56,12 +56,7 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
           {packageDetails.price}
         </span>
       </div>
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-        <span
-          className={`line-through ${isFeatured ? "text-white/35" : "text-ink-muted/60"}`}
-        >
-          ₱{packageDetails.originalPrice}
-        </span>
+      <div className="mt-2 text-xs">
         <span
           className={`font-semibold ${isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"}`}
         >

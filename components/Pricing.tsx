@@ -1,8 +1,8 @@
-import { Sparkles } from "lucide-react";
-import { LAUNCH_DISCOUNT, PRICING_PACKAGES } from "@/lib/pricing";
+import { PRICING_PACKAGES } from "@/lib/pricing";
 import ScrollReveal from "@/components/landing/ScrollReveal";
 import SectionHeading from "@/components/landing/SectionHeading";
 import PackageCard from "@/components/pricing/PackageCard";
+import ModularPricing from "@/components/pricing/ModularPricing";
 import PricingGuide from "@/components/pricing/PricingGuide";
 import PricingHero from "@/components/pricing/PricingHero";
 
@@ -30,16 +30,6 @@ export default function Pricing() {
             align="center"
           />
 
-          <ScrollReveal delay={0.08}>
-            <div className="mx-auto mt-8 flex w-fit items-center gap-2 rounded-full bg-[#eef4ef] px-4 py-2 text-xs font-bold text-forest">
-              <Sparkles
-                className="h-3.5 w-3.5 text-champagne-dark"
-                aria-hidden="true"
-              />
-              Launch special: {LAUNCH_DISCOUNT} on every package
-            </div>
-          </ScrollReveal>
-
           <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
             {PRICING_PACKAGES.map((packageDetails, index) => (
               <ScrollReveal
@@ -61,6 +51,8 @@ export default function Pricing() {
           </ScrollReveal>
         </div>
       </section>
+
+      <ModularPricing />
 
       <PricingGuide />
     </>

@@ -53,7 +53,11 @@ export default function OpeningScreen({ bride, groom, dateDisplay }: OpeningScre
       aria-label={`${bride} and ${groom}'s wedding invitation`}
       className={`opening-screen fixed inset-0 z-[100] h-dvh w-full overflow-hidden bg-[#20050b] text-[#fff8ee]${introReady ? " opening-screen--ready" : ""}${isClosing ? " opening-screen--closing" : ""}`}
     >
-      <Image src={RingFocus} alt="" fill priority quality={78} sizes="100vw" className="object-cover" />
+      <Image
+        src={RingFocus}
+        alt="" fill priority quality={78}
+        sizes="100vw"
+        className="object-cover" />
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
@@ -82,13 +86,15 @@ export default function OpeningScreen({ bride, groom, dateDisplay }: OpeningScre
         <div>
           <p
             aria-label={`${bride} and ${groom}`}
-            className="opening-names font-instrumentSerif text-[clamp(4rem,11vw,9rem)] leading-[0.78] tracking-[-0.055em] drop-shadow-2xl"
+            className="opening-names font-maeCulpa text-[clamp(4rem,11vw,9rem)] leading-[0.78] tracking-[-0.055em] drop-shadow-2xl"
           >
             <span aria-hidden="true" className="opening-name-line opening-name-line--bride">
               <span className="opening-name-reveal">{bride}</span>
             </span>
-            <span aria-hidden="true" className="opening-ampersand my-1 block font-meaCulpa text-[0.48em] font-normal leading-none text-[#e2c689] sm:my-2">and</span>
-            <span aria-hidden="true" className="opening-name-line opening-name-line--groom">
+            <span aria-hidden="true"
+              className="opening-ampersand my-1 block font-meaCulpa text-[0.48em] font-normal leading-none text-[#e2c689] sm:my-2">and</span>
+            <span aria-hidden="true"
+              className="opening-name-line opening-name-line--groom">
               <span className="opening-name-reveal">{groom}</span>
             </span>
           </p>

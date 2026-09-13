@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Check, Clock3, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, Clock3 } from "lucide-react";
 import { CONTACT_URL } from "@/lib/site";
-import { LAUNCH_DISCOUNT } from "@/lib/pricing";
 import ScrollReveal from "@/components/landing/ScrollReveal";
 import {
   primaryButtonClass,
@@ -24,14 +23,7 @@ export default function PricingHero() {
       <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
         <ScrollReveal direction="left">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-forest/10 bg-white/75 px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-forest shadow-sm backdrop-blur">
-              <Sparkles
-                className="h-3.5 w-3.5 text-champagne-dark"
-                aria-hidden="true"
-              />
-              Launch offer · {LAUNCH_DISCOUNT}
-            </div>
-            <h1 className="mt-7 text-balance font-instrumentSerif text-[3.5rem] leading-[0.93] tracking-[-0.04em] text-ink sm:text-7xl lg:text-[5.4rem]">
+            <h1 className="text-balance font-instrumentSerif text-[3.5rem] leading-[0.93] tracking-[-0.04em] text-ink sm:text-7xl lg:text-[5.4rem]">
               A beautiful invitation,
               <span className="block italic text-eucalyptus-dark">
                 one simple price.
@@ -68,7 +60,7 @@ export default function PricingHero() {
             <div className="relative overflow-hidden rounded-[1.75rem] bg-forest px-6 py-8 text-white sm:px-9 sm:py-10">
               <div className="invitation-grid absolute inset-0 opacity-10" />
               <div className="relative">
-                <div className="flex items-start justify-between gap-5">
+                <div>
                   <div>
                     <p className="text-[0.62rem] font-bold uppercase tracking-[0.24em] text-champagne-light">
                       Website invitation
@@ -77,9 +69,6 @@ export default function PricingHero() {
                       Made around your celebration
                     </h2>
                   </div>
-                  <span className="rounded-full bg-champagne px-3 py-1.5 text-[0.58rem] font-bold uppercase tracking-[0.15em] text-forest">
-                    {LAUNCH_DISCOUNT}
-                  </span>
                 </div>
 
                 <div className="mt-10 flex items-end justify-between border-b border-white/10 pb-8">

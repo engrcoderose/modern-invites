@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import InvitationExperience from "./InvitationExperience";
-import "./wildflower.css";
+import Invitation from "./invitation";
 
 export const metadata: Metadata = {
-  title: "Anjo & Jasmin | 21 November 2026",
-  description:
-    "Together with their families, Anjo and Jasmin invite you to celebrate their wedding in Malabon on November 21, 2026.",
+  title: "Anjo & Jasmin | November 21, 2026",
+  description: "Together with our families, join Anjo Caluya and Jasmin Sopera for a celebration of love in Malabon on November 21, 2026.",
+  alternates: { canonical: "/anjo-and-jasmin" },
 };
 
-export default function AnjoAndJasminWedding() {
-  return <InvitationExperience />;
+export default function Page() {
+  return <Invitation />;
 }
