@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { getImageProps, type StaticImageData } from "next/image";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { useInView } from "motion/react";
 import BlueFlower from "../../jasmin-and-anjo/assets/images/designs/blue-fower-water-color.png";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
@@ -47,7 +47,7 @@ export default function InvitationSection({ message, videoSrc, poster }: Invitat
             {message}
           </p>
         </Reveal>
-        <Reveal delay={0.2} className="relative isolate mt-10 w-full max-w-4xl border border-[#c3cdb8] bg-[#e8eddf] p-2 sm:mt-12 sm:p-3">
+        <Reveal delay={0.2} className="relative isolate mt-10 w-[calc(100%+24px)] sm:mt-12 sm:w-full sm:max-w-4xl sm:border sm:border-[#c3cdb8] sm:bg-[#e8eddf] sm:p-3">
           <Image
             src={BlueFlower}
             alt=""
@@ -62,7 +62,8 @@ export default function InvitationSection({ message, videoSrc, poster }: Invitat
             preload="none"
             poster={nearViewport ? posterImage.src : undefined}
             aria-label="Anjo and Jasmin prenup video"
-            className="relative z-10 aspect-video w-full bg-[#263d35] object-contain shadow-[0_18px_60px_rgba(38,61,53,.12)]"
+            className="relative z-10 aspect-[var(--prenup-aspect)] w-full bg-[#fffdf8] object-contain shadow-[0_18px_60px_rgba(38,61,53,.12)] sm:aspect-video sm:bg-[#263d35]"
+            style={{ "--prenup-aspect": `${poster.width} / ${poster.height}` } as CSSProperties}
             onPlay={() => window.dispatchEvent(new Event(prenupVideoStartedEvent))}
           >
             <source src={videoSrc} type="video/mp4" />
