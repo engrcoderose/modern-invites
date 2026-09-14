@@ -1,6 +1,7 @@
 export interface GuestMutationState {
   status: "idle" | "success" | "error";
   message?: string;
+  needsRefresh?: boolean;
 }
 
 export type GuestMutationAction = (

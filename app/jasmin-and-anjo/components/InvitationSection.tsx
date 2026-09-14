@@ -4,15 +4,13 @@ import Image, { type StaticImageData } from "next/image";
 import BlueFlower from "../assets/images/designs/blue-fower-water-color.png";
 import Reveal from "./motion/Reveal";
 import Botanicals from "./Botanicals";
-import { prenupVideoStartedEvent } from "../lib/events";
 
 interface InvitationSectionProps {
   message: string;
-  videoSrc: string;
   poster: StaticImageData;
 }
 
-export default function InvitationSection({ message, videoSrc, poster }: InvitationSectionProps) {
+export default function InvitationSection({ message, poster }: InvitationSectionProps) {
   return (
     <section
       id="invitation"
@@ -42,19 +40,7 @@ export default function InvitationSection({ message, videoSrc, poster }: Invitat
             sizes="(max-width: 640px) 112px, 192px"
             className="pointer-events-none absolute -bottom-16 -left-8 z-0 h-auto w-28 select-none sm:-bottom-20 sm:-left-24 sm:w-48"
           />
-          <video
-            controls
-            loop
-            playsInline
-            preload="metadata"
-            poster={poster.src}
-            aria-label="Anjo and Jasmin prenup video"
-            className="relative z-10 aspect-video w-full bg-[#263d35] object-contain shadow-[0_18px_60px_rgba(38,61,53,.12)]"
-            onPlay={() => window.dispatchEvent(new Event(prenupVideoStartedEvent))}
-          >
-            <source src={videoSrc} type="video/mp4" />
-            Your browser does not support embedded video. <a href={videoSrc}>Watch the prenup video</a>.
-          </video>
+          <Image src={poster} alt="Anjo and Jasmin together in the garden" sizes="(max-width: 1024px) 90vw, 896px" className="relative z-10 aspect-video w-full object-cover shadow-[0_18px_60px_rgba(38,61,53,.12)]" />
         </Reveal>
       </div>
     </section>

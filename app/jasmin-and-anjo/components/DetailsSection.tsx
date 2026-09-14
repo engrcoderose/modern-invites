@@ -1,3 +1,4 @@
+import { wedding } from "../data";
 import Image from "next/image";
 import { ArrowUpRight, Clock3, MapPin } from "lucide-react";
 import type { TimelineEvent, VenueDetails } from "../types";
@@ -31,7 +32,7 @@ function VenueMedia({ venue, index }: { venue: VenueDetails; index: number }) {
     <>
       <Image
         src={venue.image}
-        alt={venue.imageAlt ?? "Placeholder photograph; venue photo to follow"}
+        alt={venue.imageAlt ?? venue.name}
         fill
         sizes="(max-width: 1024px) 100vw, 50vw"
         className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.04]"
@@ -86,7 +87,7 @@ export default function DetailsSection({
               Saturday · {dateDisplay}
             </p>
             <p className="mt-3 text-[0.62rem] uppercase tracking-[0.3em] text-[#756770]">
-              Malabon, Philippines
+              {wedding.location}
             </p>
           </Reveal>
         </div>

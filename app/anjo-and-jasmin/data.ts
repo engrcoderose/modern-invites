@@ -1,4 +1,4 @@
-import { wedding as originalWedding } from "../jasmin-and-anjo/data";
+import { wedding as originalWedding } from "./wedding-details";
 
 // Share the existing content while applying confirmed details to this version.
 export const wedding = {

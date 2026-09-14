@@ -2,6 +2,7 @@ import "server-only";
 
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { createFetchWithTimeout } from "./fetch-with-timeout";
 
 /**
  * Creates a user-scoped Supabase client for Server Components, Server Actions,
@@ -28,6 +29,7 @@ export async function createSupabaseServerClient() {
   const cookieStore = await cookies();
 
   return createServerClient(supabaseUrl, supabasePublishableKey, {
+    global: { fetch: createFetchWithTimeout() },
     cookies: {
       getAll() {
         return cookieStore.getAll();

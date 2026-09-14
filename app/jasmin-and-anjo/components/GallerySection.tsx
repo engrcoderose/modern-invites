@@ -48,7 +48,7 @@ export default function GallerySection({ images }: { images: GalleryImage[]; }) 
             <Reveal><SectionLabel className="text-[#526753]">Captured moments</SectionLabel></Reveal>
             <Reveal delay={0.08}><h2 id="gallery-title" className="mt-8 text-[#526753] font-instrumentSerif text-[clamp(3.7rem,8vw,7.5rem)] leading-[0.86] tracking-[-0.05em]">Scenes from<br />our forever.</h2></Reveal>
           </div>
-          <Reveal delay={0.12}><p className="max-w-xs text-[#526753] font-libreBaskerville text-xs leading-7 sm:text-right">Placeholder photographs for now. Soon, these frames will hold our own favorite moments.</p></Reveal>
+          <Reveal delay={0.12}><p className="max-w-xs text-[#526753] font-libreBaskerville text-xs leading-7 sm:text-right">The little glances, the laughter, and the quiet moments that brought us here.</p></Reveal>
         </div>
 
         <div ref={wall} className="flow-gallery-wall relative isolate mt-16 grid h-[clamp(420px,58vw,740px)] grid-cols-3 gap-[var(--gallery-gap)] overflow-hidden [--gallery-gap:14px] max-[640px]:mt-[38px] max-[640px]:h-auto max-[640px]:grid-cols-1 max-[640px]:gap-2.5 max-[640px]:[--gallery-gap:10px] motion-reduce:h-auto motion-reduce:max-h-none motion-reduce:overflow-visible" data-paused={paused || !inView || !pageVisible || Boolean(selected)} aria-label="Continuously scrolling wedding photographs">
@@ -73,10 +73,10 @@ export default function GallerySection({ images }: { images: GalleryImage[]; }) 
           {!reduceMotion && <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[30px] border border-[#8da08d] px-[15px] py-3 text-[10px] tracking-[.04em]" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume gallery animation" : "Pause gallery animation"}>{paused ? <Play size={14} /> : <Pause size={14} />}{paused ? "Resume motion" : "Pause motion"}</button>}
         </div>
       </div>
-      <dialog ref={dialog} className="backdrop:bg-[#1e332ad9] backdrop:backdrop-blur-[7px] w-[min(1100px,94vw)] max-h-[94svh] border-0 bg-[#fbf8f1] px-[18px] pb-[18px] pt-[45px] text-[#33473d]" onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }} aria-label="Wedding photograph preview">
+      <dialog ref={dialog} className="backdrop:bg-[#1e332ad9] backdrop:backdrop-blur-[7px] w-[min(1100px,94vw)] max-h-[94svh] border-0 bg-[#fbf8f1] px-[18px] pb-[18px] pt-[45px] text-[#33473d]" onCancel={event => { event.preventDefault(); close(); }} onClick={event => { if (event.target === event.currentTarget) close(); }} aria-label="Wedding photograph">
         <button className="absolute right-2.5 top-2 p-[5px]" onClick={close} aria-label="Close photograph"><X size={22} /></button>
         {selected && <Image src={selected.src} alt={selected.alt} width={1600} height={1200} sizes="90vw" className="h-auto max-h-[77svh] w-full object-contain" />}
-        <p className="mt-3.5 text-center text-[11px]">Placeholder photograph · Our photos to follow</p>
+        <p className="mt-3.5 text-center text-[11px]">Our favorite moments, forever remembered.</p>
       </dialog>
     </section>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { wedding } from "../data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import FloralBorder from "../assets/images/designs/floral-designs.png";
@@ -88,7 +89,7 @@ export default function OpeningScreen({ bride, groom, dateDisplay, onOpen }: Ope
           <span>{groom}</span><span className="opening-couple-ampersand text-[.8em]">&amp;</span><span className="max-[600px]:basis-full">{bride}</span>
         </h1>
         <p className="opening-details max-[600px]:max-w-[280px] max-[600px]:text-[13px] font-sans text-[clamp(12px,1.65vw,21px)] leading-[1.8] tracking-[.035em] opening-reveal">
-          <span className="max-[600px]:block">{dateDisplay}</span><span className="max-[600px]:hidden" aria-hidden="true"> · </span><span>San Bartolome Parish · Malabon</span>
+          <span className="max-[600px]:block">{dateDisplay}</span><span className="max-[600px]:hidden" aria-hidden="true"> · </span><span>{wedding.ceremony} · {wedding.city}</span>
         </p>
         <p className="opening-message font-sans text-[clamp(15px,1.65vw,21px)] leading-[1.3] tracking-[.025em] opening-reveal">Invite you to<br />Celebrate their Marriage</p>
         <div className="opening-action opening-reveal">

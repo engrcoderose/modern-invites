@@ -1,5 +1,6 @@
 "use client";
 
+import { wedding } from "../data";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import Reveal from "./motion/Reveal";
@@ -65,7 +66,7 @@ export default function CountdownSection({ date, brideFullName, groomFullName }:
           <p className="text-[0.6rem] uppercase tracking-[0.35em] text-[#637b65]">Counting down to our wedding day</p>
           <p className="mt-4 font-meaCulpa text-4xl text-[#637b65] sm:text-5xl">{groomFullName} &amp; {brideFullName}</p>
         </Reveal>
-        <p className="mt-4 text-xs text-[#616b60]">November 21, 2026 · Ceremony time to be confirmed</p>
+        <p className="mt-4 text-xs text-[#616b60]">{wedding.dateDisplay} · {wedding.time} (Philippine time)</p>
         <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-px bg-[#637b65]/15 sm:grid-cols-4">
           {values.map(([value, label], index) => (
             <motion.div key={label} initial={false} whileInView={{ opacity: [0, 1], y: [16, 0] }} viewport={{ once: true }} transition={{ delay: index * 0.08, duration: 0.7 }} className="scroll-reveal bg-[#e5eadd] px-3 py-7 sm:py-9">

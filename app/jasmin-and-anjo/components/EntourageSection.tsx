@@ -13,7 +13,7 @@ export default function EntourageSection({ brideFullName, groomFullName, groups 
       <div className="pointer-events-none absolute inset-x-0 top-14 text-center font-instrumentSerif text-[10rem] leading-none text-[#637b65]/[0.025] sm:text-[18rem]">A &amp; J</div>
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center">
-          <Reveal><SectionLabel>The wedding party · Sample names</SectionLabel></Reveal>
+          <Reveal><SectionLabel>The wedding party</SectionLabel></Reveal>
           <Reveal delay={0.08}><h2 className="mt-8 font-instrumentSerif text-[clamp(3.6rem,7vw,7rem)] leading-[0.9] tracking-[-0.05em]">With love from<br />our dearest people.</h2></Reveal>
           <Reveal delay={0.14}><p className="mt-7 max-w-xl font-libreBaskerville text-sm leading-8 text-[#616b60]">Together with their families, {groomFullName} and {brideFullName} request the honor of your presence.</p></Reveal>
         </div>

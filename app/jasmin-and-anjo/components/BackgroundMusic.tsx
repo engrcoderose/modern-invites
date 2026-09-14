@@ -84,7 +84,7 @@ export default function BackgroundMusic() {
           </button>
 
           <div className="hidden min-w-0 sm:block">
-            <p className="text-[0.48rem] uppercase tracking-[0.28em] text-[#eac8cd]">Sample music</p>
+            <p className="text-[0.48rem] uppercase tracking-[0.28em] text-[#eac8cd]">Our soundtrack</p>
             <p className="mt-0.5 max-w-36 truncate font-instrumentSerif text-base leading-none">Libu-libong Buwan</p>
           </div>
 

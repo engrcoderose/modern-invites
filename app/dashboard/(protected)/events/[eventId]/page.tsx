@@ -20,7 +20,6 @@ import { GuestTable } from "@/features/dashboard/presentation/guest-table";
 import { ManageHouseholds } from "@/features/dashboard/presentation/manage-households";
 
 import {
-  createGuestAction,
   deleteGuestAction,
   deleteHouseholdAction,
   updateGuestAction,
@@ -133,10 +132,10 @@ export default async function WeddingDashboardPage({
             </Link>
           </Button>
           <Button asChild className="bg-forest text-white hover:bg-forest-light">
-            <Link href={`/api/dashboard/events/${eventId}/export`}>
+            <a href={`/api/dashboard/events/${eventId}/export`}>
               <Download aria-hidden="true" />
               Export Excel
-            </Link>
+            </a>
           </Button>
         </div>
       </div>
@@ -170,7 +169,6 @@ export default async function WeddingDashboardPage({
               <AddGuestForm
                 eventId={eventId}
                 households={workspace.households}
-                action={createGuestAction}
               />
             </div>
           ) : null}

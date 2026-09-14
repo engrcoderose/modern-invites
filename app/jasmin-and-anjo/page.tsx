@@ -14,20 +14,40 @@ import EntourageSection from "./components/EntourageSection";
 import GallerySection from "./components/GallerySection";
 import PhotoBreak from "./components/PhotoBreak";
 import AttireSection from "./components/AttireSection";
-import GiftSection from "./components/GiftSection";
 import HashtagSection from "./components/HashtagSection";
 import StickySlides from "./components/StickySlides";
 import RSVPSection from "./components/RSVPSection";
 import Footer from "./components/Footer";
 import { wedding } from "./data";
-import { gallery, PrenupPoster, StoryWalk, StoryEmbrace, ChurchImage } from "./media";
+import {
+  gallery,
+  invitationPreview,
+  PrenupPoster,
+  StoryWalk,
+  StoryEmbrace,
+} from "./media";
 import "./wedding.css";
 
+const invitationTitle = `${wedding.groomFirstName} & ${wedding.brideFirstName} | ${wedding.dateDisplay}`;
+const invitationDescription = `Together with their families, ${wedding.groomFirstName} and ${wedding.brideFirstName} invite you to celebrate their marriage on ${wedding.dateDisplay} at ${wedding.ceremony}, ${wedding.city}.`;
+
 export const metadata: Metadata = {
-  title: "Jasmin & Anjo | November 21, 2026",
-  description:
-    "Together with our families, join Jasmin Sopera and Anjo Caluya for a celebration of love in Malabon on November 21, 2026.",
-  alternates: { canonical: "/jasmin-and-anjo" },
+  title: invitationTitle,
+  description: invitationDescription,
+  alternates: { canonical: "/jasmin-and-anjo-wedding" },
+  openGraph: {
+    title: invitationTitle,
+    description: invitationDescription,
+    url: "/jasmin-and-anjo-wedding",
+    type: "website",
+    images: [invitationPreview],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: invitationTitle,
+    description: invitationDescription,
+    images: [invitationPreview],
+  },
 };
 
 export default function Page() {
@@ -35,12 +55,12 @@ export default function Page() {
     <Invitation>
       <BackgroundMusic />
       <ScrollProgress />
-      <Navigation initials="J / A" />
+      <Navigation initials="A / J" />
       <HeroSection
-        bride="Jasmin"
-        groom="Anjo"
-        dateDisplay="21 · 11 · 2026"
-        location="Malabon, Philippines"
+        bride={wedding.brideFirstName}
+        groom={wedding.groomFirstName}
+        dateDisplay={wedding.heroDate}
+        location={wedding.location}
       />
       <PolaroidStrip />
       <CountdownSection
@@ -49,9 +69,8 @@ export default function Page() {
         groomFullName={wedding.groom}
       />
       <InvitationSection
-        videoSrc="/videos/jasmin-and-anjo/prenup.mp4"
         poster={PrenupPoster}
-        message="Together with our families, we, Jasmin Sopera and Anjo Caluya, request the honor of your presence as we celebrate the sacrament of marriage on Saturday, November 21, 2026, at San Bartolome Parish, Malabon. Join us afterward at St. John XXIII Hall for an evening of love, laughter, and celebration."
+        message={`Together with our families, we, ${wedding.groom} and ${wedding.bride}, invite you to celebrate our marriage on ${wedding.date} at ${wedding.time}, at ${wedding.ceremony} in ${wedding.city}. Join us at ${wedding.reception} at ${wedding.receptionTime} for an evening of love, laughter, and celebration.`}
       />
       <StorySection
         title="A love in full bloom"
@@ -65,24 +84,20 @@ export default function Page() {
         venue={{
           eyebrow: "The ceremony",
           name: wedding.ceremony,
-          address: "Malabon, Philippines",
+          address: wedding.location,
           time: wedding.time,
-          mapUrl:
-            "https://www.google.com/maps/search/?api=1&query=San+Bartolome+Parish+Malabon",
-          mediaType: "image",
-          image: ChurchImage,
-          imageAlt: "Watercolor illustration of San Bartolome Parish, Malabon",
+          mapUrl: wedding.mapUrl,
+          mediaType: "map",
+          mapEmbedUrl: wedding.mapEmbedUrl,
         }}
         reception={{
           eyebrow: "The reception",
           name: wedding.reception,
           address: wedding.location,
-          time: "Reception follows the ceremony",
-          mapUrl:
-            "https://www.google.com/maps/search/?api=1&query=St+John+XXIII+Hall+San+Bartolome+Parish+Malabon",
+          time: wedding.receptionTime,
+          mapUrl: wedding.mapUrl,
           mediaType: "map",
-          mapEmbedUrl:
-            "https://www.google.com/maps?q=St+John+XXIII+Hall+San+Bartolome+Parish+Malabon&output=embed",
+          mapEmbedUrl: wedding.mapEmbedUrl,
         }}
         program={wedding.program}
       />
@@ -99,13 +114,12 @@ export default function Page() {
       />
       <StickySlides>
         <PhotoBreak />
-        <GiftSection />
         <HashtagSection hashtag={wedding.hashtag} />
       </StickySlides>
-      <RSVPSection deadline="Our RSVP deadline and response details will be shared soon." />
+      <RSVPSection deadline={wedding.rsvpDeadline} />
       <Footer
-        bride="Jasmin"
-        groom="Anjo"
+        bride={wedding.brideFirstName}
+        groom={wedding.groomFirstName}
         dateDisplay={wedding.dateDisplay}
         hashtag={wedding.hashtag}
       />

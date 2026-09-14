@@ -1,33 +1,53 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useRef, useState, useTransition, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { Loader2, Plus, UserPlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { DashboardHousehold } from "@/features/dashboard/domain/client-dashboard";
-import type { GuestMutationAction } from "./guest-mutation.types";
-import { initialGuestMutationState } from "./guest-mutation.types";
+import { submitDashboardGuest, type AddGuestResult } from "./submit-dashboard-guest";
 import { useDismissibleDetails } from "./use-dismissible-details";
 
 interface AddGuestFormProps {
   eventId: number;
   households: DashboardHousehold[];
-  action: GuestMutationAction;
 }
 
 export function AddGuestForm({
   eventId,
   households,
-  action,
 }: AddGuestFormProps) {
-  const [state, formAction, isPending] = useActionState(
-    action,
-    initialGuestMutationState,
-  );
+  const router = useRouter();
+  const [, startRefresh] = useTransition();
+  const [state, setState] = useState<AddGuestResult>({ status: "idle" });
+  const [isPending, setPending] = useState(false);
+  const submitting = useRef(false);
   const [householdSelection, setHouseholdSelection] = useState("new");
   const detailsRef = useDismissibleDetails();
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submitting.current || state.needsRefresh) return;
+    const form = event.currentTarget;
+    submitting.current = true;
+    setPending(true);
+    setState({ status: "idle" });
+    try {
+      const result = await submitDashboardGuest(eventId, new FormData(form));
+      setState(result);
+      if (result.status === "success") {
+        form.reset();
+        setHouseholdSelection("new");
+        startRefresh(() => router.refresh());
+      }
+    } finally {
+      submitting.current = false;
+      setPending(false);
+    }
+  }
 
   return (
     <details ref={detailsRef} className="group relative">
@@ -49,7 +69,7 @@ export function AddGuestForm({
           </div>
         </div>
 
-        <form action={formAction} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" aria-busy={isPending}>
           <input type="hidden" name="eventId" value={eventId} />
 
           <div className="space-y-2">
@@ -176,9 +196,11 @@ export function AddGuestForm({
             </p>
           ) : null}
 
+          {state.needsRefresh && <a href={`/dashboard/events/${eventId}`} className="block text-sm font-medium text-forest underline underline-offset-4">Refresh and check the guest list</a>}
+
           <Button
             type="submit"
-            disabled={isPending}
+            disabled={isPending || state.needsRefresh}
             className="w-full bg-forest text-white hover:bg-forest-light"
           >
             {isPending ? (

@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Music2, Navigation2, Timer, UsersRound } from "lucide-react";
-import ericCouple from "@/app/eric-and-li/assets/images/gallery-one-couple.jpg";
-import ericBackground from "@/app/eric-and-li/assets/hero-background.png";
+import signatureCouple from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
+import signatureBackground from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
 import stephaniePortrait from "@/app/stephanie-at-18/assets/HeroPhoto.png";
 import stephanieBackground from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
 import isabellaPortrait from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
@@ -33,12 +33,12 @@ const invitations: Invitation[] = [
     features: ["Countdown", "RSVP", "Dress code", "Music"],
   },
   {
-    title: "Eric & Li",
-    category: "Wedding invitation",
-    description: "A romantic, story-led website with guest RSVP, event details, music, and an intimate gallery.",
-    href: "/eric-and-li",
-    portrait: ericCouple,
-    background: ericBackground,
+    title: "Anjo & Jasmin",
+    category: "Signature wedding",
+    description: "Anjo and Jasmin’s pastel garden wedding, with a heartfelt love story, two photo collections, maps, music, and elegant animations.",
+    href: "/jasmin-and-anjo-wedding",
+    portrait: signatureCouple,
+    background: signatureBackground,
     tone: "forest",
     features: ["Countdown", "Smart RSVP", "Maps", "Music"],
   },
@@ -64,7 +64,7 @@ export default function FeaturedInvitations() {
           <SectionHeading
             eyebrow="Selected celebrations"
             title={<>Invitations you can <span className="italic text-eucalyptus-dark">feel.</span></>}
-            description="Explore real invitations, crafted around the people, details, and atmosphere of each celebration."
+            description="Explore sample websites and invitations, crafted around the details and atmosphere of each celebration."
           />
           <ScrollReveal direction="right" delay={0.12} className="self-start lg:self-end">
             <Link href="/portfolio" className="group inline-flex items-center gap-2 text-sm font-bold text-forest">

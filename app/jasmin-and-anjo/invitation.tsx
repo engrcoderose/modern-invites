@@ -1,10 +1,11 @@
 "use client";
 import { useState, type ReactNode } from "react";
+import { wedding } from "./data";
 import OpeningScreen from "./components/OpeningScreen";
 export default function Invitation({ children }: { children: ReactNode; }) {
   const [opened, setOpened] = useState(false);
   return <main className="floral-invitation relative font-sans text-[#33473d] overflow-x-clip bg-[#fbf8f1]">
-    <OpeningScreen bride="Jasmin" groom="Anjo" dateDisplay="11.21.26" onOpen={() => setOpened(true)} />
+    <OpeningScreen bride={wedding.brideFirstName} groom={wedding.groomFirstName} dateDisplay={wedding.openingDate} onOpen={() => setOpened(true)} />
     <div inert={!opened} className="invitation-content relative [&>section:not(#top):not(#cinematic)]:scroll-mt-[78px]">{children}</div>
   </main>;
 }

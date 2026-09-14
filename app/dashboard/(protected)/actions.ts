@@ -182,9 +182,11 @@ export async function createGuestAction(
     };
   } catch (error) {
     console.error("Dashboard guest creation failed:", error);
-    return invalidFormState(
-      "The guest could not be added. Check your permission and try again.",
-    );
+    return {
+      status: "error",
+      needsRefresh: true,
+      message: "The guest request could not be confirmed. Refresh the guest list and check for this name before trying again.",
+    };
   }
 }
 

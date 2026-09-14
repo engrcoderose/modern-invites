@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { createFetchWithTimeout } from "./fetch-with-timeout";
 
 /**
  * Refreshes an expired Supabase Auth session and synchronizes the updated
@@ -26,6 +27,7 @@ export async function updateSupabaseSession(request: NextRequest) {
     supabaseUrl,
     supabasePublishableKey,
     {
+      global: { fetch: createFetchWithTimeout() },
       cookies: {
         getAll() {
           return request.cookies.getAll();

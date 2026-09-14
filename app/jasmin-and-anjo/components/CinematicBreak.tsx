@@ -1,5 +1,6 @@
 "use client";
 
+import { wedding } from "../data";
 import { useRef } from "react";
 import Image from "next/image";
 import PrenupMoment from "../assets/images/prenup/pexels-king-caplis-471600979-36266137.jpg";
@@ -132,7 +133,7 @@ export default function CinematicBreak() {
 
           <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-[0.52rem] uppercase tracking-[0.28em] text-[#ffe1ee]/85 sm:bottom-8 sm:left-8 sm:right-8">
             <span>Anjo &amp; Jasmin</span>
-            <span>Malabon · 2026</span>
+            <span>{wedding.city} · {new Date(wedding.countdownDate).getUTCFullYear()}</span>
           </div>
         </motion.div>
       </div>

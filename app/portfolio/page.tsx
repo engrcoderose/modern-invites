@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import Navigation from "@/components/Navigation";
 import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Footer from "@/components/Footer";
+import SeatFinderSection from "@/components/portfolio/SeatFinderSection";
 
 import stephHeroBg from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
 import ericHeroBg from "@/app/eric-and-li/assets/hero-background.png";
@@ -15,8 +16,26 @@ import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple
 import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
 import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
 import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
+import signaturePortrait from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
+import signatureBackground from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
+import { wedding as signatureWedding } from "@/app/jasmin-and-anjo/data";
 
 const portfolioItems = [
+  {
+    id: "jasmin-and-anjo",
+    title: "Anjo & Jasmin",
+    category: "Signature Wedding",
+    date: signatureWedding.dateDisplay,
+    venue: "The Garden Chapel · Tagaytay",
+    description:
+      "A garden wedding in ivory, blush, sage, and pastel florals, celebrating Anjo and Jasmin with cinematic animations, two photo collections, music, maps, and a personal invitation for every guest.",
+    href: "/jasmin-and-anjo-wedding",
+    bgImage: signatureBackground,
+    previewImage: signaturePortrait,
+    accent: "#946879",
+    accentLight: "#f5e9ed",
+    tags: ["Signature", "Pastel Garden", "Wedding"],
+  },
   {
     id: "nylgen-and-kersee",
     title: "Nylgen & Kersee",
@@ -113,15 +132,36 @@ export default function PortfolioPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
           >
-            Real invitations crafted for real celebrations. Each one is
-            hand-designed with care — tailored to the occasion, the couple,
-            and the story behind it.
+            Explore our sample invitations and seat finders. Each one is
+            hand-designed with care — tailored to the occasion, the couple, and
+            the story behind it.
           </motion.p>
+          <nav
+            aria-label="Portfolio sections"
+            className="mt-8 flex flex-wrap justify-center gap-3"
+          >
+            <a
+              href="#invitations"
+              className="rounded-full border border-sage-200 bg-white px-6 py-2.5 text-sm font-semibold text-sage-700 transition-colors hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+            >
+              Invitations
+            </a>
+            <a
+              href="#seat-finder"
+              className="rounded-full bg-sage-700 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+            >
+              Seat Finder
+            </a>
+          </nav>
         </div>
       </section>
 
       {/* Portfolio Items */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28 space-y-24">
+      <section
+        id="invitations"
+        aria-label="Sample invitations"
+        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28 space-y-24"
+      >
         {portfolioItems.map((item, index) => (
           <motion.article
             key={item.id}
@@ -262,6 +302,8 @@ export default function PortfolioPage() {
           </motion.article>
         ))}
       </section>
+
+      <SeatFinderSection />
 
       {/* CTA Banner */}
       <section className="bg-sage-700 py-20 px-4 sm:px-6 lg:px-8">
