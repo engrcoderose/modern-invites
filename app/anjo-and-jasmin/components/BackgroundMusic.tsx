@@ -151,9 +151,9 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
           <button type="button" onClick={() => { if (wantsPlayback.current) pauseMusic(); else void playMusic(); }} aria-label={playing ? "Pause background music" : "Play background music"} className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#eac8cd]/35 bg-[#637b65] text-[#f2dce0] transition hover:bg-[#7c927d]">
             {playing ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
           </button>
-          {tracks.length > 1 && <button type="button" onClick={() => selectTrack(selectedIndex.current - 1, wantsPlayback.current)} aria-label="Previous song" className="grid h-11 w-9 shrink-0 place-items-center rounded-full hover:bg-white/10"><SkipBack size={16} /></button>}
+          {tracks.length > 1 && <button type="button" onClick={() => selectTrack(selectedIndex.current - 1, wantsPlayback.current)} aria-label="Previous song" className="hidden h-11 w-9 shrink-0 place-items-center rounded-full hover:bg-white/10 sm:grid"><SkipBack size={16} /></button>}
           <div className="hidden min-w-0 max-w-36 px-1 sm:block"><p className="text-[8px] uppercase tracking-[.2em] text-[#eac8cd]">Our soundtrack</p><p className="mt-1 truncate font-instrumentSerif text-base" title={activeTrack.title}>{activeTrack.title}</p></div>
-          {tracks.length > 1 && <button type="button" onClick={() => selectTrack(selectedIndex.current + 1, wantsPlayback.current)} aria-label="Next song" className="grid h-11 w-9 shrink-0 place-items-center rounded-full hover:bg-white/10"><SkipForward size={16} /></button>}
+          {tracks.length > 1 && <button type="button" onClick={() => selectTrack(selectedIndex.current + 1, wantsPlayback.current)} aria-label="Next song" className="hidden h-11 w-9 shrink-0 place-items-center rounded-full hover:bg-white/10 sm:grid"><SkipForward size={16} /></button>}
           <button ref={playlistButton} type="button" onClick={() => setExpanded(value => !value)} aria-label={expanded ? "Hide playlist" : "Show playlist"} aria-expanded={expanded} aria-controls="wedding-playlist" className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#eac8cd]/20 text-[#eac8cd] hover:bg-white/10"><ListMusic size={19} /></button>
         </div>
       </div>

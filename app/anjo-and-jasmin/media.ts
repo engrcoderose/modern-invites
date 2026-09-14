@@ -1,7 +1,9 @@
 import TimelineChurch from "../jasmin-and-anjo/assets/images/designs/timeline-church.png";
 import TimelineRings from "../jasmin-and-anjo/assets/images/designs/timeline-rings.png";
-import TimelinePhoto from "../jasmin-and-anjo/assets/images/designs/timeline-photo.png";
+import TimelineExit from "../jasmin-and-anjo/assets/images/designs/timeline-exit.png";
 import TimelineParty from "../jasmin-and-anjo/assets/images/designs/timeline-party.png";
+import TimelineDinner from "../jasmin-and-anjo/assets/images/designs/timeline-dinner.png";
+import TimelineDance from "../jasmin-and-anjo/assets/images/designs/timeline-dance.png";
 import { gallery as originalGallery } from "../jasmin-and-anjo/media";
 import {
   Walking,
@@ -70,8 +72,8 @@ export const gallery: GalleryImage[] = [
 export const timelineIllustrations = [
   TimelineChurch,
   TimelineRings,
+  TimelineDinner,
+  TimelineDance,
   TimelineParty,
-  TimelineRings,
-  TimelineParty,
-  TimelinePhoto,
+  TimelineExit,
 ] as const;

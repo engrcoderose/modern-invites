@@ -5,10 +5,9 @@ import FloralAccent from "./FloralAccent";
 export default function Entourage() {
   return (
     <section id="entourage" className="relative overflow-hidden bg-[#e1e7d8] px-5 py-20 text-[#624451] sm:px-8 sm:py-28">
-      <FloralAccent kind="vine" className="-left-12 top-10 w-36 opacity-70 sm:w-52" />
-      <FloralAccent kind="vine" className="-right-12 bottom-10 w-36 rotate-180 opacity-70 sm:w-52" />
-      <div className="relative mx-auto max-w-5xl border border-[#bdc8b0] bg-[#fffdf7] p-3 shadow-[0_20px_60px_-40px_#465a4855] sm:p-4">
-        <div className="border border-[#d8dece] px-5 py-12 sm:px-12 sm:py-16">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[url('/images/jasmin-and-anjo/floral-pattern.svg')] bg-[length:300px_350px] bg-repeat opacity-80 sm:bg-[length:360px_420px]" />
+      <div className="relative mx-auto max-w-5xl overflow-hidden border border-[#bdc8b0] bg-[#fffdf7] p-3 shadow-[0_20px_60px_-40px_#465a4855] sm:p-4">
+        <div className="relative border border-[#d8dece] px-5 py-12 sm:px-12 sm:py-16">
           <Reveal className="relative mb-10 text-center">
             <div aria-hidden="true" className="relative mx-auto mb-5 h-24 w-24"><FloralAccent kind="daisies" className="inset-0 w-full" sizes="96px" /></div>
             <p className="text-[10px] uppercase tracking-[.25em] text-[#946879]">The wedding party · Sample names</p>
