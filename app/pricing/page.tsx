@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
+import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Pricing from "@/components/Pricing";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import FinalCta from "@/components/landing/FinalCta";
@@ -21,6 +22,7 @@ export default function PricingPage() {
         <FinalCta />
       </main>
       <Footer />
+      <MarketingAnalytics />
     </div>
   );
 }

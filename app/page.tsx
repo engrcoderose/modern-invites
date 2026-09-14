@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Footer from "@/components/Footer";
 import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import FeatureShowcase from "@/components/landing/FeatureShowcase";
@@ -26,6 +27,7 @@ export default function LandingPage() {
         <FinalCta />
       </main>
       <Footer />
+      <MarketingAnalytics />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
 import Navigation from "@/components/Navigation";
+import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Footer from "@/components/Footer";
 
 import stephHeroBg from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
@@ -305,6 +306,7 @@ export default function PortfolioPage() {
       </section>
 
       <Footer />
+      <MarketingAnalytics />
     </div>
   );
 }
