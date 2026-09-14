@@ -16,26 +16,8 @@ import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple
 import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
 import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
 import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
-import signaturePortrait from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import signatureBackground from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
-import { wedding as signatureWedding } from "@/app/jasmin-and-anjo/data";
 
 const portfolioItems = [
-  {
-    id: "jasmin-and-anjo",
-    title: "Anjo & Jasmin",
-    category: "Signature Wedding",
-    date: signatureWedding.dateDisplay,
-    venue: "The Garden Chapel · Tagaytay",
-    description:
-      "A garden wedding in ivory, blush, sage, and pastel florals, celebrating Anjo and Jasmin with cinematic animations, two photo collections, music, maps, and a personal invitation for every guest.",
-    href: "/jasmin-and-anjo-wedding",
-    bgImage: signatureBackground,
-    previewImage: signaturePortrait,
-    accent: "#946879",
-    accentLight: "#f5e9ed",
-    tags: ["Signature", "Pastel Garden", "Wedding"],
-  },
   {
     id: "nylgen-and-kersee",
     title: "Nylgen & Kersee",
