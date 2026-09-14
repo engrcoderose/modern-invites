@@ -35,4 +35,11 @@ The newer `flower-frame.png`, `flower-border.png`, and `flowers.png` provide the
 
 Additional floral variants: `rose-flower.png` above the dress-code heading; `single-flower-2.png` and `single-flower-3.png` in the FAQ bouquet; `water-color-flowers.png` above Other Useful Information. These replace earlier accents rather than adding repeated background vines.
 
-After the dress code, `PhotoSlideshow` shows five existing prenup photos as a centered landscape image over a faded full-width duplicate. Both layers crossfade together every five seconds. It loads near the viewport, waits for both images before advancing, pauses offscreen or when hidden, offers photo selection and pause/play, and uses manual navigation with reduced motion. Photos are configured in `afterDressCodeSlides` in `media.ts`.
+After the dress code, `PhotoSlideshow` shows five existing prenup photos as a centered landscape image over a faded full-width duplicate. Both layers crossfade together every 3.5 seconds once the next pair is ready. It loads near the viewport, pauses offscreen or when hidden, and displays a static photo with reduced motion. Slideshow controls are hidden. Photos are configured in `afterDressCodeSlides` in `media.ts`.
+
+Performance update (September 14, 2026):
+- `invitation.tsx` loads the full `InvitationContent` separately and warms its code and first hero photo during the envelope opening animation.
+- Both slideshows request the current photo and then the next photo, rather than requesting every slide together. Loaded slides remain available for later loops.
+- The prenup poster loads near the viewport through Next image optimization. The local 1200px WebP response measured 74,268 bytes compared with the 1,065,443-byte source (about 93% smaller); negotiated formats and sizes may vary.
+- Video and audio use `preload="none"`; playback still follows the existing guest interaction. The countdown stops its interval while offscreen or in a hidden tab and refreshes on return.
+- This update passed TypeScript checks and desktop/mobile interaction checks for opening, slideshows, navigation, photo previews, music/video interaction, and RSVP preview. No production performance score was measured for this update.

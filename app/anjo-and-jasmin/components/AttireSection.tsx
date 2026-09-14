@@ -39,13 +39,13 @@ export default function AttireSection({ title, description, colors }: AttireSect
           <p className="text-[10px] lg:text-sm uppercase tracking-[.25em] text-[#946879]">A little outfit inspiration</p>
           <span className="h-px w-12 bg-[#d7bdc7]" />
         </div>
-        <Reveal className="mt-7 overflow-hidden border border-[#e5dadd] bg-white p-2 shadow-[0_12px_40px_-25px_#62445155] sm:p-4">
+        <Reveal className="mx-auto mt-7 w-[90%] max-w-3xl overflow-hidden border border-[#e5dadd] bg-white p-2 shadow-[0_12px_40px_-25px_#62445155] sm:p-4">
           <Image
             src="/images/anjo-and-jasmin/new_dresscode_sample.jpg"
             width={1478}
             height={704}
             alt="Pastel cocktail and semi-formal guest attire: dresses and long-sleeved shirts paired with pants in champagne, peach, blush, blue, lilac, yellow, and sage."
-            sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1024px) calc(100vw - 64px), (max-width: 1248px) calc(100vw - 96px), 1152px"
+            sizes="(max-width: 640px) calc(90vw - 56px), (max-width: 920px) calc(90vw - 92px), 734px"
             className="h-auto w-full object-contain"
           />
         </Reveal>

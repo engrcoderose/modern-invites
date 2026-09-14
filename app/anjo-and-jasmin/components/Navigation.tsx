@@ -6,7 +6,7 @@ import { useReducedMotion } from "motion/react";
 
 const links = [
   ["Home", "top"], ["Our Story", "story"], ["Program", "program"],
-  ["Entourage", "entourage"], ["Location", "location"], ["Gift Registry", "gifts"], ["FAQ", "faq"], ["RSVP", "rsvp"],
+  ["Entourage", "entourage"], ["Location", "location"], ["Seat Finder", "seat-finder"], ["Gift Registry", "gifts"], ["FAQ", "faq"], ["RSVP", "rsvp"],
 ] as const;
 
 export default function Navigation() {

@@ -96,7 +96,7 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
         ref={audioRef}
         // This prop stays stable; selectTrack owns subsequent source changes.
         src={tracks[0].src}
-        preload="metadata"
+        preload="none"
         onPlay={() => {
           if (!wantsPlayback.current) { audioRef.current?.pause(); return; }
           setPlaying(true);

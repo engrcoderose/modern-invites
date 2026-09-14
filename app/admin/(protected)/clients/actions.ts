@@ -1,6 +1,10 @@
 "use server";
 
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
+import { createAdminEvent } from "@/features/clients/application/create-admin-event";
+import { createSupabaseEventCreationRepository } from "@/features/clients/infrastructure/supabase-event-creation-repository";
+import type { CreateEventFormState } from "@/features/clients/domain/event-creation";
 
 import { getAdminAccess } from "@/features/auth/application/get-admin-access";
 import { createSupabaseAdminAuthRepository } from "@/features/auth/infrastructure/supabase-admin-auth-repository";
@@ -30,6 +34,25 @@ const createClientSchema = z.object({
     .positive("Select an event."),
   role: z.enum(["owner", "editor", "viewer"]),
 });
+
+export async function createEventAction(
+  _previousState: CreateEventFormState,
+  formData: FormData,
+): Promise<CreateEventFormState> {
+  const result = await createAdminEvent({
+    async isAdministrator() {
+      const repository = await createSupabaseAdminAuthRepository();
+      return (await getAdminAccess(repository)).status === "authorized";
+    },
+    createEvent: input => createSupabaseEventCreationRepository().createEvent(input),
+  }, formData);
+
+  if (result.status === "success") {
+    revalidatePath("/admin/clients");
+    revalidatePath("/admin/events");
+  }
+  return result;
+}
 
 export async function createClientAction(
   _previousState: CreateClientFormState,

@@ -1,7 +1,4 @@
-import type {
-  ClientEventOption,
-  ClientEventRole,
-} from "../domain/client";
+import type { ClientEventOption, ClientEventRole } from "../domain/client";
 
 export interface CreatedClientAccessView {
   displayName: string;
@@ -31,6 +28,7 @@ export type CreateClientAction = (
 export interface CreateClientFormProps {
   action: CreateClientAction;
   events: ClientEventOption[];
+  selectedEventId?: number;
 }
 
 export const initialCreateClientFormState: CreateClientFormState = {

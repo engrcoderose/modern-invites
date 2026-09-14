@@ -27,6 +27,7 @@ import {
 export function CreateClientForm({
   action,
   events,
+  selectedEventId,
 }: CreateClientFormProps) {
   const [state, formAction, isPending] = useActionState(
     action,
@@ -116,10 +117,11 @@ export function CreateClientForm({
               <div className="space-y-2">
                 <Label htmlFor="eventId">Assigned event</Label>
                 <select
+                  key={selectedEventId ?? "existing-events"}
                   id="eventId"
                   name="eventId"
                   required
-                  defaultValue=""
+                  defaultValue={selectedEventId ?? ""}
                   disabled={noEvents}
                   aria-invalid={Boolean(
                     state.fieldErrors?.eventId?.length,
@@ -166,8 +168,8 @@ export function CreateClientForm({
 
             {noEvents ? (
               <p className="rounded-lg border border-champagne/40 bg-champagne/10 px-3 py-2 text-sm text-ink-muted">
-                No active events are available. Create or activate an
-                event before provisioning client access.
+                No active events are available. Create an event using
+                the form above to enable client access.
               </p>
             ) : null}
 

@@ -30,6 +30,7 @@ export const wedding = {
 };
 
 export const invitationMessage = `Together with our families, we, ${wedding.groom} and ${wedding.bride}, request the honor of your presence as we celebrate the sacrament of marriage on ${wedding.date}, at ${wedding.time}, at ${wedding.ceremony}, Malabon. Join us afterward at ${wedding.receptionFloor}, ${wedding.reception}, ${wedding.location} for an evening of love, laughter, and celebration.`;
+export const envelopeMessage = "Join us as we celebrate our wedding. We can't wait to share this special day with you.";
 export const attireDressCode = "Cocktail / semi-formal";
 export const attireDescription = "We kindly request that our guests wear cocktail/semi-formal attire in these colors on our special day.";
 export const mensAttire = "Long-sleeved shirts in any shade of pastel, paired with pants.";

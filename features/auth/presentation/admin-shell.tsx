@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { LayoutDashboard, LogOut, Users } from "lucide-react";
+import { CalendarDays, LayoutDashboard, LogOut, Users } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +11,7 @@ interface AdminShellProps {
 }
 
 const navigationItems = [
+  { href: "/admin/events", label: "Events", icon: CalendarDays },
   {
     href: "/admin",
     label: "Overview",

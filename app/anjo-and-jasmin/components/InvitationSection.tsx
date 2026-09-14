@@ -1,6 +1,8 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image, { getImageProps, type StaticImageData } from "next/image";
+import { useRef } from "react";
+import { useInView } from "motion/react";
 import BlueFlower from "../../jasmin-and-anjo/assets/images/designs/blue-fower-water-color.png";
 import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
 import FloralAccent from "./FloralAccent";
@@ -13,8 +15,18 @@ interface InvitationSectionProps {
 }
 
 export default function InvitationSection({ message, videoSrc, poster }: InvitationSectionProps) {
+  const section = useRef<HTMLElement>(null);
+  const nearViewport = useInView(section, { margin: "400px", once: true });
+  const { props: posterImage } = getImageProps({
+    src: poster,
+    alt: "",
+    width: 600,
+    height: Math.round(600 * poster.height / poster.width),
+    quality: 75,
+  });
   return (
     <section
+      ref={section}
       id="invitation"
       aria-labelledby="invitation-title"
       className="relative overflow-hidden bg-[#f1eee7] px-5 py-20 text-[#33473d] sm:px-8 sm:py-28 lg:px-12"
@@ -47,8 +59,8 @@ export default function InvitationSection({ message, videoSrc, poster }: Invitat
             controls
             loop
             playsInline
-            preload="metadata"
-            poster={poster.src}
+            preload="none"
+            poster={nearViewport ? posterImage.src : undefined}
             aria-label="Anjo and Jasmin prenup video"
             className="relative z-10 aspect-video w-full bg-[#263d35] object-contain shadow-[0_18px_60px_rgba(38,61,53,.12)]"
             onPlay={() => window.dispatchEvent(new Event(prenupVideoStartedEvent))}
