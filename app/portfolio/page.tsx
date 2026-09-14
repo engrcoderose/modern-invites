@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Footer from "@/components/Footer";
 import SeatFinderSection from "@/components/portfolio/SeatFinderSection";
+import { CONTACT_URL } from "@/lib/site";
 
 import stephHeroBg from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
 import ericHeroBg from "@/app/eric-and-li/assets/hero-background.png";
@@ -22,61 +23,53 @@ const portfolioItems = [
     id: "nylgen-and-kersee",
     title: "Nylgen & Kersee",
     category: "Wedding Invitation",
-    date: "February 27, 2027",
-    venue: "Nuestra Señora Delos Remedios Parish · San Pablo City",
     description:
-      "A botanical ivory-and-sage wedding invitation for Nylgen and Kersee—featuring a cinematic welcome, background music, live countdown, event details, entourage, gallery, attire guide, gift guide, and personalized RSVP experience.",
+      "Botanical details, a cinematic welcome, and a personal RSVP in soft ivory and sage.",
     href: "/nylgen-and-kersee",
     bgImage: nylgenKerseeBackground,
     previewImage: nylgenKerseeCouple,
     accent: "#455f4b",
     accentLight: "#f3f5ed",
-    tags: ["Wedding", "Botanical", "Ivory & Sage"],
+    tags: ["Botanical", "Ivory & Sage"],
   },
   {
     id: "isabella-and-daniel",
     title: "Isabella & Daniel",
     category: "Wedding Invitation",
-    date: "March 14, 2027",
-    venue: "The Transfiguration of Christ Parish · Antipolo",
     description:
-      "A modern luxury wedding experience in rich burgundy and champagne gold—featuring a cinematic welcome, music, smooth scroll storytelling, an elegant entourage, dress-code guide, gallery, and RSVP.",
+      "Rich burgundy, champagne gold, and cinematic storytelling with music and guest RSVP.",
     href: "/isabella-and-daniel",
     bgImage: isabellaBackground,
     previewImage: isabellaCouple,
     accent: "#5a1024",
     accentLight: "#f6ebe8",
-    tags: ["Wedding", "Modern Luxury", "Burgundy & Gold"],
+    tags: ["Modern Luxury", "Burgundy & Gold"],
   },
   {
     id: "stephanie-at-18",
     title: "Stephanie at 18",
     category: "18th Birthday Debut",
-    date: "September 9, 2023",
-    venue: "Rara, Yellow Polo Event Place · Pampanga",
     description:
-      "An elegant and vibrant debut celebration for Stephanie's 18th birthday — featuring custom dress code galleries, 18 roses & candles program, and a heartfelt RSVP section in a warm yellow palette.",
+      "A vibrant debut with dress guides, an 18 roses and candles program, and a personal RSVP.",
     href: "/stephanie-at-18",
     bgImage: stephHeroBg,
     previewImage: stephaniePhoto,
     accent: "#ac243d",
     accentLight: "#fff6d2",
-    tags: ["Debut", "18th Birthday", "Red & Yellow"],
+    tags: ["18th Birthday", "Red & Yellow"],
   },
   {
     id: "eric-and-li",
     title: "Eric & Li",
     category: "Wedding Invitation",
-    date: "June 20, 2030",
-    venue: "Saint Joseph Parish Church · Silang, Cavite",
     description:
-      "A classic and romantic wedding invitation for Eric Anderson and Li Xia — complete with a live countdown timer, our-story timeline, entourage list, attire guide, and RSVP form.",
+      "Classic romance with a love-story timeline, live countdown, attire guide, and RSVP.",
     href: "/eric-and-li",
     bgImage: ericHeroBg,
     previewImage: ericCoupleImg,
     accent: "#2d6b4e",
     accentLight: "#f0f7f4",
-    tags: ["Wedding", "Classic", "Sage & Gold"],
+    tags: ["Classic", "Sage & Gold"],
   },
 ];
 
@@ -85,249 +78,138 @@ export default function PortfolioPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-sage-50 to-white overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-72 h-72 bg-sage-100 rounded-full blur-3xl opacity-50" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-100 rounded-full blur-3xl opacity-30" />
-        </div>
-        <div className="relative max-w-4xl mx-auto text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-sm font-semibold tracking-widest uppercase text-sage-600 mb-4"
-          >
-            Our Work
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl font-elegant font-bold text-gray-900 leading-tight mb-6"
-          >
-            Portfolio
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
-          >
-            Explore our sample invitations and seat finders. Each one is
-            hand-designed with care — tailored to the occasion, the couple, and
-            the story behind it.
-          </motion.p>
-          <nav
-            aria-label="Portfolio sections"
-            className="mt-8 flex flex-wrap justify-center gap-3"
-          >
-            <a
-              href="#invitations"
-              className="rounded-full border border-sage-200 bg-white px-6 py-2.5 text-sm font-semibold text-sage-700 transition-colors hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
-            >
-              Invitations
-            </a>
-            <a
-              href="#seat-finder"
-              className="rounded-full bg-sage-700 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
-            >
-              Seat Finder
-            </a>
-          </nav>
-        </div>
-      </section>
-
-      {/* Portfolio Items */}
-      <section
-        id="invitations"
-        aria-label="Sample invitations"
-        className="scroll-mt-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28 space-y-24"
-      >
-        {portfolioItems.map((item, index) => (
-          <motion.article
-            key={item.id}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className={`grid gap-0 lg:grid-cols-2 rounded-3xl overflow-hidden shadow-xl border border-gray-100 ${
-              index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-            }`}
-          >
-            {/* Image Panel */}
-            <div
-              className={`relative min-h-[380px] sm:min-h-[480px] overflow-hidden ${
-                index % 2 === 1 ? "lg:order-2" : ""
-              }`}
-            >
-              <Image
-                src={item.bgImage}
-                alt={`${item.title} background`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-black/30" />
-
-              {/* Preview photo */}
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="relative w-full max-w-[260px] sm:max-w-[300px] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20"
-                >
-                  <Image
-                    src={item.previewImage}
-                    alt={`${item.title} preview`}
-                    fill
-                    className="object-cover object-top"
-                    sizes="300px"
-                  />
-                </motion.div>
-              </div>
-
-              {/* Category badge */}
-              <div className="absolute top-6 left-6">
-                <span
-                  className="text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full text-white/90 backdrop-blur-sm"
-                  style={{ backgroundColor: `${item.accent}cc` }}
-                >
-                  {item.category}
-                </span>
-              </div>
+      <main>
+        <section className="bg-gradient-to-b from-sage-50 to-white px-4 pb-8 pt-28 sm:px-6 sm:pt-32 lg:px-8">
+          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <div className="max-w-xl">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sage-600">
+                Our work
+              </p>
+              <h1 className="font-elegant text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+                A little inspiration.
+              </h1>
+              <p className="mt-4 max-w-lg text-base leading-7 text-gray-600">
+                Find a style that feels like you. Explore our invitation
+                designs and try the full experience.
+              </p>
             </div>
+            <nav aria-label="Portfolio sections" className="flex shrink-0 flex-wrap gap-2">
+              <a
+                href="#invitations"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sage-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+              >
+                Invitations
+                <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-xs">{portfolioItems.length}</span>
+              </a>
+              <a
+                href="#seat-finder"
+                className="inline-flex min-h-11 items-center rounded-full border border-sage-200 bg-white px-5 text-sm font-semibold text-sage-700 transition-colors hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+              >
+                Seat Finder
+              </a>
+            </nav>
+          </div>
+        </section>
 
-            {/* Content Panel */}
-            <div
-              className={`flex flex-col justify-center px-8 py-12 sm:px-12 ${
-                index % 2 === 1 ? "lg:order-1" : ""
-              }`}
-              style={{ backgroundColor: item.accentLight }}
-            >
-              <p className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3">
-                {item.date}
-              </p>
-              <h2 className="text-4xl sm:text-5xl font-elegant font-bold text-gray-900 mb-3 leading-tight">
-                {item.title}
-              </h2>
-              <p className="text-sm text-gray-500 mb-6 flex items-center gap-1.5">
-                <svg
-                  className="w-4 h-4 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+        <section
+          id="invitations"
+          aria-labelledby="invitations-title"
+          className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-12 sm:px-6 lg:px-8"
+        >
+          <div className="mb-5 flex items-center justify-between gap-4 border-t border-sage-100 pt-6">
+            <h2 id="invitations-title" className="text-sm font-semibold text-gray-900">
+              Invitation collection
+            </h2>
+            <p className="text-xs text-gray-500">Explore a live sample ↗</p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+            {portfolioItems.map((item, index) => (
+              <article key={item.id} className="min-w-0">
+                <Link
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${item.title} invitation (opens in a new tab)`}
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-shadow hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.8}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.8}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                {item.venue}
-              </p>
-              <p className="text-base text-gray-700 leading-relaxed mb-8">
-                {item.description}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-10">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium px-3 py-1 rounded-full border text-gray-600 bg-white/70"
-                    style={{ borderColor: `${item.accent}55` }}
+                  <div
+                    className="relative h-48 overflow-hidden sm:h-52 lg:h-56"
+                    style={{ backgroundColor: item.accentLight }}
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                    <Image
+                      src={item.bgImage}
+                      alt=""
+                      fill
+                      priority={index < 2}
+                      className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
+                      sizes="(max-width: 639px) 100vw, (max-width: 1152px) 50vw, 550px"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute inset-0 flex items-center justify-center py-4">
+                      <div className="relative aspect-[3/4] h-full rotate-[-4deg] overflow-hidden rounded-lg border-4 border-white/90 shadow-xl transition-transform duration-500 motion-safe:group-hover:rotate-0">
+                        <Image
+                          src={item.previewImage}
+                          alt={`${item.title} invitation preview`}
+                          fill
+                          priority={index < 2}
+                          className="object-cover object-top"
+                          sizes="160px"
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-medium text-gray-700">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-gray-800 transition-colors group-hover:bg-white">
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </div>
 
-              {/* CTA */}
-              <div className="flex items-center gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                    style={{ backgroundColor: item.accent }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Invitation
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </Link>
-                </motion.div>
-              </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: item.accent }}>
+                      {item.category}
+                    </p>
+                    <h3 className="mt-1.5 font-elegant text-2xl font-bold leading-tight text-gray-900">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-gray-600">
+                      {item.description}
+                    </p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold" style={{ color: item.accent }}>
+                      View invitation
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <SeatFinderSection />
+
+        <section className="bg-sage-700 px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
+            <div>
+              <h2 className="font-elegant text-3xl font-bold text-white">Ready to create yours?</h2>
+              <p className="mt-2 text-sm leading-6 text-sage-100">Let’s make an invitation that feels like your celebration.</p>
             </div>
-          </motion.article>
-        ))}
-      </section>
-
-      <SeatFinderSection />
-
-      {/* CTA Banner */}
-      <section className="bg-sage-700 py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl font-elegant font-bold text-white mb-4"
-          >
-            Ready to create yours?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-sage-100 text-lg mb-8"
-          >
-            Let us design a beautiful digital invitation for your special
-            occasion — weddings, birthdays, debuts, and more.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-          >
             <a
-              href="https://www.facebook.com/moderneenvites/"
+              href={CONTACT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-white text-sage-700 font-semibold px-8 py-3.5 rounded-full hover:bg-sage-50 transition-colors"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-full bg-white px-6 py-3 text-sm font-semibold text-sage-700 transition-colors hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-sage-700"
             >
-              Get Started
+              Get started <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </main>
 
       <Footer />
       <MarketingAnalytics />
