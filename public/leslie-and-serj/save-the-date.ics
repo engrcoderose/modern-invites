@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Modern Invites//Leslie and Serj Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:leslie-john-20270128@moderninvites.com
+DTSTAMP:20260916T000000Z
+DTSTART;VALUE=DATE:20270128
+DTEND;VALUE=DATE:20270129
+SUMMARY:Leslie and Serj's Wedding
+LOCATION:Chapel on the Hill
+DESCRIPTION:Ceremony: 1:00 PM at Chapel on the Hill.\nReception: Azienda
+  Verde Alfonso (start time to be confirmed).\nThis saves the wedding
+  date as an all-day reminder.
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

@@ -11,6 +11,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        "lj-mobile": { max: "700px" },
+      },
       colors: {
         wedding: {
           ivory: "rgb(var(--wedding-color-ivory) / <alpha-value>)",

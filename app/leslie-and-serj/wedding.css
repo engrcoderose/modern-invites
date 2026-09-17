@@ -1,0 +1,1120 @@
+@font-face {
+  font-family: "Noto Serif";
+  src: url("/leslie-and-serj/fonts/noto-serif.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif";
+  src: url("/leslie-and-serj/fonts/noto-serif-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+
+/* Outgoing leaves remain mounted only during their turn and are inert. */
+.lj-book {
+  --lj-controls-height: calc(78px + env(safe-area-inset-bottom));
+  grid-template-rows: 70px minmax(0, 1fr);
+  background: var(--lj-paper);
+  color: var(--lj-ink);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-family: "Noto Serif", serif;
+}
+.lj-book * {
+  box-sizing: border-box;
+}
+.lj-book :is(button, a, select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.lj-book button,
+.lj-book a,
+.lj-book select {
+  -webkit-tap-highlight-color: transparent;
+}
+.lj-book button {
+  cursor: pointer;
+}
+.lj-book button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.lj-skip {
+  background: var(--lj-paper);
+}
+.lj-skip:focus {
+  top: 10px;
+}
+.lj-label {
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.lj-body {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--lj-muted);
+  max-width: 510px;
+  margin: 0 auto;
+}
+.lj-heading {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 22px auto;
+}
+.lj-script-heading {
+  letter-spacing: 0;
+  font-size: clamp(48px, 6vw, 78px);
+}
+.lj-ornament {
+  width: 130px;
+  height: 27px;
+  margin: 22px auto;
+}
+.lj-monogram {
+  line-height: 1;
+}
+.lj-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.lj-text-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.lj-text-button {
+  border-bottom: 1px solid currentColor;
+}
+.lj-button {
+  border: 1px solid var(--lj-olive);
+  transition: background 0.2s;
+}
+.lj-button-outline:hover {
+  background: #dfe1cd;
+}
+.lj-button-solid {
+  background: var(--lj-olive);
+  color: #fbf7e8;
+}
+.lj-button-solid:hover {
+  background: #4b502a;
+}
+
+.lj-nav {
+  background: var(--lj-paper);
+  border-bottom: 1px solid var(--lj-line);
+}
+.lj-brand-date {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  border-left: 1px solid var(--lj-line);
+}
+.lj-desktop-nav {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.lj-desktop-nav a {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lj-desktop-nav a:last-child {
+  border: 1px solid var(--lj-olive);
+  padding: 10px 18px;
+}
+.lj-book-stage {
+  touch-action: pan-y pinch-zoom;
+  perspective: 2200px;
+  perspective-origin: 50% 50%;
+  isolation: isolate;
+  background: #313b29;
+}
+.lj-book-leaf {
+  transform-origin: left center;
+  backface-visibility: hidden;
+  box-shadow: 7px 0 24px #10180e38;
+  will-change: transform;
+}
+.lj-page-fold {
+  background: linear-gradient(90deg, #17201370, #fff9e520 20%, #fff9e500 46%, #17201338);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lj-book-stage { perspective: none; }
+  .lj-book-leaf { will-change: auto; box-shadow: none; }
+}
+.lj-book-page {
+  outline: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, #fffdf440, transparent 70%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, #ac9b761c),
+    var(--lj-paper);
+}
+.lj-book-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%238b8263' opacity='.32' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.lj-page-content {
+  scrollbar-width: thin;
+}
+.lj-page-content > div {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 950px;
+  margin: auto;
+}
+/* Overflow is a last-resort accessibility fallback for zoom and very short screens. */
+.lj-tone-olive {
+  color: #f2efdb;
+}
+.lj-tone-olive .lj-body {
+  color: #e0e1c9;
+}
+.lj-tone-olive::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #d4d6b24d;
+  outline: 1px solid #d4d6b220;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+/* The film scales with available page height to preserve the swipe layout. */
+.lj-film-heading {
+  font-size: clamp(38px, 5vw, 60px);
+}
+.lj-film-frame {
+  width: min(600px, 100%, calc((100dvh - 460px) * 16 / 9));
+  min-width: 240px;
+  aspect-ratio: 16 / 9;
+  background: var(--lj-paper);
+  border: 1px solid var(--lj-gold);
+  outline: 1px solid #ac9b764d;
+  outline-offset: 4px;
+  box-shadow: 0 12px 32px #41463614;
+}
+
+.lj-venue-art > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.lj-map {
+  border: 0;
+  margin: 20px auto 0;
+}
+.lj-timeline {
+  max-width: 560px;
+}
+.lj-timeline li {
+  grid-template-columns: 110px 1fr;
+  gap: 32px;
+  border-top: 1px solid var(--lj-line);
+  align-items: center;
+}
+.lj-timeline h3 {
+  margin-bottom: 6px;
+}
+.lj-timeline .lj-body {
+  margin: 0;
+}
+
+.lj-party-page > .lj-ornament {
+  margin: 0 auto 20px;
+}
+.lj-party-page > .lj-label {
+  font-size: 9px;
+}
+.lj-party-page > .lj-heading {
+  margin: 18px auto 32px;
+}
+.lj-party-group .lj-label {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: #e0e3c2;
+  margin-bottom: 15px;
+}
+.lj-names sup {
+  font-size: 10px;
+  font-style: normal;
+  margin-left: 2px;
+  color: #d9dcad;
+}
+.lj-sponsor-pairs > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+.lj-secondary .lj-names {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.lj-review-note {
+  font-size: 10px;
+  color: #d9ddbc;
+  margin: 26px 0 0;
+}
+.lj-faq-page {
+  max-width: 660px !important;
+}
+.lj-faq-page dl > div {
+  border-top: 1px solid var(--lj-line);
+}
+.lj-faq-page dt {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.lj-faq-page dd {
+  max-width: none;
+}
+.lj-faq-note {
+  font-size: 10px;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--lj-muted);
+  margin-top: 20px;
+}
+.lj-rsvp-page > .lj-heading {
+  font-size: clamp(48px, 6vw, 78px);
+}
+.lj-closing > .lj-heading {
+  margin: 28px auto;
+}
+.lj-closing > .lj-label {
+  font-size: 9px;
+}
+.lj-photo-page figure {
+  position: relative;
+  flex: 1;
+  min-height: 200px;
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  border: 1px solid var(--lj-line);
+}
+.lj-photo-page img {
+  object-fit: contain;
+  padding: 12px;
+}
+.lj-story .lj-body {
+  white-space: pre-line;
+}
+
+.lj-book-controls {
+  grid-template-columns: 140px minmax(0, 1fr) 140px;
+  padding: 8px 5% max(8px, env(safe-area-inset-bottom));
+  background: transparent;
+}
+.lj-dark-pagination .lj-book-controls {
+  background: linear-gradient(180deg, transparent, #101b12c9);
+  color: var(--lj-paper);
+  text-shadow: 0 1px 5px #000b;
+}
+.lj-dark-pagination .lj-page-position > p {
+  color: var(--lj-paper);
+}
+.lj-dark-pagination .lj-page-arrow:hover:not(:disabled) {
+  background: #f2ede01a;
+}
+@media (min-width: 701px) {
+  .lj-cover-pagination .lj-book-controls {
+    grid-template-columns: calc(50% - 12px) minmax(0, 1fr) 140px;
+  }
+  .lj-cover-pagination .lj-page-arrow:first-child {
+    color: var(--lj-paper);
+  }
+}
+.lj-page-arrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.lj-page-arrow:hover:not(:disabled) {
+  background: #e9ebdf;
+}
+.lj-page-position > p {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--lj-muted);
+  margin-top: 3px;
+}
+.lj-page-count {
+  font-variant-numeric: tabular-nums;
+}
+.lj-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: calc(100% - 36px);
+  max-width: 490px;
+  max-height: 85dvh;
+  padding: 40px 30px;
+  background: var(--lj-paper);
+  color: var(--lj-ink);
+  text-align: center;
+  border: 1px solid var(--lj-olive);
+  box-shadow: 0 30px 90px #1e251d40;
+}
+.lj-dialog::backdrop {
+  background: #28301f88;
+  backdrop-filter: blur(5px);
+}
+.lj-dialog .lj-heading {
+  font-size: 40px;
+}
+.lj-dialog > .lj-ornament {
+  margin: 0 auto 23px;
+}
+.lj-music button {
+  border: 1px solid var(--lj-line);
+  background: var(--lj-paper);
+  padding: 13px;
+  border-radius: 50%;
+}
+.lj-music > span {
+  position: absolute;
+  bottom: 55px;
+  right: 0;
+  width: 180px;
+  padding: 12px;
+  background: var(--lj-paper);
+  font-size: 11px;
+}
+
+@media (max-width: 700px) {
+  .lj-book {
+    --lj-controls-height: calc(74px + env(safe-area-inset-bottom));
+    grid-template-rows: 60px minmax(0, 1fr);
+  }
+  .lj-brand-date {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .lj-mobile-nav {
+    padding: 10px 6% 18px;
+    background: var(--lj-paper);
+    border-bottom: 1px solid var(--lj-line);
+    box-shadow: 0 12px 20px #343a211a;
+  }
+  .lj-mobile-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #c9cbb755;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .lj-body {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+  .lj-label {
+    font-size: 9px;
+    letter-spacing: 0.13em;
+  }
+  .lj-heading {
+    font-size: 44px;
+    margin: 18px auto;
+  }
+  .lj-script-heading {
+    font-size: clamp(40px, 12vw, 60px);
+  }
+
+  .lj-film-frame {
+    width: min(600px, 100%, calc((100dvh - 410px) * 16 / 9));
+  }
+
+  .lj-timeline li {
+    grid-template-columns: 83px 1fr;
+    gap: 20px;
+  }
+  .lj-timeline time,
+  .lj-timeline li > span {
+    font-size: 10px;
+  }
+  .lj-timeline h3 {
+    font-size: 28px;
+  }
+  .lj-timeline .lj-body {
+    font-size: 10px;
+  }
+  .lj-tone-olive::after {
+    inset: 12px;
+    outline-offset: 4px;
+  }
+  .lj-party-page > .lj-label {
+    font-size: 8px;
+  }
+  .lj-party-page > .lj-ornament {
+    width: 105px;
+    margin-bottom: 20px;
+  }
+  .lj-party-page > .lj-heading {
+    margin: 16px auto 28px;
+  }
+  .lj-party-group .lj-label {
+    font-size: 9px;
+    margin-bottom: 10px;
+  }
+  .lj-sponsor-pairs > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .lj-secondary .lj-names {
+    display: block;
+  }
+  .lj-review-note {
+    font-size: 9px;
+    margin-top: 23px;
+  }
+  .lj-faq-page .lj-heading {
+    font-size: 44px;
+  }
+  .lj-faq-page dt {
+    font-size: 13px;
+  }
+  .lj-faq-page dd {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .lj-faq-note {
+    font-size: 9px;
+    margin-top: 14px;
+  }
+  .lj-rsvp-page > .lj-heading {
+    font-size: 51px;
+  }
+  .lj-closing > .lj-monogram {
+    margin-bottom: 25px;
+  }
+  .lj-closing > .lj-heading {
+    font-size: 54px;
+  }
+  .lj-closing > .lj-label {
+    font-size: 8px;
+  }
+  .lj-book-controls {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .lj-page-arrow > span {
+    display: none;
+  }
+  .lj-dialog {
+    padding: 40px 23px 28px;
+  }
+  .lj-dialog .lj-heading {
+    font-size: 35px;
+  }
+}
+@media (max-height: 720px) {
+  .lj-page-content {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .lj-party-page > .lj-ornament {
+    margin-bottom: 10px;
+    height: 20px;
+  }
+  .lj-party-page > .lj-heading {
+    margin: 12px auto 20px;
+  }
+  .lj-names {
+    font-size: 21px;
+    line-height: 1.4;
+  }
+  .lj-party-pair {
+    gap: 18px;
+  }
+  .lj-secondary {
+    gap: 18px;
+  }
+  .lj-review-note {
+    margin-top: 15px;
+  }
+
+}
+@media (max-height: 590px) {
+  .lj-book {
+    --lj-controls-height: calc(66px + env(safe-area-inset-bottom));
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
+  .lj-mobile-nav {
+    top: 52px;
+  }
+
+  .lj-party-page > .lj-ornament {
+    display: none;
+  }
+  .lj-party-page > .lj-heading {
+    font-size: 40px;
+    margin: 10px auto 18px;
+  }
+  .lj-names {
+    font-size: 20px;
+  }
+  .lj-secondary {
+    gap: 15px;
+  }
+  .lj-party-pair {
+    gap: 15px;
+  }
+  .lj-party-group .lj-label {
+    margin-bottom: 6px;
+  }
+  .lj-faq-page .lj-heading {
+    font-size: 36px;
+  }
+  .lj-faq-page dt {
+    font-size: 12px;
+  }
+  .lj-faq-page dd {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+  .lj-closing > .lj-monogram {
+    margin-bottom: 14px;
+  }
+  .lj-closing > .lj-heading {
+    font-size: 43px;
+    margin: 18px auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lj-book * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Vintage woodland stationery, adapted to the invitation's horizontal pages. */
+.lj-book {
+  --lj-paper: #f2ede0;
+  --lj-olive: #5a6946;
+  --lj-ink: #414636;
+  --lj-muted: #646650;
+  --lj-line: #bfb59a;
+  --lj-gold: #ac9b76;
+}
+.lj-label {
+  letter-spacing: 0.15em;
+}
+.lj-book-page::before {
+  opacity: 0.3;
+}
+.lj-monogram {
+  display: inline-block;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.lj-monogram img {
+  object-fit: contain;
+  transform: scale(1.8) translate(-2%, 3%);
+}
+.lj-closing > .lj-monogram {
+  width: 105px;
+  height: 110px;
+  margin-bottom: 20px;
+}
+.lj-woodland {
+  background: #263420;
+}
+.lj-woodland img {
+  object-fit: cover;
+  object-position: center;
+}
+.lj-woodland::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 30%, #101a124d),
+    linear-gradient(180deg, #17221318, #111e174f);
+}
+.lj-tone-woodland {
+  color: var(--lj-paper);
+}
+.lj-tone-woodland > .lj-woodland::after {
+  background:
+    radial-gradient(ellipse at 50% 45%, #17221880, #101a12b8),
+    linear-gradient(180deg, #17221818, #17221838);
+}
+.lj-tone-woodland .lj-body {
+  color: #f2ede0;
+}
+.lj-tone-woodland .lj-venue-art {
+  color: #ddd3b5;
+}
+
+.lj-tone-olive {
+  background:
+    radial-gradient(ellipse at 50% 35%, #52604466, transparent 70%),
+    linear-gradient(135deg, #36432e, #293727);
+}
+.lj-tone-sage {
+  background: radial-gradient(ellipse at 50% 40%, #eeeadd, #dedecb);
+}
+.lj-ornament {
+  color: var(--lj-gold);
+}
+.lj-tone-olive .lj-ornament {
+  color: #d2c5a0;
+}
+.lj-script-accent {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+}
+
+.lj-timeline-page {
+  max-width: 470px !important;
+}
+.lj-timeline-page > .lj-heading {
+  text-transform: uppercase;
+  font-size: 43px;
+  margin: 0 0 22px;
+}
+.lj-timeline-oval {
+  border: 2px solid #ac9b76aa;
+  outline: 1px solid #ac9b7680;
+  outline-offset: 5px;
+  border-radius: 48% / 36%;
+  box-shadow:
+    inset 0 0 0 4px var(--lj-paper),
+    inset 0 0 0 5px #ac9b7640,
+    inset 0 0 35px #ac9b7612,
+    0 8px 28px #413b2810;
+}
+.lj-wedding-illustration img {
+  object-fit: contain;
+  transform: scale(1.4);
+  mix-blend-mode: multiply;
+}
+.lj-timeline {
+  margin: 4px auto 0;
+  text-align: center;
+}
+.lj-timeline li {
+  display: block;
+  border: 0;
+  padding: 13px 0;
+}
+.lj-timeline h3 {
+  margin: 4px 0;
+}
+.lj-timeline .lj-body {
+  font-size: 10px;
+}
+.lj-timeline time,
+.lj-timeline li > span {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.lj-attire-page {
+  max-width: 620px !important;
+}
+.lj-attire-page > .lj-heading {
+  font-size: 42px;
+}
+.lj-attire-page .lj-body {
+  font-size: 12px;
+}
+.lj-attire-reference {
+  width: min(420px, 100%, max(180px, calc((100svh - 470px) * 16 / 9)));
+  background: var(--lj-paper);
+  border: 1px solid #ac9b7680;
+  outline: 1px solid #ac9b763d;
+  outline-offset: 4px;
+  box-shadow: 0 8px 24px #413b2814, inset 0 0 18px #ac9b7612;
+}
+.lj-gifts-page {
+  max-width: 570px !important;
+}
+.lj-gifts-page .lj-heading {
+  margin-top: 6px;
+}
+.lj-rsvp-page {
+  max-width: 560px !important;
+}
+.lj-rsvp-plaque {
+  position: relative;
+  background: var(--lj-paper);
+  color: var(--lj-ink);
+  width: 245px;
+  margin: 0 auto 28px;
+  padding: 17px 28px;
+  border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%;
+  border: 1px solid #ac9b76;
+  outline: 2px solid #e4dac2;
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px #101c2433;
+}
+.lj-rsvp-plaque .lj-ornament {
+  position: absolute;
+  width: 60px;
+  height: 22px;
+  top: -13px;
+  left: calc(50% - 30px);
+  background: var(--lj-paper);
+}
+.lj-rsvp-plaque > span {
+  font-size: 43px;
+  line-height: 1.1;
+}
+.lj-rsvp-card {
+  background: var(--lj-paper);
+  color: var(--lj-ink);
+  border: 1px solid #baa987;
+  border-radius: 6px;
+  box-shadow: 0 14px 50px #111a1633;
+}
+.lj-rsvp-card .lj-body {
+  color: var(--lj-muted);
+}
+.lj-rsvp-card .lj-heading {
+  font-size: 52px;
+  margin: 20px 0;
+}
+.lj-rsvp-card .lj-label {
+  font-size: 8px;
+}
+.lj-faq-page dt {
+  font-weight: 400;
+}
+.lj-photo-page figure {
+  outline: 3px double var(--lj-gold);
+  outline-offset: 4px;
+  background: #eee7d6;
+}
+
+@media (max-width: 700px) {
+
+
+  .lj-timeline-page > .lj-heading {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  .lj-timeline li {
+    padding: 12px 0;
+  }
+  .lj-attire-page > .lj-heading {
+    font-size: clamp(34px, 5svh, 44px);
+  }
+  .lj-attire-page .lj-body {
+    font-size: clamp(11px, 1.6svh, 14px);
+    line-height: 1.8;
+  }
+  .lj-rsvp-card .lj-heading {
+    font-size: 43px;
+  }
+}
+@media (max-height: 740px) {
+  .lj-closing > .lj-monogram {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 14px;
+  }
+  .lj-closing > .lj-heading {
+    margin: 18px auto;
+  }
+  .lj-wedding-illustration {
+    height: 75px;
+  }
+  .lj-timeline li {
+    padding: 9px 0;
+  }
+
+
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  .lj-rsvp-card {
+    padding: 23px 18px;
+  }
+  .lj-rsvp-card .lj-heading {
+    font-size: 36px;
+    margin: 15px 0;
+  }
+  .lj-rsvp-plaque {
+    margin-bottom: 22px;
+    padding: 13px 24px;
+    width: 215px;
+  }
+
+}
+
+/* Client typography: Anastasia for headings, Noto Serif for readable details. */
+.lj-book
+  :is(
+    h1,
+    h2,
+    h3,
+    .lj-heading,
+    .lj-script-heading,
+    .lj-script-accent,
+    .lj-rsvp-plaque > span
+  ) {
+  font-family: var(--font-lj-anastasia), cursive;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+.lj-heading em {
+  font-style: normal;
+}
+
+.lj-party-group h3.lj-label {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+.lj-names {
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1.7;
+}
+.lj-combined-party .lj-names {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.lj-page-title {
+  font-size: 14px;
+}
+.lj-timeline h3 {
+  font-size: 29px;
+}
+@media (max-width: 700px) {
+
+  .lj-combined-party .lj-names {
+    font-size: clamp(11.5px, 1.6svh, 14px);
+    line-height: 1.4;
+  }
+  .lj-combined-party .lj-party-group h3.lj-label {
+    font-size: clamp(20px, 2.8svh, 24px);
+  }
+  .lj-party-group h3.lj-label {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .lj-names {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .lj-page-title {
+    font-size: 12px;
+  }
+}
+
+/* A photographic invitation letter, using the supplied forest reference. */
+.lj-is-photo-letter {
+  background: #172015;
+  color: var(--lj-paper);
+}
+.lj-is-photo-letter::before {
+  display: none;
+}
+.lj-invitation-background > img {
+  object-fit: cover;
+  object-position: center 65%;
+}
+.lj-invitation-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0b120b80, #0b120b26 50%, #0b120b99);
+}
+.lj-is-photo-letter .lj-page-content {
+  padding: 26px 7%;
+}
+.lj-page-content > .lj-photo-letter {
+  height: 100%;
+  min-height: 460px;
+  max-height: 680px;
+  max-width: 660px;
+  display: grid;
+  grid-template-rows: auto minmax(140px, 1fr) auto;
+  gap: 20px;
+}
+.lj-photo-letter-message .lj-label {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  margin-bottom: 12px;
+}
+.lj-photo-letter-message .lj-body {
+  max-width: 460px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--lj-paper);
+  text-shadow: 0 1px 8px #0008;
+}
+.lj-photo-letter-portrait figure {
+  position: relative;
+  height: 100%;
+  max-height: 340px;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  box-shadow: 0 12px 35px #0003;
+}
+.lj-photo-letter-portrait figure > img {
+  object-fit: cover;
+  object-position: 61% center;
+}
+.lj-photo-letter-portrait .lj-photo-letter-monogram {
+  position: absolute;
+  right: -39px;
+  bottom: -22px;
+  width: 95px;
+  height: 100px;
+  filter: brightness(1.55) saturate(0.65);
+}
+.lj-photo-letter-signoff .lj-heading {
+  font-size: 34px;
+  margin: 0 0 10px;
+}
+.lj-photo-letter-names {
+  font-size: 11px;
+  line-height: 1.7;
+}
+.lj-photo-letter-names > span {
+  font-style: italic;
+  margin: 0 4px;
+}
+.lj-photo-letter-details {
+  font-size: 10px;
+  line-height: 1.7;
+  margin-top: 9px;
+  color: #e3dfd0;
+}
+@media (max-width: 700px) {
+  .lj-is-photo-letter .lj-page-content {
+    padding: 22px 8%;
+  }
+  .lj-page-content > .lj-photo-letter {
+    gap: 22px;
+  }
+  .lj-photo-letter-message .lj-body {
+    font-size: 11px;
+  }
+  .lj-photo-letter-signoff .lj-heading {
+    font-size: 30px;
+  }
+  .lj-photo-letter-names {
+    font-size: 10px;
+    max-width: 260px;
+    margin: auto;
+  }
+  .lj-photo-letter-details {
+    font-size: 9px;
+  }
+  .lj-photo-letter-portrait figure {
+    max-height: 300px;
+  }
+  .lj-photo-letter-portrait .lj-photo-letter-monogram {
+    width: 80px;
+    height: 85px;
+    right: -29px;
+    bottom: -20px;
+  }
+}
+@media (max-height: 740px) {
+  .lj-is-photo-letter .lj-page-content {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .lj-page-content > .lj-photo-letter {
+    gap: 16px;
+  }
+  .lj-photo-letter-message .lj-label {
+    margin-bottom: 8px;
+  }
+  .lj-photo-letter-signoff .lj-heading {
+    font-size: 28px;
+    margin-bottom: 7px;
+  }
+  .lj-photo-letter-details {
+    margin-top: 6px;
+  }
+}
+
+/* Original woodland/image layout with the reference's invitation wording. */
+.lj-is-cover .lj-page-content {
+  padding: 0;
+}
+.lj-page-content > .lj-opening-layout {
+  max-width: none;
+}
+.lj-opening-panel::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #ac9b7657;
+  pointer-events: none;
+}
+.lj-opening-crest .lj-monogram {
+  position: absolute;
+  left: 17%;
+  top: 23%;
+  width: 66%;
+  height: 54%;
+  filter: brightness(0) invert(94%) sepia(9%) saturate(472%) hue-rotate(355deg);
+}
+.lj-opening-names {
+  font-size: clamp(44px, 6vw, 66px);
+}
+@media (max-width: 700px) {
+  .lj-opening-panel::after {
+    inset: 10px;
+  }
+  .lj-opening-names {
+    font-size: clamp(42px, 10vw, 58px);
+  }
+}
+
+/* Shared woodland stationery for the ceremony and reception. */
+.lj-photo-break-names {
+  font-size: clamp(48px, 7svh, 68px);
+  text-shadow: 0 2px 15px #172015b3;
+}
+
+.lj-venues {
+  border: 1px solid #dfd9be80;
+  outline: 1px solid #dfd9be40;
+  outline-offset: 7px;
+}
+.lj-venue-name {
+  font-size: clamp(34px, 3.7vw, 46px);
+}
+@media (max-width: 700px) {
+  .lj-venue-name {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+}

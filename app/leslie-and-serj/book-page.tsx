@@ -1,0 +1,131 @@
+"use client";
+
+import { useEffect, useRef, type ReactNode } from "react";
+import {
+  animate,
+  motion,
+  useIsPresent,
+  usePresenceData,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
+
+const leaf: Variants = {
+  enter: (direction: number) => ({
+    rotateY: direction > 0 ? 0 : -105,
+    opacity: 1,
+  }),
+  settled: { rotateY: 0, opacity: 1 },
+  exit: (direction: number) => ({
+    rotateY: direction > 0 ? -105 : 0,
+    opacity: direction > 0 ? 1 : 0.5,
+  }),
+};
+
+const revealTargets = [
+  "h1",
+  "h2:not(.sr-only)",
+  "h3",
+  "p",
+  ".lj-ornament",
+  ".lj-opening-crest",
+  ".lj-opening-logo",
+  ".lj-photo-letter-portrait",
+  ".lj-film-frame",
+  ".lj-countdown",
+  ".lj-venue-art",
+  ".lj-wedding-illustration",
+  ".lj-attire-reference",
+  ".lj-photo-page figure",
+  ".lj-faq-page dl > div",
+].join(",");
+
+export default function BookPage({
+  id,
+  label,
+  direction,
+  className,
+  children,
+  onSettled,
+}: {
+  id: string;
+  label: string;
+  direction: number;
+  className: string;
+  children: ReactNode;
+  onSettled: (page: HTMLElement) => void;
+}) {
+  const page = useRef<HTMLElement>(null);
+  const present = useIsPresent();
+  const turnDirection: number = usePresenceData() ?? direction;
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const element = page.current;
+    if (!element) return;
+    if (!present) {
+      element.querySelectorAll("video, audio").forEach((media) => {
+        (media as HTMLMediaElement).pause();
+      });
+      return;
+    }
+    const targets = Array.from(
+      element.querySelectorAll<HTMLElement>(revealTargets),
+    );
+    // Animate each group once, rather than applying motion to nested children too.
+    const groups = targets.filter((target) =>
+      !targets.some((parent) => parent !== target && parent.contains(target)),
+    );
+    const animations = groups.map((target, index) =>
+      animate(target, {
+        opacity: reducedMotion ? 1 : [0, 1],
+        y: reducedMotion ? 0 : [10, 0],
+      }, {
+        duration: reducedMotion ? 0 : 0.65,
+        delay: reducedMotion ? 0 : 0.32 + Math.min(index * 0.055, 0.4),
+        ease: [0.22, 1, 0.36, 1],
+      }),
+    );
+    return () => animations.forEach((animation) => animation.stop());
+  }, [present, reducedMotion]);
+
+  return (
+    <motion.section
+      ref={page}
+      id={id}
+      tabIndex={-1}
+      inert={!present}
+      aria-hidden={!present || undefined}
+      className={`lj-book-leaf absolute inset-0 h-full w-full overflow-hidden ${className}`}
+      style={{ zIndex: turnDirection > 0 ? (present ? 1 : 2) : (present ? 2 : 1) }}
+      role="group"
+      aria-roledescription="slide"
+      aria-label={label}
+      custom={turnDirection}
+      variants={reducedMotion ? {
+        enter: { rotateY: 0, opacity: 1 },
+        settled: { rotateY: 0, opacity: 1 },
+        exit: { rotateY: 0, opacity: 1 },
+      } : leaf}
+      initial="enter"
+      animate="settled"
+      exit="exit"
+      transition={{ duration: reducedMotion ? 0 : 0.85, ease: [0.4, 0, 0.2, 1] }}
+      onAnimationComplete={(state) => {
+        if (state === "settled" && present && page.current) onSettled(page.current);
+      }}
+    >
+      {children}
+      {!reducedMotion && (
+        <motion.div
+          aria-hidden="true"
+          className="lj-page-fold pointer-events-none absolute inset-0 z-[4]"
+          initial={{ opacity: turnDirection > 0 ? 0 : 0.6 }}
+          animate={{ opacity: 0 }}
+          exit={{ opacity: turnDirection > 0 ? 0.6 : 0 }}
+          transition={{ duration: 0.85, ease: [0.4, 0, 0.2, 1] }}
+        />
+      )}
+    </motion.section>
+  );
+}
