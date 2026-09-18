@@ -7,13 +7,17 @@ to the new route. Formal invitation copy retains the couple's full legal names.
 ## Code and styling conventions
 
 - `invitation.tsx` owns swipe navigation, keyboard/focus behavior, the header,
-  page controls and RSVP dialog.
+  and page controls.
 - `pages.tsx` contains the invitation content and reusable presentation components.
+- `rsvp-flow.tsx` puts Nylgen and Kersee's name-search flow directly in the
+  ivory-and-olive RSVP card. A verified match opens its response dialog.
 - `book-page.tsx` handles the 3D page turn and staggered text/artwork entrances.
   Forward navigation lifts the current leaf to reveal the next; backward
   navigation folds the previous leaf back into place. Outgoing pages are inert
   and hidden from assistive technology, with media paused as they leave.
-  Navigation is locked for the 850ms turn to avoid overlapping page changes.
+  Navigation stays locked until the 1.55-second turn completes, avoiding
+  overlapping page changes. A subtle lift and tilt suggest a turning paper leaf,
+  with a softer fold shadow and gentle text entrances as the page settles.
   Reduced-motion preferences disable both the turn and content movement.
 - `data.ts` holds the confirmed client content; `artwork.tsx` holds decorative art.
 - Use Tailwind classes for simple layout, spacing, alignment and sizing. The
@@ -73,7 +77,10 @@ within its ivory panel for contrast.
 
 After the timeline, `#photo-break` shows a woodland-backed portrait slideshow
 using the existing prenup images, with overlapping Anastasia names. Photos
-crossfade every 5.5 seconds; guests can pause or select a photo. Keyboard focus
+advance every 2 seconds with a 0.6-second crossfade; guests can pause or select
+a photo. Images load before being selected, and the outgoing photo stays opaque
+beneath the incoming image to prevent background flashes. Overlapping
+transitions are ignored. Keyboard focus
 pauses autoplay, arrow keys change photos within the carousel, and reduced
 motion disables autoplay and crossfades. The timer stops when the page exits.
 
@@ -128,8 +135,8 @@ seconds countdown. The timer targets January 28, 2027 at 1:00 PM Philippine
 time, updates every second, and stops at zero. The former date, calendar and
 link block is removed from this section. The 16:9 frame scales with
 the viewport to keep this section within the horizontal invitation.
-`wedding.rsvpQuestions` stores the song-request textbox; it is not a FAQ answer
-and does not activate an RSVP submission form.
+`wedding.rsvpQuestions` supplies the optional song-request textbox in the RSVP
+form. Its answer is saved through the existing RSVP `message` field.
 
 ## Pending client details
 
@@ -149,11 +156,24 @@ The optional music control is hidden until a source is supplied and starts
 only after a guest presses play. The blank RSVP deadline in the source remains
 null; the FAQ explains that the date will be shared once available.
 
-RSVP currently opens an accessible information dialog; it does not accept,
-store, or pretend to submit guest responses. Before opening RSVP, provision
-this event through the existing RSVP infrastructure and implement the
-event-scoped guest lookup/restricted response flow. Do not enable a public
-unrestricted fallback form. No other client's event or guest list is reused.
+RSVP shows the complete-name field and “Find my invitation” button directly on
+the existing card. A unique name match loads the authorized party and opens the
+accessible response dialog automatically. Multiple matches require invitation
+selection; no match or a failed request leaves the dialog closed. The response
+form collects attendance, contact details, dietary needs, and the optional song
+request. It uses `useSmartRsvp` and `usePartyResponse` with
+the event slug `leslie-and-serj`. Confirmation appears only after a successful
+API submission; saved responses honor the backend's response lock. The server
+controls response scope and maximum attendees. No other client's guest list is
+reused, and there is no unrestricted fallback form.
+
+Before launch, create the Leslie and Serj event in the existing event-management
+workflow with slug `leslie-and-serj`, access mode `name_search`, and response mode
+`household` to match Nylgen and Kersee. Import the approved guest list and activate
+the event when ready. Keep the deadline unset until the couple supplies it.
+A read-only database check on September 18 found no event with this slug.
+The search form shows an error when the service is unavailable and allows retry;
+it never presents a failed request as a saved RSVP.
 
 The route is noindex while client details are under review. Remove this only
 if the client requests search indexing. No existing invitation or landing
@@ -168,9 +188,8 @@ page is changed by this addition.
 
 The September 16 woodland restyle preserves the horizontal page navigation.
 It uses the supplied L&S monogram, wedding illustration and guest outfit peg,
-plus an original decorative woodland painting. Optional couple photographs
-remain empty until supplied by Foreverlove. Gifts have a dedicated page using
-the existing confirmed copy. RSVP remains an information dialog.
+plus an original decorative woodland painting. Gifts have a dedicated page
+using the existing confirmed copy. RSVP now uses the name-search dialog above.
 
 Validation for this restyle: TypeScript including side-effect CSS imports;
 desktop/mobile visual review; swipe page turning; the page selector; RSVP
@@ -181,6 +200,20 @@ The calendar returns HTTP 200 with a text/calendar content type.
 Production build results from the earlier version do not verify this restyle.
 
 ## Invitation photograph
+
+The opening screen uses the same forest photograph, ivory monogram, and supplied
+lace-framed wedding artwork. Clicking or pressing Enter opens two cover panels
+from the center in a 2.8-second perspective animation after a brief 0.35-second
+pause, with a gentle start and a slower artwork fade. Reduced-motion settings
+use a short fade. The invitation stays inert behind the opening screen, then
+receives keyboard focus when the reveal finishes. This introduction appears
+on a fresh load and does not add a page to the invitation's pagination.
+The first page's text and artwork wait for the cover to finish, then fade and
+rise into place in a gentle stagger. Later page turns keep their existing timing;
+reduced-motion settings show the content immediately.
+Opening by click or keyboard starts “The One” by Kodaline during the reveal.
+Playback begins directly from that interaction for browser audio permission;
+the existing music control remains available to pause or resume it.
 
 The “With full hearts” page uses the supplied `assets/prenups/bg-invite.jpg`
 as its full background and `assets/prenups/1.jpg` as its centered portrait.

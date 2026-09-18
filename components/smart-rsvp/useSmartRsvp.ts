@@ -136,7 +136,7 @@ export function useSmartRsvp(
     }
   }
 
-  async function searchGuest() {
+  async function searchGuest(onMatches?: (matches: SearchMatch[]) => Promise<void>) {
     const normalizedFullName = normalizeGuestName(fullName);
 
     if (normalizedFullName.length < 3) {
@@ -169,6 +169,7 @@ export function useSmartRsvp(
 
       setFullName(normalizedFullName);
       setSearchMatches(matches);
+      await onMatches?.(matches);
     } catch (error) {
       setSearchError(
         error instanceof Error

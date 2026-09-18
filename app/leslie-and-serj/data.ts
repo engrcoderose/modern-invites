@@ -54,7 +54,7 @@ export const wedding = {
   music: {
     title: "The One",
     artist: "Kodaline",
-    src: null,
+    src: "/leslie-and-serj/Kodaline%20-%20The%20One.mp3",
   } as { src: string | null; title: string; artist: string } | null,
   rsvpDeadline: null as string | null,
   contact: null as { name: string; href: string; label: string } | null,
@@ -185,7 +185,7 @@ export const faqs: { question: string; answer: string | null }[] = [
   {
     question: "How can I RSVP?",
     answer:
-      "RSVP details will be available here soon, including how to respond and the response deadline.",
+      "Enter your complete invited name on the RSVP page and select ‘Find my invitation.’ Once your name is found on our guest list, a form will open for you to confirm attendance. The response deadline will be shared soon.",
   },
   {
     question: "When should I RSVP?",

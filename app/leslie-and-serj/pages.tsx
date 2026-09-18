@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -8,6 +8,7 @@ import {
   Check,
   Music2,
   Pause,
+  Play,
 } from "lucide-react";
 import {
   entourage,
@@ -24,6 +25,7 @@ import attireReference from "./assets/designs/Wedding guest peg.png";
 import invitationPortrait from "./assets/prenups/1.jpg";
 import videoPoster from "./assets/prenups/video.jpg";
 import PhotoBreak from "./photo-break";
+import RsvpFlow from "./rsvp-flow";
 
 type InvitationPage = {
   id: string;
@@ -195,10 +197,20 @@ function photoPages(
   }));
 }
 
-export function MusicControl() {
-  const audio = useRef<HTMLAudioElement>(null);
+export function MusicControl({ audio }: { audio: RefObject<HTMLAudioElement | null> }) {
   const [playing, setPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const control = useRef<HTMLDivElement>(null);
+  const detailsButton = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!detailsOpen) return;
+    function dismiss(event: PointerEvent) {
+      if (event.target instanceof Node && !control.current?.contains(event.target)) setDetailsOpen(false);
+    }
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, [detailsOpen]);
   if (!wedding.music?.src) return null;
   async function toggle() {
     if (!audio.current) return;
@@ -216,22 +228,62 @@ export function MusicControl() {
     }
   }
   return (
-    <div className="lj-music absolute bottom-[95px] right-[18px] z-[35]">
+    <div
+      ref={control}
+      className="lj-music absolute bottom-[95px] right-[18px] z-[35]"
+      onKeyDown={(event) => {
+        if (!detailsOpen) return;
+        event.stopPropagation();
+        if (event.key === "Escape") {
+          setDetailsOpen(false);
+          detailsButton.current?.focus();
+        }
+      }}
+    >
       <audio
         ref={audio}
         src={wedding.music.src}
         loop
         preload="none"
+        onPlay={() => { setPlaying(true); setFailed(false); }}
+        onPause={() => setPlaying(false)}
         onError={() => setFailed(true)}
       />
+      {detailsOpen && (
+        <section
+          id="lj-music-details"
+          aria-label="Wedding music"
+          className="absolute bottom-[58px] right-0 w-[260px] max-w-[calc(100vw-36px)] rounded-xl border border-[var(--lj-line)] bg-[var(--lj-paper)] p-4 text-[var(--lj-ink)] shadow-lg"
+        >
+          <p className="text-[9px] uppercase tracking-[0.18em] text-[var(--lj-muted)]">Our wedding soundtrack</p>
+          <div className="mt-3 flex items-center justify-between gap-4">
+            <div className="min-w-0 text-left">
+              <p className="text-base font-semibold">{wedding.music.title}</p>
+              <p className="mt-1 text-xs text-[var(--lj-muted)]">{wedding.music.artist}</p>
+            </div>
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label={playing ? "Pause music" : `Play ${wedding.music.title} by ${wedding.music.artist}`}
+              className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[var(--lj-line)] bg-transparent"
+            >
+              {playing ? <Pause size={17} aria-hidden="true" /> : <Play size={17} aria-hidden="true" />}
+            </button>
+          </div>
+          <p role="status" className="mt-3 text-left text-[10px] text-[var(--lj-muted)]">{failed ? "Music is unavailable. Please try again." : playing ? "Now playing" : "Paused"}</p>
+        </section>
+      )}
       <button
-        onClick={toggle}
-        aria-label={playing ? "Pause music" : `Play ${wedding.music.title}`}
-        aria-pressed={playing}
+        ref={detailsButton}
+        type="button"
+        onClick={() => setDetailsOpen((open) => !open)}
+        aria-label={detailsOpen ? "Hide song details" : "Show song details"}
+        aria-expanded={detailsOpen}
+        aria-controls="lj-music-details"
+        className="flex size-11 items-center justify-center rounded-full border border-[var(--lj-line)] bg-[var(--lj-paper)] text-[var(--lj-ink)]"
       >
-        {playing ? <Pause size={17} /> : <Music2 size={17} />}
+        <Music2 size={17} aria-hidden="true" />
       </button>
-      {failed && <span role="status">Music is unavailable.</span>}
     </div>
   );
 }
@@ -300,7 +352,6 @@ function Venue({ reception = false }: { reception?: boolean }) {
 
 type InvitationActions = {
   goTo: (id: string) => void;
-  openRsvp: () => void;
   copyHashtag: () => Promise<void>;
   copied: boolean;
   copyError: boolean;
@@ -308,7 +359,6 @@ type InvitationActions = {
 
 export function createInvitationPages({
   goTo,
-  openRsvp,
   copyHashtag,
   copied,
   copyError,
@@ -326,19 +376,19 @@ export function createInvitationPages({
           <div className="relative flex min-h-0 items-center justify-center overflow-hidden text-[#f2ede0]">
             <OvalCrest />
           </div>
-          <div className="lj-opening-panel relative grid h-full grid-rows-[auto_minmax(180px,1fr)_auto_auto] items-center justify-items-center gap-2 px-8 py-5 lj-mobile:gap-1 lj-mobile:px-5 lj-mobile:py-3">
+          <div className="lj-opening-panel relative grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto_auto] items-center justify-items-center gap-2 px-10 py-10 lj-mobile:px-7 lj-mobile:py-7">
             <p className="text-[12px] leading-relaxed lj-mobile:text-[10px]">
               Together with our families, we
               <br />
               invite you to celebrate our wedding
             </p>
-            <div className="lj-opening-logo relative h-full min-h-0 w-full max-w-[460px]">
+            <div className="lj-opening-logo relative h-[85%] min-h-0 w-[85%] max-w-[390px]">
               <Image
                 src={lacedWeddingLogo}
                 alt="A wedding couple dancing in a teacup, framed with delicate lace"
                 fill
                 priority
-                sizes="(max-width: 700px) 90vw, 460px"
+                sizes="(max-width: 700px) 77vw, 390px"
                 className="object-contain"
                 draggable={false}
               />
@@ -734,11 +784,13 @@ export function createInvitationPages({
       tone: "woodland",
       content: (
         <div className="lj-rsvp-page relative">
-          <div className="lj-rsvp-plaque">
-            <Ornament className="lj-ornament" />
-            <span>RSVP</span>
+          <div className="lj-rsvp-plaque relative mx-auto mb-7 w-[245px] max-w-[85%] px-7 py-5">
+            <div className="pointer-events-none absolute -top-3 inset-x-0 flex justify-center" aria-hidden="true">
+              <Ornament className="h-6 w-[76px] rounded-full bg-[var(--lj-paper)] px-2 text-[#9d916a]" />
+            </div>
+            <span className="block text-center">RSVP</span>
           </div>
-          <div className="lj-rsvp-card py-[45px] px-[35px] lj-mobile:py-[30px] lj-mobile:px-[22px]">
+          <div className="lj-rsvp-card py-[30px] px-[35px] lj-mobile:px-[22px]">
             <p className="lj-label">
               A place in our day, a place in our hearts
             </p>
@@ -746,14 +798,9 @@ export function createInvitationPages({
             <p className="lj-body">
               We would love to celebrate with you.
               <br />
-              Details on how to RSVP will be shared soon.
+              Find your invitation and let us know if you can join us.
             </p>
-            <button
-              className="lj-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[15px] px-6 mt-[26px] lj-button-solid"
-              onClick={openRsvp}
-            >
-              RSVP information <ArrowUpRight size={15} />
-            </button>
+            <RsvpFlow />
             <p className="lj-faq-note">
               We look forward to having you with us.
             </p>

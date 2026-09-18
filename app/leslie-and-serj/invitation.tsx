@@ -5,8 +5,9 @@ import Image from "next/image";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
 import { AnimatePresence, useReducedMotion } from "framer-motion";
 import BookPage from "./book-page";
+import OpeningScreen from "./opening-screen";
 import { wedding } from "./data";
-import { Monogram, Ornament } from "./artwork";
+import { Monogram } from "./artwork";
 import { createInvitationPages, MusicControl, WoodlandBackdrop } from "./pages";
 import invitationBackground from "./assets/prenups/bg-invite.jpg";
 
@@ -20,12 +21,14 @@ const interactive =
   "a,button,input,select,textarea,summary,iframe,video,audio,[role=button],[contenteditable=true]";
 
 export default function Invitation() {
+  const [openingScreen, setOpeningScreen] = useState(true);
+  const book = useRef<HTMLDivElement>(null);
+  const music = useRef<HTMLAudioElement>(null);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
-  const dialog = useRef<HTMLDialogElement>(null);
   const turning = useRef(false);
   const [isTurning, setIsTurning] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -33,6 +36,12 @@ export default function Invitation() {
   const gesture = useRef<{ x: number; y: number; id: number } | null>(null);
   const suppressClick = useRef(false);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!openingScreen) {
+      book.current?.querySelector<HTMLElement>(".lj-book-leaf:not([inert])")?.focus({ preventScroll: true });
+    }
+  }, [openingScreen]);
 
   async function copyHashtag() {
     if (!wedding.hashtag) return;
@@ -47,7 +56,6 @@ export default function Invitation() {
 
   const pages = createInvitationPages({
     goTo,
-    openRsvp: () => dialog.current?.showModal(),
     copyHashtag,
     copied,
     copyError,
@@ -108,11 +116,14 @@ export default function Invitation() {
   }, [pageIds]);
 
   return (
+    <>
     <div
+      ref={book}
+      inert={openingScreen}
+      aria-hidden={openingScreen || undefined}
       className={`lj-wedding lj-book fixed inset-0 h-dvh grid overflow-hidden ${darkPagination ? "lj-dark-pagination" : ""} ${current.id === "home" ? "lj-cover-pagination" : ""}`}
       onKeyDown={(event) => {
         if (
-          dialog.current?.open ||
           (event.target as HTMLElement).closest(
             "input,select,textarea,iframe,video,audio,[contenteditable=true]",
           )
@@ -280,10 +291,11 @@ export default function Invitation() {
             key={current.id}
             id={current.id}
             direction={direction}
+            revealReady={!openingScreen}
             className={`lj-book-page lj-tone-${current.tone || "ivory"} ${current.id === "home" ? "lj-is-cover" : ""} ${current.id === "invitation" ? "lj-is-photo-letter" : ""}`}
             label={`${active + 1} of ${pages.length}: ${current.label}`}
             onSettled={(page) => {
-              if (focusPage.current) {
+              if (focusPage.current && !openingScreen) {
                 page.focus({ preventScroll: true });
                 focusPage.current = false;
               }
@@ -350,43 +362,15 @@ export default function Invitation() {
           <ArrowRight size={18} />
         </button>
       </footer>
-      <MusicControl />
-      <dialog
-        ref={dialog}
-        className="lj-dialog"
-        aria-labelledby="lj-rsvp-dialog-title"
-      >
-        <button
-          className="lj-dialog-close absolute right-3 top-3 p-2"
-          aria-label="Close RSVP information"
-          onClick={() => dialog.current?.close()}
-        >
-          <X size={21} />
-        </button>
-        <Ornament className="lj-ornament" />
-        <p className="lj-label">{wedding.title}</p>
-        <h2 id="lj-rsvp-dialog-title" className="lj-heading">
-          RSVP will open soon.
-        </h2>
-        <p className="lj-body">
-          Please check back for the response deadline and details on how to let
-          us know you’ll be joining us.
-        </p>
-        {wedding.contact && (
-          <a
-            className="lj-text-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[10px] px-0 mt-6"
-            href={wedding.contact.href}
-          >
-            {wedding.contact.label}
-          </a>
-        )}
-        <button
-          className="lj-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[15px] px-6 mt-[26px] lj-button-solid"
-          onClick={() => dialog.current?.close()}
-        >
-          Back to the invitation
-        </button>
-      </dialog>
+      <MusicControl audio={music} />
     </div>
+    {openingScreen && <OpeningScreen
+      onOpen={() => {
+        // A rejected play request leaves the manual music control available.
+        void music.current?.play().catch(() => {});
+      }}
+      onOpened={() => setOpeningScreen(false)}
+    />}
+    </>
   );
 }
