@@ -178,6 +178,7 @@ export default async function WeddingDashboardPage({
           eventId={eventId}
           guestPage={workspace.guestPage}
           canManage={canManage}
+          showSongRequests={workspace.event.slug === "leslie-and-serj"}
           search={search}
           attendanceStatus={attendanceStatus}
           updateAction={updateGuestAction}

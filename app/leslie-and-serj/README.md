@@ -143,7 +143,8 @@ form. Its answer is saved through the existing RSVP `message` field.
 - Reception time and verified map pins/embed links.
 - Approved story and two sets of couple photographs (30 total maximum).
 - Hashtag, playable music file, and any additional FAQ answers.
-- Gift registry URL; gift copy does not claim an absent link is shown below.
+- Direct gift registry URL. The supplied gift-registry QR code is displayed on
+  the gifts page and opens at full size when tapped; its original file is preserved.
 - RSVP deadline, contact, guest list, and event-specific RSVP provisioning.
 
 Null FAQ answers and unprovided story/photos/attire/hashtag/music are hidden.

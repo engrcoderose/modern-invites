@@ -71,7 +71,7 @@ export const wedding = {
     message:
       "Your presence is a gift in itself. Should you wish to give, a financial contribution toward our future together would be deeply appreciated.",
     registryMessage:
-      "If you prefer to give a physical gift, registry details will be shared once the link is available.",
+      "If you prefer to give a physical gift, our gift registry is available through the QR code on the gifts page.",
     registryUrl: null as string | null,
   },
   design: {

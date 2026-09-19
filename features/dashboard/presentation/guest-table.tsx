@@ -28,6 +28,7 @@ interface GuestTableProps {
   eventId: number;
   guestPage: DashboardGuestPage;
   canManage: boolean;
+  showSongRequests?: boolean;
   search?: string;
   attendanceStatus?: DashboardAttendanceStatus;
   updateAction: GuestMutationAction;
@@ -270,6 +271,7 @@ export function GuestTable({
   eventId,
   guestPage,
   canManage,
+  showSongRequests = false,
   search,
   attendanceStatus,
   updateAction,
@@ -297,7 +299,9 @@ export function GuestTable({
     <>
       <div className="overflow-visible rounded-2xl border border-black/10 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-sm">
+          <table
+            className={`w-full text-left text-sm ${showSongRequests ? "min-w-[1100px]" : "min-w-[900px]"}`}
+          >
             <thead className="border-b border-black/10 bg-black/[0.02] text-xs uppercase tracking-wider text-ink-muted">
               <tr>
                 <th className="px-5 py-4 font-semibold">Guest</th>
@@ -306,6 +310,11 @@ export function GuestTable({
                 <th className="px-5 py-4 font-semibold">
                   Dietary notes
                 </th>
+                {showSongRequests ? (
+                  <th scope="col" className="px-5 py-4 font-semibold">
+                    Song request
+                  </th>
+                ) : null}
                 <th className="px-5 py-4 font-semibold">RSVP status</th>
                 {canManage ? (
                   <th className="px-5 py-4 text-right font-semibold">
@@ -344,6 +353,13 @@ export function GuestTable({
                       {guest.dietaryRestrictions ?? "None"}
                     </p>
                   </td>
+                  {showSongRequests ? (
+                    <td className="min-w-[12rem] max-w-[20rem] px-5 py-4 text-ink-muted">
+                      <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">
+                        {guest.message?.trim() || "None"}
+                      </p>
+                    </td>
+                  ) : null}
                   <td className="px-5 py-4">
                     <span
                       className={`inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium leading-none ring-1 ring-inset ${statusStyles[guest.attendanceStatus]}`}

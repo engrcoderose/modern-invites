@@ -762,8 +762,15 @@
 .lj-gifts-page {
   max-width: 570px !important;
 }
-.lj-gifts-page .lj-heading {
-  margin-top: 6px;
+/* Frame the supplied screenshot's code (60, 172, 697, 697), preserving
+   its white quiet zone while hiding the screenshot's heading and close icon. */
+.lj-registry-qr-image {
+  position: absolute;
+  width: 117.22%;
+  max-width: none;
+  height: auto;
+  left: -8.61%;
+  top: -24.68%;
 }
 .lj-rsvp-page {
   max-width: 560px !important;

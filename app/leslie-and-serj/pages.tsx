@@ -22,6 +22,7 @@ import { GardenArch, Monogram, OvalCrest, Ornament } from "./artwork";
 import weddingIllustration from "./assets/designs/Wedding Logo.png";
 import lacedWeddingLogo from "./assets/designs/laced-wedding-log0.png";
 import attireReference from "./assets/designs/Wedding guest peg.png";
+import giftRegistryQr from "./assets/designs/Leslie and Serj - QR for Gift Registry.png";
 import invitationPortrait from "./assets/prenups/1.jpg";
 import videoPoster from "./assets/prenups/video.jpg";
 import PhotoBreak from "./photo-break";
@@ -700,14 +701,33 @@ export function createInvitationPages({
       id: "gifts",
       label: "A note on gifts",
       content: (
-        <div className="lj-gifts-page">
-          <Ornament className="lj-ornament" />
+        <div className="lj-gifts-page flex flex-col items-center gap-4 [@media(max-height:740px)]:gap-2">
+          <Ornament className="lj-ornament !m-0 [@media(max-height:740px)]:hidden" />
           <span className="lj-script-accent">With gratitude</span>
-          <h2 className="lj-heading">A note on gifts</h2>
+          <h2 className="lj-heading !m-0">A note on gifts</h2>
           <p className="lj-body">{wedding.gifts.message}</p>
-          <p className="lj-body lj-registry-note mt-[22px]">
+          <p className="lj-body">
             {wedding.gifts.registryMessage}
           </p>
+          <figure className="w-fit">
+            <a
+              href={giftRegistryQr.src}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open a larger gift registry QR code (opens in a new tab)"
+              className="lj-registry-qr relative block aspect-square w-[220px] overflow-hidden bg-white ring-1 ring-[#ac9b7680] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5a6946] [@media(max-height:740px)]:w-[200px]"
+            >
+              <Image
+                src={giftRegistryQr}
+                alt="QR code for Leslie and Serj’s gift registry"
+                unoptimized
+                className="lj-registry-qr-image"
+              />
+            </a>
+            <figcaption className="mt-2 text-[11px] leading-relaxed text-[#646650]">
+              Scan to view our gift registry.<br />Tap the code to enlarge.
+            </figcaption>
+          </figure>
           {wedding.gifts.registryUrl && (
             <a
               className="lj-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[15px] px-6 mt-[26px] lj-button-outline"
@@ -718,7 +738,7 @@ export function createInvitationPages({
               View registry <ArrowUpRight size={15} />
             </a>
           )}
-          <Ornament className="lj-ornament" />
+          <Ornament className="lj-ornament !m-0 [@media(max-height:740px)]:hidden" />
         </div>
       ),
     },
