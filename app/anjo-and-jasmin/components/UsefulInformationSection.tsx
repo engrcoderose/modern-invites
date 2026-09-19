@@ -1,4 +1,4 @@
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
 import GiftRegistrySection from "./GiftRegistrySection";
 import EntourageDirections from "./EntourageDirections";

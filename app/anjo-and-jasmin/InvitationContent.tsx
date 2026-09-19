@@ -8,7 +8,7 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
 import InvitationSection from "./components/InvitationSection";
-import { PrenupPoster } from "../joshua-and-bea/media";
+import { PrenupPoster } from "./photo-media";
 import {
   wedding,
   attireDescription,
@@ -41,7 +41,7 @@ export default function InvitationContent() {
 
       <InvitationSection
         message={invitationMessage}
-        videoSrc="/videos/jasmin-and-anjo/prenup.mp4"
+        videoSrc="/videos/anjo-and-jasmin/prenup.mp4"
         poster={PrenupPoster}
       />
       <Gallery />

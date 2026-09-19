@@ -1,11 +1,11 @@
 import { wedding } from "../data";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
 
 export default function Entourage() {
   return (
     <section id="entourage" className="relative overflow-hidden bg-[#e1e7d8] px-5 py-20 text-[#624451] sm:px-8 sm:py-28">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[url('/images/jasmin-and-anjo/floral-pattern.svg')] bg-[length:300px_350px] bg-repeat opacity-80 sm:bg-[length:360px_420px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[url('/images/anjo-and-jasmin/floral-pattern.svg')] bg-[length:300px_350px] bg-repeat opacity-80 sm:bg-[length:360px_420px]" />
       <div className="relative mx-auto max-w-5xl overflow-hidden border border-[#bdc8b0] bg-[#fffdf7] p-3 shadow-[0_20px_60px_-40px_#465a4855] sm:p-4">
         <div className="relative border border-[#d8dece] px-5 py-12 sm:px-12 sm:py-16">
           <Reveal className="relative mb-10 text-center">

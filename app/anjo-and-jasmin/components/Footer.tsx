@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { useInView } from "motion/react";
 import Image from "next/image";
 import { ArrowUp, Heart } from "lucide-react";
-import Flowers from "../../joshua-and-bea/assets/images/designs/flowers.png";
-import { usePageVisibility } from "../../joshua-and-bea/hooks/usePageVisibility";
+import Flowers from "../assets/images/designs/flowers.png";
+import { usePageVisibility } from "../hooks/usePageVisibility";
 
 interface FooterProps {
   bride: string;

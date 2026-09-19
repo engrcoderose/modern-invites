@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, ListMusic, Pause, Play, SkipBack, SkipForward, Volume2, X } from "lucide-react";
-import { invitationOpenedEvent, prenupVideoStartedEvent } from "../../joshua-and-bea/lib/events";
+import { invitationOpenedEvent, prenupVideoStartedEvent } from "../lib/events";
 import { backgroundMusic, type MusicTrack } from "../data";
 
 const tracks = backgroundMusic.filter((track): track is MusicTrack => Boolean(track)).slice(0, 4);

@@ -3,10 +3,10 @@
 import Image, { getImageProps, type StaticImageData } from "next/image";
 import { useRef, type CSSProperties } from "react";
 import { useInView } from "motion/react";
-import BlueFlower from "../../joshua-and-bea/assets/images/designs/blue-fower-water-color.png";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import BlueFlower from "../assets/images/designs/blue-fower-water-color.png";
+import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
-import { prenupVideoStartedEvent } from "../../joshua-and-bea/lib/events";
+import { prenupVideoStartedEvent } from "../lib/events";
 
 interface InvitationSectionProps {
   message: string;

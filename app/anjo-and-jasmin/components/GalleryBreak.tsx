@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import Reveal from "./motion/Reveal";
 import { galleryBreakPhotos } from "../media";
-import type { GalleryImage } from "../../joshua-and-bea/types";
+import type { GalleryImage } from "../types";
 import FloralAccent from "./FloralAccent";
 
 const layouts = [

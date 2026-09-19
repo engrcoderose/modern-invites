@@ -1,6 +1,6 @@
 import { wedding as originalWedding } from "./wedding-details";
 
-// Share the existing content while applying confirmed details to this version.
+// Apply confirmed details to this invitation's local wedding content.
 export const wedding = {
   ...originalWedding,
   date: "Saturday, November 21, 2026",
@@ -62,9 +62,9 @@ export interface MusicTrack {
 export type WeddingPlaylist = readonly [MusicTrack?, MusicTrack?, MusicTrack?, MusicTrack?];
 
 export const backgroundMusic: WeddingPlaylist = [
-  { title: "Libu-libong Buwan", src: "/music/isabelle-and-daniel-music-Libu-libong%20buwan.mp3" },
-  { title: "PALAGI (Wedding Version)", src: "/music/PALAGI%20(Wedding%20Version).mp3" },
-  { title: "Wedding music", src: "/music/eric-and-li-music.mp3" },
+  { title: "Libu-libong Buwan", src: "/music/anjo-and-jasmin/libu-libong-buwan.mp3" },
+  { title: "PALAGI (Wedding Version)", src: "/music/anjo-and-jasmin/palagi-wedding-version.mp3" },
+  { title: "Wedding music", src: "/music/anjo-and-jasmin/wedding-music.mp3" },
 ];
 
 export interface GiftRegistry {

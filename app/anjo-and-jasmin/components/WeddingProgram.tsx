@@ -6,8 +6,8 @@ import FloralAccent from "./FloralAccent";
 import Image from "next/image";
 import { timelineIllustrations } from "../media";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
-import type { TimelineEvent } from "../../joshua-and-bea/types";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import type { TimelineEvent } from "../types";
+import Reveal from "./motion/Reveal";
 
 function Illustration({ index }: { index: number; }) {
   const source = timelineIllustrations[index] ?? timelineIllustrations[3];

@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import WelcomeFlorals from "./WelcomeFlorals";
-import WaxStamp from "../../joshua-and-bea/assets/images/designs/wax-stamp.png";
-import { invitationOpenedEvent } from "../../joshua-and-bea/lib/events";
+import WaxStamp from "../assets/images/designs/wax-stamp.png";
+import { invitationOpenedEvent } from "../lib/events";
 import { envelopeMessage, wedding } from "../data";
 
 export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () => void; onOpened: () => void }) {

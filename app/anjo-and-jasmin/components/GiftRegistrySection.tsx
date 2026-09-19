@@ -1,6 +1,6 @@
 import { ArrowUpRight, Gift } from "lucide-react";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
-import SectionPetals from "../../joshua-and-bea/components/SectionPetals";
+import Reveal from "./motion/Reveal";
+import SectionPetals from "./SectionPetals";
 import { giftRegistries } from "../data";
 
 export default function GiftRegistrySection() {

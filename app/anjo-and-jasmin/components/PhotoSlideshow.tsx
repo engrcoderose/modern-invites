@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "motion/react";
 
-import { usePageVisibility } from "../../joshua-and-bea/hooks/usePageVisibility";
+import { usePageVisibility } from "../hooks/usePageVisibility";
 import { afterDressCodeSlides as slides } from "../media";
 
 export default function PhotoSlideshow() {

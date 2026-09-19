@@ -1,7 +1,7 @@
 "use client";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import Reveal from "../../joshua-and-bea/components/motion/Reveal";
+import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
 import { faqs } from "../data";
 

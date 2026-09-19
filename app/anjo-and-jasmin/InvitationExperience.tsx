@@ -24,10 +24,10 @@ import {
   Play,
   X,
 } from "lucide-react";
-import WelcomePhoto from "../isabella-and-daniel/assets/pexels-camera-treasure-928922-14106227.jpg";
-import HeroPhoto from "../isabella-and-daniel/assets/happy-couple.jpg";
-import BannerPhoto from "../isabella-and-daniel/assets/walking-couple.jpg";
-import PortraitPhoto from "../isabella-and-daniel/assets/pexels-camera-treasure-928922-16841002.jpg";
+import WelcomePhoto from "./assets/images/gallery/pexels-camera-treasure-928922-14106227.jpg";
+import HeroPhoto from "./assets/images/gallery/happy-couple.jpg";
+import BannerPhoto from "./assets/images/gallery/walking-couple.jpg";
+import PortraitPhoto from "./assets/images/gallery/pexels-camera-treasure-928922-16841002.jpg";
 import WildflowerFrame from "./assets/wildflower-frame.png";
 import FoldText from "./components/FoldText";
 
@@ -138,7 +138,7 @@ function BackgroundMusic() {
   return (
     <>
       <audio ref={audioRef} loop preload="metadata" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => setAudioError(true)}>
-        <source src="/music/PALAGI%20(Wedding%20Version).mp3" type="audio/mpeg" />
+        <source src="/music/anjo-and-jasmin/palagi-wedding-version.mp3" type="audio/mpeg" />
       </audio>
       <button type="button" onClick={toggle} disabled={audioError} className="music-button" aria-label={playing ? "Pause background music" : "Play background music"}>
         {audioError ? <Music2 size={17} /> : playing ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="translate-x-px" />}

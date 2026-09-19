@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import Image from "next/image";
-import FloralBorder from "../../joshua-and-bea/assets/images/designs/floral-designs.png";
+import FloralBorder from "../assets/images/designs/floral-designs.png";
 
 export default function WelcomeFlorals() {
   const filterId = useId();
