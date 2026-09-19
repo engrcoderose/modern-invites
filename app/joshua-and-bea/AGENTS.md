@@ -1,4 +1,4 @@
-# Anjo and Jasmin invitation
+# Joshua and Bea invitation
 
 - Scope changes to this invitation unless the user asks otherwise.
 - Use Tailwind CSS in components for simple formatting: layout, responsive sizing, typography, colors, spacing, borders, shadows, positioning, and hover/focus states.

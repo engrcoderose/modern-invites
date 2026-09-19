@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useInView, useReducedMotion } from "motion/react";
 
-import { usePageVisibility } from "../../jasmin-and-anjo/hooks/usePageVisibility";
+import { usePageVisibility } from "../../joshua-and-bea/hooks/usePageVisibility";
 import { heroSlides } from "../media";
-import Flowers from "../../jasmin-and-anjo/assets/images/designs/down-flowers.png";
+import Flowers from "../../joshua-and-bea/assets/images/designs/down-flowers.png";
 import { wedding } from "../data";
 
 export default function HeroSection() {

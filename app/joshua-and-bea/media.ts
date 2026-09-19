@@ -14,11 +14,11 @@ import StoryEmbrace from "./assets/images/prenup/pexels-king-caplis-471600979-36
 export { WalkingCouple, InLoveCouple, Portrait, HappyCouple, Flowers, Rings, PiggyBack, PrenupPoster, ChurchImage, StoryWalk, StoryEmbrace };
 
 export const invitationPreview = {
-  url: "/jasmin-and-anjo-wedding-og.png",
+  url: "/joshua-and-bea-wedding-og.jpg",
   width: 1892,
   height: 932,
-  type: "image/png",
-  alt: "Anjo & Jasmin wedding invitation — June 19, 2027 · The Garden Chapel · Tagaytay",
+  type: "image/jpeg",
+  alt: "Joshua & Bea wedding invitation — June 19, 2027 · The Garden Chapel · Tagaytay",
 };
 
 export const gallery: GalleryImage[] = [

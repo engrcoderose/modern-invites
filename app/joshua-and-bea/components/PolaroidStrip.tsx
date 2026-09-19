@@ -40,7 +40,7 @@ export default function PolaroidStrip() {
       <header className="relative mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 sm:px-10">
         <div>
           <p className="text-[9px] uppercase tracking-[.24em] text-[#946879]">
-            Anjo &amp; Jasmin
+            Joshua &amp; Bea
           </p>
           <h2
             id="polaroid-title"
@@ -85,7 +85,7 @@ export default function PolaroidStrip() {
                     <Image
                       src={photo.src}
                       alt={
-                        copy === 1 ? "" : `Anjo and Jasmin · ${photo.caption}`
+                        copy === 1 ? "" : `Joshua and Bea · ${photo.caption}`
                       }
                       fill
                       sizes="(max-width: 600px) 174px, 238px"

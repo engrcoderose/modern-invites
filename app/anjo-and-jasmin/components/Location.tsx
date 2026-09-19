@@ -2,9 +2,9 @@ import Image from "next/image";
 import FloralAccent from "./FloralAccent";
 import { MapPin } from "lucide-react";
 import { wedding } from "../data";
-import { ChurchImage } from "../../jasmin-and-anjo/media";
-import { Together } from "../../jasmin-and-anjo/prenup-media";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import { ChurchImage } from "../../joshua-and-bea/media";
+import { Together } from "../../joshua-and-bea/prenup-media";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 
 export default function Location() {
   const venues = [

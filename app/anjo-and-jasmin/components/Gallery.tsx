@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { gallery } from "../media";
-import type { GalleryImage } from "../../jasmin-and-anjo/types";
+import type { GalleryImage } from "../../joshua-and-bea/types";
 import FloralAccent from "./FloralAccent";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 
 export default function Gallery() {
   const [selected, setSelected] = useState<GalleryImage | null>(null);

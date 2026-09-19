@@ -8,7 +8,7 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
 import InvitationSection from "./components/InvitationSection";
-import { PrenupPoster } from "../jasmin-and-anjo/media";
+import { PrenupPoster } from "../joshua-and-bea/media";
 import {
   wedding,
   attireDescription,

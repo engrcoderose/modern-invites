@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "motion/react";
-import { usePageVisibility } from "../../jasmin-and-anjo/hooks/usePageVisibility";
+import { usePageVisibility } from "../../joshua-and-bea/hooks/usePageVisibility";
 import { wedding } from "../data";
-import SectionPetals from "../../jasmin-and-anjo/components/SectionPetals";
+import SectionPetals from "../../joshua-and-bea/components/SectionPetals";
 
 export default function Countdown() {
   const section = useRef<HTMLElement>(null);

@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Together } from "../../jasmin-and-anjo/prenup-media";
+import { Together } from "../../joshua-and-bea/prenup-media";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, Check, Mail } from "lucide-react";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 import FloralAccent from "./FloralAccent";
 
 interface RSVPSectionProps {

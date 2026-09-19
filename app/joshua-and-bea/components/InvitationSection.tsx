@@ -40,7 +40,7 @@ export default function InvitationSection({ message, poster }: InvitationSection
             sizes="(max-width: 640px) 112px, 192px"
             className="pointer-events-none absolute -bottom-16 -left-8 z-0 h-auto w-28 select-none sm:-bottom-20 sm:-left-24 sm:w-48"
           />
-          <Image src={poster} alt="Anjo and Jasmin together in the garden" sizes="(max-width: 1024px) 90vw, 896px" className="relative z-10 aspect-video w-full object-cover shadow-[0_18px_60px_rgba(38,61,53,.12)]" />
+          <Image src={poster} alt="Joshua and Bea together in the garden" sizes="(max-width: 1024px) 90vw, 896px" className="relative z-10 aspect-video w-full object-cover shadow-[0_18px_60px_rgba(38,61,53,.12)]" />
         </Reveal>
       </div>
     </section>

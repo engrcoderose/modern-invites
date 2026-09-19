@@ -1,5 +1,5 @@
 import { wedding } from "../data";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 import FloralAccent from "./FloralAccent";
 
 export default function Entourage() {

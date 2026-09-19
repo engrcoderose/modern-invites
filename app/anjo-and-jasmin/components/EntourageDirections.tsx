@@ -1,6 +1,6 @@
 import { ArrowUpRight, Clock3, MapPin } from "lucide-react";
 import { entouragePreparation, type EntouragePreparation } from "../data";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 
 export default function EntourageDirections() {
   const preparations: EntouragePreparation[] = entouragePreparation.length

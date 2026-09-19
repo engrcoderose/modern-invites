@@ -1,10 +1,10 @@
-import TimelineChurch from "../jasmin-and-anjo/assets/images/designs/timeline-church.png";
-import TimelineRings from "../jasmin-and-anjo/assets/images/designs/timeline-rings.png";
-import TimelineExit from "../jasmin-and-anjo/assets/images/designs/timeline-exit.png";
-import TimelineParty from "../jasmin-and-anjo/assets/images/designs/timeline-party.png";
-import TimelineDinner from "../jasmin-and-anjo/assets/images/designs/timeline-dinner.png";
-import TimelineDance from "../jasmin-and-anjo/assets/images/designs/timeline-dance.png";
-import { gallery as originalGallery } from "../jasmin-and-anjo/media";
+import TimelineChurch from "../joshua-and-bea/assets/images/designs/timeline-church.png";
+import TimelineRings from "../joshua-and-bea/assets/images/designs/timeline-rings.png";
+import TimelineExit from "../joshua-and-bea/assets/images/designs/timeline-exit.png";
+import TimelineParty from "../joshua-and-bea/assets/images/designs/timeline-party.png";
+import TimelineDinner from "../joshua-and-bea/assets/images/designs/timeline-dinner.png";
+import TimelineDance from "../joshua-and-bea/assets/images/designs/timeline-dance.png";
+import { gallery as originalGallery } from "../joshua-and-bea/media";
 import {
   Walking,
   Together,
@@ -12,8 +12,8 @@ import {
   Sitting,
   Embrace,
   Portrait,
-} from "../jasmin-and-anjo/prenup-media";
-import type { GalleryImage } from "../jasmin-and-anjo/types";
+} from "../joshua-and-bea/prenup-media";
+import type { GalleryImage } from "../joshua-and-bea/types";
 
 export const galleryBreakPhotos: GalleryImage[] = [
   { src: Portrait, alt: "Anjo and Jasmin sharing a quiet embrace in the garden", position: "82% 48%" },

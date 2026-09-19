@@ -2,8 +2,8 @@ import type { DemoHousehold } from "./lib/demo-rsvp";
 
 // Fictional Signature showcase. Never connect this sample to a client event.
 export const wedding = {
-  brideFirstName: "Jasmin",
-  groomFirstName: "Anjo",
+  brideFirstName: "Bea",
+  groomFirstName: "Joshua",
   city: "Tagaytay",
   heroDate: "19 · 06 · 2027",
   openingDate: "06.19.27",
@@ -11,12 +11,12 @@ export const wedding = {
   receptionTime: "6:00 PM",
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Tagaytay+Cavite+Philippines",
   mapEmbedUrl: "https://www.google.com/maps?q=Tagaytay+Cavite+Philippines&output=embed",
-  bride: "Jasmin Monteverde",
-  groom: "Anjo Villanueva",
+  bride: "Bea Monteverde",
+  groom: "Joshua Villanueva",
   date: "Saturday, June 19, 2027",
   dateDisplay: "June 19, 2027",
   countdownDate: "2027-06-19T16:00:00+08:00",
-  hashtag: "#AnjoAndJasminInBloom",
+  hashtag: "#JoshAndBeaBegin",
   time: "4:00 PM",
   ceremony: "The Garden Chapel",
   reception: "Casa Primavera Gardens",

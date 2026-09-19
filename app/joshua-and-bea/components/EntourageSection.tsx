@@ -10,7 +10,7 @@ interface EntourageSectionProps {
 export default function EntourageSection({ brideFullName, groomFullName, groups }: EntourageSectionProps) {
   return (
     <section id="entourage" className="relative overflow-hidden bg-[#fbf8f1] px-5 py-24 text-[#33473d] sm:px-8 sm:py-32 lg:px-12 lg:py-44">
-      <div className="pointer-events-none absolute inset-x-0 top-14 text-center font-instrumentSerif text-[10rem] leading-none text-[#637b65]/[0.025] sm:text-[18rem]">A &amp; J</div>
+      <div className="pointer-events-none absolute inset-x-0 top-14 text-center font-instrumentSerif text-[10rem] leading-none text-[#637b65]/[0.025] sm:text-[18rem]">J &amp; B</div>
       <div className="relative mx-auto max-w-6xl">
         <div className="flex flex-col items-center text-center">
           <Reveal><SectionLabel>The wedding party</SectionLabel></Reveal>

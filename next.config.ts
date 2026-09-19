@@ -10,7 +10,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/jasmin-and-anjo",
-        destination: "/jasmin-and-anjo-wedding",
+        destination: "/joshua-and-bea-wedding",
+        permanent: true,
+      },
+      {
+        source: "/jasmin-and-anjo-wedding",
+        destination: "/joshua-and-bea-wedding",
+        permanent: true,
+      },
+      {
+        source: "/joshua-and-bea",
+        destination: "/joshua-and-bea-wedding",
         permanent: true,
       },
     ];

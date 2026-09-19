@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 import FloralAccent from "./FloralAccent";
-import { StoryWalk, StoryEmbrace } from "../../jasmin-and-anjo/media";
-import PrenupMoment from "../../jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36266137.jpg";
+import { StoryWalk, StoryEmbrace } from "../../joshua-and-bea/media";
+import PrenupMoment from "../../joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36266137.jpg";
 import { wedding } from "../data";
 
 export default function Story() {

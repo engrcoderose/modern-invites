@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 import { attireDressCode, mensAttire } from "../data";
 import FloralAccent from "./FloralAccent";
 

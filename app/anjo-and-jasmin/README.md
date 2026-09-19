@@ -1,6 +1,6 @@
 # Anjo & Jasmin — second invitation
 
-Route: `/anjo-and-jasmin`. The original `/jasmin-and-anjo` is unchanged.
+Route: `/anjo-and-jasmin`. The separate Signature sample is at `/joshua-and-bea-wedding`, with shared components and media in `app/joshua-and-bea`.
 
 Uses Eric and Li's envelope opening, centered photo hero, countdown, photo gallery adapted to three desktop columns, split story panels, central program timeline, formal entourage sheet, paired venue card, centered attire layout, hashtag, gift information, and RSVP layout. All couple content and media come from the first Anjo and Jasmin invitation. The FAQ uses the existing wedding details and reflects the confirmed 3:00 PM ceremony and preview-only RSVP status.
 

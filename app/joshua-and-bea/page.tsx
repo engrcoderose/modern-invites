@@ -34,11 +34,11 @@ const invitationDescription = `Together with their families, ${wedding.groomFirs
 export const metadata: Metadata = {
   title: invitationTitle,
   description: invitationDescription,
-  alternates: { canonical: "/jasmin-and-anjo-wedding" },
+  alternates: { canonical: "/joshua-and-bea-wedding" },
   openGraph: {
     title: invitationTitle,
     description: invitationDescription,
-    url: "/jasmin-and-anjo-wedding",
+    url: "/joshua-and-bea-wedding",
     type: "website",
     images: [invitationPreview],
   },

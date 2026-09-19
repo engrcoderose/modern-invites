@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Camera, Check, Copy } from "lucide-react";
-import Reveal from "../../jasmin-and-anjo/components/motion/Reveal";
+import Reveal from "../../joshua-and-bea/components/motion/Reveal";
 
 export default function HashtagSection({ hashtag }: { hashtag: string }) {
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">(

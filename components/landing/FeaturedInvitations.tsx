@@ -1,8 +1,8 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Music2, Navigation2, Timer, UsersRound } from "lucide-react";
-import signatureCouple from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import signatureBackground from "@/app/jasmin-and-anjo/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
+import signatureCouple from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
+import signatureBackground from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
 import stephaniePortrait from "@/app/stephanie-at-18/assets/HeroPhoto.png";
 import stephanieBackground from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
 import isabellaPortrait from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
@@ -33,10 +33,10 @@ const invitations: Invitation[] = [
     features: ["Countdown", "RSVP", "Dress code", "Music"],
   },
   {
-    title: "Anjo & Jasmin",
+    title: "Joshua & Bea",
     category: "Signature wedding",
-    description: "Anjo and Jasmin’s pastel garden wedding, with a heartfelt love story, two photo collections, maps, music, and elegant animations.",
-    href: "/jasmin-and-anjo-wedding",
+    description: "Joshua and Bea’s pastel garden wedding, with a heartfelt love story, two photo collections, maps, music, and elegant animations.",
+    href: "/joshua-and-bea-wedding",
     portrait: signatureCouple,
     background: signatureBackground,
     tone: "forest",

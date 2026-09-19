@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useState, type CSSProperties } from "react";
-import { Walking, Together, Garden, Sitting, Embrace, Portrait } from "../../jasmin-and-anjo/prenup-media";
+import { Walking, Together, Garden, Sitting, Embrace, Portrait } from "../../joshua-and-bea/prenup-media";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
-import { usePageVisibility } from "../../jasmin-and-anjo/hooks/usePageVisibility";
+import { usePageVisibility } from "../../joshua-and-bea/hooks/usePageVisibility";
 
 const photos = [
   { src: Walking, caption: "Hand in hand", position: "50% 45%", tilt: -4 },

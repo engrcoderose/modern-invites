@@ -69,7 +69,7 @@ export default function DemoRsvpFlow() {
           <div className="text-center">
             <p className="text-[0.62rem] font-medium uppercase tracking-[0.28em] text-[#946879]">Guest verification</p>
             <h3 ref={heading} tabIndex={-1} className="mt-4 font-instrumentSerif text-4xl outline-none">Find your invitation</h3>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#756770]">Enter your complete invited name exactly as it appears on the guest list for Anjo &amp; Jasmin.</p>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#756770]">Enter your complete invited name exactly as it appears on the guest list for Joshua &amp; Bea.</p>
           </div>
           <form onSubmit={search} className="mt-9 space-y-7">
             <label className={labelClass}>Complete invited name<input required minLength={3} maxLength={150} value={fullName} onChange={event => { setFullName(event.target.value); setMatches([]); setError(""); }} autoComplete="off" placeholder="Your complete name" className={inputClass} /></label>
@@ -97,7 +97,7 @@ export default function DemoRsvpFlow() {
           <div className="text-center">
             <p className={labelClass}>Your household</p>
             <h3 ref={heading} tabIndex={-1} className="mt-4 font-instrumentSerif text-4xl outline-none">{selected.name}</h3>
-            <p className="mt-3 text-sm leading-7 text-[#756770]">Please respond for everyone listed in your household for Anjo &amp; Jasmin.</p>
+            <p className="mt-3 text-sm leading-7 text-[#756770]">Please respond for everyone listed in your household for Joshua &amp; Bea.</p>
             <p aria-live="polite" className="mt-2 text-[0.58rem] uppercase tracking-[0.16em] text-[#876675]">{selected.guests.length - summary.pending} of {selected.guests.length} answered · {summary.attending} attending · Maximum {selected.maxAttendees}</p>
           </div>
           <form onSubmit={submit} className="mt-8 space-y-8">

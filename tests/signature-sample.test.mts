@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { demoHouseholds } from "../app/jasmin-and-anjo/data.ts";
-import { emptyResponse, findHouseholds, summarizeResponse, validateResponse } from "../app/jasmin-and-anjo/lib/demo-rsvp.ts";
+import { demoHouseholds } from "../app/joshua-and-bea/data.ts";
+import { emptyResponse, findHouseholds, summarizeResponse, validateResponse } from "../app/joshua-and-bea/lib/demo-rsvp.ts";
 
 test("name search matches full invited names with normalized whitespace and case", () => {
   assert.equal(findHouseholds(demoHouseholds, "  CLARA   del ROSARIO  ")[0]?.household.id, "del-rosario-aguilar");

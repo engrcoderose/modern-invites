@@ -5,12 +5,12 @@ export default function PhotoBreak() {
   return (
     <section
       id="photo-break"
-      aria-label="Anjo and Jasmin together"
+      aria-label="Joshua and Bea together"
       className="relative h-[100svh] w-full overflow-hidden"
     >
       <Image
         src={Together}
-        alt="Anjo and Jasmin sitting together, holding hands in the garden"
+        alt="Joshua and Bea sitting together, holding hands in the garden"
         fill
         sizes="100vw"
         quality={85}

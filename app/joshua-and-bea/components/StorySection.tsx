@@ -63,7 +63,7 @@ export default function StorySection({
               <div className="relative aspect-[3/4.3] overflow-hidden bg-[#eadfe4]">
                 <Image
                   src={image}
-                  alt="Anjo and Jasmin together in the garden"
+                  alt="Joshua and Bea together in the garden"
                   fill
                   sizes="(max-width: 1024px) 44vw, 26vw"
                   className="object-cover object-center"
@@ -71,16 +71,16 @@ export default function StorySection({
               </div>
               <p
                 className="mt-6 text-right font-meaCulpa text-5xl text-[#637b65] sm:mt-8 sm:text-6xl"
-                aria-label="Anjo and Jasmin"
+                aria-label="Joshua and Bea"
               >
-                A &amp; J
+                J &amp; B
               </p>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="relative aspect-[3/5.6] overflow-hidden bg-[#eadfe4]">
                 <Image
                   src={secondImage}
-                  alt="Anjo and Jasmin sharing a quiet embrace"
+                  alt="Joshua and Bea sharing a quiet embrace"
                   fill
                   sizes="(max-width: 1024px) 44vw, 26vw"
                   className="object-cover object-[85%_center]"

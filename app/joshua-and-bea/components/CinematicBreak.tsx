@@ -78,7 +78,7 @@ export default function CinematicBreak() {
           >
             <Image
               src={PrenupMoment}
-              alt="Anjo and Jasmin embracing in the garden, photographed from above"
+              alt="Joshua and Bea embracing in the garden, photographed from above"
               fill
               quality={85}
               sizes="100vw"
@@ -132,7 +132,7 @@ export default function CinematicBreak() {
           </motion.div>
 
           <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-[0.52rem] uppercase tracking-[0.28em] text-[#ffe1ee]/85 sm:bottom-8 sm:left-8 sm:right-8">
-            <span>Anjo &amp; Jasmin</span>
+            <span>Joshua &amp; Bea</span>
             <span>{wedding.city} · {new Date(wedding.countdownDate).getUTCFullYear()}</span>
           </div>
         </motion.div>
