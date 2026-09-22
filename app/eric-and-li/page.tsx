@@ -18,6 +18,7 @@ import GalleryOne from "./components/GalleryOne";
 import BackgroundMusic from "./components/BackgroundMusic";
 import WeddingHashtag from "./components/WeddingHashtag";
 import EnvelopeIntro from "./components/EnvelopeIntro";
+import SeatFinderSection from "./components/SeatFinderSection";
 
 // Import data
 import {
@@ -102,6 +103,8 @@ export default function ClassicWeddingTemplate() {
           </div>
 
           <UsefulInformation infoItems={usefulInfo} />
+
+          <SeatFinderSection />
 
           <RSVPForm
             bride={weddingData.bride}

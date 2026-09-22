@@ -24,6 +24,7 @@ export default function Navigation() {
     { label: "Entourage", href: "#entourage" },
     { label: "Location", href: "#location" },
     { label: "FAQ", href: "#faq" },
+    { label: "Seat Finder", href: "#seat-finder" },
     { label: "RSVP", href: "#rsvp" },
   ];
 
@@ -64,7 +65,7 @@ export default function Navigation() {
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
@@ -81,7 +82,10 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden hover:text-rose-600 transition-colors z-50 ${
+            aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="wedding-mobile-navigation"
+            className={`lg:hidden hover:text-rose-600 transition-colors z-50 ${
               isScrolled || isMobileMenuOpen ? "text-gray-800" : "text-white"
             }`}
           >
@@ -97,12 +101,13 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-          className="fixed inset-0 z-40 bg-white md:hidden"
+          id="wedding-mobile-navigation"
+          className="fixed inset-0 z-40 overflow-y-auto bg-white lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="flex flex-col items-center justify-center h-full space-y-8">
+          <div className="flex min-h-full flex-col items-center justify-center gap-6 px-4 pb-8 pt-24">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.label}

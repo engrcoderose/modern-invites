@@ -78,13 +78,26 @@ const portfolioItems = [
     title: "Eric & Li",
     category: "Wedding Invitation",
     description:
-      "Classic romance with a love-story timeline, live countdown, attire guide, and RSVP.",
+      "Luxury romance with a love-story timeline, live countdown, attire guide, seat finder, and RSVP.",
     href: "/eric-and-li",
     bgImage: ericHeroBg,
     previewImage: ericCoupleImg,
-    accent: "#2d6b4e",
-    accentLight: "#f0f7f4",
-    tags: ["Classic", "Sage & Gold"],
+    accent: "#4e2a0d",
+    accentLight: "#f7efe4",
+    tags: ["Luxury", "Coffee & Brown"],
+  },
+];
+
+const invitationGroups = [
+  {
+    id: "wedding-invitations",
+    title: "Wedding Invitations",
+    items: portfolioItems.filter((item) => item.category === "Wedding Invitation"),
+  },
+  {
+    id: "other-invitations",
+    title: "Other Invitations",
+    items: portfolioItems.filter((item) => item.category !== "Wedding Invitation"),
   },
 ];
 
@@ -95,7 +108,7 @@ export default function PortfolioPage() {
 
       <main>
         <section className="bg-gradient-to-b from-sage-50 to-white px-4 pb-8 pt-28 sm:px-6 sm:pt-32 lg:px-8">
-          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 xl:flex-row xl:items-end">
             <div className="max-w-xl">
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sage-600">
                 Our work
@@ -109,13 +122,16 @@ export default function PortfolioPage() {
               </p>
             </div>
             <nav aria-label="Portfolio sections" className="flex shrink-0 flex-wrap gap-2">
-              <a
-                href="#invitations"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sage-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
-              >
-                Invitations
-                <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-xs">{portfolioItems.length}</span>
-              </a>
+              {invitationGroups.map((group) => (
+                <a
+                  key={group.id}
+                  href={`#${group.id}`}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sage-700 px-5 text-sm font-semibold text-white transition-colors hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+                >
+                  {group.title}
+                  <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-xs">{group.items.length}</span>
+                </a>
+              ))}
               <a
                 href="#seat-finder"
                 className="inline-flex min-h-11 items-center rounded-full border border-sage-200 bg-white px-5 text-sm font-semibold text-sage-700 transition-colors hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
@@ -126,85 +142,90 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        <section
-          id="invitations"
-          aria-labelledby="invitations-title"
-          className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-12 sm:px-6 lg:px-8"
-        >
-          <div className="mb-5 flex items-center justify-between gap-4 border-t border-sage-100 pt-6">
-            <h2 id="invitations-title" className="text-sm font-semibold text-gray-900">
-              Invitation collection
-            </h2>
-            <p className="text-xs text-gray-500">Explore a live sample ↗</p>
-          </div>
+        <div id="invitations" className="scroll-mt-24">
+          {invitationGroups.map((group, groupIndex) => (
+            <section
+              key={group.id}
+              id={group.id}
+              aria-labelledby={`${group.id}-title`}
+              className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-12 sm:px-6 lg:px-8"
+            >
+              <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-t border-sage-100 pt-6">
+                <h2 id={`${group.id}-title`} className="font-elegant text-2xl font-bold text-gray-900 sm:text-3xl">
+                  {group.title}
+                </h2>
+                <p className="text-xs text-gray-500">Explore a live sample ↗</p>
+              </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
-            {portfolioItems.map((item, index) => (
-              <article key={item.id} className="min-w-0">
-                <Link
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${item.title} invitation (opens in a new tab)`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-shadow hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
-                >
-                  <div
-                    className="relative h-48 overflow-hidden sm:h-52 lg:h-56"
-                    style={{ backgroundColor: item.accentLight }}
-                  >
-                    <Image
-                      src={item.bgImage}
-                      alt=""
-                      fill
-                      priority={index < 2}
-                      className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
-                      sizes="(max-width: 639px) 100vw, (max-width: 1152px) 50vw, 550px"
-                    />
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="absolute inset-0 flex items-center justify-center py-4">
-                      <div className="relative aspect-[3/4] h-full rotate-[-4deg] overflow-hidden rounded-lg border-4 border-white/90 shadow-xl transition-transform duration-500 motion-safe:group-hover:rotate-0">
+              <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
+                {group.items.map((item, index) => (
+                  <article key={item.id} className="min-w-0">
+                    <Link
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${item.title} invitation (opens in a new tab)`}
+                      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-shadow hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+                    >
+                      <div
+                        className="relative h-48 overflow-hidden sm:h-52 lg:h-56"
+                        style={{ backgroundColor: item.accentLight }}
+                      >
                         <Image
-                          src={item.previewImage}
-                          alt={`${item.title} invitation preview`}
+                          src={item.bgImage}
+                          alt=""
                           fill
-                          priority={index < 2}
-                          className="object-cover object-top"
-                          sizes="160px"
+                          priority={groupIndex === 0 && index < 2}
+                          className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
+                          sizes="(max-width: 639px) 100vw, (max-width: 1152px) 50vw, 550px"
                         />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
-                      {item.tags.map((tag) => (
-                        <span key={tag} className="rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-medium text-gray-700">
-                          {tag}
+                        <div className="absolute inset-0 bg-black/20" />
+                        <div className="absolute inset-0 flex items-center justify-center py-4">
+                          <div className="relative aspect-[3/4] h-full rotate-[-4deg] overflow-hidden rounded-lg border-4 border-white/90 shadow-xl transition-transform duration-500 motion-safe:group-hover:rotate-0">
+                            <Image
+                              src={item.previewImage}
+                              alt={`${item.title} invitation preview`}
+                              fill
+                              priority={groupIndex === 0 && index < 2}
+                              className="object-cover object-top"
+                              sizes="160px"
+                            />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
+                          {item.tags.map((tag) => (
+                            <span key={tag} className="rounded-full bg-white/95 px-2.5 py-1 text-[10px] font-medium text-gray-700">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-gray-800 transition-colors group-hover:bg-white">
+                          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                         </span>
-                      ))}
-                    </div>
-                    <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-gray-800 transition-colors group-hover:bg-white">
-                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                  </div>
+                      </div>
 
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: item.accent }}>
-                      {item.category}
-                    </p>
-                    <h3 className="mt-1.5 font-elegant text-2xl font-bold leading-tight text-gray-900">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">
-                      {item.description}
-                    </p>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold" style={{ color: item.accent }}>
-                      View invitation
-                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
-                    </span>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
+                      <div className="flex flex-1 flex-col p-5">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color: item.accent }}>
+                          {item.category}
+                        </p>
+                        <h3 className="mt-1.5 font-elegant text-2xl font-bold leading-tight text-gray-900">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-gray-600">
+                          {item.description}
+                        </p>
+                        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold" style={{ color: item.accent }}>
+                          View invitation
+                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
 
         <SeatFinderSection />
 
