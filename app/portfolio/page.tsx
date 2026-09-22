@@ -17,8 +17,23 @@ import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple
 import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
 import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
 import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
+import joshuaBeaBackground from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
+import joshuaBeaCouple from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
 
 const portfolioItems = [
+  {
+    id: "joshua-and-bea",
+    title: "Joshua & Bea",
+    category: "Wedding Invitation",
+    description:
+      "A pastel garden wedding with a heartfelt love story, photo collections, maps, music, and elegant animations.",
+    href: "/joshua-and-bea-wedding",
+    bgImage: joshuaBeaBackground,
+    previewImage: joshuaBeaCouple,
+    accent: "#52664d",
+    accentLight: "#faf4f1",
+    tags: ["Signature", "Pastel Garden"],
+  },
   {
     id: "nylgen-and-kersee",
     title: "Nylgen & Kersee",
