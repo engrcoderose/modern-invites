@@ -1,28 +1,42 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import Image, { type ImageLoaderProps } from "next/image";
 import { useIsPresent, useReducedMotion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
-import firstPhoto from "./assets/prenups/1.jpg";
-import secondPhoto from "./assets/prenups/3.jpg";
-import thirdPhoto from "./assets/prenups/5.jpg";
-import gardenPhoto from "./assets/prenups/warm romatic cinematic couple photos inspiration filoli gardens_.jpg";
-import meadowPhoto from "./assets/prenups/Engagement photos 🤍.jpg";
-import forestPhoto from "./assets/prenups/It’s a dream 💫.jpg";
+import main1 from "./assets/prenups/Main-1.jpg";
+import main2 from "./assets/prenups/Main-2.jpg";
+import main3 from "./assets/prenups/Main-3.jpg";
+import main4 from "./assets/prenups/Main-4.jpg";
+import main5 from "./assets/prenups/Main-5.jpg";
+import group1 from "./assets/prenups/Group1 -1.jpg";
+import group2 from "./assets/prenups/Group1-2.jpg";
+import group3 from "./assets/prenups/Group1-3.jpg";
+import group4 from "./assets/prenups/Group1-4.jpg";
+import group5 from "./assets/prenups/Group1-5.jpg";
 
 const portraitPhotos = [
-  { src: firstPhoto, alt: "A couple holding hands in a woodland clearing", position: "57% center" },
-  { src: secondPhoto, alt: "A couple running together through a mountain meadow", position: "center" },
-  { src: thirdPhoto, alt: "A couple walking hand in hand at sunset", position: "20% center" },
+  { src: main1, alt: "Leslie and Serj sharing a sunlit embrace", position: "55% center" },
+  { src: main2, alt: "Leslie and Serj silhouetted against a warm oval of light", position: "center" },
+  { src: main3, alt: "Leslie and Serj smiling at each other in a spotlight", position: "center" },
+  { src: main4, alt: "Leslie and Serj posing with their dogs", position: "35% center" },
+  { src: main5, alt: "Leslie and Serj sitting together beside an arched mirror", position: "center" },
 ];
 const fullPagePhotos = [
-  { src: gardenPhoto, alt: "A couple holding hands among garden flowers", position: "center" },
-  { src: meadowPhoto, alt: "A couple lying together in the grass", position: "43% center" },
-  { src: forestPhoto, alt: "A couple walking hand in hand along a woodland path", position: "center" },
+  { src: group1, alt: "Leslie and Serj with their dogs in the kitchen", position: "center 45%" },
+  { src: group2, alt: "Their dogs on the kitchen counter with Leslie and Serj behind them", position: "center" },
+  { src: group3, alt: "Leslie and Serj sharing a bite at the kitchen counter", position: "center" },
+  { src: group4, alt: "Leslie and Serj smiling in an embrace", position: "center 35%" },
+  { src: group5, alt: "Leslie and Serj laughing together at the kitchen counter", position: "center" },
 ];
 
 const slideInterval = 2000;
+
+// Keep every slide at least full HD, including the wide photos cropped into
+// portrait frames. Larger displays can still request the 2048/3840px variants.
+function slideshowImageLoader({ src, width, quality }: ImageLoaderProps) {
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${Math.max(1920, width)}&q=${quality ?? 95}`;
+}
 
 export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean }) {
   const photos = fullPage ? fullPagePhotos : portraitPhotos;
@@ -63,10 +77,10 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
 
   return (
     <div
-      className={`lj-photo-break relative !m-0 flex h-full !max-w-none flex-col items-center justify-center overflow-hidden text-[#f2ede0] ${fullPage ? "" : "gap-5 px-8 py-6 lj-mobile:gap-3 lj-mobile:px-6"}`}
+      className={`lj-photo-break relative !m-0 flex h-full !max-w-none flex-col items-center justify-center overflow-hidden text-[#f2ede0] ${fullPage ? "" : "gap-5 px-8 py-4 lj-mobile:gap-3"}`}
       role="region"
       aria-roledescription="carousel"
-      aria-label={`${fullPage ? "Together" : "A little of us"} — photo slideshow`}
+      aria-label={`${fullPage ? "Together" : "Us"} — photo slideshow`}
       onFocusCapture={(event) => {
         if (!(event.target as HTMLElement).closest("[data-slideshow-playback]")) setPaused(true);
       }}
@@ -79,8 +93,7 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
         }
       }}
     >
-      {!fullPage && <p className="lj-label relative z-10 tracking-[0.22em]">A little of us</p>}
-      <div className={fullPage ? "absolute inset-0" : "relative my-7 h-[clamp(200px,calc(100svh-360px),360px)] max-w-full shrink-0 aspect-[3/4]"}>
+      <div className={fullPage ? "absolute inset-0" : "lj-portrait-frame relative my-7 max-w-full shrink-0 aspect-[3/4]"}>
         <div className={`absolute inset-0 isolate overflow-hidden ${fullPage ? "" : "shadow-[0_16px_50px_#0006] ring-1 ring-[#f2ede04d]"}`}>
           {photos.map((photo, index) => (
             <div
@@ -105,11 +118,15 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             >
               <Image
                 src={photo.src}
+                loader={slideshowImageLoader}
+                quality={95}
                 alt={photo.alt}
                 fill
                 loading="eager"
                 onLoad={() => setLoaded((current) => current.includes(index) ? current : [...current, index])}
-                sizes={fullPage ? "100vw" : "270px"}
+                sizes={fullPage
+                  ? `max(100vw, calc(100svh * ${photo.src.width / photo.src.height}))`
+                  : `calc(min(747px, calc((100vw - 64px) * 4 / 3), calc(100svh - 300px)) * ${Math.max(0.75, photo.src.width / photo.src.height)})`}
                 draggable={false}
                 className="object-cover"
                 style={{ objectPosition: photo.position }}
@@ -118,8 +135,8 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
           ))}
         </div>
         {!fullPage && <h2 className="lj-photo-break-names pointer-events-none absolute inset-0 z-10" aria-label="Leslie and Serj">
-          <span className="absolute -left-7 -top-9" aria-hidden="true">Leslie</span>
-          <span className="absolute -bottom-9 -right-7" aria-hidden="true">&amp; Serj</span>
+          <span className="absolute -left-7 -top-9 lj-mobile:-left-4" aria-hidden="true">Leslie</span>
+          <span className="absolute -bottom-9 -right-7 lj-mobile:-right-4" aria-hidden="true">Serj</span>
         </h2>}
       </div>
       <div className={`${fullPage ? "absolute bottom-[calc(86px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 rounded-full border border-[#f2ede026] bg-[#17201599] px-2 backdrop-blur-sm" : "relative"} z-10 flex items-center justify-center`} aria-label="Slideshow controls">

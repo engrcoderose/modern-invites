@@ -1,51 +1,40 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import {
   animate,
   motion,
   useIsPresent,
+  useMotionValue,
+  useTransform,
   usePresenceData,
   useReducedMotion,
   type Variants,
 } from "framer-motion";
 
-const pageTurn = { duration: 1.55, ease: [0.42, 0, 0.18, 1] as const };
+import { pageFold } from "./page-fold";
 
+const pageTurn = { duration: 1.25, ease: [0.38, 0.05, 0.25, 1] as const };
+// Keep both pages mounted while the corner folds over the underlying page.
 const leaf: Variants = {
-  enter: (direction: number) => ({
-    rotateY: direction > 0 ? 0 : -105,
-    rotateZ: 0,
-    y: 0,
-    opacity: 1,
-  }),
-  settled: (direction: number) => ({
-    rotateY: 0,
-    rotateZ: direction < 0 ? [0, -0.4, 0] : 0,
-    y: direction < 0 ? [0, -3, 0] : 0,
-    opacity: 1,
-  }),
-  exit: (direction: number) => ({
-    rotateY: direction > 0 ? -105 : 0,
-    rotateZ: direction > 0 ? [0, 0.4, 0] : 0,
-    y: direction > 0 ? [0, -3, 0] : 0,
-    opacity: direction > 0 ? 1 : 0.5,
-  }),
+  enter: { opacity: 1 },
+  settled: { opacity: 1 },
+  exit: { opacity: 0, transition: { duration: 0, delay: pageTurn.duration } },
 };
 
 const revealTargets = [
   "h1",
   "h2:not(.sr-only)",
   "h3",
+  "h4",
   "p",
+  ".lj-names",
+  ".lj-combined-party section",
   ".lj-ornament",
-  ".lj-opening-crest",
   ".lj-opening-logo",
-  ".lj-photo-letter-portrait",
   ".lj-film-frame",
   ".lj-countdown",
   ".lj-venue-art",
-  ".lj-wedding-illustration",
   ".lj-attire-reference",
   ".lj-photo-page figure",
   ".lj-faq-page dl > div",
@@ -69,10 +58,43 @@ export default function BookPage({
   revealReady?: boolean;
 }) {
   const page = useRef<HTMLElement>(null);
+  const foldGradient = useId();
+  const foldShadow = useId();
   const present = useIsPresent();
   const turnDirection: number = usePresenceData() ?? direction;
   const reducedMotion = useReducedMotion();
   const waitingForOpening = useRef(!revealReady);
+  const [size, setSize] = useState({ width: 1, height: 1 });
+  const progress = useMotionValue(direction < 0 && !reducedMotion ? 1 : 0);
+  const shape = useTransform(progress, (value) => pageFold(value, size.width, size.height));
+  const frontClip = useTransform(shape, (value) => value.front);
+  const reversePath = useTransform(shape, (value) => value.reverse);
+  const foldOpacity = useTransform(shape, (value) => value.opacity);
+  const shadeStartX = useTransform(shape, (value) => value.shadeStartX);
+  const shadeStartY = useTransform(shape, (value) => value.shadeStartY);
+  const shadeEndX = useTransform(shape, (value) => value.shadeEndX);
+  const shadeEndY = useTransform(shape, (value) => value.shadeEndY);
+  const reverseColor = className.includes("lj-tone-olive") ? "#46533b" : "#eee8da";
+
+  useLayoutEffect(() => {
+    const element = page.current;
+    if (!element) return;
+    const measure = () => setSize({ width: element.clientWidth, height: element.clientHeight });
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      progress.set(0);
+      return;
+    }
+    const target = !present && turnDirection > 0 ? 1 : 0;
+    const animation = animate(progress, target, pageTurn);
+    return () => animation.stop();
+  }, [present, turnDirection, reducedMotion, progress]);
 
   useEffect(() => {
     const element = page.current;
@@ -96,7 +118,7 @@ export default function BookPage({
       if (content) content.style.overflowY = previousOverflow;
     };
     // The rising elements must not briefly create a scrollbar and shift width.
-    if (content && (!revealReady || waitingForOpening.current)) content.style.overflowY = "hidden";
+    if (content) content.style.overflowY = "hidden";
     if (!revealReady) {
       // Keep the entrance from playing unseen behind the closed cover.
       const hidden = groups.map((target) =>
@@ -136,16 +158,16 @@ export default function BookPage({
       tabIndex={-1}
       inert={!present}
       aria-hidden={!present || undefined}
-      className={`lj-book-leaf absolute inset-0 h-full w-full overflow-hidden ${className}`}
+      className="lj-book-leaf absolute inset-0 h-full w-full overflow-hidden"
       style={{ zIndex: turnDirection > 0 ? (present ? 1 : 2) : (present ? 2 : 1) }}
       role="group"
       aria-roledescription="slide"
       aria-label={label}
       custom={turnDirection}
       variants={reducedMotion ? {
-        enter: { rotateY: 0, rotateZ: 0, y: 0, opacity: 1 },
-        settled: { rotateY: 0, rotateZ: 0, y: 0, opacity: 1 },
-        exit: { rotateY: 0, rotateZ: 0, y: 0, opacity: 1 },
+        enter: { opacity: 1 },
+        settled: { opacity: 1 },
+        exit: { opacity: 1 },
       } : leaf}
       initial="enter"
       animate="settled"
@@ -155,16 +177,39 @@ export default function BookPage({
         if (state === "settled" && present && page.current) onSettled(page.current);
       }}
     >
-      {children}
+      <motion.div
+        className={`absolute inset-0 h-full w-full overflow-hidden ${className}`}
+        style={{ clipPath: frontClip }}
+      >
+        {children}
+      </motion.div>
       {!reducedMotion && (
-        <motion.div
+        <svg
           aria-hidden="true"
-          className="lj-page-fold pointer-events-none absolute inset-0 z-[4]"
-          initial={{ opacity: turnDirection > 0 ? 0 : 0.45 }}
-          animate={{ opacity: 0 }}
-          exit={{ opacity: turnDirection > 0 ? 0.45 : 0 }}
-          transition={pageTurn}
-        />
+          className="pointer-events-none absolute inset-0 z-[4] h-full w-full"
+          viewBox={`0 0 ${size.width} ${size.height}`}
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <filter id={foldShadow} x="-100%" y="-100%" width="300%" height="300%">
+              <feDropShadow dx="3" dy="2" stdDeviation="5" floodColor="#10170c" floodOpacity="0.28" />
+            </filter>
+            <motion.linearGradient
+              id={foldGradient}
+              gradientUnits="userSpaceOnUse"
+              x1={shadeStartX} y1={shadeStartY} x2={shadeEndX} y2={shadeEndY}
+            >
+              <stop offset="0" stopColor="#fff9e9" stopOpacity="0" />
+              <stop offset="0.52" stopColor="#fff9e9" stopOpacity="0.14" />
+              <stop offset="0.82" stopColor="#182010" stopOpacity="0.08" />
+              <stop offset="1" stopColor="#182010" stopOpacity="0.22" />
+            </motion.linearGradient>
+          </defs>
+          <motion.g style={{ opacity: foldOpacity }}>
+            <motion.path d={reversePath} fill={reverseColor} filter={`url(#${foldShadow})`} />
+            <motion.path d={reversePath} fill={`url(#${foldGradient})`} />
+          </motion.g>
+        </svg>
       )}
     </motion.section>
   );

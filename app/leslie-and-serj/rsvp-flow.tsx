@@ -304,8 +304,11 @@ export default function RsvpFlow() {
           void findInvitation();
         }}
       >
-        <label className="block text-left text-[10px] uppercase leading-relaxed tracking-[0.16em]">
-          Complete invited name
+        <label className="block text-center text-[10px] uppercase leading-relaxed tracking-[0.16em]">
+          Full Name
+          <span className="mt-1 block text-[11px] normal-case tracking-normal">
+            (First name, Last name)
+          </span>
           <input
             required
             autoComplete="name"
@@ -315,8 +318,7 @@ export default function RsvpFlow() {
             value={controller.fullName}
             onChange={(event) => controller.updateFullName(event.target.value)}
             disabled={busy}
-            placeholder="Your complete name"
-            className="mt-3 w-full border-0 border-b border-[#8c997f] bg-transparent px-0 py-3 text-base normal-case tracking-normal text-[#414636] placeholder:text-[#64665080] focus:outline-none focus:ring-1 focus:ring-[#5a6946] disabled:opacity-60"
+            className="mt-3 w-full border-0 border-b border-[#8c997f] bg-transparent px-0 py-3 text-center text-base normal-case tracking-normal text-[#414636] focus:outline-none focus:ring-1 focus:ring-[#5a6946] disabled:opacity-60"
           />
         </label>
         <ErrorMessage message={controller.searchError} />
@@ -324,13 +326,13 @@ export default function RsvpFlow() {
           ref={searchButton}
           type="submit"
           disabled={busy || controller.fullName.trim().length < 3}
-          className="lj-button lj-button-solid flex min-h-14 w-full items-center justify-between gap-3 px-6 py-4 disabled:opacity-50"
+          className="lj-button lj-button-solid relative flex min-h-14 w-full items-center justify-center px-10 py-4 text-center disabled:opacity-50"
         >
           {busy ? "Finding your invitation…" : "Find my invitation"}
           {busy ? (
-            <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+            <LoaderCircle className="absolute right-4 size-4 animate-spin" aria-hidden="true" />
           ) : (
-            <Search size={16} aria-hidden="true" />
+            <Search className="absolute right-4" size={16} aria-hidden="true" />
           )}
         </button>
       </form>

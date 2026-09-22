@@ -2,15 +2,9 @@ export type EntourageName = { name: string; needsReview?: boolean };
 export type Photo = { src: string; alt: string };
 
 export const attireDetails = {
-  title: "Dressed to celebrate",
-  introduction: "We can’t wait to celebrate with you in style.",
+  title: "The Dress Code",
   formality: "Formal or Black-Tie Optional",
   colorRequest: "Please wear green, orange, or yellow.",
-  colors: [
-    { name: "Green", hex: "#5a6946" },
-    { name: "Orange", hex: "#b86838" },
-    { name: "Yellow", hex: "#c5a33c" },
-  ],
   note: "Kindly avoid white, cream, ivory, and other white-adjacent shades.",
 };
 
@@ -23,7 +17,7 @@ export const wedding = {
   groom: "John Rey F. Sergio",
   brideShort: "Leslie Marie",
   groomShort: "John Rey",
-  date: "January 28, 2027",
+  date: "28 January 2027",
   dateISO: "2027-01-28",
   ceremonyTime: "1:00 PM",
   // 1:00 PM at the Philippine ceremony venue (UTC+08:00).
@@ -47,7 +41,7 @@ export const wedding = {
   storyPhotos: [] as Photo[],
   galleryPhotos: [] as Photo[],
   attire:
-    `${attireDetails.introduction} We kindly request ${attireDetails.formality} attire. ${attireDetails.colorRequest} ${attireDetails.note}` as
+    `${attireDetails.formality} attire. ${attireDetails.colorRequest} ${attireDetails.note}` as
       | string
       | null,
   hashtag: null as string | null,
@@ -69,9 +63,9 @@ export const wedding = {
   ],
   gifts: {
     message:
-      "Your presence is a gift in itself. Should you wish to give, a financial contribution toward our future together would be deeply appreciated.",
+      "Your presence is a gift. A contribution toward our future together would be deeply appreciated.",
     registryMessage:
-      "If you prefer to give a physical gift, our gift registry is available through the QR code on the gifts page.",
+      "For physical gifts, please scan our registry QR code below.",
     registryUrl: null as string | null,
   },
   design: {
@@ -101,8 +95,9 @@ export const wedding = {
   saveTheDateVideo: {
     text: "The countdown begins",
     providedBy: "Foreverlove",
-    note: "Include save the date video (c/o foreverlove)",
-    src: "/videos/prenup.mp4",
+    note: "Save the Date Video - Leslie and Serj.mov",
+    src: "/leslie-and-serj/video/save-the-date.mp4",
+    poster: "/leslie-and-serj/video/save-the-date-poster.jpg",
   },
 };
 
@@ -112,35 +107,35 @@ const name = (value: string, needsReview = false): EntourageName => ({
 });
 
 export const entourage = {
-  groomParents: [name("Engr. Julio B. Sergio"), name("Rhodora F. Sergio")],
+  groomParents: [name("Rhodora F. Sergio"), name("Engr. Julio B. Sergio")],
   brideParents: [
-    name("Engr. Lolito G. Zaldua"),
     name("Maria Theresa S. Zaldua"),
+    name("Engr. Lolito G. Zaldua"),
   ],
-  // Keep the invitation's existing column order; spellings are confirmed by JSON.
+  // Women precede men in each pair; preserve the confirmed names and pairings.
   principal: [
-    [name("Aldreneil S. San Jose"), name("Angelica C. San Jose")],
-    [name("Engr. Sammy T. Yumul"), name("Engr. Lorna L. Yumul")],
-    [name("Engr. Jeffrick T. Ditona"), name("Eva Z. Frivaldo")],
-    [name("Robert C. Uy"), name("Helen Q. Diaz")],
-    [name("Engr. Aries S. Grande"), name("Jeanette Z. Perea")],
+    [name("Angelica C. San Jose"), name("Aldreneil S. San Jose")],
+    [name("Engr. Lorna L. Yumul"), name("Engr. Sammy T. Yumul")],
+    [name("Eva Z. Frivaldo"), name("Engr. Jeffrick T. Ditona")],
+    [name("Helen Q. Diaz"), name("Robert C. Uy")],
+    [name("Jeanette Z. Perea"), name("Engr. Aries S. Grande")],
   ],
   bestMan: [name("Vince C. San Jose")],
   maidOfHonor: [name("Leah Marie S. Zaldua")],
   secondary: [
     {
       role: "Candle",
-      names: [name("Jan Vincent Q. Diaz"), name("Maila Coruna-Diaz")],
+      names: [name("Maila Coruna-Diaz"), name("Jan Vincent Q. Diaz")],
     },
     {
       role: "Veil",
-      names: [name("Jordan R. Balane"), name("Louise Marie Z. Balane")],
+      names: [name("Louise Marie Z. Balane"), name("Jordan R. Balane")],
     },
     {
       role: "Cord",
       names: [
-        name("Engr. Vinraff O. Balcueba"),
         name("Engr. Imee P. Balcueba"),
+        name("Engr. Vinraff O. Balcueba"),
       ],
     },
   ],
@@ -166,48 +161,23 @@ export const entourage = {
   ],
 };
 
-export const faqs: { question: string; answer: string | null }[] = [
-  {
-    question: "When and where is the wedding?",
-    answer:
-      "Our wedding is on January 28, 2027. The ceremony begins at 1:00 PM at Chapel on the Hill, and the reception will be at Azienda Verde Alfonso.",
-  },
-  {
-    question: "What time does the ceremony begin?",
-    answer:
-      "The ceremony begins at 1:00 PM. We'll share any additional arrival details here once they are confirmed.",
-  },
-  {
-    question: "Where will we celebrate after the ceremony?",
-    answer:
-      "Our reception will be at Azienda Verde Alfonso. The reception start time will be shared here once confirmed.",
-  },
-  {
-    question: "How can I RSVP?",
-    answer:
-      "Enter your complete invited name on the RSVP page and select ‘Find my invitation.’ Once your name is found on our guest list, a form will open for you to confirm attendance. The response deadline will be shared soon.",
-  },
-  {
-    question: "When should I RSVP?",
-    answer:
-      "The RSVP deadline will be shared soon. We can’t wait to see you at the wedding!",
-  },
-  { question: "What is the dress code?", answer: wedding.attire },
+export const faqs: { question: string; answer: string | null; link?: { href: string; label: string } }[] = [
   {
     question: "Can I bring a plus one?",
     answer:
-      "Our numbers are really tight so we’re only able to accommodate the guests listed on the invite. Thank you for understanding.",
+      "We can accommodate only the guests named on your invitation. Thank you for understanding.",
   },
   {
     question: "Are children invited?",
     answer:
-      "We’ve decided to keep the wedding adults-only. We hope you can still join us for a well-earned night off!",
+      "Our wedding is an adults-only celebration.",
   },
   { question: "Is parking or transportation available?", answer: null },
   { question: "May we take photos during the ceremony?", answer: null },
   {
     question: "Is there a gift registry?",
-    answer: `${wedding.gifts.message} ${wedding.gifts.registryMessage}`,
+    answer: "Yes. You can find our registry under",
+    link: { href: "#gifts", label: "A Note on Gifts" },
   },
   { question: "Whom can I contact with other questions?", answer: null },
 ];

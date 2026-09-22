@@ -12,10 +12,35 @@ const anastasia = localFont({
   display: "swap",
 });
 
+const invitationTitle = `${wedding.title} | ${wedding.date}`;
+const invitationDescription = `Join Leslie and Serj as they celebrate their wedding on ${wedding.date} at ${wedding.ceremony.name}, with a reception at ${wedding.reception.name}. View the invitation and RSVP.`;
+const invitationUrl = "/leslie-and-serj";
+const previewImage = {
+  url: `${invitationUrl}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: `${wedding.title}'s wedding invitation — ${wedding.date}`,
+};
+
 export const metadata: Metadata = {
-  title: `${wedding.title} | ${wedding.date}`,
-  description:
-    "Together with their families, Leslie Marie S. Zaldua and John Rey F. Sergio invite you to celebrate their wedding on January 28, 2027, at Chapel on the Hill. Reception at Azienda Verde Alfonso.",
+  title: invitationTitle,
+  description: invitationDescription,
+  alternates: { canonical: invitationUrl },
+  openGraph: {
+    type: "website",
+    url: invitationUrl,
+    title: invitationTitle,
+    description: invitationDescription,
+    siteName: "Modern Invites",
+    locale: "en_PH",
+    images: [previewImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: invitationTitle,
+    description: invitationDescription,
+    images: [previewImage],
+  },
   robots: { index: false, follow: false },
 };
 

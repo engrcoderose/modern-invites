@@ -1,226 +1,146 @@
 # Leslie and Serj
 
-Route: `/leslie-and-serj`. Signature package plus FAQ add-on.
-The previous `/leslie-and-john` route and its asset URLs permanently redirect
-to the new route. Formal invitation copy retains the couple's full legal names.
+Route: `/leslie-and-serj`. The former `/leslie-and-john` route and asset URLs
+permanently redirect here. The invitation remains noindex during client review.
+Sharing metadata includes a canonical URL, Open Graph and Twitter large-image
+cards, and a 1200 × 630 preview matching the opening screen at
+`/leslie-and-serj/opengraph-image`. URLs inherit the site's production metadata
+base (`https://www.moderninvites.com`).
+The preview uses the same garden photograph, illustrated logo, opening prompt,
+and wedding date as the cover.
 
-## Code and styling conventions
+## Page sequence
 
-- `invitation.tsx` owns swipe navigation, keyboard/focus behavior, the header,
-  and page controls.
-- `pages.tsx` contains the invitation content and reusable presentation components.
-- `rsvp-flow.tsx` puts Nylgen and Kersee's name-search flow directly in the
-  ivory-and-olive RSVP card. A verified match opens its response dialog.
-- `book-page.tsx` handles the 3D page turn and staggered text/artwork entrances.
-  Forward navigation lifts the current leaf to reveal the next; backward
-  navigation folds the previous leaf back into place. Outgoing pages are inert
-  and hidden from assistive technology, with media paused as they leave.
-  Navigation stays locked until the 1.55-second turn completes, avoiding
-  overlapping page changes. A subtle lift and tilt suggest a turning paper leaf,
-  with a softer fold shadow and gentle text entrances as the page settles.
-  Reduced-motion preferences disable both the turn and content movement.
-- `data.ts` holds the confirmed client content; `artwork.tsx` holds decorative art.
-- Use Tailwind classes for simple layout, spacing, alignment and sizing. The
-  `lj-mobile` variant preserves this invitation's 700px breakpoint.
-- Keep font definitions, decorative frames/backgrounds, complex viewport layouts,
-  short-screen tuning and motion/accessibility rules in `wedding.css`.
-- Add styling to its existing home instead of creating another override stylesheet.
+The opening logo is followed by 13 numbered pages (14 screens altogether):
 
-The repository's `AGENTS.md` records the same Tailwind-first preference for
-future invitation projects. This cleanup preserves all 23 pages and their copy.
-Validation: TypeScript passed, all pages retained their text and fit at
-1280 × 720, 390 × 844 and 320 × 667, and swipe, keyboard navigation, the mobile
-menu and RSVP dialog were checked in the browser.
+1. Logo / open invitation
+2. Invitation
+3. The Wedding Venue
+4. Us
+5. Parents
+6. Principal Sponsors
+7. Wedding Party: maid of honor, best man, secondary sponsors, bridesmaids and groomsmen
+8. Wedding Party: bearers and flowers
+9. Together
+10. The Dress Code
+11. A Note on Gifts
+12. FAQs
+13. RSVP
+14. Wedding Countdown with Save the Date Video
 
-## Content and design
+The opening overlay is excluded from the page counter. Removed pages include
+With full hearts, Our Timeline, the first two FAQ pages, and the closing thank-you.
+Existing aliases for removed pages still resolve to the relevant current page.
 
-Design direction: **Moody, romantic, vintage, with a touch of whimsy.**
+The opening cover glides outward with a shallow turn over 2.2 seconds. The logo
+fades first and the invitation text enters during the reveal, avoiding a blank
+pause. Focus remains in the opening dialog until it clears. Reduced motion uses
+a short fade without translation or rotation.
 
-- Moody: deep olive gradients, shaded woodland photography, and ivory text.
-- Romantic: Anastasia script, couple portraits, and restrained soft transitions.
-- Vintage: warm ivory paper grain, antique-gold rules, lace, and engraved artwork.
-- Subtle whimsy: the existing dancing teacup couple, swans, and book-page turns.
-  Keep decorative motion gentle and honor reduced-motion preferences.
+## Presentation
 
-The style pass preserves the approved photos, wording, page order, and layout;
-color swatches and outfit references retain their actual colors.
+The palette is olive (#5a6946) and ivory (#f2ede0), with Anastasia headings,
+Noto Serif details, paper grain, fine borders, and woodland photography.
+Anastasia is bundled through next/font/local; regular and italic Noto Serif
+are self-hosted under public/leslie-and-serj/fonts with their SIL license.
 
-The dress-code page retains its original outfit reference, formal/black-tie
-optional dress code, and no-white guidance, with an added “Dressed to celebrate”
-heading and color swatches. The user confirmed that guests should wear green,
-orange, or yellow, superseding the earlier instruction to avoid those colors.
-The FAQ shares the updated wording.
+All displayed dates use `28 January 2027`, sourced from wedding.date.
+Formal names are Leslie Marie S. Zaldua and John Rey F. Sergio.
+The invitation's full names are stacked, with Leslie above John Rey.
+Women appear on the left and men on the right: parents, principal
+and secondary sponsor pairs, maid of honor/best man, and bridesmaids/groomsmen.
+Confirmed names and sponsor pairings are preserved.
 
-Ceremony and reception share the woodland `#the-day` page, side by side on
-desktop and stacked on mobile. The invitation now has 18 pages. Existing
-`#reception` links resolve to this combined page. Reception time remains
-“Time to follow” until supplied.
+Parents, sponsors, and both wedding party pages share compact italic Noto Serif
+names, uppercase serif role labels, and the Anastasia heading With Love and
+Gratitude. Centered content has generous surrounding space. The dense party
+page uses tighter gaps on short screens to stay clear of the music control.
 
-The `#entourage` page combines both sets of parents, the best man, and maid of
-honor under “Beside us.” Former `#honor-attendants` links resolve to this page.
-All principal sponsors share `#principal-sponsors`; both former numbered links
-resolve there. Secondary sponsors, groomsmen, and bridesmaids share
-`#wedding-party`, which also receives former `#secondary-sponsors` links.
-Bearers and flower attendants share `#bearers`; former `#flowers` links resolve
-to the combined page.
-The full-page `#together` slideshow follows the complete entourage section,
-after bearers and flowers. It uses three other local images (garden, grass,
-and woodland path), distinct from the earlier slideshow, without text overlays.
-Both slideshows share crossfades, photo dots, keyboard controls, and a
-play/pause control that is hidden until keyboard focus.
-Every page background extends behind the bottom pagination, without a separate
-footer bar or divider. Navigation uses olive text on ivory and ivory text over a
-soft dark gradient on woodland, olive, and photo pages. Content keeps its own
-space above the controls; the Together photo fills the available page height,
-with slideshow dots above the navigation. The desktop cover keeps pagination
-within its ivory panel for contrast.
+The opening and Us backgrounds use the supplied Photo background website.png.
+The opening uses the supplied Opening Logo.png as-is, including its sage frame
+and original colors. The first invitation page retains the non-lace Wedding
+Logo.png illustration, cropped with CSS to preserve the original asset. That page
+has no woodland header or monogram. Supplied church_logo.png and
+reception_logo.png identify the venues. Venue details appear together on one
+page, side by side on desktop and stacked on mobile. The ceremony remains
+1:00 PM at Chapel on the Hill, followed by reception at Azienda Verde Alfonso.
 
-After the timeline, `#photo-break` shows a woodland-backed portrait slideshow
-using the existing prenup images, with overlapping Anastasia names. Photos
-advance every 2 seconds with a 0.6-second crossfade; guests can pause or select
-a photo. Images load before being selected, and the outgoing photo stays opaque
-beneath the incoming image to prevent background flashes. Overlapping
-transitions are ignored. Keyboard focus
-pauses autoplay, arrow keys change photos within the carousel, and reduced
-motion disables autoplay and crossfades. The timer stops when the page exits.
+The Us slideshow uses Main-1.jpg through Main-5.jpg in order. Together uses
+Group1 -1.jpg through Group1-5.jpg in order. Both show the real couple's supplied
+photographs, delivered at a minimum 1920px width with quality 95 and larger
+responsive variants when needed. Image sizing accounts for portrait cropping
+so landscape photographs retain detail. Both have five photo dots, crossfades,
+keyboard controls, and accessible
+play/pause controls. Keyboard
+focus pauses autoplay; reduced motion disables autoplay and transitions.
 
-The opening retains its original woodland-image/oval-monogram layout, with
-the reference's wording in its ivory text panel: family invitation wording,
-Leslie & Serj in olive Anastasia script, full legal names, and the ceremony
-venue/date/time.
-The supplied `laced-wedding-log0.png` sits between the family message and the
-names in the text panel, sized responsively to preserve the swipe layout.
-The confirmed Thursday, January 28, 2027 at 1:00 PM is retained instead of the
-sample reference date. The image sits beside the text on desktop and above
-it on mobile; basic spacing and alignment use Tailwind utilities.
+Dress-code guidance preserves Formal or Black-Tie Optional attire, green,
+orange or yellow, and the request to avoid white-adjacent shades. Swatches are
+removed. The outfit collage places the eight existing women's examples above
+the five men's suits, following the client's layout reference. The original
+image remains preserved; `assets/designs/Wedding guest peg - rows.png` is the
+transparent edited version. The built-in image-editing prompt is recorded in
+`assets/designs/dress-code-rows-prompt.md`.
+Gift preferences appear only on the gifts page; the FAQ links there.
+The QR code blends into the ivory paper and opens its full original image.
+Only plus-one, adults-only and gift-registry questions remain in FAQs.
 
-The confirmed brief supplies Leslie Marie S. Zaldua, John Rey F. Sergio,
-January 28, 2027, a 1:00 PM ceremony at Chapel on the Hill, and reception at
-Azienda Verde Alfonso. The supplied olive/ivory stationery informs the paper
-texture, fine borders, script, wax-seal motif, and original garden line art.
-Decorative architecture is symbolic, not a representation of the venues.
+The final Wedding Countdown page has the native save-the-date video player
+and live countdown, without redundant headings. The supplied
+`assets/prenups/Save the Date Video - Leslie and Serj.mov` is served as a 1080p
+H.264/AAC MP4 at `/leslie-and-serj/video/save-the-date.mp4` with fast-start
+metadata and a poster taken from the actual film. The original is preserved.
+The countdown targets 2027-01-28T13:00:00+08:00, updates each second and stops
+at zero. The video autoplays with sound inline when this page is active and the
+opening cover has cleared, pauses on departure, and starts again on return.
+Starting or resuming the film pauses the background music, including autoplay.
+Native controls allow guests to adjust sound or play manually if autoplay is
+blocked. Opening the invitation starts The One by Kodaline;
+the music control can pause or resume it.
 
-Anastasia Script is used for all headers and script accents. The supplied
-`fonts/anastasia-script.ttf.ttf` is preserved as the source; its WOFF2 version
-`fonts/anastasia-script.woff2` is bundled and preloaded with `next/font/local`.
-The WOFF2 conversion fixes fallback rendering of the legacy TrueType file.
-Noto Serif is self-hosted in `public/leslie-and-serj/fonts`, with its SIL Open
-Font License. These route-scoped faces require no Google Fonts build fetch.
-Noto Serif uses Google's official variable regular and italic files, with
-weights 100–900, normal width (`"wdth" 100`), automatic optical sizing and a
-default weight of 400. It is applied to body text, names, labels and controls.
+## Code and accessibility
 
-All client content lives in `data.ts`. The supplied LESLIE AND SERJ JSON now
-confirms both addresses, all entourage names, dress code, adults-only and
-plus-one policies, and gift preferences. Citation markers are removed.
-Sponsor pairings retain the existing invitation column order. The former
-image-transcription review flags are cleared against this source.
+- invitation.tsx owns navigation, keyboard/focus behavior, header and controls.
+- pages.tsx contains content and reusable presentation components.
+- book-page.tsx handles a 1.25-second corner-led page turn based on the supplied
+  video reference. page-fold.ts calculates the diagonal crease and reflects the
+  lifted corner to form the sheet's reverse side. A localized soft shadow and
+  subtle crease shading preserve contrast without a bright central ridge.
+  Geometry follows the viewport size, and backward turns unfold the same sheet.
+  Outgoing pages
+  are inert and hidden from assistive technology; their media pauses.
+  Navigation is locked until the turn finishes. Text and artwork ease into
+  place, including Candle, Veil and Cord; paired names animate together.
+  Reduced motion disables the turn and content movement.
+- data.ts holds confirmed event details, names and copy.
+- rsvp-flow.tsx retains the existing name-search and party-response flow.
+- Use Tailwind in JSX for basic layout and spacing, and scoped wedding.css
+  for fonts, artwork, layered backgrounds and animation styling. Follow AGENTS.md.
+- Content scrolls as an accessibility fallback on very short or zoomed screens.
 
-`wedding.design` records the updated moody/romantic/vintage theme, exact olive
-and ivory codes, Anastasia/Noto Serif font preferences, whitespace guidance,
-swipe direction, and Etsy reference. The current design uses the exact palette
-and Noto Serif body text, with Anastasia Script headers and accents.
-The source's title
-LESLIE AND SERJ is retained without changing the couple's legal names.
+## RSVP and remaining launch details
 
-`wedding.assets` holds the Drive folder and Foreverlove photo credit.
-`wedding.music` records The One by Kodaline, with a null source until a playable
-asset is supplied. `wedding.saveTheDateVideo` records the requested Foreverlove
-video and “The countdown begins” text. Its `src` points to the supplied
-`public/videos/prenup.mp4`, served directly through a native video player with
-playback controls, inline mobile playback, and no autoplay. The save-the-date
-page uses `assets/prenups/video.jpg` as its poster, with a fine gold frame
-and a live days/hours/minutes/
-seconds countdown. The timer targets January 28, 2027 at 1:00 PM Philippine
-time, updates every second, and stops at zero. The former date, calendar and
-link block is removed from this section. The 16:9 frame scales with
-the viewport to keep this section within the horizontal invitation.
-`wedding.rsvpQuestions` supplies the optional song-request textbox in the RSVP
-form. Its answer is saved through the existing RSVP `message` field.
+The RSVP page uses Kindly Reply and a centered Full Name field, without a
+placeholder. A unique name match opens the response dialog; multiple matches
+require invitation selection. Failed or unmatched searches leave it closed.
+The form collects attendance, contact details, dietary needs and an optional
+song request (stored in the existing message field). It uses useSmartRsvp and
+usePartyResponse with slug leslie-and-serj, and respects server response locks,
+party scope and attendee limits. No other event's guest list is reused.
 
-## Pending client details
+Before launch, provision the event with access mode name_search and response
+mode household, import the approved guest list, and activate it. A read-only
+check on September 18 found no event with this slug. The RSVP deadline remains
+unset until supplied. Reception time, verified map pins, direct registry URL,
+and any additional logistics still require client confirmation. Optional
+unprovided story, photos, hashtag and FAQ answers remain hidden.
 
-- Reception time and verified map pins/embed links.
-- Approved story and two sets of couple photographs (30 total maximum).
-- Hashtag, playable music file, and any additional FAQ answers.
-- Direct gift registry URL. The supplied gift-registry QR code is displayed on
-  the gifts page and opens at full size when tapped; its original file is preserved.
-- RSVP deadline, contact, guest list, and event-specific RSVP provisioning.
+## Validation
 
-Null FAQ answers and unprovided story/photos/attire/hashtag/music are hidden.
-Answered FAQs are grouped three per page; the current nine answers fill three
-pages. Old fourth/fifth FAQ page links resolve to the third FAQ page.
-Their components are implemented and enabled by supplying the relevant data.
-Map links and embedded Google Maps similarly require confirmed URLs. No
-placeholder map pins, borrowed couple photos, or invented logistics are used.
-The optional music control is hidden until a source is supplied and starts
-only after a guest presses play. The blank RSVP deadline in the source remains
-null; the FAQ explains that the date will be shared once available.
-
-RSVP shows the complete-name field and “Find my invitation” button directly on
-the existing card. A unique name match loads the authorized party and opens the
-accessible response dialog automatically. Multiple matches require invitation
-selection; no match or a failed request leaves the dialog closed. The response
-form collects attendance, contact details, dietary needs, and the optional song
-request. It uses `useSmartRsvp` and `usePartyResponse` with
-the event slug `leslie-and-serj`. Confirmation appears only after a successful
-API submission; saved responses honor the backend's response lock. The server
-controls response scope and maximum attendees. No other client's guest list is
-reused, and there is no unrestricted fallback form.
-
-Before launch, create the Leslie and Serj event in the existing event-management
-workflow with slug `leslie-and-serj`, access mode `name_search`, and response mode
-`household` to match Nylgen and Kersee. Import the approved guest list and activate
-the event when ready. Keep the deadline unset until the couple supplies it.
-A read-only database check on September 18 found no event with this slug.
-The search form shows an error when the service is unavailable and allows retry;
-it never presents a failed request as a saved RSVP.
-
-The route is noindex while client details are under review. Remove this only
-if the client requests search indexing. No existing invitation or landing
-page is changed by this addition.
-
-## Review
-
-- `npx tsc --noEmit --noUncheckedSideEffectImports`
-- `npm run build`
-- Desktop/mobile browser review of navigation, invitation opening, day
-  countdown, calendar download, FAQ disclosure, RSVP dialog, and overflow.
-
-The September 16 woodland restyle preserves the horizontal page navigation.
-It uses the supplied L&S monogram, wedding illustration and guest outfit peg,
-plus an original decorative woodland painting. Gifts have a dedicated page
-using the existing confirmed copy. RSVP now uses the name-search dialog above.
-
-Validation for this restyle: TypeScript including side-effect CSS imports;
-desktop/mobile visual review; swipe page turning; the page selector; RSVP
-dialog and Escape dismissal; and the served all-day calendar download.
-All 23 pages were checked at 1280 × 720, 390 × 844 and 320 × 667;
-short-screen RSVP and closing-page spacing were adjusted during review.
-The calendar returns HTTP 200 with a text/calendar content type.
-Production build results from the earlier version do not verify this restyle.
-
-## Invitation photograph
-
-The opening screen uses the same forest photograph, ivory monogram, and supplied
-lace-framed wedding artwork. Clicking or pressing Enter opens two cover panels
-from the center in a 2.8-second perspective animation after a brief 0.35-second
-pause, with a gentle start and a slower artwork fade. Reduced-motion settings
-use a short fade. The invitation stays inert behind the opening screen, then
-receives keyboard focus when the reveal finishes. This introduction appears
-on a fresh load and does not add a page to the invitation's pagination.
-The first page's text and artwork wait for the cover to finish, then fade and
-rise into place in a gentle stagger. Later page turns keep their existing timing;
-reduced-motion settings show the content immediately.
-Opening by click or keyboard starts “The One” by Kodaline during the reveal.
-Playback begins directly from that interaction for browser audio permission;
-the existing music control remains available to pause or resume it.
-
-The “With full hearts” page uses the supplied `assets/prenups/bg-invite.jpg`
-as its full background and `assets/prenups/1.jpg` as its centered portrait.
-Its existing invitation message, names, date and venue details are preserved,
-with the L&S monogram overlapping the photo in the supplied reference style.
-This page was checked at 1280 × 720, 390 × 844 and 320 × 667 without overflow.
+Run `node node_modules/typescript/bin/tsc --noEmit --noUncheckedSideEffectImports`
+(the global npm/npx launchers on this workstation are broken). Review affected
+pages at desktop, mobile and short mobile sizes; check paired name order,
+overflow, forward/backward turns, navigation and FAQ-to-gifts linking.
 
 ## Generated artwork
 

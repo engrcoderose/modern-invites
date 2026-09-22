@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import Image from "next/image";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  Music2,
-  Pause,
-  Play,
-} from "lucide-react";
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
+import Image, { type StaticImageData } from "next/image";
+import { useIsPresent } from "framer-motion";
+import { ArrowUpRight, Check, Music2, Pause, Play } from "lucide-react";
 import {
   entourage,
   attireDetails,
@@ -18,13 +18,12 @@ import {
   type EntourageName,
   type Photo,
 } from "./data";
-import { GardenArch, Monogram, OvalCrest, Ornament } from "./artwork";
+import { Ornament } from "./artwork";
+import churchLogo from "./assets/designs/church_logo.png";
+import receptionLogo from "./assets/designs/reception_logo.png";
 import weddingIllustration from "./assets/designs/Wedding Logo.png";
-import lacedWeddingLogo from "./assets/designs/laced-wedding-log0.png";
-import attireReference from "./assets/designs/Wedding guest peg.png";
+import attireReference from "./assets/designs/Wedding guest peg - rows.png";
 import giftRegistryQr from "./assets/designs/Leslie and Serj - QR for Gift Registry.png";
-import invitationPortrait from "./assets/prenups/1.jpg";
-import videoPoster from "./assets/prenups/video.jpg";
 import PhotoBreak from "./photo-break";
 import RsvpFlow from "./rsvp-flow";
 
@@ -35,26 +34,34 @@ type InvitationPage = {
   fullBleed?: boolean;
   content: ReactNode;
 };
-export function WoodlandBackdrop({ priority = false }: { priority?: boolean }) {
+export function WoodlandBackdrop({
+  priority = false,
+  src = "/leslie-and-serj/images/woodland-lake.png",
+}: {
+  priority?: boolean;
+  src?: string | StaticImageData;
+}) {
   return (
     <div
       className="lj-woodland absolute inset-0 pointer-events-none"
       aria-hidden="true"
     >
-      <Image
-        src="/leslie-and-serj/images/woodland-lake.png"
-        alt=""
-        fill
-        priority={priority}
-        sizes="100vw"
-      />
+      <Image src={src} alt="" fill priority={priority} sizes="100vw" />
     </div>
   );
 }
 
-function Names({ names }: { names: EntourageName[] }) {
+function Names({
+  names,
+  paired = false,
+}: {
+  names: EntourageName[];
+  paired?: boolean;
+}) {
   return (
-    <div className="lj-names">
+    <div
+      className={`lj-names ${paired ? "grid grid-cols-2 gap-x-6 lj-mobile:gap-x-4" : "space-y-1"}`}
+    >
       {names.map((person) => (
         <p key={person.name}>
           {person.name}
@@ -70,14 +77,16 @@ function Names({ names }: { names: EntourageName[] }) {
 function PartyGroup({
   title,
   names,
+  paired = false,
 }: {
   title: string;
   names: EntourageName[];
+  paired?: boolean;
 }) {
   return (
     <div className="lj-party-group">
       <h3 className="lj-label">{title}</h3>
-      <Names names={names} />
+      <Names names={names} paired={paired} />
     </div>
   );
 }
@@ -86,19 +95,34 @@ function PartyPage({
   title,
   children,
   review = false,
-  compact = false,
+  leading,
+  serifTitle = false,
 }: {
-  title: string;
+  title?: string;
   children: ReactNode;
   review?: boolean;
-  compact?: boolean;
+  leading?: ReactNode;
+  serifTitle?: boolean;
 }) {
   return (
-    <div className="lj-party-page">
-      <Ornament className={`lj-ornament ${compact ? "!mb-2 !h-5" : ""}`} />
-      <p className="lj-label">With love and gratitude · Our entourage</p>
-      <h2 className={`lj-heading lj-script-heading ${compact ? "!my-3 lj-mobile:!my-2 lj-mobile:!text-[32px]" : ""}`}>{title}</h2>
-      <div className="lj-party-content max-w-[850px] my-0 mx-auto">
+    <div
+      className={`lj-party-page flex flex-col items-center gap-6 lj-mobile:gap-5 ${leading ? "[@media(max-height:740px)]:gap-3 [@media(max-height:740px)]:pb-8" : ""}`}
+    >
+      {leading}
+      <Ornament className="lj-ornament !m-0 !h-5" />
+      <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
+      {title && (
+        <h3
+          className={
+            serifTitle
+              ? "lj-party-serif-title"
+              : "text-[32px] lj-mobile:text-[26px]"
+          }
+        >
+          {title}
+        </h3>
+      )}
+      <div className="lj-party-content mx-auto w-full max-w-[560px]">
         {children}
       </div>
       {review && (
@@ -132,7 +156,7 @@ function Countdown() {
     <div
       className="lj-countdown grid w-full max-w-[520px] grid-cols-4 gap-5 py-3 lj-mobile:gap-3"
       role="timer"
-      aria-label="Countdown to January 28, 2027 at 1 PM Philippine time"
+      aria-label={`Countdown to ${wedding.date} at 1 PM Philippine time`}
       aria-live="off"
     >
       {units.map(([value, label], index) => (
@@ -157,15 +181,49 @@ function Countdown() {
   );
 }
 
-function SaveTheDateFilm() {
+function SaveTheDateFilm({
+  ready,
+  onPlay,
+}: {
+  ready: boolean;
+  onPlay: () => void;
+}) {
+  const video = useRef<HTMLVideoElement>(null);
+  const present = useIsPresent();
+
+  useEffect(() => {
+    const film = video.current;
+    if (!film) return;
+    if (!ready || !present) {
+      film.pause();
+      return;
+    }
+    let cancelled = false;
+    void film
+      .play()
+      .then(() => {
+        if (cancelled) film.pause();
+      })
+      .catch(() => {
+        // Native controls remain available if the browser blocks autoplay.
+      });
+    return () => {
+      cancelled = true;
+      film.pause();
+    };
+  }, [ready, present]);
+
   return (
     <figure className="lj-film-frame relative shrink-0 p-2">
       <video
+        ref={video}
+        onPlay={onPlay}
         src={wedding.saveTheDateVideo.src}
-        poster={videoPoster.src}
+        poster={wedding.saveTheDateVideo.poster}
         aria-label="Leslie and Serj — save-the-date video"
         className="block h-full w-full bg-black object-contain"
         controls
+        autoPlay={ready && present}
         playsInline
         preload="metadata"
       />
@@ -198,7 +256,11 @@ function photoPages(
   }));
 }
 
-export function MusicControl({ audio }: { audio: RefObject<HTMLAudioElement | null> }) {
+export function MusicControl({
+  audio,
+}: {
+  audio: RefObject<HTMLAudioElement | null>;
+}) {
   const [playing, setPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -207,7 +269,11 @@ export function MusicControl({ audio }: { audio: RefObject<HTMLAudioElement | nu
   useEffect(() => {
     if (!detailsOpen) return;
     function dismiss(event: PointerEvent) {
-      if (event.target instanceof Node && !control.current?.contains(event.target)) setDetailsOpen(false);
+      if (
+        event.target instanceof Node &&
+        !control.current?.contains(event.target)
+      )
+        setDetailsOpen(false);
     }
     document.addEventListener("pointerdown", dismiss);
     return () => document.removeEventListener("pointerdown", dismiss);
@@ -246,7 +312,10 @@ export function MusicControl({ audio }: { audio: RefObject<HTMLAudioElement | nu
         src={wedding.music.src}
         loop
         preload="none"
-        onPlay={() => { setPlaying(true); setFailed(false); }}
+        onPlay={() => {
+          setPlaying(true);
+          setFailed(false);
+        }}
         onPause={() => setPlaying(false)}
         onError={() => setFailed(true)}
       />
@@ -256,22 +325,43 @@ export function MusicControl({ audio }: { audio: RefObject<HTMLAudioElement | nu
           aria-label="Wedding music"
           className="absolute bottom-[58px] right-0 w-[260px] max-w-[calc(100vw-36px)] rounded-xl border border-[var(--lj-line)] bg-[var(--lj-paper)] p-4 text-[var(--lj-ink)] shadow-lg"
         >
-          <p className="text-[9px] uppercase tracking-[0.18em] text-[var(--lj-muted)]">Our wedding soundtrack</p>
+          <p className="text-[9px] uppercase tracking-[0.18em] text-[var(--lj-muted)]">
+            Our wedding soundtrack
+          </p>
           <div className="mt-3 flex items-center justify-between gap-4">
             <div className="min-w-0 text-left">
               <p className="text-base font-semibold">{wedding.music.title}</p>
-              <p className="mt-1 text-xs text-[var(--lj-muted)]">{wedding.music.artist}</p>
+              <p className="mt-1 text-xs text-[var(--lj-muted)]">
+                {wedding.music.artist}
+              </p>
             </div>
             <button
               type="button"
               onClick={toggle}
-              aria-label={playing ? "Pause music" : `Play ${wedding.music.title} by ${wedding.music.artist}`}
+              aria-label={
+                playing
+                  ? "Pause music"
+                  : `Play ${wedding.music.title} by ${wedding.music.artist}`
+              }
               className="flex size-11 shrink-0 items-center justify-center rounded-full border border-[var(--lj-line)] bg-transparent"
             >
-              {playing ? <Pause size={17} aria-hidden="true" /> : <Play size={17} aria-hidden="true" />}
+              {playing ? (
+                <Pause size={17} aria-hidden="true" />
+              ) : (
+                <Play size={17} aria-hidden="true" />
+              )}
             </button>
           </div>
-          <p role="status" className="mt-3 text-left text-[10px] text-[var(--lj-muted)]">{failed ? "Music is unavailable. Please try again." : playing ? "Now playing" : "Paused"}</p>
+          <p
+            role="status"
+            className="mt-3 text-left text-[10px] text-[var(--lj-muted)]"
+          >
+            {failed
+              ? "Music is unavailable. Please try again."
+              : playing
+                ? "Now playing"
+                : "Paused"}
+          </p>
         </section>
       )}
       <button
@@ -297,32 +387,28 @@ function Venue({ reception = false }: { reception?: boolean }) {
       aria-label={reception ? "The reception" : "The ceremony"}
     >
       <div className="flex flex-col items-center gap-3 lj-mobile:gap-1">
-        <p className="lj-label">{reception ? "The reception" : "The ceremony"}</p>
-        <div className="lj-venue-art h-[110px] w-[180px] max-w-full lj-mobile:order-first lj-mobile:h-[clamp(44px,calc(14svh-50px),84px)] lj-mobile:w-32" aria-hidden="true">
-          {reception ? (
-            <GardenArch />
-          ) : (
-            <svg viewBox="0 0 160 170" fill="none" aria-hidden="true">
-              <g stroke="currentColor" strokeWidth="1.1">
-                <path d="M29 148V76L80 30l51 46v72M23 150h114M22 77 80 23l58 54M80 23V8M73 15h14M35 84h90M44 148V91h21v57M96 148V91h21v57M70 148v-35a10 10 0 0 1 20 0v35M80 104v44M51 108h7M104 108h7M45 119h19M97 119h19" />
-                <circle cx="80" cy="68" r="11" />
-                <path d="M80 57v22M69 68h22M18 154h124M12 160h136" />
-              </g>
-            </svg>
-          )}
+        <p className="lj-label">
+          {reception ? "Reception at" : "The ceremony"}
+        </p>
+        <div
+          className="lj-venue-art relative h-[140px] w-[210px] max-w-full lj-mobile:order-first lj-mobile:h-[clamp(60px,calc(15svh-40px),110px)] lj-mobile:w-[165px]"
+          aria-hidden="true"
+        >
+          <Image
+            src={reception ? receptionLogo : churchLogo}
+            alt=""
+            fill
+            sizes="(max-width: 700px) 165px, 210px"
+            className="object-contain"
+          />
         </div>
       </div>
       <h3 className="lj-venue-name">{venue.name}</h3>
-      <p className="text-[15px] lj-mobile:text-[clamp(12px,1.8svh,15px)]">
-        {reception
-          ? wedding.reception.time || "Time to follow"
-          : wedding.ceremonyTime}
-      </p>
-      <p className="text-[12px] leading-relaxed lj-mobile:text-[clamp(10.5px,1.5svh,12px)] lj-mobile:leading-normal">
-        {reception
-          ? "To love, laughter, and being together."
-          : "Where our married life begins."}
-      </p>
+      {!reception && (
+        <p className="text-[15px] lj-mobile:text-[clamp(12px,1.8svh,15px)]">
+          {wedding.ceremonyTime}
+        </p>
+      )}
       {venue.address && (
         <p className="max-w-[340px] text-[12px] leading-relaxed lj-mobile:text-[clamp(10.5px,1.5svh,12px)] lj-mobile:leading-normal">
           {venue.address}
@@ -352,128 +438,55 @@ function Venue({ reception = false }: { reception?: boolean }) {
 }
 
 type InvitationActions = {
-  goTo: (id: string) => void;
+  mediaReady: boolean;
+  onVideoPlay: () => void;
   copyHashtag: () => Promise<void>;
+  navigate: (id: string) => void;
   copied: boolean;
   copyError: boolean;
 };
 
 export function createInvitationPages({
-  goTo,
+  mediaReady,
+  onVideoPlay,
   copyHashtag,
+  navigate,
   copied,
   copyError,
 }: InvitationActions): InvitationPage[] {
   const storyPhotos = wedding.storyPhotos.slice(0, 30);
   const galleryPhotos = wedding.galleryPhotos.slice(0, 30 - storyPhotos.length);
   const answeredFaqs = faqs.filter((faq) => faq.answer);
-  const faqsPerPage = 3;
   return [
     {
       id: "home",
-      label: "Our invitation",
+      label: "Invitation",
       content: (
-        <div className="lj-opening-layout grid h-full grid-cols-2 lj-mobile:grid-cols-1 lj-mobile:grid-rows-[16%_84%]">
-          <div className="relative flex min-h-0 items-center justify-center overflow-hidden text-[#f2ede0]">
-            <OvalCrest />
-          </div>
-          <div className="lj-opening-panel relative grid h-full min-h-0 grid-rows-[auto_minmax(0,1fr)_auto_auto] items-center justify-items-center gap-2 px-10 py-10 lj-mobile:px-7 lj-mobile:py-7">
+        <div className="lj-opening-layout h-full">
+          <div className="lj-opening-panel relative grid h-full min-h-[420px] grid-rows-[auto_minmax(0,1fr)_auto_auto] items-center justify-items-center gap-4 px-10 py-10 lj-mobile:gap-3 lj-mobile:px-7 lj-mobile:py-7">
             <p className="text-[12px] leading-relaxed lj-mobile:text-[10px]">
               Together with our families, we
               <br />
               invite you to celebrate our wedding
             </p>
-            <div className="lj-opening-logo relative h-[85%] min-h-0 w-[85%] max-w-[390px]">
+            <div className="lj-opening-logo relative aspect-[2533/3769] h-full max-h-[300px] min-h-0 overflow-hidden">
               <Image
-                src={lacedWeddingLogo}
-                alt="A wedding couple dancing in a teacup, framed with delicate lace"
-                fill
+                src={weddingIllustration}
+                alt="A wedding couple dancing in a teacup"
                 priority
-                sizes="(max-width: 700px) 77vw, 390px"
-                className="object-contain"
+                sizes="800px"
+                className="lj-opening-illustration absolute"
                 draggable={false}
               />
             </div>
-            <div className="flex flex-col items-center gap-3 lj-mobile:gap-2">
-              <h1 className="lj-opening-names flex items-baseline justify-center gap-4 whitespace-nowrap text-[#5a6946] lj-mobile:gap-3">
-                Leslie <span className="text-[0.4em]">&amp;</span> Serj
-              </h1>
-              <p className="text-[11px] uppercase leading-[1.8] tracking-[0.06em] lj-mobile:text-[9px]">
-                {wedding.bride}
-                <br />
-                {wedding.groom}
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-[12px] lj-mobile:text-[10px]">
-                {wedding.ceremony.name} · Batangas
-              </p>
-              <p className="text-[19px] italic text-[#5a6946] lj-mobile:text-[16px]">
-                Thursday, {wedding.date}
-              </p>
-              <p className="text-[10px] tracking-wide lj-mobile:text-[9px]">
-                One o’clock in the afternoon
-              </p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: "invitation",
-      label: "With full hearts",
-      content: (
-        <div className="lj-photo-letter">
-          <div className="lj-photo-letter-message">
-            <p className="lj-label">Together with our families</p>
-            <p className="lj-body">
-              As we begin our married life together, we would be so happy to
-              have you with us—to witness our vows and share in the celebration.
-            </p>
-          </div>
-          <div className="lj-photo-letter-portrait min-h-0 flex items-center justify-center">
-            <figure>
-              <Image
-                src={invitationPortrait}
-                alt="A couple holding hands in a green meadow"
-                fill
-                sizes="(max-width: 700px) 240px, 320px"
-                draggable={false}
-              />
-              <Monogram className="lj-photo-letter-monogram" />
-            </figure>
-          </div>
-          <div className="lj-photo-letter-signoff">
-            <h2 className="lj-heading">With full hearts, we invite you.</h2>
-            <p className="lj-photo-letter-names">
-              {wedding.bride}
-              <span> & </span>
-              {wedding.groom}
-            </p>
-            <p className="lj-photo-letter-details">
+            <h1 className="lj-opening-names flex w-full flex-col items-center text-[#5a6946]">
+              <span>{wedding.bride}</span>
+              <span>{wedding.groom}</span>
+            </h1>
+            <p className="text-[16px] text-[#5a6946] lj-mobile:text-[14px]">
               {wedding.date}
-              <br />
-              {wedding.ceremonyTime} · {wedding.ceremony.name}
-              <br />
-              Reception at {wedding.reception.name}
             </p>
           </div>
-        </div>
-      ),
-    },
-    {
-      id: "save-the-date",
-      label: "Save the date",
-      content: (
-        <div className="lj-save-page flex flex-col items-center gap-5 lj-mobile:gap-4">
-          <div>
-            <p className="lj-label">Leslie &amp; Serj · Save the date</p>
-            <h2 className="lj-film-heading mt-3">
-              {wedding.saveTheDateVideo.text}
-            </h2>
-          </div>
-          <SaveTheDateFilm />
-          <Countdown />
         </div>
       ),
     },
@@ -495,12 +508,14 @@ export function createInvitationPages({
     ...photoPages(storyPhotos, "A little of us", "our-photos"),
     {
       id: "the-day",
-      label: "Ceremony & reception",
+      label: "The Wedding Venue",
       tone: "woodland",
       content: (
         <div className="lj-venues px-8 py-9 lj-mobile:flex lj-mobile:min-h-full lj-mobile:flex-col lj-mobile:px-3 lj-mobile:py-3">
-          <h2 className="sr-only">Ceremony and reception</h2>
-          <p className="lj-label mb-8 lj-mobile:mb-3">{wedding.date}</p>
+          <h2 className="sr-only">The Wedding Venue</h2>
+          <p className="mb-8 text-[12px] tracking-[0.08em] lj-mobile:mb-4 lj-mobile:text-[10px]">
+            {wedding.date}
+          </p>
           <div className="grid grid-cols-2 gap-8 lj-mobile:flex-1 lj-mobile:grid-cols-1 lj-mobile:grid-rows-2 lj-mobile:gap-3">
             <Venue />
             <div className="border-l border-[#dfd9be66] pl-8 lj-mobile:border-l-0 lj-mobile:border-t lj-mobile:pl-0 lj-mobile:pt-3">
@@ -511,82 +526,53 @@ export function createInvitationPages({
       ),
     },
     {
-      id: "timeline",
-      label: "Our day, together",
-      content: (
-        <div className="lj-timeline-page">
-          <h2 className="lj-heading whitespace-nowrap">Our Timeline</h2>
-          <div className="lj-timeline-oval mx-auto flex h-[clamp(350px,calc(100svh-280px),520px)] w-[305px] max-w-full flex-col items-center justify-evenly px-[30px] py-7 lj-mobile:w-[260px] lj-mobile:px-[22px]">
-            <div className="lj-wedding-illustration relative w-[150px] h-[95px] my-0 mx-auto overflow-hidden">
-              <Image
-                src={weddingIllustration}
-                alt="A delicate illustration of a wedding couple"
-                fill
-                sizes="260px"
-              />
-            </div>
-            <ol className="lj-timeline">
-              <li>
-                <time>{wedding.ceremonyTime}</time>
-                <div>
-                  <h3>We say “I do”</h3>
-                  <p className="lj-body">{wedding.ceremony.name}</p>
-                </div>
-              </li>
-              <li>
-                <span>{wedding.reception.time || "Time to follow"}</span>
-                <div>
-                  <h3>We celebrate</h3>
-                  <p className="lj-body">{wedding.reception.name}</p>
-                </div>
-              </li>
-            </ol>
-          </div>
-        </div>
-      ),
-    },
-    {
       id: "photo-break",
-      label: "A little of us",
+      label: "Us",
       tone: "woodland",
       fullBleed: true,
       content: <PhotoBreak />,
     },
     {
       id: "entourage",
-      label: "Family & honor attendants",
+      label: "Parents",
       tone: "olive",
       content: (
-        <PartyPage title="Beside us">
-          <div className="lj-party-pair grid grid-cols-2 gap-10 lj-mobile:grid-cols-1 lj-mobile:gap-[27px]">
-            <PartyGroup
-              title="Parents of the Groom"
-              names={entourage.groomParents}
-            />
+        <div className="lj-parents-page flex flex-col items-center gap-8 lj-mobile:gap-6">
+          <Ornament className="lj-ornament !m-0" />
+          <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
+          <div className="grid w-full max-w-[560px] gap-10 lj-mobile:gap-8">
             <PartyGroup
               title="Parents of the Bride"
               names={entourage.brideParents}
+              paired
+            />
+            <PartyGroup
+              title="Parents of the Groom"
+              names={entourage.groomParents}
+              paired
             />
           </div>
-          <div className="mt-7 grid grid-cols-2 gap-10 border-t border-[#e0e3c240] pt-6 lj-mobile:mt-5 lj-mobile:gap-4 lj-mobile:pt-4">
-            <PartyGroup title="Best Man" names={entourage.bestMan} />
-            <PartyGroup title="Maid of Honor" names={entourage.maidOfHonor} />
-          </div>
-        </PartyPage>
+        </div>
       ),
     },
     {
       id: "principal-sponsors",
-      label: "Principal sponsors",
+      label: "Principal Sponsors",
       tone: "olive",
       content: (
         <PartyPage
-          title="Principal sponsors"
-          review={entourage.principal.flat().some((person) => person.needsReview)}
+          title="Principal Sponsors"
+          serifTitle
+          review={entourage.principal
+            .flat()
+            .some((person) => person.needsReview)}
         >
-          <div className="lj-sponsor-pairs grid gap-[22px] lj-mobile:gap-2.5">
+          <div className="lj-sponsor-pairs grid gap-3 lj-mobile:gap-2.5">
             {entourage.principal.map((pair) => (
-              <div key={pair[0].name}>
+              <div
+                key={pair[0].name}
+                className="grid grid-cols-2 gap-6 lj-mobile:gap-4"
+              >
                 <Names names={[pair[0]]} />
                 <Names names={[pair[1]]} />
               </div>
@@ -597,12 +583,16 @@ export function createInvitationPages({
     },
     {
       id: "wedding-party",
-      label: "Secondary sponsors & wedding party",
+      label: "Wedding Party",
       tone: "olive",
       content: (
         <PartyPage
-          title="Our wedding party"
-          compact
+          leading={
+            <div className="lj-honor-attendants mb-2 grid w-full max-w-[560px] grid-cols-2 gap-6 lj-mobile:gap-4">
+              <PartyGroup title="Maid of Honor" names={entourage.maidOfHonor} />
+              <PartyGroup title="Best Man" names={entourage.bestMan} />
+            </div>
+          }
           review={[
             ...entourage.secondary.flatMap((group) => group.names),
             ...entourage.groomsmen,
@@ -610,24 +600,21 @@ export function createInvitationPages({
           ].some((person) => person.needsReview)}
         >
           <div className="lj-combined-party">
-            <h3 className="mb-2 text-[22px] lj-mobile:mb-1">Secondary sponsors</h3>
-            <div className="grid gap-3 lj-mobile:gap-1">
+            <div className="grid gap-5 lj-mobile:gap-4 [@media(max-height:740px)]:gap-3">
               {entourage.secondary.map((group) => (
-                <section key={group.role} aria-label={`${group.role} sponsors`}>
-                  <h4 className="lj-script-accent !text-[24px] lj-mobile:!text-[clamp(20px,2.8svh,24px)]">
-                    {group.role}
-                  </h4>
-                  <div className="grid grid-cols-2 items-start gap-8 lj-mobile:grid-cols-1 lj-mobile:gap-0">
-                    {group.names.map((person) => (
-                      <Names key={person.name} names={[person]} />
-                    ))}
-                  </div>
+                <section
+                  key={group.role}
+                  aria-label={`${group.role} sponsors`}
+                  className="grid gap-2 [@media(max-height:740px)]:gap-1"
+                >
+                  <h4 className="lj-party-role">{group.role}</h4>
+                  <Names names={group.names} paired />
                 </section>
               ))}
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-8 border-t border-[#e0e3c240] pt-4 lj-mobile:mt-2 lj-mobile:grid-cols-1 lj-mobile:gap-2 lj-mobile:pt-2 [&_.lj-names]:space-y-1 lj-mobile:[&_.lj-names]:space-y-0 lj-mobile:[&_h3]:!mb-1">
-              <PartyGroup title="Groomsmen" names={entourage.groomsmen} />
+            <div className="mt-7 grid grid-cols-2 gap-6 lj-mobile:mt-6 lj-mobile:gap-4 [@media(max-height:740px)]:mt-5">
               <PartyGroup title="Bridesmaids" names={entourage.bridesmaids} />
+              <PartyGroup title="Groomsmen" names={entourage.groomsmen} />
             </div>
           </div>
         </PartyPage>
@@ -635,11 +622,11 @@ export function createInvitationPages({
     },
     {
       id: "bearers",
-      label: "Bearers & flowers",
+      label: "Wedding Party",
       tone: "olive",
       content: (
-        <PartyPage title="Bearers & flowers" compact>
-          <div className="grid grid-cols-3 gap-6 lj-mobile:grid-cols-1 lj-mobile:gap-2.5">
+        <PartyPage>
+          <div className="lj-bearers grid grid-cols-3 gap-6 lj-mobile:gap-3">
             {entourage.bearers.map((group) => (
               <PartyGroup
                 key={group.role}
@@ -648,7 +635,7 @@ export function createInvitationPages({
               />
             ))}
           </div>
-          <div className="mt-6 border-t border-[#e0e3c240] pt-5 lj-mobile:mt-3 lj-mobile:pt-3">
+          <div className="mt-10 lj-mobile:mt-8">
             <PartyGroup title="Flowers" names={entourage.flowers} />
           </div>
         </PartyPage>
@@ -665,33 +652,23 @@ export function createInvitationPages({
       ? [
           {
             id: "attire",
-            label: "What to wear",
+            label: attireDetails.title,
             content: (
               <div className="lj-attire-page flex flex-col items-center gap-4 lj-mobile:min-h-full lj-mobile:justify-evenly lj-mobile:gap-3">
                 <h2 className="lj-heading !m-0">{attireDetails.title}</h2>
                 <figure className="lj-attire-reference relative my-2 shrink-0 p-2 lj-mobile:p-1.5">
-                  <div className="relative aspect-video w-full">
+                  <div className="relative aspect-[3/2] w-full">
                     <Image
                       src={attireReference}
-                      alt="Guest outfit inspiration in pink, mauve, blue, navy, gray and tan"
+                      alt="Eight women's outfits in pink, mauve, blue and pastels above five men's suits in navy, blue, gray and tan"
                       fill
-                      sizes="(max-width: 700px) 85vw, 420px"
-                      className="object-contain mix-blend-multiply"
+                      sizes="(max-width: 700px) 85vw, 520px"
+                      quality={95}
+                      className="object-contain"
                     />
                   </div>
                 </figure>
                 <p className="lj-body">{wedding.attire}</p>
-                <div className="w-full max-w-[360px] border-t border-[#ac9b7666] pt-3">
-                  <p className="text-[13px]">Colors to wear</p>
-                  <ul className="mt-3 grid grid-cols-3 gap-5" aria-label="Recommended attire colors">
-                    {attireDetails.colors.map((color) => (
-                      <li key={color.name} className="flex flex-col items-center gap-2">
-                        <span className="h-10 w-10 rounded-full ring-1 ring-[#ac9b7640]" style={{ backgroundColor: color.hex }} aria-hidden="true" />
-                        <span className="text-[12px]">{color.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             ),
           },
@@ -699,33 +676,36 @@ export function createInvitationPages({
       : []),
     {
       id: "gifts",
-      label: "A note on gifts",
+      label: "A Note on Gifts",
       content: (
         <div className="lj-gifts-page flex flex-col items-center gap-4 [@media(max-height:740px)]:gap-2">
           <Ornament className="lj-ornament !m-0 [@media(max-height:740px)]:hidden" />
-          <span className="lj-script-accent">With gratitude</span>
-          <h2 className="lj-heading !m-0">A note on gifts</h2>
-          <p className="lj-body">{wedding.gifts.message}</p>
-          <p className="lj-body">
-            {wedding.gifts.registryMessage}
-          </p>
+          <h2 className="lj-heading !m-0">A Note on Gifts</h2>
+          <div className="lj-gift-copy space-y-2">
+            <p className="lj-body">{wedding.gifts.message}</p>
+            <p className="lj-body">{wedding.gifts.registryMessage}</p>
+          </div>
           <figure className="w-fit">
             <a
               href={giftRegistryQr.src}
               target="_blank"
               rel="noreferrer"
               aria-label="Open a larger gift registry QR code (opens in a new tab)"
-              className="lj-registry-qr relative block aspect-square w-[220px] overflow-hidden bg-white ring-1 ring-[#ac9b7680] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5a6946] [@media(max-height:740px)]:w-[200px]"
+              className="lj-registry-qr relative block aspect-square w-[220px] overflow-hidden mix-blend-multiply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5a6946] [@media(max-height:740px)]:w-[200px]"
             >
               <Image
                 src={giftRegistryQr}
                 alt="QR code for Leslie and Serj’s gift registry"
+                fill
+                sizes="220px"
                 unoptimized
-                className="lj-registry-qr-image"
+                className="object-contain p-1"
               />
             </a>
             <figcaption className="mt-2 text-[11px] leading-relaxed text-[#646650]">
-              Scan to view our gift registry.<br />Tap the code to enlarge.
+              Scan to view our gift registry.
+              <br />
+              Tap the code to enlarge.
             </figcaption>
           </figure>
           {wedding.gifts.registryUrl && (
@@ -772,85 +752,77 @@ export function createInvitationPages({
           },
         ]
       : []),
-    ...Array.from(
-      { length: Math.ceil(answeredFaqs.length / faqsPerPage) },
-      (_, index): InvitationPage => ({
-        id: index === 0 ? "questions" : `questions-${index + 1}`,
-        label: `Guest questions · ${index + 1}`,
-        content: (
-          <div className="lj-faq-page">
-            <p className="lj-label">A few helpful details</p>
-            <h2 className="lj-heading !my-3 lj-mobile:!text-[36px]">
-              Before <em>the day.</em>
-            </h2>
-            <dl className="mt-4 text-left lj-mobile:mt-3">
-              {answeredFaqs.slice(index * faqsPerPage, (index + 1) * faqsPerPage).map((faq) => (
-                <div key={faq.question} className="py-3 lj-mobile:py-2">
-                  <dt className="mb-2 lj-mobile:mb-1">{faq.question}</dt>
-                  <dd className="lj-body">{faq.answer}</dd>
-                </div>
-              ))}
-            </dl>
-            <p className="lj-faq-note">
-              We’ll share more details as our plans come together.
-            </p>
-          </div>
-        ),
-      }),
-    ),
+    {
+      id: "questions",
+      label: "FAQs",
+      content: (
+        <div className="lj-faq-page">
+          <h2 className="lj-heading !my-3 lj-mobile:!text-[36px]">
+            A Few Helpful Details
+          </h2>
+          <dl className="mt-4 text-left lj-mobile:mt-3">
+            {answeredFaqs.map((faq) => (
+              <div key={faq.question} className="py-3 lj-mobile:py-2">
+                <dt className="mb-2 lj-mobile:mb-1">{faq.question}</dt>
+                <dd className="lj-body">
+                  {faq.answer}
+                  {faq.link && (
+                    <>
+                      {" "}
+                      <a
+                        className="underline underline-offset-4"
+                        href={faq.link.href}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          navigate(faq.link!.href.slice(1));
+                        }}
+                      >
+                        {faq.link.label}
+                      </a>
+                      .
+                    </>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ),
+    },
     {
       id: "rsvp",
-      label: "Will you join us?",
+      label: "RSVP",
       tone: "woodland",
       content: (
         <div className="lj-rsvp-page relative">
           <div className="lj-rsvp-plaque relative mx-auto mb-7 w-[245px] max-w-[85%] px-7 py-5">
-            <div className="pointer-events-none absolute -top-3 inset-x-0 flex justify-center" aria-hidden="true">
+            <div
+              className="pointer-events-none absolute -top-3 inset-x-0 flex justify-center"
+              aria-hidden="true"
+            >
               <Ornament className="h-6 w-[76px] rounded-full bg-[var(--lj-paper)] px-2 text-[#9d916a]" />
             </div>
-            <span className="block text-center">RSVP</span>
+            <h2 className="whitespace-nowrap text-center">Kindly Reply</h2>
           </div>
           <div className="lj-rsvp-card py-[30px] px-[35px] lj-mobile:px-[22px]">
-            <p className="lj-label">
-              A place in our day, a place in our hearts
-            </p>
-            <h2 className="lj-heading">Will you join us?</h2>
             <p className="lj-body">
-              We would love to celebrate with you.
-              <br />
-              Find your invitation and let us know if you can join us.
+              Find your invitation to let us know if you can join us.
             </p>
             <RsvpFlow />
-            <p className="lj-faq-note">
-              We look forward to having you with us.
-            </p>
           </div>
         </div>
       ),
     },
     {
-      id: "with-love",
-      label: "With love",
+      id: "save-the-date",
+      label: "Wedding Countdown",
       content: (
-        <div className="lj-closing">
-          <Monogram />
-          <p className="lj-label">With love, and so much to look forward to</p>
-          <h2 className="lj-heading lj-script-heading">
-            {wedding.title}
+        <div className="lj-save-page flex flex-col items-center gap-8 lj-mobile:gap-6">
+          <h2 className="sr-only">
+            Wedding Countdown with Save the Date Video
           </h2>
-          <p className="lj-body">
-            Thank you for being part of our lives.
-            <br />
-            We look forward to celebrating with you.
-          </p>
-          <Ornament className="lj-ornament" />
-          <p className="lj-label">{wedding.date}</p>
-          <button
-            className="lj-text-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[10px] px-0 mt-6"
-            onClick={() => goTo("home")}
-          >
-            Back to the beginning <ArrowRight size={15} />
-          </button>
+          <SaveTheDateFilm ready={mediaReady} onPlay={onVideoPlay} />
+          <Countdown />
         </div>
       ),
     },
