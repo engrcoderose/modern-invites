@@ -820,7 +820,7 @@ export function createInvitationPages({
       content: (
         <div className="lj-save-page flex flex-col items-center gap-8 lj-mobile:gap-6">
           <h2 className="max-w-[640px] text-center text-[clamp(30px,5vw,44px)]">
-            We can't wait to celebrate with you!
+            We can&apos;t wait to celebrate with you!
           </h2>
           <SaveTheDateFilm ready={mediaReady} onPlay={onVideoPlay} />
           <Countdown />
