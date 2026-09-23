@@ -70,7 +70,7 @@ export const faqs = [
   { question: "What should I wear?", answer: `${attireDescription} Our pastel palette includes ${wedding.palette.map(({ name }) => name.toLowerCase()).join(", ")}. Gentlemen: ${mensAttire} Ladies: ${womensAttire} ${sponsorAttire.map(({ role, style, description }) => `${role}: ${style}. ${description}`).join(" ")}` },
   {
     question: "How do I RSVP?",
-    answer: `Please RSVP by ${rsvpDeadline}. If you have any concerns, please contact our coordinator, ${coordinator.name}, at ${coordinator.phone}. For now, the RSVP form is a preview only. Replies are not sent or saved.`,
+    answer: `Please RSVP by ${rsvpDeadline}. If you have any concerns, please contact our coordinator, ${coordinator.name}, at ${coordinator.phone}. The RSVP demo lets you search a sample name, select its invitation, and try the attendance form. No replies are sent or saved yet.`,
   },
   {
     question: "Do you have a gift registry?",

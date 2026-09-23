@@ -33,7 +33,7 @@ export default function PhotoSlideshow() {
 
   useEffect(() => {
     if (!playing || !nextReady) return;
-    const timer = window.setTimeout(() => setActive(next), 3500);
+    const timer = window.setTimeout(() => setActive(next), 2500);
     return () => window.clearTimeout(timer);
   }, [next, nextReady, playing]);
 
