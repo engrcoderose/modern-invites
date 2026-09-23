@@ -421,6 +421,7 @@ function Venue({ reception = false }: { reception?: boolean }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View map for ${venue.name} (opens in a new tab)`}
+          data-lj-reveal
         >
           View map <ArrowUpRight size={14} aria-hidden="true" />
         </a>
@@ -691,6 +692,7 @@ export function createInvitationPages({
               target="_blank"
               rel="noreferrer"
               aria-label="Open a larger gift registry QR code (opens in a new tab)"
+              data-lj-reveal
               className="lj-registry-qr relative block aspect-square w-[220px] overflow-hidden mix-blend-multiply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5a6946] [@media(max-height:740px)]:w-[200px]"
             >
               <Image
@@ -702,7 +704,7 @@ export function createInvitationPages({
                 className="object-contain p-1"
               />
             </a>
-            <figcaption className="mt-2 text-[11px] leading-relaxed text-[#646650]">
+            <figcaption data-lj-reveal className="mt-2 text-[11px] leading-relaxed text-[#646650]">
               Scan to view our gift registry.
               <br />
               Tap the code to enlarge.

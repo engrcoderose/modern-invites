@@ -23,6 +23,7 @@ const leaf: Variants = {
 };
 
 const revealTargets = [
+  "[data-lj-reveal]",
   "h1",
   "h2:not(.sr-only)",
   "h3",
@@ -107,7 +108,7 @@ export default function BookPage({
     }
     const targets = Array.from(
       element.querySelectorAll<HTMLElement>(revealTargets),
-    );
+    ).filter((target) => !target.closest("dialog"));
     // Animate each group once, rather than applying motion to nested children too.
     const groups = targets.filter((target) =>
       !targets.some((parent) => parent !== target && parent.contains(target)),

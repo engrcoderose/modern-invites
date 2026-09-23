@@ -36,6 +36,7 @@ export default function Invitation() {
   const focusPage = useRef(true);
   const gesture = useRef<{ x: number; y: number; id: number } | null>(null);
   const suppressClick = useRef(false);
+  const initialLocationRead = useRef(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -95,6 +96,17 @@ export default function Invitation() {
   }
 
   useEffect(() => {
+    if (!initialLocationRead.current) {
+      initialLocationRead.current = true;
+      const navigation = performance.getEntriesByType("navigation")[0] as
+        | PerformanceNavigationTiming
+        | undefined;
+      if (navigation?.type === "reload" && location.hash) {
+        // Reloads start at the cover; direct links and in-session navigation
+        // can still open the requested chapter.
+        history.replaceState(history.state, "", location.pathname + location.search);
+      }
+    }
     const readHash = () => {
       const hash = location.hash.slice(1);
       const aliases: Record<string, string> = {

@@ -601,6 +601,15 @@
   font-style: normal;
 }
 
+.lj-book h3.lj-rsvp-form-heading {
+  font-family: "Noto Serif", serif;
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
 /* A single stationery scale across parents, sponsors and both party pages. */
 .lj-names {
   font-size: 14px;

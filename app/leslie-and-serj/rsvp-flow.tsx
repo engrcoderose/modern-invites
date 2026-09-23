@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { animate, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Check,
@@ -118,7 +119,7 @@ function PartyReply({
 
   return (
     <div>
-      <h3 className="lj-heading !my-3 !text-[38px]">
+      <h3 className="lj-rsvp-form-heading my-3">
         {household ? "Your household" : "Your invitation"}
       </h3>
       <p className="text-sm font-semibold">
@@ -275,6 +276,7 @@ export default function RsvpFlow() {
   const controller = useSmartRsvp(eventSlug, "name_search");
   const dialog = useRef<HTMLDialogElement>(null);
   const searchButton = useRef<HTMLButtonElement>(null);
+  const reducedMotion = useReducedMotion();
   const hasParty =
     controller.stage === "party" &&
     !!controller.party &&
@@ -283,8 +285,18 @@ export default function RsvpFlow() {
     controller.isSearching || controller.loadingInvitationId !== null;
 
   useEffect(() => {
-    if (hasParty && !dialog.current?.open) dialog.current?.showModal();
-  }, [hasParty]);
+    const responseDialog = dialog.current;
+    if (!hasParty || !responseDialog) return;
+    if (!responseDialog.open) responseDialog.showModal();
+    const entrance = animate(responseDialog, {
+      opacity: reducedMotion ? 1 : [0, 1],
+      y: reducedMotion ? 0 : [10, 0],
+    }, {
+      duration: reducedMotion ? 0 : 0.85,
+      ease: [0.22, 1, 0.36, 1],
+    });
+    return () => entrance.stop();
+  }, [hasParty, reducedMotion]);
 
   async function findInvitation() {
     if (busy) return;
@@ -298,6 +310,7 @@ export default function RsvpFlow() {
   return (
     <div className="mt-7">
       <form
+        data-lj-reveal
         className="space-y-6"
         onSubmit={(event) => {
           event.preventDefault();
