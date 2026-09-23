@@ -95,23 +95,24 @@ function PartyPage({
   title,
   children,
   review = false,
-  leading,
+  honorAttendants,
+  heading = "With Love and Gratitude",
   serifTitle = false,
 }: {
   title?: string;
   children: ReactNode;
   review?: boolean;
-  leading?: ReactNode;
+  honorAttendants?: ReactNode;
+  heading?: string;
   serifTitle?: boolean;
 }) {
   return (
     <div
-      className={`lj-party-page flex flex-col items-center gap-7 lj-mobile:gap-6 ${leading ? "[@media(max-height:740px)]:gap-5 [@media(max-height:740px)]:pb-8" : ""}`}
+      className={`lj-party-page flex flex-col items-center gap-7 lj-mobile:gap-6 ${honorAttendants ? "[@media(max-height:740px)]:gap-5 [@media(max-height:740px)]:pb-8" : ""}`}
     >
-      {leading}
       <div className="flex flex-col items-center gap-4 lj-mobile:gap-3">
-        <Ornament className={`lj-ornament !m-0 !h-5 ${leading ? "[@media(max-height:740px)]:hidden" : ""}`} />
-        <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
+        <Ornament className={`lj-ornament !m-0 !h-5 ${honorAttendants ? "[@media(max-height:740px)]:hidden" : ""}`} />
+        <h2 className="lj-gratitude-heading">{heading}</h2>
       </div>
       {title && (
         <h3
@@ -124,6 +125,7 @@ function PartyPage({
           {title}
         </h3>
       )}
+      {honorAttendants}
       <div className="lj-party-content mx-auto w-full max-w-[560px]">
         {children}
       </div>
@@ -538,7 +540,7 @@ export function createInvitationPages({
       label: "Parents",
       tone: "olive",
       content: (
-        <div className="lj-parents-page flex flex-col items-center gap-8 lj-mobile:gap-6">
+        <div className="lj-parents-page flex flex-col items-center gap-8 lj-mobile:gap-6 [&_.lj-names>p:nth-child(odd)]:text-right [&_.lj-names>p:nth-child(even)]:text-left">
           <Ornament className="lj-ornament !m-0" />
           <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
           <div className="grid w-full max-w-[560px] gap-10 lj-mobile:gap-8">
@@ -572,7 +574,7 @@ export function createInvitationPages({
             {entourage.principal.map((pair) => (
               <div
                 key={pair[0].name}
-                className="grid grid-cols-2 gap-6 lj-mobile:gap-4"
+                className="grid grid-cols-2 gap-6 lj-mobile:gap-4 [&>.lj-names:first-child]:text-right [&>.lj-names:last-child]:text-left"
               >
                 <Names names={[pair[0]]} />
                 <Names names={[pair[1]]} />
@@ -588,8 +590,9 @@ export function createInvitationPages({
       tone: "olive",
       content: (
         <PartyPage
-          leading={
-            <div className="lj-honor-attendants grid w-full max-w-[560px] grid-cols-2 gap-6 lj-mobile:gap-4">
+          heading="Our Wedding Party"
+          honorAttendants={
+            <div className="lj-honor-attendants grid w-full max-w-[560px] grid-cols-2 gap-6 lj-mobile:gap-4 [&>.lj-party-group:first-child]:text-right [&>.lj-party-group:last-child]:text-left">
               <PartyGroup title="Maid of Honor" names={entourage.maidOfHonor} />
               <PartyGroup title="Best Man" names={entourage.bestMan} />
             </div>
@@ -606,14 +609,14 @@ export function createInvitationPages({
                 <section
                   key={group.role}
                   aria-label={`${group.role} sponsors`}
-                  className="grid gap-3 lj-mobile:gap-2.5"
+                  className="grid gap-3 lj-mobile:gap-2.5 [&_.lj-names>p:nth-child(odd)]:text-right [&_.lj-names>p:nth-child(even)]:text-left"
                 >
                   <h4 className="lj-party-role">{group.role}</h4>
                   <Names names={group.names} paired />
                 </section>
               ))}
             </div>
-            <div className="mt-8 grid grid-cols-2 gap-6 lj-mobile:gap-4 [@media(max-height:740px)]:mt-6">
+            <div className="mt-8 grid grid-cols-2 gap-6 lj-mobile:gap-4 [@media(max-height:740px)]:mt-6 [&>.lj-party-group:first-child]:text-right [&>.lj-party-group:last-child]:text-left">
               <PartyGroup title="Bridesmaids" names={entourage.bridesmaids} />
               <PartyGroup title="Groomsmen" names={entourage.groomsmen} />
             </div>
@@ -626,7 +629,7 @@ export function createInvitationPages({
       label: "Wedding Party",
       tone: "olive",
       content: (
-        <PartyPage>
+        <PartyPage heading="Our Wedding Party">
           <div className="lj-bearers grid grid-cols-3 gap-6 lj-mobile:gap-3">
             {entourage.bearers.map((group) => (
               <PartyGroup
@@ -661,15 +664,15 @@ export function createInvitationPages({
                   <p className="lj-body">
                     {attireDetails.introduction}
                     <br />
-                    We kindly request <strong>{attireDetails.formality} attire.</strong>
+                    We kindly request <strong>{attireDetails.formality}.</strong>
                   </p>
                   <p className="lj-body">
                     {attireDetails.colorFreedom}
                     <br />
-                    <strong>No</strong> {attireDetails.reservedShades}
+                    <strong className="underline decoration-2 underline-offset-4">No</strong> {attireDetails.reservedShades}
                   </p>
                   <p className="lj-body">
-                    To help our wedding party stand out, we politely ask guests to <strong>avoid</strong> wearing {attireDetails.weddingPartyColors}
+                    To help our wedding party stand out, we politely ask guests to <strong className="underline decoration-2 underline-offset-4">avoid</strong> wearing {attireDetails.weddingPartyColors}
                   </p>
                 </div>
                 <figure className="lj-attire-reference relative shrink-0 p-2 lj-mobile:p-1.5">
@@ -697,7 +700,7 @@ export function createInvitationPages({
           <Ornament className="lj-ornament !m-0 [@media(max-height:740px)]:hidden" />
           <h2 className="lj-heading !m-0">A Note on Gifts</h2>
           <div className="lj-gift-copy space-y-2">
-            <p className="lj-body">{wedding.gifts.message}</p>
+            <p className="lj-body whitespace-pre-line">{wedding.gifts.message}</p>
             <p className="lj-body">{wedding.gifts.registryMessage}</p>
           </div>
           <figure className="w-fit">

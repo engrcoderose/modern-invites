@@ -331,7 +331,7 @@ export default function Invitation() {
               {current.tone === "woodland" && (
                 <WoodlandBackdrop
                   src={
-                    current.id === "photo-break"
+                    current.id === "photo-break" || current.id === "the-day"
                       ? slideshowBackground
                       : undefined
                   }

@@ -24,10 +24,10 @@ const portraitPhotos = [
 ];
 const fullPagePhotos = [
   { src: group1, alt: "Leslie and Serj with their dogs in the kitchen", position: "center 45%" },
-  { src: group2, alt: "Their dogs on the kitchen counter with Leslie and Serj behind them", position: "center" },
-  { src: group3, alt: "Leslie and Serj sharing a bite at the kitchen counter", position: "center" },
+  { src: group2, alt: "Their dogs on the kitchen counter with Leslie and Serj behind them", position: "55% center" },
+  { src: group3, alt: "Leslie and Serj sharing a bite at the kitchen counter", position: "48% center" },
   { src: group4, alt: "Leslie and Serj smiling in an embrace", position: "center 35%" },
-  { src: group5, alt: "Leslie and Serj laughing together at the kitchen counter", position: "center" },
+  { src: group5, alt: "Leslie and Serj laughing together at the kitchen counter", position: "43% center" },
 ];
 
 const slideInterval = 2000;

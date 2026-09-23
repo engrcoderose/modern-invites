@@ -4,7 +4,7 @@ export type Photo = { src: string; alt: string };
 export const attireDetails = {
   title: "The Dress Code",
   introduction: "We can't wait to celebrate with you in style.",
-  formality: "Formal or Black Tie",
+  formality: "Formal or Cocktail",
   colorFreedom: "Feel free to wear any color you feel best.",
   reservedShades: "white, cream, ivory and other white adjacent shades as it is reserved for the Bride.",
   weddingPartyColors: "green, orange, brown or yellow.",
@@ -46,7 +46,7 @@ export const wedding = {
   storyPhotos: [] as Photo[],
   galleryPhotos: [] as Photo[],
   attire:
-    `${attireDetails.introduction} We kindly request ${attireDetails.formality} attire. ${attireDetails.colorFreedom} No ${attireDetails.reservedShades} To help our wedding party stand out, we politely ask guests to avoid wearing ${attireDetails.weddingPartyColors}` as
+    `${attireDetails.introduction} We kindly request ${attireDetails.formality}. ${attireDetails.colorFreedom} No ${attireDetails.reservedShades} To help our wedding party stand out, we politely ask guests to avoid wearing ${attireDetails.weddingPartyColors}` as
       | string
       | null,
   hashtag: null as string | null,
@@ -68,9 +68,9 @@ export const wedding = {
   ],
   gifts: {
     message:
-      "Your presence is a gift. A contribution toward our future together would be deeply appreciated.",
+      "Your presence is a gift in itself.\nShould you wish to give, a financial contribution toward our future together would be deeply appreciated.",
     registryMessage:
-      "For physical gifts, please scan our registry QR code below.",
+      "If you prefer to give a physical gift, our gift registry is available through the QR code below.",
     registryUrl: null as string | null,
   },
   design: {
@@ -155,9 +155,9 @@ export const entourage = {
     name("Marianne Carmen R. Palle"),
   ],
   bearers: [
-    { role: "Ring Bearer", names: [name("Oliver John R. Arenas")] },
-    { role: "Bible Bearer", names: [name("Justin Regan F. Sergio")] },
-    { role: "Coin Bearer", names: [name("Levi Maynard D. Igot")] },
+    { role: "Ring", names: [name("Oliver John R. Arenas")] },
+    { role: "Bible", names: [name("Justin Regan F. Sergio")] },
+    { role: "Coin", names: [name("Levi Maynard D. Igot")] },
   ],
   flowers: [
     name("Jillian Rose F. Sergio"),
@@ -195,6 +195,6 @@ export const faqs: { question: string; answer: string }[] = [
   { question: "Can I wear white?", answer: "No." },
   {
     question: "What is the dress code?",
-    answer: `We kindly request ${attireDetails.formality} attire. ${attireDetails.colorRequest}`,
+    answer: `We kindly request ${attireDetails.formality}. ${attireDetails.colorRequest}`,
   },
 ];

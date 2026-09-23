@@ -52,16 +52,25 @@ date. The stacked names and date use Anastasia.
 Women appear on the left and men on the right: parents, principal
 and secondary sponsor pairs, maid of honor/best man, and bridesmaids/groomsmen.
 Confirmed names and sponsor pairings are preserved.
+Parents and principal sponsor names align toward the center gutter: the left
+column is right-aligned, and the right column is left-aligned on all viewports.
+The main Wedding Party page follows the same inward column alignment. Its
+Anastasia heading is “Our Wedding Party”, followed by Maid of Honor and Best
+Man, secondary sponsors, then bridesmaids and groomsmen. Shared sponsor role
+labels remain centered above their pairs.
 
 Parents, sponsors, and both wedding party pages share compact italic Noto Serif
-names, uppercase serif role labels, and the Anastasia heading With Love and
-Gratitude. Name rows share 10px gaps on desktop and 8px gaps on mobile, including
+names and uppercase serif role labels. Parents and principal sponsors
+retain the Anastasia heading With Love and Gratitude. Both wedding party pages
+use Our Wedding Party; the continuation labels are Ring, Bible, Coin and Flowers.
+Name rows share 10px gaps
+on desktop and 8px gaps on mobile, including
 principal sponsors, bridesmaids, groomsmen, and flowers. Names scale from 10–11px
 on mobile to 14px on desktop; uppercase role headings are 11px and 14px, while
 the Principal Sponsors title is 13px and 18px. The dense party page omits its
 ornament on short screens to retain readable spacing and clear the music control.
 
-The opening and Us backgrounds use the supplied Photo background website.png.
+The opening, Wedding Venue and Us backgrounds use the supplied Photo background website.png.
 The opening uses the supplied Opening Logo.png as-is, including its sage frame
 and original colors. The first invitation page retains the non-lace Wedding
 Logo.png illustration, cropped with CSS to preserve the original asset. That page
@@ -77,14 +86,16 @@ The Us slideshow uses Main-1.jpg through Main-5.jpg in order. Together uses
 Group1 -1.jpg through Group1-5.jpg in order. Both show the real couple's supplied
 photographs, delivered at a minimum 1920px width with quality 95 and larger
 responsive variants when needed. Image sizing accounts for portrait cropping
-so landscape photographs retain detail. Both have five photo dots, crossfades,
+so landscape photographs retain detail. Together slides 2, 3 and 5 use adjusted
+horizontal focal positions to center their subjects while retaining full-screen
+portrait crops on mobile. Both have five photo dots, crossfades,
 keyboard controls, and accessible
 play/pause controls. Keyboard
 focus pauses autoplay; reduced motion disables autoplay and transitions.
 
 The Dress Code page places its Anastasia heading before three Noto Serif
-paragraphs and then the outfit reference. Formal or Black Tie attire, “No” and
-“avoid” are emphasized. White-adjacent shades are reserved for the bride, while
+paragraphs and then the outfit reference. Formal or Cocktail is bold; “No” and
+“avoid” are bold and underlined. White-adjacent shades are reserved for the bride, while
 green, orange, brown and yellow are reserved for the wedding party. Swatches are
 removed. The outfit collage places the eight existing women's examples above
 the five men's suits, following the client's layout reference. The original
@@ -134,9 +145,15 @@ the music control can pause or resume it.
 
 ## RSVP and remaining launch details
 
-The RSVP page uses Kindly Reply and a centered Full Name field, without a
-placeholder. A unique name match opens the response dialog; multiple matches
-require invitation selection. Failed or unmatched searches leave it closed.
+The RSVP page uses Kindly Reply and a centered Full Name field with the helper
+“Enter your first and last name”, without a placeholder. Leslie and Serj's
+server-side search ignores standalone middle initials (with or without a period)
+in both typed and stored names, while requiring all other name parts to match.
+It searches only the verified event and returns the canonical stored name for
+the existing party and submission checks; other events retain exact-name lookup.
+Every successful name search shows “Select your invitation”, including a single
+match. The response dialog opens only after the guest selects a result.
+Failed or unmatched searches leave it closed.
 The form collects attendance, contact details, dietary needs and an optional
 song request (stored in the existing message field). It uses useSmartRsvp and
 usePartyResponse with slug leslie-and-serj, and respects server response locks,

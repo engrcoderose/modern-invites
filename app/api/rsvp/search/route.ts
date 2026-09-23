@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { resolveRsvpEventAccess } from "@/features/rsvp/application/resolve-rsvp-event-access";
+import { searchInvitationsWithoutMiddleInitials } from "@/features/rsvp/application/search-invitations-without-middle-initials";
 import {
   summarizeHouseholdAttendance,
   type HouseholdAttendanceStatus,
@@ -135,13 +136,39 @@ export async function POST(request: NextRequest) {
 
     const supabase = createSupabaseAdminClient();
 
-    // Search for the exact guest name within the
-    // verified event.
+    // Leslie and Serj allow omitted middle initials. Other invitations retain
+    // their exact-name lookup. Both paths stay scoped to the verified event.
     const { data: rawMatchingInvitations, error: searchError } =
-      await supabase.rpc("search_guest_invitation", {
-        p_event_id: access.event.eventId,
-        p_full_name: fullName,
-      });
+      slug === "leslie-and-serj"
+        ? {
+            data: await searchInvitationsWithoutMiddleInitials({
+              async findCandidates({ eventId, pattern, offset, limit }) {
+                const { data, error } = await supabase
+                  .from("guests")
+                  .select("id, full_name, invitations!inner(id, event_id, household_name)")
+                  .eq("invitations.event_id", eventId)
+                  .ilike("full_name", pattern)
+                  .order("id")
+                  .range(offset, offset + limit - 1);
+                if (error) throw error;
+                const rows = (data ?? []) as unknown as {
+                  full_name: string;
+                  invitations: { id: number; event_id: number; household_name: string };
+                }[];
+                return rows.map((row) => ({
+                  event_id: row.invitations.event_id,
+                  invitation_id: row.invitations.id,
+                  household_name: row.invitations.household_name,
+                  matched_guest_name: row.full_name,
+                }));
+              },
+            }, { eventId: access.event.eventId, fullName }),
+            error: null,
+          }
+        : await supabase.rpc("search_guest_invitation", {
+            p_event_id: access.event.eventId,
+            p_full_name: fullName,
+          });
 
     if (searchError) {
       console.error("Guest-name search failed:", {

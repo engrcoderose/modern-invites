@@ -300,11 +300,8 @@ export default function RsvpFlow() {
 
   async function findInvitation() {
     if (busy) return;
-    // A unique match goes straight to the verified response form.
-    // Duplicate names must choose the correct invitation first.
-    await controller.searchGuest(async (matches) => {
-      if (matches.length === 1) await controller.selectInvitation(matches[0]);
-    });
+    // Always let guests confirm their invitation before opening the form.
+    await controller.searchGuest();
   }
 
   return (
@@ -320,7 +317,7 @@ export default function RsvpFlow() {
         <label className="block text-center text-[10px] uppercase leading-relaxed tracking-[0.16em]">
           Full Name
           <span className="mt-1 block text-[11px] normal-case tracking-normal">
-            (First name, Last name)
+            Enter your first and last name
           </span>
           <input
             required
@@ -407,7 +404,7 @@ export default function RsvpFlow() {
         <Ornament className="lj-ornament" />
         <p className="lj-label">{wedding.title}</p>
         <h2 id="lj-rsvp-dialog-title" className="lj-heading">
-          Kindly respond
+          Kindly Reply
         </h2>
         {hasParty && controller.party && controller.selectedMatch && (
           <PartyReply
