@@ -1,79 +1,46 @@
 import TimelineChurch from "./assets/images/designs/timeline-church.png";
-import TimelineRings from "./assets/images/designs/timeline-rings.png";
-import TimelineExit from "./assets/images/designs/timeline-exit.png";
+import TimelinePhotos from "./assets/images/designs/timeline-photos.png";
+import TimelineCocktails from "./assets/images/designs/timeline-cocktail.png";
 import TimelineParty from "./assets/images/designs/timeline-party.png";
 import TimelineDinner from "./assets/images/designs/timeline-dinner.png";
-import TimelineDance from "./assets/images/designs/timeline-dance.png";
-import { gallery as originalGallery } from "./photo-media";
-import {
-  Walking,
-  Together,
-  Garden,
-  Sitting,
-  Embrace,
-  Portrait,
-} from "./prenup-media";
+import TimelineProgram from "./assets/images/designs/timeline-program.png";
+import { Walking, Together, Garden, Sitting, Embrace, Portrait, SunsetRun, SunsetWalk, SunsetLift } from "./prenup-media";
 import type { GalleryImage } from "./types";
 
+const cinematic = {
+  run: { src: SunsetRun, alt: "A couple running through a field beneath a golden sunset", position: "50% 80%" },
+  walk: { src: SunsetWalk, alt: "A couple walking toward the setting sun", position: "50% 70%" },
+  lift: { src: SunsetLift, alt: "A joyful lift in a sunlit field", position: "50% 50%" },
+  embrace: { src: Embrace, alt: "A couple embracing in the warm evening light", position: "50% 50%" },
+  hills: { src: Walking, alt: "A couple holding hands on rolling hills at sunset", position: "50% 55%" },
+  twirl: { src: Portrait, alt: "A pink dress caught mid-twirl in the golden evening light", position: "50% 60%" },
+  lake: { src: Sitting, alt: "A couple sitting beside a lake under golden branches", position: "50% 85%" },
+  together: { src: Together, alt: "A couple sharing a kiss beneath a tree", position: "50% 75%" },
+  garden: { src: Garden, alt: "A couple running hand in hand through an autumn park", position: "50% 50%" },
+};
+
 export const galleryBreakPhotos: GalleryImage[] = [
-  { src: Portrait, alt: "Anjo and Jasmin sharing a quiet embrace in the garden", position: "82% 48%" },
-  { src: Together, alt: "Anjo and Jasmin leaning together on a garden bench", position: "50% 48%" },
-  { src: Walking, alt: "Anjo and Jasmin walking hand in hand in the garden", position: "50% 45%" },
-  { src: Garden, alt: "Anjo and Jasmin sharing a playful moment in the garden", position: "50% 48%" },
+  cinematic.together, cinematic.lake, cinematic.walk, cinematic.garden,
 ];
 
 export const heroSlides = [
-  { src: Walking, alt: "Anjo and Jasmin walking hand in hand in the garden", position: "50% 45%", mobilePosition: "50% 45%" },
-  { src: Together, alt: "Anjo and Jasmin leaning together on a garden bench", position: "50% 48%", mobilePosition: "50% 48%" },
-  { src: Garden, alt: "Anjo and Jasmin sharing a playful moment in the garden", position: "50% 48%", mobilePosition: "50% 48%" },
-  { src: Sitting, alt: "Anjo and Jasmin sitting together among the greenery", position: "50% 45%", mobilePosition: "50% 45%" },
-  { src: Embrace, alt: "Anjo and Jasmin embracing in the garden", position: "50% 48%", mobilePosition: "82% 48%" },
+  { ...cinematic.run, mobilePosition: "50% 70%" },
+  { ...cinematic.walk, mobilePosition: "50% 65%" },
+  { ...cinematic.together, mobilePosition: "50% 70%" },
+  { ...cinematic.twirl, mobilePosition: "50% 60%" },
 ];
 
 export const afterDressCodeSlides: GalleryImage[] = [
-  { src: Garden, alt: "Anjo and Jasmin sharing a playful moment in the garden", position: "50% 48%" },
-  { src: Together, alt: "Anjo and Jasmin leaning together on a garden bench", position: "50% 48%" },
-  { src: Walking, alt: "Anjo and Jasmin walking hand in hand in the garden", position: "50% 45%" },
-  { src: Sitting, alt: "Anjo and Jasmin sitting together among the greenery", position: "50% 45%" },
-  { src: Embrace, alt: "Anjo and Jasmin embracing in the garden", position: "82% 48%" },
+  cinematic.garden, cinematic.embrace, cinematic.hills, cinematic.lift, cinematic.lake,
 ];
 
-// Keep the original seven images and add five existing prenup photographs.
+// Use the clean cinematic photographs; image 1 contains screenshot controls.
 export const gallery: GalleryImage[] = [
-  ...originalGallery,
-  {
-    src: Walking,
-    alt: "Anjo and Jasmin walking hand in hand in the garden",
-    position: "50% 45%",
-  },
-  {
-    src: Together,
-    alt: "Anjo and Jasmin leaning together on a garden bench",
-    position: "50% 48%",
-  },
-  {
-    src: Garden,
-    alt: "Anjo and Jasmin sharing a playful moment in the garden",
-    position: "50% 48%",
-  },
-  {
-    src: Sitting,
-    alt: "Anjo and Jasmin sitting together among the greenery",
-    position: "50% 45%",
-  },
-  {
-    src: Embrace,
-    alt: "Anjo and Jasmin embracing in the garden",
-    position: "82% 48%",
-  },
+  cinematic.run, cinematic.walk, cinematic.lift, cinematic.embrace,
+  cinematic.hills, cinematic.twirl, cinematic.lake, cinematic.together, cinematic.garden,
 ];
 
-// Church arrival, wedding, dinner, first dance, party, and send-off.
+// Ceremony, photos, registration and cocktails, reception program, dinner, party.
 export const timelineIllustrations = [
-  TimelineChurch,
-  TimelineRings,
-  TimelineDinner,
-  TimelineDance,
-  TimelineParty,
-  TimelineExit,
+  TimelineChurch, TimelinePhotos, TimelineCocktails, TimelineProgram, TimelineDinner, TimelineParty,
 ] as const;

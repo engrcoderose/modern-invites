@@ -1,27 +1,31 @@
 import { wedding } from "../data";
 import Reveal from "./motion/Reveal";
-import FloralAccent from "./FloralAccent";
+
+const centeredRoles = new Set(["Principal sponsors", "Veil", "Ring bearer", "Flower girls"]);
 
 export default function Entourage() {
   return (
-    <section id="entourage" className="relative overflow-hidden bg-[#e1e7d8] px-5 py-20 text-[#624451] sm:px-8 sm:py-28">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[url('/images/anjo-and-jasmin/floral-pattern.svg')] bg-[length:300px_350px] bg-repeat opacity-80 sm:bg-[length:360px_420px]" />
-      <div className="relative mx-auto max-w-5xl overflow-hidden border border-[#bdc8b0] bg-[#fffdf7] p-3 shadow-[0_20px_60px_-40px_#465a4855] sm:p-4">
-        <div className="relative border border-[#d8dece] px-5 py-12 sm:px-12 sm:py-16">
-          <Reveal className="relative mb-10 text-center">
-            <div aria-hidden="true" className="relative mx-auto mb-5 h-24 w-24"><FloralAccent kind="daisies" className="inset-0 w-full" sizes="96px" /></div>
-            <p className="text-[10px] uppercase tracking-[.25em] text-[#946879]">The wedding party · Sample names</p>
-            <h2 className="mt-5 font-meaCulpa text-5xl leading-tight sm:text-7xl">With love from<br />our dearest people.</h2>
-            <p className="mx-auto mt-6 max-w-xl text-sm leading-8 text-[#756770]">Together with their families, {wedding.groom} and {wedding.bride} request the honor of your presence.</p>
-          </Reveal>
-          <div className="grid sm:grid-cols-2">
-            {wedding.entourage.map((group, index) => (
-              <Reveal key={group.role} className={`border-t border-[#d5dcca] px-3 py-8 text-center ${index >= 6 ? "sm:col-span-2" : index % 2 === 0 ? "sm:border-r" : ""}`}>
-                <h3 className="mb-4 text-[11px] uppercase tracking-[.18em] text-[#946879]">{group.role}</h3>
-                <ul className={`space-y-2 font-instrumentSerif text-xl leading-8 sm:text-2xl ${group.names.length > 2 && index >= 6 ? "sm:grid sm:grid-cols-3 sm:gap-4 sm:space-y-0" : ""}`}>{group.names.map(name => <li key={name}>{name}</li>)}</ul>
+    <section id="entourage" aria-labelledby="entourage-title" className="relative scroll-mt-20 bg-[rgb(var(--aj-cream))] px-3 py-16 text-[rgb(var(--aj-ink))] sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-3xl">
+        <Reveal className="mb-9 text-center sm:mb-14">
+          <h2 id="entourage-title" className="font-imperial text-[clamp(3.25rem,10vw,6rem)] leading-tight text-[rgb(var(--aj-accent-dark))]">Wedding Entourage</h2>
+        </Reveal>
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-6 sm:gap-y-8">
+          {wedding.entourage.map(group => {
+            const sponsors = group.role === "Principal sponsors";
+            return (
+              <Reveal key={group.role} className={`min-w-0 text-center ${centeredRoles.has(group.role) ? "col-span-2" : ""}`}>
+                <h3 className="mb-2 font-instrumentSerif text-[clamp(.95rem,3.75vw,1.5rem)] font-bold uppercase leading-tight">{group.role}</h3>
+                <ul className={`font-instrumentSerif text-[clamp(.8rem,3.2vw,1.25rem)] uppercase leading-[1.35] ${sponsors ? "grid grid-cols-2 gap-x-3 sm:gap-x-6" : ""}`}>
+                  {group.names.map((name, index) => (
+                    <li key={name} className={sponsors
+                      ? index >= 10 ? "col-span-2" : index % 2 === 0 ? "text-right" : "text-left"
+                      : undefined}>{name}</li>
+                  ))}
+                </ul>
               </Reveal>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -32,12 +32,12 @@ export default function PolaroidStrip() {
     <section
       ref={section}
       id="photostrip"
-      className="polaroid-strip relative overflow-hidden border-y border-[#dccbd3] bg-[#f4e4eb] bg-[linear-gradient(0deg,#fffdf833_1px,transparent_1px)] bg-[length:100%_32px] py-12 text-[#624451] sm:py-16"
+      className="polaroid-strip relative overflow-hidden border-y border-[#d8c7b8] bg-[#e9dbd2] bg-[linear-gradient(0deg,#fffdf833_1px,transparent_1px)] bg-[length:100%_32px] py-12 text-[rgb(var(--aj-ink))] sm:py-16"
       aria-labelledby="polaroid-title"
     >
       <header className="relative mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 sm:px-10">
         <div>
-          <p className="text-[9px] uppercase tracking-[.24em] text-[#946879]">
+          <p className="text-[9px] uppercase tracking-[.24em] text-[rgb(var(--aj-accent-dark))]">
             Anjo &amp; Jasmin
           </p>
           <h2
@@ -45,7 +45,7 @@ export default function PolaroidStrip() {
             className="mt-2 font-instrumentSerif text-3xl sm:text-4xl"
           >
             Little moments,{" "}
-            <span className="font-meaCulpa text-[#946879]">forever ours.</span>
+            <span className="font-meaCulpa text-[rgb(var(--aj-accent-dark))]">forever ours.</span>
           </h2>
         </div>
         {!reduceMotion && (
@@ -54,7 +54,7 @@ export default function PolaroidStrip() {
             onClick={() => setPaused((value) => !value)}
             aria-label={paused ? "Resume photo strip" : "Pause photo strip"}
             aria-pressed={paused}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#cba4b6] transition-colors hover:bg-[#f1dce4]"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--aj-line))] transition-colors hover:bg-[#e9d3bd]"
           >
             {paused ? <Play size={15} /> : <Pause size={15} />}
           </button>
@@ -74,12 +74,12 @@ export default function PolaroidStrip() {
               {photos.map((photo) => (
                 <figure
                   key={photo.caption}
-                  className="polaroid-print m-0 w-[264px] flex-[0_0_264px] rotate-[var(--print-tilt)] border border-[#ede7df] bg-[#fffdf8] px-[13px] pt-[13px] pb-[27px] shadow-[0_7px_15px_#62445115,0_2px_4px_#62445110] max-[600px]:w-[196px] max-[600px]:basis-[196px] max-[600px]:px-2.5 max-[600px]:pt-2.5 max-[600px]:pb-6"
+                  className="polaroid-print m-0 w-[264px] flex-[0_0_264px] rotate-[var(--print-tilt)] border border-[#ede2d3] bg-[rgb(var(--aj-paper))] px-[13px] pt-[13px] pb-[27px] shadow-[0_7px_15px_#51423715,0_2px_4px_#51423710] max-[600px]:w-[196px] max-[600px]:basis-[196px] max-[600px]:px-2.5 max-[600px]:pt-2.5 max-[600px]:pb-6"
                   style={
                     { "--print-tilt": `${photo.tilt}deg` } as CSSProperties
                   }
                 >
-                  <div className="relative aspect-square overflow-hidden bg-[#e6e7de]">
+                  <div className="relative aspect-square overflow-hidden bg-[#e3dfd0]">
                     <Image
                       src={photo.src}
                       alt={

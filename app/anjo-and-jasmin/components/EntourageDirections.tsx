@@ -12,24 +12,24 @@ export default function EntourageDirections() {
       <section
         id="entourage-directions"
         aria-labelledby="entourage-directions-title"
-        className="overflow-hidden rounded-xl border border-[#c7d1ba] bg-[#fffdf8] shadow-[0_12px_40px_-25px_#62445140]"
+        className="overflow-hidden rounded-xl border border-[#c8c9b1] bg-[rgb(var(--aj-paper))] shadow-[0_12px_40px_-25px_#51423740]"
       >
-        <header className="border-b border-[#c7d1ba] bg-[#edf0e5] px-6 py-8 text-center sm:px-9">
-          <p className="text-[10px] uppercase tracking-[.25em] text-[#946879]">
+        <header className="border-b border-[#c8c9b1] bg-[rgb(var(--aj-sand))] px-6 py-8 text-center sm:px-9">
+          <p className="text-[10px] uppercase tracking-[.25em] text-[rgb(var(--aj-accent-dark))]">
             Before the celebration
           </p>
           <h3
             id="entourage-directions-title"
-            className="mt-3 font-instrumentSerif text-3xl text-[#624451] sm:text-4xl"
+            className="mt-3 font-instrumentSerif text-3xl text-[rgb(var(--aj-ink))] sm:text-4xl"
           >
             Entourage preparation &amp; directions
           </h3>
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-[#756770]">
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-[rgb(var(--aj-muted))]">
             A little guide for our wedding party: where to get ready, when to
             arrive, and special reminders for the day.
           </p>
         </header>
-        <div className="divide-y divide-[#ead7df]">
+        <div className="divide-y divide-[#e3cbd5]">
           {preparations.map((preparation, index) => {
             const mapHref =
               preparation.mapUrl ||
@@ -42,18 +42,18 @@ export default function EntourageDirections() {
                 key={`${preparation.group}-${index}`}
                 className="px-6 py-7 sm:p-9"
               >
-                <h4 className="font-instrumentSerif text-2xl text-[#624451] sm:text-3xl">
+                <h4 className="font-instrumentSerif text-2xl text-[rgb(var(--aj-ink))] sm:text-3xl">
                   {preparation.group}
                 </h4>
                 <dl className="mt-6 grid gap-6 sm:grid-cols-[1.3fr_1fr]">
                   <div>
-                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[#946879]">
+                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[rgb(var(--aj-accent-dark))]">
                       <MapPin size={16} aria-hidden="true" />
                       Preparation venue
                     </dt>
-                    <dd className="mt-3 text-sm leading-7 text-[#756770]">
+                    <dd className="mt-3 text-sm leading-7 text-[rgb(var(--aj-muted))]">
                       {preparation.venue && (
-                        <span className="block font-medium text-[#624451]">
+                        <span className="block font-medium text-[rgb(var(--aj-ink))]">
                           {preparation.venue}
                         </span>
                       )}
@@ -64,22 +64,22 @@ export default function EntourageDirections() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[#946879]">
+                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[rgb(var(--aj-accent-dark))]">
                       <Clock3 size={16} aria-hidden="true" />
                       Arrival time
                     </dt>
-                    <dd className="mt-3 text-sm leading-7 text-[#756770]">
+                    <dd className="mt-3 text-sm leading-7 text-[rgb(var(--aj-muted))]">
                       {preparation.arrivalTime ||
                         "Preparation schedule to follow."}
                     </dd>
                   </div>
                 </dl>
-                <div className="mt-6 rounded-xl bg-[#edf0e5]/70 px-5 py-4">
-                  <h5 className="text-sm font-medium text-[#624451]">
+                <div className="mt-6 rounded-xl bg-[rgb(var(--aj-sand))]/70 px-5 py-4">
+                  <h5 className="text-sm font-medium text-[rgb(var(--aj-ink))]">
                     Special instructions
                   </h5>
                   {preparation.instructions?.length ? (
-                    <ul className="mt-2 list-disc space-y-2 pl-4 text-sm leading-7 text-[#756770]">
+                    <ul className="mt-2 list-disc space-y-2 pl-4 text-sm leading-7 text-[rgb(var(--aj-muted))]">
                       {preparation.instructions.map(
                         (instruction, instructionIndex) => (
                           <li key={instructionIndex}>{instruction}</li>
@@ -87,7 +87,7 @@ export default function EntourageDirections() {
                       )}
                     </ul>
                   ) : (
-                    <p className="mt-2 text-sm leading-7 text-[#756770]">
+                    <p className="mt-2 text-sm leading-7 text-[rgb(var(--aj-muted))]">
                       Preparation reminders will be shared here once confirmed.
                     </p>
                   )}
@@ -97,7 +97,7 @@ export default function EntourageDirections() {
                     href={mapHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#946879] px-6 py-3 text-sm text-white transition-colors hover:bg-[#7e5666] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#946879]"
+                    className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[rgb(var(--aj-accent))] px-6 py-3 text-sm text-[rgb(var(--aj-cream))] transition-colors hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))]"
                   >
                     Directions to preparation venue
                     <ArrowUpRight size={16} aria-hidden="true" />

@@ -1,40 +1,22 @@
 import { wedding as originalWedding } from "./wedding-details";
 
-// Apply confirmed details to this invitation's local wedding content.
-export const wedding = {
-  ...originalWedding,
-  date: "Saturday, November 21, 2026",
-  dateDisplay: "November 21, 2026",
-  time: "3:00 PM",
-  countdownDate: "2026-11-21T15:00:00+08:00",
-  receptionFloor: "2/F",
-  // Confirmed church arrival and ceremony, followed by the Eric and Li sample reception.
-  program: [
-    { time: "2:30 PM", title: "Arrival at the Church", description: "Arrive at the church and settle in before the ceremony." },
-    { time: "3:00 PM", title: "Wedding Ceremony", description: "The wedding ceremony commences" },
-    { time: "6:00 PM", title: "Reception Dinner", description: "Dinner service begins" },
-    { time: "7:30 PM", title: "First Dance & Toasts", description: "Special dances and speeches" },
-    { time: "8:00 PM", title: "Dance Party", description: "Let's celebrate on the dance floor!" },
-    { time: "11:00 PM", title: "Grand Exit", description: "Sparkler send-off" },
-  ],
-  // Sampled from the seven swatches in the supplied dress-code reference.
-  palette: [
-    { name: "Champagne", color: "#ede2c6" },
-    { name: "Peach", color: "#fbc4a6" },
-    { name: "Blush", color: "#fdc7d5" },
-    { name: "Powder blue", color: "#bbd6f3" },
-    { name: "Lilac", color: "#ffc9fd" },
-    { name: "Butter yellow", color: "#fffdd7" },
-    { name: "Sage", color: "#d6deaf" },
-  ],
-};
+export const wedding = originalWedding;
 
-export const invitationMessage = `Together with our families, we, ${wedding.groom} and ${wedding.bride}, request the honor of your presence as we celebrate the sacrament of marriage on ${wedding.date}, at ${wedding.time}, at ${wedding.ceremony}, Malabon. Join us afterward at ${wedding.receptionFloor}, ${wedding.reception}, ${wedding.location} for an evening of love, laughter, and celebration.`;
 export const envelopeMessage = "Join us as we celebrate our wedding. We can't wait to share this special day with you.";
-export const attireDressCode = "Cocktail / semi-formal";
-export const attireDescription = "We kindly request that our guests wear cocktail/semi-formal attire in these colors on our special day.";
-export const mensAttire = "Long-sleeved shirts in any shade of pastel, paired with pants.";
-export const rsvpDeadline = "Our RSVP deadline and response details will be shared soon.";
+export const attireDressCode = "Long sleeves & pastel dresses";
+export const attireDescription = "Family and friends, dress to impress in light or colorful tones from our pastel palette.";
+export const mensAttire = "Long sleeves and pants. Linen pants, long sleeves, or a button-up are all welcome!";
+export const womensAttire = "Long or floral dress. Midi/maxi dresses and breezy silhouettes. Bring on the color and glamour! Ruffles, textures, and florals are encouraged.";
+export const sponsorAttire = [
+  { role: "For our Ninangs", style: "Filipiniana", description: "Modern or traditional Filipiniana. Color: ivory, cream, or beige." },
+  { role: "For our Ninongs", style: "Barong Tagalog", description: "White inner, black pants, and black shoes. Barong color: ivory, cream, or beige." },
+];
+export const rsvpDeadline = "October 30, 2026";
+export const coordinator = {
+  name: "Ms. Margarette Santos",
+  phone: "0945 826 5580",
+  phoneHref: "tel:+639458265580",
+};
 export const unpluggedCeremony = {
   title: "Unplugged Ceremony",
   description: "We invite you to be fully present as we say our vows. Kindly silence and put away your phones and cameras during the ceremony, and let our photographers capture these special moments. Thank you for sharing this moment with us.",
@@ -79,21 +61,21 @@ export const giftRegistries: GiftRegistry[] = [];
 export const faqs = [
   {
     question: "When is the wedding?",
-    answer: `Our wedding is on ${wedding.date} at ${wedding.time} (Philippine time). Please arrive at the church at 2:30 PM. The reception times shown in the wedding timeline are a sample program.`,
+    answer: `Our wedding is on ${wedding.date} at ${wedding.time} (Philippine time). Please arrive at the church at 2:30 PM. See the wedding timeline for the day's schedule.`,
   },
   {
     question: "Where are the ceremony and reception?",
     answer: `The ceremony will be held at ${wedding.ceremony}, Malabon. The reception follows at ${wedding.receptionFloor}, ${wedding.reception}, ${wedding.location}. You can find directions in the Location section.`,
   },
-  { question: "What should I wear?", answer: `${attireDescription} Our pastel palette includes ${wedding.palette.map(({ name }) => name.toLowerCase()).join(", ")}. Men's attire: ${mensAttire}` },
+  { question: "What should I wear?", answer: `${attireDescription} Our pastel palette includes ${wedding.palette.map(({ name }) => name.toLowerCase()).join(", ")}. Gentlemen: ${mensAttire} Ladies: ${womensAttire} ${sponsorAttire.map(({ role, style, description }) => `${role}: ${style}. ${description}`).join(" ")}` },
   {
     question: "How do I RSVP?",
-    answer: `${rsvpDeadline} For now, the RSVP form is a preview only. Replies are not sent or saved.`,
+    answer: `Please RSVP by ${rsvpDeadline}. If you have any concerns, please contact our coordinator, ${coordinator.name}, at ${coordinator.phone}. For now, the RSVP form is a preview only. Replies are not sent or saved.`,
   },
   {
     question: "Do you have a gift registry?",
     answer: giftRegistries.length
-      ? "Our registry links are in the Gift Registry section below. Your presence is our greatest gift."
+      ? "Our registry links are in the Gift Registry section. Your presence is our greatest gift."
       : "Your presence is our greatest gift. Our gift preferences and any registry details will be shared here soon. Thank you for thinking of us with so much love.",
   },
   {

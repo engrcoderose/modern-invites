@@ -1,25 +1,25 @@
 import Image from "next/image";
 import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
-import { StoryWalk, StoryEmbrace } from "../photo-media";
-import PrenupMoment from "../assets/images/prenup/pexels-king-caplis-471600979-36266137.jpg";
+import { StoryWalk, StoryEmbrace, PrenupMoment } from "../photo-media";
 import { wedding } from "../data";
+import Monogram from "./Monogram";
 
 export default function Story() {
   return (
     <section
       id="story"
       aria-labelledby="story-title"
-      className="text-[#624451]"
+      className="text-[rgb(var(--aj-ink))]"
     >
-      <div className="relative overflow-hidden bg-[#fff4fa] bg-[radial-gradient(ellipse_at_bottom_left,#e5eadd99,transparent_60%)] px-6 py-16 sm:px-10 md:py-24 lg:px-20">
+      <div className="relative overflow-hidden bg-[rgb(var(--aj-sand))] bg-[radial-gradient(ellipse_at_bottom_left,#cfa99933,transparent_60%)] px-6 py-16 sm:px-10 md:py-24 lg:px-20">
         <FloralAccent
           kind="blue"
           className="-right-10 top-8 w-28 rotate-12 opacity-65 sm:w-44"
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[10px] uppercase tracking-[.3em] text-[#946879] sm:text-xs">
+            <p className="text-[10px] uppercase tracking-[.3em] text-[rgb(var(--aj-accent-dark))] sm:text-xs">
               Our story
             </p>
             <h2
@@ -36,7 +36,7 @@ export default function Story() {
                   <h3 className="font-instrumentSerif text-2xl leading-tight sm:text-3xl">
                     {chapter.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-8 text-[#756770] lg:text-base">
+                  <p className="mt-3 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
                     {chapter.description}
                   </p>
                 </article>
@@ -45,11 +45,11 @@ export default function Story() {
           </Reveal>
           <Reveal
             delay={0.1}
-            className="relative aspect-[4/3] w-full overflow-hidden border-[8px] border-[#fffdf8] shadow-[10px_10px_0_#d8b9c733,0_18px_35px_-20px_#62445155]"
+            className="relative aspect-[4/3] w-full overflow-hidden border-[8px] border-[rgb(var(--aj-paper))] shadow-[10px_10px_0_#d3b6a133,0_18px_35px_-20px_#51423755]"
           >
             <Image
               src={StoryWalk}
-              alt="Anjo and Jasmin walking hand in hand in the garden"
+              alt="A couple running hand in hand through an autumn park"
               fill
               sizes="(max-width: 768px) 90vw, 50vw"
               className="object-cover object-[50%_45%]"
@@ -65,31 +65,21 @@ export default function Story() {
         >
           <Image
             src={StoryEmbrace}
-            alt="Anjo and Jasmin sharing a quiet embrace"
+            alt="A couple sharing a kiss beneath a tree"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-[85%_center]"
+            className="object-cover object-[50%_75%]"
           />
         </Reveal>
-        <div className="relative flex items-center overflow-hidden bg-[#946879] px-8 py-16 text-[#fffaf5] sm:px-12 md:py-20 lg:p-20">
-          <FloralAccent
-            kind="cosmos"
-            className="-right-24 -bottom-16 w-80 opacity-25 sm:w-[440px]"
-            sizes="440px"
-          />
+        <div className="relative flex items-center overflow-hidden bg-[rgb(var(--aj-sand))] px-8 pb-36 pt-16 text-[rgb(var(--aj-ink))] sm:px-12 sm:pb-48 md:pt-20 lg:px-20">
           <Reveal className="relative mx-auto w-full max-w-lg">
-            <p
-              aria-label="Anjo and Jasmin initials"
-              className="font-imperial text-6xl sm:text-7xl"
-            >
-              A &amp; J
-            </p>
+            <Monogram className="h-28 w-28 sm:h-32 sm:w-32" sizes="128px" />
             {wedding.story.slice(2).map((chapter) => (
               <article key={chapter.date} className="mt-8">
                 <h3 className="font-serif text-[clamp(2.5rem,4.5vw,4.5rem)] uppercase leading-[1.12] tracking-[-.035em]">
                   {chapter.title}
                 </h3>
-                <p className="mt-7 text-sm leading-8 text-[#fff4f8] lg:text-base">
+                <p className="mt-7 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
                   {chapter.description}
                 </p>
               </article>
@@ -98,34 +88,33 @@ export default function Story() {
         </div>
       </div>
 
-      <div aria-hidden="true" className="h-12 bg-[#fbf8f1] sm:h-20 lg:h-24" />
+      <div aria-hidden="true" className="relative h-12 bg-[rgb(var(--aj-sand))] sm:h-20 lg:h-24">
+        <FloralAccent
+          kind="cosmos"
+          className="bottom-0 right-0 w-80 max-w-full sm:w-[440px] md:max-w-[50%]"
+          sizes="(max-width: 639px) 320px, 440px"
+        />
+      </div>
 
-      <div className="relative isolate grid items-center overflow-hidden bg-[#263d35] text-center text-[#fff4fa]">
+      <div className="relative isolate grid items-center overflow-hidden bg-[rgb(var(--aj-olive-deep))] text-center text-[#f2dcdf]">
         <Image
           src={PrenupMoment}
-          alt="Anjo and Jasmin embracing in the garden, photographed from above"
+          alt="A couple embracing in the warm evening light"
           sizes="100vw"
           className="col-start-1 row-start-1 block h-auto w-full"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-[#263d35]/50 via-[#263d35]/45 to-[#263d35]/65"
+          className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--aj-olive-deep))]/50 via-[rgb(var(--aj-olive-deep))]/45 to-[rgb(var(--aj-olive-deep))]/65"
         />
         <Reveal className="relative col-start-1 row-start-1 mx-auto max-w-4xl px-6 py-6 sm:py-16">
-          <p className="text-[9px] uppercase tracking-[.2em] sm:text-[10px] sm:tracking-[.3em]">
-            A moment we will keep forever
-          </p>
-          <h3 className="mt-4 font-instrumentSerif text-3xl leading-tight sm:mt-8 sm:text-6xl">
+          <h3 className="font-instrumentSerif text-3xl leading-tight sm:text-6xl">
             In every lifetime,
             <br />
-            <span className="font-meaCulpa text-[#ffe1ee]">
+            <span className="font-meaCulpa text-[#ead0ba]">
               I would find you.
             </span>
           </h3>
-          <p className="mt-5 text-[9px] uppercase tracking-[.15em] sm:mt-10 sm:text-xs sm:tracking-[.2em]">
-            Anjo &amp; Jasmin <span className="mx-2 sm:mx-3">·</span> Malabon ·
-            2026
-          </p>
         </Reveal>
       </div>
     </section>

@@ -4,15 +4,13 @@ import { useEffect, useRef } from "react";
 
 import HashtagSection from "./components/HashtagSection";
 import UsefulInformationSection from "./components/UsefulInformationSection";
+import GiftRegistrySection from "./components/GiftRegistrySection";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
-import InvitationSection from "./components/InvitationSection";
-import { PrenupPoster } from "./photo-media";
+import PrenupVideo from "./components/PrenupVideo";
 import {
   wedding,
-  attireDescription,
-  invitationMessage,
   rsvpDeadline,
 } from "./data";
 
@@ -30,32 +28,24 @@ import AttireSection from "./components/AttireSection";
 import PhotoSlideshow from "./components/PhotoSlideshow";
 import RSVPSection from "./components/RSVPSection";
 
-export default function InvitationContent() {
+export default function InvitationContent({ active = true }: { active?: boolean }) {
   const main = useRef<HTMLElement>(null);
-  useEffect(() => { main.current?.focus({ preventScroll: true }); }, []);
+  useEffect(() => { if (active) main.current?.focus({ preventScroll: true }); }, [active]);
   return <>
     <Navigation />
     <main ref={main} tabIndex={-1} className="outline-none">
+      <PrenupVideo active={active} />
       <HeroSection />
       <Countdown />
-
-      <InvitationSection
-        message={invitationMessage}
-        videoSrc="/videos/anjo-and-jasmin/prenup.mp4"
-        poster={PrenupPoster}
-      />
       <Gallery />
       <Story />
       <WeddingProgram events={wedding.program} />
       <Entourage />
       <Location />
-      <AttireSection
-        title="A pastel garden romance"
-        description={attireDescription}
-        colors={wedding.palette}
-      />
+      <AttireSection colors={wedding.palette} />
       <PhotoSlideshow />
       <HashtagSection hashtag={wedding.hashtag} />
+      <GiftRegistrySection />
       <SeatFinderSection />
       <UsefulInformationSection />
       <FAQ />

@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Concurrent local previews must not overwrite each other's generated assets.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   async redirects() {
     return [
       {
