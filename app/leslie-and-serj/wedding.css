@@ -236,15 +236,30 @@
 .lj-faq-page {
   max-width: 660px !important;
 }
-.lj-faq-page dl > div {
+.lj-faq-item {
   border-top: 1px solid var(--lj-line);
 }
-.lj-faq-page dt {
+.lj-faq-item summary {
   font-size: 15px;
   line-height: 1.6;
+  list-style: none;
 }
-.lj-faq-page dd {
+.lj-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.lj-faq-item summary:focus-visible {
+  outline: 2px solid var(--lj-olive, #5a6946);
+  outline-offset: 3px;
+}
+.lj-faq-answer.lj-body {
   max-width: none;
+}
+.lj-faq-item[open] .lj-faq-answer {
+  animation: lj-faq-answer-in 250ms ease-out;
+}
+@keyframes lj-faq-answer-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .lj-photo-page figure {
   position: relative;
@@ -376,10 +391,10 @@
   .lj-faq-page .lj-heading {
     font-size: 44px;
   }
-  .lj-faq-page dt {
+  .lj-faq-item summary {
     font-size: 13px;
   }
-  .lj-faq-page dd {
+  .lj-faq-page .lj-faq-answer {
     font-size: 11px;
     line-height: 1.65;
   }
@@ -413,10 +428,10 @@
   .lj-faq-page .lj-heading {
     font-size: 36px;
   }
-  .lj-faq-page dt {
+  .lj-faq-item summary {
     font-size: 12px;
   }
-  .lj-faq-page dd {
+  .lj-faq-page .lj-faq-answer {
     font-size: 10px;
     line-height: 1.7;
   }
@@ -512,10 +527,12 @@
   font-size: 42px;
 }
 .lj-attire-page .lj-body {
-  font-size: 12px;
+  font-family: "Noto Serif", serif;
+  font-size: 13px;
+  line-height: 1.65;
 }
 .lj-attire-reference {
-  width: min(520px, 100%, max(180px, calc((100svh - 400px) * 3 / 2)));
+  width: min(460px, 100%, max(180px, calc((100svh - 520px) * 3 / 2)));
   background: var(--lj-paper);
   border: 1px solid #ac9b7680;
   outline: 1px solid #ac9b763d;
@@ -554,9 +571,6 @@
 .lj-rsvp-card .lj-body {
   color: var(--lj-muted);
 }
-.lj-faq-page dt {
-  font-weight: 400;
-}
 .lj-photo-page figure {
   outline: 3px double var(--lj-gold);
   outline-offset: 4px;
@@ -568,8 +582,7 @@
     font-size: clamp(34px, 5svh, 44px);
   }
   .lj-attire-page .lj-body {
-    font-size: clamp(11px, 1.6svh, 14px);
-    line-height: 1.8;
+    font-size: 12px;
   }
 }
 @media (max-width: 700px) and (max-height: 700px) {
@@ -622,7 +635,7 @@
 @media (max-width: 700px) {
 
   .lj-names {
-    font-size: 11px;
+    font-size: clamp(10px, 2.82vw, 11px);
   }
   .lj-page-title {
     font-size: 12px;
@@ -636,21 +649,24 @@
 .lj-book .lj-party-group h3.lj-label,
 .lj-book h4.lj-party-role {
   font-family: "Noto Serif", serif;
-  font-size: 11px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   font-style: normal;
   line-height: 1.6;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.lj-party-group h3.lj-label {
-  margin-bottom: 12px;
+.lj-book h3.lj-party-serif-title {
+  font-size: 18px;
 }
 @media (max-width: 700px) {
   .lj-book h3.lj-party-serif-title,
   .lj-book .lj-party-group h3.lj-label,
   .lj-book h4.lj-party-role {
-    font-size: 9px;
+    font-size: 11px;
+  }
+  .lj-book h3.lj-party-serif-title {
+    font-size: 13px;
   }
 }
 
@@ -669,7 +685,7 @@
   pointer-events: none;
 }
 .lj-opening-names {
-  font-size: clamp(36px, 4.5vw, 56px);
+  font-size: clamp(36px, 4vw, 44px);
   line-height: 1.2;
 }
 @media (max-width: 700px) {
@@ -677,7 +693,7 @@
     inset: 10px;
   }
   .lj-opening-names {
-    font-size: clamp(30px, 8vw, 46px);
+    font-size: clamp(28px, 8vw, 36px);
   }
 }
 

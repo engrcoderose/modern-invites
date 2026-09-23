@@ -38,7 +38,6 @@ const revealTargets = [
   ".lj-venue-art",
   ".lj-attire-reference",
   ".lj-photo-page figure",
-  ".lj-faq-page dl > div",
 ].join(",");
 
 export default function BookPage({

@@ -28,7 +28,7 @@ export default async function OpenGraphImage() {
         CLICK TO OPEN
       </div>
       <div style={{ display: "flex", position: "absolute", bottom: 28, fontSize: 16, letterSpacing: "0.2em", opacity: 0.7 }}>
-        {wedding.date}
+        {wedding.openingCaption}
       </div>
     </div>,
     { ...size, fonts: [{ name: "Instrument Serif", data: font, weight: 400, style: "normal" }] },

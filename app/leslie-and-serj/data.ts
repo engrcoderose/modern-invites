@@ -3,9 +3,12 @@ export type Photo = { src: string; alt: string };
 
 export const attireDetails = {
   title: "The Dress Code",
-  formality: "Formal or Black-Tie Optional",
-  colorRequest: "Please wear green, orange, or yellow.",
-  note: "Kindly avoid white, cream, ivory, and other white-adjacent shades.",
+  introduction: "We can't wait to celebrate with you in style.",
+  formality: "Formal or Black Tie",
+  colorFreedom: "Feel free to wear any color you feel best.",
+  reservedShades: "white, cream, ivory and other white adjacent shades as it is reserved for the Bride.",
+  weddingPartyColors: "green, orange, brown or yellow.",
+  colorRequest: "Feel free to wear any color you feel best. Refrain from wearing green, orange, brown or yellow.",
 };
 
 // Updated from the client-supplied LESLIE AND SERJ JSON. Citation markers are
@@ -13,6 +16,7 @@ export const attireDetails = {
 // Reference URLs describe requested assets; they are not playable media URLs.
 export const wedding = {
   title: "Leslie and Serj",
+  openingCaption: "Ours, evermore",
   bride: "Leslie Marie S. Zaldua",
   groom: "John Rey F. Sergio",
   brideShort: "Leslie Marie",
@@ -24,7 +28,7 @@ export const wedding = {
   ceremonyISO: "2027-01-28T13:00:00+08:00",
   ceremony: {
     name: "Chapel on the Hill",
-    address: "Batulao Rd, Calaca, Don Bosco, Nasugbu, 4231 Batangas" as
+    address: "Batulao Rd, Calaca, Don Bosco, Nasugbu, Batangas" as
       | string
       | null,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Chapel%20on%20the%20Hill%2C%20Batulao%20Road%2C%20Batangas",
@@ -33,7 +37,8 @@ export const wedding = {
   reception: {
     name: "Azienda Verde Alfonso",
     time: null as string | null,
-    address: "Del Pilar St., Poblacion 5 4123 Alfonso" as string | null,
+    address: "Del Pilar St., Poblacion 5, Alfonso" as string | null,
+    parking: "Parking is available and free for all guests",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Azienda%20Verde%20Alfonso%2C%20Del%20Pilar%20Street%2C%20Alfonso",
     mapEmbedUrl: null as string | null,
   },
@@ -41,7 +46,7 @@ export const wedding = {
   storyPhotos: [] as Photo[],
   galleryPhotos: [] as Photo[],
   attire:
-    `${attireDetails.formality} attire. ${attireDetails.colorRequest} ${attireDetails.note}` as
+    `${attireDetails.introduction} We kindly request ${attireDetails.formality} attire. ${attireDetails.colorFreedom} No ${attireDetails.reservedShades} To help our wedding party stand out, we politely ask guests to avoid wearing ${attireDetails.weddingPartyColors}` as
       | string
       | null,
   hashtag: null as string | null,
@@ -50,7 +55,7 @@ export const wedding = {
     artist: "Kodaline",
     src: "/leslie-and-serj/Kodaline%20-%20The%20One.mp3",
   } as { src: string | null; title: string; artist: string } | null,
-  rsvpDeadline: null as string | null,
+  rsvpDeadline: "30 November 2026",
   contact: null as { name: string; href: string; label: string } | null,
   // This is an input requested by the client, not an answered FAQ.
   rsvpQuestions: [
@@ -161,23 +166,35 @@ export const entourage = {
   ],
 };
 
-export const faqs: { question: string; answer: string | null; link?: { href: string; label: string } }[] = [
+export const faqs: { question: string; answer: string }[] = [
   {
-    question: "Can I bring a plus one?",
+    question: "When should I RSVP?",
     answer:
-      "We can accommodate only the guests named on your invitation. Thank you for understanding.",
+      `Please RSVP by ${wedding.rsvpDeadline}. We can't wait to see you at the wedding.`,
+  },
+  {
+    question: "How can I RSVP?",
+    answer:
+      "Please enter your full name on the RSVP page and click Find my Invitation. Once your details appear, complete the form to confirm your attendance.",
   },
   {
     question: "Are children invited?",
     answer:
-      "Our wedding is an adults-only celebration.",
+      "We’ve decided to keep the wedding adults-only. We hope you can still join us for a well-earned night off!",
   },
-  { question: "Is parking or transportation available?", answer: null },
-  { question: "May we take photos during the ceremony?", answer: null },
   {
-    question: "Is there a gift registry?",
-    answer: "Yes. You can find our registry under",
-    link: { href: "#gifts", label: "A Note on Gifts" },
+    question: "Can I bring a plus one?",
+    answer:
+      "Our numbers are really tight so we’re only able to accommodate the guests listed on the invite. Thank you for understanding.",
   },
-  { question: "Whom can I contact with other questions?", answer: null },
+  {
+    question: "Can I take photos during the ceremony?",
+    answer:
+      "Please keep phones and camera away during the ceremony. Our photographers will capture every moment with us.",
+  },
+  { question: "Can I wear white?", answer: "No." },
+  {
+    question: "What is the dress code?",
+    answer: `We kindly request ${attireDetails.formality} attire. ${attireDetails.colorRequest}`,
+  },
 ];

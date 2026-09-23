@@ -7,7 +7,7 @@ cards, and a 1200 × 630 preview matching the opening screen at
 `/leslie-and-serj/opengraph-image`. URLs inherit the site's production metadata
 base (`https://www.moderninvites.com`).
 The preview uses the same garden photograph, illustrated logo, opening prompt,
-and wedding date as the cover.
+and “Ours, evermore” caption as the cover.
 
 ## Page sequence
 
@@ -46,15 +46,20 @@ are self-hosted under public/leslie-and-serj/fonts with their SIL license.
 
 All displayed dates use `28 January 2027`, sourced from wedding.date.
 Formal names are Leslie Marie S. Zaldua and John Rey F. Sergio.
-The invitation's full names are stacked, with Leslie above John Rey.
+The invitation is centered in this order: illustrated logo, Leslie's full name,
+“and”, John Rey's full name, “invite you to celebrate our love”, and the wedding
+date. The stacked names and date use Anastasia.
 Women appear on the left and men on the right: parents, principal
 and secondary sponsor pairs, maid of honor/best man, and bridesmaids/groomsmen.
 Confirmed names and sponsor pairings are preserved.
 
 Parents, sponsors, and both wedding party pages share compact italic Noto Serif
 names, uppercase serif role labels, and the Anastasia heading With Love and
-Gratitude. Centered content has generous surrounding space. The dense party
-page uses tighter gaps on short screens to stay clear of the music control.
+Gratitude. Name rows share 10px gaps on desktop and 8px gaps on mobile, including
+principal sponsors, bridesmaids, groomsmen, and flowers. Names scale from 10–11px
+on mobile to 14px on desktop; uppercase role headings are 11px and 14px, while
+the Principal Sponsors title is 13px and 18px. The dense party page omits its
+ornament on short screens to retain readable spacing and clear the music control.
 
 The opening and Us backgrounds use the supplied Photo background website.png.
 The opening uses the supplied Opening Logo.png as-is, including its sage frame
@@ -64,6 +69,9 @@ has no woodland header or monogram. Supplied church_logo.png and
 reception_logo.png identify the venues. Venue details appear together on one
 page, side by side on desktop and stacked on mobile. The ceremony remains
 1:00 PM at Chapel on the Hill, followed by reception at Azienda Verde Alfonso.
+The Wedding Venue page omits the date and divider. Each venue's illustration
+comes first; the reception is introduced with “Dinner and Dancing to follow at”
+and includes the confirmed free-parking note before its map link.
 
 The Us slideshow uses Main-1.jpg through Main-5.jpg in order. Together uses
 Group1 -1.jpg through Group1-5.jpg in order. Both show the real couple's supplied
@@ -74,19 +82,25 @@ keyboard controls, and accessible
 play/pause controls. Keyboard
 focus pauses autoplay; reduced motion disables autoplay and transitions.
 
-Dress-code guidance preserves Formal or Black-Tie Optional attire, green,
-orange or yellow, and the request to avoid white-adjacent shades. Swatches are
+The Dress Code page places its Anastasia heading before three Noto Serif
+paragraphs and then the outfit reference. Formal or Black Tie attire, “No” and
+“avoid” are emphasized. White-adjacent shades are reserved for the bride, while
+green, orange, brown and yellow are reserved for the wedding party. Swatches are
 removed. The outfit collage places the eight existing women's examples above
 the five men's suits, following the client's layout reference. The original
 image remains preserved; `assets/designs/Wedding guest peg - rows.png` is the
 transparent edited version. The built-in image-editing prompt is recorded in
 `assets/designs/dress-code-rows-prompt.md`.
-Gift preferences appear only on the gifts page; the FAQ links there.
+Gift preferences appear on the gifts page.
 The QR code blends into the ivory paper and opens its full original image.
-Only plus-one, adults-only and gift-registry questions remain in FAQs.
+All seven confirmed FAQs appear on one page in native, keyboard-accessible
+disclosures, with one answer open at a time. They cover the RSVP deadline and
+process, children, plus-ones, ceremony photography, white attire and dress code.
+Answers fade in gently and respect reduced motion.
 
-The final Wedding Countdown page has the native save-the-date video player
-and live countdown, without redundant headings. The supplied
+The final Wedding Countdown page opens with “We can't wait to celebrate with
+you!” in Anastasia, followed by the native save-the-date video player and live
+countdown. The supplied
 `assets/prenups/Save the Date Video - Leslie and Serj.mov` is served as a 1080p
 H.264/AAC MP4 at `/leslie-and-serj/video/save-the-date.mp4` with fast-start
 metadata and a poster taken from the actual film. The original is preserved.
@@ -130,17 +144,17 @@ party scope and attendee limits. No other event's guest list is reused.
 
 Before launch, provision the event with access mode name_search and response
 mode household, import the approved guest list, and activate it. A read-only
-check on September 18 found no event with this slug. The RSVP deadline remains
-unset until supplied. Reception time, verified map pins, direct registry URL,
+check on September 18 found no event with this slug. The client-confirmed RSVP
+deadline is 30 November 2026. Reception time, verified map pins, direct registry URL,
 and any additional logistics still require client confirmation. Optional
-unprovided story, photos, hashtag and FAQ answers remain hidden.
+unprovided story, photos and hashtag remain hidden.
 
 ## Validation
 
 Run `node node_modules/typescript/bin/tsc --noEmit --noUncheckedSideEffectImports`
 (the global npm/npx launchers on this workstation are broken). Review affected
 pages at desktop, mobile and short mobile sizes; check paired name order,
-overflow, forward/backward turns, navigation and FAQ-to-gifts linking.
+overflow, forward/backward turns, navigation and FAQ disclosure behavior.
 
 ## Generated artwork
 

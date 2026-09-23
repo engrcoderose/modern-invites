@@ -153,7 +153,7 @@ export default function OpeningScreen({
             Click to open
           </span>
         </motion.button>
-        <p className="text-[9px] tracking-[0.2em] opacity-70">{wedding.date}</p>
+        <p className="text-[9px] tracking-[0.2em] opacity-70">{wedding.openingCaption}</p>
       </motion.div>
     </div>
   );

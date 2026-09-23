@@ -9,7 +9,7 @@ import {
 } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { useIsPresent } from "framer-motion";
-import { ArrowUpRight, Check, Music2, Pause, Play } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Music2, Pause, Play } from "lucide-react";
 import {
   entourage,
   attireDetails,
@@ -60,7 +60,7 @@ function Names({
 }) {
   return (
     <div
-      className={`lj-names ${paired ? "grid grid-cols-2 gap-x-6 lj-mobile:gap-x-4" : "space-y-1"}`}
+      className={`lj-names grid gap-y-2.5 lj-mobile:gap-y-2 ${paired ? "grid-cols-2 gap-x-6 lj-mobile:gap-x-4" : ""}`}
     >
       {names.map((person) => (
         <p key={person.name}>
@@ -84,7 +84,7 @@ function PartyGroup({
   paired?: boolean;
 }) {
   return (
-    <div className="lj-party-group">
+    <div className="lj-party-group flex flex-col gap-3 lj-mobile:gap-2.5">
       <h3 className="lj-label">{title}</h3>
       <Names names={names} paired={paired} />
     </div>
@@ -106,11 +106,13 @@ function PartyPage({
 }) {
   return (
     <div
-      className={`lj-party-page flex flex-col items-center gap-6 lj-mobile:gap-5 ${leading ? "[@media(max-height:740px)]:gap-3 [@media(max-height:740px)]:pb-8" : ""}`}
+      className={`lj-party-page flex flex-col items-center gap-7 lj-mobile:gap-6 ${leading ? "[@media(max-height:740px)]:gap-5 [@media(max-height:740px)]:pb-8" : ""}`}
     >
       {leading}
-      <Ornament className="lj-ornament !m-0 !h-5" />
-      <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
+      <div className="flex flex-col items-center gap-4 lj-mobile:gap-3">
+        <Ornament className={`lj-ornament !m-0 !h-5 ${leading ? "[@media(max-height:740px)]:hidden" : ""}`} />
+        <h2 className="lj-gratitude-heading">With Love and Gratitude</h2>
+      </div>
       {title && (
         <h3
           className={
@@ -387,11 +389,8 @@ function Venue({ reception = false }: { reception?: boolean }) {
       aria-label={reception ? "The reception" : "The ceremony"}
     >
       <div className="flex flex-col items-center gap-3 lj-mobile:gap-1">
-        <p className="lj-label">
-          {reception ? "Reception at" : "The ceremony"}
-        </p>
         <div
-          className="lj-venue-art relative h-[140px] w-[210px] max-w-full lj-mobile:order-first lj-mobile:h-[clamp(60px,calc(15svh-40px),110px)] lj-mobile:w-[165px]"
+          className="lj-venue-art relative h-[140px] w-[210px] max-w-full lj-mobile:h-[clamp(60px,calc(15svh-40px),110px)] lj-mobile:w-[165px]"
           aria-hidden="true"
         >
           <Image
@@ -402,6 +401,9 @@ function Venue({ reception = false }: { reception?: boolean }) {
             className="object-contain"
           />
         </div>
+        <p className="lj-label">
+          {reception ? "Dinner and Dancing to follow at" : "The Ceremony"}
+        </p>
       </div>
       <h3 className="lj-venue-name">{venue.name}</h3>
       {!reception && (
@@ -412,6 +414,11 @@ function Venue({ reception = false }: { reception?: boolean }) {
       {venue.address && (
         <p className="max-w-[340px] text-[12px] leading-relaxed lj-mobile:text-[clamp(10.5px,1.5svh,12px)] lj-mobile:leading-normal">
           {venue.address}
+        </p>
+      )}
+      {reception && (
+        <p className="max-w-[340px] text-[12px] leading-relaxed lj-mobile:text-[clamp(10.5px,1.5svh,12px)] lj-mobile:leading-normal">
+          {wedding.reception.parking}
         </p>
       )}
       {venue.mapUrl && (
@@ -457,20 +464,14 @@ export function createInvitationPages({
 }: InvitationActions): InvitationPage[] {
   const storyPhotos = wedding.storyPhotos.slice(0, 30);
   const galleryPhotos = wedding.galleryPhotos.slice(0, 30 - storyPhotos.length);
-  const answeredFaqs = faqs.filter((faq) => faq.answer);
   return [
     {
       id: "home",
       label: "Invitation",
       content: (
         <div className="lj-opening-layout h-full">
-          <div className="lj-opening-panel relative grid h-full min-h-[420px] grid-rows-[auto_minmax(0,1fr)_auto_auto] items-center justify-items-center gap-4 px-10 py-10 lj-mobile:gap-3 lj-mobile:px-7 lj-mobile:py-7">
-            <p className="text-[12px] leading-relaxed lj-mobile:text-[10px]">
-              Together with our families, we
-              <br />
-              invite you to celebrate our wedding
-            </p>
-            <div className="lj-opening-logo relative aspect-[2533/3769] h-full max-h-[300px] min-h-0 overflow-hidden">
+          <div className="lj-opening-panel relative flex h-full min-h-[420px] flex-col items-center justify-center gap-6 px-10 py-6 text-center lj-mobile:gap-5 lj-mobile:px-7">
+            <div data-lj-reveal className="lj-opening-logo relative aspect-[2533/3769] h-[clamp(140px,28svh,240px)] shrink-0 overflow-hidden">
               <Image
                 src={weddingIllustration}
                 alt="A wedding couple dancing in a teacup"
@@ -482,9 +483,13 @@ export function createInvitationPages({
             </div>
             <h1 className="lj-opening-names flex w-full flex-col items-center text-[#5a6946]">
               <span>{wedding.bride}</span>
+              <span className="text-[0.65em]">and</span>
               <span>{wedding.groom}</span>
             </h1>
-            <p className="text-[16px] text-[#5a6946] lj-mobile:text-[14px]">
+            <p className="text-[12px] leading-relaxed lj-mobile:text-[11px]">
+              invite you to celebrate our love
+            </p>
+            <p className="lj-script-heading !text-[34px] text-[#5a6946] lj-mobile:!text-[28px]">
               {wedding.date}
             </p>
           </div>
@@ -514,14 +519,9 @@ export function createInvitationPages({
       content: (
         <div className="lj-venues px-8 py-9 lj-mobile:flex lj-mobile:min-h-full lj-mobile:flex-col lj-mobile:px-3 lj-mobile:py-3">
           <h2 className="sr-only">The Wedding Venue</h2>
-          <p className="mb-8 text-[12px] tracking-[0.08em] lj-mobile:mb-4 lj-mobile:text-[10px]">
-            {wedding.date}
-          </p>
-          <div className="grid grid-cols-2 gap-8 lj-mobile:flex-1 lj-mobile:grid-cols-1 lj-mobile:grid-rows-2 lj-mobile:gap-3">
+          <div className="grid grid-cols-2 gap-12 lj-mobile:flex-1 lj-mobile:grid-cols-1 lj-mobile:grid-rows-2 lj-mobile:gap-6">
             <Venue />
-            <div className="border-l border-[#dfd9be66] pl-8 lj-mobile:border-l-0 lj-mobile:border-t lj-mobile:pl-0 lj-mobile:pt-3">
-              <Venue reception />
-            </div>
+            <Venue reception />
           </div>
         </div>
       ),
@@ -568,7 +568,7 @@ export function createInvitationPages({
             .flat()
             .some((person) => person.needsReview)}
         >
-          <div className="lj-sponsor-pairs grid gap-3 lj-mobile:gap-2.5">
+          <div className="lj-sponsor-pairs grid gap-2.5 lj-mobile:gap-2">
             {entourage.principal.map((pair) => (
               <div
                 key={pair[0].name}
@@ -589,7 +589,7 @@ export function createInvitationPages({
       content: (
         <PartyPage
           leading={
-            <div className="lj-honor-attendants mb-2 grid w-full max-w-[560px] grid-cols-2 gap-6 lj-mobile:gap-4">
+            <div className="lj-honor-attendants grid w-full max-w-[560px] grid-cols-2 gap-6 lj-mobile:gap-4">
               <PartyGroup title="Maid of Honor" names={entourage.maidOfHonor} />
               <PartyGroup title="Best Man" names={entourage.bestMan} />
             </div>
@@ -601,19 +601,19 @@ export function createInvitationPages({
           ].some((person) => person.needsReview)}
         >
           <div className="lj-combined-party">
-            <div className="grid gap-5 lj-mobile:gap-4 [@media(max-height:740px)]:gap-3">
+            <div className="grid gap-6 lj-mobile:gap-5">
               {entourage.secondary.map((group) => (
                 <section
                   key={group.role}
                   aria-label={`${group.role} sponsors`}
-                  className="grid gap-2 [@media(max-height:740px)]:gap-1"
+                  className="grid gap-3 lj-mobile:gap-2.5"
                 >
                   <h4 className="lj-party-role">{group.role}</h4>
                   <Names names={group.names} paired />
                 </section>
               ))}
             </div>
-            <div className="mt-7 grid grid-cols-2 gap-6 lj-mobile:mt-6 lj-mobile:gap-4 [@media(max-height:740px)]:mt-5">
+            <div className="mt-8 grid grid-cols-2 gap-6 lj-mobile:gap-4 [@media(max-height:740px)]:mt-6">
               <PartyGroup title="Bridesmaids" names={entourage.bridesmaids} />
               <PartyGroup title="Groomsmen" names={entourage.groomsmen} />
             </div>
@@ -655,9 +655,24 @@ export function createInvitationPages({
             id: "attire",
             label: attireDetails.title,
             content: (
-              <div className="lj-attire-page flex flex-col items-center gap-4 lj-mobile:min-h-full lj-mobile:justify-evenly lj-mobile:gap-3">
+              <div className="lj-attire-page flex flex-col items-center gap-6 lj-mobile:gap-4">
                 <h2 className="lj-heading !m-0">{attireDetails.title}</h2>
-                <figure className="lj-attire-reference relative my-2 shrink-0 p-2 lj-mobile:p-1.5">
+                <div className="flex flex-col gap-4 lj-mobile:gap-3">
+                  <p className="lj-body">
+                    {attireDetails.introduction}
+                    <br />
+                    We kindly request <strong>{attireDetails.formality} attire.</strong>
+                  </p>
+                  <p className="lj-body">
+                    {attireDetails.colorFreedom}
+                    <br />
+                    <strong>No</strong> {attireDetails.reservedShades}
+                  </p>
+                  <p className="lj-body">
+                    To help our wedding party stand out, we politely ask guests to <strong>avoid</strong> wearing {attireDetails.weddingPartyColors}
+                  </p>
+                </div>
+                <figure className="lj-attire-reference relative shrink-0 p-2 lj-mobile:p-1.5">
                   <div className="relative aspect-[3/2] w-full">
                     <Image
                       src={attireReference}
@@ -669,7 +684,6 @@ export function createInvitationPages({
                     />
                   </div>
                 </figure>
-                <p className="lj-body">{wedding.attire}</p>
               </div>
             ),
           },
@@ -759,35 +773,20 @@ export function createInvitationPages({
       label: "FAQs",
       content: (
         <div className="lj-faq-page">
-          <h2 className="lj-heading !my-3 lj-mobile:!text-[36px]">
+          <h2 className="lj-heading !my-3 lj-mobile:!my-2 lj-mobile:!text-[clamp(28px,8.8vw,36px)]">
             A Few Helpful Details
           </h2>
-          <dl className="mt-4 text-left lj-mobile:mt-3">
-            {answeredFaqs.map((faq) => (
-              <div key={faq.question} className="py-3 lj-mobile:py-2">
-                <dt className="mb-2 lj-mobile:mb-1">{faq.question}</dt>
-                <dd className="lj-body">
-                  {faq.answer}
-                  {faq.link && (
-                    <>
-                      {" "}
-                      <a
-                        className="underline underline-offset-4"
-                        href={faq.link.href}
-                        onClick={(event) => {
-                          event.preventDefault();
-                          navigate(faq.link!.href.slice(1));
-                        }}
-                      >
-                        {faq.link.label}
-                      </a>
-                      .
-                    </>
-                  )}
-                </dd>
-              </div>
+          <div className="mt-4 text-left lj-mobile:mt-3">
+            {faqs.map((faq) => (
+              <details key={faq.question} name="wedding-faq" data-lj-reveal className="lj-faq-item group">
+                <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-4 py-3 lj-mobile:py-2">
+                  <span>{faq.question}</span>
+                  <ChevronDown aria-hidden="true" size={16} className="shrink-0 transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none" />
+                </summary>
+                <p className="lj-body lj-faq-answer pb-4 pr-7">{faq.answer}</p>
+              </details>
             ))}
-          </dl>
+          </div>
         </div>
       ),
     },
@@ -820,8 +819,8 @@ export function createInvitationPages({
       label: "Wedding Countdown",
       content: (
         <div className="lj-save-page flex flex-col items-center gap-8 lj-mobile:gap-6">
-          <h2 className="sr-only">
-            Wedding Countdown with Save the Date Video
+          <h2 className="max-w-[640px] text-center text-[clamp(30px,5vw,44px)]">
+            We can't wait to celebrate with you!
           </h2>
           <SaveTheDateFilm ready={mediaReady} onPlay={onVideoPlay} />
           <Countdown />
