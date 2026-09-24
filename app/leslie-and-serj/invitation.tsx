@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
-import { AnimatePresence, useReducedMotion } from "framer-motion";
+import { animate, AnimatePresence, motion, useMotionValue, useReducedMotion } from "framer-motion";
 import BookPage from "./book-page";
 import OpeningScreen from "./opening-screen";
 import { wedding } from "./data";
@@ -21,8 +21,7 @@ const interactive =
 
 export default function Invitation() {
   const [openingScreen, setOpeningScreen] = useState(true);
-  const [openingReveal, setOpeningReveal] = useState(false);
-  const revealInvitation = useCallback(() => setOpeningReveal(true), []);
+  const finishOpening = useCallback(() => setOpeningScreen(false), []);
   const book = useRef<HTMLDivElement>(null);
   const music = useRef<HTMLAudioElement>(null);
   const [active, setActive] = useState(0);
@@ -38,6 +37,15 @@ export default function Invitation() {
   const suppressClick = useRef(false);
   const initialLocationRead = useRef(false);
   const reduceMotion = useReducedMotion();
+  const controlsOpacity = useMotionValue(0);
+
+  useEffect(() => {
+    // Persist the final opacity instead of cancelling a native fill back to 0.
+    const animation = animate(controlsOpacity, openingScreen ? 0 : 1, {
+      duration: reduceMotion ? 0.15 : 0.65,
+    });
+    return () => animation.stop();
+  }, [controlsOpacity, openingScreen, reduceMotion]);
 
   useEffect(() => {
     if (!openingScreen) {
@@ -140,9 +148,10 @@ export default function Invitation() {
   }, [pageIds]);
 
   return (
-    <>
+    <div className="fixed inset-0 bg-[#f2ede0]">
       <div
         ref={book}
+        style={{ visibility: openingScreen ? "hidden" : "visible" }}
         inert={openingScreen}
         aria-hidden={openingScreen || undefined}
         className={`lj-wedding lj-book fixed inset-0 h-dvh grid overflow-hidden ${darkPagination ? "lj-dark-pagination" : ""}`}
@@ -187,7 +196,10 @@ export default function Invitation() {
         >
           Skip to invitation
         </a>
-        <header className="lj-nav py-0 px-[5%] flex items-center justify-between relative z-[30] lj-mobile:py-0 lj-mobile:px-[6%]">
+        <motion.header
+          style={{ opacity: controlsOpacity }}
+          className="lj-nav py-0 px-[5%] flex items-center justify-between relative z-[30] lj-mobile:py-0 lj-mobile:px-[6%]"
+        >
           <a
             href="#home"
             className="lj-brand flex items-center gap-[25px] lj-mobile:gap-[17px]"
@@ -253,7 +265,7 @@ export default function Invitation() {
               )}
             </nav>
           )}
-        </header>
+        </motion.header>
 
         <main
           className="lj-book-stage relative min-h-0 overflow-hidden overscroll-contain select-none"
@@ -318,7 +330,7 @@ export default function Invitation() {
               key={current.id}
               id={current.id}
               direction={direction}
-              revealReady={openingReveal || !openingScreen}
+              revealReady={!openingScreen}
               className={`lj-book-page lj-tone-${current.tone || "ivory"} ${current.id === "home" ? "lj-is-cover" : ""}`}
               label={`${active + 1} of ${pages.length}: ${current.label}`}
               onSettled={(page) => {
@@ -346,7 +358,10 @@ export default function Invitation() {
           </AnimatePresence>
         </main>
 
-        <footer className="lj-book-controls absolute inset-x-0 bottom-0 h-[var(--lj-controls-height)] z-[10] grid items-center gap-3 lj-mobile:pl-[4%] lj-mobile:pr-[4%] lj-mobile:gap-[5px]">
+        <motion.footer
+          style={{ opacity: controlsOpacity }}
+          className="lj-book-controls absolute inset-x-0 bottom-0 h-[var(--lj-controls-height)] z-[10] grid items-center gap-3 lj-mobile:pl-[4%] lj-mobile:pr-[4%] lj-mobile:gap-[5px]"
+        >
           <button
             className="lj-page-arrow flex items-center justify-center gap-[13px] py-[13px] px-[6px] min-h-11 lj-mobile:p-3"
             aria-label="Previous page"
@@ -380,7 +395,7 @@ export default function Invitation() {
             <span>Next</span>
             <ArrowRight size={18} />
           </button>
-        </footer>
+        </motion.footer>
         <MusicControl audio={music} />
       </div>
       {openingScreen && (
@@ -389,10 +404,9 @@ export default function Invitation() {
             // A rejected play request leaves the manual music control available.
             void music.current?.play().catch(() => {});
           }}
-          onReveal={revealInvitation}
-          onOpened={() => setOpeningScreen(false)}
+          onOpened={finishOpening}
         />
       )}
-    </>
+    </div>
   );
 }

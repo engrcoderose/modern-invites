@@ -96,7 +96,7 @@ export default function BookPage({
     return () => animation.stop();
   }, [present, turnDirection, reducedMotion, progress]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = page.current;
     if (!element) return;
     if (!present) {
@@ -107,7 +107,11 @@ export default function BookPage({
     }
     const targets = Array.from(
       element.querySelectorAll<HTMLElement>(revealTargets),
-    ).filter((target) => !target.closest("dialog"));
+    ).filter((target) =>
+      !target.closest("dialog") &&
+      // Keep the handed-off logo visible and stationary while the text fades in.
+      !(waitingForOpening.current && target.matches(".lj-opening-logo")),
+    );
     // Animate each group once, rather than applying motion to nested children too.
     const groups = targets.filter((target) =>
       !targets.some((parent) => parent !== target && parent.contains(target)),
@@ -117,9 +121,15 @@ export default function BookPage({
     const restoreOverflow = () => {
       if (content) content.style.overflowY = previousOverflow;
     };
-    // The rising elements must not briefly create a scrollbar and shift width.
+    // Keep scrollbars stable while content enters on the other book pages.
     if (content) content.style.overflowY = "hidden";
     if (!revealReady) {
+      if (id === "home") {
+        // Keep a real inline baseline, not a completed native animation
+        // which can reveal the text again when its fill is cancelled.
+        groups.forEach((target) => { target.style.opacity = "0"; });
+        return restoreOverflow;
+      }
       // Keep the entrance from playing unseen behind the closed cover.
       const hidden = groups.map((target) =>
         animate(target, { opacity: 0, y: reducedMotion ? 0 : 16 }, { duration: 0 }),
@@ -131,25 +141,42 @@ export default function BookPage({
     }
     const openingReveal = waitingForOpening.current;
     waitingForOpening.current = false;
-    const animations = groups.map((target, index) =>
-      animate(target, {
+    const animations = groups.map((target, index) => {
+      const timing = {
+        duration: reducedMotion ? 0 : openingReveal ? 0.5 : 0.85,
+        delay: reducedMotion ? 0 : openingReveal
+          ? Math.min(index * 0.08, 0.48)
+          : 0.4 + Math.min(index * 0.07, 0.42),
+      };
+      if (id === "home") {
+        target.style.opacity = reducedMotion ? "1" : "0";
+        // Animate a number and persist every value inline. Native opacity
+        // animations briefly reverted to the hidden baseline on completion.
+        return animate(reducedMotion ? 1 : 0, 1, {
+          ...timing,
+          ease: "easeInOut",
+          onUpdate: (opacity) => { target.style.opacity = String(opacity); },
+          onComplete: () => {
+            target.style.opacity = "1";
+            if (index === groups.length - 1) restoreOverflow();
+          },
+        });
+      }
+      return animate(target, {
         opacity: reducedMotion ? 1 : [0, 1],
         y: reducedMotion ? 0 : [openingReveal ? 16 : 10, 0],
       }, {
-        duration: reducedMotion ? 0 : openingReveal ? 1.1 : 0.85,
-        delay: reducedMotion ? 0 : openingReveal
-          ? 0.1 + Math.min(index * 0.12, 0.72)
-          : 0.4 + Math.min(index * 0.07, 0.42),
+        ...timing,
         ease: [0.22, 1, 0.36, 1],
         onComplete: index === groups.length - 1 ? restoreOverflow : undefined,
-      }),
-    );
+      });
+    });
     if (!groups.length) restoreOverflow();
     return () => {
       animations.forEach((animation) => animation.stop());
       restoreOverflow();
     };
-  }, [present, reducedMotion, revealReady]);
+  }, [id, present, reducedMotion, revealReady]);
 
   return (
     <motion.section
