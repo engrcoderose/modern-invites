@@ -19,13 +19,6 @@
 .lj-opening-screen {
   font-family: "Noto Serif", serif;
 }
-.lj-opening-doors {
-  perspective: 1800px;
-}
-.lj-opening-door {
-  backface-visibility: hidden;
-  will-change: transform, opacity;
-}
 .lj-opening-shade {
   background: radial-gradient(ellipse at 50% 40%, #07100a14, #07100a80);
 }
@@ -217,7 +210,6 @@
   box-shadow: 0 12px 32px #41463614;
 }
 
-
 .lj-map {
   border: 0;
   margin: 20px auto 0;
@@ -258,8 +250,14 @@
   animation: lj-faq-answer-in 250ms ease-out;
 }
 @keyframes lj-faq-answer-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .lj-photo-page figure {
   position: relative;
@@ -415,7 +413,6 @@
   .lj-review-note {
     margin-top: 15px;
   }
-
 }
 @media (max-height: 590px) {
   .lj-book {
@@ -537,7 +534,9 @@
   border: 1px solid #ac9b7680;
   outline: 1px solid #ac9b763d;
   outline-offset: 4px;
-  box-shadow: 0 8px 24px #413b2814, inset 0 0 18px #ac9b7612;
+  box-shadow:
+    0 8px 24px #413b2814,
+    inset 0 0 18px #ac9b7612;
 }
 .lj-gifts-page {
   max-width: 570px !important;
@@ -589,7 +588,6 @@
   .lj-rsvp-card {
     padding: 23px 18px;
   }
-
 }
 
 /* Client typography: Anastasia for headings, Noto Serif for readable details. */
@@ -633,7 +631,6 @@
   font-size: 14px;
 }
 @media (max-width: 700px) {
-
   .lj-names {
     font-size: clamp(10px, 2.82vw, 11px);
   }
@@ -713,11 +710,17 @@
   animation: lj-photo-crossfade 600ms ease-in-out both;
 }
 @keyframes lj-photo-crossfade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lj-photo-slide-enter { animation: none; }
+  .lj-photo-slide-enter {
+    animation: none;
+  }
 }
 
 .lj-venues {

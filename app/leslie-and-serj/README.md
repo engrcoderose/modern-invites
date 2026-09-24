@@ -32,10 +32,12 @@ The opening overlay is excluded from the page counter. Removed pages include
 With full hearts, Our Timeline, the first two FAQ pages, and the closing thank-you.
 Existing aliases for removed pages still resolve to the relevant current page.
 
-The opening cover glides outward with a shallow turn over 2.2 seconds. The logo
-fades first and the invitation text enters during the reveal, avoiding a blank
-pause. Focus remains in the opening dialog until it clears. Reduced motion uses
-a short fade without translation or rotation.
+The garden starts its 1.6-second fade as the framed logo moves and scales toward
+the invitation illustration over 1.4 seconds. The logo stays visible for the
+first 0.5 seconds, then dissolves while finishing its movement. The prompt and
+caption fade early; invitation text enters underneath during the transition.
+Focus remains in the opening dialog until it clears. Reduced motion skips the
+movement and uses a short 0.2-second fade.
 
 ## Presentation
 

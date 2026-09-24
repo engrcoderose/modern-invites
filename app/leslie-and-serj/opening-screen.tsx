@@ -7,6 +7,11 @@ import openingPhoto from "./assets/prenups/Photo background website.png";
 import { wedding } from "./data";
 import openingLogo from "./assets/designs/Opening Logo.png";
 
+const logoMoveDuration = 1.4;
+const coverFadeDuration = 1.6;
+const logoFadeDelay = 0.5;
+const openingEase = [0.42, 0, 0.22, 1] as const;
+
 export default function OpeningScreen({
   onOpen,
   onReveal,
@@ -17,7 +22,9 @@ export default function OpeningScreen({
   onOpened: () => void;
 }) {
   const [opening, setOpening] = useState(false);
+  const [logoDestination, setLogoDestination] = useState({ x: 0, y: 0, scale: 1 });
   const entrance = useRef<HTMLDivElement>(null);
+  const coverLogo = useRef<HTMLSpanElement>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -26,14 +33,28 @@ export default function OpeningScreen({
 
   useEffect(() => {
     if (!opening) return;
-    // Let the invitation enter while the cover clears, retaining the dialog's
-    // focus trap until both panels have finished moving.
-    const reveal = window.setTimeout(onReveal, reducedMotion ? 0 : 520);
+    // Reveal the invitation during the garden fade, just before the moving
+    // cover logo starts dissolving into the illustration underneath.
+    const reveal = window.setTimeout(onReveal, reducedMotion ? 0 : 400);
     return () => window.clearTimeout(reveal);
   }, [opening, reducedMotion, onReveal]);
 
   function openInvitation() {
     if (opening) return;
+    const target = document.querySelector<HTMLElement>("#home .lj-opening-logo");
+    if (!reducedMotion && coverLogo.current && target) {
+      const source = coverLogo.current.getBoundingClientRect();
+      const destination = target.getBoundingClientRect();
+      // The invitation logo waits 16px below its final position for its reveal.
+      const revealOffset = new DOMMatrixReadOnly(getComputedStyle(target).transform).m42;
+      // Match the illustration inside the sage frame, not the frame's edges.
+      // The artwork occupies about 68% of the supplied cover image's height.
+      setLogoDestination({
+        x: destination.left + destination.width / 2 - (source.left + source.width / 2),
+        y: destination.top - revealOffset + destination.height / 2 - (source.top + source.height * 0.49),
+        scale: destination.height / (source.height * 0.68),
+      });
+    }
     // Start playback within the guest's click/keypress to preserve browser
     // audio permission while the cover animation runs.
     onOpen();
@@ -67,79 +88,61 @@ export default function OpeningScreen({
       <h1 id="lj-opening-title" className="sr-only">
         Leslie and Serj — your wedding invitation
       </h1>
-      <div className="lj-opening-doors absolute inset-0" aria-hidden="true">
-        {(["left", "right"] as const).map((side) => (
-          <motion.div
-            key={side}
-            className={`lj-opening-door absolute inset-y-0 w-1/2 overflow-hidden ${side === "left" ? "left-0 origin-left" : "right-0 origin-right"}`}
-            initial={false}
-            animate={
-              opening
-                ? {
-                    x: reducedMotion
-                      ? "0%"
-                      : side === "left"
-                        ? "-105%"
-                        : "105%",
-                    rotateY: reducedMotion ? 0 : side === "left" ? -32 : 32,
-                    opacity: 0,
-                  }
-                : { x: "0%", rotateY: 0, opacity: 1 }
-            }
-            transition={{
-              duration: reducedMotion ? 0.2 : 2.2,
-              delay: reducedMotion ? 0 : 0.12,
-              ease: [0.32, 0, 0.18, 1],
-              opacity: {
-                duration: reducedMotion ? 0.2 : 1.5,
-                delay: reducedMotion ? 0 : 0.65,
-                ease: "easeInOut",
-              },
-            }}
-            onAnimationComplete={() => {
-              if (opening && side === "right") onOpened();
-            }}
-          >
-            <div
-              className={`absolute inset-y-0 w-[200%] ${side === "left" ? "left-0" : "right-0"}`}
-            >
-              <Image
-                src={openingPhoto}
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-              />
-              <div className="lj-opening-shade absolute inset-0" />
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <motion.div
+        className="absolute inset-0"
+        aria-hidden="true"
+        initial={false}
+        animate={{ opacity: opening ? 0 : 1 }}
+        transition={{ duration: reducedMotion ? 0.2 : coverFadeDuration, ease: "easeInOut" }}
+      >
+        <Image
+          src={openingPhoto}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="lj-opening-shade absolute inset-0" />
+      </motion.div>
       <motion.div
         className="relative mx-auto flex h-full max-w-xl flex-col items-center justify-between px-6 py-[clamp(24px,5svh,52px)]"
         initial={{ opacity: 0 }}
-        animate={{
-          opacity: opening ? 0 : 1,
-          y: opening && !reducedMotion ? -6 : 0,
-          scale: opening && !reducedMotion ? 0.985 : 1,
-        }}
+        animate={{ opacity: 1 }}
         transition={{
           duration: reducedMotion ? 0.15 : 0.7,
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <motion.button
+        <button
           type="button"
           disabled={opening}
           aria-label="Open Leslie and Serj’s wedding invitation"
           className="group flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-6 rounded-sm py-5 focus-visible:outline-none"
           onClick={openInvitation}
-          whileHover={reducedMotion || opening ? {} : { scale: 1.012 }}
-          whileTap={reducedMotion ? {} : { scale: 0.99 }}
-          transition={{ duration: 0.45 }}
         >
-          <span className="relative block h-[clamp(180px,49svh,390px)] aspect-[556/764] max-w-full shrink-0">
+          <motion.span
+            ref={coverLogo}
+            className="relative block h-[clamp(180px,49svh,390px)] aspect-[556/764] max-w-full shrink-0"
+            initial={false}
+            animate={{
+              ...(opening && !reducedMotion ? logoDestination : { x: 0, y: 0, scale: 1 }),
+              opacity: opening ? 0 : 1,
+            }}
+            style={{ transformOrigin: "50% 49%" }}
+            transition={{
+              duration: reducedMotion ? 0 : logoMoveDuration,
+              ease: openingEase,
+              opacity: {
+                delay: opening && !reducedMotion ? logoFadeDelay : 0,
+                duration: reducedMotion ? 0.2 : coverFadeDuration - logoFadeDelay,
+                ease: "easeInOut",
+              },
+            }}
+            onAnimationComplete={() => {
+              if (opening) onOpened();
+            }}
+          >
             <Image
               src={openingLogo}
               alt="Leslie and Serj dancing in a teacup inside a scalloped sage-green frame"
@@ -148,12 +151,24 @@ export default function OpeningScreen({
               sizes="(max-width: 700px) 70vw, 284px"
               className="object-contain"
             />
-          </span>
-          <span className="border-b border-[#f2ede04d] px-2 py-3 text-[11px] uppercase tracking-[0.2em] transition-colors group-hover:border-[#f2ede0] group-focus-visible:outline group-focus-visible:outline-1 group-focus-visible:outline-offset-4">
+          </motion.span>
+          <motion.span
+            className="border-b border-[#f2ede04d] px-2 py-3 text-[11px] uppercase tracking-[0.2em] transition-colors group-hover:border-[#f2ede0] group-focus-visible:outline group-focus-visible:outline-1 group-focus-visible:outline-offset-4"
+            initial={false}
+            animate={{ opacity: opening ? 0 : 1 }}
+            transition={{ duration: reducedMotion ? 0.2 : 0.4, ease: "easeInOut" }}
+          >
             Click to open
-          </span>
-        </motion.button>
-        <p className="text-[9px] tracking-[0.2em] opacity-70">{wedding.openingCaption}</p>
+          </motion.span>
+        </button>
+        <motion.p
+          className="text-[9px] tracking-[0.2em]"
+          initial={false}
+          animate={{ opacity: opening ? 0 : 0.7 }}
+          transition={{ duration: reducedMotion ? 0.2 : 0.4, ease: "easeInOut" }}
+        >
+          {wedding.openingCaption}
+        </motion.p>
       </motion.div>
     </div>
   );
