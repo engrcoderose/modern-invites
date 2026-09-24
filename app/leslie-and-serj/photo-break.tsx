@@ -24,7 +24,7 @@ const portraitPhotos = [
 ];
 const fullPagePhotos = [
   { src: group1, alt: "Leslie and Serj with their dogs in the kitchen", position: "center 45%" },
-  { src: group2, alt: "Leslie and Serj sitting together with their dog", position: "center" },
+  { src: group2, alt: "Leslie and Serj sitting together with their dog", position: "center top" },
   { src: group3, alt: "Leslie and Serj sharing a bite at the kitchen counter", position: "48% center" },
   { src: group4, alt: "Leslie and Serj smiling in an embrace", position: "center 35%" },
   { src: group5, alt: "Leslie and Serj laughing together at the kitchen counter", position: "43% center" },
