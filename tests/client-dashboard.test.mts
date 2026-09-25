@@ -7,6 +7,7 @@ import {
   GuestManagementError,
   deleteDashboardHousehold,
   updateDashboardGuest,
+  updateDashboardHousehold,
 } from "../features/dashboard/application/manage-dashboard-guests.ts";
 import type {
   AssignedDashboardEvent,
@@ -16,6 +17,7 @@ import type {
   DashboardGuest,
   DashboardGuestQuery,
   UpdateDashboardGuestCommand,
+  UpdateDashboardHouseholdCommand,
 } from "../features/dashboard/domain/client-dashboard.ts";
 import type { ClientDashboardRepository } from "../features/dashboard/domain/client-dashboard-repository.ts";
 import type {
@@ -36,6 +38,7 @@ class FakeDashboardRepository implements ClientDashboardRepository {
   events: AssignedDashboardEvent[] = [assignedEvent];
   createdGuests: CreateDashboardGuestCommand[] = [];
   updatedGuests: UpdateDashboardGuestCommand[] = [];
+  updatedHouseholds: UpdateDashboardHouseholdCommand[] = [];
   deletedHouseholdIds: number[] = [];
 
   async listAssignedEvents() {
@@ -73,6 +76,10 @@ class FakeDashboardRepository implements ClientDashboardRepository {
   }
 
   async deleteGuest() {}
+
+  async updateHousehold(_userId: string, command: UpdateDashboardHouseholdCommand) {
+    this.updatedHouseholds.push(command);
+  }
 
   async deleteHousehold(
     _userId: string,
@@ -227,4 +234,28 @@ test("an assigned event can be exported", async () => {
 
   assert.equal(workbook?.filename, "rsvp.xlsx");
   assert.equal(exporter.createCount, 1);
+});
+
+test("owners and editors can edit household names and guest limits", async () => {
+  for (const role of ["owner", "editor"] as const) {
+    const repository = new FakeDashboardRepository();
+    repository.role = role;
+    const command = { eventId: 42, householdId: 12, householdName: "Reyes Family", maximumGuests: 6 };
+    await updateDashboardHousehold(repository, "client-user-id", command);
+    assert.deepEqual(repository.updatedHouseholds, [command]);
+  }
+});
+
+test("viewers and unassigned clients cannot edit households", async () => {
+  for (const role of ["viewer", null] as const) {
+    const repository = new FakeDashboardRepository();
+    repository.role = role;
+    await assert.rejects(
+      updateDashboardHousehold(repository, "client-user-id", {
+        eventId: 42, householdId: 12, householdName: "Reyes Family", maximumGuests: 6,
+      }),
+      (error: unknown) => error instanceof GuestManagementError && error.code === "forbidden",
+    );
+    assert.deepEqual(repository.updatedHouseholds, []);
+  }
 });

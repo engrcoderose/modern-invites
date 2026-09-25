@@ -6,6 +6,7 @@ import type {
   DashboardGuest,
   DashboardGuestQuery,
   UpdateDashboardGuestCommand,
+  UpdateDashboardHouseholdCommand,
 } from "./client-dashboard";
 
 export interface ClientDashboardRepository {
@@ -40,5 +41,9 @@ export interface ClientDashboardRepository {
     userId: string,
     eventId: number,
     householdId: number,
+  ): Promise<void>;
+  updateHousehold(
+    userId: string,
+    command: UpdateDashboardHouseholdCommand,
   ): Promise<void>;
 }

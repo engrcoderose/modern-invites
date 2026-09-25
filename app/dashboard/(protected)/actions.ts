@@ -12,9 +12,12 @@ import {
   deleteDashboardGuest,
   deleteDashboardHousehold,
   updateDashboardGuest,
+  updateDashboardHousehold,
+  GuestManagementError,
 } from "@/features/dashboard/application/manage-dashboard-guests";
 import { createSupabaseClientDashboardRepository } from "@/features/dashboard/infrastructure/supabase-client-dashboard-repository";
 import type { GuestMutationState } from "@/features/dashboard/presentation/guest-mutation.types";
+import { householdSettingsSchema } from "@/features/dashboard/domain/household-settings";
 
 export async function logoutClientAction(): Promise<void> {
   const repository = await createSupabaseClientAuthRepository();
@@ -272,6 +275,43 @@ export async function deleteGuestAction(
     console.error("Dashboard guest deletion failed:", error);
     return invalidFormState(
       "The guest could not be removed. Check your permission and try again.",
+    );
+  }
+}
+
+export async function updateHouseholdAction(
+  _previousState: GuestMutationState,
+  formData: FormData,
+): Promise<GuestMutationState> {
+  const parsed = householdSettingsSchema.safeParse({
+    eventId: formData.get("eventId"),
+    householdId: formData.get("householdId"),
+    householdName: formData.get("householdName"),
+    maximumGuests: formData.get("maximumGuests"),
+  });
+
+  if (!parsed.success) {
+    return invalidFormState(
+      parsed.error.issues[0]?.message ?? "Review the household details and try again.",
+    );
+  }
+
+  try {
+    const context = await getAuthorizedClientContext();
+    if (!context) {
+      return invalidFormState("Your session has expired. Sign in again.");
+    }
+
+    await updateDashboardHousehold(context.dashboardRepository, context.userId, parsed.data);
+    revalidatePath(`/dashboard/events/${parsed.data.eventId}`);
+    return { status: "success", message: "Household updated successfully." };
+  } catch (error) {
+    if (error instanceof GuestManagementError) {
+      return invalidFormState(error.message);
+    }
+    console.error("Dashboard household update failed:", error);
+    return invalidFormState(
+      "The household could not be updated. Refresh the list, check your permission, and try again.",
     );
   }
 }

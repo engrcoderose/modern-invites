@@ -1,14 +1,15 @@
 import type {
   CreateDashboardGuestCommand,
   UpdateDashboardGuestCommand,
+  UpdateDashboardHouseholdCommand,
 } from "../domain/client-dashboard";
 import type { ClientDashboardRepository } from "../domain/client-dashboard-repository";
 
 export class GuestManagementError extends Error {
-  public readonly code: "forbidden" | "not_found" | "unexpected";
+  public readonly code: "forbidden" | "not_found" | "invalid" | "unexpected";
 
   constructor(
-    code: "forbidden" | "not_found" | "unexpected",
+    code: "forbidden" | "not_found" | "invalid" | "unexpected",
     message: string,
   ) {
     super(message);
@@ -72,4 +73,13 @@ export async function deleteDashboardHousehold(
     eventId,
     householdId,
   );
+}
+
+export async function updateDashboardHousehold(
+  repository: ClientDashboardRepository,
+  userId: string,
+  command: UpdateDashboardHouseholdCommand,
+) {
+  await requireGuestManager(repository, userId, command.eventId);
+  await repository.updateHousehold(userId, command);
 }

@@ -24,6 +24,7 @@ import {
   deleteGuestAction,
   deleteHouseholdAction,
   updateGuestAction,
+  updateHouseholdAction,
 } from "../../actions";
 
 interface WeddingDashboardPageProps {
@@ -166,6 +167,7 @@ export default async function WeddingDashboardPage({
                 eventId={eventId}
                 households={workspace.households}
                 action={deleteHouseholdAction}
+                updateAction={updateHouseholdAction}
               />
               <AddGuestForm
                 eventId={eventId}

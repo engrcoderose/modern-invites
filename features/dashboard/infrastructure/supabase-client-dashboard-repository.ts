@@ -1,5 +1,8 @@
 import "server-only";
 
+import { GuestManagementError } from "@/features/dashboard/application/manage-dashboard-guests";
+import { householdCapacityError } from "@/features/dashboard/domain/household-settings";
+
 import type {
   AssignedDashboardEvent,
   ClientEventWorkspace,
@@ -610,6 +613,37 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
 
       if (error || !data) {
         throw new Error("Unable to delete the guest.");
+      }
+    },
+
+    async updateHousehold(userId, command) {
+      await requireWritableMembership(userId, command.eventId);
+      const household = await getHousehold(command.householdId, command.eventId);
+      const capacityError = householdCapacityError(
+        command.maximumGuests,
+        toHousehold(household).guestCount,
+      );
+
+      if (capacityError) {
+        throw new GuestManagementError("invalid", capacityError);
+      }
+
+      const { data, error } = await supabase
+        .from("invitations")
+        .update({
+          household_name: command.householdName,
+          max_attendees: command.maximumGuests,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", command.householdId)
+        .eq("event_id", command.eventId)
+        .eq("household_name", household.household_name)
+        .eq("max_attendees", household.max_attendees)
+        .select("id")
+        .maybeSingle();
+
+      if (error || !data) {
+        throw new Error("Unable to update the household.");
       }
     },
 

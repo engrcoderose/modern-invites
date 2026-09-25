@@ -84,3 +84,10 @@ export interface UpdateDashboardGuestCommand {
   attendanceStatus: DashboardAttendanceStatus;
   dietaryRestrictions: string | null;
 }
+
+export interface UpdateDashboardHouseholdCommand {
+  eventId: number;
+  householdId: number;
+  householdName: string;
+  maximumGuests: number;
+}

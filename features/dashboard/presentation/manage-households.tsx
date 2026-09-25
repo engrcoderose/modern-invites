@@ -1,9 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
-import { Home, Loader2, Trash2, UsersRound } from "lucide-react";
+import { useActionState, useRef, useState } from "react";
+import { Home, Loader2, Pencil, Save, Trash2, UsersRound } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import type { DashboardHousehold } from "@/features/dashboard/domain/client-dashboard";
 import type { GuestMutationAction } from "./guest-mutation.types";
 import { initialGuestMutationState } from "./guest-mutation.types";
@@ -13,17 +15,105 @@ interface ManageHouseholdsProps {
   eventId: number;
   households: DashboardHousehold[];
   action: GuestMutationAction;
+  updateAction: GuestMutationAction;
 }
 
-function HouseholdDeleteForm({
+function HouseholdEditForm({
   eventId,
   household,
   action,
+  onClose,
 }: {
   eventId: number;
   household: DashboardHousehold;
   action: GuestMutationAction;
+  onClose: (saved?: boolean) => void;
 }) {
+  const [name, setName] = useState(household.name);
+  const [maximumGuests, setMaximumGuests] = useState(
+    String(household.maxAttendees),
+  );
+  const [state, formAction, isPending] = useActionState(
+    async (previousState: typeof initialGuestMutationState, formData: FormData) => {
+      const result = await action(previousState, formData);
+      if (result.status === "success") onClose(true);
+      return result;
+    },
+    initialGuestMutationState,
+  );
+
+  return (
+    <form action={formAction} className="mt-3 border-t border-black/10 pt-3">
+      <input type="hidden" name="eventId" value={eventId} />
+      <input type="hidden" name="householdId" value={household.id} />
+      <fieldset disabled={isPending} className="min-w-0 space-y-3">
+        <div className="space-y-1.5">
+          <Label htmlFor={`household-name-${household.id}`}>Household name</Label>
+          <Input
+            id={`household-name-${household.id}`}
+            name="householdName"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            required
+            maxLength={120}
+            autoFocus
+            className="bg-white"
+          />
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor={`household-maximum-${household.id}`}>Maximum guests</Label>
+          <Input
+            id={`household-maximum-${household.id}`}
+            name="maximumGuests"
+            type="number"
+            min={Math.max(1, household.guestCount)}
+            max={1000}
+            step={1}
+            required
+            value={maximumGuests}
+            onChange={(event) => setMaximumGuests(event.target.value)}
+            aria-describedby={`household-capacity-help-${household.id}`}
+            className="bg-white"
+          />
+          <p id={`household-capacity-help-${household.id}`} className="text-xs text-ink-muted">
+            Must be at least {Math.max(1, household.guestCount)}. Increasing the limit does not add guests.
+          </p>
+        </div>
+        {state.message ? (
+          <p role="alert" className="text-xs text-destructive">{state.message}</p>
+        ) : null}
+        <div className="flex flex-wrap justify-end gap-2">
+          <Button type="button" variant="outline" size="sm" onClick={() => onClose()}>
+            Cancel
+          </Button>
+          <Button type="submit" size="sm" className="bg-forest text-white hover:bg-forest-light">
+            {isPending ? (
+              <Loader2 aria-hidden="true" className="animate-spin" />
+            ) : (
+              <Save aria-hidden="true" />
+            )}
+            {isPending ? "Saving…" : "Save changes"}
+          </Button>
+        </div>
+      </fieldset>
+    </form>
+  );
+}
+
+function HouseholdCard({
+  eventId,
+  household,
+  action,
+  updateAction,
+}: {
+  eventId: number;
+  household: DashboardHousehold;
+  action: GuestMutationAction;
+  updateAction: GuestMutationAction;
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const editButtonRef = useRef<HTMLButtonElement>(null);
   const [state, formAction, isPending] = useActionState(
     action,
     initialGuestMutationState,
@@ -43,47 +133,83 @@ function HouseholdDeleteForm({
           </p>
         </div>
 
-        <form
-          action={formAction}
-          onSubmit={(event) => {
-            const guestDescription =
-              household.guestCount === 1
-                ? "1 guest and their RSVP data"
-                : `${household.guestCount} guests and their RSVP data`;
-
-            if (
-              !window.confirm(
-                `Remove ${household.name}? This will permanently remove ${guestDescription}.`,
-              )
-            ) {
-              event.preventDefault();
-            }
-          }}
-        >
-          <input type="hidden" name="eventId" value={eventId} />
-          <input
-            type="hidden"
-            name="householdId"
-            value={household.id}
-          />
+        <div className="flex shrink-0 items-center gap-1">
           <Button
-            type="submit"
+            ref={editButtonRef}
+            type="button"
             variant="ghost"
             size="icon"
-            disabled={isPending}
-            aria-label={`Remove ${household.name}`}
-            className="shrink-0 text-destructive hover:bg-destructive/10 hover:text-destructive"
+            aria-label={`Edit ${household.name}`}
+            aria-expanded={isEditing}
+            aria-controls={`household-editor-${household.id}`}
+            disabled={isPending || isEditing}
+            onClick={() => {
+              setSaved(false);
+              setIsEditing(true);
+            }}
+            className="text-forest"
           >
-            {isPending ? (
-              <Loader2 aria-hidden="true" className="animate-spin" />
-            ) : (
-              <Trash2 aria-hidden="true" />
-            )}
+            <Pencil aria-hidden="true" />
           </Button>
-        </form>
+          <form
+            action={formAction}
+            onSubmit={(event) => {
+              const guestDescription =
+                household.guestCount === 1
+                  ? "1 guest and their RSVP data"
+                  : `${household.guestCount} guests and their RSVP data`;
+
+              if (
+                !window.confirm(
+                  `Remove ${household.name}? This will permanently remove ${guestDescription}.`,
+                )
+              ) {
+                event.preventDefault();
+                return;
+              }
+              setSaved(false);
+            }}
+          >
+            <input type="hidden" name="eventId" value={eventId} />
+            <input type="hidden" name="householdId" value={household.id} />
+            <Button
+              type="submit"
+              variant="ghost"
+              size="icon"
+              disabled={isPending || isEditing}
+              aria-label={`Remove ${household.name}`}
+              className="shrink-0 text-destructive hover:bg-destructive/10 hover:text-destructive"
+            >
+              {isPending ? (
+                <Loader2 aria-hidden="true" className="animate-spin" />
+              ) : (
+                <Trash2 aria-hidden="true" />
+              )}
+            </Button>
+          </form>
+        </div>
       </div>
 
-      {state.message ? (
+      <div id={`household-editor-${household.id}`}>
+        {isEditing ? (
+          <HouseholdEditForm
+            eventId={eventId}
+            household={household}
+            action={updateAction}
+            onClose={(wasSaved) => {
+              setIsEditing(false);
+              setSaved(Boolean(wasSaved));
+              requestAnimationFrame(() => editButtonRef.current?.focus());
+            }}
+          />
+        ) : null}
+      </div>
+      {saved ? (
+        <p role="status" className="mt-2 text-xs text-emerald-700">
+          Household updated successfully.
+        </p>
+      ) : null}
+      {!isEditing && !saved && state.message ? (
         <p
           role={state.status === "error" ? "alert" : "status"}
           className={
@@ -103,6 +229,7 @@ export function ManageHouseholds({
   eventId,
   households,
   action,
+  updateAction,
 }: ManageHouseholdsProps) {
   const detailsRef = useDismissibleDetails();
 
@@ -123,7 +250,7 @@ export function ManageHouseholds({
               Manage households
             </p>
             <p className="text-xs text-ink-muted">
-              Removing one also removes its guests and RSVP data.
+              Edit names and guest limits. Removing a household also removes its guests and RSVP data.
             </p>
           </div>
         </div>
@@ -131,11 +258,12 @@ export function ManageHouseholds({
         {households.length > 0 ? (
           <div className="max-h-80 space-y-2 overflow-y-auto pr-1">
             {households.map((household) => (
-              <HouseholdDeleteForm
+              <HouseholdCard
                 key={household.id}
                 eventId={eventId}
                 household={household}
                 action={action}
+                updateAction={updateAction}
               />
             ))}
           </div>
