@@ -13,6 +13,7 @@ import { getClientEventWorkspace } from "@/features/dashboard/application/get-cl
 import type { DashboardAttendanceStatus } from "@/features/dashboard/domain/client-dashboard";
 import { createSupabaseClientDashboardRepository } from "@/features/dashboard/infrastructure/supabase-client-dashboard-repository";
 import { AddGuestForm } from "@/features/dashboard/presentation/add-guest-form";
+import { ImportGuests } from "@/features/dashboard/presentation/import-guests";
 import { DashboardRealtimeRefresh } from "@/features/dashboard/presentation/dashboard-realtime-refresh";
 import { DashboardSummaryCards } from "@/features/dashboard/presentation/dashboard-summary";
 import { GuestFilters } from "@/features/dashboard/presentation/guest-filters";
@@ -160,7 +161,7 @@ export default async function WeddingDashboardPage({
           />
 
           {canManage ? (
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <ManageHouseholds
                 eventId={eventId}
                 households={workspace.households}
@@ -170,6 +171,7 @@ export default async function WeddingDashboardPage({
                 eventId={eventId}
                 households={workspace.households}
               />
+              <ImportGuests eventId={eventId} />
             </div>
           ) : null}
         </div>

@@ -12,7 +12,7 @@
     "test:auth": "node --experimental-strip-types --test tests/admin-auth.test.mts",
     "test:client-auth": "node --experimental-strip-types --test tests/client-auth.test.mts",
     "test:clients": "node --experimental-strip-types --test tests/client-provisioning.test.mts tests/admin-event-creation.test.mts tests/admin-event-management.test.mts",
-    "test:dashboard": "node --experimental-strip-types --test tests/client-dashboard.test.mts tests/dashboard-guest-request.test.mts"
+    "test:dashboard": "node --experimental-strip-types --test tests/client-dashboard.test.mts tests/dashboard-guest-request.test.mts tests/guest-import.test.mts tests/guest-import-database.test.mts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -37,6 +37,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@types/node": "^22.10.1",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
