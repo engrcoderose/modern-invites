@@ -25,7 +25,7 @@ export function AddGuestForm({
   const [state, setState] = useState<AddGuestResult>({ status: "idle" });
   const [isPending, setPending] = useState(false);
   const submitting = useRef(false);
-  const [householdSelection, setHouseholdSelection] = useState("new");
+  const [householdSelection, setHouseholdSelection] = useState("individual");
   const detailsRef = useDismissibleDetails();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -36,11 +36,16 @@ export function AddGuestForm({
     setPending(true);
     setState({ status: "idle" });
     try {
-      const result = await submitDashboardGuest(eventId, new FormData(form));
+      const formData = new FormData(form);
+      if (householdSelection === "individual") {
+        formData.set("householdName", String(formData.get("fullName") ?? "").trim());
+        formData.set("maximumGuests", "1");
+      }
+      const result = await submitDashboardGuest(eventId, formData);
       setState(result);
       if (result.status === "success") {
         form.reset();
-        setHouseholdSelection("new");
+        setHouseholdSelection("individual");
         startRefresh(() => router.refresh());
       }
     } finally {
@@ -84,21 +89,27 @@ export function AddGuestForm({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="household-selection">Household</Label>
-            <select
-              id="household-selection"
+            <Label htmlFor="household-selection">Invitation</Label>
+            <input
+              type="hidden"
               name="invitationId"
               value={
-                householdSelection === "new"
+                householdSelection === "individual" || householdSelection === "new"
                   ? ""
                   : householdSelection
               }
+            />
+            <select
+              id="household-selection"
+              value={householdSelection}
               onChange={(event) =>
-                setHouseholdSelection(event.target.value || "new")
+                setHouseholdSelection(event.target.value)
               }
+              aria-describedby="invitation-help"
               className="h-9 w-full rounded-md border border-input bg-white px-3 text-sm shadow-sm"
             >
-              <option value="">Create a new household</option>
+              <option value="individual">Individual guest</option>
+              <option value="new">Create a new household</option>
               {households.map((household) => (
                 <option key={household.id} value={household.id}>
                   {household.name} ({household.guestCount} of{" "}
@@ -106,10 +117,10 @@ export function AddGuestForm({
                 </option>
               ))}
             </select>
-            <p className="text-xs text-ink-muted">
-              Choose an existing household to keep party members
-              together. Each option shows added guests against its
-              maximum.
+            <p id="invitation-help" className="text-xs text-ink-muted">
+              {householdSelection === "individual"
+                ? "One seat will be reserved under this guest’s name. No household details are needed."
+                : "Choose an existing household to keep party members together. Each option shows added guests against its maximum."}
             </p>
           </div>
 

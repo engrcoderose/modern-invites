@@ -43,6 +43,7 @@ export function ClientShell({
             <form action={logoutAction}>
               <Button
                 type="submit"
+                aria-label="Sign out"
                 variant="outline"
                 size="sm"
                 className="bg-white"
