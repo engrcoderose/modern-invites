@@ -35,6 +35,16 @@ const nextConfig: NextConfig = {
           has: [
             {
               type: "host",
+              value: "leslieandserjwedding\\.moderninvites\\.com",
+            },
+          ],
+          destination: "/leslie-and-serj",
+        },
+        {
+          source: "/",
+          has: [
+            {
+              type: "host",
               value: "seatfinder\\.anjoandjasminwedding\\.moderninvites\\.com",
             },
           ],

@@ -1,13 +1,38 @@
 # Leslie and Serj
 
-Route: `/leslie-and-serj`. The former `/leslie-and-john` route and asset URLs
+Public URL: `https://leslieandserjwedding.moderninvites.com`.
+Internal route: `/leslie-and-serj`. The former `/leslie-and-john` route and asset URLs
 permanently redirect here. The invitation remains noindex during client review.
 Sharing metadata includes a canonical URL, Open Graph and Twitter large-image
 cards, and a 1200 × 630 preview matching the opening screen at
-`/leslie-and-serj/opengraph-image`. URLs inherit the site's production metadata
-base (`https://www.moderninvites.com`).
+`/leslie-and-serj/opengraph-image` on the invitation subdomain. Canonical and
+sharing URLs use the invitation subdomain explicitly.
 The preview uses the same garden photograph, illustrated logo, opening prompt,
 and “Ours, evermore” caption as the cover.
+
+## Subdomain setup
+
+`next.config.ts` rewrites only `/` on the exact host
+`leslieandserjwedding.moderninvites.com` to `/leslie-and-serj`.
+The existing invitation route stays available, and other hosts keep their
+normal homepage. API and asset paths are unchanged. RSVP continues to use the
+event slug `leslie-and-serj` with the same guest list and saved responses;
+no database changes are needed.
+
+To activate the public URL:
+
+1. Deploy these changes to the existing production hosting project.
+2. In Vercel's project Settings > Domains, add
+   `leslieandserjwedding.moderninvites.com` to serve the same production project.
+3. At the DNS provider for `moderninvites.com`, add the CNAME supplied by Vercel
+   with the relative name `leslieandserjwedding` and the exact target it displays.
+4. Wait for domain verification and HTTPS certificate issuance.
+5. Check the new URL, invitation media and sharing preview. Manually verify RSVP
+   name search and an authorized test response, and confirm the main homepage
+   and existing invitation URL still work.
+
+The code change does not configure DNS or hosting. Live RSVP verification is
+left to the project owner; do not access Supabase to perform this check.
 
 ## Page sequence
 

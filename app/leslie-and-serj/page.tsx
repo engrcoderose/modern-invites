@@ -14,9 +14,9 @@ const anastasia = localFont({
 
 const invitationTitle = `${wedding.title} | ${wedding.date}`;
 const invitationDescription = `Join Leslie and Serj as they celebrate their wedding on ${wedding.date} at ${wedding.ceremony.name}, with a reception at ${wedding.reception.name}. View the invitation and RSVP.`;
-const invitationUrl = "/leslie-and-serj";
+const invitationUrl = "https://leslieandserjwedding.moderninvites.com";
 const previewImage = {
-  url: `${invitationUrl}/opengraph-image`,
+  url: `${invitationUrl}/leslie-and-serj/opengraph-image`,
   width: 1200,
   height: 630,
   alt: `${wedding.title}'s wedding invitation — ${wedding.date}`,

@@ -403,6 +403,7 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         declinedGuests,
         pendingGuests,
         invitationResult,
+        activeInvitationResult,
         rsvpResult,
         guestPage,
       ] = await Promise.all([
@@ -412,15 +413,21 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         countGuests(eventId, "pending"),
         supabase
           .from("invitations")
-          .select(
-            "id, household_name, max_attendees, guests(count)",
-            { count: "exact" },
-          )
+          .select("id, household_name, max_attendees, guests(count)")
           .eq("event_id", eventId)
           .order("household_name"),
+        // Deleting the last guest can leave a household and its RSVP behind.
+        // Keep empty households manageable, but exclude them from both totals.
+        supabase
+          .from("invitations")
+          .select("id, guests!inner(id)", {
+            count: "exact",
+            head: true,
+          })
+          .eq("event_id", eventId),
         supabase
           .from("rsvps")
-          .select("id, invitations!inner(event_id)", {
+          .select("id, invitations!inner(event_id, guests!inner(id))", {
             count: "exact",
             head: true,
           })
@@ -428,7 +435,11 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         loadGuestPage(eventId, query),
       ]);
 
-      if (invitationResult.error || rsvpResult.error) {
+      if (
+        invitationResult.error ||
+        activeInvitationResult.error ||
+        rsvpResult.error
+      ) {
         throw new Error("Unable to calculate RSVP totals.");
       }
 
@@ -439,7 +450,7 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
           attendingGuests,
           declinedGuests,
           pendingGuests,
-          totalInvitations: invitationResult.count ?? 0,
+          totalInvitations: activeInvitationResult.count ?? 0,
           submittedRsvps: rsvpResult.count ?? 0,
         },
         guestPage,
