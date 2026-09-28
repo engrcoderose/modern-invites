@@ -19,8 +19,23 @@ import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
 import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
 import joshuaBeaBackground from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
 import joshuaBeaCouple from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
+import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenup/bg-invite.jpg";
+import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
 
 const portfolioItems = [
+  {
+    id: "vincent-and-gabrielle",
+    title: "Vincent & Gabrielle",
+    category: "Wedding Invitation",
+    description:
+      "An olive and ivory wedding invitation with woodland details, page-turn animations, photo slideshows, music, and a wedding countdown.",
+    href: "/vincent-and-gabrielle",
+    bgImage: vincentGabrielleBackground,
+    previewImage: vincentGabrielleCouple,
+    accent: "#4b502a",
+    accentLight: "#f2ede0",
+    tags: ["Signature", "Olive & Ivory"],
+  },
   {
     id: "joshua-and-bea",
     title: "Joshua & Bea",

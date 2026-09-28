@@ -8,14 +8,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ScrollReveal from "@/components/landing/ScrollReveal";
+import { PRICING_PACKAGES } from "@/lib/pricing";
 
 const questions = [
   {
     question: "How much does a website invitation cost?",
     answer: (
       <p>
-        Packages currently range from ₱799 to ₱3,199, depending on the design
-        and features you need. See the complete comparison on our{" "}
+        {PRICING_PACKAGES.map((packageDetails) =>
+          `${packageDetails.name} is ₱${packageDetails.price}`,
+        ).join(", ")}
+        . All packages are a one-time payment. See the complete comparison on our{" "}
         <Link href="/pricing" className="font-semibold text-forest underline underline-offset-4">
           pricing page
         </Link>

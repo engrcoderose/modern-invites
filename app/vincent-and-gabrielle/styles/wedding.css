@@ -1,0 +1,741 @@
+@font-face {
+  font-family: "VG Noto Serif";
+  src: url("/vincent-and-gabrielle/fonts/noto-serif.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "VG Noto Serif";
+  src: url("/vincent-and-gabrielle/fonts/noto-serif-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+
+/* Outgoing leaves remain mounted only during their turn and are inert. */
+.vg-opening-screen {
+  font-family: "VG Noto Serif", serif;
+}
+.vg-opening-shade {
+  background: radial-gradient(ellipse at 50% 40%, #07100a14, #07100a80);
+}
+/* Crop only transparent margins of the approved 2000px VG artwork. */
+.vg-cover-artwork {
+  transform: scale(1.72);
+}
+.vg-opening-illustration {
+  width: 189.75%;
+  max-width: none;
+  height: 146.63%;
+  left: -44.87%;
+  top: -23.31%;
+}
+.vg-book {
+  --vg-controls-height: calc(78px + env(safe-area-inset-bottom));
+  grid-template-rows: 70px minmax(0, 1fr);
+  background: var(--vg-paper);
+  color: var(--vg-ink);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-family: "VG Noto Serif", serif;
+}
+.vg-book * {
+  box-sizing: border-box;
+}
+.vg-book :is(button, a, select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.vg-book button,
+.vg-book a,
+.vg-book select {
+  -webkit-tap-highlight-color: transparent;
+}
+.vg-book button {
+  cursor: pointer;
+}
+.vg-book button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.vg-skip {
+  background: var(--vg-paper);
+}
+.vg-skip:focus {
+  top: 10px;
+}
+.vg-label {
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.vg-body {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--vg-muted);
+  max-width: 510px;
+  margin: 0 auto;
+}
+.vg-heading {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 22px auto;
+}
+.vg-script-heading {
+  letter-spacing: 0;
+  font-size: clamp(48px, 6vw, 78px);
+}
+.vg-ornament {
+  width: 130px;
+  height: 27px;
+  margin: 22px auto;
+}
+.vg-monogram {
+  line-height: 1;
+}
+.vg-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.vg-text-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.vg-text-button {
+  border-bottom: 1px solid currentColor;
+}
+.vg-button {
+  border: 1px solid var(--vg-olive);
+  transition: background 0.2s;
+}
+.vg-button-outline:hover {
+  background: #dfe1cd;
+}
+.vg-button-solid {
+  background: var(--vg-olive);
+  color: #fbf7e8;
+}
+.vg-button-solid:hover {
+  background: #4b502a;
+}
+
+.vg-nav {
+  background: var(--vg-paper);
+  border-bottom: 1px solid var(--vg-line);
+}
+.vg-brand-date {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  border-left: 1px solid var(--vg-line);
+}
+.vg-desktop-nav {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.vg-desktop-nav a {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.vg-desktop-nav a:last-child {
+  border: 1px solid var(--vg-olive);
+  padding: 10px 18px;
+}
+.vg-book-stage {
+  touch-action: pan-y pinch-zoom;
+  isolation: isolate;
+  background: #313b29;
+}
+.vg-book-leaf {
+  outline: none;
+}
+.vg-book-page {
+  outline: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, #fffdf440, transparent 70%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, #ac9b761c),
+    var(--vg-paper);
+}
+.vg-book-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%238b8263' opacity='.32' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.vg-page-content {
+  scrollbar-width: thin;
+}
+.vg-page-content > div {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 950px;
+  margin: auto;
+}
+/* Overflow is a last-resort accessibility fallback for zoom and very short screens. */
+.vg-tone-olive {
+  color: #f2efdb;
+}
+.vg-tone-olive .vg-body {
+  color: #e0e1c9;
+}
+.vg-tone-olive::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #d4d6b24d;
+  outline: 1px solid #d4d6b220;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+/* The film scales with available page height to preserve the swipe layout. */
+.vg-film-frame {
+  width: min(600px, 100%, calc((100dvh - 460px) * 16 / 9));
+  min-width: 240px;
+  aspect-ratio: 16 / 9;
+  background: var(--vg-paper);
+  border: 1px solid var(--vg-gold);
+  box-shadow: 0 12px 32px #41463614;
+}
+
+.vg-map {
+  border: 0;
+  margin: 20px auto 0;
+}
+.vg-names sup {
+  font-size: 10px;
+  font-style: normal;
+  margin-left: 2px;
+  color: #d9dcad;
+}
+.vg-review-note {
+  font-size: 10px;
+  color: #d9ddbc;
+  margin: 26px 0 0;
+}
+.vg-faq-page {
+  max-width: 660px !important;
+}
+.vg-faq-item {
+  border-top: 1px solid var(--vg-line);
+}
+.vg-faq-item summary {
+  font-size: 15px;
+  line-height: 1.6;
+  list-style: none;
+}
+.vg-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.vg-faq-item summary:focus-visible {
+  outline: 2px solid var(--vg-olive, #5a6946);
+  outline-offset: 3px;
+}
+.vg-faq-answer.vg-body {
+  max-width: none;
+}
+.vg-faq-item[open] .vg-faq-answer {
+  animation: vg-faq-answer-in 250ms ease-out;
+}
+@keyframes vg-faq-answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.vg-photo-page figure {
+  position: relative;
+  flex: 1;
+  min-height: 200px;
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  border: 1px solid var(--vg-line);
+}
+.vg-photo-page img {
+  object-fit: contain;
+  padding: 12px;
+}
+.vg-story .vg-body {
+  white-space: pre-line;
+}
+
+.vg-book-controls {
+  grid-template-columns: 140px minmax(0, 1fr) 140px;
+  padding: 8px 5% max(8px, env(safe-area-inset-bottom));
+  background: transparent;
+}
+.vg-dark-pagination .vg-book-controls {
+  background: linear-gradient(180deg, transparent, #101b12c9);
+  color: var(--vg-paper);
+  text-shadow: 0 1px 5px #000b;
+}
+.vg-dark-pagination .vg-page-position > p {
+  color: var(--vg-paper);
+}
+.vg-dark-pagination .vg-page-arrow:hover:not(:disabled) {
+  background: #f2ede01a;
+}
+.vg-page-arrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.vg-page-arrow:hover:not(:disabled) {
+  background: #e9ebdf;
+}
+.vg-page-position > p {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--vg-muted);
+  margin-top: 3px;
+}
+.vg-page-count {
+  font-variant-numeric: tabular-nums;
+}
+.vg-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: calc(100% - 36px);
+  max-width: 490px;
+  max-height: 85dvh;
+  padding: 40px 30px;
+  background: var(--vg-paper);
+  color: var(--vg-ink);
+  text-align: center;
+  border: 1px solid var(--vg-olive);
+  box-shadow: 0 30px 90px #1e251d40;
+}
+.vg-dialog::backdrop {
+  background: #28301f88;
+  backdrop-filter: blur(5px);
+}
+.vg-dialog .vg-heading {
+  font-size: 40px;
+}
+.vg-dialog > .vg-ornament {
+  margin: 0 auto 23px;
+}
+
+@media (max-width: 700px) {
+  .vg-book {
+    --vg-controls-height: calc(74px + env(safe-area-inset-bottom));
+    grid-template-rows: 60px minmax(0, 1fr);
+  }
+  .vg-brand-date {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .vg-mobile-nav {
+    padding: 10px 6% 18px;
+    background: var(--vg-paper);
+    border-bottom: 1px solid var(--vg-line);
+    box-shadow: 0 12px 20px #343a211a;
+  }
+  .vg-mobile-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #c9cbb755;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .vg-body {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+  .vg-label {
+    font-size: 9px;
+    letter-spacing: 0.13em;
+  }
+  .vg-heading {
+    font-size: 44px;
+    margin: 18px auto;
+  }
+  .vg-script-heading {
+    font-size: clamp(40px, 12vw, 60px);
+  }
+
+  .vg-film-frame {
+    width: min(600px, 100%, calc((100dvh - 410px) * 16 / 9));
+  }
+  .vg-tone-olive::after {
+    inset: 12px;
+    outline-offset: 4px;
+  }
+  .vg-review-note {
+    font-size: 9px;
+    margin-top: 23px;
+  }
+  .vg-faq-page .vg-heading {
+    font-size: 44px;
+  }
+  .vg-faq-item summary {
+    font-size: 13px;
+  }
+  .vg-faq-page .vg-faq-answer {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .vg-book-controls {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .vg-page-arrow > span {
+    display: none;
+  }
+  .vg-dialog {
+    padding: 40px 23px 28px;
+  }
+  .vg-dialog .vg-heading {
+    font-size: 35px;
+  }
+}
+@media (max-height: 720px) {
+  .vg-review-note {
+    margin-top: 15px;
+  }
+}
+@media (max-height: 590px) {
+  .vg-book {
+    --vg-controls-height: calc(66px + env(safe-area-inset-bottom));
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
+  .vg-mobile-nav {
+    top: 52px;
+  }
+  .vg-faq-page .vg-heading {
+    font-size: 36px;
+  }
+  .vg-faq-item summary {
+    font-size: 12px;
+  }
+  .vg-faq-page .vg-faq-answer {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vg-book * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Vintage woodland stationery, adapted to the invitation's horizontal pages. */
+.vg-book {
+  --vg-paper: #f2ede0;
+  --vg-olive: #5a6946;
+  --vg-ink: #414636;
+  --vg-muted: #646650;
+  --vg-line: #bfb59a;
+  --vg-gold: #ac9b76;
+}
+.vg-label {
+  letter-spacing: 0.15em;
+}
+.vg-book-page::before {
+  opacity: 0.3;
+}
+.vg-monogram {
+  display: inline-block;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.vg-monogram img {
+  object-fit: contain;
+  transform: scale(1.8) translate(-2%, 3%);
+}
+.vg-woodland {
+  background: #263420;
+}
+.vg-woodland img {
+  object-fit: cover;
+  object-position: center;
+}
+.vg-woodland::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 30%, #101a124d),
+    linear-gradient(180deg, #17221318, #111e174f);
+}
+.vg-tone-woodland {
+  color: var(--vg-paper);
+}
+.vg-tone-woodland > .vg-woodland::after {
+  background:
+    radial-gradient(ellipse at 50% 45%, #17221880, #101a12b8),
+    linear-gradient(180deg, #17221818, #17221838);
+}
+.vg-tone-woodland .vg-body {
+  color: #f2ede0;
+}
+
+.vg-tone-olive {
+  background:
+    radial-gradient(ellipse at 50% 35%, #52604466, transparent 70%),
+    linear-gradient(135deg, #36432e, #293727);
+}
+.vg-tone-sage {
+  background: radial-gradient(ellipse at 50% 40%, #eeeadd, #dedecb);
+}
+.vg-ornament {
+  color: var(--vg-gold);
+}
+.vg-tone-olive .vg-ornament {
+  color: #d2c5a0;
+}
+.vg-script-accent {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+}
+.vg-attire-page {
+  max-width: 620px !important;
+}
+.vg-attire-page > .vg-heading {
+  font-size: 42px;
+}
+.vg-attire-page .vg-body {
+  font-family: "VG Noto Serif", serif;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.vg-attire-reference {
+  width: min(460px, 100%, max(180px, calc((100svh - 520px) * 3 / 2)));
+  background: var(--vg-paper);
+  border: 1px solid #ac9b7680;
+  outline: 1px solid #ac9b763d;
+  outline-offset: 4px;
+  box-shadow:
+    0 8px 24px #413b2814,
+    inset 0 0 18px #ac9b7612;
+}
+.vg-gifts-page {
+  max-width: 570px !important;
+}
+.vg-gift-copy .vg-body {
+  line-height: 1.3;
+}
+.vg-rsvp-page {
+  max-width: 560px !important;
+}
+.vg-rsvp-plaque {
+  background: var(--vg-paper);
+  color: var(--vg-ink);
+  border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%;
+  border: 1px solid #ac9b76;
+  outline: 2px solid #e4dac2;
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px #101c2433;
+}
+.vg-rsvp-plaque > h2 {
+  font-size: clamp(30px, 7.5vw, 36px);
+  line-height: 1.1;
+}
+.vg-rsvp-card {
+  background: var(--vg-paper);
+  color: var(--vg-ink);
+  border: 1px solid #baa987;
+  border-radius: 6px;
+  box-shadow: 0 14px 50px #111a1633;
+}
+.vg-rsvp-card .vg-body {
+  color: var(--vg-muted);
+}
+.vg-photo-page figure {
+  outline: 3px double var(--vg-gold);
+  outline-offset: 4px;
+  background: #eee7d6;
+}
+
+@media (max-width: 700px) {
+  .vg-attire-page > .vg-heading {
+    font-size: clamp(34px, 5svh, 44px);
+  }
+  .vg-attire-page .vg-body {
+    font-size: 12px;
+  }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  .vg-rsvp-card {
+    padding: 23px 18px;
+  }
+}
+
+/* Client typography: Anastasia for headings, VG Noto Serif for readable details. */
+.vg-book
+  :is(
+    h1,
+    h2,
+    h3,
+    .vg-heading,
+    .vg-script-heading,
+    .vg-script-accent,
+    .vg-rsvp-plaque > h2
+  ) {
+  font-family: var(--font-vg-anastasia), cursive;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+.vg-heading em {
+  font-style: normal;
+}
+
+.vg-book h3.vg-rsvp-form-heading {
+  font-family: "VG Noto Serif", serif;
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+/* A single stationery scale across parents, sponsors and both party pages. */
+.vg-names {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+}
+.vg-page-title {
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .vg-names {
+    font-size: clamp(10px, 2.82vw, 11px);
+  }
+  .vg-page-title {
+    font-size: 12px;
+  }
+}
+
+.vg-gratitude-heading {
+  font-size: clamp(28px, 6.5vw, 40px);
+}
+.vg-book h3.vg-party-serif-title,
+.vg-book .vg-party-group h3.vg-label,
+.vg-book h4.vg-party-role {
+  font-family: "VG Noto Serif", serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.vg-book h3.vg-party-serif-title {
+  font-size: 18px;
+}
+@media (max-width: 700px) {
+  .vg-book h3.vg-party-serif-title,
+  .vg-book .vg-party-group h3.vg-label,
+  .vg-book h4.vg-party-role {
+    font-size: 11px;
+  }
+  .vg-book h3.vg-party-serif-title {
+    font-size: 13px;
+  }
+}
+
+/* Full-width ivory invitation with the couple's formal names. */
+.vg-is-cover .vg-page-content {
+  padding: 0;
+}
+.vg-page-content > .vg-opening-layout {
+  max-width: none;
+}
+.vg-opening-panel::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #ac9b7657;
+  pointer-events: none;
+}
+.vg-opening-names {
+  font-size: clamp(36px, 4vw, 44px);
+  line-height: 1.2;
+}
+@media (max-width: 700px) {
+  .vg-opening-panel::after {
+    inset: 10px;
+  }
+  .vg-opening-names {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+}
+
+/* Shared woodland stationery for the ceremony and reception. */
+.vg-portrait-frame {
+  width: min(560px, 100%, calc((100svh - 300px) * 3 / 4));
+}
+.vg-photo-break-names {
+  font-size: clamp(48px, 7svh, 68px);
+  text-shadow: 0 2px 15px #172015b3;
+}
+.vg-photo-slide {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.vg-photo-slide-enter {
+  animation: vg-photo-crossfade 600ms ease-in-out both;
+}
+@keyframes vg-photo-crossfade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vg-photo-slide-enter {
+    animation: none;
+  }
+}
+
+.vg-venues {
+  border: 1px solid #dfd9be80;
+  outline: 1px solid #dfd9be40;
+  outline-offset: 7px;
+}
+.vg-venue-name {
+  font-size: clamp(34px, 3.7vw, 46px);
+}
+@media (max-width: 700px) {
+  .vg-venue-name {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+}
