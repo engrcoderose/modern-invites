@@ -4,16 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image, { type ImageLoaderProps } from "next/image";
 import { useIsPresent, useReducedMotion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
-import main1 from "./assets/prenups/Main-1.jpg";
-import main2 from "./assets/prenups/Main-2.jpg";
-import main3 from "./assets/prenups/Main-3.jpg";
-import main4 from "./assets/prenups/Main-4.jpg";
-import main5 from "./assets/prenups/Main-5.jpg";
-import group1 from "./assets/prenups/Group1 -1.jpg";
-import group2 from "./assets/prenups/Group1-2.jpg";
-import group3 from "./assets/prenups/Group1-3.jpg";
-import group4 from "./assets/prenups/Group1-4.jpg";
-import group5 from "./assets/prenups/Group1-5.jpg";
+import { main1, main2, main3, main4, main5, group1, group2, group3, group4, group5 } from "./media";
 
 const portraitPhotos = [
   { src: main1, alt: "Leslie and Serj sharing a sunlit embrace", position: "55% center" },
@@ -43,6 +34,7 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
   const [active, setActive] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
   const [loaded, setLoaded] = useState<number[]>([]);
+  const [directPhotos, setDirectPhotos] = useState<number[]>([]);
   const [paused, setPaused] = useState(false);
   const transitioning = useRef(false);
   const reducedMotion = useReducedMotion();
@@ -119,11 +111,14 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
               <Image
                 src={photo.src}
                 loader={slideshowImageLoader}
+                unoptimized={directPhotos.includes(index)}
                 quality={95}
                 alt={photo.alt}
                 fill
                 loading="eager"
                 onLoad={() => setLoaded((current) => current.includes(index) ? current : [...current, index])}
+                // Recover once from an optimizer timeout using the resized R2 source.
+                onError={() => setDirectPhotos((current) => current.includes(index) ? current : [...current, index])}
                 sizes={fullPage
                   ? `max(100vw, calc(100svh * ${photo.src.width / photo.src.height}))`
                   : `calc(min(747px, calc((100vw - 64px) * 4 / 3), calc(100svh - 300px)) * ${Math.max(0.75, photo.src.width / photo.src.height)})`}

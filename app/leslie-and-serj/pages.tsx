@@ -19,10 +19,7 @@ import {
   type Photo,
 } from "./data";
 import { Ornament } from "./artwork";
-import churchLogo from "./assets/designs/church_logo.png";
-import receptionLogo from "./assets/designs/reception_logo.png";
-import weddingIllustration from "./assets/designs/Wedding Logo.png";
-import attireReference from "./assets/designs/Wedding guest peg - rows.png";
+import { churchLogo, receptionLogo, weddingIllustration, attireReference } from "./media";
 import giftRegistryQr from "./assets/designs/Leslie and Serj - QR for Gift Registry.png";
 import PhotoBreak from "./photo-break";
 import RsvpFlow from "./rsvp-flow";

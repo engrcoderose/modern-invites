@@ -1,5 +1,5 @@
 import Image from "next/image";
-import monogram from "./assets/designs/Monogram.png";
+import { monogram } from "./media";
 
 export function Ornament({ className = "" }: { className?: string }) {
   return (

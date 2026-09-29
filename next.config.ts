@@ -80,6 +80,20 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
+        pathname: '/leslie-and-serj/prenups/**',
+        search: '?v=20260929',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
+        pathname: '/leslie-and-serj/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',

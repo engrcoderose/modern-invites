@@ -98,6 +98,29 @@ the Principal Sponsors title is 13px and 18px. The dense party page omits its
 ornament on short screens to retain readable spacing and clear the music control.
 
 The opening, Wedding Venue and Us backgrounds use the supplied Photo background website.png.
+This background, six design images, and ten slideshow photos are
+served from `https://assets.moderninvites.com/leslie-and-serj/` on Cloudflare R2.
+`media.ts` records their URLs and uploaded dimensions, preserving Next.js image
+optimization, responsive sizes, and crop positions. The R2 image allowlist is
+restricted to this client's path in `next.config.ts`.
+The sharing-image renderer fetches the R2 background and opening logo and embeds
+them in its generated PNG, with a one-day CDN cache header on the response.
+The original background exceeds Next.js's fetch-cache size limit, so the source
+fetches bypass that cache. The font remains local.
+Verified originals are backed up outside the repository under
+`../modern-invites-asset-backups/leslie-and-serj/{prenups,designs}/`.
+The gift-registry QR, woodland background, video poster, fonts, and music remain
+local. The slideshow uses quality-95 JPEG copies at 3840px width, replacing the
+10–14 MiB originals at the same `leslie-and-serj/prenups/` object keys. These
+smaller uploads total 21.09 MiB and are also backed up in
+`../modern-invites-asset-backups/leslie-and-serj/prenups-web/`.
+The slideshow URLs include `?v=20260929` to bypass CDN copies of the old
+originals. When replacing them again, update the version in `media.ts` and its
+matching allowlist query in `next.config.ts` so cached images refresh.
+If image optimization fails, that slide falls back once to its resized R2 source
+instead of remaining blank; successfully optimized slides keep responsive delivery.
+Uploaded but unused `Group1-6.jpg` and
+`Logo front.png` are not added to the invitation.
 The opening uses the supplied Opening Logo.png as-is, including its sage frame
 and original colors. The first invitation page retains the non-lace Wedding
 Logo.png illustration, cropped with CSS to preserve the original asset. That page
@@ -126,7 +149,7 @@ paragraphs and then the outfit reference. Formal or Cocktail is bold; “No” a
 green, orange, brown and yellow are reserved for the wedding party. Swatches are
 removed. The outfit collage places the eight existing women's examples above
 the five men's suits, following the client's layout reference. The original
-image remains preserved; `assets/designs/Wedding guest peg - rows.png` is the
+image remains preserved; `designs/Wedding guest peg - rows.png` on R2 is the
 transparent edited version. The built-in image-editing prompt is recorded in
 `assets/designs/dress-code-rows-prompt.md`.
 Gift preferences appear on the gifts page.

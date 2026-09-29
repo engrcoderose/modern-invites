@@ -2,17 +2,29 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { wedding } from "./data";
+import { openingPhoto, openingLogo } from "./media";
 
 export const alt = "Leslie and Serj's wedding invitation — 28 January 2027";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+async function fetchArtwork(url: string) {
+  const response = await fetch(url, {
+    // The original background exceeds Next.js's 2 MiB fetch-cache limit.
+    // Cache the smaller rendered response at the CDN instead of its inputs.
+    cache: "no-store",
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) throw new Error(`Sharing artwork unavailable: ${response.status}`);
+  return Buffer.from(await response.arrayBuffer());
+}
+
 export default async function OpenGraphImage() {
-  // Embed the same local artwork as the opening screen so sharing crawlers
-  // receive a complete image without fetching assets from another host.
+  // Fetch and embed the same R2 artwork as the opening screen. Sharing crawlers
+  // still receive one complete image; only the renderer needs access to R2.
   const [background, logo, font] = await Promise.all([
-    readFile(join(process.cwd(), "app/leslie-and-serj/assets/prenups/Photo background website.png")),
-    readFile(join(process.cwd(), "app/leslie-and-serj/assets/designs/Opening Logo.png")),
+    fetchArtwork(openingPhoto.src),
+    fetchArtwork(openingLogo.src),
     readFile(join(process.cwd(), "public/leslie-and-serj/fonts/instrument-serif.ttf")),
   ]);
 
@@ -31,6 +43,10 @@ export default async function OpenGraphImage() {
         {wedding.openingCaption}
       </div>
     </div>,
-    { ...size, fonts: [{ name: "Instrument Serif", data: font, weight: 400, style: "normal" }] },
+    {
+      ...size,
+      fonts: [{ name: "Instrument Serif", data: font, weight: 400, style: "normal" }],
+      headers: { "Cache-Control": "public, max-age=0, s-maxage=86400, stale-while-revalidate=86400" },
+    },
   );
 }

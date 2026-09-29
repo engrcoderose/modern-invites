@@ -8,7 +8,7 @@ import OpeningScreen from "./opening-screen";
 import { wedding } from "./data";
 import { Monogram } from "./artwork";
 import { createInvitationPages, MusicControl, WoodlandBackdrop } from "./pages";
-import slideshowBackground from "./assets/prenups/Photo background website.png";
+import { openingPhoto as slideshowBackground } from "./media";
 
 const chapters = [
   ["The Wedding Venue", "the-day"],

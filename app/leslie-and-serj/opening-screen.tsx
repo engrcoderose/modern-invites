@@ -3,10 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
-import openingPhoto from "./assets/prenups/Photo background website.png";
+import { openingPhoto, openingLogo, weddingIllustration } from "./media";
 import { wedding } from "./data";
-import openingLogo from "./assets/designs/Opening Logo.png";
-import weddingIllustration from "./assets/designs/Wedding Logo.png";
 
 const logoMoveDuration = 1.4;
 const coverFadeDuration = 1.6;
