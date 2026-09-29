@@ -1,0 +1,32 @@
+.sample {
+  background: #f7f5ee;
+  color: #263e35;
+}
+
+.sample :is(button, input, textarea):focus-visible {
+  outline: 2px solid #517662;
+  outline-offset: 4px;
+}
+
+.invitation {
+  background:
+    radial-gradient(ellipse at 0% 100%, #41645180, transparent 65%),
+    #1e3a30;
+  color: #f7f5ee;
+}
+
+.monogram {
+  border: 1px solid #c6b88b70;
+  border-radius: 50% 50% 4px 4px;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+}
+
+.display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.card {
+  box-shadow: 0 20px 70px #263e3508;
+}
