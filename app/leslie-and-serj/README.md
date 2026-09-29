@@ -140,8 +140,15 @@ The final Wedding Countdown page opens with “We can't wait to celebrate with
 you!” in Anastasia, followed by the native save-the-date video player and live
 countdown. The supplied
 `assets/prenups/Save the Date Video - Leslie and Serj.mov` is served as a 1080p
-H.264/AAC MP4 at `/leslie-and-serj/video/save-the-date.mp4` with fast-start
-metadata and a poster taken from the actual film. The original is preserved.
+H.264/AAC MP4 on Cloudflare R2 at
+`https://assets.moderninvites.com/leslie-and-serj/video/save-the-date.mp4`
+with fast-start metadata. The poster remains at
+`/leslie-and-serj/video/save-the-date-poster.jpg`. The MP4 is excluded from
+the repository's public assets to reduce Vercel deployment storage. A verified
+local copy is kept outside the repository in
+`../modern-invites-asset-backups/leslie-and-serj/video/save-the-date.mp4`.
+Upload and verify replacement videos in R2 before changing the URL in `data.ts`.
+Older Vercel deployments retain their media until those deployments are deleted.
 The countdown targets 2027-01-28T13:00:00+08:00, updates each second and stops
 at zero. The video autoplays with sound inline when this page is active and the
 opening cover has cleared, pauses on departure, and starts again on return.

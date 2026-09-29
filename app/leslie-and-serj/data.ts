@@ -101,7 +101,7 @@ export const wedding = {
     text: "The countdown begins",
     providedBy: "Foreverlove",
     note: "Save the Date Video - Leslie and Serj.mov",
-    src: "/leslie-and-serj/video/save-the-date.mp4",
+    src: "https://assets.moderninvites.com/leslie-and-serj/video/save-the-date.mp4",
     poster: "/leslie-and-serj/video/save-the-date-poster.jpg",
   },
 };
