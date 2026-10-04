@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { BrownLineFlower } from "../design-media";
 import Reveal from "./motion/Reveal";
 import FloralAccent from "./FloralAccent";
-import { StoryWalk, StoryEmbrace, PrenupMoment } from "../photo-media";
+import { storyPhotos, storyQuotePhoto } from "../media";
 import { wedding } from "../data";
 import Monogram from "./Monogram";
 
@@ -24,22 +25,13 @@ export default function Story() {
             </p>
             <h2
               id="story-title"
-              className="mt-5 font-serif text-[clamp(2.75rem,4.5vw,4.5rem)] uppercase leading-[1.12] tracking-[-.035em]"
+              className="mt-5 font-serif text-[clamp(2.25rem,4vw,3.5rem)] uppercase leading-[1.12] tracking-[-.035em]"
             >
-              A love in
-              <br />
-              full bloom
+              {wedding.story.title}
             </h2>
-            <div className="mt-8 max-w-lg space-y-7">
-              {wedding.story.slice(0, 2).map((chapter) => (
-                <article key={chapter.date}>
-                  <h3 className="font-instrumentSerif text-2xl leading-tight sm:text-3xl">
-                    {chapter.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
-                    {chapter.description}
-                  </p>
-                </article>
+            <div className="mt-8 max-w-lg space-y-5 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
+              {wedding.story.chapters[0].paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </Reveal>
@@ -48,11 +40,12 @@ export default function Story() {
             className="relative aspect-[4/3] w-full overflow-hidden border-[8px] border-[rgb(var(--aj-paper))] shadow-[10px_10px_0_#d3b6a133,0_18px_35px_-20px_#51423755]"
           >
             <Image
-              src={StoryWalk}
-              alt="A couple running hand in hand through an autumn park"
+              src={storyPhotos[0].src}
+              alt={storyPhotos[0].alt}
               fill
               sizes="(max-width: 768px) 90vw, 50vw"
-              className="object-cover object-[50%_45%]"
+              style={{ objectPosition: storyPhotos[0].position }}
+              className="object-cover"
             />
           </Reveal>
         </div>
@@ -64,42 +57,50 @@ export default function Story() {
           className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[600px]"
         >
           <Image
-            src={StoryEmbrace}
-            alt="A couple sharing a kiss beneath a tree"
+            src={storyPhotos[1].src}
+            alt={storyPhotos[1].alt}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-[50%_75%]"
+            style={{ objectPosition: storyPhotos[1].position }}
+            className="object-cover"
           />
         </Reveal>
         <div className="relative flex items-center overflow-hidden bg-[rgb(var(--aj-sand))] px-8 pb-36 pt-16 text-[rgb(var(--aj-ink))] sm:px-12 sm:pb-48 md:pt-20 lg:px-20">
           <Reveal className="relative mx-auto w-full max-w-lg">
             <Monogram className="h-28 w-28 sm:h-32 sm:w-32" sizes="128px" />
-            {wedding.story.slice(2).map((chapter) => (
-              <article key={chapter.date} className="mt-8">
+            {wedding.story.chapters.slice(1).map((chapter) => (
+              <article key={chapter.title} className="mt-8">
                 <h3 className="font-serif text-[clamp(2.5rem,4.5vw,4.5rem)] uppercase leading-[1.12] tracking-[-.035em]">
                   {chapter.title}
                 </h3>
-                <p className="mt-7 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
-                  {chapter.description}
-                </p>
+                <div className="mt-7 space-y-5 text-sm leading-8 text-[rgb(var(--aj-muted))] lg:text-base">
+                  {chapter.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </article>
             ))}
           </Reveal>
         </div>
       </div>
 
-      <div aria-hidden="true" className="relative h-12 bg-[rgb(var(--aj-sand))] sm:h-20 lg:h-24">
-        <FloralAccent
-          kind="cosmos"
-          className="bottom-0 right-0 w-80 max-w-full sm:w-[440px] md:max-w-[50%]"
+      <div
+        aria-hidden="true"
+        className="relative h-12 bg-[rgb(var(--aj-sand))] sm:h-20 lg:h-24"
+      >
+        <Image
+          src={BrownLineFlower}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 right-0 h-auto w-80 max-w-full select-none sm:w-[440px] md:max-w-[50%]"
           sizes="(max-width: 639px) 320px, 440px"
         />
       </div>
 
       <div className="relative isolate grid items-center overflow-hidden bg-[rgb(var(--aj-olive-deep))] text-center text-[#f2dcdf]">
         <Image
-          src={PrenupMoment}
-          alt="A couple embracing in the warm evening light"
+          src={storyQuotePhoto.src}
+          alt={storyQuotePhoto.alt}
           sizes="100vw"
           className="col-start-1 row-start-1 block h-auto w-full"
         />

@@ -3,33 +3,25 @@ import { entouragePreparation, type EntouragePreparation } from "../data";
 import Reveal from "./motion/Reveal";
 
 export default function EntourageDirections() {
-  const preparations: EntouragePreparation[] = entouragePreparation.length
-    ? entouragePreparation
-    : [{ group: "For our entourage" }];
+  if (!entouragePreparation.length) return null;
+  const preparations: EntouragePreparation[] = entouragePreparation;
 
   return (
     <Reveal className="mb-10">
       <section
         id="entourage-directions"
         aria-labelledby="entourage-directions-title"
-        className="overflow-hidden rounded-xl border border-[#c8c9b1] bg-[rgb(var(--aj-paper))] shadow-[0_12px_40px_-25px_#51423740]"
+        className="overflow-hidden rounded-xl border border-[rgb(var(--aj-line))]/70 bg-[rgb(var(--aj-paper))] shadow-[0_12px_40px_-25px_#51423740]"
       >
-        <header className="border-b border-[#c8c9b1] bg-[rgb(var(--aj-sand))] px-6 py-8 text-center sm:px-9">
-          <p className="text-[10px] uppercase tracking-[.25em] text-[rgb(var(--aj-accent-dark))]">
-            Before the celebration
-          </p>
+        <header className="border-b border-[rgb(var(--aj-line))]/70 bg-[rgb(var(--aj-sand))] px-6 py-8 text-center sm:px-9">
           <h3
             id="entourage-directions-title"
-            className="mt-3 font-instrumentSerif text-3xl text-[rgb(var(--aj-ink))] sm:text-4xl"
+            className="font-instrumentSerif text-3xl text-[rgb(var(--aj-ink))] sm:text-4xl"
           >
             Entourage preparation &amp; directions
           </h3>
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-[rgb(var(--aj-muted))]">
-            A little guide for our wedding party: where to get ready, when to
-            arrive, and special reminders for the day.
-          </p>
         </header>
-        <div className="divide-y divide-[#e3cbd5]">
+        <div className="divide-y divide-[rgb(var(--aj-line))]/40">
           {preparations.map((preparation, index) => {
             const mapHref =
               preparation.mapUrl ||
@@ -97,7 +89,7 @@ export default function EntourageDirections() {
                     href={mapHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[rgb(var(--aj-accent))] px-6 py-3 text-sm text-[rgb(var(--aj-cream))] transition-colors hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))]"
+                    className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[rgb(var(--aj-accent))] px-6 py-3 text-sm text-[rgb(var(--aj-ivory))] transition-colors hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))]"
                   >
                     Directions to preparation venue
                     <ArrowUpRight size={16} aria-hidden="true" />

@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-10-04T14:17:46.018Z",
+  "tracks": [
+    {
+      "filename": "Ebe Dancel - Bawat Daan.mp3",
+      "url": "https://assets.moderninvites.com/anjo-and-jasmin/music/Ebe%20Dancel%20-%20Bawat%20Daan.mp3",
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "bytes": 3926102,
+      "acceptRanges": "bytes",
+      "available": true,
+      "sha256": "41ea9ea5f51fe69db7665c6641171d38a989c057b3be6f4bcd0d17697a2740d6",
+      "completeGetVerified": true
+    },
+    {
+      "filename": "El Manu - Tahanan.mp3",
+      "url": "https://assets.moderninvites.com/anjo-and-jasmin/music/El%20Manu%20-%20Tahanan.mp3",
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "bytes": 4694654,
+      "acceptRanges": "bytes",
+      "available": true,
+      "sha256": "9e55a519fdb551c42b3c80f28f7a74208c832e903337a3945857e468a53e023c",
+      "completeGetVerified": true
+    },
+    {
+      "filename": "libu-libong-buwan.mp3",
+      "url": "https://assets.moderninvites.com/anjo-and-jasmin/music/libu-libong-buwan.mp3",
+      "status": 200,
+      "contentType": "audio/mpeg",
+      "bytes": 2905773,
+      "acceptRanges": "bytes",
+      "available": true,
+      "sha256": "acb83ebd08a09a53820d3bf57fa7f77346bdefb1eb5c58213e1c76b1ed7d4624",
+      "completeGetVerified": true
+    }
+  ]
+}

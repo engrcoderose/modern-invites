@@ -16,6 +16,14 @@
   --aj-sand: 241 224 203;
 }
 
+.classic-garden-invitation .aj-warm-photo-theme {
+  --aj-olive-deep: 162 108 58;
+  --aj-olive-shadow: 162 108 58;
+  --aj-ivory: 255 255 255;
+  --aj-sand: 255 255 255;
+  --aj-line: 185 145 111;
+}
+
 .classic-garden-invitation .aj-botanical {
   filter: saturate(0.9) sepia(0.03);
 }
@@ -23,13 +31,116 @@
 .classic-garden-invitation section[id] {
   scroll-margin-top: 5rem;
 }
+
+/* Quiet interaction details share the same easing as the section entrances. */
+.classic-garden-invitation .aj-nav-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 7px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.classic-garden-invitation .aj-nav-link:hover::after,
+.classic-garden-invitation .aj-nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .classic-garden-invitation .aj-hover-card {
+    transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .classic-garden-invitation .aj-hover-card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 767px) {
+  html:has(.classic-garden-invitation) {
+    scrollbar-width: none;
+  }
+
+  html:has(.classic-garden-invitation)::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.classic-garden-invitation .aj-attire {
+  background:
+    radial-gradient(ellipse at 0% 0%, #cfaa7c45, transparent 48%),
+    radial-gradient(ellipse at 100% 100%, #cfaa7c40, transparent 48%),
+    linear-gradient(145deg, #efddc6, #faf4ea 48%, #ead3bf);
+}
+
+.classic-garden-invitation .aj-seat-finder-pattern {
+  background-size: 640px auto;
+  background-repeat: repeat;
+  mix-blend-mode: screen;
+}
+
+/* Warm brown paper with continuous botanical detail across the entourage. */
+.classic-garden-invitation .aj-entourage {
+  background:
+    radial-gradient(ellipse at 12% 0%, #ba96643d, transparent 60%),
+    radial-gradient(ellipse at 100% 85%, #ba966429, transparent 55%),
+    linear-gradient(145deg, #825e37, #754f28 55%, #624122);
+}
+.classic-garden-invitation .aj-entourage-pattern {
+  background-size: 760px auto;
+  background-repeat: repeat;
+  mix-blend-mode: screen;
+  opacity: 0.12;
+}
+
+.classic-garden-invitation .aj-entourage-sponsors {
+  background: radial-gradient(ellipse at center, rgb(var(--aj-ivory) / 0.05), transparent 72%);
+}
+.classic-garden-invitation .aj-entourage-sponsors::before,
+.classic-garden-invitation .aj-entourage-sponsors::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgb(var(--aj-ivory) / 0.3), transparent);
+  pointer-events: none;
+}
+.classic-garden-invitation .aj-entourage-sponsors::before {
+  top: 0;
+}
+.classic-garden-invitation .aj-entourage-sponsors::after {
+  bottom: 0;
+}
+
+.classic-garden-invitation .aj-entourage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.17;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+}
+
+.classic-garden-invitation .aj-program-card::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgb(var(--aj-line) / 0.45);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
 .classic-garden-invitation .aj-prenup-frame::before,
 .classic-garden-invitation .aj-prenup-frame::after {
   content: "";
   position: absolute;
   inset: -3px;
   pointer-events: none;
-  border: 1px solid #d6bc8e;
+  border: 1px solid rgb(var(--aj-line));
   border-radius: 7px;
 }
 @media (min-width: 640px) {
@@ -264,15 +375,17 @@
   animation-name: aj-hero-ampersand;
   animation-duration: 2200ms;
 }
-.classic-garden-invitation .hero-photo {
-  animation: aj-hero-zoom 12s ease-in-out infinite alternate;
-  animation-play-state: paused;
-}
-.classic-garden-invitation
-  #top[data-playing="true"]
-  [data-active="true"]
-  .hero-photo {
-  animation-play-state: running;
+@media (min-width: 640px) {
+  .classic-garden-invitation .hero-photo {
+    animation: aj-hero-zoom 12s ease-in-out infinite alternate;
+    animation-play-state: paused;
+  }
+  .classic-garden-invitation
+    #top[data-playing="true"]
+    [data-active="true"]
+    .hero-photo {
+    animation-play-state: running;
+  }
 }
 .classic-garden-invitation .hero-scroll-cue {
   animation: aj-hero-scroll 2400ms ease-in-out infinite;

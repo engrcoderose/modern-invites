@@ -1,0 +1,300 @@
+{
+  "base": "https://assets.moderninvites.com/anjo-and-jasmin/images/prenups",
+  "verifiedAt": "2026-10-04T13:21:50.046Z",
+  "images": [
+    {
+      "filename": "garden-walk-with-clear-umbrellas.jpg",
+      "bytes": 1523348,
+      "sha256": "19d619944f3bfbc986781ad7ff1f3957da33eac9f1b8e3cd224cb93b0e365147",
+      "verified": true
+    },
+    {
+      "filename": "boat-ride-smiling-and-holding-hands.jpg",
+      "bytes": 1387341,
+      "sha256": "c51970132b73733d2b3e0ec3f707a8ad960c7ccf1a97613d4f0c95e4420b0e15",
+      "verified": true
+    },
+    {
+      "filename": "boat-kiss-with-ducks-sepia.jpg",
+      "bytes": 1804764,
+      "sha256": "5c34c03673c2f4f691a0e18d6e339fe5d6d8b8a6c8d842617355bb41d0963607",
+      "verified": true
+    },
+    {
+      "filename": "sunlit-forehead-touch-landscape.jpg",
+      "bytes": 1368443,
+      "sha256": "4a1b4fca3b0d5e943368ec30fbc4fed187b55315f084dfee4609aa76dfed4762",
+      "verified": true
+    },
+    {
+      "filename": "tree-dance-color.jpg",
+      "bytes": 1370323,
+      "sha256": "7e6cdfff48bbbc26f7e858e3c613ee31ed9e50e6cd5ad3ddeb12dfc7f023f14d",
+      "verified": true
+    },
+    {
+      "filename": "playful-back-hug-indoors.jpg",
+      "bytes": 1408178,
+      "sha256": "eada170b7471209ff95f897e8aca563e28e929e7d23dd79475f02db31d9fb7e0",
+      "verified": true
+    },
+    {
+      "filename": "boat-ride-pond-wide-view.jpg",
+      "bytes": 1583471,
+      "sha256": "a60b44d08ddf2fb4712974ff6dd0d7037c37278f08130f42191dd3e6bf39504b",
+      "verified": true
+    },
+    {
+      "filename": "hands-reaching-close-up.jpg",
+      "bytes": 1395784,
+      "sha256": "eb9fe85b628150576dcda7e1d64148a2eb830151a0074f64369f729f42a3707e",
+      "verified": true
+    },
+    {
+      "filename": "seated-couple-with-two-dogs.jpg",
+      "bytes": 1206940,
+      "sha256": "e2f051752ed555ec8c2af71095351e1e7c50781bba352c3cb74eff1db46c353d",
+      "verified": true
+    },
+    {
+      "filename": "indoor-cuddle-eyes-closed.jpg",
+      "bytes": 1202363,
+      "sha256": "aabc1b52de3c125182b342350f0c2e221f12947620fc651299988978dbc02b55",
+      "verified": true
+    },
+    {
+      "filename": "playful-shoulder-hug-close-up.jpg",
+      "bytes": 1292404,
+      "sha256": "ca64c4af4c26a9299fe003dbf8a1e7c087a61b0d758b6f90efdf768249b67062",
+      "verified": true
+    },
+    {
+      "filename": "warm-indoor-embrace-close-up.jpg",
+      "bytes": 996635,
+      "sha256": "f588de63e9cef81f8691408256f4d49b754e72166500a9e335e58961075ab0af",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-kiss-portrait.jpg",
+      "bytes": 1036807,
+      "sha256": "234efa7fa49b7950b34777331493240418503361c8e2a989bd5dd8682f0c9183",
+      "verified": true
+    },
+    {
+      "filename": "rowing-boat-with-ducks.jpg",
+      "bytes": 1457837,
+      "sha256": "fc1413e428c319a3f704b825ab20f3c9591aa3cbd5075e71f15318e4615b66ec",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-cuddle-01.jpg",
+      "bytes": 992711,
+      "sha256": "385135a2d2d4f54a7a5be2cf7600aebb63340134874f177add0b411c8ebaa721",
+      "verified": true
+    },
+    {
+      "filename": "running-together-in-golden-rain.jpg",
+      "bytes": 2067054,
+      "sha256": "262a054d8a3b92774d3e37fab251a1c851857986798eb2fddad854d6c2909483",
+      "verified": true
+    },
+    {
+      "filename": "boat-ride-ducks-in-foreground.jpg",
+      "bytes": 1531701,
+      "sha256": "53a6a9cd18591ef6b44f1b11fde7ef48475b3ea2dd1245cdb68ed4d6aa0249f2",
+      "verified": true
+    },
+    {
+      "filename": "garden-dip-and-laughter.jpg",
+      "bytes": 1417401,
+      "sha256": "9f6084385c318025b24b7cf1e0ac3d4916d8e1e8e40af861683f324ac35d4ed1",
+      "verified": true
+    },
+    {
+      "filename": "boat-kiss-with-ducks-portrait.jpg",
+      "bytes": 1448059,
+      "sha256": "6a00fd421f28df7de303ef1509239d717e89d6024208d0ac71b949b49b0008c5",
+      "verified": true
+    },
+    {
+      "filename": "holding-hands-in-boat-detail.jpg",
+      "bytes": 866706,
+      "sha256": "05a02098ba9b3eb3e5434269712e3c7676700fd008e1a9425e718fea0dfc257a",
+      "verified": true
+    },
+    {
+      "filename": "engagement-ring-outstretched-hand.jpg",
+      "bytes": 979731,
+      "sha256": "6880f70641f722e41cb6f7f7972f2a3ee3ff00dfa57eb68e5f41e21d6ae15471",
+      "verified": true
+    },
+    {
+      "filename": "sunlit-garden-lift.jpg",
+      "bytes": 1486107,
+      "sha256": "fc7b4c9f9fd52e77d32996acb2ae834d170c59c79131e51338373a7706eec5b8",
+      "verified": true
+    },
+    {
+      "filename": "sunlit-forehead-touch-portrait.jpg",
+      "bytes": 1536623,
+      "sha256": "63ab725a67a595118ec8d136cd914f410154d047b267e10ebfebe870cacaf703",
+      "verified": true
+    },
+    {
+      "filename": "indoor-kiss-with-wall-shadows.jpg",
+      "bytes": 1122078,
+      "sha256": "449e370b1424675b218ba2d73a17c0bf4a7219002342b2a1375724315698d40e",
+      "verified": true
+    },
+    {
+      "filename": "kiss-across-wooden-table.jpg",
+      "bytes": 1349567,
+      "sha256": "a32793fc9b6a15cfcfac5d094269701724125623d38655df63152304a8b4bc22",
+      "verified": true
+    },
+    {
+      "filename": "engagement-ring-holding-hands.jpg",
+      "bytes": 1635423,
+      "sha256": "4e0820f12c82f1b44b251c85b28a6519e17bc01e0c3d22f6154ccdaac1324d16",
+      "verified": true
+    },
+    {
+      "filename": "seated-cuddle-on-wooden-table.jpg",
+      "bytes": 1233008,
+      "sha256": "4fab08b468d3a7703ace6e8ca8c7bc3799dda5999229ba2c22f79e11e2e6f34b",
+      "verified": true
+    },
+    {
+      "filename": "shoulder-hug-and-smiles.jpg",
+      "bytes": 1311916,
+      "sha256": "a0ad03e7d9a01713a1401d2a5241db2df8d1e13755ac4d8bcb7abf6e78e7e55d",
+      "verified": true
+    },
+    {
+      "filename": "indoor-cuddle-with-backlight.jpg",
+      "bytes": 994524,
+      "sha256": "6ec40473fdb0eacf06d92b8ee22db39d30598c7b55b51a7294303ea189b98036",
+      "verified": true
+    },
+    {
+      "filename": "jasmin-warm-light-close-up.jpg",
+      "bytes": 1221511,
+      "sha256": "14441b4ea5c35c69ca398cf2f5be01bbeff6560fed4e3ee12cd6fb1f40b7da7b",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-dance-tilted-view.jpg",
+      "bytes": 836035,
+      "sha256": "156b590902aea6b16c5d5fe2eab4918236b3a9f7698459939f08f02fdfe54c3c",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-cuddle-02.jpg",
+      "bytes": 812538,
+      "sha256": "1055ab6a5d2318c66a36d23140328e6a5ccfb4fd0dc8b5cb0b8383343a5092b1",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-dance-twirl.jpg",
+      "bytes": 1399615,
+      "sha256": "e0a7526c1f8fb50c01feb7102c03c9cadb06f51779f9547073bdff98a1e08f8f",
+      "verified": true
+    },
+    {
+      "filename": "tree-dance-sepia.jpg",
+      "bytes": 1828764,
+      "sha256": "debcc399268e80b8f09d2f135152a599e801c5964ac96a1bb378713eb8d18715",
+      "verified": true
+    },
+    {
+      "filename": "umbrella-walk-on-lit-bridge.jpg",
+      "bytes": 1518949,
+      "sha256": "597f88171c9f72b381eff20b2331cde1e97cdafa6ed0d26c9a260f65da6f0c61",
+      "verified": true
+    },
+    {
+      "filename": "forehead-touch-sepia-close-up.jpg",
+      "bytes": 1778530,
+      "sha256": "8db80ac5254366c97d0cdd7a054685dd24c78a18680b43ec5b77f0dd205ef2dd",
+      "verified": true
+    },
+    {
+      "filename": "golden-rain-embrace-portrait.jpg",
+      "bytes": 1420711,
+      "sha256": "52f5e04d9ba48e313d44c6146b9614abc1c396ccac86eee42a9dc216ec64c010",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-forehead-touch.jpg",
+      "bytes": 1133357,
+      "sha256": "6c6f3fbf45d84d4d2a9f9bce9027e1a03d18c32a02c1f23bd64406e5191b6dd5",
+      "verified": true
+    },
+    {
+      "filename": "bonfire-slow-dance.jpg",
+      "bytes": 1044591,
+      "sha256": "252800fc25b442d5745bd6f6692f844291c54df7e80938dc421845db4df4ac3f",
+      "verified": true
+    },
+    {
+      "filename": "couple-with-two-dogs-sharing-a-look.jpg",
+      "bytes": 1182211,
+      "sha256": "4eba3b7e1fa5658476b5ec330bc0a73ba240ef651c41393745e93bc2ce8a93f2",
+      "verified": true
+    },
+    {
+      "filename": "engagement-ring-on-chest-detail.jpg",
+      "bytes": 1612998,
+      "sha256": "bded422e826f829271069abd5640ce433c1c0ccabec5ffca9c1435dcb44ddf45",
+      "verified": true
+    },
+    {
+      "filename": "rain-dance-holding-hands-sepia.jpg",
+      "bytes": 2055369,
+      "sha256": "295e2aa1c5f4cc50746adf87aaa53b675940f49d98f2c3c1ae5c6cd890c0fd9c",
+      "verified": true
+    },
+    {
+      "filename": "boat-ride-face-to-face.jpg",
+      "bytes": 874256,
+      "sha256": "70e56b252a1e4ad5a3149c85e5b68933a6cadd1e0bda1067ab53417ada69e0f5",
+      "verified": true
+    },
+    {
+      "filename": "boat-kiss-pond-wide-view.jpg",
+      "bytes": 1625013,
+      "sha256": "5d805452d98edb7385d1e82b5e60973cfc2e5eb1d084fbde2129a8e6dea19ac3",
+      "verified": true
+    },
+    {
+      "filename": "boat-ride-with-ducks.jpg",
+      "bytes": 1732009,
+      "sha256": "76299318b8df39b2ede6e9e42f5125a8d69facec3abb000bff44750e5363d30a",
+      "verified": true
+    },
+    {
+      "filename": "jasmin-backlit-portrait.jpg",
+      "bytes": 1225973,
+      "sha256": "4752be07a54f8200da2f682872cf53360887fb2eb90928d8f64b4d48d7b36b5c",
+      "verified": true
+    },
+    {
+      "filename": "garden-lift-and-embrace.jpg",
+      "bytes": 1335069,
+      "sha256": "8258cba361a83e65d74aed3a39d72e2459ca8ac64047a5e40ea91284f5d7a63d",
+      "verified": true
+    },
+    {
+      "filename": "laughing-together-in-back-hug.jpg",
+      "bytes": 1422497,
+      "sha256": "b6102804f81228feb6ca1e5c78f70cb5ddb87d3eda2be8ff6171c81cf3267ff9",
+      "verified": true
+    },
+    {
+      "filename": "golden-rain-lift-and-twirl.jpg",
+      "bytes": 1342399,
+      "sha256": "8d788a4ad1b95a174bfc8922b906f5d7eac2cd424a91746fea4747d965f73896",
+      "verified": true
+    }
+  ]
+}

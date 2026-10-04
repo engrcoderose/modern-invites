@@ -1,21 +1,19 @@
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./motion/Reveal";
 import SectionPetals from "./SectionPetals";
-import { giftRegistries } from "../data";
+import { giftNote, giftRegistries } from "../data";
 
 export default function GiftRegistrySection() {
   return (
     <section id="gifts" aria-labelledby="gift-title" className="relative scroll-mt-16 overflow-hidden bg-[rgb(var(--aj-cream))] px-5 py-16 text-[rgb(var(--aj-ink))] sm:px-8 sm:py-24">
       <SectionPetals variant="pink" />
       <Reveal className="relative mx-auto max-w-5xl text-center">
-        <p className="text-[10px] uppercase tracking-[.3em] text-[rgb(var(--aj-accent-dark))] sm:text-xs">Gift registry</p>
+        <p className="text-[10px] uppercase tracking-[.3em] text-[rgb(var(--aj-accent-dark))] sm:text-xs">Gifts</p>
         <h2 id="gift-title" className="mt-6 font-instrumentSerif text-[clamp(3rem,7vw,7rem)] font-normal leading-[1.08] tracking-[-.025em]">
           Your presence is our<br /><span className="mt-4 block font-meaCulpa text-[rgb(var(--aj-accent-dark))] sm:mt-6">greatest gift.</span>
         </h2>
-        <p className="mx-auto mt-8 max-w-4xl text-sm leading-8 text-[rgb(var(--aj-muted))] sm:text-lg sm:leading-9 lg:text-xl">
-          Having you beside us as we begin our married life means more than words can say. Your love, laughter, and warm wishes will make our celebration truly special.
-        </p>
-        {giftRegistries.length > 0 ? (
+        <p className="mx-auto mt-8 max-w-xl text-sm leading-7 text-[rgb(var(--aj-muted))] sm:text-base sm:leading-8">{giftNote}</p>
+        {giftRegistries.length > 0 && (
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
             {giftRegistries.map(registry => (
               <li key={registry.url}>
@@ -26,10 +24,6 @@ export default function GiftRegistrySection() {
               </li>
             ))}
           </ul>
-        ) : (
-          <p className="mx-auto mt-6 max-w-3xl text-sm leading-8 text-[rgb(var(--aj-muted))] sm:text-base">
-            Our gift preferences and any registry details will be shared here soon. Thank you for thinking of us with so much love.
-          </p>
         )}
       </Reveal>
     </section>

@@ -24,10 +24,7 @@ import {
   Play,
   X,
 } from "lucide-react";
-import WelcomePhoto from "./assets/images/gallery/pexels-camera-treasure-928922-14106227.jpg";
-import HeroPhoto from "./assets/images/gallery/happy-couple.jpg";
-import BannerPhoto from "./assets/images/gallery/walking-couple.jpg";
-import PortraitPhoto from "./assets/images/gallery/pexels-camera-treasure-928922-16841002.jpg";
+import { IndoorCuddle as WelcomePhoto, LaughingHug as HeroPhoto, UmbrellaWalk as BannerPhoto, ShoulderHug as PortraitPhoto } from "./prenup-media";
 import WildflowerFrame from "./assets/wildflower-frame.png";
 import FoldText from "./components/FoldText";
 
@@ -81,7 +78,7 @@ function OpeningScreen() {
       className={`wildflower-opening fixed inset-0 z-[100] overflow-hidden ${closing ? "wildflower-opening--closing" : ""}`}
     >
       <div className="opening-photo absolute -inset-[6%]">
-        <Image src={WelcomePhoto} alt="A couple sharing a joyful moment" fill priority sizes="100vw" className="object-cover object-center" />
+        <Image src={WelcomePhoto} alt="Anjo and Jasmin sharing a quiet embrace indoors" fill priority sizes="100vw" className="object-cover object-center" />
       </div>
       <div className="absolute inset-0 bg-[#172019]/35" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,22,18,.34),rgba(18,22,18,.08)_42%,rgba(14,18,14,.55))]" />
@@ -202,7 +199,7 @@ function HeroSection() {
     <section id="top" ref={sectionRef} className="relative h-[155vh] bg-[#d7ded4]">
       <div className="sticky top-0 h-svh overflow-hidden">
         <motion.div style={reduceMotion ? undefined : { scale: imageScale, y: imageY }} className="absolute -inset-y-[5%] inset-x-0">
-          <Image src={HeroPhoto} alt="A couple laughing together" fill priority sizes="100vw" className="object-cover object-center" />
+          <Image src={HeroPhoto} alt="Anjo and Jasmin laughing together in a playful hug" fill priority sizes="100vw" className="object-cover object-center" />
         </motion.div>
         <div className="absolute inset-0 bg-white/16" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(248,246,239,.55),transparent_35%,rgba(27,31,27,.38))]" />
@@ -307,7 +304,7 @@ function MovingPhotoBanner() {
     <section ref={sectionRef} aria-label="A moving portrait of the couple" className="relative h-[165vh] bg-[#1d251f]">
       <div className="sticky top-0 h-svh overflow-hidden">
         <motion.div style={reduceMotion ? undefined : { scale: imageScale, y: imageY }} className="absolute -inset-y-[9%] inset-x-0">
-          <Image src={BannerPhoto} alt="A couple walking hand in hand" fill sizes="100vw" className="object-cover object-center" />
+          <Image src={BannerPhoto} alt="Anjo and Jasmin walking through the garden with clear umbrellas" fill sizes="100vw" className="object-cover object-center" />
         </motion.div>
         <div className="absolute inset-0 bg-[#172019]/35" />
         <FlowerOverlay className="banner-flower-overlay opacity-45 mix-blend-screen" />
@@ -362,7 +359,7 @@ function AttireSection() {
     <section id="attire" className="relative overflow-hidden bg-[#fffaf5] px-5 py-24 sm:px-8 sm:py-36">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden">
-          <Image src={PortraitPhoto} alt="A close portrait of a couple with flowers" fill sizes="(max-width: 1024px) 90vw, 40vw" className="object-cover" />
+          <Image src={PortraitPhoto} alt="Jasmin hugging Anjo over his shoulders" fill sizes="(max-width: 1024px) 90vw, 40vw" className="object-cover" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(20,27,21,.45))]" />
         </motion.div>
         <div>

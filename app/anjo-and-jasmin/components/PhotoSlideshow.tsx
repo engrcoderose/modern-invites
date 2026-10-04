@@ -19,16 +19,23 @@ export default function PhotoSlideshow() {
 
   const playing = inView && pageVisible && !reducedMotion;
   const next = (active + 1) % slides.length;
-  const activeReady = loaded.includes(`background-${active}`) && loaded.includes(`photo-${active}`);
-  const nextReady = loaded.includes(`background-${next}`) && loaded.includes(`photo-${next}`);
+  const activeReady =
+    loaded.includes(`background-${active}`) &&
+    loaded.includes(`photo-${active}`);
+  const nextReady =
+    loaded.includes(`background-${next}`) && loaded.includes(`photo-${next}`);
 
   useEffect(() => {
     if (!playing || !activeReady) return;
-    setRequested(current => current.includes(next) ? current : [...current, next]);
+    setRequested((current) =>
+      current.includes(next) ? current : [...current, next],
+    );
   }, [activeReady, next, playing]);
 
   function markLoaded(key: string) {
-    setLoaded(current => current.includes(key) ? current : [...current, key]);
+    setLoaded((current) =>
+      current.includes(key) ? current : [...current, key],
+    );
   }
 
   useEffect(() => {
@@ -38,20 +45,68 @@ export default function PhotoSlideshow() {
   }, [next, nextReady, playing]);
 
   return (
-    <section ref={section} id="photo-slideshow" aria-label="Anjo and Jasmin photo memories" aria-roledescription="carousel" data-playing={playing} className="relative isolate flex h-[clamp(440px,47vw,900px)] items-center justify-center overflow-hidden bg-[rgb(var(--aj-sand))]">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {nearViewport && slides.map((slide, index) => requested.includes(index) && (
-          <Image key={slide.alt} src={slide.src} alt="" fill loading="eager" sizes="100vw" onLoad={() => markLoaded(`background-${index}`)} style={{ objectPosition: slide.position }} className={`object-cover transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`} />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--aj-sand))]/80 to-[rgb(var(--aj-clay))]/75" />
+    <section
+      ref={section}
+      id="photo-slideshow"
+      aria-label="Anjo and Jasmin photo memories"
+      aria-roledescription="carousel"
+      data-playing={playing}
+      className="relative isolate flex h-[clamp(440px,47vw,900px)] items-center justify-center overflow-hidden bg-[rgb(var(--aj-sand))]"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-90"
+      >
+        {nearViewport &&
+          slides.map(
+            (slide, index) =>
+              requested.includes(index) && (
+                <Image
+                  key={slide.alt}
+                  src={slide.src}
+                  alt=""
+                  fill
+                  loading="eager"
+                  sizes="100vw"
+                  onLoad={() => markLoaded(`background-${index}`)}
+                  style={{ objectPosition: slide.position }}
+                  className={`scale-105 object-cover blur-sm transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`}
+                />
+              ),
+          )}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgb(var(--aj-sand))]/35 to-[rgb(var(--aj-clay))]/30" />
       </div>
 
-      <div className="relative aspect-video w-[84vw] max-w-[800px] bg-[rgb(var(--aj-sage))] sm:w-[65vw] lg:w-[42vw]" aria-live="off">
-        {nearViewport && slides.map((slide, index) => requested.includes(index) && (
-          <div key={slide.alt} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${slides.length}`} aria-hidden={active !== index} data-active={active === index} className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`}>
-            <Image src={slide.src} alt={slide.alt} fill loading="eager" sizes="(max-width: 639px) 84vw, (max-width: 1023px) 65vw, (max-width: 1904px) 42vw, 800px" onLoad={() => markLoaded(`photo-${index}`)} style={{ objectPosition: slide.position }} className="object-cover" />
-          </div>
-        ))}
+      <div
+        className="relative aspect-[3/2] w-[84vw] max-w-[800px] bg-[rgb(var(--aj-sage))] shadow-[0_24px_65px_#00000050] sm:aspect-video sm:w-[65vw] lg:w-[42vw]"
+        aria-live="off"
+      >
+        {nearViewport &&
+          slides.map(
+            (slide, index) =>
+              requested.includes(index) && (
+                <div
+                  key={slide.alt}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} of ${slides.length}`}
+                  aria-hidden={active !== index}
+                  data-active={active === index}
+                  className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`}
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    loading="eager"
+                    sizes="(max-width: 639px) 84vw, (max-width: 1023px) 65vw, (max-width: 1904px) 42vw, 800px"
+                    onLoad={() => markLoaded(`photo-${index}`)}
+                    style={{ objectPosition: slide.position }}
+                    className="object-contain sm:object-cover"
+                  />
+                </div>
+              ),
+          )}
       </div>
     </section>
   );

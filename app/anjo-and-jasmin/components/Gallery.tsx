@@ -1,17 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import GalleryPhoto from "./GalleryPhoto";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { gallery } from "../media";
 import type { GalleryImage } from "../types";
 import Reveal from "./motion/Reveal";
 
-const photos = gallery.map(photo => ({
-  ...photo,
-  alt: photo.alt.replace("Jasmin and Anjo", "Anjo and Jasmin"),
-}));
+const photos: GalleryImage[] = gallery;
 
 export default function Gallery() {
   const [active, setActive] = useState(0);
@@ -107,27 +104,28 @@ export default function Gallery() {
                   }}
                   transition={{ duration: reducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
                   style={{ zIndex: 10 - distance, pointerEvents: visible ? "auto" : "none" }}
-                  className={`aj-gallery-photo absolute inset-0 overflow-hidden rounded-lg border border-[rgb(var(--aj-paper))]/90 bg-[rgb(var(--aj-sand))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))] sm:rounded-2xl ${isActive ? "cursor-zoom-in" : "cursor-pointer"}`}
+                  className={`aj-gallery-photo absolute inset-0 overflow-hidden rounded-lg border border-[rgb(var(--aj-paper))]/90 bg-[rgb(var(--aj-sand))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-ivory))] sm:rounded-2xl ${isActive ? "cursor-zoom-in" : "cursor-pointer"}`}
                   onClick={event => {
                     if (!isActive) { setActive(index); return; }
                     opener.current = event.currentTarget;
                     setSelected(photo);
                   }}>
-                  <Image src={photo.src} alt={photo.alt} fill draggable={false}
+                  <GalleryPhoto src={photo.src} alt={photo.alt} fill draggable={false}
+                    loading={isActive ? "eager" : "lazy"}
                     sizes="(max-width: 640px) 56vw, 360px"
                     style={{ objectPosition: photo.position }}
-                    className="pointer-events-none select-none object-cover" />
+                    className={`pointer-events-none select-none ${typeof photo.src !== "string" && photo.src.width > photo.src.height ? "object-contain" : "object-contain sm:object-cover"}`} />
                 </motion.button>
               );
             })}
           </div>
         </div>
         <button type="button" aria-label="Previous gallery photograph" onClick={() => move(-1)}
-          className="absolute left-0 top-[calc(50%-22px)] z-20 grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--aj-paper))]/70 bg-[rgb(var(--aj-accent))]/95 text-[rgb(var(--aj-cream))] shadow-lg transition hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))] sm:left-3 sm:h-12 sm:w-12">
+          className="absolute left-0 top-[calc(50%-22px)] z-20 grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--aj-paper))]/70 bg-[rgb(var(--aj-accent))]/95 text-[rgb(var(--aj-ivory))] shadow-lg transition hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-ivory))] sm:left-3 sm:h-12 sm:w-12">
           <ChevronLeft aria-hidden="true" size={26} strokeWidth={1.5} />
         </button>
         <button type="button" aria-label="Next gallery photograph" onClick={() => move(1)}
-          className="absolute right-0 top-[calc(50%-22px)] z-20 grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--aj-paper))]/70 bg-[rgb(var(--aj-accent))]/95 text-[rgb(var(--aj-cream))] shadow-lg transition hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))] sm:right-3 sm:h-12 sm:w-12">
+          className="absolute right-0 top-[calc(50%-22px)] z-20 grid h-11 w-11 place-items-center rounded-full border border-[rgb(var(--aj-paper))]/70 bg-[rgb(var(--aj-accent))]/95 text-[rgb(var(--aj-ivory))] shadow-lg transition hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-ivory))] sm:right-3 sm:h-12 sm:w-12">
           <ChevronRight aria-hidden="true" size={26} strokeWidth={1.5} />
         </button>
       </Reveal>
@@ -142,7 +140,6 @@ export default function Gallery() {
           ))}
         </div>
       </Reveal>
-      <p className="sr-only" aria-live="polite" aria-atomic="true">Photograph {active + 1} of {photos.length}</p>
       <dialog ref={dialog} aria-label="Wedding photograph preview"
         onCancel={event => { event.preventDefault(); close(); }}
         onClick={event => { if (event.target === event.currentTarget) close(); }}
@@ -156,7 +153,7 @@ export default function Gallery() {
         className="fixed inset-0 m-auto h-full max-h-none w-full max-w-none items-center justify-center overflow-hidden border-0 bg-transparent p-0 text-[rgb(var(--aj-ivory))] open:flex backdrop:bg-[rgb(var(--aj-olive-deep))]/90 backdrop:backdrop-blur">
         <button type="button" onClick={close} aria-label="Close photograph"
           className="absolute right-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-black/45 transition hover:bg-black/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-6 sm:top-6"><X aria-hidden="true" /></button>
-        {selected && <Image src={selected.src} alt={selected.alt} width={1600} height={1200} sizes="(max-width: 1170px) 94vw, 1100px" className="max-h-[88svh] w-[min(1100px,94vw)] select-none object-contain" />}
+        {selected && <GalleryPhoto src={selected.src} alt={selected.alt} loading="eager" width={1600} height={1200} sizes="(max-width: 1170px) 94vw, 1100px" className="max-h-[88svh] w-[min(1100px,94vw)] select-none object-contain" />}
         <button type="button" onClick={() => movePreview(-1)} aria-label="Previous preview photograph"
           className="absolute left-2 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-black/45 shadow-lg transition hover:bg-black/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-6 sm:h-12 sm:w-12">
           <ChevronLeft aria-hidden="true" size={28} strokeWidth={1.5} />

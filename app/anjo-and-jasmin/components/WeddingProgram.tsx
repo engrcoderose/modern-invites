@@ -1,8 +1,9 @@
 "use client";
 
+import { BrownLineFlower } from "../design-media";
+
 import { useRef } from "react";
 import { wedding } from "../data";
-import FloralAccent from "./FloralAccent";
 import Image from "next/image";
 import { timelineIllustrations } from "../media";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
@@ -12,8 +13,9 @@ import Reveal from "./motion/Reveal";
 function Illustration({ index }: { index: number; }) {
   const source = timelineIllustrations[index] ?? timelineIllustrations[3];
   return (
-    <div className="relative h-[110px] w-[110px] shrink-0 max-[600px]:h-[84px] max-[600px]:w-[68px]">
-      <Image src={source} alt="" aria-hidden="true" fill sizes="(max-width: 600px) 68px, 110px" className="object-contain" />
+    <div className="relative grid h-[88px] w-[72px] shrink-0 place-items-center sm:h-28 sm:w-28">
+      <span aria-hidden="true" className="absolute inset-x-0 inset-y-2 rounded-full bg-[rgb(var(--aj-sand))]/45 sm:inset-2" />
+      <Image src={source} alt="" aria-hidden="true" fill sizes="(max-width: 639px) 72px, 112px" className="object-contain" />
     </div>
   );
 }
@@ -26,31 +28,42 @@ export default function WeddingProgram({ events: program }: { events: TimelineEv
   const markerTop = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   if (!program.length) return null;
-  return <section id="program" className="relative overflow-hidden bg-[rgb(var(--aj-sand))] bg-[radial-gradient(ellipse_at_center,#fff8ef,transparent_75%)] px-5 py-20 sm:px-8 sm:py-28" aria-labelledby="wedding-timeline-title">
-    <FloralAccent kind="blue" className="-right-12 bottom-24 w-44 opacity-65 sm:right-[calc(50%-450px)] sm:w-64" />
-    <div className="relative mx-auto max-w-[660px] rounded-t-[5rem] rounded-b-xl border border-[#ccc3b1] bg-[#fffbf6] px-[46px] pt-[60px] pb-9 shadow-[0_14px_55px_#51423712] max-[600px]:rounded-t-[3rem] max-[600px]:px-[15px] max-[600px]:pt-[42px] max-[600px]:pb-7">
-      <FloralAccent kind="daisies" className="-top-10 left-1/2 w-24 -translate-x-1/2 rotate-12" sizes="96px" />
-      <header className="text-center">
-        <p className="text-[9px] uppercase tracking-[.25em] text-[rgb(var(--aj-accent-dark))]">A day to remember</p>
-        <h2 id="wedding-timeline-title" className="mt-[15px] mb-3.5 font-instrumentSerif text-[54px] font-normal leading-[1.08] text-[rgb(var(--aj-ink))] max-[600px]:text-[40px]">Wedding <em className="font-meaCulpa font-normal text-[rgb(var(--aj-accent-dark))]">timeline</em></h2>
-        <span className="block text-[10px] uppercase tracking-[.18em] text-[rgb(var(--aj-muted))]">{wedding.dateDisplay}</span>
-        <small className="mt-[15px] block text-[10px] leading-5 text-[rgb(var(--aj-muted))] max-[600px]:text-[9px]">2:30 PM church arrival · {wedding.time} ceremony</small>
-      </header>
-      <ol ref={listRef} className="relative mt-[42px] list-none p-0 [--timeline-axis:37%] max-[600px]:mt-[30px] max-[600px]:[--timeline-axis:32%]">
-        <li className="absolute inset-y-0 left-[var(--timeline-axis)] w-0.5 bg-[repeating-linear-gradient(to_bottom,#9b9f89_0_2px,transparent_2px_8px)]" aria-hidden="true">
-          {!reducedMotion && <motion.span className="absolute left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b8e6f] shadow-[0_0_0_5px_#fffbf6] motion-reduce:hidden" style={{ top: markerTop }} />}
-        </li>
-        {program.map((event, index) => <li className="grid min-h-[175px] grid-cols-[var(--timeline-axis)_1fr] items-center py-[22px] max-[600px]:min-h-[165px]" key={`${event.time}-${event.title}`}>
-          <Reveal y={14} className="flex justify-center pr-6 max-[600px]:pr-3"><Illustration index={index} /></Reveal>
-          <Reveal y={14} delay={0.06} className="pl-8 max-[600px]:pl-5">
-            <time className="font-instrumentSerif text-[25px] text-[rgb(var(--aj-ink))] max-[600px]:text-[22px]">{event.time}</time>
-            <h3 className="mt-[9px] text-[10px] font-medium uppercase leading-[1.8] tracking-[.14em] text-[rgb(var(--aj-ink))] max-[600px]:text-[9px] max-[600px]:tracking-[.09em]">{event.title}</h3>
-            <p className="mt-2 max-w-60 font-instrumentSerif text-[17px] leading-normal text-[rgb(var(--aj-muted))] max-[600px]:text-[15px]">{event.description}</p>
-          </Reveal>
-        </li>)}
-      </ol>
-      <p className="mt-10 text-center font-meaCulpa text-[29px] text-[rgb(var(--aj-accent-dark))] max-[600px]:text-2xl">A little love in every moment.</p>
-    </div>
-  </section>;
+  return (
+    <section id="program" className="relative overflow-hidden bg-[rgb(var(--aj-sand))] px-5 py-20 text-[rgb(var(--aj-ink))] sm:px-8 sm:py-28" aria-labelledby="wedding-timeline-title">
+      <div className="aj-program-card relative mx-auto max-w-4xl rounded-2xl border border-[rgb(var(--aj-line))]/70 bg-[rgb(var(--aj-paper))] px-5 py-12 shadow-[0_24px_70px_-40px_#57361c55] sm:px-14 sm:py-16">
+        <Reveal className="relative text-center" y={20}>
+          <Image src={BrownLineFlower} alt="" aria-hidden="true" sizes="(max-width: 639px) 176px, 224px" className="mx-auto mb-6 h-auto w-44 sm:w-56" />
+          <h2 id="wedding-timeline-title" className="font-instrumentSerif text-4xl leading-[1.1] sm:text-6xl">Wedding <em className="font-meaCulpa font-normal text-[rgb(var(--aj-accent-dark))]">timeline</em></h2>
+          <p className="mt-4 text-[10px] uppercase tracking-[.2em] text-[rgb(var(--aj-muted))] sm:text-xs">{wedding.dateDisplay}</p>
+          <p className="mt-3 text-xs leading-5 text-[rgb(var(--aj-muted))]">2:30 PM church arrival · {wedding.time} ceremony</p>
+        </Reveal>
+        <div className="relative mx-auto mt-10 w-full max-w-[16rem] sm:mt-12 sm:max-w-[22rem] lg:max-w-none">
+          <div aria-hidden="true" className="absolute bottom-16 left-[84px] top-16 w-px bg-[repeating-linear-gradient(to_bottom,rgb(var(--aj-line))_0_3px,transparent_3px_8px)] sm:left-[128px] lg:bottom-[72px] lg:left-1/2 lg:top-[72px]">
+            {!reducedMotion && <motion.span className="absolute inset-0 origin-top bg-[rgb(var(--aj-accent))]/40" style={{ scaleY: progress }} />}
+            {!reducedMotion && <motion.span className="absolute left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgb(var(--aj-accent))] shadow-[0_0_0_5px_rgb(var(--aj-paper))] motion-reduce:hidden" style={{ top: markerTop }} />}
+          </div>
+          <ol ref={listRef} className="relative list-none p-0">
+            {program.map((event, index) => {
+              const reversed = index % 2 === 1;
+              return (
+                <li className="grid min-h-32 grid-cols-[72px_24px_1fr] items-center py-3 sm:grid-cols-[112px_32px_1fr] lg:min-h-36 lg:grid-cols-[1fr_40px_1fr]" key={`${event.time}-${event.title}`}>
+                  <Reveal y={14} className={`col-start-1 row-start-1 flex justify-center ${reversed ? "lg:col-start-3 lg:justify-start lg:pl-10" : "lg:justify-end lg:pr-10"}`}>
+                    <Illustration index={index} />
+                  </Reveal>
+                  <span aria-hidden="true" className="relative col-start-2 row-start-1 mx-auto grid h-5 w-5 place-items-center rounded-full border border-[rgb(var(--aj-line))] bg-[rgb(var(--aj-paper))]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[rgb(var(--aj-accent))]" />
+                  </span>
+                  <Reveal y={14} delay={0.06} className={`col-start-3 row-start-1 min-w-0 pl-3 text-center sm:pl-6 ${reversed ? "lg:col-start-1 lg:pl-0 lg:pr-10 lg:text-right" : "lg:pl-10 lg:text-left"}`}>
+                    <time className="font-instrumentSerif text-3xl leading-none text-[rgb(var(--aj-accent-dark))] sm:text-4xl">{event.time}</time>
+                    <h3 className="mt-2 whitespace-normal break-words text-balance font-instrumentSerif text-xl leading-tight sm:text-2xl">{event.title}</h3>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
 }
 

@@ -11,11 +11,33 @@ export const wedding = {
   reception: "St. John XXIII Hall",
   receptionFloor: "2/F",
   location: "San Bartolome Parish, Malabon",
-  story: [
-    { date: "01", title: "An unexpected beginning", description: "Sometimes, the loveliest things begin in the most ordinary ways. A simple hello became a conversation neither of us wanted to end—and, little by little, a friendship became something more." },
-    { date: "02", title: "Our favorite everyday", description: "Through coffee dates, spontaneous adventures, and the quiet comfort of being together, we discovered that home could be a person. In every season, we kept choosing each other." },
-    { date: "03", title: "A lifetime of yes", description: "One heartfelt question opened the door to our next chapter. Now, surrounded by the people who have loved us along the way, we begin our greatest adventure: forever." },
-  ],
+  story: {
+    title: "It all started with a “Happy New Year”",
+    chapters: [
+      {
+        title: "Childhood classmates",
+        paragraphs: [
+          "We first met in Grade 5 and became classmates in Grade 6. Then life happened, and somehow, we disappeared from each other’s radar. 😂",
+        ],
+      },
+      {
+        title: "Four New Year greetings",
+        paragraphs: [
+          "Fast-forward a few years, and Anjo started appearing in my inbox every New Year with the same classic message: “Happy New Year!”",
+          "One year. Two years. Three years. FOUR YEARS. 😂",
+          "Finally, I thought, “Okay, fine. I’ll reply.”",
+        ],
+      },
+      {
+        title: "One reply, forever",
+        paragraphs: [
+          "Little did I know that one tiny reply would turn into conversations, memories, love, and eventually… a wedding! 💍",
+          "So yes, after all those years, Anjo’s persistence finally paid off.",
+          "Apparently, sometimes all it takes to find your forever person is a childhood crush, four New Year greetings, and one reply. ❤️",
+        ],
+      },
+    ],
+  },
   program: [
     { time: "3:00 PM", title: "Ceremony", description: "Join us as we exchange our vows." },
     { time: "4:00 PM", title: "Photos", description: "Capture memories with our families and friends." },
@@ -25,7 +47,7 @@ export const wedding = {
     { time: "10:00 PM", title: "Party", description: "Let the celebration continue!" },
   ],
   entourage: [
-    { role: "Parents of the groom", names: ["Mr. Alberto Caluya (+)", "Mrs. Lodivina Caluya (+)"] },
+    { role: "Parents of the groom", names: ["Mr. Alberto Caluya", "Mrs. Lodivina Caluya"] },
     { role: "Parents of the bride", names: ["Mr. Oscar Sopera", "Mrs. Jocelyn Sopera"] },
     { role: "Principal sponsors", names: [
       "Ms. Jane Gonzales", "Mr. Alvin Yapan",

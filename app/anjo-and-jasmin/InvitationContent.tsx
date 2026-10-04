@@ -21,17 +21,20 @@ import Gallery from "./components/Gallery";
 import GalleryBreak from "./components/GalleryBreak";
 import Story from "./components/Story";
 import WeddingProgram from "./components/WeddingProgram";
+import PhotoBreak from "./components/PhotoBreak";
+import { preEntouragePhoto, afterGiftsPhoto, afterOtherDetailsPhoto } from "./media";
 import Entourage from "./components/Entourage";
 import Location from "./components/Location";
 import SeatFinderSection from "./components/SeatFinderSection";
 import AttireSection from "./components/AttireSection";
 import PhotoSlideshow from "./components/PhotoSlideshow";
 import RSVPSection from "./components/RSVPSection";
+import InvitationMotion from "./components/motion/InvitationMotion";
 
 export default function InvitationContent({ active = true }: { active?: boolean }) {
   const main = useRef<HTMLElement>(null);
   useEffect(() => { if (active) main.current?.focus({ preventScroll: true }); }, [active]);
-  return <>
+  return <InvitationMotion active={active}>
     <Navigation />
     <main ref={main} tabIndex={-1} className="outline-none">
       <PrenupVideo active={active} />
@@ -40,14 +43,17 @@ export default function InvitationContent({ active = true }: { active?: boolean 
       <Gallery />
       <Story />
       <WeddingProgram events={wedding.program} />
+      <PhotoBreak photo={preEntouragePhoto} label="A moment on the pond" imageClassName="object-[75%_50%] lg:object-center" />
       <Entourage />
       <Location />
       <AttireSection colors={wedding.palette} />
       <PhotoSlideshow />
       <HashtagSection hashtag={wedding.hashtag} />
       <GiftRegistrySection />
+      <PhotoBreak photo={afterGiftsPhoto} imageClassName="object-[73%_45%] lg:object-[60%_45%]" />
       <SeatFinderSection />
       <UsefulInformationSection />
+      <PhotoBreak photo={afterOtherDetailsPhoto} />
       <FAQ />
       <GalleryBreak />
       <RSVPSection deadline={rsvpDeadline} />
@@ -58,5 +64,5 @@ export default function InvitationContent({ active = true }: { active?: boolean 
       dateDisplay={wedding.dateDisplay}
       hashtag={wedding.hashtag}
     />
-  </>;
+  </InvitationMotion>;
 }

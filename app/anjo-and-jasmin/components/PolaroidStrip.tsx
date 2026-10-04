@@ -1,24 +1,24 @@
 "use client";
 
 import { useRef, useState, type CSSProperties } from "react";
-import { Walking, Together, Garden, Sitting, Embrace, Portrait } from "../prenup-media";
+import { UmbrellaWalk, IndoorKiss, GardenLift, BoatRide, IndoorCuddle, ShoulderHug } from "../prenup-media";
 import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useInView, useReducedMotion } from "motion/react";
 import { usePageVisibility } from "../hooks/usePageVisibility";
 
 const photos = [
-  { src: Walking, caption: "Hand in hand", position: "50% 45%", tilt: -4 },
-  { src: Together, caption: "My favorite place", position: "50% 48%", tilt: 3 },
+  { src: UmbrellaWalk, caption: "Hand in hand", position: "43% 45%", tilt: -4 },
+  { src: IndoorKiss, caption: "My favorite place", position: "60% 45%", tilt: 3 },
   {
-    src: Garden,
+    src: GardenLift,
     caption: "A little everyday magic",
     position: "50% 48%",
     tilt: -2,
   },
-  { src: Sitting, caption: "Just us, always", position: "50% 45%", tilt: 4 },
-  { src: Embrace, caption: "Home is you", position: "82% 48%", tilt: -3 },
-  { src: Portrait, caption: "Our next chapter", position: "50% 45%", tilt: 2 },
+  { src: BoatRide, caption: "Just us, always", position: "50% 55%", tilt: 4 },
+  { src: IndoorCuddle, caption: "Home is you", position: "50% 45%", tilt: -3 },
+  { src: ShoulderHug, caption: "Our next chapter", position: "50% 45%", tilt: 2 },
 ];
 
 export default function PolaroidStrip() {

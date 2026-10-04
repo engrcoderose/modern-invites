@@ -13,7 +13,7 @@ const InvitationContent = dynamic(loadContent, {
   loading: () => (
     <div
       role="status"
-      className="grid min-h-svh place-items-center font-imperial text-4xl text-[rgb(var(--aj-accent))]"
+      className="grid min-h-svh place-items-center font-imperial text-4xl text-[rgb(var(--aj-ivory))]"
     >
       Opening your invitation…
     </div>

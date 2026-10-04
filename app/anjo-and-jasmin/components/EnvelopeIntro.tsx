@@ -1,10 +1,10 @@
 "use client";
 
+import { WaxStamp, EmbossedPaper } from "../design-media";
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import WaxStamp from "../assets/images/designs/wax-stamp.png";
-import EmbossedPaper from "../assets/images/designs/embossed-cotton-paper.png";
 import { invitationOpenedEvent } from "../lib/events";
 import { wedding } from "../data";
 

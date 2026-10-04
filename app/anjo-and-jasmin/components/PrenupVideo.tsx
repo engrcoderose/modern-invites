@@ -4,9 +4,10 @@ import Image, { getImageProps } from "next/image";
 import { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import { PrenupPoster } from "../photo-media";
-import { Walking } from "../prenup-media";
+import { UmbrellaWalk } from "../prenup-media";
 import { prenupVideoStartedEvent, prenupVideoPassedEvent } from "../lib/events";
 import SectionPetals from "./SectionPetals";
+import Reveal from "./motion/Reveal";
 
 export const prenupPosterSrc = getImageProps({
   src: PrenupPoster,
@@ -51,11 +52,11 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
   }, [active]);
 
   return (
-    <section id="invitation" aria-label="Our prenup film" className="relative isolate flex min-h-svh items-center justify-center overflow-hidden bg-[rgb(var(--aj-olive-deep))] px-3 pb-28 pt-24 sm:px-10 sm:pt-28">
-      <Image src={Walking} alt="" aria-hidden="true" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
+    <section id="invitation" aria-label="Our prenup film" className="aj-warm-photo-theme relative isolate flex min-h-svh items-center justify-center overflow-hidden bg-[rgb(var(--aj-olive-deep))] px-3 pb-28 pt-24 sm:px-10 sm:pt-28">
+      <Image src={UmbrellaWalk} alt="" aria-hidden="true" fill priority sizes="100vw" className="-z-20 object-cover object-[43%_45%]" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-[rgb(var(--aj-olive-shadow))]/65 via-[rgb(var(--aj-olive-shadow))]/55 to-[rgb(var(--aj-olive-shadow))]/80" />
       <SectionPetals variant="pink" />
-      <div className="aj-prenup-frame relative w-full max-w-[min(72rem,calc((100svh-14rem)*16/9))] rounded border border-[#deccaa]/45 p-1 shadow-[0_24px_80px_#00000045] sm:rounded-xl sm:p-3">
+      <Reveal y={16} scale={0.98} className="aj-prenup-frame relative w-full max-w-[min(72rem,calc((100svh-14rem)*16/9))] rounded border border-[rgb(var(--aj-line))]/45 p-1 shadow-[0_24px_80px_#00000045] sm:rounded-xl sm:p-3">
         <video
           ref={videoRef}
           autoPlay={active}
@@ -66,7 +67,7 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
           preload="none"
           poster={prenupPosterSrc}
           aria-label="Anjo and Jasmin prenup video"
-          className="relative block aspect-video w-full rounded-sm border border-[#d6bc8e] bg-[rgb(var(--aj-olive-shadow))] object-contain"
+          className="relative block aspect-video w-full rounded-sm border border-[rgb(var(--aj-line))] bg-[rgb(var(--aj-olive-shadow))] object-contain"
           onPlay={() => {
             handedOff.current = false;
             window.dispatchEvent(new Event(prenupVideoStartedEvent));
@@ -75,8 +76,8 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
           <source src="/videos/anjo-and-jasmin/prenup.mp4" type="video/mp4" />
           Your browser does not support embedded video. <a href="/videos/anjo-and-jasmin/prenup.mp4">Watch the prenup video</a>.
         </video>
-      </div>
-      <a href="#top" aria-label="Continue to the wedding invitation" className="absolute bottom-7 left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center gap-3 text-[#f8eedb] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d6bc8e]">
+      </Reveal>
+      <a href="#top" aria-label="Continue to the wedding invitation" className="absolute bottom-7 left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center gap-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
         <span className="whitespace-nowrap text-[10px] uppercase tracking-[.3em]">Scroll down</span>
         <ArrowDown size={20} strokeWidth={1} aria-hidden="true" />
       </a>

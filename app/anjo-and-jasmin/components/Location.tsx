@@ -1,21 +1,76 @@
+import { BrownFlower2 as BrownFlowers, ReceptionDirections } from "../design-media";
 import Image from "next/image";
-import FloralAccent from "./FloralAccent";
-import { MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Church, Clock3, MapPin, Wine } from "lucide-react";
 import { wedding } from "../data";
 import { ChurchImage } from "../photo-media";
-import { Walking } from "../prenup-media";
+import { BridgeWalk } from "../prenup-media";
 import Reveal from "./motion/Reveal";
-import ReceptionDirections from "../assets/images/reception-directions.png";
 
 export default function Location() {
   const venues = [
-    { eyebrow: "The ceremony", name: wedding.ceremony, address: "Malabon, Philippines", time: wedding.time, query: "San+Bartolome+Parish+Malabon" },
-    { eyebrow: "The reception", name: wedding.reception, address: `${wedding.receptionFloor}, ${wedding.location}`, time: "Reception follows the ceremony", query: "St+John+XXIII+Hall+San+Bartolome+Parish+Malabon" },
+    {
+      id: "ceremony", title: "The ceremony", name: wedding.ceremony,
+      address: "Malabon, Philippines", time: wedding.time,
+      query: "San+Bartolome+Parish+Malabon", icon: Church, image: ChurchImage,
+      imageAlt: "Watercolor illustration of San Bartolome Parish, Malabon",
+    },
+    {
+      id: "reception", title: "The reception", name: wedding.reception,
+      address: `${wedding.receptionFloor}, ${wedding.location}`,
+      time: "Reception follows the ceremony",
+      query: "St+John+XXIII+Hall+San+Bartolome+Parish+Malabon", icon: Wine,
+      image: ReceptionDirections,
+      imageAlt: "Reception directions from San Bartolome Parish to St. John XXIII Hall, beside Rizal Avenue Extension in Malabon.",
+    },
   ];
-  return <section id="location" className="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:px-8">
-    <Image src={Walking} alt="" aria-hidden="true" fill sizes="100vw" className="-z-20 object-cover object-center" />
-    <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-[rgb(var(--aj-ink))]/85 via-[rgb(var(--aj-ink))]/80 to-[rgb(var(--aj-cream))]" />
-    <Reveal className="mb-12 text-center text-[rgb(var(--aj-cream))] [text-shadow:0_2px_8px_#00000040]"><p className="text-xs uppercase tracking-[.25em]">When &amp; where</p><h2 className="mt-5 font-imperial text-6xl sm:text-8xl">The details of our day.</h2><p className="mt-5 text-base">Saturday · {wedding.dateDisplay}</p><p className="mt-3 text-xs uppercase tracking-[.2em]">Malabon, Philippines</p></Reveal>
-    <Reveal className="relative mx-auto max-w-4xl rounded-t-[3rem] rounded-b-lg border-4 border-double border-[#d0bdaa] bg-[rgb(var(--aj-paper))] p-6 shadow-2xl sm:p-10 lg:p-14"><FloralAccent kind="pink" className="-right-10 -top-9 w-28 rotate-12 sm:w-36" /><div className="relative grid gap-12 md:grid-cols-2">{venues.map((venue, index) => <article key={venue.name} className="text-center"><h3 className="mb-6 font-serif text-3xl">{venue.eyebrow}</h3><div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-md bg-[rgb(var(--aj-sage))]">{index === 0 ? <Image src={ChurchImage} alt="Watercolor illustration of San Bartolome Parish, Malabon" fill sizes="(max-width: 768px) 85vw, 360px" className="object-cover" /> : <Image src={ReceptionDirections} alt="Reception directions from San Bartolome Parish to St. John XXIII Hall, beside Rizal Avenue Extension in Malabon." fill sizes="(max-width: 768px) 85vw, 360px" className="bg-[rgb(var(--aj-paper))] object-contain" />}</div><h4 className="font-serif text-xl">{venue.name}</h4><p className="mt-4 text-sm leading-7">{venue.address}</p><p className="mt-2 text-xs leading-6 text-[rgb(var(--aj-accent-dark))]">{venue.time}</p><a href={`https://www.google.com/maps/search/?api=1&query=${venue.query}`} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(var(--aj-accent))] px-6 py-3 text-xs text-[rgb(var(--aj-cream))] transition hover:bg-[rgb(var(--aj-accent-dark))]">View on map <MapPin size={14} /></a></article>)}</div></Reveal>
-  </section>;
+  return (
+    <section id="location" aria-labelledby="location-title" className="relative isolate overflow-hidden bg-[#362912] px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <Image src={BridgeWalk} alt="" fill sizes="(max-width: 767px) 2400px, (max-width: 1023px) 1800px, 100vw" className="object-cover object-center" />
+        <div className="absolute inset-0 bg-[#362912]/40" />
+      </div>
+
+      <Reveal className="mx-auto mb-10 max-w-3xl text-center text-[rgb(var(--aj-ivory))] sm:mb-14">
+        <Image src={BrownFlowers} alt="" sizes="(min-width: 640px) 192px, 160px" className="mx-auto mb-4 h-auto w-40 sm:w-48" />
+        <h2 id="location-title" className="font-imperial text-[clamp(3.25rem,8vw,6rem)] leading-tight [text-shadow:0_2px_10px_#00000060]">The Wedding Venue</h2>
+        <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 rounded-lg bg-[#362912]/60 px-5 py-3 sm:px-7">
+          <CalendarDays aria-hidden="true" size={18} className="hidden shrink-0 sm:block" />
+          <span className="text-[.65rem] uppercase tracking-[.2em]">Saturday</span>
+          <time dateTime={wedding.countdownDate.slice(0, 10)} className="font-instrumentSerif text-2xl">{wedding.dateDisplay}</time>
+        </div>
+      </Reveal>
+
+      <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:gap-8">
+        {venues.map((venue, index) => {
+          const Icon = venue.icon;
+          return (
+            <Reveal key={venue.id} delay={index * 0.14} y={36} className="h-full">
+              <article aria-labelledby={`${venue.id}-title`} className="aj-hover-card relative flex h-full flex-col rounded-lg bg-[rgb(var(--aj-paper))] px-6 pb-8 pt-8 text-center shadow-[0_20px_60px_-30px_#36291280] sm:px-8 sm:pb-10 sm:pt-10">
+                <div className="relative flex flex-1 flex-col">
+                  <span aria-hidden="true" className="mx-auto mb-3 grid h-11 w-11 place-items-center rounded-full bg-[rgb(var(--aj-sand))]/55 text-[#754f28]">
+                    <Icon size={21} strokeWidth={1.25} />
+                  </span>
+                  <h3 id={`${venue.id}-title`} className="mb-6 font-imperial text-4xl leading-tight text-[#754f28] sm:text-5xl">{venue.title}</h3>
+                  <div className="relative mb-6 aspect-[4/3] overflow-hidden bg-[rgb(var(--aj-cream))]">
+                    <Image src={venue.image} alt={venue.imageAlt} fill sizes="(min-width: 1024px) 420px, (min-width: 768px) 40vw, 85vw" className={venue.id === "ceremony" ? "object-cover" : "object-contain"} />
+                  </div>
+                  <h4 className="font-instrumentSerif text-3xl leading-tight lg:text-4xl">{venue.name}</h4>
+                  <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-[rgb(var(--aj-muted))] md:min-h-12">{venue.address}</p>
+                  <p className="mt-4 flex min-h-11 items-center justify-center gap-2 py-3 text-sm text-[#754f28]">
+                    <Clock3 aria-hidden="true" size={15} className="shrink-0" />
+                    {venue.time}
+                  </p>
+                  <div className="mt-auto pt-6">
+                    <a href={`https://www.google.com/maps/search/?api=1&query=${venue.query}`} target="_blank" rel="noreferrer" aria-label={`View ${venue.name} on map (opens in a new tab)`} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#754f28] px-6 py-3 text-sm text-[rgb(var(--aj-ivory))] transition hover:bg-[#573b22] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#754f28]">
+                      <MapPin aria-hidden="true" size={15} /> View on map <ArrowUpRight aria-hidden="true" size={15} />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          );
+        })}
+      </div>
+    </section>
+  );
 }

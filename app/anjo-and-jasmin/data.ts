@@ -4,13 +4,14 @@ export const wedding = originalWedding;
 
 export const envelopeMessage = "Join us as we celebrate our wedding. We can't wait to share this special day with you.";
 export const attireDressCode = "Long sleeves & pastel dresses";
-export const attireDescription = "Family and friends, dress to impress in light or colorful tones from our pastel palette.";
-export const mensAttire = "Long sleeves and pants. Linen pants, long sleeves, or a button-up are all welcome!";
-export const womensAttire = "Long or floral dress. Midi/maxi dresses and breezy silhouettes. Bring on the color and glamour! Ruffles, textures, and florals are encouraged.";
+export const attireDescription = "Please wear light or colorful tones from our pastel palette.";
+export const mensAttire = "Long sleeves and pants. Linen pants or a button-up are welcome.";
+export const womensAttire = "Long or floral dress. Midi/maxi dresses, ruffles, textures, and florals are welcome.";
 export const sponsorAttire = [
-  { role: "For our Ninangs", style: "Filipiniana", description: "Modern or traditional Filipiniana. Color: ivory, cream, or beige." },
-  { role: "For our Ninongs", style: "Barong Tagalog", description: "White inner, black pants, and black shoes. Barong color: ivory, cream, or beige." },
+  { role: "For our Ninangs", style: "Filipiniana", description: "Modern or traditional, in ivory, cream, or beige." },
+  { role: "For our Ninongs", style: "Barong Tagalog", description: "Ivory, cream, or beige barong with a white inner, black pants, and black shoes." },
 ];
+export const rsvpEventSlug = "jasmin-and-anjo-wedding";
 export const rsvpDeadline = "October 30, 2026";
 export const coordinator = {
   name: "Ms. Margarette Santos",
@@ -19,7 +20,7 @@ export const coordinator = {
 };
 export const unpluggedCeremony = {
   title: "Unplugged Ceremony",
-  description: "We invite you to be fully present as we say our vows. Kindly silence and put away your phones and cameras during the ceremony, and let our photographers capture these special moments. Thank you for sharing this moment with us.",
+  description: "Please silence and put away your phones and cameras during the ceremony. Our photographers will capture the moments.",
 };
 
 export interface EntouragePreparation {
@@ -44,9 +45,9 @@ export interface MusicTrack {
 export type WeddingPlaylist = readonly [MusicTrack?, MusicTrack?, MusicTrack?, MusicTrack?];
 
 export const backgroundMusic: WeddingPlaylist = [
-  { title: "Libu-libong Buwan", src: "/music/anjo-and-jasmin/libu-libong-buwan.mp3" },
-  { title: "PALAGI (Wedding Version)", src: "/music/anjo-and-jasmin/palagi-wedding-version.mp3" },
-  { title: "Wedding music", src: "/music/anjo-and-jasmin/wedding-music.mp3" },
+  { title: "Bawat Daan — Ebe Dancel", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/Ebe%20Dancel%20-%20Bawat%20Daan.mp3" },
+  { title: "Libu-libong Buwan", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/libu-libong-buwan.mp3" },
+  { title: "Tahanan — El Manu", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/El%20Manu%20-%20Tahanan.mp3" },
 ];
 
 export interface GiftRegistry {
@@ -55,31 +56,32 @@ export interface GiftRegistry {
   url: `https://${string}`;
 }
 
+export const giftNote = "Your presence is a gift in itself. If you wish to give a gift, a financial contribution toward our future together would be deeply appreciated.";
+
 // Add the couple's actual registry links here when supplied.
 export const giftRegistries: GiftRegistry[] = [];
 
 export const faqs = [
   {
-    question: "When is the wedding?",
-    answer: `Our wedding is on ${wedding.date} at ${wedding.time} (Philippine time). Please arrive at the church at 2:30 PM. See the wedding timeline for the day's schedule.`,
+    question: "When should I RSVP?",
+    answer: `Please RSVP by ${rsvpDeadline}.`,
   },
-  {
-    question: "Where are the ceremony and reception?",
-    answer: `The ceremony will be held at ${wedding.ceremony}, Malabon. The reception follows at ${wedding.receptionFloor}, ${wedding.reception}, ${wedding.location}. You can find directions in the Location section.`,
-  },
-  { question: "What should I wear?", answer: `${attireDescription} Our pastel palette includes ${wedding.palette.map(({ name }) => name.toLowerCase()).join(", ")}. Gentlemen: ${mensAttire} Ladies: ${womensAttire} ${sponsorAttire.map(({ role, style, description }) => `${role}: ${style}. ${description}`).join(" ")}` },
   {
     question: "How do I RSVP?",
-    answer: `Please RSVP by ${rsvpDeadline}. If you have any concerns, please contact our coordinator, ${coordinator.name}, at ${coordinator.phone}. The RSVP demo lets you search a sample name, select its invitation, and try the attendance form. No replies are sent or saved yet.`,
+    answer: `Enter your full invited name in the RSVP section, select your invitation, and confirm each guest's attendance. Contact ${coordinator.name} at ${coordinator.phone} for assistance.`,
   },
   {
-    question: "Do you have a gift registry?",
+    question: "Are children invited?",
+    answer: "No, our celebration is for adults only.",
+  },
+  {
+    question: "Can I bring a plus-one?",
+    answer: "No, attendance is limited to the guests named on your invitation.",
+  },
+  {
+    question: "Is there a gift registry?",
     answer: giftRegistries.length
-      ? "Our registry links are in the Gift Registry section. Your presence is our greatest gift."
-      : "Your presence is our greatest gift. Our gift preferences and any registry details will be shared here soon. Thank you for thinking of us with so much love.",
-  },
-  {
-    question: "Where can we share our wedding photos?",
-    answer: `Share your favorite moments with ${wedding.hashtag} so we can relive the day together. You can copy the hashtag in the photo-sharing section above.`,
+      ? "Yes. Our registry links are in the Gifts section."
+      : "Yes, we have a gift registry.",
   },
 ];
