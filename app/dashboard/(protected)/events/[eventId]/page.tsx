@@ -19,6 +19,7 @@ import { DashboardSummaryCards } from "@/features/dashboard/presentation/dashboa
 import { GuestFilters } from "@/features/dashboard/presentation/guest-filters";
 import { GuestTable } from "@/features/dashboard/presentation/guest-table";
 import { ManageHouseholds } from "@/features/dashboard/presentation/manage-households";
+import { includesRsvp } from "@/features/services/domain/client-services";
 
 import {
   deleteGuestAction,
@@ -102,6 +103,7 @@ export default async function WeddingDashboardPage({
   const canManage =
     workspace.event.role === "owner" ||
     workspace.event.role === "editor";
+  const hasRsvp = includesRsvp(workspace.event.clientServices);
 
   return (
     <div className="space-y-8">
@@ -121,8 +123,7 @@ export default async function WeddingDashboardPage({
             {workspace.event.name}
           </h1>
           <p className="mt-3 max-w-2xl leading-7 text-ink-muted">
-            Follow RSVP responses, organize guests, and export a planning
-            copy whenever you need it.
+            {hasRsvp ? "Follow RSVP responses, organize guests, and export a planning copy whenever you need it." : "Organize your wedding guests here, then assign their tables in Seat Finder."}
           </p>
         </div>
 
@@ -142,12 +143,12 @@ export default async function WeddingDashboardPage({
         </div>
       </div>
 
-      <DashboardSummaryCards summary={workspace.summary} />
+      {hasRsvp ? <DashboardSummaryCards summary={workspace.summary} /> : <p className="rounded-xl border bg-white p-5 text-sm text-forest">{workspace.summary.totalGuests} guests · Seat Finder only. <Link href={`/dashboard/seat-finder/${eventId}`} className="underline underline-offset-4">Open Seat Finder</Link></p>}
 
       <section className="space-y-4">
         <div>
           <h2 className="font-elegant text-3xl font-medium text-forest">
-            Guest list and RSVPs
+            {hasRsvp ? "Guest list and RSVPs" : "Guest list"}
           </h2>
           <p className="mt-1 text-sm text-ink-muted">
             Search responses and keep planning details up to date.

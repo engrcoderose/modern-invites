@@ -7,6 +7,7 @@ import UsefulInformationSection from "./components/UsefulInformationSection";
 import GiftRegistrySection from "./components/GiftRegistrySection";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import FallingPetals from "./components/FallingPetals";
 
 import PrenupVideo from "./components/PrenupVideo";
 import {
@@ -36,6 +37,7 @@ export default function InvitationContent({ active = true }: { active?: boolean 
   useEffect(() => { if (active) main.current?.focus({ preventScroll: true }); }, [active]);
   return <InvitationMotion active={active}>
     <Navigation />
+    <FallingPetals />
     <main ref={main} tabIndex={-1} className="outline-none">
       <PrenupVideo active={active} />
       <HeroSection />

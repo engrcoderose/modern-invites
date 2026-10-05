@@ -1,7 +1,9 @@
 import { z } from "zod";
+import { CLIENT_SERVICES, ClientServicesSetupError } from "../../services/domain/client-services.ts";
 import type { CreateEventFormState, EventCreationRepository } from "../domain/event-creation";
 
 const eventSchema = z.object({
+  clientServices: z.enum(CLIENT_SERVICES, { error: "Choose the client services." }),
   name: z.string().trim().min(2, "Enter the event name.").max(150, "Use at most 150 characters."),
   slug: z.string().trim().toLowerCase().min(2, "Enter an event identifier.").max(100, "Use at most 100 characters.")
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and single hyphens between words."),
@@ -34,6 +36,7 @@ export async function createAdminEvent(
       slug: formData.get("slug"),
       rsvpDeadline: formData.get("rsvpDeadline") ?? "",
       responseMode: formData.get("responseMode"),
+      clientServices: formData.get("clientServices") ?? "rsvp",
     });
     if (!parsed.success) {
       return { status: "error", message: "Review the highlighted fields and try again.", fieldErrors: parsed.error.flatten().fieldErrors };
@@ -47,7 +50,8 @@ export async function createAdminEvent(
       return { status: "error", message: "An event already uses this identifier. Select that event below or enter a different identifier.", fieldErrors: { slug: ["This event identifier is already in use."] } };
     }
     return { status: "success", message: "Event created. You can now assign client access below.", createdEvent: result.event };
-  } catch {
+  } catch (error) {
+    if (error instanceof ClientServicesSetupError) return { status: "error", message: error.message, fieldErrors: { clientServices: ["Seat Finder requires database setup."] } };
     return { status: "error", message: "The event could not be created. Please try again." };
   }
 }

@@ -10,6 +10,8 @@ import type { ClientEventOption } from "../domain/client";
 import type { CreateEventAction, CreateEventFormState } from "../domain/event-creation";
 import type { CreateClientAction } from "./create-client-form.types";
 import { CreateClientForm } from "./create-client-form";
+import { ClientServicesField } from "@/features/services/presentation/client-services-field";
+import type { ClientServices } from "@/features/services/domain/client-services";
 
 const initialState: CreateEventFormState = { status: "idle" };
 const selectClass = "flex h-11 w-full rounded-md border border-input bg-white px-3 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring";
@@ -21,6 +23,7 @@ function EventForm({ action, onCreated }: { action: CreateEventAction; onCreated
   const [customSlug, setCustomSlug] = useState(false);
   const [deadline, setDeadline] = useState("");
   const [responseMode, setResponseMode] = useState("household");
+  const [clientServices, setClientServices] = useState<ClientServices>("rsvp");
   const reportedEvent = useRef<number | null>(null);
 
   useEffect(() => {
@@ -32,6 +35,7 @@ function EventForm({ action, onCreated }: { action: CreateEventAction; onCreated
     setCustomSlug(false);
     setDeadline("");
     setResponseMode("household");
+    setClientServices("rsvp");
   }, [state, onCreated]);
 
   function updateName(value: string) {
@@ -51,6 +55,7 @@ function EventForm({ action, onCreated }: { action: CreateEventAction; onCreated
         <form action={formAction} className="space-y-5">
           <fieldset disabled={pending} className="grid gap-5 disabled:opacity-70 sm:grid-cols-2">
             <legend className="sr-only">New event details</legend>
+            <ClientServicesField value={clientServices} onChange={setClientServices} error={state.fieldErrors?.clientServices?.[0]} />
             <div className="space-y-2">
               <Label htmlFor="event-name">Event name</Label>
               <Input id="event-name" name="name" value={name} onChange={e => updateName(e.target.value)} placeholder="Anjo & Jasmin" required minLength={2} maxLength={150} aria-invalid={Boolean(state.fieldErrors?.name)} aria-describedby={state.fieldErrors?.name ? "event-name-error" : undefined} className="h-11" />
@@ -62,13 +67,13 @@ function EventForm({ action, onCreated }: { action: CreateEventAction; onCreated
               <p id="event-slug-help" className="text-xs leading-5 text-ink-muted">Match the identifier used by the invitation, such as anjo-and-jasmin.</p>
               <p id="event-slug-error" className="text-sm text-destructive">{state.fieldErrors?.slug?.[0]}</p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2" hidden={clientServices === "seat_finder"}>
               <Label htmlFor="event-deadline">RSVP deadline <span className="font-normal text-ink-muted">(optional)</span></Label>
               <Input id="event-deadline" name="rsvpDeadline" type="date" value={deadline} onChange={e => setDeadline(e.target.value)} aria-invalid={Boolean(state.fieldErrors?.rsvpDeadline)} aria-describedby="event-deadline-help event-deadline-error" className="h-11" />
               <p id="event-deadline-help" className="text-xs leading-5 text-ink-muted">Leave blank if there is no deadline yet.</p>
               <p id="event-deadline-error" className="text-sm text-destructive">{state.fieldErrors?.rsvpDeadline?.[0]}</p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2" hidden={clientServices === "seat_finder"}>
               <Label htmlFor="event-response-mode">Guests can reply for</Label>
               <select id="event-response-mode" name="responseMode" value={responseMode} onChange={e => setResponseMode(e.target.value)} aria-invalid={Boolean(state.fieldErrors?.responseMode)} aria-describedby="event-response-help event-response-error" className={selectClass}>
                 <option value="household">Their household or invitation group</option>

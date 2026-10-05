@@ -1,4 +1,5 @@
 import "server-only";
+import { readWithServiceCompatibility } from "@/features/services/infrastructure/service-schema-compatibility";
 
 import { GuestManagementError } from "@/features/dashboard/application/manage-dashboard-guests";
 import { householdCapacityError } from "@/features/dashboard/domain/household-settings";
@@ -26,6 +27,7 @@ interface EventRow {
   name: string;
   slug: string;
   rsvp_deadline: string | null;
+  client_services: AssignedDashboardEvent["clientServices"];
 }
 
 interface InvitationRelation {
@@ -129,15 +131,19 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
       ]),
     );
 
-    const { data: eventData, error: eventError } = await supabase
+    const { data: eventData, error: eventError } = await readWithServiceCompatibility(includeServices => supabase
       .from("events")
-      .select("id, name, slug, rsvp_deadline")
+      .select(`id, name, slug, rsvp_deadline${includeServices ? ", client_services" : ""}`)
       .in("id", [...roleByEventId.keys()])
       .eq("is_active", true)
-      .order("name");
+      .order("name").returns<EventRow[]>());
 
     if (eventError) {
-      throw new Error("Unable to load assigned events.");
+      // Keep credentials, guest data, and raw database details out of logs.
+      // The code distinguishes schema, permission, and RLS failures in dev.
+      const code = /^[A-Z0-9]{5,12}$/.test(eventError.code) ? eventError.code : "UNKNOWN";
+      console.error("Client dashboard event lookup failed.", { code });
+      throw new Error(`Unable to load assigned events. Database error code: ${code}.`);
     }
 
     return ((eventData ?? []) as EventRow[])
@@ -153,6 +159,7 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
           name: event.name,
           slug: event.slug,
           rsvpDeadline: event.rsvp_deadline,
+          clientServices: event.client_services,
           role,
         };
       })

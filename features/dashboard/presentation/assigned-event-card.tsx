@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { AssignedDashboardEvent } from "@/features/dashboard/domain/client-dashboard";
+import { includesRsvp, SERVICE_LABELS } from "@/features/services/domain/client-services";
 
 interface AssignedEventCardProps {
   event: AssignedDashboardEvent;
@@ -50,14 +51,13 @@ export function AssignedEventCard({ event }: AssignedEventCardProps) {
         </CardTitle>
         <CardDescription className="flex items-center gap-2 pt-1">
           <CalendarDays aria-hidden="true" className="size-4" />
-          RSVP deadline: {formatDeadline(event.rsvpDeadline)}
+          {includesRsvp(event.clientServices) ? `RSVP deadline: ${formatDeadline(event.rsvpDeadline)}` : SERVICE_LABELS.seat_finder}
         </CardDescription>
       </CardHeader>
 
       <CardContent className="flex-1">
         <p className="text-sm leading-6 text-ink-muted">
-          Open this private workspace to view RSVP activity and manage
-          the wedding guest list.
+          Open this private workspace to manage the wedding guest list and the services included in this event.
         </p>
       </CardContent>
 

@@ -1,10 +1,12 @@
 import type { ClientEventOption } from "./client";
+import type { ClientServices } from "../../services/domain/client-services";
 
 export interface CreateEventInput {
   name: string;
   slug: string;
   rsvpDeadline: string | null;
   responseMode: "household" | "individual";
+  clientServices: ClientServices;
 }
 
 export type CreateEventResult =

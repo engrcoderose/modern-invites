@@ -74,6 +74,17 @@ export default function Footer({
           />
         </div>
       </div>
+      <p className="relative z-10 mt-3 pb-24 text-xs text-[rgb(var(--aj-muted))] sm:pb-8">
+        Created by{" "}
+        <a
+          href="https://www.moderninvites.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 items-center underline decoration-[rgb(var(--aj-line))] underline-offset-4 transition-colors hover:text-[rgb(var(--aj-accent-dark))] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent-dark))]"
+        >
+          Modern Invites
+        </a>
+      </p>
     </footer>
   );
 }

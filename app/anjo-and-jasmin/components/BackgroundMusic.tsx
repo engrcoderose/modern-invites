@@ -12,9 +12,8 @@ import {
   X,
 } from "lucide-react";
 import {
-  invitationOpenedEvent,
   prenupVideoStartedEvent,
-  prenupVideoPassedEvent,
+  weddingHeroEnteredEvent,
 } from "../lib/events";
 import { backgroundMusic, type MusicTrack } from "../data";
 
@@ -30,6 +29,8 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
   const wantsPlayback = useRef(false);
   const manuallyPaused = useRef(false);
   const playRequest = useRef(0);
+  const musicAllowed = useRef(false);
+  const [available, setAvailable] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -45,7 +46,7 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
 
   const playMusic = useCallback(async () => {
     const audio = audioRef.current;
-    if (!audio || !tracks.length) return;
+    if (!audio || !tracks.length || !musicAllowed.current) return;
     const request = ++playRequest.current;
     wantsPlayback.current = true;
     setError(null);
@@ -90,17 +91,16 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) audio.volume = 0.5;
-    const openInvitation = () => void playMusic();
-    const continueAfterVideo = () => {
+    const startAtHero = () => {
+      musicAllowed.current = true;
+      setAvailable(true);
       if (!manuallyPaused.current && !wantsPlayback.current) void playMusic();
     };
-    window.addEventListener(invitationOpenedEvent, openInvitation);
     window.addEventListener(prenupVideoStartedEvent, pauseMusic);
-    window.addEventListener(prenupVideoPassedEvent, continueAfterVideo);
+    window.addEventListener(weddingHeroEnteredEvent, startAtHero);
     return () => {
-      window.removeEventListener(invitationOpenedEvent, openInvitation);
       window.removeEventListener(prenupVideoStartedEvent, pauseMusic);
-      window.removeEventListener(prenupVideoPassedEvent, continueAfterVideo);
+      window.removeEventListener(weddingHeroEnteredEvent, startAtHero);
       wantsPlayback.current = false;
       playRequest.current += 1;
       audio?.pause();
@@ -131,7 +131,7 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
         src={tracks[0].src}
         preload="none"
         onPlay={() => {
-          if (!wantsPlayback.current) {
+          if (!musicAllowed.current || !wantsPlayback.current) {
             audioRef.current?.pause();
             return;
           }
@@ -151,7 +151,7 @@ export default function BackgroundMusic({ visible }: { visible: boolean }) {
       />
       <div
         ref={playerRef}
-        hidden={!visible}
+        hidden={!visible || !available}
         className="fixed bottom-4 right-4 z-[60] max-w-[calc(100vw-2rem)] sm:bottom-6 sm:right-6"
         onKeyDown={(event) => {
           if (event.key === "Escape" && expanded) {

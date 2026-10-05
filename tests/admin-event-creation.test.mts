@@ -37,7 +37,7 @@ test("creates normalized event settings and returns the event for client assignm
   data.set("rsvp_code_hash", "client-supplied-value");
   data.set("is_active", "false");
   const result = await createAdminEvent(deps, data);
-  assert.deepEqual(deps.calls, [{ name: "Anjo & Jasmin", slug: "anjo-and-jasmin", rsvpDeadline: "2026-11-01", responseMode: "household" }]);
+  assert.deepEqual(deps.calls, [{ name: "Anjo & Jasmin", slug: "anjo-and-jasmin", rsvpDeadline: "2026-11-01", responseMode: "household", clientServices: "rsvp" }]);
   assert.equal(result.status, "success");
   assert.deepEqual(result.createdEvent, { id: 42, name: "Anjo & Jasmin", slug: "anjo-and-jasmin" });
 });
@@ -53,7 +53,7 @@ test("rejects invalid slugs, impossible dates, missing names, and unsupported re
   for (const overrides of [
     { slug: "../admin" }, { slug: "bad--slug" }, { slug: "https://example.com" },
     { rsvpDeadline: "2026-02-30" }, { rsvpDeadline: "not-a-date" },
-    { name: " " }, { responseMode: "everyone" },
+    { name: " " }, { responseMode: "everyone" }, { clientServices: "all" },
   ]) {
     const deps = dependencies();
     const result = await createAdminEvent(deps, form(overrides));

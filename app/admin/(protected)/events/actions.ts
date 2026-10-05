@@ -20,6 +20,8 @@ export async function updateEventSettingsAction(_previous: EventSettingsState, f
     revalidatePath("/admin/clients");
     revalidatePath("/dashboard");
     revalidatePath(`/dashboard/events/${result.updatedEvent.id}`);
+    revalidatePath("/dashboard", "layout");
+    revalidatePath(`/seat-finder/events/${result.updatedEvent.slug}`);
   }
   return result;
 }

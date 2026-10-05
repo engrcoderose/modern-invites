@@ -8,6 +8,8 @@ import { usePageVisibility } from "../hooks/usePageVisibility";
 import { heroSlides } from "../media";
 import { wedding } from "../data";
 import Monogram from "./Monogram";
+import { weddingHeroEnteredEvent } from "../lib/events";
+import { useInvitationMotion } from "./motion/InvitationMotion";
 
 const mobileHeroSources = heroSlides.map(slide => getImageProps({
   src: slide.mobilePhoto.src,
@@ -20,6 +22,7 @@ const mobileHeroSources = heroSlides.map(slide => getImageProps({
 export default function HeroSection() {
   const hero = useRef<HTMLElement>(null);
   const inView = useInView(hero, { amount: 0.15 });
+  const { active: invitationActive } = useInvitationMotion();
   const reducedMotion = useReducedMotion();
   const pageVisible = usePageVisibility();
   const [active, setActive] = useState(0);
@@ -31,13 +34,34 @@ export default function HeroSection() {
   const nextReady = loaded.includes(next);
 
   useEffect(() => {
+    const section = hero.current;
+    if (!invitationActive || !pageVisible || !section) return;
+    let observer: IntersectionObserver | undefined;
+    const observeHero = () => {
+      observer?.disconnect();
+      // Start when the hero reaches the upper half of the viewport. Using
+      // viewport pixels also supports a hero taller than a landscape screen.
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) window.dispatchEvent(new Event(weddingHeroEnteredEvent));
+      }, { rootMargin: `0px 0px -${window.innerHeight / 2}px 0px`, threshold: 0 });
+      observer.observe(section);
+    };
+    observeHero();
+    window.addEventListener("resize", observeHero);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", observeHero);
+    };
+  }, [invitationActive, pageVisible]);
+
+  useEffect(() => {
     if (!playing || !activeReady) return;
     setRequested(current => current.includes(next) ? current : [...current, next]);
   }, [activeReady, next, playing]);
 
   useEffect(() => {
     if (!playing || !nextReady) return;
-    const timer = window.setTimeout(() => setActive(next), 5000);
+    const timer = window.setTimeout(() => setActive(next), 4000);
     return () => window.clearTimeout(timer);
   }, [next, nextReady, playing]);
 
@@ -54,9 +78,9 @@ export default function HeroSection() {
     <div className="relative z-10 mx-auto w-full max-w-5xl">
       <div className="hero-reveal [animation-delay:100ms]"><Monogram className="mx-auto h-24 w-24 sm:h-28 sm:w-28" sizes="112px" light /></div>
       <p className="hero-reveal mt-6 text-xs uppercase tracking-[.4em] [animation-delay:350ms]">The wedding of</p>
-      <h1 className="my-8 flex flex-col items-center justify-center gap-2 font-imperial text-[clamp(5rem,10vw,8rem)] leading-[1.05] md:flex-row md:gap-9"><span className="hero-reveal hero-name [animation-delay:400ms]">Anjo</span><span className="hero-reveal hero-ampersand text-[.5em] text-[rgb(var(--aj-sand))] [animation-delay:850ms]">&amp;</span><span className="hero-reveal hero-name [animation-delay:1200ms]">Jasmin</span></h1>
-      <p className="hero-reveal text-base uppercase tracking-[.12em] [animation-delay:1600ms] sm:text-2xl">{wedding.date}</p>
-      <p className="hero-reveal mt-4 text-sm [animation-delay:1800ms] sm:text-base">{wedding.time} · Malabon, Philippines</p>
+      <h1 className="my-8 flex flex-col items-center justify-center gap-2 font-imperial text-[clamp(5rem,10vw,8rem)] leading-[1.05] md:flex-row md:gap-9"><span className="hero-reveal hero-name [animation-delay:600ms]">Anjo</span><span className="hero-reveal hero-ampersand text-[.5em] text-[rgb(var(--aj-sand))] [animation-delay:1300ms]">&amp;</span><span className="hero-reveal hero-name [animation-delay:1900ms]">Jasmin</span></h1>
+      <p className="hero-reveal text-base uppercase tracking-[.12em] [animation-delay:2600ms] sm:text-2xl">{wedding.date}</p>
+      <p className="hero-reveal mt-4 text-sm [animation-delay:2900ms] sm:text-base">{wedding.time} · Malabon, Philippines</p>
     </div>
     <a href="#countdown" aria-label="Explore the invitation" className="absolute bottom-6 left-1/2 z-10 flex h-10 w-6 -translate-x-1/2 justify-center rounded-full border border-white/70 pt-2"><span className="hero-scroll-cue h-2 w-1 rounded-full bg-white" /></a>
   </section>;

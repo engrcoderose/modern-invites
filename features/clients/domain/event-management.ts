@@ -1,3 +1,5 @@
+import type { ClientServices } from "../../services/domain/client-services";
+
 export interface ManagedEvent {
   id: number;
   name: string;
@@ -8,6 +10,8 @@ export interface ManagedEvent {
   is_active: boolean;
   updated_at: string;
   clients: { name: string; role: string; status: string }[];
+  client_services?: ClientServices;
+  servicesAvailable?: boolean;
 }
 
 export interface EventSettingsInput {
@@ -17,6 +21,7 @@ export interface EventSettingsInput {
   rsvpDeadline: string | null;
   responseMode: "household" | "individual";
   isActive: boolean;
+  clientServices: ClientServices;
 }
 
 export interface EventSettingsState {

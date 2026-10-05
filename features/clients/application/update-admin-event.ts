@@ -1,7 +1,9 @@
 import { z } from "zod";
+import { CLIENT_SERVICES, ClientServicesSetupError } from "../../services/domain/client-services.ts";
 import type { EventSettingsInput, EventSettingsState, EventUpdateResult } from "../domain/event-management";
 
 const schema = z.object({
+  clientServices: z.enum(CLIENT_SERVICES, { error: "Choose the client services." }),
   id: z.coerce.number().int().positive().max(Number.MAX_SAFE_INTEGER),
   version: z.string().datetime({ offset: true }),
   name: z.string().trim().min(2, "Enter the event name.").max(150, "Use at most 150 characters."),
@@ -22,14 +24,15 @@ export async function updateAdminEvent(dependencies: {
   try {
     if (!await dependencies.isAdministrator()) return { status: "error", message: "Your administrator session has expired. Sign in again." };
     const parsed = schema.safeParse(Object.fromEntries(
-      ["id", "version", "name", "rsvpDeadline", "responseMode", "status"].map(key => [key, formData.get(key)]),
+      ["id", "version", "name", "rsvpDeadline", "responseMode", "status", "clientServices"].map(key => [key, formData.get(key)]),
     ));
     if (!parsed.success) return { status: "error", message: "Review the fields and try again.", fieldErrors: parsed.error.flatten().fieldErrors };
     const { status, rsvpDeadline, ...values } = parsed.data;
     const result = await dependencies.updateEvent({ ...values, rsvpDeadline: rsvpDeadline || null, isActive: status === "active" });
     if (result.status === "conflict") return { status: "error", message: "This event changed since you opened it or is no longer available. Reload the page to review the latest details before saving." };
     return { status: "success", message: "Event settings saved.", updatedEvent: result.event };
-  } catch {
+  } catch (error) {
+    if (error instanceof ClientServicesSetupError) return { status: "error", message: error.message, fieldErrors: { clientServices: ["Seat Finder requires database setup."] } };
     return { status: "error", message: "Unable to save event settings. Your changes have been kept in the form. Please try again." };
   }
 }

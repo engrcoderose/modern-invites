@@ -32,6 +32,8 @@ export async function resolveRsvpEventAccess(
     return { status: "denied" };
   }
 
+  if (!configuredEvent.isActive) return { status: "closed" };
+
   if (configuredEvent.accessMode === "name_search") {
     return isClosed(configuredEvent)
       ? { status: "closed" }

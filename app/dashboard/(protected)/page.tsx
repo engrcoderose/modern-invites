@@ -36,7 +36,7 @@ export default async function ClientDashboardPage() {
           Welcome, {access.principal.displayName}
         </h1>
         <p className="mt-3 max-w-2xl leading-7 text-ink-muted">
-          Select a wedding to view its private RSVP workspace.
+          Select a wedding to manage its guest list and included services.
         </p>
       </div>
 

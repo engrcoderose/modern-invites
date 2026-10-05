@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { ManagedEvent, EventSettingsState, UpdateEventSettingsAction } from "../domain/event-management";
+import { ClientServicesField } from "@/features/services/presentation/client-services-field";
 
 const initialState: EventSettingsState = { status: "idle" };
 const selectClass = "h-11 w-full rounded-md border border-input bg-white px-3 text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring";
@@ -18,6 +19,7 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
   const [status, setStatus] = useState(event.is_active ? "active" : "archived");
   const [version, setVersion] = useState(event.updated_at);
   const [saved, setSaved] = useState(event);
+  const [clientServices, setClientServices] = useState(event.client_services ?? "rsvp");
 
   useEffect(() => {
     if (state.status === "success" && state.updatedEvent) {
@@ -27,12 +29,13 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
     }
   }, [state]);
 
-  const dirty = name !== saved.name || deadline !== (saved.rsvp_deadline ?? "") || responseMode !== saved.rsvp_response_mode || status !== (saved.is_active ? "active" : "archived");
+  const dirty = name !== saved.name || deadline !== (saved.rsvp_deadline ?? "") || responseMode !== saved.rsvp_response_mode || status !== (saved.is_active ? "active" : "archived") || clientServices !== (saved.client_services ?? "rsvp");
   function resetChanges() {
     setName(saved.name);
     setDeadline(saved.rsvp_deadline ?? "");
     setResponseMode(saved.rsvp_response_mode);
     setStatus(saved.is_active ? "active" : "archived");
+    setClientServices(saved.client_services ?? "rsvp");
   }
   function error(field: string) {
     return state.fieldErrors?.[field]?.[0] ? <p id={`${field}-error`} className="text-sm text-destructive">{state.fieldErrors[field]?.[0]}</p> : null;
@@ -43,18 +46,19 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
     <input type="hidden" name="version" value={version} />
     <fieldset disabled={pending} className="grid gap-6 disabled:opacity-70 sm:grid-cols-2">
       <legend className="sr-only">Edit event settings</legend>
+      <ClientServicesField value={clientServices} onChange={setClientServices} servicesAvailable={saved.servicesAvailable} error={state.fieldErrors?.clientServices?.[0]} />
       <div className="space-y-2 sm:col-span-2">
         <Label htmlFor="name">Event name</Label>
         <Input id="name" name="name" value={name} onChange={e => setName(e.target.value)} required minLength={2} maxLength={150} className="h-11" aria-invalid={!!state.fieldErrors?.name} aria-describedby={state.fieldErrors?.name ? "name-error" : undefined} />
         {error("name")}
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2" hidden={clientServices === "seat_finder"}>
         <Label htmlFor="rsvpDeadline">RSVP deadline <span className="font-normal text-ink-muted">(optional)</span></Label>
         <Input id="rsvpDeadline" name="rsvpDeadline" type="date" value={deadline} onChange={e => setDeadline(e.target.value)} className="h-11" aria-invalid={!!state.fieldErrors?.rsvpDeadline} aria-describedby="deadline-help rsvpDeadline-error" />
         <p id="deadline-help" className="text-xs leading-5 text-ink-muted">Leave blank to remove the deadline.</p>
         {error("rsvpDeadline")}
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2" hidden={clientServices === "seat_finder"}>
         <Label htmlFor="responseMode">Guests can reply for</Label>
         <select id="responseMode" name="responseMode" value={responseMode} onChange={e => setResponseMode(e.target.value as ManagedEvent["rsvp_response_mode"])} className={selectClass} aria-invalid={!!state.fieldErrors?.responseMode} aria-describedby="response-help responseMode-error">
           <option value="household">Their household or invitation group</option>

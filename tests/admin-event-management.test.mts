@@ -6,7 +6,7 @@ import type { EventSettingsInput, ManagedEvent } from "../features/clients/domai
 const original: ManagedEvent = { id: 12, name: "Anjo & Jasmin", slug: "anjo-and-jasmin", rsvp_deadline: "2026-11-01", rsvp_response_mode: "household", rsvp_access_mode: "shared_code", is_active: true, updated_at: "2026-09-13T08:00:00.123456+00:00", clients: [] };
 function form(overrides: Record<string, string> = {}) {
   const data = new FormData();
-  for (const [key, value] of Object.entries({ id: "12", version: original.updated_at, name: " Updated event ", rsvpDeadline: "2026-11-05", responseMode: "individual", status: "active", ...overrides })) data.set(key, value);
+  for (const [key, value] of Object.entries({ id: "12", version: original.updated_at, name: " Updated event ", rsvpDeadline: "2026-11-05", responseMode: "individual", status: "active", clientServices: "rsvp", ...overrides })) data.set(key, value);
   return data;
 }
 function dependencies(authorized = true) {
@@ -18,7 +18,7 @@ function dependencies(authorized = true) {
     async updateEvent(input: EventSettingsInput) {
       calls.push(input);
       if (input.id !== stored.id || input.version !== stored.updated_at) return { status: "conflict" as const };
-      stored = { ...stored, name: input.name, rsvp_deadline: input.rsvpDeadline, rsvp_response_mode: input.responseMode, is_active: input.isActive, updated_at: new Date(Date.parse(stored.updated_at) + 1000).toISOString() };
+      stored = { ...stored, name: input.name, rsvp_deadline: input.rsvpDeadline, rsvp_response_mode: input.responseMode, client_services: input.clientServices, is_active: input.isActive, updated_at: new Date(Date.parse(stored.updated_at) + 1000).toISOString() };
       return { status: "updated" as const, event: stored };
     },
   };
@@ -34,7 +34,7 @@ test("updates only allowed settings, preserving identifier and RSVP access", asy
   const deps = dependencies();
   const result = await updateAdminEvent(deps, form({ slug: "replacement", rsvp_access_mode: "name_search", rsvp_code_hash: "replacement", user_id: "replacement" }));
   assert.equal(result.status, "success");
-  assert.deepEqual(deps.calls[0], { id: 12, version: original.updated_at, name: "Updated event", rsvpDeadline: "2026-11-05", responseMode: "individual", isActive: true });
+  assert.deepEqual(deps.calls[0], { id: 12, version: original.updated_at, name: "Updated event", rsvpDeadline: "2026-11-05", responseMode: "individual", isActive: true, clientServices: "rsvp" });
   assert.equal(result.updatedEvent?.slug, original.slug);
   assert.equal(result.updatedEvent?.rsvp_access_mode, "shared_code");
 });

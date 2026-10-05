@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { ArrowDown } from "lucide-react";
 import { PrenupPoster } from "../photo-media";
 import { UmbrellaWalk } from "../prenup-media";
-import { prenupVideoStartedEvent, prenupVideoPassedEvent } from "../lib/events";
+import { prenupVideoStartedEvent } from "../lib/events";
 import SectionPetals from "./SectionPetals";
 import Reveal from "./motion/Reveal";
 
@@ -19,7 +19,7 @@ export const prenupPosterSrc = getImageProps({
 
 export default function PrenupVideo({ active = true }: { active?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const handedOff = useRef(false);
+  const pausedOffscreen = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -39,13 +39,12 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
     const video = videoRef.current;
     if (!active || !video) return;
     const observer = new IntersectionObserver(([entry]) => {
-      // Hand over only when the film leaves above the fixed navigation,
+      // Pause only when the film leaves above the fixed navigation,
       // never when it is still below the viewport or while the envelope opens.
       const passedVideo = !entry.isIntersecting && entry.boundingClientRect.bottom <= 80;
-      if (!passedVideo || handedOff.current) return;
-      handedOff.current = true;
+      if (!passedVideo || pausedOffscreen.current) return;
+      pausedOffscreen.current = true;
       video.pause();
-      window.dispatchEvent(new Event(prenupVideoPassedEvent));
     }, { rootMargin: "-80px 0px 0px 0px", threshold: 0 });
     observer.observe(video);
     return () => observer.disconnect();
@@ -69,7 +68,7 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
           aria-label="Anjo and Jasmin prenup video"
           className="relative block aspect-video w-full rounded-sm border border-[rgb(var(--aj-line))] bg-[rgb(var(--aj-olive-shadow))] object-contain"
           onPlay={() => {
-            handedOff.current = false;
+            pausedOffscreen.current = false;
             window.dispatchEvent(new Event(prenupVideoStartedEvent));
           }}
         >

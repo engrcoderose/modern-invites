@@ -1,11 +1,13 @@
 import "server-only";
+import { readWithServiceCompatibility, serviceColumnsForWrite } from "@/features/services/infrastructure/service-schema-compatibility";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { ManagedEvent, EventSettingsInput, EventUpdateResult } from "../domain/event-management";
 
-const columns = "id, name, slug, rsvp_deadline, rsvp_response_mode, rsvp_access_mode, is_active, updated_at";
+const baseColumns = "id, name, slug, rsvp_deadline, rsvp_response_mode, rsvp_access_mode, is_active, updated_at";
+const columns = `${baseColumns}, client_services`;
 type EventRow = Omit<ManagedEvent, "clients">;
 
-// Callers mustF verify platform administrator access before creating this repository.
+// Callers must verify platform administrator access before creating this repository.
 export function createSupabaseEventManagementRepository() {
   const db = createSupabaseAdminClient();
   async function attachClients(events: EventRow[]): Promise<ManagedEvent[]> {
@@ -23,31 +25,36 @@ export function createSupabaseEventManagementRepository() {
   }
   return {
     async listEvents(search: string, status: string, page: number) {
-      let query = db.from("events").select(columns, { count: "exact" });
-      if (status === "active" || status === "archived") query = query.eq("is_active", status === "active");
-      // Escape LIKE wildcards and filter one column, without interpolating PostgREST expressions.
-      if (search) query = query.ilike("name", `%${search.replace(/[\\%_]/g, "\\$&")}%`);
-      const { data, count, error } = await query.order("created_at", { ascending: false }).order("id", { ascending: false }).range((page - 1) * 30, page * 30 - 1);
+      const { data, count, error, servicesAvailable } = await readWithServiceCompatibility(includeServices => {
+        let query = db.from("events").select(includeServices ? columns : baseColumns, { count: "exact" });
+        if (status === "active" || status === "archived") query = query.eq("is_active", status === "active");
+        // Escape LIKE wildcards and filter one column, without interpolating PostgREST expressions.
+        if (search) query = query.ilike("name", `%${search.replace(/[\\%_]/g, "\\$&")}%`);
+        return query.order("created_at", { ascending: false }).order("id", { ascending: false }).range((page - 1) * 30, page * 30 - 1).returns<EventRow[]>();
+      });
       if (error) throw new Error("Unable to load events.");
-      return { events: await attachClients((data ?? []) as EventRow[]), total: count ?? 0 };
+      return { events: await attachClients(((data ?? []) as EventRow[]).map(event => ({ ...event, servicesAvailable }))), total: count ?? 0 };
     },
     async getEvent(id: number): Promise<ManagedEvent | null> {
-      const { data, error } = await db.from("events").select(columns).eq("id", id).maybeSingle();
+      const { data, error, servicesAvailable } = await readWithServiceCompatibility(includeServices => db.from("events").select(includeServices ? columns : baseColumns).eq("id", id).maybeSingle().returns<EventRow | null>());
       if (error) throw new Error("Unable to load event details.");
-      return data ? (await attachClients([data as EventRow]))[0] : null;
+      return data ? (await attachClients([{ ...data as EventRow, servicesAvailable }]))[0] : null;
     },
     async updateEvent(input: EventSettingsInput): Promise<EventUpdateResult> {
+      const serviceColumns = await serviceColumnsForWrite(input.clientServices, () => db.from("events").select("client_services").limit(0));
+      const servicesAvailable = "client_services" in serviceColumns;
       const { data, error } = await db.from("events").update({
         name: input.name,
         rsvp_deadline: input.rsvpDeadline,
         rsvp_response_mode: input.responseMode,
+        ...serviceColumns,
         is_active: input.isActive,
         updated_at: new Date().toISOString(),
-      }).eq("id", input.id).eq("updated_at", input.version).select(columns).maybeSingle();
+      }).eq("id", input.id).eq("updated_at", input.version).select(servicesAvailable ? columns : baseColumns).maybeSingle().returns<EventRow | null>();
       if (error) throw new Error("Unable to save event settings.");
       if (!data) return { status: "conflict" };
       // The write has completed; do not turn an unrelated client lookup failure into a failed save.
-      return { status: "updated", event: { ...data as EventRow, clients: [] } };
+      return { status: "updated", event: { ...data as EventRow, servicesAvailable, clients: [] } };
     },
   };
 }

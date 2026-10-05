@@ -1,4 +1,5 @@
 import "server-only";
+import { serviceColumnsForWrite } from "@/features/services/infrastructure/service-schema-compatibility";
 
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { ClientEventOption } from "../domain/client";
@@ -8,12 +9,14 @@ export function createSupabaseEventCreationRepository(): EventCreationRepository
   const supabase = createSupabaseAdminClient();
   return {
     async createEvent(input) {
+      const serviceColumns = await serviceColumnsForWrite(input.clientServices, () => supabase.from("events").select("client_services").limit(0));
       const { data, error } = await supabase.from("events").insert({
         name: input.name,
         slug: input.slug,
         rsvp_deadline: input.rsvpDeadline,
         rsvp_access_mode: "name_search",
         rsvp_response_mode: input.responseMode,
+        ...serviceColumns,
         rsvp_code_hash: null,
         is_active: true,
       }).select("id, name, slug").single();

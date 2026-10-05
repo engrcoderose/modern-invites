@@ -1,3 +1,5 @@
+import type { ClientServices } from "../../services/domain/client-services";
+
 export type DashboardEventRole = "owner" | "editor" | "viewer";
 export type DashboardGuestType = "adult" | "child";
 export type DashboardAttendanceStatus =
@@ -11,6 +13,7 @@ export interface AssignedDashboardEvent {
   slug: string;
   rsvpDeadline: string | null;
   role: DashboardEventRole;
+  clientServices?: ClientServices;
 }
 
 export interface DashboardSummary {

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { ClientNavigation } from "./client-navigation";
 
 import { Button } from "@/components/ui/button";
 
@@ -9,6 +10,7 @@ interface ClientShellProps {
   displayName: string;
   email: string | null;
   logoutAction: () => Promise<void>;
+  hasSeatFinder?: boolean;
 }
 
 export function ClientShell({
@@ -16,6 +18,7 @@ export function ClientShell({
   displayName,
   email,
   logoutAction,
+  hasSeatFinder = false,
 }: ClientShellProps) {
   return (
     <div className="min-h-screen bg-ivory">
@@ -57,18 +60,7 @@ export function ClientShell({
       </header>
 
       <div className="border-b border-black/5 bg-white/55">
-        <nav
-          aria-label="Client navigation"
-          className="mx-auto flex max-w-7xl px-4 sm:px-6 lg:px-8"
-        >
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 border-b-2 border-forest px-1 py-3 text-sm font-medium text-forest"
-          >
-            <LayoutDashboard aria-hidden="true" className="size-4" />
-            Dashboard
-          </Link>
-        </nav>
+        <ClientNavigation hasSeatFinder={hasSeatFinder} />
       </div>
 
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">

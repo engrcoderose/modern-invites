@@ -63,9 +63,12 @@ export default function SeatFinderSection() {
           </h2>
           <Link
             href="/seat-finder/anjo-and-jasmin"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group mt-8 inline-flex min-h-14 w-full items-center justify-center gap-5 rounded-full bg-[rgb(var(--aj-accent))] px-8 py-4 text-sm font-medium text-[rgb(var(--aj-ivory))] shadow-[0_10px_24px_-12px_#886456aa] transition-colors hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))] sm:w-auto"
           >
             Find my seat
+            <span className="sr-only"> (opens in a new tab)</span>
             <ArrowRight
               size={18}
               aria-hidden="true"

@@ -1,4 +1,6 @@
 import "server-only";
+import { readWithServiceCompatibility } from "@/features/services/infrastructure/service-schema-compatibility";
+import { includesRsvp, type ClientServices } from "@/features/services/domain/client-services";
 
 import type {
   RsvpAccessMode,
@@ -9,6 +11,7 @@ import type { RsvpEventAccessRepository } from "@/features/rsvp/domain/rsvp-even
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 interface EventConfigurationRow {
+  client_services?: ClientServices;
   id: number;
   name: string;
   slug: string;
@@ -33,7 +36,7 @@ function toConfiguration(
     eventName: row.name,
     slug: row.slug,
     rsvpDeadline: row.rsvp_deadline,
-    isActive: row.is_active,
+    isActive: row.is_active && includesRsvp(row.client_services),
     accessMode: row.rsvp_access_mode,
     responseMode: row.rsvp_response_mode,
   };
@@ -44,13 +47,13 @@ export function createSupabaseRsvpEventAccessRepository(): RsvpEventAccessReposi
 
   return {
     async findBySlug(slug) {
-      const { data, error } = await supabase
+      const { data, error } = await readWithServiceCompatibility(includeServices => supabase
         .from("events")
         .select(
-          "id, name, slug, rsvp_deadline, is_active, rsvp_access_mode, rsvp_response_mode",
+          `id, name, slug, rsvp_deadline, is_active, rsvp_access_mode, rsvp_response_mode${includeServices ? ", client_services" : ""}`,
         )
         .eq("slug", slug)
-        .maybeSingle();
+        .maybeSingle().returns<EventConfigurationRow | null>());
 
       if (error) {
         throw new Error("Unable to load the RSVP event.");
@@ -62,6 +65,9 @@ export function createSupabaseRsvpEventAccessRepository(): RsvpEventAccessReposi
     },
 
     async verifySharedCode(slug, code) {
+      const { data: event, error: eventError } = await readWithServiceCompatibility(includeServices => supabase.from("events").select(includeServices ? "id, client_services" : "id").eq("slug", slug).maybeSingle().returns<{ id: number; client_services?: ClientServices } | null>());
+      if (eventError) throw new Error("Unable to verify RSVP services.");
+      if (!event || !includesRsvp(event.client_services as ClientServices)) return null;
       const { data, error } = await supabase.rpc(
         "verify_event_rsvp_code",
         {

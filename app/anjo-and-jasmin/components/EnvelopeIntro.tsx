@@ -2,11 +2,11 @@
 
 import { WaxStamp, EmbossedPaper } from "../design-media";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { invitationOpenedEvent } from "../lib/events";
-import { wedding } from "../data";
+import { EnvelopeFlapLines, EnvelopeFoldLines, EnvelopeShapeDefinition } from "./EnvelopeArtwork";
 
 // Spend the time on the visible lift, then crossfade as the flap clears.
 const openingTiming = { flap: 2.8, revealAt: 2.25, fade: 0.55 };
@@ -16,6 +16,7 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
   const reducedMotion = useReducedMotion();
   const dialog = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flapClipId = `envelope-flap-${useId().replace(/:/g, "")}`;
 
   useEffect(() => {
     const overflow = document.body.style.overflow;
@@ -45,7 +46,9 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
       animate={{ opacity: opening ? 0 : 1 }}
       transition={{ delay: opening && !reducedMotion ? openingTiming.revealAt : 0, duration: reducedMotion ? 0 : openingTiming.fade }}>
       <button type="button" disabled={opening} onClick={open} aria-label="Open Anjo and Jasmin's wedding invitation"
-        className="aj-envelope-scene relative block h-full min-h-[320px] w-full overflow-hidden text-center text-[rgb(var(--aj-ink))] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-8 focus-visible:outline-[rgb(var(--aj-accent))] disabled:cursor-default md:h-[min(78svh,680px)] md:max-w-[1040px] md:overflow-visible md:rounded-[5px]">
+        style={{ "--aj-envelope-flap-clip": `url(#${flapClipId})` } as CSSProperties}
+        className="aj-envelope-scene relative block aspect-[6/5] w-[min(calc(100vw-2rem),90svh)] max-w-[480px] rounded-[5px] text-center text-[rgb(var(--aj-ink))] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-8 focus-visible:outline-[rgb(var(--aj-accent))] disabled:cursor-default md:aspect-auto md:h-[min(78svh,680px)] md:w-full md:max-w-[1040px]">
+        <EnvelopeShapeDefinition id={flapClipId} />
         <div aria-hidden="true" className="aj-envelope-paper aj-envelope-back absolute inset-0" />
         <div aria-hidden="true" className="aj-envelope-paper aj-envelope-left absolute inset-0" />
         <div aria-hidden="true" className="aj-envelope-paper aj-envelope-right absolute inset-0" />
@@ -57,10 +60,13 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
             </div>
           </div>
         </div>
+        <EnvelopeFoldLines />
 
-        <motion.div aria-hidden="true" className="aj-envelope-lift-shadow pointer-events-none absolute inset-0"
-          animate={{ opacity: opening ? [0.3, 0.7, 0.38, 0] : 0.3 }}
-          transition={{ duration: reducedMotion ? 0 : openingTiming.flap, times: [0, 0.35, 0.65, 1] }} />
+        <motion.div aria-hidden="true" className="aj-envelope-lift-shadow pointer-events-none absolute inset-x-0 top-0 h-[66%] origin-top"
+          animate={{ opacity: opening ? [0.65, 0.75, 0.38, 0] : 0.65, scaleY: opening ? [1, 0.85, 0.4, 0] : 1 }}
+          transition={{ duration: reducedMotion ? 0 : openingTiming.flap, times: [0, 0.35, 0.65, 1] }}>
+          <div className="aj-envelope-flap-shadow-shape absolute inset-0" />
+        </motion.div>
 
         {/* The seal belongs to the flap, so it follows the same 3D hinge. */}
         <motion.div aria-hidden="true" className="aj-envelope-flap absolute inset-x-0 top-0 z-20 h-[66%] origin-top"
@@ -69,27 +75,18 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
           <div className="aj-envelope-flap-face aj-envelope-flap-rim absolute inset-0" />
           <div className="aj-envelope-flap-face aj-envelope-flap-front aj-envelope-paper absolute inset-0">
             <Image src={EmbossedPaper} alt="" fill priority sizes="(max-width: 768px) 100vw, 1040px" className="aj-envelope-emboss object-fill" />
-            <div className="aj-envelope-letterpress absolute inset-x-5 top-[19%]">
-              <p className="text-[9px] uppercase tracking-[.3em] sm:text-xs">Together with our families</p>
-              <p className="mt-4 font-imperial text-[clamp(3.5rem,7vw,5.5rem)] leading-[1.2] text-[rgb(var(--aj-accent-dark))]">Anjo &amp; Jasmin</p>
-              <p className="mt-4 text-[9px] uppercase tracking-[.22em] sm:text-xs">Invite you to celebrate our wedding</p>
-            </div>
+            <EnvelopeFlapLines />
           </div>
           <div className="aj-envelope-flap-face aj-envelope-flap-back aj-envelope-paper absolute inset-0" />
-          <div className="aj-envelope-seal absolute bottom-0 left-1/2 h-[clamp(100px,24vw,130px)] w-[clamp(100px,24vw,130px)]">
-            <Image src={WaxStamp} alt="" fill priority sizes="(max-width: 640px) 110px, 130px" className="object-contain" />
+          <div className="aj-envelope-seal absolute bottom-0 left-1/2 h-[min(clamp(64px,20vw,96px),20svh)] w-[min(clamp(64px,20vw,96px),20svh)] md:h-[min(130px,24svh)] md:w-[min(130px,24svh)]">
+            <Image src={WaxStamp} alt="" fill priority sizes="(max-width: 767px) 96px, 130px" className="object-contain" />
           </div>
         </motion.div>
 
-        <motion.div className="aj-envelope-letterpress absolute inset-x-5 bottom-[6%] z-30 flex flex-col items-center gap-3"
+        <motion.div className="aj-envelope-letterpress absolute inset-x-5 bottom-[8%] z-30 flex justify-center"
           animate={{ opacity: opening ? 0 : 1, y: opening ? 8 : 0 }}
           transition={{ duration: reducedMotion ? 0 : 0.2 }}>
-          <span aria-hidden="true" className="aj-envelope-date-ornament" />
-          <div className="space-y-2">
-            <p className="font-serif text-sm tracking-[.07em] sm:text-base">{wedding.dateDisplay}</p>
-            <p className="text-[10px] uppercase tracking-[.2em]">{wedding.time}</p>
-          </div>
-          <span className="mt-1 border-b border-[rgb(var(--aj-accent))]/40 pb-2 text-[10px] uppercase tracking-[.3em]">Tap to open</span>
+          <span className="border-b border-[rgb(var(--aj-accent))]/40 pb-2 text-[10px] uppercase tracking-[.3em] sm:text-xs">Tap to open</span>
         </motion.div>
       </button>
       <p role="status" className="sr-only">{opening ? "Opening Anjo and Jasmin’s wedding invitation." : ""}</p>

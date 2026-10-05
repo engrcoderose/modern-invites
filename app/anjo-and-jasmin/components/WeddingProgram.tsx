@@ -2,13 +2,15 @@
 
 import { BrownLineFlower } from "../design-media";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { wedding } from "../data";
 import Image from "next/image";
 import { timelineIllustrations } from "../media";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import type { TimelineEvent } from "../types";
 import Reveal from "./motion/Reveal";
+import TimelineDot from "./motion/TimelineDot";
+import { useInvitationMotion } from "./motion/InvitationMotion";
 
 function Illustration({ index }: { index: number; }) {
   const source = timelineIllustrations[index] ?? timelineIllustrations[3];
@@ -22,10 +24,33 @@ function Illustration({ index }: { index: number; }) {
 
 export default function WeddingProgram({ events: program }: { events: TimelineEvent[]; }) {
   const listRef = useRef<HTMLOListElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const { active } = useInvitationMotion();
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start center", "end center"] });
+  const [track, setTrack] = useState({ top: 64, length: Math.max(1, (program.length - 1) * 128), stations: [] as number[] });
+  const { scrollYProgress } = useScroll({ target: trackRef, offset: ["start center", "end center"] });
   const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 28 });
   const markerTop = useTransform(progress, [0, 1], ["0%", "100%"]);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const measureStations = () => {
+      const listTop = list.getBoundingClientRect().top;
+      const centers = Array.from(list.querySelectorAll<HTMLElement>("[data-timeline-dot]"), dot => {
+        const bounds = dot.getBoundingClientRect();
+        return bounds.top + bounds.height / 2 - listTop;
+      });
+      if (!centers.length) return;
+      const top = centers[0];
+      const length = Math.max(1, centers[centers.length - 1] - top);
+      setTrack({ top, length, stations: centers.map(center => (center - top) / length) });
+    };
+    measureStations();
+    const observer = new ResizeObserver(measureStations);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [program]);
 
   if (!program.length) return null;
   return (
@@ -38,9 +63,9 @@ export default function WeddingProgram({ events: program }: { events: TimelineEv
           <p className="mt-3 text-xs leading-5 text-[rgb(var(--aj-muted))]">2:30 PM church arrival · {wedding.time} ceremony</p>
         </Reveal>
         <div className="relative mx-auto mt-10 w-full max-w-[16rem] sm:mt-12 sm:max-w-[22rem] lg:max-w-none">
-          <div aria-hidden="true" className="absolute bottom-16 left-[84px] top-16 w-px bg-[repeating-linear-gradient(to_bottom,rgb(var(--aj-line))_0_3px,transparent_3px_8px)] sm:left-[128px] lg:bottom-[72px] lg:left-1/2 lg:top-[72px]">
+          <div ref={trackRef} aria-hidden="true" data-timeline-track className="absolute left-[84px] w-px bg-[repeating-linear-gradient(to_bottom,rgb(var(--aj-line))_0_3px,transparent_3px_8px)] sm:left-[128px] lg:left-1/2" style={{ top: track.top, height: track.length }}>
             {!reducedMotion && <motion.span className="absolute inset-0 origin-top bg-[rgb(var(--aj-accent))]/40" style={{ scaleY: progress }} />}
-            {!reducedMotion && <motion.span className="absolute left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgb(var(--aj-accent))] shadow-[0_0_0_5px_rgb(var(--aj-paper))] motion-reduce:hidden" style={{ top: markerTop }} />}
+            {!reducedMotion && <motion.span data-timeline-moving-dot className="absolute left-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgb(var(--aj-accent))] shadow-[0_0_0_5px_rgb(var(--aj-paper))] motion-reduce:hidden" style={{ top: markerTop }} />}
           </div>
           <ol ref={listRef} className="relative list-none p-0">
             {program.map((event, index) => {
@@ -50,9 +75,7 @@ export default function WeddingProgram({ events: program }: { events: TimelineEv
                   <Reveal y={14} className={`col-start-1 row-start-1 flex justify-center ${reversed ? "lg:col-start-3 lg:justify-start lg:pl-10" : "lg:justify-end lg:pr-10"}`}>
                     <Illustration index={index} />
                   </Reveal>
-                  <span aria-hidden="true" className="relative col-start-2 row-start-1 mx-auto grid h-5 w-5 place-items-center rounded-full border border-[rgb(var(--aj-line))] bg-[rgb(var(--aj-paper))]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[rgb(var(--aj-accent))]" />
-                  </span>
+                  <TimelineDot progress={progress} position={track.stations[index] ?? index / Math.max(1, program.length - 1)} active={active} reducedMotion={Boolean(reducedMotion)} />
                   <Reveal y={14} delay={0.06} className={`col-start-3 row-start-1 min-w-0 pl-3 text-center sm:pl-6 ${reversed ? "lg:col-start-1 lg:pl-0 lg:pr-10 lg:text-right" : "lg:pl-10 lg:text-left"}`}>
                     <time className="font-instrumentSerif text-3xl leading-none text-[rgb(var(--aj-accent-dark))] sm:text-4xl">{event.time}</time>
                     <h3 className="mt-2 whitespace-normal break-words text-balance font-instrumentSerif text-xl leading-tight sm:text-2xl">{event.title}</h3>
