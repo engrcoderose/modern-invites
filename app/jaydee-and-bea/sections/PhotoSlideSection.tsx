@@ -31,7 +31,7 @@ export default function PhotoSlideSection({ photos }: { photos: readonly Gallery
       }}
       className="relative isolate flex h-[calc(100svh-72px)] min-h-[480px] flex-col items-center justify-center overflow-hidden bg-[#293327] px-5 pb-24 pt-8 sm:px-12"
     >
-      <Image src={photo.src} alt="" aria-hidden="true" fill sizes="50vw" className="-z-20 scale-110 object-cover blur-2xl" loading="lazy" />
+      <Image src={photo.src} alt="" aria-hidden="true" fill sizes="(min-width:1024px) 512px, 50vw" quality={40} className="-z-20 scale-110 object-cover blur-2xl" loading="lazy" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#1c271b]/45" />
       <ScrollLayer profile="gallery" className="relative h-full max-h-[80svh] w-full max-w-5xl">
         <motion.div key={selected} initial={reducedMotion ? false : { opacity: 0.5, scale: 1.015 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">

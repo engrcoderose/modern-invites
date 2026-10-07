@@ -90,7 +90,7 @@ export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps
                   onClick={() => active ? onOpen(index) : setSelected(index)}
                   className={`jb-carousel-photo absolute inset-0 overflow-hidden rounded-lg border border-[#faf8f0]/90 bg-[#eeeee4] sm:rounded-2xl ${active ? "cursor-zoom-in" : "cursor-pointer"}`}
                 >
-                  <Image src={photo.src} alt={photo.alt} fill draggable={false} sizes="(max-width:640px) 56vw, 360px" className="pointer-events-none select-none object-cover" loading="lazy" />
+                  <Image src={photo.src} alt={photo.alt} fill draggable={false} sizes="(min-width:643px) 360px, (min-width:375px) 56vw, 210px" className="pointer-events-none select-none object-cover" loading="lazy" />
                 </motion.button>
               );
             })}

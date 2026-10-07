@@ -5,8 +5,7 @@ import { Church, Clapperboard, Heart, Mail, Music2, UsersRound, UtensilsCrossed,
 import { wedding } from "../data/wedding-data";
 import type { TimelineEvent } from "../types/wedding";
 import TimelineGardenArch from "../components/TimelineGardenArch";
-import cornerFlowers from "../assets/designs/pink-flowers-2.png";
-import floralBorder from "../assets/designs/pink-flowers-3.png";
+import { cornerFlowers, floralBorder } from "../data/design-media";
 
 const milestoneIcons = {
   welcome: Mail,

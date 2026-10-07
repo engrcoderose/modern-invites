@@ -4,9 +4,7 @@ import ScrollLayer from "../components/ScrollLayer";
 import TextReveal from "../components/TextReveal";
 import { wedding } from "../data/wedding-data";
 import { storyPhotos } from "../data/story-photos";
-import floralDivider from "../assets/designs/flowers-4.png";
-import gardenUrn from "../assets/designs/whimsi-yellowish.png";
-import flowerVine from "../assets/designs/flower-vine3.png";
+import { floralDivider, gardenUrn, flowerVine } from "../data/design-media";
 
 export default function StorySection() {
   const [opening, relationship, ...chapters] = wedding.story;

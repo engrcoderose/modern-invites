@@ -1,0 +1,112 @@
+[
+  {
+    "filename": "Main1-1.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Main1-1.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 65922,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "7734350d265d5dffce4f99fce052d10e83077ae18d8a7d787388f846ab157588",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Main1-2.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Main1-2.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 364988,
+    "width": 1708,
+    "height": 2560,
+    "sha256": "c29ec6e09c65d35f3ce48debf7ca8a235a8a2f3584686587e8cd43f1354c2e61",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Main1-3.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Main1-3.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 598612,
+    "width": 1708,
+    "height": 2560,
+    "sha256": "41063f5af452f807d7c38bdf08426da1194dd0d36b7af5e1c576343ba2a47b6e",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Main1-4.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Main1-4.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 522842,
+    "width": 1708,
+    "height": 2560,
+    "sha256": "075223c48254aac1639679fad27f17b36f4b2c6a60dc772f0ae54770002d18a3",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Main1-5.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Main1-5.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 681772,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "b8a127f374392fb8f67eff8f16d1fdbefc3907fdb7064478ae4f0b6756e877be",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Group1-1.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Group1-1.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 1211916,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "4db8a5ae1e0e0350407064cf1b3ea3e891314b9ab9db033a4d454819ee525617",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Group1-2.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Group1-2.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 1473710,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "25190634ab6f51cefd43974442bddaaa3aa1c3304851ce68edbd37124ac0bed1",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Group1-3.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Group1-3.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 229492,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "594e251fa0f5a8b16afba7a3358a9b0dfa23bb1d0f53db4a52d7929ff8cb6dd1",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Group1-4.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Group1-4.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 375236,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "a52b21ba0394acde7f46396ec6b533c62318c935fa3701bfe6a6c95736541a7a",
+    "matchesLocal": true
+  },
+  {
+    "filename": "Group1-5.webp",
+    "url": "https://assets.moderninvites.com/placeholder-images/prenups/Group1-5.webp",
+    "status": 200,
+    "contentType": "image/webp",
+    "bytes": 962230,
+    "width": 2560,
+    "height": 1708,
+    "sha256": "1679bac9e67476d7bb89038dbe02d164763d7a62beeed56ee58ac4534b8cad13",
+    "matchesLocal": true
+  }
+]

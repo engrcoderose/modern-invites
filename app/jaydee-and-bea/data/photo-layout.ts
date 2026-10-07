@@ -1,13 +1,4 @@
-import main1 from "../assets/prenups/Main1-1.jpg";
-import main2 from "../assets/prenups/Main1-2.jpg";
-import main3 from "../assets/prenups/Main1-3.jpg";
-import main4 from "../assets/prenups/Main1-4.jpg";
-import main5 from "../assets/prenups/Main1-5.jpg";
-import group1 from "../assets/prenups/Group1-1.jpg";
-import group2 from "../assets/prenups/Group1-2.jpg";
-import group3 from "../assets/prenups/Group1-3.jpg";
-import group4 from "../assets/prenups/Group1-4.jpg";
-import group5 from "../assets/prenups/Group1-5.jpg";
+import { main1, main2, main3, main4, main5, group1, group2, group3, group4, group5 } from "./prenup-media";
 import type { GalleryPhoto } from "../types/wedding";
 
 // Draft prenup assets only. Replace with the couple's approved photographs.

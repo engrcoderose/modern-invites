@@ -68,7 +68,7 @@ export default function GalleryLightbox({
         </button>
       </div>
       <div className="relative mt-4 h-[calc(100%-8rem)]">
-        {photo && <Image src={photo.src} alt={photo.alt} fill sizes="94vw" className="object-contain" />}
+        {open && photo && <Image src={photo.src} alt={photo.alt} fill sizes="(min-width:1226px) 1104px, (min-width:640px) calc(94vw - 48px), calc(94vw - 32px)" className="object-contain" />}
       </div>
       <div className="mt-4 flex items-center justify-between gap-3">
         <button

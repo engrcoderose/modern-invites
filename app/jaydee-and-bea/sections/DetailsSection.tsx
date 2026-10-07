@@ -3,7 +3,7 @@ import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";
 import VenueCard from "../components/VenueCard";
 import { wedding } from "../data/wedding-data";
-import leafyDivider from "../assets/designs/vines-1.png";
+import { leafyDivider } from "../data/design-media";
 
 export default function DetailsSection() {
   return (

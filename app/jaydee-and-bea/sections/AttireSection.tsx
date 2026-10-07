@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { wedding } from "../data/wedding-data";
-import floralDivider from "../assets/designs/flowers-4.png";
-import roseUrn from "../assets/designs/whimsi-pink-flower.png";
-import formalAttire from "../assets/designs/formal-attire-inspiration.png";
+import { floralDivider, roseUrn, formalAttire } from "../data/design-media";
 
 import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";

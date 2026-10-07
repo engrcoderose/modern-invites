@@ -168,7 +168,7 @@
 }
 
 .invitation :global(.jb-story) {
-  background: #fafbf9 url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+  background: #fafbf9 url("https://assets.moderninvites.com/jaydee-and-bea/images/designs/bluish-bg.webp") center / cover no-repeat;
 }
 
 .invitation :global(.jb-story-title) {
@@ -217,7 +217,7 @@
 }
 
 .invitation :global(.jb-entourage) {
-  background: #fafbf9 url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+  background: #fafbf9 url("https://assets.moderninvites.com/jaydee-and-bea/images/designs/bluish-bg.webp") center / cover no-repeat;
 }
 
 .invitation :global(.jb-entourage-script) {
@@ -231,7 +231,7 @@
 }
 
 .invitation :global(.jb-details) {
-  background: #f8f6ef url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+  background: #f8f6ef url("https://assets.moderninvites.com/jaydee-and-bea/images/designs/bluish-bg.webp") center / cover no-repeat;
 }
 
 .invitation :global(.jb-details-title) {
@@ -267,7 +267,7 @@
 }
 
 .invitation :global(.jb-attire) {
-  background: #faf8f0 url("../assets/designs/floral-bg.png") center / auto 640px repeat;
+  background: #faf8f0 url("https://assets.moderninvites.com/jaydee-and-bea/images/designs/floral-bg.webp") center / auto 640px repeat;
 }
 
 .invitation :global(.jb-attire-script) {

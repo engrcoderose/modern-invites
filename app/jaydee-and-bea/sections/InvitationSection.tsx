@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Countdown from "../components/Countdown";
 import { wedding } from "../data/wedding-data";
-import petals from "../assets/designs/countdown-petals.png";
+import { countdownPetals as petals } from "../data/design-media";
 import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";
 

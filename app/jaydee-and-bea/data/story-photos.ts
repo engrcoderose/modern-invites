@@ -1,5 +1,5 @@
-import portrait from "../assets/designs/our-story-placeholder-pic.png";
-import landscape from "../assets/prenups/Group1-1.jpg";
+import { storyPortrait as portrait } from "./design-media";
+import { group1 as landscape } from "./prenup-media";
 
 // Requested placeholder photos. Replace these imports with approved portraits.
 export const storyPhotos = {

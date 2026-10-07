@@ -49,7 +49,7 @@ export default function GallerySection({ id, title, photos, carousel = false, sh
                     : "aspect-[4/5]"
                 }`}
               >
-                <ScrollLayer profile="photo" phase={index * 0.025} className="absolute inset-0"><Image src={image.src} alt={image.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" loading="lazy" /></ScrollLayer>
+                <ScrollLayer profile="photo" phase={index * 0.025} className="absolute inset-0"><Image src={image.src} alt={image.alt} fill sizes={index === 0 ? "(min-width:1280px) 370px, (min-width:768px) 33vw, calc(100vw - 40px)" : "(min-width:1280px) 370px, (min-width:768px) 33vw, 50vw"} className="object-cover" loading="lazy" /></ScrollLayer>
               </button>
             ))}
           </div>

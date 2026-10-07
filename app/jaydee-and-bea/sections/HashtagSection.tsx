@@ -1,5 +1,5 @@
 import Image from "next/image";
-import leafyDivider from "../assets/designs/vines-1.png";
+import { leafyDivider } from "../data/design-media";
 import { wedding } from "../data/wedding-data";
 import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";

@@ -3,9 +3,7 @@ import HeroGardenArtwork from "../components/HeroGardenArtwork";
 import HeroIntroduction from "../components/HeroIntroduction";
 import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";
-import background from "../assets/designs/gradient-bg.png";
-import floralCorner from "../assets/designs/pink-flowers.png";
-import floralBorder from "../assets/designs/pink-flowers-3.png";
+import { heroBackground as background, floralCorner, floralBorder } from "../data/design-media";
 
 export default function HeroSection() {
   return (
@@ -26,8 +24,8 @@ export default function HeroSection() {
       <div aria-hidden="true" className="pointer-events-none absolute bottom-24 left-1/2 w-[115%] max-w-[560px] -translate-x-1/2 sm:w-full">
         <ScrollLayer profile="hero-garden"><HeroGardenArtwork /></ScrollLayer>
       </div>
-      <ScrollLayer profile="floral-left" aria-hidden className="pointer-events-none absolute -bottom-1 -left-8 w-[90%] max-w-[600px] sm:left-[calc(50%-420px)]"><Image data-ambient src={floralBorder} alt="" priority sizes="(min-width: 667px) 600px, 90vw" draggable={false} className="jb-garden-left h-auto w-full select-none" /></ScrollLayer>
-      <ScrollLayer profile="floral-right" aria-hidden className="pointer-events-none absolute -bottom-1 -right-8 w-[90%] max-w-[600px] sm:right-[calc(50%-420px)]"><Image data-ambient src={floralBorder} alt="" priority sizes="(min-width: 667px) 600px, 90vw" draggable={false} className="jb-garden-right h-auto w-full select-none" /></ScrollLayer>
+      <ScrollLayer profile="floral-left" aria-hidden className="pointer-events-none absolute -bottom-1 -left-8 w-[90%] max-w-[600px] sm:left-[calc(50%-420px)]"><Image data-ambient src={floralBorder} alt="" sizes="(min-width: 667px) 600px, 90vw" draggable={false} className="jb-garden-left h-auto w-full select-none" /></ScrollLayer>
+      <ScrollLayer profile="floral-right" aria-hidden className="pointer-events-none absolute -bottom-1 -right-8 w-[90%] max-w-[600px] sm:right-[calc(50%-420px)]"><Image data-ambient src={floralBorder} alt="" sizes="(min-width: 667px) 600px, 90vw" draggable={false} className="jb-garden-right h-auto w-full select-none" /></ScrollLayer>
     </ScrollScene>
   );
 }

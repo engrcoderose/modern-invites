@@ -3,10 +3,7 @@ import ScrollScene from "../components/ScrollScene";
 import ScrollLayer from "../components/ScrollLayer";
 import TextReveal from "../components/TextReveal";
 import { wedding } from "../data/wedding-data";
-import pavilion from "../assets/designs/gardern-arch.png";
-import divider from "../assets/designs/vines-1.png";
-import rightVine from "../assets/designs/flower-vines.png";
-import leftVine from "../assets/designs/flower-vines-2.png";
+import { pavilion, leafyDivider as divider, rightVine, leftVine } from "../data/design-media";
 
 function MemberList({ members }: { members: readonly string[] }) {
   return (
