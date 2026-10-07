@@ -1,0 +1,328 @@
+@font-face {
+  font-family: "JB Noto Serif";
+  src: url("../assets/fonts/noto-serif-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JB Noto Serif";
+  src: url("../assets/fonts/noto-serif-latin-italic.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+.invitation {
+  font-family: "JB Noto Serif", Georgia, serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invitation :global(.jb-serif) {
+  font-family: "JB Noto Serif", Georgia, serif;
+  font-weight: 400;
+}
+
+.invitation :global(.jb-heading) {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+}
+
+.invitation :global(.jb-heading) {
+  font-size: clamp(2.8rem, 7vw, 4.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.invitation :global(.jb-eyebrow) {
+  color: #526445;
+  font-size: 0.65rem;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.invitation :global(.jb-countdown) {
+  background: linear-gradient(135deg, #f4dfe4 0%, #faf3ed 50%, #eed6df 100%);
+}
+
+.invitation :global(.jb-hero-blend) {
+  background: linear-gradient(to bottom, transparent, #f4dfe4);
+}
+
+.invitation :global(.jb-photo-stage) {
+  background: linear-gradient(to bottom, #faf8f0, #f7e9e8);
+}
+
+.invitation :global(.jb-countdown-names) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-weight: 400;
+}
+
+.invitation :global(.jb-countdown-value) {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+}
+
+.invitation :global(section[id]) {
+  scroll-margin-top: 72px;
+}
+
+.invitation :global(a),
+.invitation :global(button) {
+  touch-action: manipulation;
+}
+
+.invitation :global(:focus-visible) {
+  outline: 2px solid #526445;
+  outline-offset: 5px;
+}
+
+.invitation :global(.jb-skip-link) {
+  transform: translateY(-160%);
+}
+
+.invitation :global(.jb-skip-link:focus) {
+  transform: translateY(0);
+}
+
+.invitation :global(.jb-navigation) {
+  background: rgb(250 248 240 / 94%);
+  backdrop-filter: blur(12px);
+}
+
+.invitation :global(.jb-nav-link),
+.invitation :global(.jb-nav-rsvp) {
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.invitation :global(.jb-nav-link:hover) {
+  color: #925f50;
+}
+
+.invitation :global(.jb-nav-rsvp:hover) {
+  background-color: #e9edde;
+}
+
+.invitation :global(.jb-names) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-size: clamp(5.8rem, 19vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+  color: #293327;
+}
+
+.invitation :global(.jb-name-connector) {
+  font-size: 0.44em;
+  line-height: 1;
+}
+
+.invitation :global(.jb-name-ink) {
+  display: block;
+  /* Give the script's flourishes room inside the animated mask. */
+  padding: 0.25em 0.3em;
+  margin: -0.25em -0.3em;
+}
+
+.invitation :global(.jb-garden-left) {
+  transform-origin: 20% 95%;
+  animation: jb-sway-left 12s ease-in-out infinite alternate;
+}
+
+.invitation :global(.jb-garden-right) {
+  transform-origin: 50% 95%;
+  animation: jb-sway-right 14s ease-in-out infinite alternate;
+}
+
+.invitation :global(.jb-petal) {
+  border-radius: 85% 0 85% 0;
+  background: #eab4c5;
+  opacity: 0.6;
+  animation: jb-petal-drift 9s ease-in-out infinite alternate;
+}
+
+.invitation :global(.jb-petal-late) {
+  animation-delay: -4s;
+  background: #c9e0f7;
+}
+
+.invitation :global(.jb-button) {
+  color: #faf8f0;
+  background-color: #526445;
+  border: 1px solid #526445;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.invitation :global(.jb-button:hover:not(:disabled)) {
+  background-color: #36472e;
+  border-color: #36472e;
+}
+
+.invitation :global(.jb-button:disabled) {
+  background-color: #707865;
+  border-color: #707865;
+  cursor: not-allowed;
+}
+
+.invitation :global(.jb-story) {
+  background: #fafbf9 url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+}
+
+.invitation :global(.jb-story-title) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-size: clamp(2.25rem, 5vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #293327;
+}
+
+.invitation :global(.jb-story-prose) {
+  font-family: "JB Noto Serif", Georgia, serif;
+}
+
+/* Vase centers follow the JSX widths/offsets: 48 − 28, 72 − 32, then 72 px. */
+.invitation :global(.jb-story-garden) {
+  --jb-vase-center: 20px;
+}
+
+/* Crop the vine's transparent canvas (1396 × 357; foliage bounds
+   x: 10–1324, y: 105–251) so its ends meet the vase centers at the floor. */
+.invitation :global(.jb-story-vine) {
+  position: absolute;
+  bottom: 0;
+  left: var(--jb-vase-center);
+  right: var(--jb-vase-center);
+  aspect-ratio: 1315 / 147;
+  overflow: hidden;
+}
+
+.invitation :global(.jb-story-vine img) {
+  position: absolute;
+  width: 106.16%;
+  max-width: none;
+  height: auto;
+  left: -0.7605%;
+  top: -71.4286%;
+}
+
+@media (min-width: 640px) {
+  .invitation :global(.jb-story-garden) { --jb-vase-center: 40px; }
+}
+
+@media (min-width: 1024px) {
+  .invitation :global(.jb-story-garden) { --jb-vase-center: 72px; }
+}
+
+.invitation :global(.jb-entourage) {
+  background: #fafbf9 url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+}
+
+.invitation :global(.jb-entourage-script) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-weight: 400;
+  color: #293327;
+}
+
+.invitation :global(.jb-entourage-rule) {
+  background: linear-gradient(90deg, transparent, #82977580);
+}
+
+.invitation :global(.jb-details) {
+  background: #f8f6ef url("../assets/designs/bluish-bg.png") center / cover no-repeat;
+}
+
+.invitation :global(.jb-details-title) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-size: clamp(3rem, 8vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #293327;
+}
+
+.invitation :global(.jb-venue-card) {
+  background: linear-gradient(160deg, #fffdfbe6, #faf7f0d9);
+  box-shadow: 0 12px 36px #697c6010;
+}
+
+.invitation :global(.jb-venue-rule) {
+  background: linear-gradient(90deg, transparent, #82977580);
+}
+
+.invitation :global(.jb-timeline) {
+  background:
+    radial-gradient(ellipse at 10% 14%, #f7d6e0bf, transparent 48%),
+    radial-gradient(ellipse at 90% 62%, #f7d6e08c, transparent 52%),
+    linear-gradient(145deg, #f3eee7, #faf8f0 45%, #f1e3df);
+}
+
+.invitation :global(.jb-timeline-title) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  color: #293327;
+}
+
+.invitation :global(.jb-attire) {
+  background: #faf8f0 url("../assets/designs/floral-bg.png") center / auto 640px repeat;
+}
+
+.invitation :global(.jb-attire-script) {
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.invitation :global(.jb-photo img) {
+  transition: transform 500ms ease;
+}
+
+.invitation :global(.jb-carousel-stage) {
+  perspective: 1200px;
+}
+
+.invitation :global(.jb-carousel-photo) {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-shadow: 0 18px 44px #36472e24;
+}
+
+.invitation :global(.jb-photo:hover img) {
+  transform: scale(1.025);
+}
+
+.invitation :global(.jb-lightbox::backdrop) {
+  background: rgb(27 39 24 / 85%);
+}
+
+.invitation :global(.jb-rsvp) {
+  background: linear-gradient(145deg, #e5ecdb, #f0f2e7);
+}
+
+@keyframes jb-sway-left {
+  from { transform: rotate(-1deg); }
+  to { transform: rotate(1deg); }
+}
+
+@keyframes jb-sway-right {
+  from { transform: scaleX(-1) rotate(1deg); }
+  to { transform: scaleX(-1) rotate(-1deg); }
+}
+
+@keyframes jb-petal-drift {
+  from { transform: translateY(0) rotate(-15deg); }
+  to { transform: translateY(22px) rotate(30deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation :global(.jb-garden-left),
+  .invitation :global(.jb-garden-right),
+  .invitation :global(.jb-petal) { animation: none; }
+  .invitation :global(.jb-garden-right) { transform: scaleX(-1); }
+  .invitation :global(a),
+  .invitation :global(button),
+  .invitation :global(.jb-photo img) { transition: none; }
+}
