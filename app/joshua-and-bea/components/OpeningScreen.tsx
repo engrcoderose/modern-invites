@@ -3,9 +3,9 @@
 import { wedding } from "../data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import FloralBorder from "../assets/images/designs/floral-designs.png";
+import { FloralBorder } from "../design-media";
 import { ArrowRight } from "lucide-react";
-import WelcomePhoto from "../assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
+import { WelcomePhoto } from "../prenup-media";
 import { invitationOpenedEvent } from "../lib/events";
 
 interface OpeningScreenProps {

@@ -1,8 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 import type { StoryChapter } from "../types";
 import Reveal from "./motion/Reveal";
-import Petals from "../assets/images/designs/white-petals.png";
-import Daisies from "../assets/images/designs/small-daisy.png";
+import { Petals, Daisies } from "../design-media";
 
 interface StorySectionProps {
   title: string;

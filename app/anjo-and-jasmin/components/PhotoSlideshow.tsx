@@ -7,6 +7,10 @@ import { useInView, useReducedMotion } from "motion/react";
 import { usePageVisibility } from "../hooks/usePageVisibility";
 import { afterDressCodeSlides as slides } from "../media";
 
+// The blurred backdrop reuses the foreground's optimized version instead of
+// generating and fetching another full-screen variant for the same photograph.
+const slideshowImageSizes = "(max-width: 639px) 84vw, (max-width: 1023px) 65vw, (max-width: 1904px) 42vw, 800px";
+
 export default function PhotoSlideshow() {
   const section = useRef<HTMLElement>(null);
   const nearViewport = useInView(section, { margin: "400px", once: true });
@@ -67,7 +71,7 @@ export default function PhotoSlideshow() {
                   alt=""
                   fill
                   loading="eager"
-                  sizes="100vw"
+                  sizes={slideshowImageSizes}
                   onLoad={() => markLoaded(`background-${index}`)}
                   style={{ objectPosition: slide.position }}
                   className={`scale-105 object-cover blur-sm transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`}
@@ -99,7 +103,7 @@ export default function PhotoSlideshow() {
                     alt={slide.alt}
                     fill
                     loading="eager"
-                    sizes="(max-width: 639px) 84vw, (max-width: 1023px) 65vw, (max-width: 1904px) 42vw, 800px"
+                    sizes={slideshowImageSizes}
                     onLoad={() => markLoaded(`photo-${index}`)}
                     style={{ objectPosition: slide.position }}
                     className="object-contain sm:object-cover"

@@ -1,17 +1,7 @@
 import type { GalleryImage } from "./types";
-import WalkingCouple from "../isabella-and-daniel/assets/walking-couple.jpg";
-import InLoveCouple from "../isabella-and-daniel/assets/inlove-couple.jpg";
-import Portrait from "../isabella-and-daniel/assets/pexels-camera-treasure-928922-16841002.jpg";
-import HappyCouple from "../isabella-and-daniel/assets/happy-couple.jpg";
-import Flowers from "../isabella-and-daniel/assets/couple-with-flowers.jpg";
-import Rings from "../isabella-and-daniel/assets/ring-focus.jpg";
-import PiggyBack from "../isabella-and-daniel/assets/piggy-back-ride.jpg";
-import PrenupPoster from "./assets/images/prenup/pexels-king-caplis-471600979-36396114.jpg";
-import ChurchImage from "./assets/images/prenup/church-image.jpg";
-import StoryWalk from "./assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import StoryEmbrace from "./assets/images/prenup/pexels-king-caplis-471600979-36266064.jpg";
+import { Walking, Together, Garden, Sitting, Embrace, Portrait, PrenupMoment, WelcomePhoto } from "./prenup-media";
 
-export { WalkingCouple, InLoveCouple, Portrait, HappyCouple, Flowers, Rings, PiggyBack, PrenupPoster, ChurchImage, StoryWalk, StoryEmbrace };
+export { Sitting as PrenupPoster, ChurchImage, Walking as StoryWalk, Portrait as StoryEmbrace } from "./prenup-media";
 
 export const invitationPreview = {
   url: "/joshua-and-bea-wedding-og.jpg",
@@ -22,13 +12,14 @@ export const invitationPreview = {
 };
 
 export const gallery: GalleryImage[] = [
-  WalkingCouple,
+  Walking,
   Portrait,
-  HappyCouple,
-  Flowers,
-  Rings,
-  PiggyBack,
-  InLoveCouple,
+  Garden,
+  Sitting,
+  Embrace,
+  PrenupMoment,
+  Together,
+  WelcomePhoto,
 ].map((src, index) => ({
   src,
   alt: `A moment from our love story · Photograph ${index + 1}`,

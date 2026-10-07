@@ -1,0 +1,113 @@
+{
+  "checkedAt": "2026-10-07T10:44:18.107Z",
+  "images": [
+    {
+      "filename": "church-image.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/church-image.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 1195,
+      "height": 896,
+      "format": "jpeg",
+      "bytes": 888423,
+      "sha256": "e1a394e2c184559d90e74ebfb4268859999f9671ea83765a18b9b0a7c485b504",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36266064.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36266064.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 1536940,
+      "sha256": "f6e5ec93020e8f6b4a477d40c33b1223647af3d2f3ee2767156d86db7f58acdd",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36266073.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36266073.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 1257047,
+      "sha256": "8dc1a7ca9f56e7050416b425c16ac1f61f8278bc5d4e65e22547433ae25e2c02",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36266077.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36266077.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 1158806,
+      "sha256": "901b58e92935dccf0eb779c98effbe3aebba90563ec27c7dbc9915c76aca7d6a",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36266135.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36266135.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 2014818,
+      "sha256": "2c248831fb5fc82b9ac9291e16e22179033aed196f0f1ec00e0e85ebfd7b4bd5",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36266137.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36266137.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 3072263,
+      "sha256": "57ad8aea9a360513ab65ea47060592e478d444efd981df7cab40a5cccf731bcf",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36396110.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36396110.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 1061594,
+      "sha256": "09cf5bd1db92ad8b5f6b3938ae06ba6fcdd1c599e0632f257af5239ca7f75e49",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36396114.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36396114.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 5184,
+      "height": 3456,
+      "format": "jpeg",
+      "bytes": 1065443,
+      "sha256": "4996af5fd3948aa0c126c5fc3f2e672dc10acdf76650e6b41992f4d0fb1ab3db",
+      "matchesLocalOriginal": true
+    },
+    {
+      "filename": "pexels-king-caplis-471600979-36396174.jpg",
+      "url": "https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/pexels-king-caplis-471600979-36396174.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "width": 4768,
+      "height": 3247,
+      "format": "jpeg",
+      "bytes": 1008010,
+      "sha256": "dfb33a758cf2b65eeed9b547e917fff133b1d7c5bc67bdb81ad56b70019651f5",
+      "matchesLocalOriginal": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image, { type ImageLoaderProps } from "next/image";
+import Image from "next/image";
 import { useIsPresent, useReducedMotion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
 import { portraitPhotos, fullPagePhotos } from "../data/media";
@@ -9,13 +9,11 @@ import { wedding } from "../data";
 
 const slideInterval = 2000;
 
-// Keep every slide at least full HD, including the wide photos cropped into
-// portrait frames. Larger displays can still request the 2048/3840px variants.
-function slideshowImageLoader({ src, width, quality }: ImageLoaderProps) {
-  return `/_next/image?url=${encodeURIComponent(src)}&w=${Math.max(1920, width)}&q=${quality ?? 95}`;
-}
-
-export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean }) {
+export default function PhotoBreak({
+  fullPage = false,
+}: {
+  fullPage?: boolean;
+}) {
   const photos = fullPage ? fullPagePhotos : portraitPhotos;
   const [active, setActive] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
@@ -33,7 +31,8 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
   }, [reducedMotion]);
 
   function showPhoto(index: number) {
-    if (index === active || transitioning.current || !loaded.includes(index)) return;
+    if (index === active || transitioning.current || !loaded.includes(index))
+      return;
     transitioning.current = !reducedMotion;
     setPrevious(reducedMotion ? null : active);
     setActive(index);
@@ -59,20 +58,32 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
       aria-roledescription="carousel"
       aria-label={`${fullPage ? "Together" : "Us"} — photo slideshow`}
       onFocusCapture={(event) => {
-        if (!(event.target as HTMLElement).closest("[data-slideshow-playback]")) setPaused(true);
+        if (!(event.target as HTMLElement).closest("[data-slideshow-playback]"))
+          setPaused(true);
       }}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
           event.stopPropagation();
           event.preventDefault();
           setPaused(true);
-          showPhoto((active + (event.key === "ArrowRight" ? 1 : photos.length - 1)) % photos.length);
+          showPhoto(
+            (active + (event.key === "ArrowRight" ? 1 : photos.length - 1)) %
+              photos.length,
+          );
         }
       }}
     >
       {/* Cap the mobile crop at 3:5 so both people fit in the wide Together photos. */}
-      <div className={fullPage ? "absolute inset-x-0 top-1/2 h-full -translate-y-1/2 [@media(max-width:700px)]:max-h-[166.667vw]" : "vg-portrait-frame relative my-7 max-w-full shrink-0 aspect-[3/4]"}>
-        <div className={`absolute inset-0 isolate overflow-hidden ${fullPage ? "" : "shadow-[0_16px_50px_#0006] ring-1 ring-[#f2ede04d]"}`}>
+      <div
+        className={
+          fullPage
+            ? "absolute inset-x-0 top-1/2 h-full -translate-y-1/2 [@media(max-width:700px)]:max-h-[166.667vw]"
+            : "vg-portrait-frame relative my-7 max-w-full shrink-0 aspect-[3/4]"
+        }
+      >
+        <div
+          className={`absolute inset-0 isolate overflow-hidden ${fullPage ? "" : "shadow-[0_16px_50px_#0006] ring-1 ring-[#f2ede04d]"}`}
+        >
           {photos.map((photo, index) => (
             <div
               key={photo.src.src}
@@ -96,15 +107,20 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             >
               <Image
                 src={photo.src}
-                loader={slideshowImageLoader}
-                quality={95}
+                quality={85}
                 alt={photo.alt}
                 fill
                 loading="eager"
-                onLoad={() => setLoaded((current) => current.includes(index) ? current : [...current, index])}
-                sizes={fullPage
-                  ? `max(100vw, calc(100svh * ${photo.src.width / photo.src.height}))`
-                  : `calc(min(747px, calc((100vw - 64px) * 4 / 3), calc(100svh - 300px)) * ${Math.max(0.75, photo.src.width / photo.src.height)})`}
+                onLoad={() =>
+                  setLoaded((current) =>
+                    current.includes(index) ? current : [...current, index],
+                  )
+                }
+                sizes={
+                  fullPage
+                    ? `(max-width: 700px) max(100vw, calc(min(100svh, 166.667vw) * ${photo.src.width / photo.src.height})), max(100vw, calc(100svh * ${photo.src.width / photo.src.height}))`
+                    : `calc(min(747px, calc((100vw - 64px) * 4 / 3), calc(100svh - 300px)) * ${Math.max(0.75, photo.src.width / photo.src.height)})`
+                }
                 draggable={false}
                 className="object-cover"
                 style={{ objectPosition: photo.position }}
@@ -112,12 +128,30 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             </div>
           ))}
         </div>
-        {!fullPage && <h2 className="vg-photo-break-names pointer-events-none absolute inset-0 z-10" aria-label={wedding.title}>
-          <span className="absolute -left-7 -top-9 [@media(max-width:700px)]:-left-4" aria-hidden="true">{wedding.groomShort}</span>
-          <span className="absolute -bottom-9 -right-7 [@media(max-width:700px)]:-right-4" aria-hidden="true">{wedding.brideShort}</span>
-        </h2>}
+        {!fullPage && (
+          <h2
+            className="vg-photo-break-names pointer-events-none absolute inset-0 z-10"
+            aria-label={wedding.title}
+          >
+            <span
+              className="absolute -left-7 -top-9 [@media(max-width:700px)]:-left-4"
+              aria-hidden="true"
+            >
+              {wedding.groomShort}
+            </span>
+            <span
+              className="absolute -bottom-9 -right-7 [@media(max-width:700px)]:-right-4"
+              aria-hidden="true"
+            >
+              {wedding.brideShort}
+            </span>
+          </h2>
+        )}
       </div>
-      <div className={`${fullPage ? "absolute bottom-[calc(86px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 rounded-full border border-[#f2ede026] bg-[#17201599] px-2 backdrop-blur-sm" : "relative"} z-10 flex items-center justify-center`} aria-label="Slideshow controls">
+      <div
+        className={`${fullPage ? "absolute bottom-[calc(86px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 rounded-full border border-[#f2ede026] bg-[#17201599] px-2 backdrop-blur-sm" : "relative"} z-10 flex items-center justify-center`}
+        aria-label="Slideshow controls"
+      >
         {photos.map((photo, index) => (
           <button
             key={photo.src.src}
@@ -126,9 +160,14 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             aria-label={`Show photo ${index + 1}`}
             aria-pressed={index === active}
             disabled={!loaded.includes(index)}
-            onClick={() => { setPaused(true); showPhoto(index); }}
+            onClick={() => {
+              setPaused(true);
+              showPhoto(index);
+            }}
           >
-            <span className={`h-1.5 rounded-full transition-[width,background-color] motion-reduce:transition-none ${index === active ? "w-5 bg-[#f2ede0]" : "w-1.5 bg-[#f2ede066]"}`} />
+            <span
+              className={`h-1.5 rounded-full transition-[width,background-color] motion-reduce:transition-none ${index === active ? "w-5 bg-[#f2ede0]" : "w-1.5 bg-[#f2ede066]"}`}
+            />
           </button>
         ))}
         {!reducedMotion && (
@@ -139,7 +178,11 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             aria-label={paused ? "Play slideshow" : "Pause slideshow"}
             onClick={() => setPaused((value) => !value)}
           >
-            {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
+            {paused ? (
+              <Play size={14} aria-hidden="true" />
+            ) : (
+              <Pause size={14} aria-hidden="true" />
+            )}
           </button>
         )}
       </div>

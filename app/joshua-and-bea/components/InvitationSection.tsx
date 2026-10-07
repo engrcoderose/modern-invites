@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import BlueFlower from "../assets/images/designs/blue-fower-water-color.png";
+import { BlueFlower } from "../design-media";
 import Reveal from "./motion/Reveal";
 import Botanicals from "./Botanicals";
 

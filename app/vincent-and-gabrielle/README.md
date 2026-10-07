@@ -21,6 +21,7 @@ name has been invented. The countdown targets the ceremony in Philippine time
 - `data/entourage.ts`: paired parents, sponsors and wedding party.
 - `data/faqs.ts`: guest guidance and approved guest policies.
 - `data/media.ts`: cover/background, artwork, attire and slideshow assets.
+- `data/prenup-media.ts`: uploaded R2 prenup URLs and image dimensions.
 - `sections/`: ordered invitation content in small groups.
 - `components/`: navigation, opening, page turn, slideshow, RSVP and presentation.
 - `utils/page-fold.ts`: preserved page-fold geometry.
@@ -37,17 +38,23 @@ expressed locally through Tailwind utilities. No shared configuration is changed
 
 Approved VG monograms, venue/attire artwork, the forest background, and two
 five-photo collections are connected through `data/media.ts`. The Us collection
-uses `Main1-1.jpg` through `Main1-5.jpg` in order; Together uses `Group1-1.jpg`
-through `Group1-5.jpg` in order. Together uses individual focal points and caps
+uses `Main1-1.webp` through `Main1-5.webp` in order; Together uses `Group1-1.webp`
+through `Group1-5.webp` in order. Both reuse the existing uploaded R2 photographs
+under `https://assets.moderninvites.com/placeholder-images/prenups/`, with URLs
+and dimensions configured in `data/prenup-media.ts`. Local JPEG copies remain
+available for editing/recovery and are no longer imported into the invitation.
+Together uses individual focal points and caps
 the mobile frame at a 3:5 crop to keep both people visible on tall screens.
 Extra supplied reference assets remain available in
 the local asset folders. Photos are described without assuming the subjects'
 identities. No former-client personal names or guest information are retained.
-`Main1-4.jpg` has visible distortion in its lower portion in the supplied source;
+The supplied `Main1-4` photo has visible distortion in its lower portion;
 replace it with a clean export when available.
 
-Keep replacement images in the client asset folders and update their imports,
-alt text and focal positions in `data/media.ts`. Update `sharingMedia` there when
+For replacement prenups, update their URLs and dimensions in `data/prenup-media.ts`,
+using a new filename/version URL and matching optimizer allowlist when necessary.
+Update alt text and focal positions in `data/media.ts`. Keep replacement design
+and cover assets in the client asset folders. Update `sharingMedia` when
 replacing the cover files. CSS crops the transparent margins of the supplied VG
 logos; opening movement adapts to those bounds with its original timings.
 Place approved music/video in dedicated folders under this client's public folder
@@ -96,6 +103,21 @@ unrelated utility classes when scanning the complete repository.
 Browser checks covered 1440×900, 768×1024, 390×844 and 320×568 viewports, opening
 and page navigation, forward/backward turns, swipe, slideshow dots/keyboard,
 FAQ exclusivity, pending RSVP, countdown placeholders and the sharing image.
-No browser errors were observed. Next.js emits its existing forward-compatibility
-warning for quality-95 images; global image configuration was left unchanged.
+No browser errors were observed during those checks.
 Recheck these layouts after confirmed content replaces the pending details.
+
+The slideshows now use quality 85 and Next.js's responsive image widths instead
+of a custom 1920px minimum. Together's responsive sizing includes its mobile
+3:5 crop cap. The shared image optimizer caches stable invitation images for at
+least 31 days. Remote prenups use stable R2 URLs; local artwork retains static
+imports with content-hashed URLs when its source files change. Photo order, focal
+points and slideshow controls are preserved.
+
+R2 prenup migration verified October 7, 2026: all ten public WebP sources returned
+HTTP 200 with matching upload hashes and configured dimensions. The verification
+report is in `docs/media/r2-prenup-verification.json`. The isolated production
+build, lint and full-project type check passed. Both slideshows loaded their R2
+sources through Next Image at 375x812, 768x1024 and 1440x900 with no console errors
+or horizontal overflow; photo-dot navigation was checked. Local slideshow JPEGs
+are absent from the production static media. No R2 uploads or deployment were
+performed; deployment is required to apply these changes to the live invitation.

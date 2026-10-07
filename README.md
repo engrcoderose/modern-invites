@@ -98,6 +98,22 @@ This project was migrated from Vite + React Router to Next.js 15:
 - ✅ Client components marked with "use client" directive
 - ✅ All animations and interactions preserved
 
+## Image optimization usage
+
+`next.config.ts` keeps stable optimized images cached for at least 31 days and
+restricts optimizer quality requests to the values currently used by invitations:
+40, 75 (the default), 78, 82, 85, 88, 90, 92, 94 and 95. Use an existing quality
+when possible; if a new quality is required, update the allowlist deliberately.
+Keep remote/public image URLs stable until the asset changes, then use a new
+filename/version URL and update the matching remote allowlist when necessary.
+
+R2 hosts the source files; photos rendered through the default `next/image`
+optimizer still use Vercel image transformations and cache reads/writes. Accurate
+responsive sizes, smaller optimized files, reused versions and longer caching
+reduce future usage. The homepage's three-column invitation cards request image
+widths matching their actual card widths. Refer to `AGENTS.md` for the repository's
+image conventions. These changes require deployment and do not reset past usage.
+
 ## 🚀 Deployment
 
 The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com):

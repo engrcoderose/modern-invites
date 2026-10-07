@@ -39,6 +39,11 @@ Decorative variations:
 
 After the dress code, `PhotoSlideshow` shows five existing prenup photos as a centered landscape image over a faded full-width duplicate. Both layers crossfade together every 3.5 seconds once the next pair is ready. It loads near the viewport, pauses offscreen or when hidden, and displays a static photo with reduced motion. Slideshow controls are hidden. Photos are configured in `afterDressCodeSlides` in `media.ts`.
 
+The foreground and blurred backdrop share the same responsive `sizes` and image
+quality, so both layers reuse one optimized URL per photo at a given viewport.
+The backdrop no longer generates a separate full-screen optimization variant.
+Existing photo order, crop positions, transitions and staged loading are preserved.
+
 Performance update (September 14, 2026):
 - `invitation.tsx` loads the full `InvitationContent` separately and warms its code and opening video poster during the envelope opening animation.
 - Both slideshows request the current photo and then the next photo, rather than requesting every slide together. Loaded slides remain available for later loops.

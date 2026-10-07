@@ -107,6 +107,52 @@ When creating a NEW invitation website/client folder:
   accessibility, performance, and ease of future client revisions over writing
   the fewest possible lines of code.
 
+## Image optimization and Vercel usage
+
+Apply these rules across the repository when creating or updating invitations,
+including projects copied from an existing client or template:
+
+- Prefer the existing `next/image` optimizer and its responsive width selection.
+  Do not copy custom loaders that force a minimum 1920px/full-HD image on every
+  screen. Use larger versions only when the displayed size, crop, or pixel density
+  requires them.
+- Use accurate `sizes` values for responsive and `fill` images. Match the actual
+  mobile/tablet/desktop frame, including height limits and `object-cover` cropping,
+  so smaller screens can request smaller images without losing subject detail.
+- Keep the default image quality for ordinary images. Start photo slideshows at
+  quality 85 rather than 95 or 100; adjust only when visual checks or an explicit
+  client requirement justify it. Avoid unnecessary quality/format variants.
+  Reuse qualities already permitted in the shared `images.qualities` allowlist.
+  If another quality is necessary, update the allowlist deliberately and preserve
+  values used by existing invitations and the default quality.
+- When a slideshow uses the same photo for its foreground and blurred backdrop,
+  reuse one optimized image version where visual checks confirm it is sufficient.
+  Avoid generating a separate full-screen variant solely for a blurred layer.
+- Preserve the shared `images.minimumCacheTTL` of 31 days
+  (`31 * 24 * 60 * 60`) for stable invitation images. Do not shorten it for a new
+  client without a concrete freshness requirement. This is image caching only;
+  do not apply it to RSVP, authentication, guest data, or other dynamic responses.
+- Prefer static imports for local artwork/photos so changes receive content-hashed
+  URLs. When replacing public or remote images, change their filenames or version
+  URLs and update matching `remotePatterns` restrictions when necessary. Keep URLs
+  stable until the asset changes; do not add timestamps or new versions on every
+  render or deployment.
+- Resize/compress source assets appropriately and preserve transparency where
+  needed. Use `unoptimized` selectively for small, already optimized assets or
+  formats that do not benefit from the optimizer; do not enable it for every image
+  merely to reduce optimization counters, since large originals can increase
+  bandwidth and slow loading.
+- Prioritize only immediately visible images. Use lazy loading for later content
+  where appropriate, and avoid eagerly fetching entire hidden galleries or
+  slideshows unless required for smooth playback. Preserve working preload,
+  fallback, keyboard, and reduced-motion behavior when changing loading strategies.
+- Verify photo sharpness, crop/focal points, image loading, selected responsive
+  widths, and layout at common mobile, tablet, and desktop sizes. Run applicable
+  lint, type, and build checks within the private-credential boundaries below.
+  Treat measured file-size reductions as samples, not guaranteed account-wide
+  savings; deployed changes affect future usage and new variants need initial
+  processing.
+
 ## Private credentials and Supabase boundaries
 
 - Treat `.env.local` and other real environment or credential files as private.

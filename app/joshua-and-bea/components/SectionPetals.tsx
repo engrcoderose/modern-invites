@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Petals from "../assets/images/designs/white-petals.png";
-import PinkPetals from "../assets/images/designs/pink-petals.png";
+import { Petals, PinkPetals } from "../design-media";
 
 /** Scattered petals kept behind the section's text and interactive content. */
 export default function SectionPetals({ variant = "white" }: { variant?: "white" | "pink"; }) {

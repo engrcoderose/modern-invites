@@ -77,6 +77,13 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // Reuse stable invitation images for 31 days. When replacing a public or
+    // remote image, change its filename/version URL (and remotePatterns if needed).
+    // Static imports already receive content-hashed URLs when their files change.
+    minimumCacheTTL: 31 * 24 * 60 * 60,
+    // Permit the default and every quality currently used by invitations, while
+    // preventing arbitrary optimizer requests from generating extra variants.
+    qualities: [40, 75, 78, 82, 85, 88, 90, 92, 94, 95],
     remotePatterns: [
       {
         protocol: 'https',
@@ -90,6 +97,20 @@ const nextConfig: NextConfig = {
         hostname: 'assets.moderninvites.com',
         port: '',
         pathname: '/placeholder-images/prenups/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
+        pathname: '/placeholder-images/joshua-and-bea/prenups/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
+        pathname: '/placeholder-images/joshua-and-bea/designs/**',
         search: '',
       },
       {

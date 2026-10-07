@@ -134,14 +134,19 @@ and includes the confirmed free-parking note before its map link.
 
 The Us slideshow uses Main-1.jpg through Main-5.jpg in order. Together uses
 Group1 -1.jpg through Group1-5.jpg in order. Both show the real couple's supplied
-photographs, delivered at a minimum 1920px width with quality 95 and larger
-responsive variants when needed. Image sizing accounts for portrait cropping
+photographs, delivered at quality 85 using Next.js's responsive image widths,
+including smaller mobile variants. Image sizing accounts for portrait cropping
 so landscape photographs retain detail. Together slides 2, 3 and 5 use adjusted
 horizontal focal positions to center their subjects while retaining full-screen
 portrait crops on mobile. Both have five photo dots, crossfades,
 keyboard controls, and accessible
 play/pause controls. Keyboard
 focus pauses autoplay; reduced motion disables autoplay and transitions.
+
+The shared image optimizer caches stable invitation images for at least 31 days
+to reduce repeat transformations and writes. Updating a remote photo requires a
+new filename or version URL, including the matching `remotePatterns` query when
+applicable. The source JPEGs retain their original upload quality.
 
 The Dress Code page places its Anastasia heading before three Noto Serif
 paragraphs and then the outfit reference. Formal or Cocktail is bold; “No” and

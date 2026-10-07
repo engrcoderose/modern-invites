@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Reveal from "./motion/Reveal";
-import InspirationOne from "../assets/images/designs/dress-code-ispo-1.png";
-import InspirationTwo from "../assets/images/designs/dress-code-ispo-2.png";
+import { InspirationOne, InspirationTwo } from "../design-media";
 
 interface AttireSectionProps {
   title: string;

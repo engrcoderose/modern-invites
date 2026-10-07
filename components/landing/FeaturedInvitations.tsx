@@ -89,7 +89,7 @@ export default function FeaturedInvitations() {
                   alt=""
                   fill
                   className="object-cover opacity-25 transition duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(min-width: 1344px) 408px, (min-width: 1024px) calc((100vw - 120px) / 3), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/10" />
                 <div className="absolute inset-x-0 top-0 flex h-[68%] items-center justify-center p-8">

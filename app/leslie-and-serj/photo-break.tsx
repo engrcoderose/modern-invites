@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image, { type ImageLoaderProps } from "next/image";
+import Image from "next/image";
 import { useIsPresent, useReducedMotion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
 import { main1, main2, main3, main4, main5, group1, group2, group3, group4, group5 } from "./media";
@@ -22,12 +22,6 @@ const fullPagePhotos = [
 ];
 
 const slideInterval = 2000;
-
-// Keep every slide at least full HD, including the wide photos cropped into
-// portrait frames. Larger displays can still request the 2048/3840px variants.
-function slideshowImageLoader({ src, width, quality }: ImageLoaderProps) {
-  return `/_next/image?url=${encodeURIComponent(src)}&w=${Math.max(1920, width)}&q=${quality ?? 95}`;
-}
 
 export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean }) {
   const photos = fullPage ? fullPagePhotos : portraitPhotos;
@@ -110,9 +104,8 @@ export default function PhotoBreak({ fullPage = false }: { fullPage?: boolean })
             >
               <Image
                 src={photo.src}
-                loader={slideshowImageLoader}
                 unoptimized={directPhotos.includes(index)}
-                quality={95}
+                quality={85}
                 alt={photo.alt}
                 fill
                 loading="eager"

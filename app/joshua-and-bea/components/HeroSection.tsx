@@ -7,7 +7,7 @@ import { useInView, useReducedMotion } from "motion/react";
 import { Pause, Play } from "lucide-react";
 import { usePageVisibility } from "../hooks/usePageVisibility";
 import { invitationOpenedEvent } from "../lib/events";
-import Flowers from "../assets/images/designs/down-flowers.png";
+import { Flowers } from "../design-media";
 
 interface HeroSlide {
   src: StaticImageData;

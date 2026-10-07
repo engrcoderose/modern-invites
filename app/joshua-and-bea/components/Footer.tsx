@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useInView } from "motion/react";
 import Image from "next/image";
 import { ArrowUp, Heart } from "lucide-react";
-import Flowers from "../assets/images/designs/down-flowers.png";
+import { Flowers } from "../design-media";
 
 interface FooterProps {
   bride: string;

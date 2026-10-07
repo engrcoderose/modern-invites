@@ -3,9 +3,8 @@
 import { wedding } from "../data";
 import { useRef } from "react";
 import Image from "next/image";
-import PrenupMoment from "../assets/images/prenup/pexels-king-caplis-471600979-36266137.jpg";
-import PinkFlower from "../assets/images/designs/pink-flower.png";
-import YellowFlower from "../assets/images/designs/yellow-flower.png";
+import { PrenupMoment } from "../prenup-media";
+import { PinkFlower, YellowFlower } from "../design-media";
 import {
   motion,
   useReducedMotion,

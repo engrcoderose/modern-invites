@@ -27,12 +27,21 @@ Styling conventions (also recorded in `AGENTS.md`):
 Code organization:
 - `page.tsx` assembles sections in their existing order.
 - `data.ts` contains fictional wedding details, the sample hashtag, story/program/entourage, and attire palette. Story/program fields match their component types directly.
-- `media.ts` contains the section images and placeholder gallery; `prenup-media.ts` shares the local photos used by the hero and Polaroid strip.
+- `media.ts` contains the section images and gallery; `prenup-media.ts` shares the uploaded R2 photos across the opening screen, hero, Polaroids, story, cinematic section, photo break, and gallery.
+- `design-media.ts` shares the uploaded R2 decorative PNGs and dress-code illustrations, with verified dimensions and transparency.
 - `GiftSection` renders the gift guide; `HashtagSection` owns the interactive copy button. `GiftAndHashtagSections` composes them.
 - `hooks/usePageVisibility.ts` shares hidden-tab handling across the hero, Polaroids, and gallery.
 - The guest guide component is available but is not rendered in the invitation.
 
-The hero uses five local couple photos, a 3.5-second interval after the next image loads, and 1.8-second CSS crossfades. Playback pauses offscreen, in hidden tabs, and for reduced-motion preferences. The Polaroid and gallery tracks retain their pause controls and static reduced-motion layouts.
+The hero uses five uploaded couple photos, a 3.5-second interval after the next image loads, and 1.8-second CSS crossfades. Playback pauses offscreen, in hidden tabs, and for reduced-motion preferences. The Polaroid and gallery tracks retain their pause controls and static reduced-motion layouts.
+
+The gallery uses mobile-first Tailwind utilities for three horizontal square-photo rows below 640px and three vertical columns from `sm` upward. The animation media query uses the same breakpoint. Avoid arbitrary `max-*` layout variants here: the repository's object-based custom screen configuration prevents Tailwind from generating them. Reduced-motion users can scroll each mobile row manually, with duplicated tracks hidden.
+
+Photo sources: `https://assets.moderninvites.com/placeholder-images/joshua-and-bea/prenups/`. All eight couple photographs and `church-image.jpg` were verified publicly against the retained local originals; dimensions and SHA-256 hashes are recorded in `docs/media/r2-prenup-verification.json`. The gallery now uses these eight uploaded couple photographs instead of Isabella and Daniel's placeholder gallery. The church photo remains available in the media configuration; the venue sections continue to show the existing city maps. The social preview remains unchanged. Local photo originals are retained for existing homepage references and rollback.
+
+Design sources: `https://assets.moderninvites.com/placeholder-images/joshua-and-bea/designs/`. All ten uploaded PNGs match the retained local originals, including their alpha channels. The opening floral border, hero/footer flowers, cinematic flowers, story artwork, scattered petals, and attire illustrations use `design-media.ts`. Verification is recorded in `docs/media/r2-design-verification.json`. Preserve the uploaded filenames (including `blue-fower-water-color.png`) and use a new filename when replacing artwork. The separate local SVG venue background remains as configured.
+
+Keep these stable URLs shared across sections. Next Image continues to provide responsive optimized images with the repository's 31-day cache policy and allowed qualities. R2 hosts the originals; Next Image requests still count toward Vercel image optimization usage. When replacing an uploaded image, use a new filename and update `prenup-media.ts` so cached versions can expire normally.
 
 Validation:
 - Run `npx tsc --noEmit --noUncheckedSideEffectImports`.

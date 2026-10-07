@@ -196,7 +196,7 @@
 }
 
 /* On phones, the same photo sequences become three opposing horizontal rows. */
-@media (max-width: 640px) {
+@media not all and (min-width: 640px) {
   .floral-invitation .flow-gallery-wall { mask-image: none; }
   .floral-invitation .flow-gallery-column {
     mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
