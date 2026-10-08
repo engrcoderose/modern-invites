@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { AccessStep } from "./AccessStep";
 import { InitializationStep } from "./InitializationStep";
-import { PartyStep } from "./PartyStep";
+import { PartyStep, type PartyDisplayOptions } from "./PartyStep";
 import { SearchStep, type SearchHeaderOptions } from "./SearchStep";
 import type { SmartRsvpTheme } from "./theme";
 import { debutSmartRsvpTheme } from "./theme";
@@ -20,6 +20,7 @@ interface SmartRsvpFlowProps {
   accessMode?: RsvpAccessMode;
   searchHeader?: SearchHeaderOptions;
   searchAppearance?: "card" | "minimal";
+  partyDisplay?: PartyDisplayOptions;
 }
 
 type SmartRsvpThemeProperties = CSSProperties & {
@@ -51,6 +52,7 @@ export function SmartRsvpFlow({
   accessMode = "shared_code",
   searchHeader,
   searchAppearance,
+  partyDisplay,
 }: SmartRsvpFlowProps) {
   const {
     stage,
@@ -118,6 +120,7 @@ export function SmartRsvpFlow({
 
       {stage === "party" && event && party && selectedMatch && (
         <PartyStep
+          display={partyDisplay}
           event={event}
           eventSlug={eventSlug}
           rsvpCode={rsvpCode}

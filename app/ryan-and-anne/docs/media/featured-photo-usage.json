@@ -1,0 +1,106 @@
+{
+  "scope": "Slideshows and photo breaks, including decorative backdrops and the hashtag section background",
+  "photos": 16,
+  "uniquePhotos": 16,
+  "duplicateIds": 0,
+  "duplicateFilenames": 0,
+  "duplicateImageContents": 0,
+  "usage": [
+    {
+      "section": "hero slideshow",
+      "id": "cafe-doorway-embrace",
+      "filename": "ryan-and-anne-cafe-doorway-embrace.webp",
+      "sha256": "2c0e4522c097ca9902f7b17d2eb6d7c41defa44a6936a67eaa96b6c714f64f5a"
+    },
+    {
+      "section": "hero slideshow",
+      "id": "cafe-overhead-portrait",
+      "filename": "ryan-and-anne-cafe-overhead-portrait.webp",
+      "sha256": "64c47bfac30796d41cf4f60ed09757fb15fe22744ae88cc7b6e61b18c403b3cf"
+    },
+    {
+      "section": "hero slideshow",
+      "id": "red-sofa-portrait",
+      "filename": "ryan-and-anne-red-sofa-portrait.webp",
+      "sha256": "912846e65618fdcd3de03c025ce35ae703031b4b6374ca1a514b6c469c118f4d"
+    },
+    {
+      "section": "hero slideshow",
+      "id": "staircase-standing-portrait",
+      "filename": "ryan-and-anne-staircase-standing-portrait.webp",
+      "sha256": "57d256cad314dd9343702dd1a9f867589578b91c63778b1f1f3e8725d28588d8"
+    },
+    {
+      "section": "hero slideshow",
+      "id": "red-sofa-newspaper-laughter",
+      "filename": "ryan-and-anne-red-sofa-newspaper-laughter.webp",
+      "sha256": "3213777d19a55ac2373bd46a25fed8e1b0e8123e8ee36a2fd2040d842edc2baf"
+    },
+    {
+      "section": "story carousel",
+      "id": "bar-close-embrace",
+      "filename": "ryan-and-anne-bar-close-embrace.webp",
+      "sha256": "616898f8e8bd2d6b3b78e34a0fabfe922172b67d11e7723ae82028129a12df6e"
+    },
+    {
+      "section": "story carousel",
+      "id": "cafe-doorway-smiles",
+      "filename": "ryan-and-anne-cafe-doorway-smiles.webp",
+      "sha256": "ffac9644bc98131d0005fe019c6f0defed7a39a9378900023f9d896851794b3a"
+    },
+    {
+      "section": "story carousel",
+      "id": "staircase-candid-embrace",
+      "filename": "ryan-and-anne-staircase-candid-embrace.webp",
+      "sha256": "ad5f363816a9b1ceb83125eb90f89e24412060a281485d18ab616caedeb452e3"
+    },
+    {
+      "section": "story carousel",
+      "id": "cafe-overhead-embrace",
+      "filename": "ryan-and-anne-cafe-overhead-embrace.webp",
+      "sha256": "0e9e29d0f03852102dafe414a72ddb521b5c242b8f2f4c8ab5e320cece347a06"
+    },
+    {
+      "section": "story carousel",
+      "id": "studio-back-to-back-portrait",
+      "filename": "ryan-and-anne-studio-back-to-back-portrait.webp",
+      "sha256": "4ddf1d8c89801563c29706831cace19e0cbb0aa581c63119c70bb7cfae616337"
+    },
+    {
+      "section": "entourage photo break",
+      "id": "bar-wide-embrace",
+      "filename": "ryan-and-anne-bar-wide-embrace.webp",
+      "sha256": "ee82554115170a46dcec257a38f209d8fce13f2503a9b5c900131a87ede28ec7"
+    },
+    {
+      "section": "hashtag section background",
+      "id": "holding-hands-outdoors",
+      "filename": "ryan-and-anne-holding-hands-outdoors.webp",
+      "sha256": "8e814a9e0a151b3dbeef56784444445e32f89fe39772297da40b58e246315e4a"
+    },
+    {
+      "section": "hashtag photo break",
+      "id": "red-sofa-newspaper-candid",
+      "filename": "ryan-and-anne-red-sofa-newspaper-candid.webp",
+      "sha256": "7d93f76bfda58cb02117d8e0e7f2a0ed0ea854872a4e41169ed83ba03020fc3e"
+    },
+    {
+      "section": "hashtag photo break",
+      "id": "studio-newspaper-seated-portrait",
+      "filename": "ryan-and-anne-studio-newspaper-seated-portrait.webp",
+      "sha256": "24943c1eee2f0201f752153dddcdb90473440300175a0c3c38b1169315b9bc15"
+    },
+    {
+      "section": "hashtag photo break",
+      "id": "staircase-candid-smiles",
+      "filename": "ryan-and-anne-staircase-candid-smiles.webp",
+      "sha256": "fef8157c493ea86a935806b7d2128ff47ea084666fa1d17ba8a2cd9fd2aad628"
+    },
+    {
+      "section": "hashtag backdrop",
+      "id": "wedding-newspaper-couple-detail",
+      "filename": "ryan-and-anne-wedding-newspaper-couple-detail.webp",
+      "sha256": "cdc2551d148843ec0ae48d311c5888f49e182b46441fd8391ecefd991a46022e"
+    }
+  ]
+}

@@ -89,6 +89,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'assets.moderninvites.com',
         port: '',
+        pathname: '/ryan-and-anne/images/prenups/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
         pathname: '/jaydee-and-bea/images/designs/**',
         search: '',
       },

@@ -1,6 +1,7 @@
 import { Check, UserRound, X } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 import type {
   AttendanceChoice,
@@ -9,6 +10,7 @@ import type {
 } from "./types";
 
 interface GuestAttendanceListProps {
+  appearance?: "default" | "minimal";
   guests: PartyGuest[];
   responses: Record<number, GuestResponseDraft>;
   disabled: boolean;
@@ -17,16 +19,18 @@ interface GuestAttendanceListProps {
 }
 
 export function GuestAttendanceList({
+  appearance = "default",
   guests,
   responses,
   disabled,
   onAttendanceChange,
   onDietaryChange,
 }: GuestAttendanceListProps) {
+  const minimal = appearance === "minimal";
   return (
     <div
       aria-label="Invited party members"
-      className="max-h-[26rem] divide-y divide-gray-100 overflow-y-auto overscroll-contain rounded-lg border border-[var(--smart-rsvp-border-soft)]"
+      className={cn("max-h-[26rem] overflow-y-auto overscroll-contain border border-[var(--smart-rsvp-border-soft)]", minimal ? "divide-y divide-[var(--smart-rsvp-border-soft)] rounded-sm" : "divide-y divide-gray-100 rounded-lg")}
     >
       {guests.map((guest) => {
         const response = responses[guest.id];
@@ -40,13 +44,13 @@ export function GuestAttendanceList({
               </div>
 
               <div className="min-w-0 flex-1">
-                <p className="font-medium text-gray-900">{guest.fullName}</p>
+                <p className={cn("font-medium text-gray-900", minimal && "break-words text-sm leading-6 sm:text-base")}>{guest.fullName}</p>
                 <p className="mt-1 text-xs capitalize text-gray-500">
                   {guest.guestType}
                 </p>
               </div>
 
-              <div className="flex gap-2">
+              <div className={cn("flex gap-2", minimal && "shrink-0")}>
                 <button
                   type="button"
                   aria-label={`${guest.fullName} is attending`}
@@ -56,17 +60,20 @@ export function GuestAttendanceList({
                   style={
                     status === "attending"
                       ? {
-                          backgroundColor: "#16a34a",
-                          borderColor: "#16a34a",
+                          backgroundColor: minimal ? "var(--smart-rsvp-accent)" : "#16a34a",
+                          borderColor: minimal ? "var(--smart-rsvp-accent)" : "#16a34a",
                           color: "#ffffff",
                         }
                       : undefined
                   }
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 ${
+                  className={cn("flex items-center justify-center rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+                    minimal ? "h-11 w-11 focus-visible:ring-[var(--smart-rsvp-border)]" : "h-10 w-10 focus-visible:ring-green-600",
                     status === "attending"
                       ? "shadow-sm"
-                      : "border-gray-300 bg-white text-gray-600 hover:border-green-500 hover:text-green-600"
-                  }`}
+                      : minimal
+                        ? "border-[var(--smart-rsvp-border)] bg-transparent text-[var(--smart-rsvp-border)] hover:bg-[var(--smart-rsvp-soft-strong)]"
+                        : "border-gray-300 bg-white text-gray-600 hover:border-green-500 hover:text-green-600"
+                  )}
                 >
                   <Check
                     aria-hidden="true"
@@ -84,17 +91,20 @@ export function GuestAttendanceList({
                   style={
                     status === "declined"
                       ? {
-                          backgroundColor: "#ef4444",
-                          borderColor: "#ef4444",
-                          color: "#ffffff",
+                          backgroundColor: minimal ? "var(--smart-rsvp-soft-strong)" : "#ef4444",
+                          borderColor: minimal ? "var(--smart-rsvp-border)" : "#ef4444",
+                          color: minimal ? "var(--smart-rsvp-heading)" : "#ffffff",
                         }
                       : undefined
                   }
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 ${
+                  className={cn("flex items-center justify-center rounded-full border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+                    minimal ? "h-11 w-11 focus-visible:ring-[var(--smart-rsvp-border)]" : "h-10 w-10 focus-visible:ring-red-500",
                     status === "declined"
                       ? "shadow-sm"
-                      : "border-gray-300 bg-white text-gray-600 hover:border-red-400 hover:text-red-500"
-                  }`}
+                      : minimal
+                        ? "border-[var(--smart-rsvp-border-soft)] bg-transparent text-[var(--smart-rsvp-heading)] hover:bg-[var(--smart-rsvp-soft-strong)]"
+                        : "border-gray-300 bg-white text-gray-600 hover:border-red-400 hover:text-red-500"
+                  )}
                 >
                   <X
                     aria-hidden="true"
@@ -115,7 +125,7 @@ export function GuestAttendanceList({
                 disabled={disabled}
                 maxLength={500}
                 placeholder="Dietary restrictions or allergies (optional)"
-                className="sm:ml-[52px] sm:w-[calc(100%-52px)]"
+                className={cn("sm:ml-[52px] sm:w-[calc(100%-52px)]", minimal && "min-h-12 rounded-sm border-[var(--smart-rsvp-border-soft)] bg-transparent shadow-none focus-visible:ring-[var(--smart-rsvp-border)]")}
               />
             )}
           </div>
