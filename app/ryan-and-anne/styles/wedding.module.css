@@ -94,6 +94,7 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.035' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .invitationNames { font-size: clamp(3rem, 10vw, 5rem); line-height: 1.2; }
+.invitationPortraitWindow { clip-path: ellipse(50% 50% at 50% 50%); }
 .countdownNumber { font-size: clamp(1.8rem, 7vw, 4.25rem); line-height: 1; font-variant-numeric: tabular-nums; }
 .countdownLabel { font-size: 9px; line-height: 1.6; letter-spacing: 0.1em; text-transform: uppercase; }
 .storyTitle { font-size: clamp(2.2rem, 9vw, 6.5rem); line-height: 1.2; }

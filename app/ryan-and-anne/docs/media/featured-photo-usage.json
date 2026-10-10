@@ -1,16 +1,16 @@
 {
   "scope": "Slideshows and photo breaks, including decorative backdrops and the hashtag section background",
-  "photos": 16,
-  "uniquePhotos": 16,
+  "photos": 17,
+  "uniquePhotos": 17,
   "duplicateIds": 0,
   "duplicateFilenames": 0,
   "duplicateImageContents": 0,
   "usage": [
     {
       "section": "hero slideshow",
-      "id": "cafe-doorway-embrace",
-      "filename": "ryan-and-anne-cafe-doorway-embrace.webp",
-      "sha256": "2c0e4522c097ca9902f7b17d2eb6d7c41defa44a6936a67eaa96b6c714f64f5a"
+      "id": "cafe-doorway-facing-portrait",
+      "filename": "ryan-and-anne-cafe-doorway-facing-portrait.webp",
+      "sha256": "4c8e220b222b7b60d3a103190c6d5cc410edac44a14a21762e240a673f2894b1"
     },
     {
       "section": "hero slideshow",
@@ -20,15 +20,21 @@
     },
     {
       "section": "hero slideshow",
+      "id": "outdoor-road-holding-hands",
+      "filename": "ryan-and-anne-outdoor-road-holding-hands.webp",
+      "sha256": "a880a491fad0ddbcae582e7a809824015c8b5e9fe0fda2d59d761bebbac4f3a9"
+    },
+    {
+      "section": "hero slideshow",
       "id": "red-sofa-portrait",
       "filename": "ryan-and-anne-red-sofa-portrait.webp",
       "sha256": "912846e65618fdcd3de03c025ce35ae703031b4b6374ca1a514b6c469c118f4d"
     },
     {
       "section": "hero slideshow",
-      "id": "staircase-standing-portrait",
-      "filename": "ryan-and-anne-staircase-standing-portrait.webp",
-      "sha256": "57d256cad314dd9343702dd1a9f867589578b91c63778b1f1f3e8725d28588d8"
+      "id": "staircase-looking-up-smiles",
+      "filename": "ryan-and-anne-staircase-looking-up-smiles.webp",
+      "sha256": "c72b84ba169e9c47841237c8d39ee3f38fed3a6ffdc06d55063c5706c7187b8f"
     },
     {
       "section": "hero slideshow",
@@ -62,15 +68,15 @@
     },
     {
       "section": "story carousel",
-      "id": "studio-back-to-back-portrait",
-      "filename": "ryan-and-anne-studio-back-to-back-portrait.webp",
-      "sha256": "4ddf1d8c89801563c29706831cace19e0cbb0aa581c63119c70bb7cfae616337"
+      "id": "studio-newspaper-seated-smiles",
+      "filename": "ryan-and-anne-studio-newspaper-seated-smiles.webp",
+      "sha256": "e1b8505a2916099f58debad2f6b9c200bd96873b402b07cb4a9e6b19ae98dfc1"
     },
     {
       "section": "entourage photo break",
-      "id": "bar-wide-embrace",
-      "filename": "ryan-and-anne-bar-wide-embrace.webp",
-      "sha256": "ee82554115170a46dcec257a38f209d8fce13f2503a9b5c900131a87ede28ec7"
+      "id": "cafe-overhead-wide-embrace",
+      "filename": "ryan-and-anne-cafe-overhead-wide-embrace.webp",
+      "sha256": "2a2e4703d8e10d59764efc27ba7c28ed8e0df784bd53ebec4994eded39750c39"
     },
     {
       "section": "hashtag section background",

@@ -1,0 +1,14 @@
+.shade {
+  background:
+    linear-gradient(to top, rgb(16 20 13 / 86%), rgb(16 20 13 / 40%) 34%, transparent 68%),
+    rgb(16 20 13 / 8%);
+}
+
+.names {
+  margin: 0;
+  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-size: clamp(3.4rem, 12vw, 6rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgb(16 20 13 / 35%);
+}

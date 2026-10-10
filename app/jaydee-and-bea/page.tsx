@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Navigation from "./components/Navigation";
 import InvitationMotion from "./components/InvitationMotion";
+import InvitationWelcome from "./components/InvitationWelcome";
+import FallingPetals from "./components/FallingPetals";
 import RefreshScrollReset from "./components/RefreshScrollReset";
 import HeroSection from "./sections/HeroSection";
 import InvitationSection from "./sections/InvitationSection";
@@ -32,27 +34,30 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <InvitationMotion className={`${styles.invitation} relative min-h-screen bg-[#faf8f0] text-[#36472e]`}>
+    <InvitationMotion className={`${styles.invitation} relative min-h-screen bg-[rgb(var(--jb-paper))] text-[rgb(var(--jb-ink))]`}>
       <RefreshScrollReset />
-      <a href="#invitation" className="jb-skip-link absolute left-4 top-4 z-50 rounded-full bg-[#36472e] px-6 py-3 text-sm text-[#faf8f0]">Skip to invitation</a>
-      <Navigation />
-      <main>
-        <HeroSection />
-        <InvitationSection />
-        <GallerySection id="gallery" title="Jaydee and Bea photo gallery" photos={wedding.gallery.photos.length ? wedding.gallery.photos : placeholderGalleries[0]} carousel showHeading={false} />
-        <StorySection />
-        <PhotoBreakSection id="story-photo" photo={photoBreaks.afterStory} />
-        <TimelineSection />
-        <PhotoSlideSection photos={photoBreaks.timelineSlides} />
-        <EntourageSection />
-        <PhotoBreakSection id="entourage-photo" photo={photoBreaks.afterEntourage} />
-        <DetailsSection />
-        <AttireSection />
-        <HashtagSection />
-        <GallerySection id="gallery-more" title="More little moments." photos={placeholderGalleries[1]} />
-        <RsvpSection />
-      </main>
-      <Footer />
+      <InvitationWelcome>
+        <FallingPetals />
+        <a href="#invitation" className="jb-skip-link absolute left-4 top-4 z-50 rounded-full bg-[rgb(var(--jb-ink))] px-6 py-3 text-sm text-[rgb(var(--jb-paper))]">Skip to invitation</a>
+        <Navigation />
+        <main>
+          <HeroSection />
+          <InvitationSection />
+          <PhotoSlideSection photos={photoBreaks.timelineSlides} />
+          <StorySection />
+          <PhotoBreakSection id="story-photo" photo={photoBreaks.afterStory} />
+          <TimelineSection />
+          <GallerySection id="gallery" title="Jaydee and Bea photo gallery" photos={wedding.gallery.photos.length ? wedding.gallery.photos : placeholderGalleries[0]} carousel showHeading={false} />
+          <EntourageSection />
+          <PhotoBreakSection id="entourage-photo" photo={photoBreaks.afterEntourage} />
+          <DetailsSection />
+          <AttireSection />
+          <HashtagSection />
+          <GallerySection id="gallery-more" title="More little moments." photos={placeholderGalleries[1]} />
+          <RsvpSection />
+        </main>
+        <Footer />
+      </InvitationWelcome>
     </InvitationMotion>
   );
 }

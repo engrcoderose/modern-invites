@@ -8,4 +8,5 @@ export interface PrenupPhoto {
   height: number;
   alt: string;
   position?: string;
+  sizes?: string;
 }

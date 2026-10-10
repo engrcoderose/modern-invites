@@ -4,12 +4,8 @@ const designBasePath = "jaydee-and-bea/images/designs";
 const designImage = (filename: string, width: number, height: number) =>
   remoteImage(`${designBasePath}/${filename}`, width, height);
 
-export const heroBackground = designImage("gradient-bg.webp", 1093, 1331);
-export const floralCorner = designImage("pink-flowers.webp", 397, 399);
 export const floralBorder = designImage("pink-flowers-3.webp", 1218, 189);
 export const cornerFlowers = designImage("pink-flowers-2.webp", 742, 812);
-export const gardenEntrance = designImage("whimsical-entrance-place.webp", 1110, 827);
-export const coupleIllustration = designImage("couples.webp", 291, 320);
 export const countdownPetals = designImage("countdown-petals.webp", 951, 1070);
 export const storyPortrait = designImage("our-story-placeholder-pic.webp", 723, 796);
 export const floralDivider = designImage("flowers-4.webp", 338, 93);

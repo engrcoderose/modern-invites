@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, createElement, useContext, useRef, useState, type HTMLAttributes, type FocusEvent } from "react";
+import { createContext, createElement, useContext, useEffect, useRef, useState, type HTMLAttributes, type FocusEvent } from "react";
 import { useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { SCENE_SPRING } from "../utils/scroll-profiles";
 
@@ -8,7 +8,6 @@ const SceneContext = createContext<{ progress: MotionValue<number>; enabled: boo
 
 interface ScrollSceneProps extends HTMLAttributes<HTMLElement> {
   as?: "section" | "figure" | "div" | "ul";
-  hero?: boolean;
   reveal?: boolean;
   lockOnFocus?: boolean;
 }
@@ -19,16 +18,20 @@ export function useScrollScene() {
   return scene;
 }
 
-export default function ScrollScene({ as = "section", hero = false, reveal = false, lockOnFocus = false, children, ...props }: ScrollSceneProps) {
+export default function ScrollScene({ as = "section", reveal = false, lockOnFocus = false, children, ...props }: ScrollSceneProps) {
   const target = useRef<HTMLElement>(null);
   const [focused, setFocused] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target, offset: hero ? ["start 0.1", "end start"] : reveal ? ["start 0.98", "start 0.68"] : ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target, offset: reveal ? ["start 0.98", "start 0.68"] : ["start end", "end start"] });
   const bounded = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const progress = useSpring(bounded, SCENE_SPRING);
 
+  // Match the visible server render before enabling preference-dependent motion.
+  useEffect(() => { setMounted(true); }, []);
+
   return (
-    <SceneContext.Provider value={{ progress, enabled: reducedMotion === false && !focused }}>
+    <SceneContext.Provider value={{ progress, enabled: mounted && reducedMotion === false && !focused }}>
       {createElement(as, {
         ...props,
         ref: target,

@@ -88,7 +88,7 @@ export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps
                   transition={{ duration: reducedMotion ? 0 : 0.65, ease: "easeIn" }}
                   style={{ zIndex: 10 - distance, pointerEvents: visible ? "auto" : "none" }}
                   onClick={() => active ? onOpen(index) : setSelected(index)}
-                  className={`jb-carousel-photo absolute inset-0 overflow-hidden rounded-lg border border-[#faf8f0]/90 bg-[#eeeee4] sm:rounded-2xl ${active ? "cursor-zoom-in" : "cursor-pointer"}`}
+                  className={`jb-carousel-photo absolute inset-0 overflow-hidden rounded-lg border border-[rgb(var(--jb-paper))]/90 bg-[#eeeee4] sm:rounded-2xl ${active ? "cursor-zoom-in" : "cursor-pointer"}`}
                 >
                   <Image src={photo.src} alt={photo.alt} fill draggable={false} sizes="(min-width:643px) 360px, (min-width:375px) 56vw, 210px" className="pointer-events-none select-none object-cover" loading="lazy" />
                 </motion.button>
@@ -96,10 +96,10 @@ export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps
             })}
           </div>
         </div>
-        <button type="button" aria-label="Previous gallery photo" disabled={photos.length < 2} onClick={() => move(-1)} className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#faf8f0]/70 bg-[#526445]/95 text-[#faf8f0] shadow-lg transition-colors hover:bg-[#36472e] disabled:opacity-40 sm:left-3 sm:h-12 sm:w-12">
+        <button type="button" aria-label="Previous gallery photo" disabled={photos.length < 2} onClick={() => move(-1)} className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgb(var(--jb-paper))]/70 bg-[rgb(var(--jb-sage))]/95 text-[rgb(var(--jb-paper))] shadow-lg transition-colors hover:bg-[rgb(var(--jb-ink))] disabled:opacity-40 sm:left-3 sm:h-12 sm:w-12">
           <ChevronLeft size={26} strokeWidth={1.5} aria-hidden="true" />
         </button>
-        <button type="button" aria-label="Next gallery photo" disabled={photos.length < 2} onClick={() => move(1)} className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#faf8f0]/70 bg-[#526445]/95 text-[#faf8f0] shadow-lg transition-colors hover:bg-[#36472e] disabled:opacity-40 sm:right-3 sm:h-12 sm:w-12">
+        <button type="button" aria-label="Next gallery photo" disabled={photos.length < 2} onClick={() => move(1)} className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[rgb(var(--jb-paper))]/70 bg-[rgb(var(--jb-sage))]/95 text-[rgb(var(--jb-paper))] shadow-lg transition-colors hover:bg-[rgb(var(--jb-ink))] disabled:opacity-40 sm:right-3 sm:h-12 sm:w-12">
           <ChevronRight size={26} strokeWidth={1.5} aria-hidden="true" />
         </button>
       </div>
@@ -107,7 +107,7 @@ export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps
       <div aria-label="Choose a gallery photo" className="relative mt-6 flex flex-wrap justify-center">
         {photos.map((photo, index) => (
           <button key={photo.alt} type="button" aria-label={`Go to gallery photo ${index + 1}`} aria-current={selected === index ? "true" : undefined} onClick={() => setSelected(index)} className="group flex h-11 w-11 items-center justify-center rounded-full">
-            <span aria-hidden="true" className={`rounded-full transition-all motion-reduce:transition-none ${selected === index ? "h-2.5 w-2.5 bg-[#526445] shadow-[0_0_0_4px_#c9e4ca55]" : "h-1.5 w-1.5 bg-[#526445]/40 group-hover:bg-[#526445]"}`} />
+            <span aria-hidden="true" className={`rounded-full transition-all motion-reduce:transition-none ${selected === index ? "h-2.5 w-2.5 bg-[rgb(var(--jb-sage))] shadow-[0_0_0_4px_#c9e4ca55]" : "h-1.5 w-1.5 bg-[rgb(var(--jb-sage))]/40 group-hover:bg-[rgb(var(--jb-sage))]"}`} />
           </button>
         ))}
       </div>

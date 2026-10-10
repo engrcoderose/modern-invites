@@ -24,3 +24,8 @@ export const photoBreaks = {
   timelineSlides: placeholderGalleries[0].slice(1, 4),
   afterEntourage: placeholderGalleries[1][4],
 };
+
+// Reuse the yellow-wall photograph selected for the welcome screen.
+export const welcomePhoto = placeholderGalleries[1][1];
+
+export const rsvpPhoto = placeholderGalleries[1][3];

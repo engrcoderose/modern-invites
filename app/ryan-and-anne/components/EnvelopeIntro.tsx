@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import envelope from "../assets/design/black-lace-envelope.webp";
-import waxSeal from "../assets/design/ryan-and-anne-wax-seal.png";
+import waxSeal from "../assets/design/gold-wax-seal.png";
 import styles from "../styles/envelope.module.css";
 import EnvelopeArtwork from "./EnvelopeArtwork";
 
@@ -63,9 +63,9 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
           <div className={`${styles.flapFront} absolute inset-0`}>
             <Image src={envelope} alt="" fill priority sizes={sizes} className="object-fill" />
           </div>
-          <motion.div className={`${styles.seal} absolute left-1/2 top-[56%] z-40 -ml-[clamp(36px,10vw,64px)] aspect-square w-[clamp(72px,20vw,128px)]`}
+          <motion.div className={`${styles.seal} absolute left-1/2 top-[56%] z-40 -ml-[clamp(32px,8.5vw,54px)] aspect-square w-[clamp(64px,17vw,108px)]`}
             initial={{ z: 3 }} animate={{ z: 3, opacity: opening ? 0 : 1, y: opening ? 20 : 0, scale: opening ? .92 : 1 }} transition={{ duration: reducedMotion ? 0 : .35 }}>
-            <Image src={waxSeal} alt="" fill priority sizes="clamp(72px, 20vw, 128px)" className="object-contain" />
+            <Image src={waxSeal} alt="" fill priority sizes="clamp(64px, 17vw, 108px)" className="object-contain" />
           </motion.div>
         </motion.div>
       </button>

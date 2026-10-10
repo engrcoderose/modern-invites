@@ -27,7 +27,6 @@ export interface GalleryPhoto {
 export interface TimelineEvent {
   time: string;
   title: string;
-  icon: "welcome" | "history" | "entourage" | "ceremony" | "reception" | "party";
 }
 
 export interface WeddingData {
@@ -39,9 +38,9 @@ export interface WeddingData {
   story: readonly { date: string; title: string; description: string }[];
   entourage: readonly EntourageGroup[];
   dressCode: { title: string; description: string; restriction: string; palette: readonly { name: string; hex: string }[] };
-  rsvp: { deadline: string | null; deadlinePlaceholder: string; url: string | null; pendingMessage: string };
+  rsvp: { deadline: string | null; deadlinePlaceholder: string; url: string | null; eventSlug: string | null; pendingMessage: string };
   gallery: { photos: readonly GalleryPhoto[]; placeholder: string; draftCaptions: readonly string[] };
-  music: { src: string | null; placeholder: string };
+  music: { src: string | null; title: string };
   hashtag: { value: string | null; placeholder: string };
   pending: { map: string; fonts: string; fullNames: string; color: string };
 }

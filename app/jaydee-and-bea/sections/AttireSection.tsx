@@ -22,12 +22,12 @@ export default function AttireSection() {
         </ScrollScene>
         <TextReveal className="mt-7 text-sm leading-7 text-[#35412f] sm:text-base lg:mt-8 lg:text-2xl lg:leading-9">{wedding.dressCode.description}</TextReveal>
         <TextReveal className="mx-auto mt-3 max-w-xs text-xs leading-6 text-[#65705e] sm:max-w-md sm:text-sm lg:text-xl lg:leading-8">{wedding.dressCode.restriction}</TextReveal>
-        <TextReveal className="mt-8 text-[10px] uppercase tracking-[0.14em] text-[#65705e] lg:mt-10 lg:text-base">Shades of Nude</TextReveal>
+        <TextReveal className="mt-8 text-xs uppercase tracking-[0.12em] text-[#65705e] lg:mt-10 lg:text-base">Shades of Nude</TextReveal>
         <ul className="mt-4 flex flex-wrap justify-center gap-4 sm:gap-6 lg:mt-6 lg:gap-8" aria-label="Dress palette in shades of nude">
           {wedding.dressCode.palette.map((color) => (
             <li key={color.hex}>
-              <span aria-hidden="true" className="mx-auto block h-8 w-8 rounded-full border border-[#526445]/20 lg:h-14 lg:w-14" style={{ backgroundColor: color.hex }} />
-              <span className="mt-2 block text-[10px] text-[#65705e] lg:mt-3 lg:text-lg">{color.name}</span>
+              <span aria-hidden="true" className="mx-auto block h-8 w-8 rounded-full border border-[rgb(var(--jb-sage))]/20 lg:h-14 lg:w-14" style={{ backgroundColor: color.hex }} />
+              <span className="mt-2 block text-xs text-[#65705e] lg:mt-3 lg:text-lg">{color.name}</span>
             </li>
           ))}
         </ul>

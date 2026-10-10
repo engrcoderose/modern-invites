@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-09T01:27:43.270Z",
+  "method": "HEAD",
+  "images": [
+    {
+      "filename": "ryan-and-anne-studio-newspaper-seated-smiles.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-studio-newspaper-seated-smiles.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 201548,
+      "expectedBytes": 201548
+    },
+    {
+      "filename": "ryan-and-anne-studio-shoes-detail-bw.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-studio-shoes-detail-bw.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 187702,
+      "expectedBytes": 187702
+    },
+    {
+      "filename": "ryan-and-anne-cafe-doorway-facing-portrait.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-cafe-doorway-facing-portrait.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 185154,
+      "expectedBytes": 185154
+    },
+    {
+      "filename": "ryan-and-anne-staircase-hands-newspaper-bw.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-staircase-hands-newspaper-bw.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 212118,
+      "expectedBytes": 212118
+    },
+    {
+      "filename": "ryan-and-anne-staircase-looking-up-smiles.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-staircase-looking-up-smiles.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 244790,
+      "expectedBytes": 244790
+    },
+    {
+      "filename": "ryan-and-anne-cafe-overhead-wide-portrait.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-cafe-overhead-wide-portrait.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 315606,
+      "expectedBytes": 315606
+    },
+    {
+      "filename": "ryan-and-anne-cafe-overhead-wide-embrace.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-cafe-overhead-wide-embrace.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 272424,
+      "expectedBytes": 272424
+    },
+    {
+      "filename": "ryan-and-anne-cafe-overhead-close-embrace.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-cafe-overhead-close-embrace.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 150962,
+      "expectedBytes": 150962
+    },
+    {
+      "filename": "ryan-and-anne-cafe-overhead-candid-smiles.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-cafe-overhead-candid-smiles.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 146270,
+      "expectedBytes": 146270
+    },
+    {
+      "filename": "ryan-and-anne-outdoor-road-holding-hands.webp",
+      "url": "https://assets.moderninvites.com/ryan-and-anne/images/prenups/ryan-and-anne-outdoor-road-holding-hands.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 355450,
+      "expectedBytes": 355450
+    }
+  ]
+}

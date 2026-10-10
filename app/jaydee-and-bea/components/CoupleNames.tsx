@@ -6,9 +6,9 @@ function NameLine({ text }: { text: string }) {
 
 export default function CoupleNames() {
   return (
-    <h1 id="jb-couple" aria-label={wedding.couple.display} className="jb-names my-5 flex flex-col items-center justify-center sm:my-6">
+    <h1 id="jb-couple" aria-label={wedding.couple.display} className="jb-names my-3 flex flex-col items-center justify-center sm:my-4">
       <NameLine text={wedding.couple.names[0]} />
-      <span className="jb-name-connector my-1"><NameLine text="and" /></span>
+      <span className="jb-name-connector my-2"><NameLine text="&" /></span>
       <NameLine text={wedding.couple.names[1]} />
     </h1>
   );

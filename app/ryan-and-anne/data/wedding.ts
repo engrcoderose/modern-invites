@@ -30,20 +30,33 @@ export const wedding = {
   music: {
     title: "You’re Still The One",
     artist: "Shania Twain",
-    src: "https://assets.moderninvites.com/ryan-and-anne/music/Shania%20Twain%20-%20You%27re%20Still%20The%20One%20%28Lyrics%29.mp3" as string | null,
+    src: "https://assets.moderninvites.com/ryan-and-anne/music/Shania%20Twain%20-%20You%27re%20Still%20The%20One%20%28Lyrics%29.mp3" as
+      | string
+      | null,
   },
 };
 
 const ceremonyDate = new Date(wedding.ceremonyISO);
 const formatDate = (options: Intl.DateTimeFormatOptions) =>
-  new Intl.DateTimeFormat("en-US", { ...options, timeZone: wedding.timezone }).format(ceremonyDate);
+  new Intl.DateTimeFormat("en-US", {
+    ...options,
+    timeZone: wedding.timezone,
+  }).format(ceremonyDate);
 
 export const dateLabels = {
   weekday: formatDate({ weekday: "long" }),
   day: formatDate({ day: "2-digit" }),
   monthYear: formatDate({ month: "long", year: "numeric" }),
-  short: [formatDate({ day: "2-digit" }), formatDate({ month: "2-digit" }), formatDate({ year: "2-digit" })].join(" · "),
-  schedule: [formatDate({ day: "2-digit" }), formatDate({ month: "short" }), formatDate({ year: "numeric" })].join(" "),
+  short: [
+    formatDate({ day: "2-digit" }),
+    formatDate({ month: "2-digit" }),
+    formatDate({ year: "2-digit" }),
+  ].join(" · "),
+  schedule: [
+    formatDate({ day: "2-digit" }),
+    formatDate({ month: "short" }),
+    formatDate({ year: "numeric" }),
+  ].join(" "),
 };
 
 export const designPreferences = {

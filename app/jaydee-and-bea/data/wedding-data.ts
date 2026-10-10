@@ -13,6 +13,7 @@ export const wedding: WeddingData = {
     { name: "Sage", hex: "#C9E4CA" },
     { name: "Blush", hex: "#F7D6E0" },
     { name: "Butter", hex: "#FFF3B0" },
+    { name: "Lavender", hex: "#D6C9F0" },
     { name: "Peach", hex: "#F7E4D6" },
     { name: "Sky", hex: "#C9E0F7" },
   ],
@@ -36,12 +37,12 @@ export const wedding: WeddingData = {
     },
   ],
   timeline: [
-    { time: "2:00 PM", title: "Guest & entourage call time", icon: "welcome" },
-    { time: "2:10 PM", title: "Barasoain Church history video", icon: "history" },
-    { time: "2:30 PM", title: "Entourage assembly", icon: "entourage" },
-    { time: "3:00 PM", title: "Wedding ceremony", icon: "ceremony" },
-    { time: "6:00 PM", title: "Couple’s reception arrival", icon: "reception" },
-    { time: "10:00 PM", title: "Villa Alejandra after-party", icon: "party" },
+    { time: "2:00 PM", title: "Guest & entourage call time" },
+    { time: "2:10 PM", title: "Barasoain Church history video" },
+    { time: "2:30 PM", title: "Entourage assembly" },
+    { time: "3:00 PM", title: "Wedding ceremony" },
+    { time: "6:00 PM", title: "Couple’s reception arrival" },
+    { time: "10:00 PM", title: "Villa Alejandra after-party" },
   ],
   story: [
     {
@@ -109,13 +110,17 @@ export const wedding: WeddingData = {
   },
   rsvp: {
     deadline: null, deadlinePlaceholder: "[RSVP DEADLINE — TO BE CONFIRMED]", url: null,
+    eventSlug: null,
     pendingMessage: "RSVP opens soon.",
   },
   gallery: {
     photos: [], placeholder: "[WEDDING PHOTOS — TO BE PROVIDED]",
     draftCaptions: ["Our story, in frames", "The little moments", "A lifetime of us"],
   },
-  music: { src: null, placeholder: "[WEDDING MUSIC — TO BE PROVIDED]" },
+  music: {
+    src: "/jaydee-and-bea/music/until-i-found-you-db66ec5d.mp3",
+    title: "Until I Found You — Stephen Sanchez",
+  },
   hashtag: { value: null, placeholder: "[WEDDING HASHTAG — TO BE PROVIDED]" },
   pending: {
     map: "[LOCATION LINK — TO BE PROVIDED]", fonts: "[FONT PREFERENCES — TO BE PROVIDED]",

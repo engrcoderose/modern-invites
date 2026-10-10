@@ -56,13 +56,13 @@ export default function GalleryLightbox({
           onNavigate(event.key === "ArrowLeft" ? -1 : 1);
         }
       }}
-      className="jb-lightbox fixed inset-0 m-auto h-[90svh] max-h-none w-[94vw] max-w-6xl overflow-hidden border-0 bg-[#faf8f0] p-4 text-[#36472e] sm:p-6"
+      className="jb-lightbox fixed inset-0 m-auto h-[90svh] max-h-none w-[94vw] max-w-6xl overflow-hidden border-0 bg-[rgb(var(--jb-paper))] p-4 text-[rgb(var(--jb-ink))] sm:p-6"
     >
       <div className="flex justify-end">
         <button
           type="button" autoFocus aria-label="Close photo viewer"
           onClick={() => dialogRef.current?.close()}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#526445]/25"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgb(var(--jb-sage))]/25"
         >
           <X size={22} aria-hidden="true" />
         </button>
@@ -74,7 +74,7 @@ export default function GalleryLightbox({
         <button
           type="button" aria-label="Previous photo" disabled={photos.length < 2}
           onClick={() => onNavigate(-1)}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#526445]/25 disabled:opacity-40"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--jb-sage))]/25 disabled:opacity-40"
         >
           <ArrowLeft size={20} aria-hidden="true" />
         </button>
@@ -82,7 +82,7 @@ export default function GalleryLightbox({
         <button
           type="button" aria-label="Next photo" disabled={photos.length < 2}
           onClick={() => onNavigate(1)}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#526445]/25 disabled:opacity-40"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--jb-sage))]/25 disabled:opacity-40"
         >
           <ArrowRight size={20} aria-hidden="true" />
         </button>

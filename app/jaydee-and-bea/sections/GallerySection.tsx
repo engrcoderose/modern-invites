@@ -8,6 +8,7 @@ import SectionHeading from "../components/SectionHeading";
 import GalleryLightbox from "../components/GalleryLightbox";
 import GalleryCarousel from "../components/GalleryCarousel";
 import type { GalleryPhoto } from "../types/wedding";
+import floralBackground from "../assets/designs/gallery-floral-background.webp";
 
 interface GallerySectionProps {
   id: string;
@@ -32,8 +33,13 @@ export default function GallerySection({ id, title, photos, carousel = false, sh
   };
 
   return (
-    <ScrollScene lockOnFocus id={id} aria-label={title} className={`relative overflow-hidden px-5 py-20 sm:px-8 md:py-28 lg:px-12 ${carousel ? "z-10 -mb-6 sm:-mb-10" : ""}`}>
-      <div className="mx-auto max-w-6xl">
+    <ScrollScene lockOnFocus id={id} aria-label={title} className={`relative overflow-hidden px-5 py-20 sm:px-8 md:py-28 lg:px-12 ${carousel ? "isolate z-10 -mb-6 sm:-mb-10" : ""}`}>
+      {carousel && (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 select-none">
+          <Image src={floralBackground} alt="" fill sizes="100vw" loading="lazy" draggable={false} className="object-cover object-bottom" />
+        </div>
+      )}
+      <div className="relative mx-auto max-w-6xl">
         {showHeading && <SectionHeading title={title} />}
         {carousel ? <ScrollLayer profile="gallery"><GalleryCarousel photos={photos} onOpen={showPhoto} /></ScrollLayer> : (
           <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3">

@@ -33,7 +33,7 @@ The RSVP reuses the shared `SmartRsvpFlow` in full-name search mode for the conf
 
 ## Images and interactions
 
-Public prenup URLs are centralized in `data/prenup-media.ts` under `https://assets.moderninvites.com/ryan-and-anne/images/prenups/`. Local artwork uses static imports. Redundant local prenup copies have been removed; their optimization and upload verification records remain in `docs/media/`.
+Public prenup URLs are centralized in `data/prenup-media.ts` under `https://assets.moderninvites.com/ryan-and-anne/images/prenups/`. The client's replacement selection contains 20 retained photos and 10 newly uploaded photos; nine previous photos have been removed from the active catalog. Original and optimized replacement files live in `assets/prenup/`; optimization and upload verification records remain in `docs/media/`. Local artwork uses static imports.
 
 The uploaded “You're Still The One” by Shania Twain streams from its public R2 URL in `data/wedding.ts`. Tapping or keyboard-activating the envelope starts audio in the same interaction. The floating play/pause control appears after opening, with looping playback at 40% volume and retry feedback. Audio uses `preload="none"`.
 
@@ -41,14 +41,16 @@ The uploaded “You're Still The One” by Shania Twain streams from its public 
 
 Next Image uses responsive sizes, default quality for ordinary photos, and quality 85 for slideshows. Only the first hero photo is prioritized; later images load as needed. Optimizer failures fall back once to the compressed source. Preserve the shared 31-day image cache TTL and narrow client remote pattern.
 
-The hero advances every five seconds and the story carousel every seven seconds while visible. Playback waits for image loading, pauses offscreen or in hidden tabs, and respects reduced motion. Keyboard controls and pause controls remain available. The gallery shows unused photos plus one requested repeat from the hero to complete its final row; its native-dialog lightbox supports arrow keys, Escape, focus trapping, and focus restoration.
+The hero advances every five seconds and the story carousel every seven seconds while visible. Playback waits for image loading, pauses offscreen or in hidden tabs, and respects reduced motion. Keyboard controls and pause controls remain available. Portrait story slides use their own responsive sizes rather than requesting the landscape cover width. The gallery shows unused photos; its native-dialog lightbox supports arrow keys, Escape, focus trapping, and focus restoration.
 
-Keep the 16 featured sources unique across the hero, story carousel, entourage photo break, hashtag section background, and hashtag photo break, including its backdrop. `data/gallery.ts` excludes these and the story collage, schedule, and RSVP photos, then appends `cafe-doorway-embrace` as the sole approved repeat. Its eleven photos fill twelve grid cells because the first portrait spans two rows, completing both the two-column mobile and three-column desktop grids. Standalone section photos are centralized in `data/section-photos.ts` so gallery exclusions follow their selections.
+Keep the 17 featured sources unique across the hero, story carousel, entourage photo break, hashtag section background, and hashtag photo break, including its backdrop. `data/gallery.ts` excludes these and the story collage, schedule, and RSVP photos, except `outdoor-road-holding-hands`, which is intentionally shown in both the hero and gallery. Its eleven photos fill twelve grid cells because the first portrait spans two rows, completing both the two-column mobile and three-column desktop grids. Standalone section photos are centralized in `data/section-photos.ts` so gallery exclusions follow their selections.
 
 Media records:
 
 - `docs/media/prenup-optimization.json`: filename mapping, dimensions, file sizes, and hashes.
+- `docs/media/prenup-new-photos-optimization.json`: optimization records and R2 keys for the ten replacement additions.
 - `docs/media/r2-prenup-verification.json`: public source verification.
+- `docs/media/r2-new-prenup-verification.json`: public verification for all ten newly uploaded sources.
 - `docs/media/featured-photo-usage.json`: featured photo allocation and hashes.
 
 ## Local checks

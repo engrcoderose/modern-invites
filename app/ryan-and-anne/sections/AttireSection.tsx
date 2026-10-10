@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SectionHeading from "../components/SectionHeading";
 import colorGuide from "../assets/design/Copy of Attire guide.png";
-import outfitGuide from "../assets/design/Wedding Attire Guide.png";
+import AttireGuide from "../components/AttireGuide";
 import { attireDetails } from "../data/wedding";
 import styles from "../styles/wedding.module.css";
 
@@ -20,7 +20,7 @@ export default function AttireSection() {
           </figure>
         </div>
         <figure data-reveal="image" className="mt-16 border border-[#8a714e]/25 bg-[#f5f0e6] p-3 sm:p-6">
-          <Image src={outfitGuide} alt="Wedding attire examples: black bridesmaid dresses, a champagne gold maid of honor dress, black suits for groomsmen, black and champagne outfits for sponsors and guests." sizes="(min-width:1280px) 1104px, (min-width:640px) calc(100vw - 128px), calc(100vw - 72px)" className="h-auto w-full" />
+          <AttireGuide />
         </figure>
       </div>
     </section>

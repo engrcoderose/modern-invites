@@ -1,23 +1,32 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import Image from "next/image";
 import { wedding } from "../data/wedding-data";
-import BotanicalArtwork from "../components/BotanicalArtwork";
-
-import TextReveal from "../components/TextReveal";
+import { rsvpPhoto } from "../data/photo-layout";
+import RsvpFlow from "../components/RsvpFlow";
+import floralBackground from "../assets/designs/gallery-floral-background.webp";
+import leftFlowers from "../assets/designs/hero-left-upper-flower.webp";
+import rightFlowers from "../assets/designs/hero-right-upper-flower.webp";
+import styles from "../styles/rsvp.module.css";
 
 export default function RsvpSection() {
   return (
-    <section id="rsvp" aria-labelledby="jb-rsvp-title" className="jb-rsvp relative isolate overflow-hidden px-5 py-20 text-center sm:px-8 md:py-28">
-      <BotanicalArtwork className="absolute -bottom-36 -left-28 z-[-1] w-80 opacity-30 lg:-left-8 lg:w-[430px]" />
-      <BotanicalArtwork className="absolute -bottom-36 -right-28 z-[-1] w-80 -scale-x-100 opacity-30 lg:-right-8 lg:w-[430px]" />
-      <div className="mx-auto max-w-xl">
-        <Mail className="mx-auto mb-5 h-7 w-7 text-[#738665]" strokeWidth={1} aria-hidden="true" />
-        <TextReveal as="h2" id="jb-rsvp-title" className="jb-heading text-balance">We’d love<br /><em>to have you there.</em></TextReveal>
-        <TextReveal className="mt-6 text-base font-medium">Kindly Confirm Your Attendance</TextReveal>
-        {wedding.rsvp.deadline && <TextReveal className="mt-4 text-xs leading-6 text-[#65705e]">{wedding.rsvp.deadline}</TextReveal>}
-        {wedding.rsvp.url ? <a href={wedding.rsvp.url} target="_blank" rel="noopener noreferrer" className="jb-button mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center gap-5 rounded-full px-7 py-4 text-sm tracking-wider">RSVP NOW <ArrowUpRight size={18} aria-hidden="true" /></a> : <>
-          <button type="button" disabled aria-describedby="jb-rsvp-status" className="jb-button mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center gap-5 rounded-full px-7 py-4 text-sm tracking-wider">RSVP NOW <ArrowUpRight size={18} aria-hidden="true" /></button>
-          <p id="jb-rsvp-status" className="mx-auto mt-5 max-w-sm text-sm leading-7 text-[#5b6554]">{wedding.rsvp.pendingMessage}</p>
-        </>}
+    <section id="rsvp" aria-label="RSVP" className={`${styles.section} relative isolate overflow-hidden px-5 py-16 text-center sm:px-8 md:py-20 lg:px-12`}>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 select-none opacity-60">
+        <Image src={floralBackground} alt="" fill sizes="100vw" className="object-cover" />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 -z-10 w-24 -scale-y-100 select-none opacity-40 sm:w-40">
+        <Image src={leftFlowers} alt="" sizes="(min-width: 640px) 160px, 96px" />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 -z-10 w-24 -scale-y-100 select-none opacity-40 sm:w-40">
+        <Image src={rightFlowers} alt="" sizes="(min-width: 640px) 160px, 96px" />
+      </div>
+      <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
+        <figure className="relative hidden aspect-[4/3] overflow-hidden lg:block">
+          <Image src={rsvpPhoto.src} alt={rsvpPhoto.alt} fill sizes="(min-width: 1380px) 517px, (min-width: 1024px) calc((100vw - 160px) * .425), 1px" className="object-cover" />
+        </figure>
+        <div className="mx-auto w-full min-w-0 max-w-2xl">
+          <RsvpFlow eventSlug={wedding.rsvp.eventSlug} pendingMessage={wedding.rsvp.pendingMessage} />
+          {wedding.rsvp.deadline && <p className={`${styles.status} mt-8 text-sm leading-7`}>Please reply by {wedding.rsvp.deadline}.</p>}
+        </div>
       </div>
     </section>
   );

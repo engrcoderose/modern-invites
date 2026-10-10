@@ -36,7 +36,7 @@ export default function PortraitCarousel({ frame, slides, sizes, label, current,
           return (
             <div key={photo.id} data-position={position} className={`${styles.portraitCard} absolute left-1/2 top-1/2 aspect-[2/3] w-[clamp(180px,55vw,360px)] overflow-hidden rounded-lg`}>
               <Image src={photo.src} alt={index === current ? photo.alt : ""} aria-hidden={index !== current || undefined}
-                fill sizes={sizes} quality={85} loading={index === 0 ? "lazy" : "eager"}
+                fill sizes={photo.sizes ?? sizes} quality={85} loading={index === 0 ? "lazy" : "eager"}
                 className="object-cover" style={{ objectPosition: photo.position }} onLoad={() => onLoad(index)} />
             </div>
           );
