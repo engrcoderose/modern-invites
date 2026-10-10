@@ -14,6 +14,11 @@
 /.next-preview-*/
 /out/
 
+# generated design previews and review files
+/.impeccable/mocks/
+/.impeccable/questions/
+/.impeccable/review/
+
 # production
 /build
 

@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T17:32:40.843119Z",
+  "title": "Design System: Modern Invites Marketing",
+  "extensions": {
+    "colorMeta": {
+      "forest": {
+        "role": "primary",
+        "displayName": "Forest",
+        "tonalRamp": [
+          "oklch(15% 0.0479 171.65)",
+          "oklch(26% 0.0479 171.65)",
+          "oklch(38% 0.0479 171.65)",
+          "oklch(49% 0.0479 171.65)",
+          "oklch(61% 0.0479 171.65)",
+          "oklch(72% 0.0479 171.65)",
+          "oklch(84% 0.0479 171.65)",
+          "oklch(95% 0.0479 171.65)"
+        ]
+      },
+      "forest-light": {
+        "role": "primary",
+        "displayName": "Forest Light",
+        "tonalRamp": [
+          "oklch(15% 0.0533 171.11)",
+          "oklch(26% 0.0533 171.11)",
+          "oklch(38% 0.0533 171.11)",
+          "oklch(49% 0.0533 171.11)",
+          "oklch(61% 0.0533 171.11)",
+          "oklch(72% 0.0533 171.11)",
+          "oklch(84% 0.0533 171.11)",
+          "oklch(95% 0.0533 171.11)"
+        ]
+      },
+      "forest-deep": {
+        "role": "primary",
+        "displayName": "Forest Deep",
+        "tonalRamp": [
+          "oklch(15% 0.0391 173.36)",
+          "oklch(26% 0.0391 173.36)",
+          "oklch(38% 0.0391 173.36)",
+          "oklch(49% 0.0391 173.36)",
+          "oklch(61% 0.0391 173.36)",
+          "oklch(72% 0.0391 173.36)",
+          "oklch(84% 0.0391 173.36)",
+          "oklch(95% 0.0391 173.36)"
+        ]
+      },
+      "forest-hover": {
+        "role": "primary",
+        "displayName": "Forest Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0564 171.24)",
+          "oklch(26% 0.0564 171.24)",
+          "oklch(38% 0.0564 171.24)",
+          "oklch(49% 0.0564 171.24)",
+          "oklch(61% 0.0564 171.24)",
+          "oklch(72% 0.0564 171.24)",
+          "oklch(84% 0.0564 171.24)",
+          "oklch(95% 0.0564 171.24)"
+        ]
+      },
+      "eucalyptus": {
+        "role": "secondary",
+        "displayName": "Eucalyptus",
+        "tonalRamp": [
+          "oklch(15% 0.0484 160.88)",
+          "oklch(26% 0.0484 160.88)",
+          "oklch(38% 0.0484 160.88)",
+          "oklch(49% 0.0484 160.88)",
+          "oklch(61% 0.0484 160.88)",
+          "oklch(72% 0.0484 160.88)",
+          "oklch(84% 0.0484 160.88)",
+          "oklch(95% 0.0484 160.88)"
+        ]
+      },
+      "eucalyptus-dark": {
+        "role": "secondary",
+        "displayName": "Eucalyptus Dark",
+        "tonalRamp": [
+          "oklch(15% 0.0465 161.82)",
+          "oklch(26% 0.0465 161.82)",
+          "oklch(38% 0.0465 161.82)",
+          "oklch(49% 0.0465 161.82)",
+          "oklch(61% 0.0465 161.82)",
+          "oklch(72% 0.0465 161.82)",
+          "oklch(84% 0.0465 161.82)",
+          "oklch(95% 0.0465 161.82)"
+        ]
+      },
+      "champagne": {
+        "role": "tertiary",
+        "displayName": "Champagne",
+        "tonalRamp": [
+          "oklch(15% 0.0877 84.57)",
+          "oklch(26% 0.0877 84.57)",
+          "oklch(38% 0.0877 84.57)",
+          "oklch(49% 0.0877 84.57)",
+          "oklch(61% 0.0877 84.57)",
+          "oklch(72% 0.0877 84.57)",
+          "oklch(84% 0.0877 84.57)",
+          "oklch(95% 0.0877 84.57)"
+        ]
+      },
+      "champagne-light": {
+        "role": "tertiary",
+        "displayName": "Champagne Light",
+        "tonalRamp": [
+          "oklch(15% 0.0586 87.55)",
+          "oklch(26% 0.0586 87.55)",
+          "oklch(38% 0.0586 87.55)",
+          "oklch(49% 0.0586 87.55)",
+          "oklch(61% 0.0586 87.55)",
+          "oklch(72% 0.0586 87.55)",
+          "oklch(84% 0.0586 87.55)",
+          "oklch(95% 0.0586 87.55)"
+        ]
+      },
+      "champagne-dark": {
+        "role": "tertiary",
+        "displayName": "Champagne Dark",
+        "tonalRamp": [
+          "oklch(15% 0.0829 81.78)",
+          "oklch(26% 0.0829 81.78)",
+          "oklch(38% 0.0829 81.78)",
+          "oklch(49% 0.0829 81.78)",
+          "oklch(61% 0.0829 81.78)",
+          "oklch(72% 0.0829 81.78)",
+          "oklch(84% 0.0829 81.78)",
+          "oklch(95% 0.0829 81.78)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "tonalRamp": [
+          "oklch(15% 0.0086 84.57)",
+          "oklch(26% 0.0086 84.57)",
+          "oklch(38% 0.0086 84.57)",
+          "oklch(49% 0.0086 84.57)",
+          "oklch(61% 0.0086 84.57)",
+          "oklch(72% 0.0086 84.57)",
+          "oklch(84% 0.0086 84.57)",
+          "oklch(95% 0.0086 84.57)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(26% 0.0000 0.00)",
+          "oklch(38% 0.0000 0.00)",
+          "oklch(49% 0.0000 0.00)",
+          "oklch(61% 0.0000 0.00)",
+          "oklch(72% 0.0000 0.00)",
+          "oklch(84% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0080 153.33)",
+          "oklch(26% 0.0080 153.33)",
+          "oklch(38% 0.0080 153.33)",
+          "oklch(49% 0.0080 153.33)",
+          "oklch(61% 0.0080 153.33)",
+          "oklch(72% 0.0080 153.33)",
+          "oklch(84% 0.0080 153.33)",
+          "oklch(95% 0.0080 153.33)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0152 159.57)",
+          "oklch(26% 0.0152 159.57)",
+          "oklch(38% 0.0152 159.57)",
+          "oklch(49% 0.0152 159.57)",
+          "oklch(61% 0.0152 159.57)",
+          "oklch(72% 0.0152 159.57)",
+          "oklch(84% 0.0152 159.57)",
+          "oklch(95% 0.0152 159.57)"
+        ]
+      },
+      "marketing-muted": {
+        "role": "neutral",
+        "displayName": "Marketing Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0274 160.80)",
+          "oklch(26% 0.0274 160.80)",
+          "oklch(38% 0.0274 160.80)",
+          "oklch(49% 0.0274 160.80)",
+          "oklch(61% 0.0274 160.80)",
+          "oklch(72% 0.0274 160.80)",
+          "oklch(84% 0.0274 160.80)",
+          "oklch(95% 0.0274 160.80)"
+        ]
+      },
+      "marketing-muted-inverse": {
+        "role": "neutral",
+        "displayName": "Marketing Muted Inverse",
+        "tonalRamp": [
+          "oklch(15% 0.0289 158.58)",
+          "oklch(26% 0.0289 158.58)",
+          "oklch(38% 0.0289 158.58)",
+          "oklch(49% 0.0289 158.58)",
+          "oklch(61% 0.0289 158.58)",
+          "oklch(72% 0.0289 158.58)",
+          "oklch(84% 0.0289 158.58)",
+          "oklch(95% 0.0289 158.58)"
+        ]
+      },
+      "marketing-cta": {
+        "role": "neutral",
+        "displayName": "Marketing Cta",
+        "tonalRamp": [
+          "oklch(15% 0.0159 154.45)",
+          "oklch(26% 0.0159 154.45)",
+          "oklch(38% 0.0159 154.45)",
+          "oklch(49% 0.0159 154.45)",
+          "oklch(61% 0.0159 154.45)",
+          "oklch(72% 0.0159 154.45)",
+          "oklch(84% 0.0159 154.45)",
+          "oklch(95% 0.0159 154.45)"
+        ]
+      },
+      "marketing-paper": {
+        "role": "neutral",
+        "displayName": "Marketing Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0069 88.64)",
+          "oklch(26% 0.0069 88.64)",
+          "oklch(38% 0.0069 88.64)",
+          "oklch(49% 0.0069 88.64)",
+          "oklch(61% 0.0069 88.64)",
+          "oklch(72% 0.0069 88.64)",
+          "oklch(84% 0.0069 88.64)",
+          "oklch(95% 0.0069 88.64)"
+        ]
+      },
+      "sage-50": {
+        "role": "secondary",
+        "displayName": "Sage 50",
+        "tonalRamp": [
+          "oklch(15% 0.0084 168.76)",
+          "oklch(26% 0.0084 168.76)",
+          "oklch(38% 0.0084 168.76)",
+          "oklch(49% 0.0084 168.76)",
+          "oklch(61% 0.0084 168.76)",
+          "oklch(72% 0.0084 168.76)",
+          "oklch(84% 0.0084 168.76)",
+          "oklch(95% 0.0084 168.76)"
+        ]
+      },
+      "sage-100": {
+        "role": "secondary",
+        "displayName": "Sage 100",
+        "tonalRamp": [
+          "oklch(15% 0.0232 161.72)",
+          "oklch(26% 0.0232 161.72)",
+          "oklch(38% 0.0232 161.72)",
+          "oklch(49% 0.0232 161.72)",
+          "oklch(61% 0.0232 161.72)",
+          "oklch(72% 0.0232 161.72)",
+          "oklch(84% 0.0232 161.72)",
+          "oklch(95% 0.0232 161.72)"
+        ]
+      },
+      "sage-200": {
+        "role": "secondary",
+        "displayName": "Sage 200",
+        "tonalRamp": [
+          "oklch(15% 0.0427 159.33)",
+          "oklch(26% 0.0427 159.33)",
+          "oklch(38% 0.0427 159.33)",
+          "oklch(49% 0.0427 159.33)",
+          "oklch(61% 0.0427 159.33)",
+          "oklch(72% 0.0427 159.33)",
+          "oklch(84% 0.0427 159.33)",
+          "oklch(95% 0.0427 159.33)"
+        ]
+      },
+      "sage-600": {
+        "role": "secondary",
+        "displayName": "Sage 600",
+        "tonalRamp": [
+          "oklch(15% 0.0802 160.77)",
+          "oklch(26% 0.0802 160.77)",
+          "oklch(38% 0.0802 160.77)",
+          "oklch(49% 0.0802 160.77)",
+          "oklch(61% 0.0802 160.77)",
+          "oklch(72% 0.0802 160.77)",
+          "oklch(84% 0.0802 160.77)",
+          "oklch(95% 0.0802 160.77)"
+        ]
+      },
+      "sage-700": {
+        "role": "secondary",
+        "displayName": "Sage 700",
+        "tonalRamp": [
+          "oklch(15% 0.0654 162.10)",
+          "oklch(26% 0.0654 162.10)",
+          "oklch(38% 0.0654 162.10)",
+          "oklch(49% 0.0654 162.10)",
+          "oklch(61% 0.0654 162.10)",
+          "oklch(72% 0.0654 162.10)",
+          "oklch(84% 0.0654 162.10)",
+          "oklch(95% 0.0654 162.10)"
+        ]
+      },
+      "sage-800": {
+        "role": "secondary",
+        "displayName": "Sage 800",
+        "tonalRamp": [
+          "oklch(15% 0.0505 165.19)",
+          "oklch(26% 0.0505 165.19)",
+          "oklch(38% 0.0505 165.19)",
+          "oklch(49% 0.0505 165.19)",
+          "oklch(61% 0.0505 165.19)",
+          "oklch(72% 0.0505 165.19)",
+          "oklch(84% 0.0505 165.19)",
+          "oklch(95% 0.0505 165.19)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Recurring pricing section headings; component breakpoints set larger sizes."
+      },
+      "portfolio-title": {
+        "displayName": "Portfolio Title",
+        "purpose": "Existing Playfair Display portfolio headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Ordinary reading text."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Shared controls and button labels."
+      },
+      "home-display": {
+        "displayName": "Homepage Display",
+        "purpose": "Fluid centered homepage opening headline with open leading, tight tracking, and long-word wrapping."
+      },
+      "home-headline": {
+        "displayName": "Homepage Headline",
+        "purpose": "Fluid homepage section headings with balanced wrapping."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-button",
+        "value": "0 14px 32px -16px rgba(23,61,50,0.7)",
+        "purpose": "Existing shared pricing/inquiry action depth; homepage action variants remain flat."
+      },
+      {
+        "name": "navigation-scrolled",
+        "value": "0 8px 28px -22px rgba(23,61,50,0.5)",
+        "purpose": "Separation after scrolling."
+      },
+      {
+        "name": "invitation-card-hover",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Established neutral hover shadow on the shared invitation card."
+      },
+      {
+        "name": "invitation-preview",
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "purpose": "Existing framed preview depth inside each shared invitation card."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reveal-ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Existing soft-rise and scroll reveals; no spatial movement when reduced motion is enabled."
+      },
+      {
+        "name": "reduced-feedback",
+        "value": "150ms",
+        "purpose": "Color, border, shadow and opacity feedback under reduced motion."
+      },
+      {
+        "name": "invitation-card-hover",
+        "value": "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Shared card background scales to 1.05; framed preview rotates from -4deg to 0; spatial effects run only when motion is allowed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "home-gallery-two-columns-container",
+        "value": "40rem"
+      },
+      {
+        "name": "home-gallery-three-columns-container",
+        "value": "68rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Homepage Hero Actions",
+      "kind": "button",
+      "refersTo": "button-home-hero-primary",
+      "description": "Centered paired pill links to packages and portfolio, with a Forest primary and pale Ivory secondary; other homepage actions retain their existing shapes.",
+      "html": "<div class=\"ds-hero-actions\"><a class=\"ds-hero-action ds-hero-primary\" href=\"#packages\">View packages <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a><a class=\"ds-hero-action ds-hero-secondary\" href=\"/portfolio\">View portfolio <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a></div>",
+      "css": ".ds-hero-actions{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px}.ds-hero-action{display:inline-flex;min-height:48px;max-width:100%;align-items:center;justify-content:center;gap:16px;border-radius:9999px;padding:16px 28px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms,color 150ms,border-color 150ms}.ds-hero-primary{background:#173d32;color:#f8f5ef}.ds-hero-primary:hover{background:#204b3e}.ds-hero-secondary{border:1px solid rgb(23 61 50 / 30%);background:rgb(248 245 239 / 90%);color:#173d32}.ds-hero-secondary:hover{background:#ffffff}.ds-hero-action:focus-visible{outline:2px solid #173d32;outline-offset:4px}.ds-hero-action svg{flex-shrink:0}@media(min-width:640px){.ds-hero-actions{gap:16px}}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Existing shared pricing/inquiry action; homepage hero uses flat pills and other homepage actions retain their rectangular variants.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Start your invitation</button>",
+      "css": ".ds-primary{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:8px;border-radius:9999px;padding:12px 24px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 300ms,transform 300ms;border:0;background:#173d32;color:#ffffff;box-shadow:0 14px 32px -16px rgba(23,61,50,0.7)}.ds-primary:hover{background:#204b3e}.ds-primary:focus-visible{outline:2px solid #173d32;outline-offset:2px;}@media(prefers-reduced-motion:no-preference){.ds-primary:hover{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.ds-primary{transition:background-color 150ms}}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Existing shared supporting action; homepage hero uses a separate pale Ivory pill and package links retain their rectangular variant.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Compare packages</button>",
+      "css": ".ds-secondary{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:8px;border-radius:9999px;padding:12px 24px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 300ms,transform 300ms;border:1px solid rgba(23,61,50,0.25);background:rgba(255,255,255,0.6);color:#173d32;backdrop-filter:blur(4px)}.ds-secondary:hover{background:#ffffff;border-color:rgba(23,61,50,0.5)}.ds-secondary:focus-visible{outline:2px solid #173d32;outline-offset:2px;}@media(prefers-reduced-motion:no-preference){.ds-secondary:hover{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:background-color 150ms,border-color 150ms}}"
+    },
+    {
+      "name": "Package Card",
+      "kind": "card",
+      "refersTo": "card-package",
+      "description": "Default package surface; featured and Luxury retain distinct treatments.",
+      "html": "<article class=\"ds-package\"><h3>Classic</h3><p>Website invitation package</p><a href=\"#classic\" class=\"ds-package-action\">Ask about Classic</a></article>",
+      "css": ".ds-package{border:1px solid rgba(23,61,50,0.1);border-radius:32px;background:#ffffff;color:#202421;padding:28px;box-shadow:0 24px 60px -42px rgba(23,61,50,0.45);font:14px/1.7 Inter,system-ui,sans-serif}.ds-package h3{margin:0;font:400 40px/1 Instrument Serif,serif}.ds-package p{color:#4b5d53}.ds-package-action{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:8px;border-radius:9999px;padding:12px 24px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 300ms,transform 300ms;background:#173d32;color:#ffffff}.ds-package-action:hover{background:#204b3e}.ds-package-action:focus-visible{outline:2px solid #173d32;outline-offset:2px;}"
+    },
+    {
+      "name": "Inquiry Field",
+      "kind": "input",
+      "refersTo": "input-inquiry",
+      "description": "Read-only message field with manual selection and copying.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-message\">Your message</label><textarea id=\"ds-message\" class=\"ds-field\" rows=\"5\" readonly>I’m interested in the Classic package.</textarea>",
+      "css": ".ds-field-label{display:block;color:#173d32;font:600 14px/1.5 Inter,system-ui,sans-serif}.ds-field{display:block;width:100%;box-sizing:border-box;min-height:192px;margin-top:12px;resize:vertical;border:1px solid rgba(23,61,50,0.25);border-radius:12px;background:#ffffff;color:#202421;padding:16px;font:400 16px/1.75 Inter,system-ui,sans-serif}.ds-field:focus-visible{outline:2px solid #173d32;outline-offset:2px;}.ds-field::selection{background:rgba(111,146,127,0.3);color:#173d32}"
+    },
+    {
+      "name": "Portfolio Section Chip",
+      "kind": "chip",
+      "refersTo": "chip-portfolio",
+      "description": "Section link with a full touch target.",
+      "html": "<a class=\"ds-chip\" href=\"#wedding-invitations\">Wedding Invitations</a>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:44px;gap:8px;padding:0 20px;border-radius:9999px;background:#255640;color:#ffffff;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms}.ds-chip:hover{background:#204536}.ds-chip:focus-visible{outline:2px solid #2d6b4e;outline-offset:4px}"
+    },
+    {
+      "name": "Marketing Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Shared identity and links at rest; production navigation also has an inert closed mobile menu.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#home\" class=\"ds-brand\">Modern Invites</a><a href=\"#pricing\" class=\"ds-nav-link\">Pricing</a></nav>",
+      "css": ".ds-nav{display:flex;min-height:72px;align-items:center;justify-content:space-between;gap:16px;padding:0 16px;background:rgba(248,245,239,0.7);backdrop-filter:blur(12px)}.ds-brand{display:inline-flex;align-items:center;min-height:44px;color:#173d32;font:400 24px/1.3 Instrument Serif,serif;letter-spacing:-.02em;text-decoration:none}.ds-nav-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;color:#4b5d53;font:600 12px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:color 150ms}.ds-nav-link:hover{color:#173d32}.ds-nav a:focus-visible{outline:2px solid #173d32;outline-offset:2px;}"
+    },
+    {
+      "name": "Homepage Primary Action",
+      "kind": "button",
+      "refersTo": "button-home-primary",
+      "description": "Flat homepage package action. On the dark closing panel, the action reverses to an Ivory surface, Forest text, Champagne Light hover, and Ivory focus outline.",
+      "html": "<a class=\"ds-home-primary\" href=\"#packages\">Choose your package <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a>",
+      "css": ".ds-home-primary{display:inline-flex;min-height:48px;max-width:100%;align-items:center;justify-content:center;gap:16px;border:0;border-radius:6px;background:#173d32;color:#ffffff;padding:16px 24px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms,color 150ms}.ds-home-primary:hover{background:#204b3e}.ds-home-primary:focus-visible{outline:2px solid #173d32;outline-offset:4px}.ds-home-primary svg{flex-shrink:0}"
+    },
+    {
+      "name": "Homepage Package Action",
+      "kind": "button",
+      "refersTo": "button-home-secondary",
+      "description": "Outlined homepage package choice, filled Forest on hover.",
+      "html": "<a class=\"ds-home-secondary\" href=\"#classic\">Choose Classic <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a>",
+      "css": ".ds-home-secondary{display:inline-flex;min-height:48px;max-width:100%;align-items:center;justify-content:center;gap:16px;border:1px solid rgba(23,61,50,0.3);border-radius:6px;background:transparent;color:#173d32;padding:12px 20px;font:600 14px/1.5 Inter,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms,color 150ms}.ds-home-secondary:hover{background:#173d32;color:#f8f5ef}.ds-home-secondary:focus-visible{outline:2px solid #173d32;outline-offset:4px}.ds-home-secondary svg{flex-shrink:0}"
+    },
+    {
+      "name": "Invitation Card Content",
+      "kind": "card",
+      "refersTo": "card-invitation",
+      "description": "Homepage text body of the shared card; production adds existing client artwork, framed preview, tags, and new-tab behavior. Complete illustrations use contain with 8px padding and local pale ground; photographs retain cover/top crop. Portfolio retains Playfair headings.",
+      "html": "<article class=\"ds-invitation\"><a href=\"#ryan-and-anne\" class=\"ds-invitation-link\" aria-label=\"View Ryan and Anne invitation\"><div class=\"ds-invitation-body\"><h3>Ryan &amp; Anne</h3><p class=\"ds-invitation-category\">Wedding Invitation</p><p class=\"ds-invitation-description\">Black, champagne gold, and ivory with an envelope opening, personal love story, photo galleries, and guest RSVP.</p><span class=\"ds-invitation-action\">View invitation <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></span></div></a></article>",
+      "css": ".ds-invitation{min-width:0}.ds-invitation-link{display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(23,61,50,0.15);border-radius:12px;background:#ffffff;text-decoration:none;transition:box-shadow 150ms}.ds-invitation-link:hover{box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1),0 4px 6px -4px rgb(0 0 0 / 0.1)}.ds-invitation-link:focus-visible{outline:none;box-shadow:0 0 0 4px #ffffff,0 0 0 6px #173d32}.ds-invitation-body{display:flex;flex-direction:column;padding:20px;overflow-wrap:break-word;font-family:Inter,system-ui,sans-serif}.ds-invitation-body h3{margin:0;font:400 24px/1.25 Instrument Serif,serif;color:#173d32}.ds-invitation-category{margin:4px 0 0;font-size:12px;line-height:16px;font-weight:500;color:#29251f}.ds-invitation-description{margin:12px 0 0;font-size:14px;line-height:24px;color:#4b5d53}.ds-invitation-action{display:inline-flex;align-items:center;gap:8px;padding-top:20px;margin-top:auto;font-size:14px;line-height:20px;font-weight:600;color:#29251f}.ds-invitation-action svg{flex-shrink:0;transition:transform 150ms}@media(min-width:640px){.ds-invitation-body h3{font-size:30px}}@media(prefers-reduced-motion:no-preference){.ds-invitation-link:hover .ds-invitation-action svg{transform:translate(2px,-2px)}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Botanical Stationery",
+    "overview": "This is descriptive shorthand for the implemented marketing appearance, not a newly approved brand direction. Warm paper surfaces, forest greens, champagne details, expressive serif headings, invitation photography, and soft shadows give the website the character of printed stationery adapted for a screen.\n\nScope: the homepage, pricing, portfolio, inquiry, and their shared marketing components. The portfolio retains its existing Playfair Display and sage treatment. Client invitation folders, dashboards, and admin tools are outside this palette's authority. Their confirmed themes remain authoritative, as PRODUCT.md requires.\n\nThe approved homepage uses this identity through invitation image cards, restrained dividing rules, spacious serif type, and direct links. Homepage and portfolio reuse the same invitation card and typed collection, with distinct heading treatments; pricing retains its established presentation. The homepage composition and service-first reading order are recorded in `.impeccable/surfaces/app-page-tsx.md`; the portfolio extension is recorded in `.impeccable/surfaces/app-portfolio-page-tsx.md`.",
+    "keyCharacteristics": [
+      "Spacious sections with serif headlines and plain sans-serif action text.",
+      "Forest green for actions and substantial dark surfaces; warm neutrals for reading.",
+      "Invitation samples retain their own artwork and accent colors.",
+      "Homepage and portfolio share invitation image cards; homepage features and packages retain ruled lists.",
+      "The homepage hero centers an italic serif phrase on a full-width atmospheric woodland photograph with a pale Ivory radial wash, paired pill actions. Only the decorative background photo receives homepage image priority; the gallery stays lazy.",
+      "Homepage sections alternate existing cream, sage, champagne, ivory, and forest surfaces. The work gallery uses Sage 50, process Sage 100, print service Champagne Light, packages Gold 100, and closing Forest Light with an inverted Ivory action."
+    ],
+    "rules": [
+      {
+        "name": "The Single Palette Rule",
+        "body": "Use named Tailwind colors and opacity modifiers in JSX. In custom CSS, resolve the same palette with Tailwind's `theme()` function. Do not repeat brand hex or RGB literals in component backgrounds, borders, artwork, or shadows.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sample Identity Rule",
+        "body": "Colors in portfolio item data and sample preview frames describe those invitations, not Modern Invites branding. Preserve their local values; do not promote them into shared brand tokens merely because they appear in a marketing card.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shadow Color Rule",
+        "body": "Keep geometry and opacity when replacing a color literal. Pair a geometry utility with the named shadow color; do not substitute a generic shadow if that changes the established depth.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Complete Illustration Rule",
+        "body": "Contain complete illustrations inside the preview frame with 8px padding and the sample's pale local ground. Photograph previews retain their intentional cover crop and top alignment. The shared item data selects the fit; Jaydee & Bea uses the illustration treatment.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use shared named colors for marketing identity and keep documented values aligned with Tailwind.",
+      "Do preserve client and sample palettes in their own folders or presentation data.",
+      "Do preserve established shadow geometry and alpha when replacing literals.",
+      "Do check mobile and desktop appearance, contrast, keyboard behavior, enlarged text, and reduced motion after styling changes.",
+      "Do reuse the shared invitation card and collection for homepage and portfolio, preserving each surface's heading treatment and responsive grid.",
+      "Do keep homepage action and ruled-list variants scoped while preserving pricing patterns."
+    ],
+    "donts": [
+      "Don't impose the marketing theme on client invitations or operational tools.",
+      "Don't copy brand color literals into new marketing components.",
+      "Don't treat decorative sample colors as new shared brand colors.",
+      "Don't hide readable content behind JavaScript-dependent entrances."
+    ]
+  }
+}

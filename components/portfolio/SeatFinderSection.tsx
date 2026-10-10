@@ -11,7 +11,7 @@ export default function SeatFinderSection() {
       <div className="mx-auto max-w-6xl">
         <article className="grid overflow-hidden rounded-2xl border border-sage-100 bg-white sm:grid-cols-[0.9fr_1.1fr]">
           <div className="flex items-center justify-center bg-[#e8eee7] p-5 sm:p-6">
-            <figure className="w-full max-w-xs rounded-xl border border-white/80 bg-[#fffdf8] p-5 shadow-sm">
+            <figure className="w-full max-w-xs rounded-xl border border-white/80 bg-marketing-paper p-5 shadow-sm">
               <figcaption className="mb-4 flex items-center justify-between gap-3">
                 <p className="font-elegant text-2xl text-sage-900">Eric &amp; Li</p>
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-sage-600">Seat finder</span>

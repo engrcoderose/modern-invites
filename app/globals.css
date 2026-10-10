@@ -66,10 +66,6 @@
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-sage-600 to-sage-800 bg-clip-text text-transparent;
-  }
-  
   .wave-shape {
     position: absolute;
     width: 100%;
@@ -112,28 +108,22 @@
 
   .invitation-grid {
     background-image:
-      linear-gradient(rgba(23, 61, 50, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(23, 61, 50, 0.04) 1px, transparent 1px);
+      linear-gradient(theme('colors.forest.DEFAULT / 4%') 1px, transparent 1px),
+      linear-gradient(90deg, theme('colors.forest.DEFAULT / 4%') 1px, transparent 1px);
     background-size: 42px 42px;
   }
 
-  .animate-soft-rise {
-    animation: soft-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .animate-soft-rise-delayed {
-    animation: soft-rise 0.9s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
 }
 
-@keyframes soft-rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+:where(.marketing-site) :where(a, button, textarea):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (min-width: 1024px) {
+  /* Keep ordinary three-column pricing, but give enlarged text room to read. */
+  .marketing-site .marketing-package-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   }
 }
 
@@ -142,12 +132,22 @@
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  /* Preserve the existing fallback for invitation pages. Marketing surfaces
+     use static layout changes with brief color/opacity feedback instead. */
+  *:not(:where(.marketing-site, .marketing-site *)),
+  *:not(:where(.marketing-site, .marketing-site *))::before,
+  *:not(:where(.marketing-site, .marketing-site *))::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .marketing-site,
+  .marketing-site :where(*, *::before, *::after) {
+    animation: none;
+    transition-property: color, background-color, border-color, box-shadow, opacity;
+    transition-duration: 150ms;
+    transition-delay: 0s;
   }
 }
 

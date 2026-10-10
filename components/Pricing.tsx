@@ -5,11 +5,13 @@ import PackageCard from "@/components/pricing/PackageCard";
 import ModularPricing from "@/components/pricing/ModularPricing";
 import PricingGuide from "@/components/pricing/PricingGuide";
 import PricingHero from "@/components/pricing/PricingHero";
+import PricingBenefits from "@/components/pricing/PricingBenefits";
 
 export default function Pricing() {
   return (
     <>
       <PricingHero />
+      <PricingBenefits />
 
       <section
         id="pricing-packages"
@@ -30,7 +32,7 @@ export default function Pricing() {
             align="center"
           />
 
-          <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+          <div className="marketing-package-grid mt-14 grid items-stretch gap-5">
             {PRICING_PACKAGES.map((packageDetails, index) => (
               <ScrollReveal
                 key={packageDetails.id}

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-ivory text-ink">
+    <div className="marketing-site min-h-screen overflow-hidden bg-ivory text-ink">
       <Navigation />
       <main>
         <Pricing />

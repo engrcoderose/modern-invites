@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import useMarketingReducedMotion from "./useMarketingReducedMotion";
 
 type RevealDirection = "up" | "left" | "right" | "scale";
 
@@ -16,16 +17,16 @@ type ScrollRevealProps = {
 
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
-function getInitialTransform(direction: RevealDirection, distance: number) {
+function getRevealKeyframes(direction: RevealDirection, distance: number) {
   switch (direction) {
     case "left":
-      return { x: -distance, y: 0, scale: 1 };
+      return { x: [-distance, 0] };
     case "right":
-      return { x: distance, y: 0, scale: 1 };
+      return { x: [distance, 0] };
     case "scale":
-      return { x: 0, y: 0, scale: 0.96 };
+      return { scale: [0.96, 1] };
     default:
-      return { x: 0, y: distance, scale: 1 };
+      return { y: [distance, 0] };
   }
 }
 
@@ -37,34 +38,23 @@ export default function ScrollReveal({
   distance = 34,
   amount = 0.18,
 }: ScrollRevealProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const initialTransform = getInitialTransform(direction, distance);
+  const prefersReducedMotion = useMarketingReducedMotion();
 
   return (
     <motion.div
       className={className}
-      initial={
-        prefersReducedMotion
-          ? false
-          : {
-              opacity: 0,
-              filter: "blur(7px)",
-              ...initialTransform,
-            }
-      }
+      // Keep server-rendered content readable if hydration or viewport observation fails.
+      initial={false}
+      animate={prefersReducedMotion ? { x: 0, y: 0, scale: 1 } : undefined}
       whileInView={
-        prefersReducedMotion
-          ? undefined
-          : {
-              opacity: 1,
-              filter: "blur(0px)",
-              x: 0,
-              y: 0,
-              scale: 1,
-            }
+        prefersReducedMotion ? undefined : getRevealKeyframes(direction, distance)
       }
       viewport={{ once: true, amount, margin: "0px 0px -7% 0px" }}
-      transition={{ duration: 0.72, delay, ease: revealEase }}
+      transition={
+        prefersReducedMotion
+          ? { duration: 0, delay: 0 }
+          : { duration: 0.72, delay, ease: revealEase }
+      }
     >
       {children}
     </motion.div>

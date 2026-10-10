@@ -67,24 +67,24 @@ const questions = [
   },
 ];
 
-export default function FrequentlyAskedQuestions() {
+export default function FrequentlyAskedQuestions({ variant = "default" }: { variant?: "default" | "home" }) {
   return (
-    <section id="faq" className="scroll-mt-24 bg-ivory px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="faq" className={`scroll-mt-24 bg-ivory px-4 sm:px-6 lg:px-8 ${variant === "home" ? "border-t border-forest/15 py-16 sm:py-20" : "py-24 lg:py-32"}`}>
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
         <ScrollReveal direction="left">
           <div>
-            <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.28em] text-eucalyptus-dark">Good to know</p>
-            <h2 className="font-instrumentSerif text-5xl leading-[1.02] tracking-[-0.02em] text-ink sm:text-6xl">
-              A few questions, <span className="italic text-eucalyptus-dark">answered.</span>
+            {variant !== "home" && <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.28em] text-eucalyptus-dark">Good to know</p>}
+            <h2 className={variant === "home" ? "home-heading text-forest" : "font-instrumentSerif text-5xl leading-[1.02] tracking-[-0.02em] text-ink sm:text-6xl"}>
+              {variant === "home" ? "Common questions" : <>A few questions, <span className="italic text-eucalyptus-dark">answered.</span></>}
             </h2>
-            <p className="mt-5 max-w-md text-base leading-7 text-ink-muted">
+            {variant !== "home" && <p className="mt-5 max-w-md text-base leading-7 text-ink-muted">
               Still deciding what fits your event? Send us a message and we’ll help you choose.
-            </p>
+            </p>}
           </div>
         </ScrollReveal>
 
         <ScrollReveal direction="right" delay={0.08}>
-          <Accordion type="single" collapsible className="border-t border-forest/15">
+          <Accordion type="single" collapsible className="border-t border-forest/15 motion-reduce:[&_[role=region]]:animate-none">
             {questions.map((item, index) => (
               <AccordionItem key={item.question} value={`item-${index}`} className="border-forest/15">
                 <AccordionTrigger className="py-6 text-left font-instrumentSerif text-xl font-normal text-ink hover:no-underline sm:text-2xl">

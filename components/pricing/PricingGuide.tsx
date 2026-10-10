@@ -61,7 +61,7 @@ export default function PricingGuide() {
                     </h3>
                   </div>
                   <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-ink-muted/60">
+                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-marketing-muted">
                       Best for
                     </p>
                     <p className="mt-2 text-sm font-semibold text-forest sm:text-base">
@@ -69,7 +69,7 @@ export default function PricingGuide() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-ink-muted/60">
+                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-marketing-muted">
                       Standout experience
                     </p>
                     <p className="mt-2 flex items-start gap-2 text-sm text-ink-muted sm:text-base">
@@ -116,14 +116,14 @@ export default function PricingGuide() {
                             aria-hidden="true"
                           />
                         </span>
-                        <span className="font-instrumentSerif text-3xl italic text-white/25">
+                        <span className="font-instrumentSerif text-3xl italic text-marketing-muted-inverse">
                           {number}
                         </span>
                       </div>
                       <h3 className="mt-10 font-instrumentSerif text-3xl">
                         {title}
                       </h3>
-                      <p className="mt-3 text-sm leading-6 text-white/55">
+                      <p className="mt-3 text-sm leading-6 text-marketing-muted-inverse">
                         {description}
                       </p>
                     </div>
@@ -134,7 +134,7 @@ export default function PricingGuide() {
           </ol>
 
           <ScrollReveal delay={0.15}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-center text-xs text-white/55 sm:flex-row sm:gap-8 sm:text-sm">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-center text-xs text-marketing-muted-inverse sm:flex-row sm:gap-8 sm:text-sm">
               <span>No hidden monthly fees</span>
               <span className="hidden h-1 w-1 rounded-full bg-champagne sm:block" />
               <span>Included revisions vary by package</span>

@@ -27,6 +27,12 @@ export default {
           line: "rgb(var(--wedding-color-line) / <alpha-value>)",
         },
         ivory: '#f8f5ef',
+        marketing: {
+          muted: '#4b5d53',
+          'muted-inverse': '#bcd1c4',
+          cta: '#dce7df',
+          paper: '#fffdf8',
+        },
         ink: {
           DEFAULT: '#202421',
           muted: '#66706a',
@@ -34,6 +40,8 @@ export default {
         forest: {
           DEFAULT: '#173d32',
           light: '#204b3e',
+          deep: '#102e26',
+          hover: '#275547',
         },
         eucalyptus: {
           DEFAULT: '#6f927f',

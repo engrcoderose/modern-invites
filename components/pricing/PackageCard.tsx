@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Check, Sparkles } from "lucide-react";
 import type { PricingPackage } from "@/lib/pricing";
-import { CONTACT_URL } from "@/lib/site";
 
 type PackageCardProps = {
   packageDetails: PricingPackage;
@@ -15,29 +14,28 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
     <article
       className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] p-7 sm:p-9 ${
         isFeatured
-          ? "bg-forest text-white shadow-[0_32px_80px_-32px_rgba(23,61,50,0.85)]"
+          ? "bg-forest text-white shadow-[0_32px_80px_-32px] shadow-forest/85"
           : isLuxury
-            ? "border border-champagne/45 bg-[#fffdf8] text-ink shadow-[0_24px_60px_-38px_rgba(157,127,71,0.5)]"
-            : "border border-forest/10 bg-white text-ink shadow-[0_24px_60px_-42px_rgba(23,61,50,0.45)]"
+            ? "border border-champagne/45 bg-marketing-paper text-ink shadow-[0_24px_60px_-38px] shadow-champagne-dark/50"
+            : "border border-forest/10 bg-white text-ink shadow-[0_24px_60px_-42px] shadow-forest/45"
       }`}
     >
-      {isFeatured ? (
-        <div className="absolute right-0 top-0 rounded-bl-2xl bg-champagne px-5 py-3 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-forest">
-          <span className="inline-flex items-center gap-1.5">
-            <Sparkles className="h-3 w-3" aria-hidden="true" />
-            Most loved
+      <div className="flex min-h-8 flex-wrap items-center justify-between gap-3">
+        <p
+          className={`text-[0.65rem] font-bold uppercase tracking-[0.26em] ${
+            isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"
+          }`}
+        >
+          {packageDetails.name} package
+        </p>
+        {isFeatured ? (
+          <span className="inline-flex max-w-full items-center gap-1.5 rounded-full bg-champagne px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.2em] text-forest">
+            <Sparkles className="h-3 w-3 shrink-0" aria-hidden="true" />
+            <span className="min-w-0">Most loved</span>
           </span>
-        </div>
-      ) : null}
-
-      <p
-        className={`text-[0.65rem] font-bold uppercase tracking-[0.26em] ${
-          isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"
-        }`}
-      >
-        {packageDetails.name} package
-      </p>
-      <h3 className="mt-5 font-instrumentSerif text-4xl leading-none sm:text-5xl">
+        ) : null}
+      </div>
+      <h3 className="mt-5 break-words font-instrumentSerif text-4xl leading-none sm:text-5xl">
         {packageDetails.name}
       </h3>
       <p
@@ -74,7 +72,7 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
       />
 
       <p
-        className={`mb-4 text-[0.62rem] font-bold uppercase tracking-[0.2em] ${isFeatured ? "text-white/45" : "text-ink-muted/70"}`}
+        className={`mb-4 text-[0.62rem] font-bold uppercase tracking-[0.2em] ${isFeatured ? "text-marketing-muted-inverse" : "text-marketing-muted"}`}
       >
         What’s included
       </p>
@@ -105,16 +103,14 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
       </ul>
 
       <Link
-        href={CONTACT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`mt-9 inline-flex min-h-12 items-center justify-center rounded-full px-5 text-sm font-bold transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+        href={`/inquire?package=${packageDetails.id}`}
+        className={`mt-9 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center text-sm font-bold transition duration-300 motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
           isFeatured
             ? "bg-white text-forest hover:bg-ivory focus-visible:ring-white focus-visible:ring-offset-forest"
             : "bg-forest text-white hover:bg-forest-light focus-visible:ring-forest"
         }`}
       >
-        Choose {packageDetails.name}
+        Ask about {packageDetails.name}
       </Link>
     </article>
   );

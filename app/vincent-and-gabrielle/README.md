@@ -41,11 +41,13 @@ five-photo collections are connected through `data/media.ts`. The Us collection
 uses `Main1-1.webp` through `Main1-5.webp` in order; Together uses `Group1-1.webp`
 through `Group1-5.webp` in order. Both reuse the existing uploaded R2 photographs
 under `https://assets.moderninvites.com/placeholder-images/prenups/`, with URLs
-and dimensions configured in `data/prenup-media.ts`. Local JPEG copies remain
-available for editing/recovery and are no longer imported into the invitation.
+and dimensions configured in `data/prenup-media.ts`. Unused local JPEG copies
+were removed on 2026-10-11. `Main1-2.jpg` remains for the portfolio; other local
+cover/artwork imports remain in use. Removed originals are recoverable from Git;
+see the [cleanup manifest](../../docs/media-cleanup-2026-10-11.json).
 Together uses individual focal points and caps
 the mobile frame at a 3:5 crop to keep both people visible on tall screens.
-Extra supplied reference assets remain available in
+Referenced supplied assets remain available in
 the local asset folders. Photos are described without assuming the subjects'
 identities. No former-client personal names or guest information are retained.
 The supplied `Main1-4` photo has visible distortion in its lower portion;

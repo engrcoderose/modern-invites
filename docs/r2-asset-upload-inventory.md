@@ -1,5 +1,7 @@
 # R2 image and video upload inventory
 
+Cleanup update, 2026-10-11: removed 30 further unused local images after checking resolved source imports, public image paths, CSS, dynamic loading and automatic metadata conventions. This includes redundant Joshua and Bea/Vincent and Gabrielle originals now served through their existing remote media configuration, and obsolete Ryan and Anne artwork. Retained local images still used by portfolio and sharing previews. Also removed 325 generated screenshots, contact sheets and inspection images from review/preview folders. Total local space recovered: 145.80 MiB. The [cleanup manifest](media-cleanup-2026-10-11.json) records removed paths, sizes and SHA-256 hashes for source assets; older source tables below remain historical inventory. Tracked source images remain recoverable from Git.
+
 Prepared 2026-09-29. This is a source inventory, not measured Vercel build output.
 Cleanup completed 2026-09-29: the 108 unused files in the final section were
 removed after reviewing source imports, public URLs, CSS, metadata conventions,

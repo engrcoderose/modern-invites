@@ -1,0 +1,38 @@
+.modern-home .home-display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(2rem, 5.5vw, 5.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+}
+
+.modern-home .home-heading {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(2.5rem, 4.3vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.modern-home a { text-underline-offset: 0.35em; }
+
+.modern-home .home-hero-wash {
+  background: radial-gradient(
+    ellipse 80% 65% at 50% 45%,
+    theme('colors.ivory / 96%') 0%,
+    theme('colors.ivory / 92%') 60%,
+    theme('colors.ivory / 58%') 100%
+  );
+}
+
+.modern-home .home-work { container-type: inline-size; }
+
+/* The gallery responds to both available width and the visitor's text size. */
+@container (min-width: 40rem) {
+  .modern-home .home-work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@container (min-width: 68rem) {
+  .modern-home .home-work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
