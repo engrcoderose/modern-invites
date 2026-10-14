@@ -8,6 +8,11 @@ import type {
   SubmitResponse,
   SubmitRsvpPayload,
 } from "./types";
+import type { OpenRsvpInput } from "@/features/rsvp/domain/open-rsvp";
+
+export class RsvpApiError extends Error {
+  constructor(message: string, readonly status: number) { super(message); }
+}
 
 async function postJson<T>(url: string, body: unknown): Promise<T> {
   const response = await fetch(url, {
@@ -31,8 +36,9 @@ async function postJson<T>(url: string, body: unknown): Promise<T> {
       message?: string;
     };
 
-    throw new Error(
+    throw new RsvpApiError(
       possibleError.message || "The request could not be completed.",
+      response.status,
     );
   }
 
@@ -102,5 +108,11 @@ export async function requestRsvpSubmission(
     throw new Error(result.message || "Unable to save the RSVP.");
   }
 
+  return result.summary;
+}
+
+export async function requestOpenRsvpSubmission(payload: OpenRsvpInput): Promise<SubmissionSummary> {
+  const result = await postJson<SubmitResponse>("/api/rsvp/open", payload);
+  if (!result.success || !result.summary) throw new Error(result.message || "Unable to save the RSVP.");
   return result.summary;
 }

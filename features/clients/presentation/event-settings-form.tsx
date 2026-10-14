@@ -16,6 +16,7 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
   const [name, setName] = useState(event.name);
   const [deadline, setDeadline] = useState(event.rsvp_deadline ?? "");
   const [responseMode, setResponseMode] = useState(event.rsvp_response_mode);
+  const [accessMode, setAccessMode] = useState(event.rsvp_access_mode);
   const [status, setStatus] = useState(event.is_active ? "active" : "archived");
   const [version, setVersion] = useState(event.updated_at);
   const [saved, setSaved] = useState(event);
@@ -26,14 +27,16 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
       setSaved(state.updatedEvent);
       setVersion(state.updatedEvent.updated_at);
       setName(state.updatedEvent.name);
+      setAccessMode(state.updatedEvent.rsvp_access_mode);
     }
   }, [state]);
 
-  const dirty = name !== saved.name || deadline !== (saved.rsvp_deadline ?? "") || responseMode !== saved.rsvp_response_mode || status !== (saved.is_active ? "active" : "archived") || clientServices !== (saved.client_services ?? "rsvp");
+  const dirty = accessMode !== saved.rsvp_access_mode || name !== saved.name || deadline !== (saved.rsvp_deadline ?? "") || responseMode !== saved.rsvp_response_mode || status !== (saved.is_active ? "active" : "archived") || clientServices !== (saved.client_services ?? "rsvp");
   function resetChanges() {
     setName(saved.name);
     setDeadline(saved.rsvp_deadline ?? "");
     setResponseMode(saved.rsvp_response_mode);
+    setAccessMode(saved.rsvp_access_mode);
     setStatus(saved.is_active ? "active" : "archived");
     setClientServices(saved.client_services ?? "rsvp");
   }
@@ -51,6 +54,16 @@ export function EventSettingsForm({ event, action }: { event: ManagedEvent; acti
         <Label htmlFor="name">Event name</Label>
         <Input id="name" name="name" value={name} onChange={e => setName(e.target.value)} required minLength={2} maxLength={150} className="h-11" aria-invalid={!!state.fieldErrors?.name} aria-describedby={state.fieldErrors?.name ? "name-error" : undefined} />
         {error("name")}
+      </div>
+      <div className="space-y-2 sm:col-span-2" hidden={clientServices === "seat_finder"}>
+        <Label htmlFor="accessMode">RSVP access</Label>
+        <select id="accessMode" name="accessMode" value={accessMode} onChange={e => setAccessMode(e.target.value as ManagedEvent["rsvp_access_mode"])} className={selectClass} aria-invalid={!!state.fieldErrors?.accessMode} aria-describedby="access-help accessMode-error">
+          {event.rsvp_access_mode === "shared_code" && <option value="shared_code">Shared RSVP code</option>}
+          <option value="name_search">Guest list name search</option>
+          <option value="open">Open RSVP — anyone can reply</option>
+        </select>
+        <p id="access-help" className="text-xs leading-5 text-ink-muted">{accessMode === "open" ? "No code or guest list is needed. Each visitor submits their own reply, which appears in the guest dashboard. Event status and deadline still apply." : "Guests confirm their invitation before replying. Previously submitted RSVPs are retained."}</p>
+        {error("accessMode")}
       </div>
       <div className="space-y-2" hidden={clientServices === "seat_finder"}>
         <Label htmlFor="rsvpDeadline">RSVP deadline <span className="font-normal text-ink-muted">(optional)</span></Label>

@@ -7,6 +7,7 @@ export type PricingPackage = {
   description: string;
   price: string;
   features: string[];
+  featureNotes?: Record<string, string>;
   featured?: boolean;
   bestFor: string;
   highlight: string;
@@ -15,6 +16,7 @@ export type PricingPackage = {
 export type ModularFeature = {
   name: string;
   description: string;
+  note?: string;
   price: string;
   category: "design" | "guests";
 };
@@ -29,8 +31,10 @@ export const PRICING_PACKAGES: PricingPackage[] = [
     price: "799",
     bestFor: "Simple, polished celebrations",
     highlight: "Essential event details",
+    featureNotes: { "RSVP (No Restriction)": "Anyone can submit" },
     features: [
       "Image Opening Screen",
+      "Maximum 5 Photos",
       "Event Details Section (Date, Time, Place, Venue)",
       "Countdown Timer",
       "Dress Code Section",
@@ -80,12 +84,13 @@ export const PRICING_PACKAGES: PricingPackage[] = [
     features: [
       "Everything in Signature plus:",
       "Fully Custom Design",
-      "Maximum 50 Photos",
-      "Up to 4 Background Music",
       "Gift Registry Section",
       "Where to Stay / Guest Guide Section",
       "FAQ Section",
       "Prenup Video Integration",
+      "Monogram (Logo Only)",
+      "Maximum 50 Photos",
+      "Up to 4 Background Music",
       "Custom RSVP Questions",
       "RSVP (with Restrictions) + Client Portal + Passcode Protection",
       "Seat Finder with Admin Dashboard",
@@ -97,8 +102,15 @@ export const PRICING_PACKAGES: PricingPackage[] = [
 
 export const MODULAR_FEATURES: ModularFeature[] = [
   {
+    name: "Monogram (Logo Only)",
+    description: "A monogram logo for your invitation",
+    price: "100",
+    category: "design",
+  },
+  {
     name: "Photo Gallery Section",
     description: "One curated photo gallery section",
+    note: "(with 5 images only)",
     price: "199",
     category: "design",
   },

@@ -1,0 +1,82 @@
+.invitation {
+  --dr-paper: #f2ede0;
+  --dr-olive: #5a6946;
+  --dr-ink: #414636;
+  --dr-muted: #646650;
+  --dr-line: #bfb59a;
+  --dr-gold: #ac9b76;
+  background: var(--dr-paper);
+  color: var(--dr-ink);
+  font-family: var(--font-dr-noto), Georgia, serif;
+  font-optical-sizing: auto;
+  scrollbar-color: var(--dr-olive) var(--dr-paper);
+}
+.invitation ::selection { color: var(--dr-paper); background: var(--dr-olive); }
+.invitation :is(a, button, summary):focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.invitation :is(a, button, summary) { -webkit-tap-highlight-color: transparent; }
+.invitation :is(h1, h2, h3, h4, p, li) { overflow-wrap: break-word; }
+.script, .sectionTitle, .formalNames, .coverNames {
+  font-family: var(--font-dr-anastasia), cursive;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+.sectionTitle, .formalNames, .coverNames { text-wrap: balance; }
+.romanNumeral { font-family: var(--font-dr-noto), Georgia, serif; font-weight: 300; font-style: italic; }
+/* Frame canvas: x360–1640/y176–1828. Initials: x620–1496/y562–1294. */
+.framedMonogramImage { width: 156.25%; max-width: none; height: 121.065%; left: -28.125%; top: -10.654%; }
+.initialsMonogramImage { width: 228.311%; max-width: none; height: 273.224%; left: -70.776%; top: -76.776%; }
+.sectionTitle { font-size: clamp(40px, 6vw, 64px); }
+.serifTitle { font-family: var(--font-dr-noto), Georgia, serif; font-size: clamp(22px, 3vw, 30px); font-weight: 500; line-height: 1.4; letter-spacing: .02em; text-wrap: balance; }
+.formalNames { font-size: clamp(34px, 5vw, 46px); color: var(--dr-olive); }
+.formalInvitation .script { color: var(--dr-olive); }
+.body { font-size: 13px; line-height: 1.9; color: var(--dr-muted); }
+.role { font-size: 12px; font-weight: 500; line-height: 1.6; text-transform: uppercase; letter-spacing: .06em; }
+.names { font-size: 14px; font-style: italic; line-height: 1.65; }
+.ornament { color: var(--dr-gold); }
+.section { isolation: isolate; }
+.paper { background: radial-gradient(ellipse at 50% 40%, #fffdf440, transparent 70%), radial-gradient(ellipse at 50% 50%, transparent 55%, #ac9b761c), var(--dr-paper); }
+.formalInvitation::after {
+  content: ""; position: absolute; inset: 18px;
+  border: 1px solid #ac9b7657; pointer-events: none;
+}
+.olive { color: #f2efdb; background: radial-gradient(ellipse at 50% 35%, #52604466, transparent 70%), linear-gradient(135deg, #36432e, #293727); }
+.olive::after { content: ""; position: absolute; inset: 18px; border: 1px solid #d4d6b24d; outline: 1px solid #d4d6b220; outline-offset: 5px; pointer-events: none; }
+.olive .ornament { color: #d2c5a0; }
+.olive .body { color: inherit; }
+.woodland { background: #263420; color: var(--dr-paper); }
+.woodlandBackdrop::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, #17221880, #101a12b8), linear-gradient(180deg, #17221818, #17221838); }
+.venueFrame { border: 1px solid #dfd9be80; outline: 1px solid #dfd9be40; outline-offset: 7px; }
+.cover { color: var(--dr-paper); background: #263420; }
+.coverShade { background: radial-gradient(ellipse at 50% 40%, #07100a14, #07100a80); }
+.openingScreen { background: #172218; color: var(--dr-paper); }
+.openingButton { cursor: pointer; }
+.openingButton:disabled { cursor: default; }
+.openingButton:focus-visible { outline: 1px solid var(--dr-paper); outline-offset: 5px; }
+.coverLink, .textLink { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; border-bottom: 1px solid currentColor; transition: color 200ms; }
+.coverLink:hover { color: #d2c5a0; }
+.textLink:hover { color: var(--dr-gold); }
+.navigation { background: var(--dr-paper); border-bottom: 1px solid var(--dr-line); }
+.navDate { font-size: 10px; letter-spacing: .1em; border-left: 1px solid var(--dr-line); }
+.navLinks, .mobileNavigation { font-size: 10px; text-transform: uppercase; letter-spacing: .13em; }
+.navLinks a:last-child { border: 1px solid var(--dr-olive); }
+.navigation a:hover { color: var(--dr-olive); }
+.timelineItem { border-top: 1px solid var(--dr-line); }
+.rsvpPlaque { background: var(--dr-paper); color: var(--dr-ink); border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%; border: 1px solid var(--dr-gold); outline: 2px solid #e4dac2; outline-offset: 3px; box-shadow: 0 8px 24px #101c2433; }
+.rsvpCard { background: var(--dr-paper); color: var(--dr-ink); border-radius: 6px; box-shadow: 0 14px 50px #111a1633; }
+.plaqueOrnament { background: var(--dr-paper); color: #9d916a; }
+.rsvpSearchInput { border: 0; border-bottom: 1px solid #8c997f; color: var(--dr-ink); }
+.rsvpIntro { color: var(--dr-muted); font-size: 16px; line-height: 1.9; }
+.button { background: var(--dr-olive); color: #fbf7e8; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: background 200ms; }
+.button:hover { background: #4b502a; }
+.rsvpSearchButton { font-size: 12px; }
+.countdownNumber { font-size: clamp(28px, 5vw, 44px); line-height: 1.2; font-weight: 400; }
+.skipLink { background: var(--dr-paper); color: var(--dr-ink); }
+@media (max-width: 640px) {
+  .formalInvitation::after { inset: 10px; }
+  .names { font-size: 12px; }
+  .role { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation :is(a, button, svg) { transition: none; }
+}

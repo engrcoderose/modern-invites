@@ -1,0 +1,105 @@
+{
+  "description": "Consolidated artwork provenance. Keys retain original metadata paths; historical source files may have been removed.",
+  "records": {
+    "artwork/dr-minimal-monogram.prompt.txt": "Use the attached image as the visual reference for a simple wedding monogram for Roselle and Darell. Replace its letters with the exact uppercase initials \"DR\": D first and R second. Match the reference's quiet, refined typography: tall high-contrast serif letters, very thin hairlines, elegant thick strokes, overlapping forms, and one smooth restrained sweeping calligraphic stroke beneath the letters. Keep both D and R clearly recognizable and visually balanced as a compact single monogram. The reference is an authority for simplicity and proportion, not text: do not retain A or any other reference letter. Use solid ivory-white lettering only, with a genuinely transparent background so it can sit on the invitation's sage or olive surfaces. No leaves, flowers, branches, botanical decoration, gold edging, texture, shading, 3D effects, frame, wreath, mockup, extra words, names, or date. Center the mark with generous margins; keep the flourish inside the canvas. The finished result should feel as simple and elegant as the provided reference, not more ornate.\n",
+    "artwork/dr-romantic-monogram.prompt.txt": "Use case: logo-brand\nAsset type: wedding invitation monogram for Roselle and Darell.\nPrimary request: Create an elegant, romantic monogram using the exact uppercase initials \"DR\", D first and R second. Make both letters immediately recognizable.\nStyle: bespoke fine wedding stationery; one tall, graceful, high-contrast serif D intertwined with a beautifully drawn calligraphic R. Refined long sweeping terminals, delicate hairlines and confident thicker strokes. Balanced negative space and tasteful restraint.\nComposition: a single centered interlocking DR mark on a square transparent canvas, filling about 75 percent of the canvas with generous clean margins; flourishes stay fully within the image. A few subtle botanical curls integrated into the lettering, without a separate wreath or enclosing frame.\nColor palette: deep muted olive green #5a6946 with tiny restrained champagne-gold #ac9b76 accents, designed to read crisply on ivory wedding stationery.\nText (verbatim): \"DR\". No names, ampersand, date, tagline, or other text.\nConstraints: genuinely transparent background, including the counters and spaces between flourishes; clean precise edges; visually graceful at small invitation sizes.\nAvoid: crowns, hearts, rings, large flowers, busy decoration, lace plaques, gradients, 3D effects, mockups, paper background, shadows, watermarks, illegible or extra letters.\n",
+    "artwork/dr-simple-monogram.prompt.txt": "Edit this DR wedding monogram for Roselle and Darell into a simple but elegant typographic monogram. Remove every leaf, stem, bud, berry, botanical curl, and decorative branch. Keep only the two recognizable uppercase letters D and R, D first on the left and R second on the right, gracefully intertwined. Preserve the refined tall serif D and calligraphic R, but reduce excessive flourishes to a single restrained sweep. Use one flat muted olive-green color #5a6946. Remove gold outlining, highlights, shading, texture, dimensional effects, and shadows. Clean, crisp wedding stationery lettering with balanced negative space and generous margins. No frame, wreath, flowers, foliage, hearts, rings, additional text, or decoration. Genuine transparent background, including spaces within and between the letters.\n",
+    "artwork/rd-lace-monogram.webp.json": {
+      "prompt": "Edit this wedding monogram asset for Roselle and Darell. Change ONLY the two central initials: replace the upright serif V with upright serif R, and the flowing script G with flowing script D. Exact text is R and D. Preserve the ornate green filigree, ivory lace oval frame, parchment texture, palette, composition and transparency exactly. No other text. Keep fully transparent exterior background, no shadows outside the lace. This will be a website invitation logo at small sizes.",
+      "createdAt": "2026-10-13T05:50:19.219Z"
+    },
+    "artwork/rd-outline-monogram.webp.json": {
+      "prompt": "Edit this transparent wedding monogram asset for Roselle and Darell. Change ONLY the central initials: replace upright serif V with upright serif R, and flowing script G with flowing script D. Exact letters R and D. Preserve the dark olive/black outline filigree, ornamental oval border, delicate linework, overall proportions and transparent background exactly. The original is transparent line artwork with NO ivory lace, NO solid oval fill and NO parchment ground; keep that. All areas between lines and behind letters must remain transparent. No new details, no shadows, no glow, no other text. The website uses this on an ivory paper background.",
+      "createdAt": "2026-10-13T06:10:45.904Z"
+    },
+    "artwork/semi-formal-attire-guide.prompt.txt": "Use case: photorealistic-natural. Asset type: semi-formal wedding guest outfit inspiration for Roselle and Darell's olive-and-ivory woodland invitation. Input image is a composition and styling reference only, not an edit target; create new people and new outfits. Make a polished photorealistic fashion catalog lineup of seven adult wedding guests, three men and four women, full bodies from head to shoes, evenly spaced across a wide landscape canvas at the same natural scale, generous clear margins around everyone. The men wear elegant semi-formal tailored suits or blazers with dress trousers in warm beige, muted taupe brown, and olive, clean ivory collared shirts, optional understated tie, brown closed leather shoes. The women wear graceful semi-formal midi or softly flowing ankle-length dresses in muted olive, sage green, warm taupe, and subdued champagne-gold (clearly colored, never white or bridal), with elegant modest necklines, a mixture of short flutter sleeves and refined sleeveless dresses with a light matching wrap over the shoulders, minimal accessories, and dress sandals or heels. Natural relaxed upright poses and realistic fabric folds, visible hems and shoes, fine realistic hands and faces, soft flattering studio light. An elegant harmonious outfit guide rather than a red-carpet or bridal-party portrait. TRANSPARENT BACKGROUND: isolate the seven full figures as a clean high-quality cutout with genuine alpha transparency, no ivory rectangle, no scenery, no floor, no cast shadows outside the figures. It will appear on a dark olive invitation section. No text, headings, captions, color swatches, labels, logos, watermarks, frames or floral decoration. No shorts, undershirts, T-shirts, jeans, sneakers, tuxedos, ball gowns, bridal white dresses, trains, extravagant sequins or crowns. The palette is visual inspiration rather than a required guest color policy. Keep the spacious full-length lineup feeling of the reference.\n",
+    "artwork/semi-formal-attire-illustration-v2.prompt.txt": "Use case: illustration-story. Asset type: a refined wedding guest attire illustration for Roselle and Darell's semi-formal dress-code section. Use the attached image only as a reference for the elegant garment-only fashion line drawing style and the side-by-side dress-and-suit composition. Create a new original illustration of exactly two outfits, no people: on the left, a graceful women's semi-formal flowing A-line dress with a modest V neckline, gently defined waist, softly draped ankle-length skirt and a neat matching wrap; on the right, a men's tailored single-breasted two-button suit jacket, collared shirt, simple straight tie, and matching dress trousers. Garments appear on invisible forms, with no heads, skin, hands or mannequin body parts, no hangers. Full outfits are visible, complete hems, proportionally balanced side by side, with a small clear gap, generous outer margins, a clean landscape canvas about 4:3. Style: delicate professional fashion ink illustration, crisp fine olive contour lines and elegant fabric fold linework, simple flat color with restrained gentle watercolor shading; not a photograph and not a sketchy cartoon. Palette must match an olive-and-ivory woodland wedding invitation: warm paper ivory #f2ede0 for the main garments, olive #5a6946 for ink and small clothing accents, muted sage and warm taupe for very subtle shading, muted gold #ac9b76 sparingly. The image will sit on a dark olive #36432e to #293727 background, so keep the main garments light and clearly visible with their warm ivory fill, and preserve refined detail. Genuine transparent alpha background around and between the two separate clothing silhouettes. No opaque canvas, no backdrop, no scenery, no floor or shadows outside the clothing, no frames, no ornaments, no flowers or leaves. No text, captions, Spanish lettering, labels, logos or watermarks. Do not reproduce the source's cropped text. Keep it semi-formal: no bridal train, no ball gown, no tuxedo, no bow tie, no shorts or casual clothing. This is an outfit inspiration graphic; do not include color-rule labels.\n",
+    "artwork/semi-formal-attire-outline-v3.prompt.txt": "Create a wedding attire reference graphic matching the supplied reference's SIMPLE OUTLINE-ONLY garment drawing style. Exactly two headless outfits side by side: one graceful long draped dress on the left and one tailored jacket, collared shirt, straight tie and dress trousers on the right. No human figures, faces, skin, mannequin bodies or hangers. Full garments and complete hems visible. Elegant smooth contour lines and a few restrained fabric-fold lines, clean vector-like fashion technical line drawing. STRICT OUTLINE ONLY: NO filled shapes, NO filled clothing, NO paint, NO watercolor, NO shading, NO gradients, NO shadows, NO highlights, NO textures, NO colored fabric panels. All empty spaces and ALL garment interiors must be genuinely transparent alpha; only the drawn lines may be opaque. Draw every line in a single warm ivory ink color #f2ede0, so the outlines remain visible against the invitation's dark olive section. Consistent delicate but clearly visible stroke weight, approximately 4px on a 1400px-wide canvas. The reference is style/composition guidance; ignore its words. No text, captions, labels, logos, decoration, leaves, borders or watermark. Transparent background, no white or black rectangle. Balanced compact side-by-side composition with generous but modest margins, landscape 4:3 canvas. Preserve the elegant dress-and-suit silhouette from the reference. This must look like the simple line outlines in the reference, not colored garments and not a realistic painting.\n",
+    "backgrounds/opening-swan-lake-hd.prompt.txt": "Mode: built-in imagegen edit\nSource: C:/Users/Spades/Documents/modern-invites/app/darelle-and-roselle/assets/backgrounds/opening-swan-lake.png\nPrompt: Edit target: the supplied swan-lake painting. Create a high-resolution restoration/upscale of THIS SAME IMAGE for a large wedding invitation background, at least 2560 pixels wide if supported, preserve the exact landscape aspect ratio 735:473. Preserve composition, framing, positions and number of all swans, trees, mountains, lake, plants, the muted olive/gold palette, lighting, and antique oil-painting brushwork. Increase legibility of existing fine branches, leaves, feather edges, stone surfaces, brush strokes, and reflections naturally; remove compression blur and jagged pixel edges. This is fidelity-preserving enhancement, not a redesign. No added objects, no text, no color shift, no dramatic contrast, no oversharpened halos, no photographic style, no border.\n",
+    "backgrounds/opening-swan-lake.source.txt": "User-provided opening-screen background, supplied October 13, 2026.\nSource attachment: codex-clipboard-e7ec8f19-36b4-47b5-b5d3-3b5df0d1c333.png.\nOriginal pixels preserved; displayed with the existing responsive Next Image optimizer.\n",
+    "backgrounds/venue-meadow-lake-hd.prompt.txt": "Mode: built-in imagegen edit\nSource: C:/Users/Spades/Documents/modern-invites/app/darelle-and-roselle/assets/backgrounds/venue-meadow-lake.png\nPrompt: Edit target: the supplied meadow-lake painting. Create a high-resolution restoration/upscale of THIS SAME IMAGE for a large wedding invitation background, at least 2560 pixels wide if supported, preserve exact landscape aspect ratio 4:3. Preserve composition, framing, exact lake shoreline, horizon, sky, distant trees, foreground wildflower placements, muted cream/olive/brown/pink palette, lighting, and antique oil-painting brushwork. Increase legibility of existing delicate stems, petals, leaves, water reflections and painted texture naturally; remove compression blur and jagged pixel edges. This is fidelity-preserving enhancement, not a redesign. No added objects, no text, no color shift, no dramatic contrast, no oversharpened halos, no photographic style, no border.\n",
+    "backgrounds/woodland-lake.webp.json": {
+      "prompt": "Origin: existing repository reference artwork app/vincent-and-gabrielle/assets/prenup/woodland-lake.png, compressed to WebP for the user-requested matching invitation design.",
+      "createdAt": "2026-10-13T05:50:19.423Z"
+    }
+  },
+  "remoteAssets": [
+    {
+      "name": "monogram",
+      "file": "new-no-frame-monogram.png",
+      "relative": "../assets/artwork/new-no-frame-monogram.png",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/new-no-frame-monogram.png",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 60379,
+      "sha256": "1f10e32217c7dd25bcbb9a0d8e596d239d119ce40f29e6c53f25aa72c16c9156",
+      "matches": true
+    },
+    {
+      "name": "framedMonogram",
+      "file": "new-green-monogram.png",
+      "relative": "../assets/artwork/new-green-monogram.png",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/new-green-monogram.png",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 248339,
+      "sha256": "cf2209356a1d58470afc5db4f3e5f71c9137f4acb4115d623bb13082ab912276",
+      "matches": true
+    },
+    {
+      "name": "openingMonogram",
+      "file": "new-black-monogram.png",
+      "relative": "../assets/artwork/new-black-monogram.png",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/new-black-monogram.png",
+      "width": 2000,
+      "height": 2000,
+      "bytes": 270728,
+      "sha256": "cc5e6e960b2f1f2a5b0ca78eaf35e94019c69bef4c1ff3e77859710629d763aa",
+      "matches": true
+    },
+    {
+      "name": "cover",
+      "file": "opening-swan-lake-hd.webp",
+      "relative": "../assets/backgrounds/opening-swan-lake-hd.webp",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/opening-swan-lake-hd.webp",
+      "width": 1563,
+      "height": 1006,
+      "bytes": 642928,
+      "sha256": "d501b4befe28d4213039f79bc88b4e6d4db322951b61a855ac0dc3058d38cb7f",
+      "matches": true
+    },
+    {
+      "name": "woodland",
+      "file": "woodland-lake.webp",
+      "relative": "../assets/backgrounds/woodland-lake.webp",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/woodland-lake.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 268896,
+      "sha256": "3206be033b03dd13786f62a2c24b0489faaca278e615cd436af107fb79ebea35",
+      "matches": true
+    },
+    {
+      "name": "venueBackground",
+      "file": "venue-meadow-lake-hd.webp",
+      "relative": "../assets/backgrounds/venue-meadow-lake-hd.webp",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/venue-meadow-lake-hd.webp",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 555546,
+      "sha256": "115dd020fc675ac5d12d940a13a1558290d53f3090a65a0378d2886e4b23eb1b",
+      "matches": true
+    },
+    {
+      "name": "attireGuide",
+      "file": "semi-formal-attire-outline-v3.png",
+      "relative": "../assets/artwork/semi-formal-attire-outline-v3.png",
+      "url": "https://assets.moderninvites.com/darell-and-roselle/images/designs/semi-formal-attire-outline-v3.png",
+      "width": 1448,
+      "height": 1086,
+      "bytes": 554522,
+      "sha256": "3df47c0f51e37104e222ee81f5d2cd3a5a6ca19ca1d031dc34b4179b2e5006a2",
+      "matches": true
+    }
+  ]
+}

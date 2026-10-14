@@ -18,7 +18,7 @@ function dependencies(authorized = true) {
     async updateEvent(input: EventSettingsInput) {
       calls.push(input);
       if (input.id !== stored.id || input.version !== stored.updated_at) return { status: "conflict" as const };
-      stored = { ...stored, name: input.name, rsvp_deadline: input.rsvpDeadline, rsvp_response_mode: input.responseMode, client_services: input.clientServices, is_active: input.isActive, updated_at: new Date(Date.parse(stored.updated_at) + 1000).toISOString() };
+      stored = { ...stored, name: input.name, rsvp_deadline: input.rsvpDeadline, rsvp_response_mode: input.responseMode, rsvp_access_mode: input.accessMode ?? stored.rsvp_access_mode, client_services: input.clientServices, is_active: input.isActive, updated_at: new Date(Date.parse(stored.updated_at) + 1000).toISOString() };
       return { status: "updated" as const, event: stored };
     },
   };
@@ -62,6 +62,16 @@ test("stale and missing events cannot overwrite a newer save", async () => {
   assert.equal(result.status, "error");
   assert.match(result.message!, /Reload/);
   assert.equal((await updateAdminEvent(deps, form({ id: "99" }))).status, "error");
+});
+test("administrators can choose open access while invalid modes are rejected", async () => {
+  const deps = dependencies();
+  const result = await updateAdminEvent(deps, form({ accessMode: "open" }));
+  assert.equal(result.status, "success");
+  assert.equal(result.updatedEvent?.rsvp_access_mode, "open");
+  assert.equal(deps.calls[0].accessMode, "open");
+  const invalid = dependencies();
+  assert.equal((await updateAdminEvent(invalid, form({ accessMode: "anything" }))).status, "error");
+  assert.equal(invalid.calls.length, 0);
 });
 test("database and authentication failures do not disclose internal errors", async () => {
   const failing = async () => { throw new Error("secret internal details"); };

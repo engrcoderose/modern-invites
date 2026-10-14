@@ -1,0 +1,25 @@
+.field { container-type: size; }
+.petal {
+  --fall-distance: calc(100vh + 48px);
+  border-radius: 80% 20% 75% 25%;
+  opacity: 0;
+  animation: petal-fall 20s linear infinite;
+}
+.field[data-paused="true"] .petal { animation-play-state: paused; }
+.control { background: var(--mi-paper); color: var(--mi-ink); border: 1px solid var(--mi-rule); }
+.control:hover { background: var(--mi-sage); }
+@supports (height: 1cqh) {
+  .petal { --fall-distance: calc(100cqh + 48px); }
+}
+@keyframes petal-fall {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-25deg); }
+  12% { opacity: .65; }
+  35% { transform: translate3d(var(--petal-drift), calc(var(--fall-distance) * .35), 0) rotate(65deg); }
+  65% { opacity: .65; transform: translate3d(calc(var(--petal-drift) * -.35), calc(var(--fall-distance) * .65), 0) rotate(145deg); }
+  88% { opacity: .5; }
+  100% { opacity: 0; transform: translate3d(var(--petal-drift), var(--fall-distance), 0) rotate(230deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .petals { display: none; }
+  .petal { animation: none; }
+}

@@ -14,6 +14,7 @@ const schema = z.object({
     return Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === value;
   }, "Enter a valid RSVP deadline."),
   responseMode: z.enum(["household", "individual"], { error: "Choose a reply mode." }),
+  accessMode: z.enum(["shared_code", "name_search", "open"], { error: "Choose an RSVP access mode." }).optional(),
   status: z.enum(["active", "archived"], { error: "Choose an event status." }),
 });
 
@@ -24,11 +25,11 @@ export async function updateAdminEvent(dependencies: {
   try {
     if (!await dependencies.isAdministrator()) return { status: "error", message: "Your administrator session has expired. Sign in again." };
     const parsed = schema.safeParse(Object.fromEntries(
-      ["id", "version", "name", "rsvpDeadline", "responseMode", "status", "clientServices"].map(key => [key, formData.get(key)]),
+      ["id", "version", "name", "rsvpDeadline", "responseMode", "status", "clientServices", "accessMode"].map(key => [key, formData.get(key) ?? undefined]),
     ));
     if (!parsed.success) return { status: "error", message: "Review the fields and try again.", fieldErrors: parsed.error.flatten().fieldErrors };
-    const { status, rsvpDeadline, ...values } = parsed.data;
-    const result = await dependencies.updateEvent({ ...values, rsvpDeadline: rsvpDeadline || null, isActive: status === "active" });
+    const { status, rsvpDeadline, accessMode, ...values } = parsed.data;
+    const result = await dependencies.updateEvent({ ...values, ...(accessMode ? { accessMode } : {}), rsvpDeadline: rsvpDeadline || null, isActive: status === "active" });
     if (result.status === "conflict") return { status: "error", message: "This event changed since you opened it or is no longer available. Reload the page to review the latest details before saving." };
     return { status: "success", message: "Event settings saved.", updatedEvent: result.event };
   } catch (error) {

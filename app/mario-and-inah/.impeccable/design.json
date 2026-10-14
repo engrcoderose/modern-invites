@@ -1,0 +1,475 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T15:01:23Z",
+  "title": "Design System: Mario & Inah",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cream paper",
+        "tonalRamp": [
+          "oklch(15% 0.0168 88.00)",
+          "oklch(26.4% 0.0168 88.00)",
+          "oklch(37.9% 0.0168 88.00)",
+          "oklch(49.3% 0.0168 88.00)",
+          "oklch(60.7% 0.0168 88.00)",
+          "oklch(72.1% 0.0168 88.00)",
+          "oklch(83.6% 0.0168 88.00)",
+          "oklch(95% 0.0168 88.00)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Dark olive ink",
+        "tonalRamp": [
+          "oklch(15% 0.0364 128.66)",
+          "oklch(26.4% 0.0364 128.66)",
+          "oklch(37.9% 0.0364 128.66)",
+          "oklch(49.3% 0.0364 128.66)",
+          "oklch(60.7% 0.0364 128.66)",
+          "oklch(72.1% 0.0364 128.66)",
+          "oklch(83.6% 0.0364 128.66)",
+          "oklch(95% 0.0364 128.66)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted olive",
+        "tonalRamp": [
+          "oklch(15% 0.0381 126.94)",
+          "oklch(26.4% 0.0381 126.94)",
+          "oklch(37.9% 0.0381 126.94)",
+          "oklch(49.3% 0.0381 126.94)",
+          "oklch(60.7% 0.0381 126.94)",
+          "oklch(72.1% 0.0381 126.94)",
+          "oklch(83.6% 0.0381 126.94)",
+          "oklch(95% 0.0381 126.94)"
+        ]
+      },
+      "sage": {
+        "role": "primary",
+        "displayName": "Botanical sage",
+        "tonalRamp": [
+          "oklch(15% 0.0219 163.01)",
+          "oklch(26.4% 0.0219 163.01)",
+          "oklch(37.9% 0.0219 163.01)",
+          "oklch(49.3% 0.0219 163.01)",
+          "oklch(60.7% 0.0219 163.01)",
+          "oklch(72.1% 0.0219 163.01)",
+          "oklch(83.6% 0.0219 163.01)",
+          "oklch(95% 0.0219 163.01)"
+        ]
+      },
+      "blush": {
+        "role": "secondary",
+        "displayName": "Blush stationery",
+        "tonalRamp": [
+          "oklch(15% 0.0367 3.02)",
+          "oklch(26.4% 0.0367 3.02)",
+          "oklch(37.9% 0.0367 3.02)",
+          "oklch(49.3% 0.0367 3.02)",
+          "oklch(60.7% 0.0367 3.02)",
+          "oklch(72.1% 0.0367 3.02)",
+          "oklch(83.6% 0.0367 3.02)",
+          "oklch(95% 0.0367 3.02)"
+        ]
+      },
+      "lilac": {
+        "role": "secondary",
+        "displayName": "Lilac ground",
+        "tonalRamp": [
+          "oklch(15% 0.0248 315.46)",
+          "oklch(26.4% 0.0248 315.46)",
+          "oklch(37.9% 0.0248 315.46)",
+          "oklch(49.3% 0.0248 315.46)",
+          "oklch(60.7% 0.0248 315.46)",
+          "oklch(72.1% 0.0248 315.46)",
+          "oklch(83.6% 0.0248 315.46)",
+          "oklch(95% 0.0248 315.46)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Sage rule",
+        "tonalRamp": [
+          "oklch(15% 0.0365 130.59)",
+          "oklch(26.4% 0.0365 130.59)",
+          "oklch(37.9% 0.0365 130.59)",
+          "oklch(49.3% 0.0365 130.59)",
+          "oklch(60.7% 0.0365 130.59)",
+          "oklch(72.1% 0.0365 130.59)",
+          "oklch(83.6% 0.0365 130.59)",
+          "oklch(95% 0.0365 130.59)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Warm photo ivory",
+        "tonalRamp": [
+          "oklch(15% 0.0436 85.24)",
+          "oklch(26.4% 0.0436 85.24)",
+          "oklch(37.9% 0.0436 85.24)",
+          "oklch(49.3% 0.0436 85.24)",
+          "oklch(60.7% 0.0436 85.24)",
+          "oklch(72.1% 0.0436 85.24)",
+          "oklch(83.6% 0.0436 85.24)",
+          "oklch(95% 0.0436 85.24)"
+        ]
+      },
+      "woodland": {
+        "role": "primary",
+        "displayName": "Woodland green",
+        "tonalRamp": [
+          "oklch(15% 0.0434 147.98)",
+          "oklch(26.4% 0.0434 147.98)",
+          "oklch(37.9% 0.0434 147.98)",
+          "oklch(49.3% 0.0434 147.98)",
+          "oklch(60.7% 0.0434 147.98)",
+          "oklch(72.1% 0.0434 147.98)",
+          "oklch(83.6% 0.0434 147.98)",
+          "oklch(95% 0.0434 147.98)"
+        ]
+      },
+      "venue-border": {
+        "role": "secondary",
+        "displayName": "Warm stationery border",
+        "tonalRamp": [
+          "oklch(15% 0.0657 11.46)",
+          "oklch(26.4% 0.0657 11.46)",
+          "oklch(37.9% 0.0657 11.46)",
+          "oklch(49.3% 0.0657 11.46)",
+          "oklch(60.7% 0.0657 11.46)",
+          "oklch(72.1% 0.0657 11.46)",
+          "oklch(83.6% 0.0657 11.46)",
+          "oklch(95% 0.0657 11.46)"
+        ]
+      },
+      "button-hover": {
+        "role": "neutral",
+        "displayName": "Olive hover",
+        "tonalRamp": [
+          "oklch(15% 0.0406 130.97)",
+          "oklch(26.4% 0.0406 130.97)",
+          "oklch(37.9% 0.0406 130.97)",
+          "oklch(49.3% 0.0406 130.97)",
+          "oklch(60.7% 0.0406 130.97)",
+          "oklch(72.1% 0.0406 130.97)",
+          "oklch(83.6% 0.0406 130.97)",
+          "oklch(95% 0.0406 130.97)"
+        ]
+      },
+      "button-active": {
+        "role": "neutral",
+        "displayName": "Deep olive active",
+        "tonalRamp": [
+          "oklch(15% 0.0293 137.41)",
+          "oklch(26.4% 0.0293 137.41)",
+          "oklch(37.9% 0.0293 137.41)",
+          "oklch(49.3% 0.0293 137.41)",
+          "oklch(60.7% 0.0293 137.41)",
+          "oklch(72.1% 0.0293 137.41)",
+          "oklch(83.6% 0.0293 137.41)",
+          "oklch(95% 0.0293 137.41)"
+        ]
+      },
+      "field-paper": {
+        "role": "neutral",
+        "displayName": "Bright field paper",
+        "tonalRamp": [
+          "oklch(15% 0.0054 95.10)",
+          "oklch(26.4% 0.0054 95.10)",
+          "oklch(37.9% 0.0054 95.10)",
+          "oklch(49.3% 0.0054 95.10)",
+          "oklch(60.7% 0.0054 95.10)",
+          "oklch(72.1% 0.0054 95.10)",
+          "oklch(83.6% 0.0054 95.10)",
+          "oklch(95% 0.0054 95.10)"
+        ]
+      },
+      "field-rule": {
+        "role": "neutral",
+        "displayName": "Field border",
+        "tonalRamp": [
+          "oklch(15% 0.0277 123.57)",
+          "oklch(26.4% 0.0277 123.57)",
+          "oklch(37.9% 0.0277 123.57)",
+          "oklch(49.3% 0.0277 123.57)",
+          "oklch(60.7% 0.0277 123.57)",
+          "oklch(72.1% 0.0277 123.57)",
+          "oklch(83.6% 0.0277 123.57)",
+          "oklch(95% 0.0277 123.57)"
+        ]
+      },
+      "reply-surface": {
+        "role": "neutral",
+        "displayName": "Reply pale green",
+        "tonalRamp": [
+          "oklch(15% 0.0127 126.37)",
+          "oklch(26.4% 0.0127 126.37)",
+          "oklch(37.9% 0.0127 126.37)",
+          "oklch(49.3% 0.0127 126.37)",
+          "oklch(60.7% 0.0127 126.37)",
+          "oklch(72.1% 0.0127 126.37)",
+          "oklch(83.6% 0.0127 126.37)",
+          "oklch(95% 0.0127 126.37)"
+        ]
+      },
+      "photo-matte": {
+        "role": "neutral",
+        "displayName": "Photo matte",
+        "tonalRamp": [
+          "oklch(15% 0.0134 111.29)",
+          "oklch(26.4% 0.0134 111.29)",
+          "oklch(37.9% 0.0134 111.29)",
+          "oklch(49.3% 0.0134 111.29)",
+          "oklch(60.7% 0.0134 111.29)",
+          "oklch(72.1% 0.0134 111.29)",
+          "oklch(83.6% 0.0134 111.29)",
+          "oklch(95% 0.0134 111.29)"
+        ]
+      },
+      "scroll-accent": {
+        "role": "secondary",
+        "displayName": "Olive progress",
+        "tonalRamp": [
+          "oklch(15% 0.0456 115.27)",
+          "oklch(26.4% 0.0456 115.27)",
+          "oklch(37.9% 0.0456 115.27)",
+          "oklch(49.3% 0.0456 115.27)",
+          "oklch(60.7% 0.0456 115.27)",
+          "oklch(72.1% 0.0456 115.27)",
+          "oklch(83.6% 0.0456 115.27)",
+          "oklch(95% 0.0456 115.27)"
+        ]
+      },
+      "attire-sage": {
+        "role": "secondary",
+        "displayName": "Sage attire suggestion",
+        "tonalRamp": [
+          "oklch(15% 0.0188 166.30)",
+          "oklch(26.4% 0.0188 166.30)",
+          "oklch(37.9% 0.0188 166.30)",
+          "oklch(49.3% 0.0188 166.30)",
+          "oklch(60.7% 0.0188 166.30)",
+          "oklch(72.1% 0.0188 166.30)",
+          "oklch(83.6% 0.0188 166.30)",
+          "oklch(95% 0.0188 166.30)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Calligraphic names",
+        "purpose": "Photo-first hero names."
+      },
+      "headline": {
+        "displayName": "Script heading",
+        "purpose": "Main section headings."
+      },
+      "venue-title": {
+        "displayName": "Venue calligraphy",
+        "purpose": "Venue name within blush stationery."
+      },
+      "photo-caption": {
+        "displayName": "Photographic calligraphy",
+        "purpose": "Full-width photo captions and footer names."
+      },
+      "title": {
+        "displayName": "Supporting serif title",
+        "purpose": "Attire subtitle."
+      },
+      "date": {
+        "displayName": "Formal date",
+        "purpose": "Hero date and location."
+      },
+      "countdown": {
+        "displayName": "Formal numerals",
+        "purpose": "Tabular countdown figures."
+      },
+      "detail": {
+        "displayName": "Practical details",
+        "purpose": "Guest guidance and reply status."
+      },
+      "role": {
+        "displayName": "Entourage roles",
+        "purpose": "Formal uppercase entourage role labels at 12px, 1.7 leading and 0.08em tracking."
+      },
+      "entourage-name": {
+        "displayName": "Entourage names",
+        "purpose": "Readable 16–18px Libre Baskerville names, 1.75 leading, balanced wrapping."
+      },
+      "entourage-introduction": {
+        "displayName": "Parents introduction",
+        "purpose": "Formal Inter uppercase introduction, 12px with restrained tracking."
+      },
+      "welcome-name": {
+        "displayName": "Welcome calligraphy",
+        "purpose": "Stacked Imperial names, responsive 3.6–6rem with 1.05 leading; compact scaling on short screens."
+      },
+      "welcome-ampersand": {
+        "displayName": "Welcome ampersand",
+        "purpose": "Small Libre Baskerville ampersand separating the stacked names."
+      },
+      "welcome-date": {
+        "displayName": "Welcome date",
+        "purpose": "Quiet 0.75rem Libre Baskerville date with 1.8 leading and 0.08em tracking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hero-text",
+        "value": "0 2px 5px rgb(0 0 0 / 50%)",
+        "purpose": "Warm ivory names and details over the opening photograph."
+      },
+      {
+        "name": "photo-caption-text",
+        "value": "0 2px 8px rgb(0 0 0 / 75%)",
+        "purpose": "Calligraphic captions over full-width photographs."
+      },
+      {
+        "name": "timeline-mask",
+        "value": "0 0 0 7px #f5f0e4",
+        "purpose": "Paper ring masking the timeline divider; not elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-background",
+        "value": "background-color 180ms ease",
+        "purpose": "Primary button hover/active transition; disabled with reduced motion."
+      },
+      {
+        "name": "scroll-progress",
+        "value": "scaleX: scrollYProgress",
+        "purpose": "motion/react links the two-pixel indicator to scroll progress; hidden with reduced motion."
+      },
+      {
+        "name": "content-reveals",
+        "value": "750ms heading resolution; 550ms text/ornament; 900ms photo; max 200ms stagger",
+        "purpose": "One-time, visible-by-default content reveals across every section. Focus, hidden-page and reduced-motion interruptions restore authored styles; controls and RSVP fields remain stationary."
+      },
+      {
+        "name": "hero-photo-zoom",
+        "value": "scale 1 → 1.03, 3.9s linear; 3s slide interval",
+        "purpose": "Subtle zoom continues through each 900ms crossfade and pauses with playback, offscreen and hidden-page state. Reduced motion removes zoom."
+      },
+      {
+        "name": "welcome-opening",
+        "value": "8s photo drift; 750ms cover dissolve; 240ms delayed 450ms invitation reveal",
+        "purpose": "Earlier-client photo-cover pattern, with independent lettering/flower entrance and a ready-image handoff. Reduced motion skips spatial effects; focus, scrolling, section links, image-failure fallback and no-JavaScript access are preserved."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "tonalRampNote": "Color ramps are synthesized previews of each source hue/chroma. Only DESIGN.md frontmatter colors are normative; these ramps do not add runtime colors."
+  },
+  "components": [
+    {
+      "name": "Primary RSVP button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width email-draft action; it prepares a reply rather than recording one.",
+      "html": "<button class=\"ds-mi-button\" type=\"button\">Prepare my RSVP email <svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></button>",
+      "css": ".ds-mi-button{font-family:var(--font-inter),Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:48px;padding:12px 24px;border:0;border-radius:3px;background:#414b36;color:#f5f0e4;font-size:14px;line-height:20px;cursor:pointer;transition:background-color 180ms ease}.ds-mi-button:hover{background:#56634b}.ds-mi-button:active{background:#333e2f}.ds-mi-button:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-mi-button{transition:none}}"
+    },
+    {
+      "name": "Reply field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Visible required-name label and bright paper entry field.",
+      "html": "<div class=\"ds-mi-field-group\"><label for=\"ds-mi-name\">Your full name <span>(required)</span></label><input class=\"ds-mi-field\" id=\"ds-mi-name\" autocomplete=\"name\" required></div>",
+      "css": ".ds-mi-field-group{font-family:var(--font-inter),Inter,sans-serif;max-width:512px;color:#414b36}.ds-mi-field-group label{display:block;margin-bottom:8px;font-size:14px;line-height:20px}.ds-mi-field-group label span{font-size:12px}.ds-mi-field{font-family:var(--font-inter),Inter,sans-serif;width:calc(100% - 34px);min-height:22px;padding:12px 16px;border:1px solid #aab19e;border-radius:3px;background:#fffefa;color:#414b36;caret-color:#414b36;font-size:16px;line-height:24px}.ds-mi-field:hover{border-color:#aab19e}.ds-mi-field:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Underlined text link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Quiet map, prepared-email and footer links; typography can vary by section.",
+      "html": "<a class=\"ds-mi-text-link\" href=\"#top\">Back to the beginning</a>",
+      "css": ".ds-mi-text-link{font-family:var(--font-inter),Inter,sans-serif;display:inline-flex;align-items:center;min-height:44px;font-size:14px;line-height:20px;color:#414b36;text-decoration:underline;text-decoration-color:#a9b69e;text-underline-offset:5px}.ds-mi-text-link:hover{text-decoration-color:#414b36}.ds-mi-text-link:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Blush venue stationery",
+      "kind": "card",
+      "refersTo": "venue-card",
+      "description": "Flat centered stationery within the lilac venue field. The deployed card also contains the actual uploaded venue photograph.",
+      "html": "<div class=\"ds-mi-venue-stage\"><div class=\"ds-mi-venue-card\"><p class=\"ds-mi-venue-label\">Ceremony & Reception</p><h3 class=\"ds-mi-venue-name\">Panaad Garden Tagaytay</h3><p class=\"ds-mi-venue-detail\">238 Pag-ibig St., Tagaytay City, Philippines</p><p class=\"ds-mi-venue-time\">4:00 PM</p><a class=\"ds-mi-venue-link\" href=\"#celebration\">View map <svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a></div></div>",
+      "css": ".ds-mi-venue-stage{padding:24px;background:#dacfdf;color:#414b36}.ds-mi-venue-card{max-width:448px;margin:auto;padding:16px;background:#f7d7de;border:1px solid #c99399;text-align:center}.ds-mi-venue-label,.ds-mi-venue-detail,.ds-mi-venue-time{font-family:var(--font-libre-baskerville),\"Libre Baskerville\",Georgia,serif}.ds-mi-venue-label{margin:0 0 16px;font-size:12px;line-height:16px;text-transform:uppercase;letter-spacing:.05em}.ds-mi-venue-name{margin:24px 0 0;font-family:var(--font-imperial),\"Imperial Script\",cursive;font-size:clamp(2.25rem,3vw,2.5rem);font-weight:400;line-height:1.2}.ds-mi-venue-detail{max-width:320px;margin:16px auto 0;font-size:12px;line-height:24px}.ds-mi-venue-time{margin:12px 0 0;font-size:14px;line-height:20px}.ds-mi-venue-link{font-family:var(--font-inter),Inter,sans-serif;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:16px;color:inherit;font-size:12px;text-transform:uppercase;letter-spacing:.05em;text-decoration:underline;text-decoration-color:#a9b69e;text-underline-offset:5px}.ds-mi-venue-link:hover{text-decoration-color:#414b36}.ds-mi-venue-link:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(min-width:640px){.ds-mi-venue-card{padding:24px}.ds-mi-venue-detail{font-size:14px}}"
+    },
+    {
+      "name": "Unboxed countdown",
+      "kind": "custom",
+      "description": "Four formal numeral columns below a calligraphic heading; the snippet previews the typography without runtime countdown or raster artwork. Corner flowers in the live invitation shift outward by 25% of their width and use bottom-5 with no vertical translation.",
+      "html": "<section class=\"ds-mi-countdown\"><h2>Counting down to forever</h2><dl aria-label=\"Time until the ceremony\"><div><dt>days</dt><dd>—</dd></div><div><dt>hours</dt><dd>—</dd></div><div><dt>minutes</dt><dd>—</dd></div><div><dt>seconds</dt><dd>—</dd></div></dl></section>",
+      "css": ".ds-mi-countdown{padding:64px 24px;background:#f5f0e4;color:#414b36;text-align:center}.ds-mi-countdown h2{margin:0;font-family:var(--font-imperial),\"Imperial Script\",cursive;font-size:clamp(2.8rem,7vw,4.5rem);font-weight:400;line-height:1.2}.ds-mi-countdown dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:576px;margin:24px auto 0}.ds-mi-countdown dl div{display:flex;flex-direction:column;font-family:var(--font-libre-baskerville),\"Libre Baskerville\",Georgia,serif}.ds-mi-countdown dt{margin-top:8px;font-size:12px;line-height:16px;text-transform:capitalize}.ds-mi-countdown dd{order:-1;margin:0;font-size:clamp(1.4rem,4vw,2.6rem);line-height:1.4;font-variant-numeric:tabular-nums}@media(min-width:640px){.ds-mi-countdown{padding:80px 40px}.ds-mi-countdown dl{gap:28px;margin-top:32px}.ds-mi-countdown dt{font-size:14px;line-height:20px}}"
+    },
+    {
+      "name": "Attire swatch",
+      "kind": "custom",
+      "refersTo": "attire-swatch",
+      "description": "Named oval outfit suggestion; it does not redefine the section ground.",
+      "html": "<div class=\"ds-mi-swatch-item\"><span class=\"ds-mi-swatch\" aria-hidden=\"true\"></span><span>Sage</span></div>",
+      "css": ".ds-mi-swatch-item{font-family:var(--font-inter),Inter,sans-serif;display:flex;flex-direction:column;align-items:center;gap:8px;color:#414b36;font-size:12px;line-height:20px}.ds-mi-swatch{display:block;width:40px;height:56px;border-radius:50%;border:1px solid rgb(65 75 54 / 15%);background:#c6d5ce}@media(min-width:640px){.ds-mi-swatch{width:48px;height:64px}}"
+    },
+    {
+      "name": "Prepared reply status",
+      "kind": "custom",
+      "refersTo": "reply-status",
+      "description": "Email draft readiness with a review-and-send link; no submitted-response claim.",
+      "html": "<div class=\"ds-mi-status\" role=\"status\"><p>Your email draft is ready. Open your email app, review your reply, and send it to the couple.</p><a href=\"mailto:mariotsubasas@gmail.com\">Open RSVP in my email app <svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a></div>",
+      "css": ".ds-mi-status{font-family:var(--font-inter),Inter,sans-serif;padding:20px;border:1px solid #a9b69e;background:#edf1e8;color:#414b36;font-size:14px;line-height:28px}.ds-mi-status p{margin:0}.ds-mi-status a{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:8px;color:inherit;font-weight:500;text-decoration:underline;text-decoration-color:#a9b69e;text-underline-offset:5px}.ds-mi-status a:hover{text-decoration-color:#414b36}.ds-mi-status a:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Botanical stationery",
+    "overview": "Painted flowers frame fine calligraphic names and headings, with formal serif event details on cream paper. Pale botanical sage, a photographic woodland field, and a lilac venue field carrying blush stationery express the user-pinned floral reference. Open lists and restrained controls keep guest information readable. This system belongs only to the Mario & Inah invitation.\n\nThe opening photograph is immediately visible and leads directly into the floral countdown. Supplied floral cutouts and the botanical pattern remain recognizable artwork; they are not approximated with CSS. Couple photographs remain samples in client data and provenance, with one gallery-level disclosure. There are no per-image watermark overlays. The venue uses the actual uploaded Panaad Garden photograph.\n\nHero corner flowers use -bottom-2 on both sides, -left-2 on the left and -right-2 on the right, without translation transforms. Countdown corner flowers shift outward by 25% of their width and use bottom-5 with no vertical translation. Entourage corner flowers shift outward by 25% of their width and use bottom-3 with no vertical translation. Both photo breaks fill at least one dynamic viewport height with full-bleed cover images; responsive image sizes account for their landscape source aspect ratio.\n\nThe hero cycles through four configured sample photographs with a 900ms fade and 6.5-second reading interval. Names, date and corner flowers remain fixed. Only the first photo loads initially; each next photo is mounted when requested and decoded before replacing the current image. Controls support pause/play, direct selection and left/right arrow keys. Focused selection pauses autoplay. Offscreen and hidden-tab playback stops; reduced motion disables autoplay and uses instant manual changes. With JavaScript disabled the first photo remains visible and controls are omitted.\n\nGentle parallax is limited to hero/photo-break backgrounds and floral cutouts: spring-smoothed scroll movement, half-distance on phones, fixed reading content and controls, safe photo overscan, and immediate reduced-motion fallback. See components/ParallaxLayer.tsx and README.md for the bounded distances.\n\nHero controls are four small circular dots without a background or pause/play icons. Dot selection pauses autoplay; the active dot offers accessible pause/resume, with keyboard navigation and reduced-motion support preserved.\n\nEntourage refinement: larger 16–18px serif names, clear 12px role labels, an understated geometric hairline divider after the parents, framed principal sponsors, and paired columns that stack below 360px. Supplied florals, sage paper and all confirmed names are retained.\n\nEach section now has first-entry content motion: resolving calligraphy, brief text-group rises, slow photographic settling and a fine divider opening. One observer triggers each element once; default HTML is visible. Live reduced motion settles ongoing animation and disables new reveals. These content effects remain separate from slideshow fades and background parallax.\n\nThe user requested an image welcome screen: a full-viewport, configured photograph with ivory names/date, supplied butterfly florals and an Open invitation link. It precedes the slideshow hero in normal document flow. JavaScript enhances the anchor with smooth scrolling and heading focus; reduced motion is instant and the native no-JavaScript link remains usable. Only immediately visible welcome assets are prioritized.\n\nSlideshow cadence is now three seconds, with a slow 3% photo zoom over the active display plus crossfade. The plain dot controls remain unchanged; zoom follows pause, offscreen and hidden-tab behavior and is disabled with reduced motion.\n\nThe latest requested opening supersedes the earlier scroll-only welcome: a progressively enhanced photo cover with restrained framing, independent staggered lettering and flowers, slow photo drift, and a 750ms dissolve into a ready hero. Invitation content enters after the cover lettering clears. Behind-cover content remains inert until completion, and temporary scrolling restrictions are restored. Direct guest-detail links and the native no-JavaScript flow remain available, with reduced-motion and image-readiness fallbacks.\n\nThe refined welcome stacks Mario and Inah in ivory Imperial calligraphy, separated by a smaller Libre Baskerville ampersand. A fine hairline and diamond divider sits beneath the confirmed date, and a transparent outlined Open invitation action completes the composition. The names enter in a restrained stagger; short-height screens scale the lettering down while keeping the action visible. The existing photo drift, floral exit and cover dissolve remain intact.\n\nText entrances emphasize the wedding names: the welcome lettering softly resolves from 2px blur with an 18px rise and 220ms name stagger, followed by its date and location. Section calligraphy resolves over 900ms from 25% opacity and a 14px rise; supporting text uses a quieter 700ms fade and 10px rise. Entourage names animate individually with a short row stagger capped at 200ms, while role labels stay separate. The hero title animates its inner lettering without moving keyboard focus. Content remains visible by default and animations run once, settle on interruption, and honor live reduced-motion preferences.",
+    "keyCharacteristics": [
+      "Fine calligraphy, formal serif event details and quiet sans-serif controls.",
+      "Cream paper, botanical sage, woodland photography and lilac with blush stationery.",
+      "Painted floral overlaps and a directly readable photographic opening."
+    ],
+    "rules": [
+      {
+        "name": "The Surface and Swatch Rule",
+        "body": "Preserve the supplied section grounds independently of attire suggestions.",
+        "section": "colors"
+      },
+      {
+        "name": "The Calligraphic Hierarchy Rule",
+        "body": "Keep Imperial Script for names and headings, formal serif for event details, and sans-serif for controls and longer prose.",
+        "section": "typography"
+      },
+      {
+        "name": "The Botanical Depth Rule",
+        "body": "Let artwork, photographs and tonal surfaces supply depth; keep content cards and controls flat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep client-specific styles, artwork, configuration and design records inside this invitation folder.",
+      "Do use Tailwind for ordinary layout and scoped CSS for typography and layered decoration.",
+      "Do preserve supplied artwork, actual venue photography, the gallery sample disclosure and readable photo text.",
+      "Do preserve keyboard focus, direct section links and reduced-motion behavior.",
+      "Do keep confirmed content data-driven and pending information explicit."
+    ],
+    "donts": [
+      "Don't substitute attire suggestions for the supplied section grounds.",
+      "Don't replace the direct photographic opening with a cover or entry gate.",
+      "Don't add elevated cards, competing layout declarations or decorative substitutes for supplied artwork.",
+      "Don't represent prepared email drafts as recorded or sent RSVPs.",
+      "Don't invent couple photographs, story text, a playable music asset or names for pending entourage roles."
+    ]
+  }
+}

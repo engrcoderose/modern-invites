@@ -97,7 +97,14 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
                 aria-hidden="true"
               />
             </span>
-            {feature}
+            <span className="min-w-0">
+              {feature}
+              {packageDetails.featureNotes?.[feature] && (
+                <span className="mt-1 block text-xs leading-5">
+                  {packageDetails.featureNotes[feature]}
+                </span>
+              )}
+            </span>
           </li>
         ))}
       </ul>

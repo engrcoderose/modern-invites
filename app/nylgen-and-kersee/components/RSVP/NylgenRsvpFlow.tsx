@@ -20,6 +20,8 @@ import {
   type SearchMatch,
   usePartyResponse,
   useSmartRsvp,
+  SmartRsvpFlow,
+  nylgenKerseeSmartRsvpTheme,
 } from "@/components/smart-rsvp";
 
 interface NylgenRsvpFlowProps {
@@ -680,6 +682,7 @@ export function NylgenRsvpFlow({
   confirmationMessage,
 }: NylgenRsvpFlowProps) {
   const controller = useSmartRsvp(eventSlug, "name_search");
+  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={nylgenKerseeSmartRsvpTheme} />;
 
   return (
     <AnimatePresence mode="wait">

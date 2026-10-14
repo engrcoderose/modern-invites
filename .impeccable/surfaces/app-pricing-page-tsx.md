@@ -19,9 +19,13 @@ Scope: modular layout and module catalog; preserve package details and other mar
 
 Animated Envelope is an additional Design & story add-on at the user-confirmed ₱349 price.
 
+Photo Gallery Section includes 10 images. Display “Includes 10 images” as a small supporting line below its add-on name; keep its ₱199 price.
+
 Bundle deals follow the two add-on panels. Classic + gallery + limited RSVP is ₱1,250, saving ₱147 from its ₱1,397 separate total. Classic + gallery + story + music saves ₱100. Classic + gallery + limited RSVP + seat finder is ₱1,750, saving ₱146 from its ₱1,896 separate total. Signature + prenup video + seat finder saves the user-confirmed ₱147, bringing its ₱2,247 separate total to ₱2,100. Derive the separate total from current package/add-on data, then apply the confirmed discount for that bundle. Use a full-width pale Gold 50 price-list panel with a centered heading, dashed row dividers, separate totals and explicit savings. Keep the green identity and existing contact path; do not borrow prices or offerings from the supplied pink reference. Current bundle prices are ₱1,250, ₱1,296, ₱1,750 and ₱2,100. These are price snapshots, not duplicated calculation inputs.
 
 Classic includes Image Opening Screen; Signature includes Animated Envelope Opening Screen; Luxury includes Where to Stay / Guest Guide Section.
+
+Classic includes a maximum of 5 photos, shown directly after Image Opening Screen in its included-features list. Signature retains its 30-photo limit and Luxury its 50-photo limit; the separate gallery add-on includes 10 images.
 
 Where to Stay / Guest Guide Section is also available as a Guests & details add-on at the user-confirmed ₱199 rate. A second Signature bundle combines FAQ Section, Gift Registry, Prenup Video Integration, and Where to Stay / Guest Guide Section: ₱2,345 separately, ₱2,200 with the user-confirmed ₱145 bundle discount. The Classic gallery and limited RSVP bundle saves ₱147; the Classic gallery, limited RSVP and seat finder bundle saves ₱146; the Classic gallery, story and music bundle saves ₱100; the Signature video and seating bundle saves ₱147. Derive these amounts from the shared price catalog; the supporting line reads “Save more when you bundle” and sits centered below the Bundle deals heading on every screen size.
 

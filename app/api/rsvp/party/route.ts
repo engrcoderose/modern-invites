@@ -275,7 +275,7 @@ export async function POST(request: NextRequest) {
     // household response. Shared-code events retain their existing
     // update behavior.
     if (
-      access.event.accessMode === "name_search" &&
+      (access.event.accessMode === "name_search" || access.event.accessMode === "open") &&
       access.event.responseMode === "household"
     ) {
       const { data: householdRsvp, error: householdRsvpError } =

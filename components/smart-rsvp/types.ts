@@ -1,10 +1,11 @@
-export type RsvpAccessMode = "shared_code" | "name_search";
-export type RsvpResponseMode = "household" | "individual";
+export type { RsvpAccessMode, RsvpResponseMode } from "@/features/rsvp/domain/rsvp-event-access";
+import type { RsvpAccessMode, RsvpResponseMode } from "@/features/rsvp/domain/rsvp-event-access";
 
 export type RSVPStage =
   | "initializing"
   | "access"
   | "search"
+  | "open"
   | "party";
 
 export interface EventInformation {

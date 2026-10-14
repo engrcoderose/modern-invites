@@ -369,7 +369,7 @@ export async function POST(request: NextRequest) {
       hint?: string;
     } | null;
 
-    if (access.event.accessMode === "name_search") {
+    if ((access.event.accessMode === "name_search" || access.event.accessMode === "open")) {
       // Re-load the invitation on the server. The browser is not
       // trusted to decide which guest it may update.
       const { data: rawPartyRows, error: partyError } =

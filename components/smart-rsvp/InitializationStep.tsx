@@ -46,7 +46,7 @@ export function InitializationStep({
           </>
         ) : (
           <p className="text-sm text-gray-600">
-            Securely connecting to the wedding guest list…
+            Preparing the RSVP form…
           </p>
         )}
       </CardContent>

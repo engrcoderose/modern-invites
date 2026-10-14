@@ -57,12 +57,22 @@ The opening overlay is excluded from the page counter. Removed pages include
 With full hearts, Our Timeline, the first two FAQ pages, and the closing thank-you.
 Existing aliases for removed pages still resolve to the relevant current page.
 
-The garden starts its 1.6-second fade as the framed logo moves and scales toward
-the invitation illustration over 1.4 seconds. The logo stays visible for the
-first 0.5 seconds, then dissolves while finishing its movement. The prompt and
-caption fade early; invitation text enters underneath during the transition.
-Focus remains in the opening dialog until it clears. Reduced motion skips the
-movement and uses a short 0.2-second fade.
+The cover waits for the critical artwork and font to load, then reveals its
+composition together against an opaque ivory backing. The garden starts its
+1.6-second fade as the logo moves toward the invitation illustration over 1.4
+seconds. After 0.5 seconds, the framed artwork crossfades to the unframed artwork
+inside the same moving wrapper. The prompt and caption fade early.
+
+The entire invitation remains visually hidden and inert until the cover
+animation completes. The destination logo is stationary and excluded from the
+initial text reveal, so the handoff does not show duplicate logos or a second
+movement. Text and controls fade in after the handoff. Final opacity values are
+persisted in styles to avoid flashes when animations finish or are cleaned up.
+Focus moves from the opening dialog into the invitation when the cover clears.
+Reduced motion skips movement and uses a short fade.
+
+For future invitations, follow the scoped regression lessons in
+[AGENTS.md](../../AGENTS.md#invitation-opening-screens-and-transitions).
 
 ## Presentation
 

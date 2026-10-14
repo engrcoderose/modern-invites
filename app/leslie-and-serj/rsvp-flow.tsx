@@ -13,6 +13,8 @@ import {
 import {
   usePartyResponse,
   useSmartRsvp,
+  SmartRsvpFlow,
+  weddingSmartRsvpTheme,
   type PartyInformation,
   type SearchMatch,
 } from "@/components/smart-rsvp";
@@ -297,6 +299,8 @@ export default function RsvpFlow() {
     });
     return () => entrance.stop();
   }, [hasParty, reducedMotion]);
+
+  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={weddingSmartRsvpTheme} />;
 
   async function findInvitation() {
     if (busy) return;

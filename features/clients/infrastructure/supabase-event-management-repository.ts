@@ -47,6 +47,7 @@ export function createSupabaseEventManagementRepository() {
         name: input.name,
         rsvp_deadline: input.rsvpDeadline,
         rsvp_response_mode: input.responseMode,
+        ...(input.accessMode ? { rsvp_access_mode: input.accessMode } : {}),
         ...serviceColumns,
         is_active: input.isActive,
         updated_at: new Date().toISOString(),

@@ -61,7 +61,7 @@ interface RsvpRow {
 }
 
 interface EventAccessModeRow {
-  rsvp_access_mode: "shared_code" | "name_search";
+  rsvp_access_mode: "shared_code" | "name_search" | "open";
   rsvp_response_mode: "household" | "individual";
 }
 

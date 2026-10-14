@@ -27,7 +27,10 @@ export default function ModularPricing() {
                 <dl className="mt-4">
                   {MODULAR_FEATURES.filter((feature) => feature.category === group.id).map((feature) => (
                     <div key={feature.name} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-b border-dashed border-forest/15 py-4 last:border-b-0">
-                      <dt className="min-w-0 flex-[1_1_8rem] text-sm leading-6 text-marketing-muted">{feature.name}</dt>
+                      <dt className="min-w-0 flex-[1_1_8rem] text-sm leading-6 text-marketing-muted">
+                        {feature.name}
+                        {feature.note && <span className="mt-1 block text-xs leading-5">{feature.note}</span>}
+                      </dt>
                       <dd className="ml-auto shrink-0 text-sm font-semibold leading-6 tabular-nums text-forest">₱{feature.price}</dd>
                     </div>
                   ))}

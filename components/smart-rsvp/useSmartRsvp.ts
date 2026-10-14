@@ -19,7 +19,7 @@ export function useSmartRsvp(
   initialAccessMode: RsvpAccessMode,
 ) {
   const [stage, setStage] = useState<RSVPStage>(
-    initialAccessMode === "name_search" ? "initializing" : "access",
+    initialAccessMode === "shared_code" ? "access" : "initializing",
   );
   const initializedSlug = useRef<string | null>(null);
 
@@ -48,6 +48,19 @@ export function useSmartRsvp(
 
   const [partyError, setPartyError] = useState("");
 
+  // Preserve the code-first interface unless the event explicitly enables open RSVP.
+  useEffect(() => {
+    if (initialAccessMode !== "shared_code") return;
+    let cancelled = false;
+    void requestRsvpAccess(eventSlug, "").then(configured => {
+      if (!cancelled && configured.accessMode === "open") {
+        setEvent(configured);
+        setStage("open");
+      }
+    }).catch(() => { /* Existing code verification remains available. */ });
+    return () => { cancelled = true; };
+  }, [eventSlug, initialAccessMode]);
+
   const initializeNameSearch = useCallback(async () => {
     setStage("initializing");
     setIsCheckingCode(true);
@@ -56,12 +69,16 @@ export function useSmartRsvp(
     try {
       const configuredEvent = await requestRsvpAccess(eventSlug, "");
 
-      if (configuredEvent.accessMode !== "name_search") {
+      if (initialAccessMode === "open" && configuredEvent.accessMode !== "open") {
+        throw new Error("Open RSVP is unavailable for this event.");
+      }
+
+      if (configuredEvent.accessMode === "shared_code") {
         throw new Error("This invitation requires an RSVP code.");
       }
 
       setEvent(configuredEvent);
-      setStage("search");
+      setStage(configuredEvent.accessMode === "open" ? "open" : "search");
     } catch (error) {
       setAccessError(
         error instanceof Error
@@ -71,11 +88,11 @@ export function useSmartRsvp(
     } finally {
       setIsCheckingCode(false);
     }
-  }, [eventSlug]);
+  }, [eventSlug, initialAccessMode]);
 
   useEffect(() => {
     if (
-      initialAccessMode !== "name_search" ||
+      initialAccessMode === "shared_code" ||
       initializedSlug.current === eventSlug
     ) {
       return;
@@ -124,7 +141,7 @@ export function useSmartRsvp(
       setSearchError("");
       setPartyError("");
 
-      setStage("search");
+      setStage(verifiedEvent.accessMode === "open" ? "open" : "search");
     } catch (error) {
       setAccessError(
         error instanceof Error
@@ -230,8 +247,8 @@ export function useSmartRsvp(
     setIsSearching(false);
     setLoadingInvitationId(null);
 
-    if (initialAccessMode === "name_search") {
-      setStage(event ? "search" : "initializing");
+    if (initialAccessMode !== "shared_code") {
+      setStage(event ? (event.accessMode === "open" ? "open" : "search") : "initializing");
       return;
     }
 

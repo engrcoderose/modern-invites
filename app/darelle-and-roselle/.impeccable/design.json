@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T08:41:39Z",
+  "title": "Design System: Roselle and Darell",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0181 89.36)",
+          "oklch(26% 0.0181 89.36)",
+          "oklch(38% 0.0181 89.36)",
+          "oklch(49% 0.0181 89.36)",
+          "oklch(61% 0.0181 89.36)",
+          "oklch(72% 0.0181 89.36)",
+          "oklch(84% 0.0181 89.36)",
+          "oklch(95% 0.0181 89.36)"
+        ]
+      },
+      "olive": {
+        "role": "primary",
+        "displayName": "Olive",
+        "tonalRamp": [
+          "oklch(15% 0.0561 127.17)",
+          "oklch(26% 0.0561 127.17)",
+          "oklch(38% 0.0561 127.17)",
+          "oklch(49% 0.0561 127.17)",
+          "oklch(61% 0.0561 127.17)",
+          "oklch(72% 0.0561 127.17)",
+          "oklch(84% 0.0561 127.17)",
+          "oklch(95% 0.0561 127.17)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0270 121.77)",
+          "oklch(26% 0.0270 121.77)",
+          "oklch(38% 0.0270 121.77)",
+          "oklch(49% 0.0270 121.77)",
+          "oklch(61% 0.0270 121.77)",
+          "oklch(72% 0.0270 121.77)",
+          "oklch(84% 0.0270 121.77)",
+          "oklch(95% 0.0270 121.77)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0336 111.83)",
+          "oklch(26% 0.0336 111.83)",
+          "oklch(38% 0.0336 111.83)",
+          "oklch(49% 0.0336 111.83)",
+          "oklch(61% 0.0336 111.83)",
+          "oklch(72% 0.0336 111.83)",
+          "oklch(84% 0.0336 111.83)",
+          "oklch(95% 0.0336 111.83)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.0388 90.10)",
+          "oklch(26% 0.0388 90.10)",
+          "oklch(38% 0.0388 90.10)",
+          "oklch(49% 0.0388 90.10)",
+          "oklch(61% 0.0388 90.10)",
+          "oklch(72% 0.0388 90.10)",
+          "oklch(84% 0.0388 90.10)",
+          "oklch(95% 0.0388 90.10)"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Gold",
+        "tonalRamp": [
+          "oklch(15% 0.0548 86.14)",
+          "oklch(26% 0.0548 86.14)",
+          "oklch(38% 0.0548 86.14)",
+          "oklch(49% 0.0548 86.14)",
+          "oklch(61% 0.0548 86.14)",
+          "oklch(72% 0.0548 86.14)",
+          "oklch(84% 0.0548 86.14)",
+          "oklch(95% 0.0548 86.14)"
+        ]
+      },
+      "light-gold": {
+        "role": "secondary",
+        "displayName": "Light Gold",
+        "tonalRamp": [
+          "oklch(15% 0.0516 90.98)",
+          "oklch(26% 0.0516 90.98)",
+          "oklch(38% 0.0516 90.98)",
+          "oklch(49% 0.0516 90.98)",
+          "oklch(61% 0.0516 90.98)",
+          "oklch(72% 0.0516 90.98)",
+          "oklch(84% 0.0516 90.98)",
+          "oklch(95% 0.0516 90.98)"
+        ]
+      },
+      "olive-text": {
+        "role": "neutral",
+        "displayName": "Olive Text",
+        "tonalRamp": [
+          "oklch(15% 0.0266 99.92)",
+          "oklch(26% 0.0266 99.92)",
+          "oklch(38% 0.0266 99.92)",
+          "oklch(49% 0.0266 99.92)",
+          "oklch(61% 0.0266 99.92)",
+          "oklch(72% 0.0266 99.92)",
+          "oklch(84% 0.0266 99.92)",
+          "oklch(95% 0.0266 99.92)"
+        ]
+      },
+      "olive-deep": {
+        "role": "primary",
+        "displayName": "Deep Olive",
+        "tonalRamp": [
+          "oklch(15% 0.0388 133.87)",
+          "oklch(26% 0.0388 133.87)",
+          "oklch(38% 0.0388 133.87)",
+          "oklch(49% 0.0388 133.87)",
+          "oklch(61% 0.0388 133.87)",
+          "oklch(72% 0.0388 133.87)",
+          "oklch(84% 0.0388 133.87)",
+          "oklch(95% 0.0388 133.87)"
+        ]
+      },
+      "olive-dark": {
+        "role": "primary",
+        "displayName": "Dark Olive",
+        "tonalRamp": [
+          "oklch(15% 0.0335 141.53)",
+          "oklch(26% 0.0335 141.53)",
+          "oklch(38% 0.0335 141.53)",
+          "oklch(49% 0.0335 141.53)",
+          "oklch(61% 0.0335 141.53)",
+          "oklch(72% 0.0335 141.53)",
+          "oklch(84% 0.0335 141.53)",
+          "oklch(95% 0.0335 141.53)"
+        ]
+      },
+      "woodland": {
+        "role": "neutral",
+        "displayName": "Woodland",
+        "tonalRamp": [
+          "oklch(15% 0.0394 136.58)",
+          "oklch(26% 0.0394 136.58)",
+          "oklch(38% 0.0394 136.58)",
+          "oklch(49% 0.0394 136.58)",
+          "oklch(61% 0.0394 136.58)",
+          "oklch(72% 0.0394 136.58)",
+          "oklch(84% 0.0394 136.58)",
+          "oklch(95% 0.0394 136.58)"
+        ]
+      },
+      "button-text": {
+        "role": "neutral",
+        "displayName": "Button Text",
+        "tonalRamp": [
+          "oklch(15% 0.0202 94.52)",
+          "oklch(26% 0.0202 94.52)",
+          "oklch(38% 0.0202 94.52)",
+          "oklch(49% 0.0202 94.52)",
+          "oklch(61% 0.0202 94.52)",
+          "oklch(72% 0.0202 94.52)",
+          "oklch(84% 0.0202 94.52)",
+          "oklch(95% 0.0202 94.52)"
+        ]
+      },
+      "button-hover": {
+        "role": "primary",
+        "displayName": "Button Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0578 115.10)",
+          "oklch(26% 0.0578 115.10)",
+          "oklch(38% 0.0578 115.10)",
+          "oklch(49% 0.0578 115.10)",
+          "oklch(61% 0.0578 115.10)",
+          "oklch(72% 0.0578 115.10)",
+          "oklch(84% 0.0578 115.10)",
+          "oklch(95% 0.0578 115.10)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "formal-names": {
+        "displayName": "Formal names",
+        "purpose": "Full couple and venue names."
+      },
+      "body": {
+        "displayName": "Supporting prose",
+        "purpose": "Practical event information."
+      },
+      "role": {
+        "displayName": "Role label",
+        "purpose": "Uppercase entourage and venue roles."
+      },
+      "names": {
+        "displayName": "Guest names",
+        "purpose": "Italic entourage lettering."
+      },
+      "action": {
+        "displayName": "Email action",
+        "purpose": "Uppercase primary action lettering."
+      },
+      "section-title": {
+        "displayName": "Calligraphy section title",
+        "purpose": "Main headings except The Entourage, plus the Our Wedding Party subheading; title precedes its ornamental divider."
+      },
+      "entourage-title": {
+        "displayName": "The Entourage title only",
+        "purpose": "Noto Serif exception reserved exclusively for the main The Entourage heading."
+      }
+    },
+    "shadows": [
+      {
+        "name": "reply-plaque",
+        "value": "0 8px 24px #101c2433",
+        "purpose": "Local soft elevation beneath the contoured RSVP title."
+      },
+      {
+        "name": "reply-card",
+        "value": "0 14px 50px #111a1633",
+        "purpose": "Local soft elevation over woodland."
+      }
+    ],
+    "motion": [
+      {
+        "name": "cover-ready-background",
+        "value": "700ms easeInOut",
+        "purpose": "Fade the woodland background in after images and fonts are ready; reduced motion uses 200ms."
+      },
+      {
+        "name": "cover-ready-content",
+        "value": "700ms cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "Fade the cover content in after images and fonts are ready; reduced motion uses 150ms."
+      },
+      {
+        "name": "monogram-handoff",
+        "value": "1.4s cubic-bezier(.42, 0, .22, 1)",
+        "purpose": "Move and scale the paper-tinted supplied framed DR monogram toward the stationary original sage formal monogram; reduced motion removes spatial movement."
+      },
+      {
+        "name": "cover-dissolve",
+        "value": "1.6s easeInOut",
+        "purpose": "Fade the woodland opening away, then restore scrolling and focus the formal invitation; reduced motion uses 200ms. Direct section links and existing scroll positions bypass the opening."
+      },
+      {
+        "name": "monogram-crossfade",
+        "value": "1.1s easeInOut; delay 500ms",
+        "purpose": "Crossfade the paper-tinted and original sage versions of the supplied framed DR PNG during the handoff; reduced motion fades only the paper-tinted version away over 150ms with no delay."
+      },
+      {
+        "name": "opening-prompt-fade",
+        "value": "400ms easeInOut",
+        "purpose": "Fade cover names, date, and prompt on opening; reduced motion uses 200ms."
+      },
+      {
+        "name": "formal-text-reveal",
+        "value": "500ms easeInOut; delay min(index * 80ms, 480ms)",
+        "purpose": "Fade formal invitation text after opening without moving the monogram; disabled for reduced motion."
+      },
+      {
+        "name": "navigation-reveal",
+        "value": "650ms",
+        "purpose": "Fade navigation after opening; keyboard focus makes it visible immediately, and reduced motion bypasses the reveal."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "850ms cubic-bezier(.22, 1, .36, 1); delay 400ms + min(index * 70ms, 420ms)",
+        "purpose": "Reveal each content group once at intersection threshold .08 with opacity and a 10px upward rise. Grouping avoids nested duplicate motion; focused content appears immediately. Reduced motion or unavailable IntersectionObserver bypasses reveals."
+      },
+      {
+        "name": "state-transition",
+        "value": "200ms",
+        "purpose": "Action color/background changes and FAQ chevron; disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Email action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The invitation's primary email RSVP link.",
+      "html": "<a class=\"ds-button\" href=\"#reply\">RSVP by email <svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;min-height:48px;align-items:center;justify-content:center;gap:12px;padding:16px 28px;background:#5a6946;color:#fbf7e8;font-family:'Noto Serif',Georgia,serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background 200ms}.ds-button:hover{background:#4b502a}.ds-button:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}"
+    },
+    {
+      "name": "Map text link",
+      "kind": "button",
+      "description": "Underlined small capitals on a woodland surface.",
+      "html": "<div class=\"ds-woodland\"><a class=\"ds-text-link\" href=\"#venue\">View map <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a></div>",
+      "css": ".ds-woodland{background:#263420;color:#f2ede0;padding:24px}.ds-text-link{display:inline-flex;min-height:44px;align-items:center;gap:8px;padding:12px 8px;color:inherit;font-family:'Noto Serif',Georgia,serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid currentColor;transition:color 200ms}.ds-text-link:hover{color:#ac9b76}.ds-text-link:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-text-link{transition:none}}"
+    },
+    {
+      "name": "Stationery navigation",
+      "kind": "nav",
+      "description": "Small serif anchor treatments from the paper navigation; its unframed black supplied DR initials crop is documented in DESIGN.md.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Wedding navigation\"><a class=\"ds-nav-link\" href=\"#venue\">The Wedding Venue</a><a class=\"ds-nav-link ds-nav-reply\" href=\"#reply\">RSVP</a></nav>",
+      "css": ".ds-navigation{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px;padding:0 20px;background:#f2ede0;color:#414636;border-bottom:1px solid #bfb59a}.ds-nav-link{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;font-family:'Noto Serif',Georgia,serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;color:inherit}.ds-nav-reply{border:1px solid #5a6946}.ds-navigation a:hover{color:#5a6946}.ds-navigation a:focus-visible{outline:2px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Reply card",
+      "kind": "card",
+      "refersTo": "reply-card",
+      "description": "An ivory RSVP surface with the invitation's rare soft elevation.",
+      "html": "<div class=\"ds-reply-card\"><p>Please let us know if you can join us.</p><p>Include your full name and whether you will be attending.</p></div>",
+      "css": ".ds-reply-card{display:flex;flex-direction:column;align-items:center;gap:24px;padding:40px 24px;background:#f2ede0;color:#414636;border-radius:6px;box-shadow:0 14px 50px #111a1633;font-family:'Noto Serif',Georgia,serif;text-align:center}.ds-reply-card p{margin:0;color:#646650;font-size:13px;line-height:1.9}@media(min-width:640px){.ds-reply-card{padding-right:40px;padding-left:40px}}"
+    },
+    {
+      "name": "Helpful details disclosure",
+      "kind": "custom",
+      "description": "Native FAQ disclosure separated by thin stationery rules.",
+      "html": "<details class=\"ds-faq\"><summary><span>Where is the celebration?</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><p>See the venue section for ceremony and reception details.</p></details>",
+      "css": ".ds-faq{border-top:1px solid #bfb59a;border-bottom:1px solid #bfb59a;background:#f2ede0;color:#414636;font-family:'Noto Serif',Georgia,serif}.ds-faq summary{display:flex;min-height:56px;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;cursor:pointer;list-style:none;font-size:14px}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:focus-visible{outline:2px solid currentColor;outline-offset:5px}.ds-faq svg{flex-shrink:0;transition:transform 200ms}.ds-faq[open] svg{transform:rotate(180deg)}.ds-faq p{margin:0;padding:0 28px 20px 0;color:#646650;font-size:13px;line-height:1.9}@media(prefers-reduced-motion:reduce){.ds-faq svg{transition:none}}"
+    },
+    {
+      "name": "Reply plaque",
+      "kind": "custom",
+      "description": "Contoured paper plaque holding the calligraphy RSVP title above its flourish.",
+      "html": "<div class=\"ds-plaque\"><h2>RSVP</h2><svg class=\"ds-plaque-flourish\" viewBox=\"0 0 170 34\" fill=\"none\" aria-hidden=\"true\"><g stroke=\"currentColor\" stroke-width=\".9\"><path d=\"M0 17h52c19 0 15-16 5-12-9 4 7 20 28 12 21 8 37-8 28-12-10-4-14 12 5 12h52M63 23c13 7 17-2 22-6 5 4 9 13 22 6\"/><path d=\"m85 7 4 10-4 10-4-10Z\"/><circle cx=\"40\" cy=\"17\" r=\"2\"/><circle cx=\"130\" cy=\"17\" r=\"2\"/></g></svg></div>",
+      "css": ".ds-plaque{position:relative;width:245px;max-width:100%;padding:20px 28px;background:#f2ede0;color:#414636;border-radius:45% 45% 25% 25% / 25% 25% 40% 40%;border:1px solid #ac9b76;outline:2px solid #e4dac2;outline-offset:3px;box-shadow:0 8px 24px #101c2433;text-align:center}.ds-plaque h2{margin:0;font-family:'Anastasia Script',cursive;font-size:36px;font-weight:400;line-height:1.15;letter-spacing:0;white-space:nowrap}.ds-plaque-flourish{display:block;margin:8px auto 0;width:130px;max-width:100%;height:20px;color:#ac9b76}"
+    },
+    {
+      "name": "Stationery flourish",
+      "kind": "custom",
+      "description": "Thin symmetrical ornament used between ceremonial groups.",
+      "html": "<svg class=\"ds-flourish\" viewBox=\"0 0 170 34\" fill=\"none\" aria-hidden=\"true\"><g stroke=\"currentColor\" stroke-width=\".9\"><path d=\"M0 17h52c19 0 15-16 5-12-9 4 7 20 28 12 21 8 37-8 28-12-10-4-14 12 5 12h52M63 23c13 7 17-2 22-6 5 4 9 13 22 6\"/><path d=\"m85 7 4 10-4 10-4-10Z\"/><circle cx=\"40\" cy=\"17\" r=\"2\"/><circle cx=\"130\" cy=\"17\" r=\"2\"/></g></svg>",
+      "css": ".ds-flourish{display:block;width:130px;height:28px;color:#ac9b76}"
+    },
+    {
+      "name": "Section heading",
+      "kind": "custom",
+      "refersTo": "section-heading",
+      "description": "Default calligraphy title followed by the top ornamental divider.",
+      "html": "<div class=\"ds-section-heading\"><h2>Save the Date</h2><svg class=\"ds-section-flourish\" viewBox=\"0 0 170 34\" fill=\"none\" aria-hidden=\"true\"><g stroke=\"currentColor\" stroke-width=\".9\"><path d=\"M0 17h52c19 0 15-16 5-12-9 4 7 20 28 12 21 8 37-8 28-12-10-4-14 12 5 12h52M63 23c13 7 17-2 22-6 5 4 9 13 22 6\"/><path d=\"m85 7 4 10-4 10-4-10Z\"/><circle cx=\"40\" cy=\"17\" r=\"2\"/><circle cx=\"130\" cy=\"17\" r=\"2\"/></g></svg></div>",
+      "css": ".ds-section-heading{display:flex;flex-direction:column;align-items:center;gap:20px;color:#414636}.ds-section-heading h2{margin:0;font-family:'Anastasia Script',cursive;font-size:clamp(40px,6vw,64px);font-weight:400;line-height:1.15;letter-spacing:0;text-wrap:balance}.ds-section-flourish{display:block;width:130px;height:28px;color:#ac9b76}"
+    },
+    {
+      "name": "The Entourage heading",
+      "kind": "custom",
+      "refersTo": "entourage-heading",
+      "description": "The sole main-heading serif exception; other titles remain calligraphy.",
+      "html": "<div class=\"ds-entourage-heading\"><h2>The Entourage</h2><svg class=\"ds-entourage-flourish\" viewBox=\"0 0 170 34\" fill=\"none\" aria-hidden=\"true\"><g stroke=\"currentColor\" stroke-width=\".9\"><path d=\"M0 17h52c19 0 15-16 5-12-9 4 7 20 28 12 21 8 37-8 28-12-10-4-14 12 5 12h52M63 23c13 7 17-2 22-6 5 4 9 13 22 6\"/><path d=\"m85 7 4 10-4 10-4-10Z\"/><circle cx=\"40\" cy=\"17\" r=\"2\"/><circle cx=\"130\" cy=\"17\" r=\"2\"/></g></svg></div>",
+      "css": ".ds-entourage-heading{display:flex;flex-direction:column;align-items:center;gap:20px;color:#414636}.ds-entourage-heading h2{margin:0;font-family:'Noto Serif',Georgia,serif;font-size:clamp(22px,3vw,30px);font-weight:500;line-height:1.4;letter-spacing:.02em;text-wrap:balance}.ds-entourage-flourish{display:block;width:130px;height:28px;color:#ac9b76}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Woodland stationery",
+    "overview": "This client inherits Vincent and Gabrielle's confirmed invitation world: warm ivory paper, olive ink, Anastasia handwriting, woodland photography, and fine ornaments. The system belongs to this invitation folder; the repository's marketing design is separate.\n\nThe page reads vertically, retaining the proportions and ceremonial quiet of the reference stationery. Decorative photographs support the paper and lettering. The user-supplied sage framed DR PNG appears on the formal invitation and receives a paper tint on the cover. Navigation uses only the central black initials cropped from the user's black framed PNG.",
+    "keyCharacteristics": [
+      "Ivory, olive, and muted gold.",
+      "Anastasia names, sentimental copy, and section titles; only The Entourage title uses Noto Serif.",
+      "Thin double frames, symmetrical flourishes, and monogram artwork.",
+      "Centered reading surfaces with responsive paired lists."
+    ],
+    "rules": [
+      {
+        "name": "The Paper and Woodland Rule",
+        "body": "Keep the reference's alternation of paper, olive, and woodland surfaces; maintain readable lettering over photographs with the existing dark overlays.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Keep Anastasia for section titles, names, sentimental supporting copy, and timeline event labels; use Noto Serif for information. The only main-heading serif exception is “The Entourage”; do not extend it to other headings, Our Wedding Party, or RSVP.",
+        "section": "typography"
+      },
+      {
+        "name": "The Title Then Ornament Rule",
+        "body": "Place each section title above its top ornamental divider. The shared heading pairs a title with the flourish below it using the title-gap spacing token.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "**Do** preserve the confirmed olive-and-ivory reference palette, local fonts, fine frames, and exact supplied DR PNG artwork.",
+      "**Do** place titles above their ornaments, using Noto Serif only for The Entourage main title and Anastasia for the other headings, RSVP, names, sentimental copy, and timeline labels.",
+      "**Do** maintain readable dark overlays, keyboard focus, and reduced-motion behavior.",
+      "**Do** use client-local assets and scoped decorative CSS with Tailwind layout utilities."
+    ],
+    "donts": [
+      "**Don't** replace this inherited invitation world with the repository's marketing theme.",
+      "**Don't** add couple-photo slides or horizontal page turns to this scrolling invitation.",
+      "**Don't** redraw, distort, or rebuild the supplied monogram from separate assets, or substitute earlier generated concepts for the approved PNGs.",
+      "**Don't** spread the reply card's shadow or rounded corners across the stationery sections."
+    ]
+  }
+}
+

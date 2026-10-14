@@ -1,4 +1,4 @@
-export type RsvpAccessMode = "shared_code" | "name_search";
+export type RsvpAccessMode = "shared_code" | "name_search" | "open";
 export type RsvpResponseMode = "household" | "individual";
 
 export interface RsvpEventAccessConfiguration {

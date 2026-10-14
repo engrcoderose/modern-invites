@@ -1,0 +1,298 @@
+{
+  "description": "Consolidated artwork provenance. Keys retain original metadata paths; historical source files may have been removed.",
+  "records": {
+    "designs/counting-left-image.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/counting-left-image.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:31.591Z"
+    },
+    "designs/counting-right-image.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/counting-right-image.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:31.772Z"
+    },
+    "designs/entourage-bg-pattern.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-bg-pattern.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:31.934Z"
+    },
+    "designs/entourage-design-flower.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-design-flower.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:32.102Z"
+    },
+    "designs/entourage-left-flower.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-left-flower.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:32.279Z"
+    },
+    "designs/entourage-right-flower.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-right-flower.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:32.481Z"
+    },
+    "designs/hero-flower-left.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/hero-flower-left.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:32.907Z"
+    },
+    "designs/hero-flower-right.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/hero-flower-right.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:33.170Z"
+    },
+    "designs/provenance.json": [
+      {
+        "file": "counting-left-image.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/counting-left-image.png",
+        "sourceSha256": "243e201d751395b3c8516458e2a1e8886df0879486e25b7e5e555ad89caf6d3a",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "counting-right-image.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/counting-right-image.png",
+        "sourceSha256": "39060ce508cfde0ad6d3b05010e459f6add0617825bb8cf9626ce8afca018dad",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "entourage-bg-pattern.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-bg-pattern.png",
+        "sourceSha256": "5f464b96734626cfcb255fc2fa1052b4bfaa5e5097568c2c7d329aae309c6e0b",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "entourage-design-flower.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-design-flower.png",
+        "sourceSha256": "98aa2ef3ddaa959c3900aca5fba33aef0afd183947084f4de3e5606da92ccf61",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "entourage-left-flower.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-left-flower.png",
+        "sourceSha256": "fcfd07238c263b49bd9289e978ea54440667ffa258f7bd2b7ead16eab9e94734",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "entourage-right-flower.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/entourage-right-flower.png",
+        "sourceSha256": "9beddc74a96a36ade80eb8a3c11bed705ad5464398d4896794b54880cfbd66a1",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "hero-flower-left.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/hero-flower-left.png",
+        "sourceSha256": "cfaf2bbfe54ba2084038557e3419736264f84b643ee3e0019d3c41e63d3ba234",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "hero-flower-right.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/hero-flower-right.png",
+        "sourceSha256": "29ec4737d827d2f2d7bac2685adabe4e62ed3c1e7decf84f8dcc46f2c9b444b8",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "venue-line-flower.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-line-flower.png",
+        "sourceSha256": "7017cd5810bdb0453b1ed7b85c07944a7ba75b2bc3cd86cf9136976c0bb7046d",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "venue-lower-flowers.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-lower-flowers.png",
+        "sourceSha256": "91df7e6c64eb2320dde451890a44ee8c9db9b4ec6be4dab6c5af99e311f87406",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "venue-upper-flowers.webp",
+        "origin": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-upper-flowers.png",
+        "sourceSha256": "875a5a70776e13775d8b72440a94d52e7182fc9e4b5926591c3dd1b4c8381d1b",
+        "processing": "Resize within 1200px, preserve transparency, WebP quality 85"
+      },
+      {
+        "file": "woodland-background.webp",
+        "origin": "Existing repository woodland backdrop: app/vincent-and-gabrielle/assets/prenup/bg-invite.jpg",
+        "processing": "Responsive source resized to 1600px, WebP quality 85"
+      },
+      {
+        "file": "wedding-venue.jpg",
+        "origin": "User-uploaded Panaad Garden venue photograph, supplied during this redesign; unchanged"
+      },
+      {
+        "file": "venue-lower-flowers-hd.png",
+        "origin": "Generated with built-in image_gen from user-supplied venue-lower-flowers.png; faithful HD watercolor recreation",
+        "promptFile": "venue-lower-flowers-hd.prompt.txt",
+        "width": 1800,
+        "height": 874,
+        "processing": "Original generated PNG, transparent alpha preserved"
+      },
+      {
+        "file": "venue-lower-flowers-hd.webp",
+        "origin": "Generated with built-in image_gen from user-supplied venue-lower-flowers.png; faithful HD watercolor recreation",
+        "promptFile": "venue-lower-flowers-hd.prompt.txt",
+        "sourceSha256": "805efcdd4d6743cf38aec625c5df746215425a290b795713bc3ddb070113f17e",
+        "width": 1800,
+        "height": 874,
+        "processing": "Full native dimensions retained, transparency preserved, WebP quality 85, alpha quality 100"
+      }
+    ],
+    "designs/venue-line-flower.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-line-flower.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:33.469Z"
+    },
+    "designs/venue-lower-flowers-hd.prompt.txt": "Create a high-definition recreation of the supplied transparent watercolor flower border for a wedding invitation. The attached image is the exact composition, botanical shapes, palette, and style reference: preserve its wide landscape proportions (approximately 2.06:1), transparent open upper portion, and flowers growing from the bottom edge. Repaint the existing low-resolution flowers with beautifully resolved petals, fine slender stems, crisp natural watercolor edges, subtle translucent pigment variation, and delicate botanical detail. Maintain the same cluster arrangement: pale lilac delphinium-like spikes at the left edge; scattered blush pink cup flowers and cream stalks; a slim dark lavender spike near the center-left; tall dusty mauve and pink flower spikes in the middle; peach blossom stems and a large blush pink bloom to the right; tall ivory and pale sage sprigs on the far right. Keep the soft muted blush, pale peach, dusty lavender, ivory, and light sage palette, airy romantic watercolor style, and original varied stem heights. All stems emerge along the full lower edge, with the original open areas between the upper flowers. Use the highest available native resolution and a wide landscape canvas suitable for a full-width desktop floral border. Fully transparent alpha background, including gaps between flowers and the open upper region. No lavender background, no paper background, no ground, no text, no frame, no new butterflies or unrelated flowers. This is a faithful high-resolution repaint of the existing border, not a new arrangement.\n",
+    "designs/venue-lower-flowers-hd.webp.json": {
+      "prompt": "Create a high-definition recreation of the supplied transparent watercolor flower border for a wedding invitation. The attached image is the exact composition, botanical shapes, palette, and style reference: preserve its wide landscape proportions (approximately 2.06:1), transparent open upper portion, and flowers growing from the bottom edge. Repaint the existing low-resolution flowers with beautifully resolved petals, fine slender stems, crisp natural watercolor edges, subtle translucent pigment variation, and delicate botanical detail. Maintain the same cluster arrangement: pale lilac delphinium-like spikes at the left edge; scattered blush pink cup flowers and cream stalks; a slim dark lavender spike near the center-left; tall dusty mauve and pink flower spikes in the middle; peach blossom stems and a large blush pink bloom to the right; tall ivory and pale sage sprigs on the far right. Keep the soft muted blush, pale peach, dusty lavender, ivory, and light sage palette, airy romantic watercolor style, and original varied stem heights. All stems emerge along the full lower edge, with the original open areas between the upper flowers. Use the highest available native resolution and a wide landscape canvas suitable for a full-width desktop floral border. Fully transparent alpha background, including gaps between flowers and the open upper region. No lavender background, no paper background, no ground, no text, no frame, no new butterflies or unrelated flowers. This is a faithful high-resolution repaint of the existing border, not a new arrangement.",
+      "createdAt": "2026-10-12T16:43:21.827Z"
+    },
+    "designs/venue-lower-flowers.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-lower-flowers.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:33.735Z"
+    },
+    "designs/venue-upper-flowers.webp.json": {
+      "prompt": "User-supplied floral artwork in app/mario-and-inah/assets/designs/venue-upper-flowers.png. Resize within 1200px, preserve transparency, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:34.077Z"
+    },
+    "designs/woodland-background.webp.json": {
+      "prompt": "Existing repository woodland backdrop: app/vincent-and-gabrielle/assets/prenup/bg-invite.jpg. Responsive source resized to 1600px, WebP quality 85",
+      "createdAt": "2026-10-12T14:45:34.368Z"
+    }
+  },
+  "remoteAssets": [
+    {
+      "file": "attire inspo.png",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/attire%20inspo.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1738370,
+      "sha256": "8c6ee9fd3669f2c7b1b545b66a578076f7cb2b945f6a36618c2001dde740ede0",
+      "matches": true
+    },
+    {
+      "file": "counting-left-image.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/counting-left-image.webp",
+      "width": 637,
+      "height": 1050,
+      "bytes": 172742,
+      "sha256": "67051fd5e3e4ade8d6dda544274f5f80825613b84fcaac6ee06438ebdb7519ca",
+      "matches": true
+    },
+    {
+      "file": "counting-right-image.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/counting-right-image.webp",
+      "width": 637,
+      "height": 1050,
+      "bytes": 171924,
+      "sha256": "6e4c17a20feb8c3f348abc0bd90eac8f03b66dc9ad154938985b8278f1b72387",
+      "matches": true
+    },
+    {
+      "file": "entourage-bg-pattern.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/entourage-bg-pattern.webp",
+      "width": 1200,
+      "height": 1193,
+      "bytes": 505924,
+      "sha256": "db5513a0c312f2264f212bf3aaa15301f38d3f957f057e8117b124b905c5107f",
+      "matches": true
+    },
+    {
+      "file": "entourage-design-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/entourage-design-flower.webp",
+      "width": 761,
+      "height": 453,
+      "bytes": 124820,
+      "sha256": "65da0572473d42e4f8f9f7d71cb18675be9fdff0af5b7d2269863a3c522a1faa",
+      "matches": true
+    },
+    {
+      "file": "entourage-left-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/entourage-left-flower.webp",
+      "width": 731,
+      "height": 1047,
+      "bytes": 197836,
+      "sha256": "088b0226c75fb952207832725d5fb8cc5ee585efa7d0ae2df58a139fdfc3a4fa",
+      "matches": true
+    },
+    {
+      "file": "entourage-right-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/entourage-right-flower.webp",
+      "width": 719,
+      "height": 1047,
+      "bytes": 195136,
+      "sha256": "925065a4979946a20fd70c1c50b02098fba3e17760a66bf4c38a6e85efdabea1",
+      "matches": true
+    },
+    {
+      "file": "gallery-rose-painting.png",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/gallery-rose-painting.png",
+      "width": 1198,
+      "height": 605,
+      "bytes": 1378245,
+      "sha256": "c54ca65fa72cc3b23aa93eeb03804c580889f347d89f16a7e5434978a3bba0a7",
+      "matches": true
+    },
+    {
+      "file": "hero-flower-left.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/hero-flower-left.webp",
+      "width": 1082,
+      "height": 1060,
+      "bytes": 270388,
+      "sha256": "a4244d3ba85216075c209fdbe9cbb91ed1988a29dfb059c2b43b550434f09e83",
+      "matches": true
+    },
+    {
+      "file": "hero-flower-right.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/hero-flower-right.webp",
+      "width": 1098,
+      "height": 1076,
+      "bytes": 275938,
+      "sha256": "7d705a7def658b86a996354bea42caf0b7324cad12a240e01c5021ef175a0e2a",
+      "matches": true
+    },
+    {
+      "file": "hero-left-upper-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/hero-left-upper-flower.webp",
+      "width": 465,
+      "height": 468,
+      "bytes": 157846,
+      "sha256": "15f7b5d8c3ebaa1e913057060a279e5bb1e6a3e13ee5c18b4236acc45d1725de",
+      "matches": true
+    },
+    {
+      "file": "hero-right-upper-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/hero-right-upper-flower.webp",
+      "width": 478,
+      "height": 480,
+      "bytes": 163344,
+      "sha256": "02482f835f562fa558f895c428eed7a3bb5166393d20622fba23fd49f67a9562",
+      "matches": true
+    },
+    {
+      "file": "venue-line-flower.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/venue-line-flower.webp",
+      "width": 1017,
+      "height": 275,
+      "bytes": 115246,
+      "sha256": "c4f4d4c8731fb6f0bf545b746d2086c6ca0e1348e2337906aa2d92845f8cdb45",
+      "matches": true
+    },
+    {
+      "file": "venue-lower-flowers-hd.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/venue-lower-flowers-hd.webp",
+      "width": 1800,
+      "height": 874,
+      "bytes": 493646,
+      "sha256": "30ace409ce5106a3ce12b1ffb2f379681e7177e67eedc1e99c0f719af4d3a9a8",
+      "matches": true
+    },
+    {
+      "file": "venue-upper-flowers.webp",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/venue-upper-flowers.webp",
+      "width": 1200,
+      "height": 616,
+      "bytes": 194292,
+      "sha256": "19347c38b2eb6e8db590a6e09f2a298c17d092b56312f97572478b17bd816f54",
+      "matches": true
+    },
+    {
+      "file": "wedding-venue.jpg",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/designs/wedding-venue.jpg",
+      "width": 1170,
+      "height": 776,
+      "bytes": 197246,
+      "sha256": "0b1ecfbc7693ea94044e3df294f44876c46d2024940de5033d23292b5b3501a0",
+      "matches": true
+    }
+  ]
+}

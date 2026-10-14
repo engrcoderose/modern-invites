@@ -6,7 +6,7 @@ export interface ManagedEvent {
   slug: string;
   rsvp_deadline: string | null;
   rsvp_response_mode: "household" | "individual";
-  rsvp_access_mode: "name_search" | "shared_code";
+  rsvp_access_mode: "name_search" | "shared_code" | "open";
   is_active: boolean;
   updated_at: string;
   clients: { name: string; role: string; status: string }[];
@@ -20,6 +20,7 @@ export interface EventSettingsInput {
   name: string;
   rsvpDeadline: string | null;
   responseMode: "household" | "individual";
+  accessMode?: ManagedEvent["rsvp_access_mode"];
   isActive: boolean;
   clientServices: ClientServices;
 }
