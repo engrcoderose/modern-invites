@@ -11,6 +11,7 @@ import ProcessSection from "@/components/landing/ProcessSection";
 import ProductExperiences from "@/components/landing/ProductExperiences";
 import "@/components/landing/home.css";
 
+
 export default function LandingPage() {
   return (
     <div className="marketing-site modern-home min-h-screen overflow-hidden bg-ivory text-ink">

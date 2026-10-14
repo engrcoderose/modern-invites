@@ -33,14 +33,13 @@ export default function Pricing() {
           />
 
           <div className="marketing-package-grid mt-14 grid items-stretch gap-5">
-            {PRICING_PACKAGES.map((packageDetails, index) => (
-              <ScrollReveal
+            {PRICING_PACKAGES.map((packageDetails) => (
+              <div
                 key={packageDetails.id}
-                delay={index * 0.1}
                 className="h-full"
               >
                 <PackageCard packageDetails={packageDetails} />
-              </ScrollReveal>
+              </div>
             ))}
           </div>
 

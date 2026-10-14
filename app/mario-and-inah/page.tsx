@@ -4,10 +4,13 @@ import Countdown from "./components/Countdown";
 import HeroSection from "./sections/HeroSection";
 import PhotoBreakSection from "./sections/PhotoBreakSection";
 import GallerySection from "./sections/GallerySection";
+import ClosingGallerySection from "./sections/ClosingGallerySection";
 import CelebrationSection from "./sections/CelebrationSection";
 import EntourageSection from "./sections/EntourageSection";
 import AttireSection from "./sections/AttireSection";
 import RsvpSection from "./sections/RsvpSection";
+import GiftRegistrySection from "./sections/GiftRegistrySection";
+import FaqSection from "./sections/FaqSection";
 import Footer from "./sections/Footer";
 import { wedding } from "./data/wedding";
 import { photos } from "./data/photos";
@@ -36,7 +39,10 @@ export default function Page() {
         <GallerySection />
         <CelebrationSection />
         <AttireSection />
+        <GiftRegistrySection />
         <PhotoBreakSection id="photo-break" photo={photos.closing} title="Our next chapter begins with you." />
+        <FaqSection />
+        <ClosingGallerySection />
         <RsvpSection />
       </main>
       <Footer />

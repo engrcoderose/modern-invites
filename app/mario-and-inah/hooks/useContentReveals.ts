@@ -42,6 +42,7 @@ export default function useContentReveals(root: RefObject<HTMLDivElement | null>
       const photo = kind === "photo";
       const heading = kind === "heading";
       const ornament = kind === "ornament";
+      const timeline = kind === "timeline";
       const preparedStyle = prepared.get(element);
       const finalOpacity = preparedStyle?.opacity ?? Number(getComputedStyle(element).opacity);
       // Preserve authored inline styles, including any existing transform.
@@ -53,11 +54,13 @@ export default function useContentReveals(root: RefObject<HTMLDivElement | null>
       // Fade photos without overriding artwork positioning or parallax transforms.
       const keyframes = photo || ornament
         ? { opacity: [0, finalOpacity] }
-        : { opacity: [0, finalOpacity], y: [heading ? 16 : 10, 0] };
+        : timeline
+          ? { opacity: [0, finalOpacity], y: [16, 0] }
+          : { opacity: [0, finalOpacity], y: [heading ? 16 : 10, 0] };
       const requestedDelay = Number(element.dataset.revealDelay ?? 0);
       const authoredDelay = Number.isFinite(requestedDelay) ? Math.max(0, requestedDelay) : 0;
       const delay = Math.min(0.48, authoredDelay + staggerDelay);
-      const duration = photo ? 1 : heading ? 0.85 : 0.7;
+      const duration = photo ? 1 : heading || timeline ? 0.85 : 0.7;
       let controls: ReturnType<typeof animate> | undefined;
       let cancelled = false;
       let imageTimeout: number | undefined;

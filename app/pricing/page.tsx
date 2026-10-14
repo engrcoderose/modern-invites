@@ -6,6 +6,7 @@ import FrequentlyAskedQuestions from "@/components/FrequentlyAskedQuestions";
 import FinalCta from "@/components/landing/FinalCta";
 import Footer from "@/components/Footer";
 
+
 export const metadata: Metadata = {
   title: "Pricing & Packages | Modern Invites",
   description:

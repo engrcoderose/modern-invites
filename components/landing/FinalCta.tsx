@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/landing/MotionLink";
 import { ArrowUpRight, Clock3, MessageCircleHeart } from "lucide-react";
 import { CONTACT_URL } from "@/lib/site";
 import ScrollReveal from "./ScrollReveal";
@@ -26,7 +26,7 @@ export default function FinalCta() {
               href={CONTACT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-9 inline-flex min-h-14 max-w-full flex-wrap items-center justify-center gap-2 rounded-full bg-forest px-[min(2rem,32px)] py-4 text-sm font-bold text-white shadow-[0_18px_35px_-18px] shadow-forest/80 transition motion-safe:hover:-translate-y-0.5 hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2"
+              className="mt-9 inline-flex min-h-14 max-w-full flex-wrap items-center justify-center gap-2 rounded-full bg-forest px-[min(2rem,32px)] py-4 text-sm font-bold text-white shadow-[0_18px_35px_-18px] shadow-forest/80 hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2"
             >
               <span className="min-w-0 max-w-full">Start a conversation</span>
               <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />

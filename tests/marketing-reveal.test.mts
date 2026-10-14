@@ -26,7 +26,7 @@ runInNewContext(compiled, {
 assert.ok(componentExports.default);
 const ScrollReveal = componentExports.default;
 
-for (const direction of ["up", "left", "right", "scale"]) {
+for (const direction of ["up", "left", "right", "scale", "fade"]) {
   test(`server-rendered ${direction} reveal keeps content readable without hydration`, () => {
     const markup = renderToStaticMarkup(createElement(ScrollReveal, {
       direction,

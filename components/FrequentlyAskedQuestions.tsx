@@ -1,12 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import MarketingAccordion from "@/components/landing/MarketingAccordion";
 import ScrollReveal from "@/components/landing/ScrollReveal";
 import { PRICING_PACKAGES } from "@/lib/pricing";
 
@@ -83,20 +78,7 @@ export default function FrequentlyAskedQuestions({ variant = "default" }: { vari
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="right" delay={0.08}>
-          <Accordion type="single" collapsible className="border-t border-forest/15 motion-reduce:[&_[role=region]]:animate-none">
-            {questions.map((item, index) => (
-              <AccordionItem key={item.question} value={`item-${index}`} className="border-forest/15">
-                <AccordionTrigger className="py-6 text-left font-instrumentSerif text-xl font-normal text-ink hover:no-underline sm:text-2xl">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="max-w-2xl pb-6 text-sm leading-7 text-ink-muted sm:text-base">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </ScrollReveal>
+        <MarketingAccordion items={questions} />
       </div>
     </section>
   );

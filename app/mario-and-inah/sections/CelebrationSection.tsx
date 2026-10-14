@@ -43,8 +43,22 @@ export default function CelebrationSection() {
         <div className="mx-auto max-w-6xl">
           <h2 data-reveal="heading" id="mi-schedule-title" className={`${styles.heading} text-center`}>The day unfolds</h2>
           <p data-reveal="text" className={`${styles.serifDetail} mt-5 text-center text-xs leading-6 sm:text-sm`}>{wedding.date.day}, {wedding.date.display}</p>
-          <ol className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:mt-16 lg:grid-cols-6 lg:gap-5">
-            {timeline.map((item, index) => { const Icon = icons[item.icon]; return <li data-reveal="text" data-reveal-delay={index * 0.035} key={item.time} className={`${styles.timelineItem} relative flex flex-col items-center text-center`}><Icon size={29} strokeWidth={1.15} aria-hidden="true" /><span className={`${styles.timelineDot} my-5 size-2 rounded-full`} aria-hidden="true" /><p className={`${styles.fullName} text-lg`}>{item.time}</p><p className="mt-2 text-sm leading-6">{item.label}</p></li>; })}
+          <ol aria-label="Wedding timeline" className="mx-auto mt-12 max-w-[15rem] lg:mt-16">
+            {timeline.map((item, index) => {
+              const Icon = icons[item.icon];
+              return (
+                <li key={item.time} className={`${styles.timelineItem} relative pb-10 last:pb-0`}>
+                  <span className={`${styles.timelineDot} absolute left-1/2 top-3 size-2 -translate-x-1/2 rounded-full`} aria-hidden="true" />
+                  <div data-reveal="timeline" data-reveal-delay={index * 0.06} className="grid grid-cols-2 items-start gap-4 text-center">
+                    <Icon size={29} strokeWidth={1.15} aria-hidden="true" className="mt-0.5 justify-self-center" />
+                    <div className="min-w-0">
+                      <p className={`${styles.fullName} whitespace-nowrap text-lg`}>{item.time}</p>
+                      <p className="mt-2 text-sm leading-6">{item.label}</p>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>

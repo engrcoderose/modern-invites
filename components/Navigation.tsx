@@ -1,9 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/landing/MotionLink";
 import { Menu, MessageCircleHeart, X } from "lucide-react";
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { CONTACT_URL } from "@/lib/site";
 import useMarketingReducedMotion from "./landing/useMarketingReducedMotion";
 
@@ -62,7 +62,7 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b ${
         isScrolled
           ? "border-forest/10 bg-ivory/95 shadow-[0_8px_28px_-22px] shadow-forest/50 backdrop-blur-xl"
           : "border-transparent bg-ivory/70 backdrop-blur-md"
@@ -70,7 +70,7 @@ export default function Navigation() {
     >
       <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <Link href="/" className="group inline-flex min-h-11 items-center gap-3" aria-label="Modern Invites home">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest font-instrumentSerif text-lg italic text-white transition motion-safe:group-hover:rotate-6">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest font-instrumentSerif text-lg italic text-white">
             M
           </span>
           <span className="font-instrumentSerif text-2xl tracking-[-0.02em] text-forest">Modern Invites</span>
@@ -78,7 +78,7 @@ export default function Navigation() {
 
         <div className="hidden items-center gap-8 lg:flex">
           {navigationItems.map((item) => (
-            <Link key={item.label} href={item.href} className="inline-flex min-h-11 min-w-11 items-center justify-center text-xs font-semibold text-marketing-muted transition hover:text-forest">
+            <Link key={item.label} href={item.href} className="inline-flex min-h-11 min-w-11 items-center justify-center text-xs font-semibold text-marketing-muted hover:text-forest">
               {item.label}
             </Link>
           ))}
@@ -89,7 +89,7 @@ export default function Navigation() {
             href={CONTACT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-5 py-2 text-xs font-bold text-white transition motion-safe:hover:-translate-y-0.5 hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-forest px-5 py-2 text-xs font-bold text-white hover:bg-forest-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2"
           >
             Start your invitation
             <MessageCircleHeart className="h-4 w-4" aria-hidden="true" />
@@ -112,14 +112,16 @@ export default function Navigation() {
         </button>
       </nav>
 
-      <div
+      <motion.div
         ref={mobileNavigationRef}
         id="mobile-navigation"
         inert={!isMobileMenuOpen}
         aria-hidden={!isMobileMenuOpen}
-        className={`grid transition-[grid-template-rows,opacity] duration-300 lg:hidden ${
-          isMobileMenuOpen ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
-        }`}
+        style={{ transition: "none" }}
+        initial={false}
+        animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
+        transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
+        className={`overflow-hidden lg:hidden ${isMobileMenuOpen ? "" : "pointer-events-none"}`}
       >
         <div className="overflow-hidden">
           <div className="border-t border-forest/10 bg-ivory px-4 py-5 sm:px-6">
@@ -129,7 +131,7 @@ export default function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={closeMobileMenu}
-                  className="rounded-xl px-3 py-3 text-sm font-semibold text-ink transition hover:bg-white hover:text-forest"
+                  className="rounded-xl px-3 py-3 text-sm font-semibold text-ink hover:bg-white hover:text-forest"
                 >
                   {item.label}
                 </Link>
@@ -147,7 +149,7 @@ export default function Navigation() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
       {!prefersReducedMotion && <ScrollProgress />}
     </header>
   );

@@ -9,6 +9,8 @@ const links = [
   { href: "#gallery", label: "Gallery" },
   { href: "#celebration", label: "Venue" },
   { href: "#attire", label: "Attire" },
+  { href: "#gifts", label: "Gifts" },
+  { href: "#faq", label: "FAQs" },
   { href: "#rsvp", label: "RSVP" },
 ];
 
@@ -28,11 +30,11 @@ export default function Navigation() {
         <a href="#mi-invitation" onClick={() => setExpanded(false)}
           className={`${styles.navigationNames} inline-flex min-h-11 items-center`}>Mario &amp; Inah</a>
         <button ref={toggle} type="button" aria-expanded={expanded} aria-controls="mi-navigation-links"
-          onClick={() => setExpanded(!expanded)} className="flex min-h-11 min-w-11 items-center justify-center md:hidden">
+          onClick={() => setExpanded(!expanded)} className="flex min-h-11 min-w-11 items-center justify-center lg:hidden">
           {expanded ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
           <span className="sr-only">{expanded ? "Close menu" : "Open menu"}</span>
         </button>
-        <ul id="mi-navigation-links" className={`${expanded ? "flex" : "hidden"} w-full flex-col gap-1 pb-4 md:flex md:w-auto md:flex-row md:items-center md:gap-5 md:pb-0`}>
+        <ul id="mi-navigation-links" className={`${expanded ? "flex" : "hidden"} max-h-[calc(100dvh-4rem)] w-full flex-col gap-1 overflow-y-auto pb-4 lg:flex lg:max-h-none lg:w-auto lg:flex-row lg:items-center lg:gap-5 lg:overflow-visible lg:pb-0`}>
           {links.map(({ href, label }) => (
             <li key={href}>
               <a href={href} onClick={() => setExpanded(false)}

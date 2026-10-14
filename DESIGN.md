@@ -267,6 +267,8 @@ Content is visible before hydration. Reduced motion removes spatial reveals, hov
 
 Shared invitation card backgrounds scale to 1.05 and inset previews rotate from -4 degrees to 0 on hover over 500ms only when motion is allowed; arrow movement also respects the preference. The homepage FAQ retains the existing accessible accordion and reveal behavior, with the homepage heading scale and no introductory label.
 
+The homepage, portfolio and pricing use Framer Motion exclusively for entrances, card interactions, action links, mobile disclosure and FAQ expansion. Headline lines, supporting copy, section headings, feature rows, pricing benefits, package details, add-ons and bundles reveal individually as they enter view. Entrances take 550ms with up to 16px travel and at most 240ms delay. Content already visible at hydration stays opaque; only content prepared below the viewport fades in. Each reveal runs once and retains its final values, and keyboard focus immediately reveals its containing content. Reduced motion stops running effects and restores readable, stationary content. The server and no-JavaScript fallback remain visible. Package cards lift 4px on hover, action links lift 2px, and invitation previews retain their existing photo scale and rotation through Framer Motion variants. CSS keyframe entrances and CSS transform transitions have been removed from these surfaces.
+
 ## Do's and Don'ts
 
 - **Do** use shared named colors for marketing identity and keep documented values aligned with Tailwind.

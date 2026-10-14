@@ -45,3 +45,14 @@ export const galleryPhotos = [
   previewPhoto("gallery-sunset-veranda", "Golden hour", samplePhotos.sunsetVeranda),
   previewPhoto("gallery-together", "Hand in hand", samplePhotos.together),
 ];
+
+// A portrait centerpiece, four surrounding moments, and two wide closing frames.
+export const closingGalleryPhotos = [
+  galleryPhotos[1],
+  galleryPhotos[4],
+  photos.story[1],
+  galleryPhotos[3],
+  galleryPhotos[5],
+  photos.cinematic,
+  photos.closing,
+];

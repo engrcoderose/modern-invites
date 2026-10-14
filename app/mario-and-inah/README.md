@@ -6,15 +6,16 @@ A continuous photo-first floral invitation matching the user-pinned reference at
 
 ## Current sequence
 
-Full-screen photo welcome → slideshow hero → floral countdown → full-width photograph → sage botanical entourage → woodland photo triptych → lilac venue with blush card → schedule → attire → closing photograph → RSVP → footer.
+Full-screen photo welcome → slideshow hero → floral countdown → full-width photograph → sage botanical entourage → rose-backed photo triptych → lilac venue with blush card → schedule → attire → gift registry → closing photograph → Frequently Asked Questions → second gallery → RSVP → footer.
 
-Imperial Script supplies names and main headings; Libre Baskerville supplies formal details, with Inter for prose and controls. Instrument Serif remains in the attire subtitle. The gallery renders the first three configured sample images with a taller center portrait. The venue card uses the uploaded `wedding-venue.jpg` from the client R2 designs folder.
+Imperial Script supplies names and main headings; Libre Baskerville supplies formal details, with Inter for prose and controls. Instrument Serif remains in the attire subtitle. The first gallery retains its rose-backed triptych. `ClosingGallerySection` presents seven configured photos on sage with ivory frames: a central portrait surrounded by four smaller moments and two wide images underneath. On mobile the centerpiece comes first, followed by paired photos. Both galleries retain distinct section and heading IDs. The venue card uses the uploaded `wedding-venue.jpg` from the client R2 designs folder.
 
 ## Files and content
 
 - `data/wedding.ts`: confirmed names, date, venue, directions, schedule, RSVP contact/deadline, attire palette, and pending music configuration.
 - `data/photos.ts` and `data/sample-photos.ts`: client-local photo placement, dimensions, focal positions and sample provenance. Stable shared URLs under `https://assets.moderninvites.com/placeholder-images/prenups/` reuse the user-selected collection also used by Vincent & Gabrielle.
 - `data/entourage.ts`: confirmed names and separately recorded pending roles.
+- `data/guest-information.ts`: the supplied monetary-gift note and eight FAQs. The RSVP deadline comes from `data/wedding.ts`. `GiftRegistrySection` and `FaqSection` reuse the floral artwork, theme and content reveals; FAQs use the shared accessible accordion. Navigation links include both sections, with the mobile menu retained through tablet widths.
 - `data/artwork.ts` and `components/FloralArtwork.tsx`: R2-hosted floral cutouts, pattern, attire illustration, gallery painting and venue photograph. `assets/provenance.json` consolidates source records, sidecar metadata and exact generation prompts; embedded origins are retained.
 - `sections/` and `components/`: focused sections, photo frames, countdown and backend-connected RSVP.
 - `styles/invitation.module.css`: scoped typography, colors and decoration; simple layouts use Tailwind in JSX.

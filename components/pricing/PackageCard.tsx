@@ -1,4 +1,9 @@
-import Link from "next/link";
+"use client";
+
+import Link from "@/components/landing/MotionLink";
+import { motion } from "framer-motion";
+import useMarketingReducedMotion from "@/components/landing/useMarketingReducedMotion";
+import ScrollReveal from "@/components/landing/ScrollReveal";
 import { Check, Sparkles } from "lucide-react";
 import type { PricingPackage } from "@/lib/pricing";
 
@@ -7,11 +12,17 @@ type PackageCardProps = {
 };
 
 export default function PackageCard({ packageDetails }: PackageCardProps) {
+  const reducedMotion = useMarketingReducedMotion();
   const isFeatured = packageDetails.featured;
   const isLuxury = packageDetails.id === "luxury";
 
   return (
-    <article
+    <motion.article
+      style={{ transition: "none" }}
+      initial={false}
+      animate={reducedMotion ? { y: 0 } : undefined}
+      whileHover={reducedMotion ? undefined : { y: -4 }}
+      transition={{ duration: reducedMotion ? 0 : 0.2 }}
       className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] p-7 sm:p-9 ${
         isFeatured
           ? "bg-forest text-white shadow-[0_32px_80px_-32px] shadow-forest/85"
@@ -20,7 +31,7 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
             : "border border-forest/10 bg-white text-ink shadow-[0_24px_60px_-42px] shadow-forest/45"
       }`}
     >
-      <div className="flex min-h-8 flex-wrap items-center justify-between gap-3">
+      <ScrollReveal className="flex min-h-8 flex-wrap items-center justify-between gap-3">
         <p
           className={`text-[0.65rem] font-bold uppercase tracking-[0.26em] ${
             isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"
@@ -34,17 +45,17 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
             <span className="min-w-0">Most loved</span>
           </span>
         ) : null}
-      </div>
-      <h3 className="mt-5 break-words font-instrumentSerif text-4xl leading-none sm:text-5xl">
+      </ScrollReveal>
+      <ScrollReveal as="h3" delay={0.04} className="mt-5 break-words font-instrumentSerif text-4xl leading-none sm:text-5xl">
         {packageDetails.name}
-      </h3>
-      <p
+      </ScrollReveal>
+      <ScrollReveal as="p" delay={0.08}
         className={`mt-3 min-h-11 text-sm leading-6 ${isFeatured ? "text-white/60" : "text-ink-muted"}`}
       >
         {packageDetails.tagline}
-      </p>
+      </ScrollReveal>
 
-      <div className="mt-8 flex items-end gap-1.5">
+      <ScrollReveal className="mt-8 flex items-end gap-1.5">
         <span
           className={`mb-2 text-lg ${isFeatured ? "text-white/55" : "text-ink-muted"}`}
         >
@@ -53,32 +64,32 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
         <span className="font-instrumentSerif text-6xl leading-none tracking-[-0.03em]">
           {packageDetails.price}
         </span>
-      </div>
-      <div className="mt-2 text-xs">
+      </ScrollReveal>
+      <ScrollReveal className="mt-2 text-xs">
         <span
           className={`font-semibold ${isFeatured ? "text-champagne-light" : "text-eucalyptus-dark"}`}
         >
           one-time payment
         </span>
-      </div>
+      </ScrollReveal>
 
-      <p
+      <ScrollReveal as="p"
         className={`mt-6 text-sm leading-6 ${isFeatured ? "text-white/65" : "text-ink-muted"}`}
       >
         {packageDetails.description}
-      </p>
+      </ScrollReveal>
       <div
         className={`my-7 h-px ${isFeatured ? "bg-white/10" : "bg-forest/10"}`}
       />
 
-      <p
+      <ScrollReveal as="p"
         className={`mb-4 text-[0.62rem] font-bold uppercase tracking-[0.2em] ${isFeatured ? "text-marketing-muted-inverse" : "text-marketing-muted"}`}
       >
         What’s included
-      </p>
+      </ScrollReveal>
       <ul className="flex-1 space-y-3.5">
         {packageDetails.features.map((feature) => (
-          <li
+          <ScrollReveal as="li"
             key={feature}
             className={`flex items-start gap-3 text-sm leading-5 ${
               isFeatured ? "text-white/80" : "text-ink-muted"
@@ -105,13 +116,13 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
                 </span>
               )}
             </span>
-          </li>
+          </ScrollReveal>
         ))}
       </ul>
 
       <Link
         href={`/inquire?package=${packageDetails.id}`}
-        className={`mt-9 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center text-sm font-bold transition duration-300 motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+        className={`mt-9 inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-center text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
           isFeatured
             ? "bg-white text-forest hover:bg-ivory focus-visible:ring-white focus-visible:ring-offset-forest"
             : "bg-forest text-white hover:bg-forest-light focus-visible:ring-forest"
@@ -119,6 +130,6 @@ export default function PackageCard({ packageDetails }: PackageCardProps) {
       >
         Ask about {packageDetails.name}
       </Link>
-    </article>
+    </motion.article>
   );
 }

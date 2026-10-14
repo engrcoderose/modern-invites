@@ -90,7 +90,7 @@
 .scrollProgress { background: #7b8061; }
 .photoFrame { background: #e5e6dc; color: var(--mi-muted); }
 .attireNotes { border-color: var(--mi-rule); }
-.timelineItem::after { content: ""; position: absolute; top: 52px; left: 0; right: 0; height: 1px; background: var(--mi-rule); z-index: 0; }
+.timelineItem:not(:last-child)::after { content: ""; position: absolute; top: 16px; bottom: -16px; left: 50%; width: 1px; transform: translateX(-50%); background: var(--mi-rule); z-index: 0; }
 .timelineDot { background: var(--mi-muted); box-shadow: 0 0 0 7px var(--mi-paper); z-index: 1; }
 .button { background: var(--mi-ink); color: var(--mi-paper); border-radius: 3px; transition: background-color 180ms ease; }
 .button:hover { background: #56634b; }
