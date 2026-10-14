@@ -3,11 +3,11 @@
 
 ## R2 image hosting
 
-All seven active artwork and background images load from `https://assets.moderninvites.com/darell-and-roselle/images/designs/`. The R2 prefix is intentionally `darell-and-roselle`; the website route remains `/darelle-and-roselle`. `data/media.ts` preserves verified intrinsic dimensions and existing responsive image behavior. The normal Next Image optimizer, quality settings and 31-day image cache remain enabled.
+All seven active artwork and background images load from `https://assets.moderninvites.com/darell-and-roselle/images/designs/`. The R2 prefix is intentionally `darell-and-roselle`; the website route is `/darell-and-roselle`. `data/media.ts` preserves verified intrinsic dimensions and existing responsive image behavior. The normal Next Image optimizer, quality settings and 31-day image cache remain enabled.
 
 Each public R2 file matched its local SHA-256 hash before the local copy was removed. `assets/provenance.json` retains URLs, dimensions, hashes and historical source records. Earlier asset-folder references below describe the original source files. Fonts and their license files remain local. When replacing an R2 image, use a new filename and update its entry to avoid stale cached artwork.
 
-Route: `/darelle-and-roselle`. The original folder slug is preserved; the
+Route: `/darell-and-roselle`. The old `/darelle-and-roselle` URL permanently redirects here. The original implementation folder is reused by the new route; the
 questionnaire requests **Roselle Buenavista & Darell John Salazar** on the site.
 
 This invitation follows Vincent and Gabrielle's olive-and-ivory woodland design,
@@ -123,5 +123,6 @@ Follow the root `AGENTS.md`, including Tailwind-first layout and private-credent
 boundaries. Never run a normal root Next dev/build command for verification;
 it automatically loads private environment files. Use an isolated preview with
 an explicit source allowlist and no server APIs or middleware instead.
+
 
 

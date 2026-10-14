@@ -22,7 +22,6 @@ export default function Monogram({
 }) {
   const filterId = `dr-monogram-${useId().replace(/:/g, "")}`;
   const source = framed ? (tone === "paper" ? media.openingMonogram : media.framedMonogram) : media.monogram;
-  const needsFilter = framed || tone === "paper";
   // The supplied artwork uses white or RGB(139, 155, 119) for its canvas.
   // Key that canvas out while preserving the artwork's antialiased edges.
   const sageRed = 139 / 255;
@@ -30,8 +29,7 @@ export default function Monogram({
   const alphaOffset = framed ? -alphaScale : -sageRed / (1 - sageRed);
   return (
     <span data-dr-monogram-kind={framed ? "framed" : "initials"} role="img" aria-label={`Darell and Roselle’s DR monogram${framed ? " inside the ornamental oval frame" : ""}`} className={`relative block overflow-hidden ${framed ? "aspect-[320/413]" : "aspect-[73/61]"} ${className}`}>
-      {needsFilter && (
-        <svg aria-hidden="true" focusable="false" className="pointer-events-none absolute h-0 w-0">
+      <svg aria-hidden="true" focusable="false" className="pointer-events-none absolute h-0 w-0">
           <defs>
             <filter id={filterId} colorInterpolationFilters="sRGB" x="0" y="0" width="100%" height="100%">
               <feColorMatrix in="SourceGraphic" type="matrix" values={`0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ${alphaScale} 0 0 0 ${alphaOffset}`} result="artworkAlpha" />
@@ -39,9 +37,8 @@ export default function Monogram({
               <feComposite in2="artworkAlpha" operator="in" />
             </filter>
           </defs>
-        </svg>
-      )}
-      <Image src={source} alt="" priority={priority} sizes={sizes} className={`absolute ${framed ? styles.framedMonogramImage : styles.initialsMonogramImage}`} style={needsFilter ? { filter: `url(#${filterId})` } : undefined} onLoad={onReady} onError={onReady} />
+      </svg>
+      <Image src={source} alt="" priority={priority} sizes={sizes} className={`absolute ${framed ? styles.framedMonogramImage : styles.initialsMonogramImage}`} style={{ filter: `url(#${filterId})` }} onLoad={onReady} onError={onReady} />
     </span>
   );
 }

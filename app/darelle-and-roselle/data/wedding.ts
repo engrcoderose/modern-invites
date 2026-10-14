@@ -1,7 +1,7 @@
 // Confirmed questionnaire content. Keep the existing folder slug; the supplied
 // questionnaire spells the groom's name Darell and requests bride-first display.
 export const wedding = {
-  slug: "darelle-and-roselle",
+  slug: "darell-and-roselle",
   bride: "Roselle Buenavista",
   groom: "Darell John Salazar",
   title: "Roselle Buenavista & Darell John Salazar",
