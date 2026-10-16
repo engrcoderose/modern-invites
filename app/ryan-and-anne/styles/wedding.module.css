@@ -33,7 +33,7 @@
 .invitation :is(a, button):focus-visible { outline: 2px solid #ad8e57; outline-offset: 5px; }
 .invitation :is(a, button) { -webkit-tap-highlight-color: transparent; }
 
-.sectionTitle, .heroNames, .footerNames, .scheduleWeekday, .invitationNames, .storyTitle, .venueTitle {
+.sectionTitle, .heroNames, .footerNames, .invitationNames, .storyTitle, .venueTitle {
   font-family: var(--font-mea-culpa), cursive;
   font-weight: 400;
   font-style: normal;
@@ -105,7 +105,7 @@
 .heartKeychain { transform-origin: 50% 15%; animation: keychainSway 8s ease-in-out infinite; }
 .hashtagText { font-size: clamp(1.15rem, 4.5vw, 2.75rem); line-height: 1.5; }
 .triptychBackdrop { filter: grayscale(1) blur(8px); transform: scale(1.05); }
-.scheduleWeekday { font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1.2; }
+.scheduleTrack { background: repeating-linear-gradient(to bottom, #d1b78880 0 2px, transparent 2px 8px); }
 .venueTitle { font-size: clamp(2.65rem, 5vw, 4rem); line-height: 1.25; text-wrap: balance; }
 .footerNames { font-size: clamp(3.5rem, 12vw, 9rem); line-height: 1.25; }
 .outlineButton, .darkButton { border: 1px solid #d1b78899; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: background 180ms ease, color 180ms ease; }

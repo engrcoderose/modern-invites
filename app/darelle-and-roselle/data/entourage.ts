@@ -7,10 +7,11 @@ export const entourage = {
     ["Reynaldo Cuevas", "Irene Cuevas"],
     ["Alexander Imperial", "Myra Imperial"],
     ["Evelyn Eustaquio", "Abner Eustaquio"],
+    ["Ma Lyn Do-oma", "Nenita Terrestre"],
   ],
   secondary: [
     { role: "Veil", names: ["Danniel Salazar", "Rhea Salazar"] },
-    { role: "Candle", names: ["Randy Buenavista", "Bherose"] },
+    { role: "Candle", names: ["Randy Buenavista", "Mary Ann Salazar"] },
     { role: "Cord", names: ["Dexter Salazar", "Pamela Solamillo"] },
   ],
   bridesmaids: ["Shiela Marie Salazar", "Erlyn Borromeo", "Bherose Buenavista", "Christin Joy Baya", "Caren Castor"],

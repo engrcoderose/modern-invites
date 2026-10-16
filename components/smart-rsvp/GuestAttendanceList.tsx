@@ -11,6 +11,7 @@ import type {
 
 interface GuestAttendanceListProps {
   appearance?: "default" | "minimal";
+  showDietaryRestrictions?: boolean;
   guests: PartyGuest[];
   responses: Record<number, GuestResponseDraft>;
   disabled: boolean;
@@ -20,6 +21,7 @@ interface GuestAttendanceListProps {
 
 export function GuestAttendanceList({
   appearance = "default",
+  showDietaryRestrictions = true,
   guests,
   responses,
   disabled,
@@ -115,7 +117,7 @@ export function GuestAttendanceList({
               </div>
             </div>
 
-            {status === "attending" && (
+            {showDietaryRestrictions && status === "attending" && (
               <Input
                 type="text"
                 value={response?.dietaryRestrictions ?? ""}

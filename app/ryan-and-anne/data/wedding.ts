@@ -66,11 +66,12 @@ export const designPreferences = {
 };
 
 export const timeline = [
-  { time: "01:30 PM", label: "Guest Arrival" },
-  { time: "02:00 PM", label: "Ceremony" },
-  { time: "03:00 PM", label: "Photographs" },
-  { time: "04:30 PM", label: "Cocktail Hour" },
-];
+  { time: "1:30 PM", label: "Guest Arrival", description: "Kindly arrive and take your seats.", icon: "arrival" },
+  { time: "2:00 PM", label: "Wedding Ceremony", description: "The start of our next chapter.", icon: "ceremony" },
+  { time: "3:00 PM", label: "Photo Session", description: "Memories with our favorite people.", icon: "photos" },
+  { time: "4:30 PM", label: "Welcome & Refreshments", description: "A little time to mingle before the celebration.", icon: "refreshments" },
+  { time: "5:00 PM", label: "A Celebration of Love", description: "Good food, loving words, and an evening shared with our closest people.", icon: "celebration" },
+] as const;
 
 export const attireDetails = {
   formality: "Formal or Cocktail Attire",

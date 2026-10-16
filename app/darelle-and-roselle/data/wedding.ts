@@ -11,6 +11,11 @@ export const wedding = {
   ceremonyISO: "2026-12-16T14:00:00+08:00",
   rsvpDeadline: "16 October 2026",
   contactEmail: "salazardarell0314@yahoo.com",
+  music: {
+    title: "The One",
+    artist: "Kodaline",
+    src: "/darell-and-roselle/music/the-one-1c086b6d.mp3",
+  },
   attire: {
     formality: "Semi-formal",
     restrictions: "Please refrain from wearing shorts, sando, or T-shirts.",

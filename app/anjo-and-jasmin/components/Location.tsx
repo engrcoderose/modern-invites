@@ -56,8 +56,8 @@ export default function Location() {
                   </div>
                   <h4 className="font-instrumentSerif text-3xl leading-tight lg:text-4xl">{venue.name}</h4>
                   <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-[rgb(var(--aj-muted))] md:min-h-12">{venue.address}</p>
-                  <p className="mt-4 flex min-h-11 items-center justify-center gap-2 py-3 text-sm text-[#754f28]">
-                    <Clock3 aria-hidden="true" size={15} className="shrink-0" />
+                  <p className="mt-4 min-h-11 py-3 text-sm text-[#754f28]">
+                    <Clock3 aria-hidden="true" size={15} className="mr-2 inline-block align-[-2px]" />
                     {venue.time}
                   </p>
                   <div className="mt-auto pt-6">

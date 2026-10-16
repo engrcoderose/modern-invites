@@ -11,6 +11,7 @@ import { GuestAttendanceList } from "./GuestAttendanceList";
 import type {
   EventInformation,
   PartyInformation,
+  RsvpFieldOptions,
   SearchMatch,
 } from "./types";
 import { usePartyResponse } from "./usePartyResponse";
@@ -24,6 +25,7 @@ export interface PartyDisplayOptions {
 
 interface PartyStepProps {
   display?: PartyDisplayOptions;
+  fields?: RsvpFieldOptions;
   event: EventInformation;
   eventSlug: string;
   rsvpCode: string;
@@ -35,6 +37,7 @@ interface PartyStepProps {
 
 export function PartyStep({
   display,
+  fields,
   event,
   eventSlug,
   rsvpCode,
@@ -132,6 +135,7 @@ export function PartyStep({
       <CardContent className={minimal ? "space-y-7 px-0 pb-0 pt-7" : "space-y-6 p-6 md:p-8"}>
         <GuestAttendanceList
           appearance={minimal ? "minimal" : "default"}
+          showDietaryRestrictions={fields?.dietaryRestrictions !== false}
           guests={party.guests}
           responses={responses}
           disabled={isSubmitting}
@@ -152,7 +156,7 @@ export function PartyStep({
         )}
 
         <div className={minimal ? "space-y-6 border-t border-[var(--smart-rsvp-border-soft)] pt-7" : "space-y-4 border-t border-gray-100 pt-6"}>
-          <div>
+          {fields?.email !== false && <div>
             <Label htmlFor="rsvp-email" className={labelClassName}>Email Address (optional)</Label>
             <Input
               id="rsvp-email"
@@ -163,13 +167,14 @@ export function PartyStep({
               maxLength={254}
               className={fieldClassName}
             />
-          </div>
+          </div>}
 
           <div>
             <Label htmlFor="rsvp-phone" className={labelClassName}>Phone Number (optional)</Label>
             <Input
               id="rsvp-phone"
               type="tel"
+              autoComplete="tel"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
               disabled={isSubmitting}
@@ -178,7 +183,7 @@ export function PartyStep({
             />
           </div>
 
-          <div>
+          {fields?.message !== false && <div>
             <Label htmlFor="rsvp-message" className={labelClassName}>Message (optional)</Label>
             <Textarea
               id="rsvp-message"
@@ -189,7 +194,7 @@ export function PartyStep({
               rows={4}
               className={fieldClassName}
             />
-          </div>
+          </div>}
         </div>
 
         {submissionError && (

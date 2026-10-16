@@ -14,7 +14,7 @@ const coverFadeDuration = 1.6;
 const logoFadeDelay = 0.5;
 const openingEase = [0.42, 0, 0.22, 1] as const;
 
-export default function OpeningScreen({ onOpened }: { onOpened: () => void }) {
+export default function OpeningScreen({ onOpening, onOpened }: { onOpening: () => void; onOpened: () => void }) {
   const [opening, setOpening] = useState(false);
   const [photoReady, setPhotoReady] = useState(false);
   const [monogramReady, setMonogramReady] = useState(false);
@@ -71,6 +71,7 @@ export default function OpeningScreen({ onOpened }: { onOpened: () => void }) {
 
   function openInvitation() {
     if (opening || !ready) return;
+    onOpening();
     const target = document.querySelector<HTMLElement>("[data-dr-formal-logo]");
     if (!reducedMotion && coverLogo.current && target) {
       const source = coverLogo.current.getBoundingClientRect();

@@ -56,6 +56,22 @@ export default function Entourage() {
         <div className="grid grid-cols-2 items-start gap-x-5 gap-y-10 sm:gap-x-16 sm:gap-y-14">
           {wedding.entourage.map((group, index) => {
             const sponsors = group.role === "Principal sponsors";
+            const parents = group.role.startsWith("Parents of");
+            const weddingParty = [
+              "Maid of honor",
+              "Best man",
+              "Bridesmaids",
+              "Groomsmen",
+              "Candle",
+              "Cord",
+            ].includes(group.role);
+            const alignment = weddingParty
+              ? `col-span-2 text-center md:col-span-1 ${leftColumnRoles.has(group.role) ? "md:text-right" : "md:text-left"}`
+              : centeredRoles.has(group.role)
+                ? "col-span-2 text-center"
+                : leftColumnRoles.has(group.role)
+                  ? "text-right"
+                  : "text-left";
             return (
               <Reveal
                 key={group.role}
@@ -68,9 +84,9 @@ export default function Entourage() {
                 }
                 y={20}
                 delay={(index % 2) * 0.12}
-                className={`min-w-0 ${centeredRoles.has(group.role) ? "col-span-2 text-center" : leftColumnRoles.has(group.role) ? "text-right" : "text-left"} ${sponsors ? "aj-entourage-sponsors relative py-8 sm:py-10" : ""}`}
+                className={`min-w-0 ${alignment} ${sponsors ? "aj-entourage-sponsors relative py-8 sm:py-10" : ""}`}
               >
-                <h3 className="mb-4 text-balance font-sans text-[10px] uppercase leading-5 tracking-[.14em] sm:text-xs sm:tracking-[.18em]">
+                <h3 className={`mb-4 font-sans uppercase leading-5 sm:text-xs sm:tracking-[.18em] ${parents ? "whitespace-nowrap text-[clamp(8px,2.4vw,10px)] tracking-[.1em]" : "text-balance text-[10px] tracking-[.14em]"}`}>
                   {group.role}
                 </h3>
                 <ul
@@ -86,7 +102,9 @@ export default function Entourage() {
                             : index % 2 === 0
                               ? "text-right"
                               : "text-left"
-                          : undefined
+                          : parents || weddingParty
+                            ? "whitespace-nowrap"
+                            : undefined
                       }
                     >
                       {name}

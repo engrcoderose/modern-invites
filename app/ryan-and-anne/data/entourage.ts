@@ -3,7 +3,18 @@ export const entourage = {
   groomParents: ["Roberto Pantoja", "Belerma Pantoja"],
   maidOfHonor: ["Joyce Zuñiga"],
   bestMan: { status: "not-applicable" as const, names: [] as string[] },
-  principalSponsors: [] as string[],
+  principalSponsors: [
+    "Mr. Ariel Banaag",
+    "Anita Banaag",
+    "Mr. Arnold Laspoña",
+    "Mrs. Glenda Laspoña",
+    "Mr. Napoleon Fabian",
+    "Mrs. Rowena Fabian",
+    "Mr. Isaias Villaruel",
+    "Mrs. Leila Villaruel",
+    "Mr. Allan Niebres",
+    "Mrs. Mirriam Niebres",
+  ],
   secondarySponsors: [
     { role: "Veil", names: [] as string[] },
     { role: "Candle", names: [] as string[] },
@@ -18,6 +29,6 @@ export const entourage = {
       names: ["Zacchaeus Ryan Azrael Pantoja"],
     },
     { role: "Little Bride/Bible Bearer", names: ["Zariah Adriel Pantoja"] },
-    { role: "Coin Bearer", names: [] as string[] },
+    { role: "Coin Bearer", names: ["Marcus Gavin Altair Villena"] },
   ],
 };

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { openRsvpSchema } from "../features/rsvp/domain/open-rsvp.ts";
+import { openRsvpSchema, openRsvpNameSchema } from "../features/rsvp/domain/open-rsvp.ts";
+import { checkOpenRsvpName } from "../features/rsvp/application/check-open-rsvp-name.ts";
 import { submitOpenRsvp } from "../features/rsvp/application/submit-open-rsvp.ts";
 import type { RsvpEventAccessConfiguration } from "../features/rsvp/domain/rsvp-event-access.ts";
 
@@ -36,4 +37,26 @@ test("validates required details, lengths, email, status and retry token", () =>
   const normalized = openRsvpSchema.parse({ ...input, fullName: "  New   Visitor ", email: " visitor@example.com " });
   assert.equal(normalized.fullName, "New Visitor");
   assert.equal(normalized.email, "visitor@example.com");
+  assert.equal(openRsvpNameSchema.parse({ slug: input.slug, fullName: "\t NEW \tVisitor \n" }).fullName, "NEW Visitor");
+  assert.equal(openRsvpNameSchema.parse({ slug: input.slug, fullName: "\u00a0New\u202fVisitor\ufeff" }).fullName, "New Visitor");
+});
+
+test("name preflight authorizes open access and returns only the name status", async () => {
+  for (const status of ["available", "responded", "ambiguous"] as const) {
+    let reads = 0;
+    const result = await checkOpenRsvpName({ findBySlug: async () => event, verifySharedCode: async () => { throw new Error("No code needed"); } }, {
+      checkName: async (eventId, fullName) => { reads++; assert.equal(eventId, 7); assert.equal(fullName, input.fullName); return { status, fullName }; },
+    }, { slug: input.slug, fullName: input.fullName });
+    assert.deepEqual(result, { status, fullName: input.fullName });
+    assert.equal(reads, 1);
+  }
+});
+
+test("name preflight cannot read guest status for unavailable or restricted events", async () => {
+  for (const configured of [null, { ...event, accessMode: "name_search" as const }, { ...event, accessMode: "shared_code" as const }, { ...event, isActive: false }, { ...event, rsvpDeadline: "2000-01-01" }]) {
+    const result = await checkOpenRsvpName({ findBySlug: async () => configured, verifySharedCode: async () => null }, {
+      checkName: async () => { throw new Error("Must not read names"); },
+    }, { slug: input.slug, fullName: input.fullName });
+    assert.ok(result.status === "closed" || result.status === "denied");
+  }
 });

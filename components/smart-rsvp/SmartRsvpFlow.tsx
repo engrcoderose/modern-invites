@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 import { cn } from "@/lib/utils";
 
 import { AccessStep } from "./AccessStep";
 import { InitializationStep } from "./InitializationStep";
-import { OpenRsvpForm } from "./OpenRsvpForm";
+import { OpenRsvpFlow } from "./OpenRsvpFlow";
 import { PartyStep, type PartyDisplayOptions } from "./PartyStep";
 import { SearchStep, type SearchHeaderOptions } from "./SearchStep";
 import type { SmartRsvpTheme } from "./theme";
 import { debutSmartRsvpTheme } from "./theme";
-import type { RsvpAccessMode } from "./types";
+import type { RsvpAccessMode, RsvpFieldOptions } from "./types";
 import { useSmartRsvp } from "./useSmartRsvp";
 
 interface SmartRsvpFlowProps {
@@ -22,7 +22,9 @@ interface SmartRsvpFlowProps {
   allowUnlistedReplies?: boolean;
   searchHeader?: SearchHeaderOptions;
   searchAppearance?: "card" | "minimal";
+  openFormAppearance?: "card" | "minimal";
   partyDisplay?: PartyDisplayOptions;
+  fields?: RsvpFieldOptions;
 }
 
 type SmartRsvpThemeProperties = CSSProperties & {
@@ -55,9 +57,10 @@ export function SmartRsvpFlow({
   allowUnlistedReplies = true,
   searchHeader,
   searchAppearance,
+  openFormAppearance,
   partyDisplay,
+  fields,
 }: SmartRsvpFlowProps) {
-  const [openPath, setOpenPath] = useState<"new" | "search">("search");
   const {
     stage,
     event,
@@ -104,14 +107,7 @@ export function SmartRsvpFlow({
         />
       )}
 
-      {allowUnlistedReplies && event?.accessMode === "open" && (stage === "open" || stage === "search") && (
-        <div className="mb-5 flex flex-wrap gap-3" aria-label="Choose how to RSVP">
-          <button type="button" aria-pressed={openPath === "search"} onClick={() => setOpenPath("search")} className="min-h-11 rounded-md border border-[var(--smart-rsvp-border)] px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2">Find my household</button>
-          <button type="button" aria-pressed={openPath === "new"} onClick={() => setOpenPath("new")} className="min-h-11 rounded-md border border-[var(--smart-rsvp-border)] px-4 py-2 text-sm focus-visible:outline focus-visible:outline-2">RSVP without a guest-list entry</button>
-        </div>
-      )}
-
-      {(stage === "search" || stage === "open") && event && (!allowUnlistedReplies || event.accessMode !== "open" || openPath === "search") && (
+      {(stage === "search" || stage === "open") && event && (!allowUnlistedReplies || event.accessMode !== "open") && (
         <SearchStep
           appearance={searchAppearance}
           header={searchHeader}
@@ -129,11 +125,12 @@ export function SmartRsvpFlow({
         />
       )}
 
-      {allowUnlistedReplies && (stage === "open" || stage === "search") && event?.accessMode === "open" && openPath === "new" && <OpenRsvpForm event={event} />}
+      {allowUnlistedReplies && (stage === "open" || stage === "search") && event?.accessMode === "open" && <OpenRsvpFlow key={event.slug} event={event} fields={fields} appearance={openFormAppearance} />}
 
       {stage === "party" && event && party && selectedMatch && (
         <PartyStep
           display={partyDisplay}
+          fields={fields}
           event={event}
           eventSlug={eventSlug}
           rsvpCode={rsvpCode}

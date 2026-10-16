@@ -21,6 +21,7 @@ export default function RsvpFlow() {
       accessMode="name_search"
       theme={theme}
       searchAppearance="minimal"
+      fields={{ email: false, dietaryRestrictions: false, message: false }}
       className="[&>div]:rounded-none [&>div]:border-0 [&>div]:bg-transparent [&>div]:shadow-none [&>div>div]:px-0"
       searchHeader={{
         title: "Kindly reply",

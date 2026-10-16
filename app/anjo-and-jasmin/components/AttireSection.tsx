@@ -45,7 +45,7 @@ export default function AttireSection({ colors }: AttireSectionProps) {
           </h2>
         </Reveal>
 
-        <Reveal className="mt-8 grid grid-cols-[1fr_90px_1fr] items-center gap-2 sm:mt-10 sm:grid-cols-[1fr_180px_1fr] sm:gap-6">
+        <Reveal className="mt-8 grid grid-cols-[1fr_90px_1fr] items-start gap-2 sm:mt-10 sm:grid-cols-[1fr_180px_1fr] sm:gap-6">
           {sponsorAttire.map(({ role, style, description }, index) => (
             <div
               key={role}
@@ -70,7 +70,7 @@ export default function AttireSection({ colors }: AttireSectionProps) {
             src={sponsorIllustration}
             alt="Ivory embroidered Filipiniana gown and Barong Tagalog with black trousers and shoes."
             sizes="(max-width: 639px) 90px, 180px"
-            className="col-start-2 row-start-1 h-auto w-full"
+            className="col-start-2 row-start-1 h-auto w-full self-center"
           />
         </Reveal>
 

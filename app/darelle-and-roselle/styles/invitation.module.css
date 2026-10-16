@@ -57,6 +57,10 @@
 .coverLink:hover { color: #d2c5a0; }
 .textLink:hover { color: var(--dr-gold); }
 .navigation { background: var(--dr-paper); border-bottom: 1px solid var(--dr-line); }
+.musicButton, .musicPanel { background: var(--dr-paper); color: var(--dr-ink); }
+.musicButton { transition: background 180ms ease; }
+.musicButton:hover { background: #e8e1cf; }
+.musicPanel { box-shadow: 0 8px 20px #41463626; }
 .navDate { font-size: 10px; letter-spacing: .1em; border-left: 1px solid var(--dr-line); }
 .navLinks, .mobileNavigation { font-size: 10px; text-transform: uppercase; letter-spacing: .13em; }
 .navLinks a:last-child { border: 1px solid var(--dr-olive); }
@@ -65,11 +69,11 @@
 .rsvpPlaque { background: var(--dr-paper); color: var(--dr-ink); border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%; border: 1px solid var(--dr-gold); outline: 2px solid #e4dac2; outline-offset: 3px; box-shadow: 0 8px 24px #101c2433; }
 .rsvpCard { background: var(--dr-paper); color: var(--dr-ink); border-radius: 6px; box-shadow: 0 14px 50px #111a1633; }
 .plaqueOrnament { background: var(--dr-paper); color: #9d916a; }
-.rsvpSearchInput { border: 0; border-bottom: 1px solid #8c997f; color: var(--dr-ink); }
-.rsvpIntro { color: var(--dr-muted); font-size: 16px; line-height: 1.9; }
+.rsvpForm h3:not([data-rsvp-title]) { font-family: var(--font-dr-anastasia), cursive; font-size: clamp(34px, 5vw, 44px); font-weight: 400; line-height: 1.2; letter-spacing: 0; }
+.rsvpForm h3[data-rsvp-title] { font-family: var(--font-dr-noto), Georgia, serif; font-size: clamp(22px, 4vw, 26px); font-weight: 600; line-height: 1.4; letter-spacing: .06em; text-transform: uppercase; }
+.rsvpForm button[type="submit"] { font-family: var(--font-dr-noto), Georgia, serif; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
 .button { background: var(--dr-olive); color: #fbf7e8; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: background 200ms; }
 .button:hover { background: #4b502a; }
-.rsvpSearchButton { font-size: 12px; }
 .countdownNumber { font-size: clamp(28px, 5vw, 44px); line-height: 1.2; font-weight: 400; }
 .skipLink { background: var(--dr-paper); color: var(--dr-ink); }
 @media (max-width: 640px) {

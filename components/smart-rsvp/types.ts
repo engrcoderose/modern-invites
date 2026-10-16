@@ -67,6 +67,12 @@ export interface PartyResponse {
 
 export type AttendanceChoice = "attending" | "declined";
 
+export interface RsvpFieldOptions {
+  email?: boolean;
+  dietaryRestrictions?: boolean;
+  message?: boolean;
+}
+
 export interface GuestResponseDraft {
   guestId: number;
   status: AttendanceChoice | null;

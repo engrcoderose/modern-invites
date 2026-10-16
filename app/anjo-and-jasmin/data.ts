@@ -45,8 +45,8 @@ export interface MusicTrack {
 export type WeddingPlaylist = readonly [MusicTrack?, MusicTrack?, MusicTrack?, MusicTrack?];
 
 export const backgroundMusic: WeddingPlaylist = [
-  { title: "Bawat Daan — Ebe Dancel", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/Ebe%20Dancel%20-%20Bawat%20Daan.mp3" },
   { title: "Libu-libong Buwan", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/libu-libong-buwan.mp3" },
+  { title: "Bawat Daan — Ebe Dancel", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/Ebe%20Dancel%20-%20Bawat%20Daan.mp3" },
   { title: "Tahanan — El Manu", src: "https://assets.moderninvites.com/anjo-and-jasmin/music/El%20Manu%20-%20Tahanan.mp3" },
 ];
 
@@ -56,7 +56,7 @@ export interface GiftRegistry {
   url: `https://${string}`;
 }
 
-export const giftNote = "Your presence is a gift in itself. If you wish to give a gift, a financial contribution toward our future together would be deeply appreciated.";
+export const giftNote = "Your presence is a gift in itself. Should you wish to give a gift, a monetary gift to help us begin our new chapter together would be sincerely appreciated.";
 
 // Add the couple's actual registry links here when supplied.
 export const giftRegistries: GiftRegistry[] = [];

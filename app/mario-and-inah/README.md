@@ -10,6 +10,13 @@ Full-screen photo welcome → slideshow hero → floral countdown → full-width
 
 Imperial Script supplies names and main headings; Libre Baskerville supplies formal details, with Inter for prose and controls. Instrument Serif remains in the attire subtitle. The first gallery retains its rose-backed triptych. `ClosingGallerySection` presents seven configured photos on sage with ivory frames: a central portrait surrounded by four smaller moments and two wide images underneath. On mobile the centerpiece comes first, followed by paired photos. Both galleries retain distinct section and heading IDs. The venue card uses the uploaded `wedding-venue.jpg` from the client R2 designs folder.
 
+Each photo in the seven-image closing gallery opens a native-dialog viewer via
+`components/GalleryLightbox.tsx`. The viewer shows the complete photo, supports
+previous/next buttons and arrow keys, and closes with Escape, its close button,
+or the backdrop. Keyboard focus returns to the selected thumbnail and background
+scrolling pauses while the viewer is open. Only the selected enlarged photo mounts;
+the existing responsive thumbnail sizes, photo order, and crops remain intact.
+
 ## Files and content
 
 - `data/wedding.ts`: confirmed names, date, venue, directions, schedule, RSVP contact/deadline, attire palette, and pending music configuration.

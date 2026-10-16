@@ -1,5 +1,6 @@
 export { SmartRsvpFlow } from "./SmartRsvpFlow";
 export { OpenRsvpForm } from "./OpenRsvpForm";
+export { OpenRsvpFlow } from "./OpenRsvpFlow";
 export { usePartyResponse } from "./usePartyResponse";
 export { useSmartRsvp } from "./useSmartRsvp";
 export {

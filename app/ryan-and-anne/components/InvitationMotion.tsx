@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
 import { animate } from "motion";
 
 const revealTiming = { text: 0.85, image: 1.1, stagger: 0.1, maxDelay: 0.3 };
+const InvitationMotionContext = createContext(true);
+export const useInvitationMotion = () => useContext(InvitationMotionContext);
 
 // Progressive enhancement: server-rendered content stays visible without JS.
 export default function InvitationMotion({ children, className, enabled = true }: { children: ReactNode; className: string; enabled?: boolean }) {
@@ -77,5 +79,5 @@ export default function InvitationMotion({ children, className, enabled = true }
       media.removeEventListener("change", clear);
     };
   }, [enabled]);
-  return <div ref={root} className={className}>{children}</div>;
+  return <InvitationMotionContext.Provider value={enabled}><div ref={root} className={className}>{children}</div></InvitationMotionContext.Provider>;
 }

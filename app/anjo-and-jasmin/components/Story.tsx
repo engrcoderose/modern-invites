@@ -29,7 +29,7 @@ export default function Story() {
                 {wedding.story.title}
               </h2>
             </Reveal>
-            <div className="mt-8 grid grid-cols-2 items-start gap-3 sm:gap-5">
+            <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:grid-cols-2 sm:gap-5">
               {storyPhotos.map((photo, index) => (
                 <Reveal key={photo.alt} delay={0.1 + index * 0.12} y={40} scale={0.98}>
                   <figure>
@@ -38,12 +38,11 @@ export default function Story() {
                         src={photo.src}
                         alt={photo.alt}
                         fill
-                        sizes="(max-width: 1023px) 120vw, 800px"
+                        sizes="(max-width: 639px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 100px) / 2), (max-width: 1279px) calc(26.75vw - 68px), 277px"
                         style={{ objectPosition: index === 0 ? "18% 45%" : photo.position }}
                         className="object-cover"
                       />
                     </div>
-                    {index === 0 && <figcaption aria-label="Anjo and Jasmin" className="mt-4 text-right font-imperial text-4xl leading-none text-[rgb(var(--aj-accent-dark))] sm:text-5xl">A &amp; J</figcaption>}
                   </figure>
                 </Reveal>
               ))}

@@ -2,12 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import OpeningScreen from "./opening-screen";
+import BackgroundMusic, { type BackgroundMusicHandle } from "./background-music";
 import { useInvitationReveals } from "../hooks/use-invitation-reveals";
 
 export default function InvitationExperience({ children, cover }: { children: ReactNode; cover: ReactNode }) {
   const [enhanced, setEnhanced] = useState(false);
   const [opening, setOpening] = useState(true);
   const content = useRef<HTMLDivElement>(null);
+  const music = useRef<BackgroundMusicHandle>(null);
+  const startMusic = useCallback(() => { void music.current?.play(); }, []);
   const finishOpening = useCallback(() => {
     setOpening(false);
     // Move keyboard focus into the revealed invitation after removing the cover.
@@ -43,7 +46,8 @@ export default function InvitationExperience({ children, cover }: { children: Re
       <div ref={content} style={{ visibility: enhanced && opening ? "hidden" : "visible" }} inert={enhanced && opening} aria-hidden={enhanced && opening ? true : undefined}>
         {children}
       </div>
-      {enhanced && opening && <OpeningScreen onOpened={finishOpening} />}
+      {enhanced && opening && <OpeningScreen onOpening={startMusic} onOpened={finishOpening} />}
+      <BackgroundMusic ref={music} showControl={enhanced && !opening} />
     </>
   );
 }

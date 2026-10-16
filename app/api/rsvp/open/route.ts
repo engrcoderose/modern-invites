@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { OpenRsvpNameExistsError } from "@/features/rsvp/domain/open-rsvp-error";
+import { OpenRsvpAlreadyRespondedError, OpenRsvpNameAmbiguousError, OpenRsvpNameExistsError } from "@/features/rsvp/domain/open-rsvp-error";
 import { openRsvpSchema } from "@/features/rsvp/domain/open-rsvp";
 import { submitOpenRsvp } from "@/features/rsvp/application/submit-open-rsvp";
 import { createSupabaseOpenRsvpRepository } from "@/features/rsvp/infrastructure/supabase-open-rsvp-repository";
@@ -33,6 +33,8 @@ export async function POST(request: NextRequest) {
     if (result.status === "denied") return reply({ success: false, message: "Open RSVP is unavailable for this event." }, 403);
     return reply({ success: true, summary: result.summary }, 200);
   } catch (error) {
+    if (error instanceof OpenRsvpAlreadyRespondedError) return reply({ success: false, code: "ALREADY_RESPONDED", message: error.message }, 409);
+    if (error instanceof OpenRsvpNameAmbiguousError) return reply({ success: false, code: "AMBIGUOUS_NAME", message: error.message }, 409);
     if (error instanceof OpenRsvpNameExistsError) return reply({ success: false, message: error.message }, 409);
     return reply({ success: false, message: "We could not save your reply. Please try again." }, 500);
   }

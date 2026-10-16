@@ -22,8 +22,33 @@ The ceremony is November 22, 2026, at 2:00 PM in `Asia/Manila`. Countdown and sc
 
 Pending details remain unset:
 
-- Bride's parents, principal sponsors, veil/candle/cord sponsors, flower entourage, and coin bearer. Blank groups remain hidden; best man is explicitly not applicable.
-- Reception start time and any schedule events after the confirmed cocktail hour.
+- Bride's parents, veil/candle/cord sponsors, and flower entourage. Blank groups remain hidden; best man is explicitly not applicable.
+- The separate reception venue time remains unset; the confirmed day schedule
+  below provides the celebration timing.
+
+The October 16 entourage update adds the five confirmed principal sponsor pairs
+in the supplied order and Marcus Gavin Altair Villena as coin bearer. Names and
+honorifics are preserved in `data/entourage.ts`; the existing two-column sponsor
+layout keeps each pair on the same row.
+
+The October 16 schedule revision uses the supplied vertical reference layout:
+the supplied gold PNG artwork to the left of a dotted rule, followed by each time,
+event title, and description. The framed black surface, ivory copy, and Mea Culpa
+heading preserve this invitation's palette and typography. The five confirmed
+events are guest arrival at 1:30 PM, wedding ceremony at 2:00 PM, photo session at
+3:00 PM, welcome and refreshments at 4:30 PM, and a celebration of love at 5:00 PM.
+All event descriptions live in `data/wedding.ts`.
+`data/timeline-artwork.ts` maps the supplied church, rings, camera, drinks, and
+cake images to those five events. Static imports preserve content-hashed URLs;
+responsive Next Image sizing and contained frames preserve their proportions.
+
+`ScheduleTimeline` adapts Anjo and Jasmin's scroll-linked timeline motion: a gold
+line fills and a marker travels between measured milestone centers, opening each
+station ring once as it passes. Artwork and copy use the existing entry reveals.
+The effect starts after the envelope opens, remeasures when fonts or responsive
+layout change, and uses Motion values rather than React updates on each scroll
+frame. Reduced motion keeps the dotted track and all station rings static;
+schedule content remains visible without JavaScript.
 
 Metadata remains `noindex, nofollow` during review.
 

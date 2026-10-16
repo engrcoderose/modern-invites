@@ -17,7 +17,12 @@ user-supplied sage framed DR PNG appears on the formal invitation and in paper
 tint on the opening. Navigation uses the central black initials, cropped from
 the supplied black framed PNG without its oval. It uses continuous vertical
 scrolling and anchor navigation, with no
-photo slides, page turns, autoplay media, or borrowed client photographs.
+photo slides, page turns, or borrowed client photographs. The requested “The One”
+by Kodaline starts from the guest's Open action. After the cover handoff, a floating
+music-note button opens an ivory soundtrack card with the song, artist, playback
+status, and circular play/pause control, matching the supplied reference. Outside
+click and Escape dismiss the card; Escape returns focus to the note button.
+Direct section links leave music paused until requested.
 
 The opening matches the reference's 1.4-second monogram handoff and 1.6-second
 woodland dissolve, including the paper-to-original-sage monogram crossfade. The navigation and
@@ -58,10 +63,22 @@ Anastasia. The timeline, dress code, and FAQ are separate sections: ivory
 timeline, dark olive dress code with its inset double frame and pale text,
 then ivory FAQ.
 
-The RSVP section follows the reference's calligraphy **Kindly Reply** plaque,
-top ornament, and wider paper name-search card. Its lookup fields are disabled
-until this client's guest lookup is connected, matching the reference's draft
-state. An email RSVP fallback and confirmed deadline remain below the card.
+The RSVP section preserves the calligraphy **Kindly Reply** plaque, top ornament,
+and wider paper card. `components/rsvp-form.tsx` connects the shared `SmartRsvpFlow`
+to the existing invitation slug `darell-and-roselle` with `accessMode="open"`.
+Guests enter their name first, and a server check blocks names that already
+responded before the questions appear. Unanswered names proceed directly to the
+individual form without a household lookup, code, or prior guest-list entry.
+The shared flow provides validation, loading, retry, confirmation, and a second
+duplicate check during submission. Apply the manual name-first migration in
+`docs/rsvp-setup.md` before deploying this flow. An email fallback and confirmed
+deadline remain below the card.
+
+The RSVP embed opts into `openFormAppearance="minimal"`: a centered serif title,
+guest name and answer count, a name divider, transparent outlined fields in a
+single column, and Yes/No attendance choices on one row at all screen sizes.
+Contact number comes before email, followed by the existing optional questions.
+Other invitations retain the shared form's default presentation.
 
 Source: the supplied Wedding Invitation Questionnaire PDF. The wedding is
 16 December 2026; guest arrival is 1:30 PM, the church ceremony is 2:00 PM,
@@ -70,20 +87,32 @@ the ceremony's Philippine time (`2026-12-16T14:00:00+08:00`). RSVP deadline:
 16 October 2026. Venue links search Google Maps for the supplied venue names and
 addresses; they are not manually verified map pins.
 
-All entourage names retain the questionnaire's spelling. The candle sponsor is
-listed as **Bherose**, exactly as entered in that field. Do not infer a surname
-from the bridesmaid list. The 9 PM after-party text is in the questionnaire's
+The October 16 revision adds **Ma Lyn Do-oma** and **Nenita Terrestre** as principal
+sponsors and replaces the candle sponsor **Bherose** with **Mary Ann Salazar**.
+The separate bridesmaid **Bherose Buenavista** remains unchanged.
+The 9 PM after-party text is in the questionnaire's
 example column, so it is not a confirmed timeline item.
 
 The dress code is semi-formal, with no shorts, sando, or T-shirts. The
 questionnaire provides no color restrictions, gift preferences, hashtag, story,
-photos, soundtrack, or guest policies; these are omitted.
+photos, or guest policies; these are omitted. The soundtrack was confirmed in
+the October 16 revision.
 
-The RSVP fallback opens a prefilled email to the supplied contact. Guests still need to send
-their email. It does not save responses to a database. No Supabase event or guest
-list has been provisioned or accessed. Keep the route `noindex` during review.
+The email fallback opens a prefilled email to the supplied contact; guests still
+need to send it. The on-page form instead submits through the shared application
+endpoints. No Supabase event, guest list, credentials, or remote settings were
+accessed or changed. Local verification uses mocked API replies, so live saving
+and the existing admin configuration require manual verification. See
+`docs/rsvp-setup.md`. Keep the route `noindex` during review.
 
 ## Assets
+
+Music lives in `public/darell-and-roselle/music/the-one-1c086b6d.mp3`, a client-local
+copy of the existing repository track (SHA-256
+`1c086b6d51bce2f7b9f336f43377d7df04851d9c534f2dfe24af0878493d9455`).
+`components/background-music.tsx` adapts the established Ryan and Anne playback
+pattern to this invitation's olive and paper colors. Audio loops at 40% volume,
+uses `preload="none"`, and provides manual retry feedback if playback fails.
 
 All runtime assets and styles are client-local. The opening uses the user's
 `opening-swan-lake-hd.webp`; later woodland sections reuse the reference background.

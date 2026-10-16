@@ -1,6 +1,6 @@
 import Section from "../components/section";
 import { Ornament } from "../components/artwork";
-import RsvpSearch from "../components/rsvp-search";
+import RsvpForm from "../components/rsvp-form";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
 
@@ -19,11 +19,11 @@ export default function Rsvp() {
           <h2 className={`${styles.script} whitespace-nowrap text-center text-[clamp(32px,5.2vw,44px)]`}>Kindly Reply</h2>
         </div>
         <div className={`${styles.rsvpCard} px-[22px] py-9 sm:px-[44px]`}>
-          <p className={styles.rsvpIntro}>Find your invitation to let us know if you can join us.</p>
-          <RsvpSearch />
+          <RsvpForm />
+          <noscript><p className="mt-4 text-sm leading-7">Please enable JavaScript to use the RSVP form, or reply by email below.</p></noscript>
         </div>
         <p id="dr-rsvp-availability" className="mx-auto mt-6 max-w-[520px] text-xs leading-[1.9]">
-          Invitation lookup will be available soon. Please <a href={emailHref} className="underline underline-offset-4">RSVP by email</a> by {wedding.rsvpDeadline}.
+          Please reply by {wedding.rsvpDeadline}. Need help? You can also <a href={emailHref} className="underline underline-offset-4">RSVP by email</a>.
         </p>
       </div>
     </Section>

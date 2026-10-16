@@ -8,10 +8,10 @@ import type {
   SubmitResponse,
   SubmitRsvpPayload,
 } from "./types";
-import type { OpenRsvpInput } from "@/features/rsvp/domain/open-rsvp";
+import type { OpenRsvpInput, OpenRsvpNameInput, OpenRsvpNameResult } from "@/features/rsvp/domain/open-rsvp";
 
 export class RsvpApiError extends Error {
-  constructor(message: string, readonly status: number) { super(message); }
+  constructor(message: string, readonly status: number, readonly code?: string) { super(message); }
 }
 
 async function postJson<T>(url: string, body: unknown): Promise<T> {
@@ -34,15 +34,25 @@ async function postJson<T>(url: string, body: unknown): Promise<T> {
   if (!response.ok) {
     const possibleError = result as {
       message?: string;
+      code?: string;
     };
 
     throw new RsvpApiError(
       possibleError.message || "The request could not be completed.",
       response.status,
+      possibleError.code,
     );
   }
 
   return result;
+}
+
+export async function requestOpenRsvpNameCheck(input: OpenRsvpNameInput): Promise<OpenRsvpNameResult> {
+  const response = await postJson<{ success: boolean; result?: OpenRsvpNameResult; message?: string }>("/api/rsvp/open/check-name", input);
+  if (!response.success || !response.result || !["available", "responded", "ambiguous"].includes(response.result.status) || typeof response.result.fullName !== "string") {
+    throw new Error(response.message || "We could not check your name. Please try again.");
+  }
+  return response.result;
 }
 
 export async function requestRsvpAccess(
