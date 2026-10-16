@@ -3,6 +3,8 @@
 import { useRef, type KeyboardEvent, type PointerEvent } from "react";
 import { RotateCw } from "lucide-react";
 import { normalizeRotation, objectSize, resizeObject, rotateObject, type FloorObject, type MapPoint, type ResizeHandle } from "./object-transform";
+import { DEFAULT_CANVAS } from "../domain/seating-plan";
+import { objectPosition } from "./canvas-size";
 
 const handles: { id: ResizeHandle; x: number; y: number; name: string }[] = [
   { id: "nw", x: -1, y: -1, name: "top left" }, { id: "n", x: 0, y: -1, name: "top" },
@@ -11,11 +13,13 @@ const handles: { id: ResizeHandle; x: number; y: number; name: string }[] = [
   { id: "sw", x: -1, y: 1, name: "bottom left" }, { id: "w", x: -1, y: 0, name: "left" },
 ];
 
-export function ObjectTransformHandles({ item, scale, position, onChange }: {
+export function ObjectTransformHandles({ item, scale, position, onChange, canvas = DEFAULT_CANVAS }: {
   item: FloorObject; scale: number; position(event: PointerEvent<SVGGElement>): MapPoint | null; onChange(item: FloorObject): void;
+  canvas?: { width: number; height: number };
 }) {
   const gesture = useRef<{ item: FloorObject; start: MapPoint; handle: ResizeHandle | "rotate" } | undefined>(undefined);
   const size = objectSize(item);
+  const center = objectPosition(item, canvas);
   const table = "capacity" in item;
   const uniform = table && (item.shape === "round" || item.shape === "square");
   const padding = table ? 24 : 8;
@@ -29,9 +33,9 @@ export function ObjectTransformHandles({ item, scale, position, onChange }: {
     { x: rx + 34 * scale, y: 0, edgeX: rx, edgeY: 0 },
     { x: -rx - 34 * scale, y: 0, edgeX: -rx, edgeY: 0 },
   ].find(point => {
-    const x = item.x * 10 + point.x * Math.cos(angle) - point.y * Math.sin(angle);
-    const y = item.y * 7 + point.x * Math.sin(angle) + point.y * Math.cos(angle);
-    return x >= 22 * scale && x <= 1000 - 22 * scale && y >= 22 * scale && y <= 700 - 22 * scale;
+    const x = center.x + point.x * Math.cos(angle) - point.y * Math.sin(angle);
+    const y = center.y + point.x * Math.sin(angle) + point.y * Math.cos(angle);
+    return x >= 22 * scale && x <= canvas.width - 22 * scale && y >= 22 * scale && y <= canvas.height - 22 * scale;
   }) ?? { x: 0, y: -ry - 34 * scale, edgeX: 0, edgeY: -ry };
 
   function start(event: PointerEvent<SVGGElement>, handle: ResizeHandle | "rotate") {
@@ -46,7 +50,7 @@ export function ObjectTransformHandles({ item, scale, position, onChange }: {
     const active = gesture.current, point = position(event);
     if (!active || !point || !event.currentTarget.hasPointerCapture(event.pointerId)) return;
     event.stopPropagation();
-    onChange(active.handle === "rotate" ? rotateObject(active.item, active.start, point, event.shiftKey)
+    onChange(active.handle === "rotate" ? rotateObject(active.item, active.start, point, event.shiftKey, canvas)
       : resizeObject(active.item, active.handle, { x: point.x - active.start.x, y: point.y - active.start.y }));
   }
   function stop(event: PointerEvent<SVGGElement>) {
@@ -73,7 +77,7 @@ export function ObjectTransformHandles({ item, scale, position, onChange }: {
     onKeyDown: (event: KeyboardEvent<SVGGElement>) => keyboard(event, handle),
     onClick: (event: React.MouseEvent<SVGGElement>) => event.stopPropagation(),
   });
-  return <g transform={`translate(${item.x * 10} ${item.y * 7}) rotate(${item.rotation ?? 0})`} aria-label={`Adjust ${item.name}`}>
+  return <g transform={`translate(${center.x} ${center.y}) rotate(${item.rotation ?? 0})`} aria-label={`Adjust ${item.name}`}>
     <rect x={-rx} y={-ry} width={rx * 2} height={ry * 2} rx="5" fill="none" stroke="#173d32" strokeDasharray="5 4" pointerEvents="none" />
     <path d={`M ${rotationHandle.edgeX} ${rotationHandle.edgeY} L ${rotationHandle.x} ${rotationHandle.y}`} stroke="#173d32" strokeDasharray="4 3" pointerEvents="none" />
     <g transform={`translate(${rotationHandle.x} ${rotationHandle.y}) scale(${scale})`} {...interaction("rotate")} aria-label={`Rotate ${item.name}`} aria-valuemin={0} aria-valuemax={359} aria-valuenow={item.rotation ?? 0} aria-valuetext={`${item.rotation ?? 0} degrees. Arrow keys rotate; Shift snaps in 15 degree steps; Home resets.`} className="cursor-grab focus:outline-none focus:[&>circle]:stroke-[4px] active:cursor-grabbing">

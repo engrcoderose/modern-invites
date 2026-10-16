@@ -1,6 +1,7 @@
 import type { SeatingLandmark, SeatingTable } from "../domain/seating-plan";
 import { VENUE_OBJECTS } from "../domain/venue-objects.ts";
 import { tableDimensions } from "./table-geometry.ts";
+import { DEFAULT_CANVAS } from "../domain/seating-plan.ts";
 
 export type FloorObject = SeatingTable | SeatingLandmark;
 export type ResizeHandle = "n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw";
@@ -37,8 +38,8 @@ export function resizeObject(item: FloorObject, handle: ResizeHandle, delta: Map
   };
 }
 
-export function rotateObject(item: FloorObject, start: MapPoint, current: MapPoint, snap = false): FloorObject {
-  const center = { x: item.x * 10, y: item.y * 7 };
+export function rotateObject(item: FloorObject, start: MapPoint, current: MapPoint, snap = false, canvas = DEFAULT_CANVAS): FloorObject {
+  const center = { x: item.x / 100 * canvas.width, y: item.y / 100 * canvas.height };
   const angle = (point: MapPoint) => Math.atan2(point.y - center.y, point.x - center.x) * 180 / Math.PI;
   const rotation = (item.rotation ?? 0) + angle(current) - angle(start);
   return { ...item, rotation: normalizeRotation(snap ? Math.round(rotation / 15) * 15 : rotation) };

@@ -1,4 +1,9 @@
-export const VENUE_KINDS = ["entrance", "dance_floor", "couple", "stage", "bar", "door", "wall", "label", "area"] as const;
+export const VENUE_KINDS = [
+  "entrance", "dance_floor", "couple", "stage", "bar", "door", "wall", "label", "area",
+  "buffet_long", "buffet_square", "buffet_round", "buffet_oval", "pillar", "door_right", "door_left",
+  "dance_floor_round", "stage_half_round", "tent", "accessibility", "high_chair", "toilets", "toilet_booth",
+  "arrow", "target", "cake", "gifts", "tree",
+] as const;
 export type VenueKind = typeof VENUE_KINDS[number];
 
 export const VENUE_OBJECTS: Record<VenueKind, { name: string; width: number; height: number }> = {
@@ -11,4 +16,23 @@ export const VENUE_OBJECTS: Record<VenueKind, { name: string; width: number; hei
   wall: { name: "Wall", width: 160, height: 12 },
   label: { name: "Label", width: 130, height: 32 },
   area: { name: "Area", width: 180, height: 100 },
+  buffet_long: { name: "Long buffet table", width: 130, height: 50 },
+  buffet_square: { name: "Square buffet table", width: 65, height: 65 },
+  buffet_round: { name: "Round buffet table", width: 75, height: 75 },
+  buffet_oval: { name: "Ellipse buffet table", width: 130, height: 65 },
+  pillar: { name: "Pillar", width: 24, height: 24 },
+  door_right: { name: "Right door", width: 65, height: 65 },
+  door_left: { name: "Left door", width: 65, height: 65 },
+  dance_floor_round: { name: "Circular dance area", width: 100, height: 100 },
+  stage_half_round: { name: "Semicircular stage", width: 150, height: 75 },
+  tent: { name: "Tent", width: 120, height: 100 },
+  accessibility: { name: "Disability sign", width: 50, height: 60 },
+  high_chair: { name: "High chair sign", width: 50, height: 65 },
+  toilets: { name: "Toilet sign", width: 65, height: 60 },
+  toilet_booth: { name: "Toilet booth", width: 75, height: 75 },
+  arrow: { name: "Arrow", width: 35, height: 70 },
+  target: { name: "Target", width: 60, height: 60 },
+  cake: { name: "Cake", width: 65, height: 65 },
+  gifts: { name: "Gifts", width: 65, height: 65 },
+  tree: { name: "Tree", width: 70, height: 85 },
 };

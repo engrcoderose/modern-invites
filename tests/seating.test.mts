@@ -82,6 +82,21 @@ test("table dimensions are optional for legacy plans and reject invalid sizes", 
   }
 });
 
+test("map labels are optional booleans without removing names or changing legacy layouts", () => {
+  const original = { ...plan(), landmarks: [{ id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", name: "Tree", kind: "tree" as const, x: 50, y: 50 }] };
+  assert.deepEqual(planSchema.parse(original), original);
+  for (const showLabel of [true, false]) {
+    const document = { ...original, tables: original.tables.map(table => ({ ...table, showLabel })), landmarks: original.landmarks.map(item => ({ ...item, showLabel })) };
+    assert.deepEqual(planSchema.parse(document), document);
+    assert.equal(document.tables[0].name, "Family");
+    assert.equal(document.landmarks[0].name, "Tree");
+  }
+  for (const showLabel of [null, 0, 1, "false", {}]) {
+    assert.equal(planSchema.safeParse({ ...original, tables: [{ ...original.tables[0], showLabel }] }).success, false);
+    assert.equal(planSchema.safeParse({ ...original, landmarks: [{ ...original.landmarks[0], showLabel }] }).success, false);
+  }
+});
+
 test("all service packages survive authorized event creation and settings updates", async () => {
   for (const service of CLIENT_SERVICES) {
     const data = new FormData();

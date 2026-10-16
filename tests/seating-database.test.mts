@@ -108,7 +108,8 @@ test("venue update retains stored plans and supports publishing all new object t
   const update = await readFile(new URL("../supabase/migrations/20261005_seating_venue_objects.sql", import.meta.url), "utf8");
   await db.exec(update);
   assert.deepEqual((await db.query("select * from event_seating_plans where event_id=1")).rows, before);
-  const document = { ...plan(), landmarks: VENUE_KINDS.map((kind, index) => ({
+  const legacyKinds = VENUE_KINDS.filter(kind => ["entrance", "dance_floor", "couple", "stage", "bar", "door", "wall", "label", "area"].includes(kind));
+  const document = { ...plan(), landmarks: legacyKinds.map((kind, index) => ({
     id: `bbbbbbbb-bbbb-4bbb-8bbb-${String(index + 1).padStart(12, "0")}`, name: VENUE_OBJECTS[kind].name, kind,
     width: VENUE_OBJECTS[kind].width, height: VENUE_OBJECTS[kind].height, rotation: 90, x: 50, y: 50,
   })) };
@@ -267,4 +268,58 @@ test("unpublishing after deleted or declined guests preserves the stored draft a
   const stored = (await db.query<{ document: ReturnType<typeof plan> }>("select document from event_seating_plans where event_id=1")).rows[0].document;
   assert.equal(stored.tables[0].name, "Family");
   assert.equal(await publicCall("select get_published_seating_layout('example') result"), null);
+});
+
+test("expanded seating migration preserves legacy data and publishes a private-assignment layout with canvas", async () => {
+  await save(plan(), 0, true);
+  const before = (await db.query("select * from event_seating_plans")).rows;
+  const update = await readFile(new URL("../supabase/migrations/20261016_seating_elements_and_canvas.sql", import.meta.url), "utf8");
+  await db.exec(update); await db.exec(update);
+  assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
+  const legacy = await publicCall("select get_published_seating_layout('example') result");
+  assert.equal('canvas' in legacy!.plan!, false);
+  const document = { ...plan(), canvas: { width: 6000, height: 6000 }, tables: plan().tables.map(table => ({ ...table, shape: "half_round", x: 1.5, y: 99 })), landmarks: VENUE_KINDS.map((kind, index) => ({
+    id: `bbbbbbbb-bbbb-4bbb-8bbb-${String(index + 1).padStart(12, "0")}`, name: VENUE_OBJECTS[kind].name, kind, x: 50, y: 50,
+    width: VENUE_OBJECTS[kind].width, height: VENUE_OBJECTS[kind].height, rotation: 90,
+  })) };
+  await save(document, 1, true);
+  const published = await publicCall("select get_published_seating_layout('example') result");
+  assert.deepEqual(published!.plan, { ...document, assignments: [] });
+  for (const shape of ["curved", "chair_row"]) {
+    await save({ ...document, tables: document.tables.map(table => ({ ...table, shape })) }, shape === "curved" ? 2 : 3);
+  }
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  for (const canvas of [null, {}, { width: 999, height: 700 }, { width: 6001, height: 700 }, { width: 1000, height: 699 }, { width: 1000, height: 6001 }, { width: 1000.5, height: 700 }, { width: "1000", height: 700 }, { width: 1000, height: 700, extra: true }]) {
+    await assert.rejects(save({ ...document, canvas }, 4), /Invalid canvas dimensions|Invalid seating document/);
+  }
+  const landmarks = Array.from({ length: 200 }, (_, index) => ({ ...document.landmarks[0], id: `cccccccc-cccc-4ccc-8ccc-${String(index).padStart(12, "0")}` }));
+  await save({ ...document, landmarks }, 4);
+  await assert.rejects(save({ ...document, landmarks: [...landmarks, document.landmarks[1]] }, 5), /Seating limit exceeded/);
+  await assert.rejects(save({ ...document, tables: document.tables.map(table => ({ ...table, x: 101 })) }, 5), /Invalid table/);
+  for (const role of ["anon", "authenticated"]) {
+    await db.exec(`set role ${role}`);
+    await assert.rejects(db.query("select get_published_seating_layout('example')"), /permission denied/);
+    await db.exec("reset role");
+  }
+});
+
+test("optional-label migration retains stored layouts and publishes label visibility without guest assignments", async () => {
+  await save(plan(), 0, true);
+  const before = (await db.query("select * from event_seating_plans")).rows;
+  await db.exec(await readFile(new URL("../supabase/migrations/20261016_seating_elements_and_canvas.sql", import.meta.url), "utf8"));
+  const update = await readFile(new URL("../supabase/migrations/20261017_seating_optional_labels.sql", import.meta.url), "utf8");
+  await db.exec(update); await db.exec(update);
+  assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
+  const document = { ...plan(), canvas: { width: 2000, height: 1400 }, tables: plan().tables.map(table => ({ ...table, showLabel: false })), landmarks: [{ id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", name: "Tree", kind: "tree", x: 50, y: 50, showLabel: false }] };
+  await save(document, 1, true);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  for (const showLabel of [null, "false", 0, 1, {}]) {
+    await assert.rejects(save({ ...document, tables: document.tables.map(table => ({ ...table, showLabel })) }, 2), /Invalid table/);
+    await assert.rejects(save({ ...document, landmarks: document.landmarks.map(item => ({ ...item, showLabel })) }, 2), /Invalid venue object/);
+  }
+  const visible = { ...document, tables: document.tables.map(table => ({ ...table, showLabel: true })), landmarks: document.landmarks.map(item => ({ ...item, showLabel: true })) };
+  await save(visible, 2, true);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...visible, assignments: [] });
+  await db.exec("update event_members set role='viewer'");
+  await assert.rejects(save(document, 3), /not permitted/);
 });

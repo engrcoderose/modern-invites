@@ -7,7 +7,7 @@ import { Armchair, Map, QrCode, Save, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createFetchWithTimeout } from "@/lib/supabase/fetch-with-timeout";
 import type { AssignedDashboardEvent } from "@/features/dashboard/domain/client-dashboard";
-import { planSchema, savedSeatingSchema, TABLE_SHAPES, validateSeatingGuests, type SavedSeatingPlan, type SeatingGuest, type SeatingLandmark, type SeatingPlan, type SeatingTable } from "../domain/seating-plan";
+import { planSchema, savedSeatingSchema, TABLE_LABELS, MAX_VENUE_OBJECTS, validateSeatingGuests, type SavedSeatingPlan, type SeatingGuest, type SeatingLandmark, type SeatingPlan, type SeatingTable } from "../domain/seating-plan";
 import { FloorPlanView } from "./floor-plan-view";
 import { TableInspector } from "./table-inspector";
 import { GuestSeatingList } from "./guest-seating-list";
@@ -15,6 +15,11 @@ import { SeatingExports } from "./seating-exports";
 import { VENUE_OBJECTS } from "../domain/venue-objects";
 import { VenueMenu } from "./venue-menu";
 import { seatAssignmentIssue } from "../domain/seat-assignment";
+import { CanvasControls } from "./canvas-controls";
+import { canvasSize } from "./canvas-size";
+import { historyShortcut } from "../domain/plan-history";
+import { isHistoryField, isHistoryTextField, usePlanHistory } from "./use-plan-history";
+import { HistoryControls } from "./history-controls";
 
 const tabs = [{ id: "floor", label: "Floor plan", icon: Map }, { id: "guests", label: "Guests & tables", icon: Users }, { id: "exports", label: "QR & exports", icon: QrCode }] as const;
 type Tab = (typeof tabs)[number]["id"];
@@ -24,7 +29,7 @@ export function SeatingWorkspace({ event, initial, guests }: {
 }) {
   const router = useRouter();
   const [saved, setSaved] = useState(initial);
-  const [plan, setPlan] = useState(initial.plan);
+  const { plan, update: recordPlan, replace: replacePlan, undo, redo, canUndo, canRedo, beginGroup, endGroup } = usePlanHistory(initial.plan);
   const [tab, setTab] = useState<Tab>("floor");
   const [selectedId, setSelectedId] = useState<string>();
   const [pending, setPending] = useState(false);
@@ -43,10 +48,21 @@ export function SeatingWorkspace({ event, initial, guests }: {
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, [dirty]);
+  useEffect(() => {
+    if (disabled) return;
+    const shortcut = (event: KeyboardEvent) => {
+      const action = historyShortcut(event, isHistoryField(event.target));
+      if (!action) return;
+      event.preventDefault();
+      if ((action === "undo" ? undo : redo)()) { setMessage(""); setFailed(false); }
+    };
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, [disabled, undo, redo]);
 
   function update(next: SeatingPlan) {
     if (disabled) return;
-    setPlan(next); setMessage(""); setFailed(false);
+    recordPlan(next); setMessage(""); setFailed(false);
   }
   function changeItem(item: SeatingTable | SeatingLandmark) {
     update({ ...plan, tables: plan.tables.map(table => table.id === item.id && "capacity" in item ? item : table), landmarks: plan.landmarks.map(landmark => landmark.id === item.id && "kind" in item ? item : landmark) });
@@ -57,13 +73,13 @@ export function SeatingWorkspace({ event, initial, guests }: {
   }
   function addTable(shape: SeatingTable["shape"]) {
     if (plan.tables.length >= 100) { setMessage("The limit is 100 tables."); return; }
-    const table: SeatingTable = { id: crypto.randomUUID(), name: `Table ${plan.tables.length + 1}`, shape, capacity: 8, color: "#88a999", rotation: 0, x: 20 + plan.tables.length % 4 * 20, y: 25 + Math.floor(plan.tables.length / 4) % 3 * 25 };
+    const table: SeatingTable = { id: crypto.randomUUID(), name: `${shape === "chair_row" ? "Row" : "Table"} ${plan.tables.length + 1}`, shape, capacity: shape === "chair_row" ? 5 : shape === "half_round" || shape === "curved" ? 4 : 8, color: "#88a999", rotation: 0, x: 20 + plan.tables.length % 4 * 20, y: 25 + Math.floor(plan.tables.length / 4) % 3 * 25 };
     update({ ...plan, tables: [...plan.tables, table] }); setSelectedId(table.id);
   }
   function addLandmark(kind: SeatingLandmark["kind"]) {
-    if (plan.landmarks.length >= 20) { setMessage("The limit is 20 venue objects."); return; }
+    if (plan.landmarks.length >= MAX_VENUE_OBJECTS) { setMessage(`The limit is ${MAX_VENUE_OBJECTS} venue objects.`); return; }
     const config = VENUE_OBJECTS[kind];
-    const item: SeatingLandmark = { id: crypto.randomUUID(), name: config.name, kind, width: config.width, height: config.height, rotation: 0,
+    const item: SeatingLandmark = { id: crypto.randomUUID(), name: config.name, kind, showLabel: kind === "label", width: config.width, height: config.height, rotation: 0,
       x: 50, y: kind === "entrance" || kind === "door" ? 90 : kind === "stage" || kind === "couple" ? 12 : 50 };
     update({ ...plan, landmarks: [...plan.landmarks, item] }); setSelectedId(item.id);
   }
@@ -73,8 +89,9 @@ export function SeatingWorkspace({ event, initial, guests }: {
     setSelectedId(undefined); setMessage("Object removed. Guests from that table are now unassigned. Save to keep this change.");
   }
   function duplicateItem() {
-    if (!selected || ("capacity" in selected ? plan.tables.length >= 100 : plan.landmarks.length >= 20)) return;
-    const copy = { ...selected, id: crypto.randomUUID(), name: `${selected.name.slice(0, 53)} (copy)`, x: Math.min(92, selected.x + 8), y: Math.min(92, selected.y + 8) };
+    if (!selected || ("capacity" in selected ? plan.tables.length >= 100 : plan.landmarks.length >= MAX_VENUE_OBJECTS)) return;
+    const canvas = canvasSize(plan);
+    const copy = { ...selected, id: crypto.randomUUID(), name: `${selected.name.slice(0, 53)} (copy)`, x: Math.min(100 - 80 / canvas.width * 100, selected.x + 80 / canvas.width * 100), y: Math.min(100 - 56 / canvas.height * 100, selected.y + 56 / canvas.height * 100) };
     update("capacity" in copy ? { ...plan, tables: [...plan.tables, copy] } : { ...plan, landmarks: [...plan.landmarks, copy] });
     setSelectedId(copy.id);
   }
@@ -105,14 +122,20 @@ export function SeatingWorkspace({ event, initial, guests }: {
       if (!parsedResult.success) throw new Error("We couldn’t confirm the saved plan. Reload to check the latest version before saving again.");
       const next = parsedResult.data;
       setSaved(next);
-      if (publish !== false) setPlan(next.plan);
+      if (publish !== false) replacePlan(next.plan);
       setMessage(publish === true ? "Plan saved and published. Guests can now find their table." : publish === false ? "Guest page unpublished. Your plan is kept." : "Draft saved. The guest page keeps its last published layout.");
     } catch (error) {
       setFailed(true); setMessage(error instanceof Error && error.name !== "AbortError" ? error.message : "We couldn’t confirm the save. Your edits are still here. Reload to check the latest version before saving again.");
     } finally { setPending(false); }
   }
 
-  return <div className="space-y-6">
+  return <div data-seating-workspace className="space-y-6"
+    onPointerDownCapture={event => { if (!disabled && event.button === 0 && event.target instanceof Element && event.target.closest('svg[aria-label="Wedding venue floor plan"], input[type="range"]')) beginGroup("pointer"); }}
+    onPointerUpCapture={() => endGroup("pointer")} onPointerCancelCapture={() => endGroup("pointer")} onLostPointerCapture={() => endGroup("pointer")}
+    onFocusCapture={event => { if (!disabled && isHistoryTextField(event.target)) beginGroup("field"); }}
+    onBlurCapture={event => { if (isHistoryTextField(event.target)) endGroup("field"); }}
+    onKeyDownCapture={event => { if (!disabled && !event.repeat && event.target instanceof Element && event.target.closest('svg[aria-label="Wedding venue floor plan"], input[type="range"]') && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home"].includes(event.key)) beginGroup("keyboard"); }}
+    onKeyUpCapture={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home"].includes(event.key)) endGroup("keyboard"); }}>
     <div className="flex flex-wrap items-start justify-between gap-4">
       <div><p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-eucalyptus-dark"><Armchair aria-hidden="true" className="size-4" /> Seat Finder</p>
         <h1 className="mt-2 font-elegant text-4xl text-forest sm:text-5xl">{event.name}</h1>
@@ -127,14 +150,18 @@ export function SeatingWorkspace({ event, initial, guests }: {
     </div>
     <div className="flex flex-wrap gap-3 text-sm">{[`${plan.tables.length} tables`, `${plan.assignments.length} seated guests`, `${unassigned} unassigned`, `${overCapacity} over capacity`].map(label => <span key={label} className="rounded-full border bg-white px-4 py-2 text-forest">{label}</span>)}</div>
     {message && <p role={failed ? "alert" : "status"} className={`rounded-lg border p-4 text-sm ${failed ? "border-destructive/30 bg-destructive/5 text-destructive" : "bg-sage-50 text-forest"}`}>{message}</p>}
-    <nav aria-label="Seat Finder tools" className="flex flex-wrap gap-2">{tabs.map(({ id, label, icon: Icon }) => <Button key={id} type="button" variant={tab === id ? "default" : "outline"} aria-pressed={tab === id} onClick={() => setTab(id)} className={tab === id ? "bg-forest text-white" : "bg-white"}><Icon aria-hidden="true" className="size-4" />{label}</Button>)}</nav>
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <nav aria-label="Seat Finder tools" className="flex flex-wrap gap-2">{tabs.map(({ id, label, icon: Icon }) => <Button key={id} type="button" variant={tab === id ? "default" : "outline"} aria-pressed={tab === id} onClick={() => setTab(id)} className={tab === id ? "bg-forest text-white" : "bg-white"}><Icon aria-hidden="true" className="size-4" />{label}</Button>)}</nav>
+      <HistoryControls disabled={disabled} canUndo={canUndo} canRedo={canRedo} onUndo={() => { if (!disabled) { undo(); setMessage(""); setFailed(false); } }} onRedo={() => { if (!disabled) { redo(); setMessage(""); setFailed(false); } }} />
+    </div>
     {tab === "floor" && <>
       <fieldset disabled={disabled} className="flex flex-wrap items-center gap-2 rounded-xl border bg-white p-3 disabled:opacity-60"><legend className="sr-only">Add floor plan objects</legend>
-        {TABLE_SHAPES.map(shape => <Button key={shape} type="button" variant="outline" onClick={() => addTable(shape)}>+ {shape[0].toUpperCase() + shape.slice(1)} table</Button>)}
-        <VenueMenu disabled={disabled} onAdd={addLandmark} onAddOval={() => addTable("oval")} />
+        {(["round", "square", "long", "oval"] as const).map(shape => <Button key={shape} type="button" variant="outline" onClick={() => addTable(shape)}>+ {TABLE_LABELS[shape]}</Button>)}
+        <VenueMenu disabled={disabled} onAdd={addLandmark} onAddTable={addTable} />
       </fieldset>
+      <CanvasControls plan={plan} disabled={disabled} onChange={update} />
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
-        <div className="min-w-0"><FloorPlanView plan={plan} guests={guests} selectedId={selectedId} editable={!disabled} onSelect={setSelectedId} onMove={moveItem} onTransform={changeItem} /><p className="mt-2 text-xs text-ink-muted">Hover over a table to see its guests. Select an object, then drag its circular handles to resize or the top arrow to rotate. Hold Shift to snap rotation. Filled chairs indicate numbered seat assignments. Select a table to see seat numbers. Zoom in for finer adjustments.</p></div>
+        <div className="min-w-0"><FloorPlanView fillWidth plan={plan} guests={guests} selectedId={selectedId} editable={!disabled} onSelect={setSelectedId} onMove={moveItem} onTransform={changeItem} /><p className="mt-2 text-xs text-ink-muted">Hover over a table to see its guests. Select an object, then drag its circular handles to resize or the top arrow to rotate. Hold Shift to snap rotation. Filled chairs indicate numbered seat assignments. Select a table to see seat numbers. Zoom in for finer adjustments.</p></div>
         {selected ? <TableInspector item={selected} plan={plan} guests={guests} disabled={disabled} onChange={changeItem} onDelete={removeItem} onDuplicate={duplicateItem} onClose={() => setSelectedId(undefined)} onAssign={assignGuest} /> : <div className="rounded-xl border border-dashed p-5 text-sm leading-6 text-ink-muted">Select a table or venue object to edit its details and position.</div>}
       </div>
     </>}

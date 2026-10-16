@@ -63,7 +63,7 @@ export function ClientShell({
         <ClientNavigation hasSeatFinder={hasSeatFinder} />
       </div>
 
-      <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 has-[[data-seating-workspace]]:max-w-none">
         {children}
       </main>
     </div>
