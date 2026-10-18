@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/anjo-and-jasmin",
+        has: [
+          {
+            type: "host",
+            value: "(?:www\\.)?moderninvites\\.com",
+          },
+        ],
+        destination: "https://anjoandjasminwedding.moderninvites.com",
+        permanent: true,
+      },
+      {
         source: "/darelle-and-roselle",
         destination: "/darell-and-roselle",
         permanent: true,

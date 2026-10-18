@@ -27,3 +27,9 @@ test("limits can increase or decrease to the current guest count, but never belo
   assert.equal(householdCapacityError(1, 0), null);
   assert.match(householdCapacityError(3, 4)!, /4 guests already/);
 });
+
+test("a household with 28 guests can request a maximum of 29", () => {
+  const command = householdSettingsSchema.parse({ ...input, maximumGuests: "29" });
+  assert.equal(command.maximumGuests, 29);
+  assert.equal(householdCapacityError(command.maximumGuests, 28), null);
+});

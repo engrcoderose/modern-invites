@@ -7,6 +7,31 @@ import {
 } from "next/experimental/testing/server.js";
 import nextConfig from "../next.config.ts";
 
+test("the old main-site invitation URLs permanently redirect to the final subdomain", async () => {
+  for (const host of ["moderninvites.com", "www.moderninvites.com"]) {
+    const response = await unstable_getResponseFromNextConfig({
+      url: `https://${host}/anjo-and-jasmin?ref=invitation`,
+      nextConfig,
+    });
+    assert.equal(response.status, 308);
+    assert.equal(getRedirectUrl(response), "https://anjoandjasminwedding.moderninvites.com/?ref=invitation");
+    assert.equal(getRewrittenUrl(response), null);
+  }
+});
+
+test("old URLs with a trailing slash reach the final domain after Next.js normalizes the path", async () => {
+  for (const host of ["moderninvites.com", "www.moderninvites.com"]) {
+    const normalized = await unstable_getResponseFromNextConfig({
+      url: `https://${host}/anjo-and-jasmin/?ref=invitation`,
+      nextConfig,
+    });
+    assert.equal(normalized.status, 308);
+    assert.equal(getRedirectUrl(normalized), `https://${host}/anjo-and-jasmin?ref=invitation`);
+    const redirected = await unstable_getResponseFromNextConfig({ url: getRedirectUrl(normalized)!, nextConfig });
+    assert.equal(getRedirectUrl(redirected), "https://anjoandjasminwedding.moderninvites.com/?ref=invitation");
+  }
+});
+
 test("Anjo and Jasmin's subdomain serves the invitation without redirecting", async () => {
   const response = await unstable_getResponseFromNextConfig({
     url: "https://anjoandjasminwedding.moderninvites.com/?ref=invitation",
@@ -46,5 +71,6 @@ test("the subdomain's APIs, assets and existing invitation path are not rewritte
       nextConfig,
     });
     assert.equal(getRewrittenUrl(response), null);
+    assert.equal(getRedirectUrl(response), null);
   }
 });

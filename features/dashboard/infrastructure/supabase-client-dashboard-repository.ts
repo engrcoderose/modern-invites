@@ -3,6 +3,7 @@ import { readWithServiceCompatibility } from "@/features/services/infrastructure
 
 import { GuestManagementError } from "@/features/dashboard/application/manage-dashboard-guests";
 import { householdCapacityError } from "@/features/dashboard/domain/household-settings";
+import { householdPersistenceError } from "./household-persistence-error";
 
 import type {
   AssignedDashboardEvent,
@@ -365,11 +366,11 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
       .maybeSingle();
 
     if (error) {
-      throw new Error("Unable to verify the household.");
+      throw householdPersistenceError(error, "read");
     }
 
     if (!data) {
-      throw new Error("The selected household was not found.");
+      throw new GuestManagementError("not_found", "The selected household was not found. Refresh the guest list and try again.");
     }
 
     return data as unknown as HouseholdRow;
@@ -660,8 +661,15 @@ export async function createSupabaseClientDashboardRepository(): Promise<ClientD
         .select("id")
         .maybeSingle();
 
-      if (error || !data) {
-        throw new Error("Unable to update the household.");
+      if (error) {
+        throw householdPersistenceError(error, "update");
+      }
+
+      if (!data) {
+        throw new GuestManagementError(
+          "unexpected",
+          "The household changed or is no longer editable. Refresh the guest list and check your edit access before trying again.",
+        );
       }
     },
 
