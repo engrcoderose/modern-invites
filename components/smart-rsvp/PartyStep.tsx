@@ -15,6 +15,7 @@ import type {
   SearchMatch,
 } from "./types";
 import { usePartyResponse } from "./usePartyResponse";
+import { RsvpClosedNotice } from "./RsvpClosedNotice";
 
 export interface PartyDisplayOptions {
   appearance?: "card" | "minimal";
@@ -24,6 +25,9 @@ export interface PartyDisplayOptions {
 }
 
 interface PartyStepProps {
+  closedMessage?: string;
+  closedAppearance?: "card" | "minimal";
+  closedTitleClassName?: string;
   display?: PartyDisplayOptions;
   fields?: RsvpFieldOptions;
   event: EventInformation;
@@ -36,6 +40,9 @@ interface PartyStepProps {
 }
 
 export function PartyStep({
+  closedMessage,
+  closedAppearance,
+  closedTitleClassName,
   display,
   fields,
   event,
@@ -64,6 +71,7 @@ export function PartyStep({
     exceedsMaximum,
     isSubmitting,
     submissionError,
+    rsvpClosed,
     summary,
     setEmail,
     setPhone,
@@ -77,6 +85,8 @@ export function PartyStep({
     selectedMatch,
     party,
   });
+
+  if (rsvpClosed) return <RsvpClosedNotice message={closedMessage} appearance={closedAppearance ?? display?.appearance} titleClassName={closedTitleClassName} />;
 
   if (summary) {
     return (

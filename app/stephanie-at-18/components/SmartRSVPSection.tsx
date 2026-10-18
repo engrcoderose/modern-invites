@@ -38,6 +38,8 @@ export default function SmartRSVPSection({
           <SmartRsvpFlow
             eventSlug={eventSlug}
             theme={debutSmartRsvpTheme}
+            closedTitleClassName="font-meaCulpa text-5xl font-normal leading-tight"
+            closedMessage="Sorry, RSVPs for this celebration are already closed. Kindly contact Stephanie or the event organizer directly."
           />
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { TimelineChurch, TimelinePhotos, TimelineCocktails, TimelineParty, TimelineDinner, TimelineProgram } from "./design-media";
 import { photoCatalog as photos } from "./photo-catalog";
 
+export const prenupVideoSrc = "https://assets.moderninvites.com/anjo-and-jasmin/video/pre-wedding-film-2026-10-18.mp4";
+
 export const heroSlides = [
   { ...photos.BonfireDance, mobilePhoto: photos.BonfireDance, mobilePosition: "85% 45%" },
   { ...photos.SunlitEmbrace, mobilePhoto: photos.SunlitPortrait, mobilePosition: "65% 45%" },

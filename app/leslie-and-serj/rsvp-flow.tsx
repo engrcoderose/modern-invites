@@ -14,6 +14,8 @@ import {
   usePartyResponse,
   useSmartRsvp,
   SmartRsvpFlow,
+  RsvpClosedNotice,
+  coupleRsvpClosedMessage,
   weddingSmartRsvpTheme,
   type PartyInformation,
   type SearchMatch,
@@ -27,6 +29,10 @@ const inputClass =
 const buttonClass =
   "lj-button lj-button-solid inline-flex min-h-11 w-full items-center justify-center gap-3 px-5 py-3 disabled:opacity-50";
 const labelClass = "block text-left text-[11px] leading-relaxed tracking-wide";
+
+function ClosedRsvp() {
+  return <RsvpClosedNotice appearance="minimal" titleClassName="lj-heading" message={coupleRsvpClosedMessage} className="mt-7 text-[#414636]" />;
+}
 
 function ErrorMessage({ message }: { message: string }) {
   return message ? (
@@ -62,6 +68,8 @@ function PartyReply({
       Back to name search
     </button>
   );
+
+  if (response.rsvpClosed) return <ClosedRsvp />;
 
   if (response.summary) {
     return (
@@ -300,7 +308,8 @@ export default function RsvpFlow() {
     return () => entrance.stop();
   }, [hasParty, reducedMotion]);
 
-  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={weddingSmartRsvpTheme} />;
+  if (controller.rsvpClosed) return <ClosedRsvp />;
+  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={weddingSmartRsvpTheme} closedAppearance="minimal" closedTitleClassName="lj-heading" closedMessage={coupleRsvpClosedMessage} />;
 
   async function findInvitation() {
     if (busy) return;

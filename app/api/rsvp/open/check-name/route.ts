@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   if (!parsed.success) return reply({ success: false, message: parsed.error.issues[0].message }, 400);
   try {
     const result = await checkOpenRsvpName(createSupabaseRsvpEventAccessRepository(), createSupabaseOpenRsvpRepository(), parsed.data);
-    if (result.status === "closed") return reply({ success: false, message: "RSVPs for this event are currently closed." }, 403);
+    if (result.status === "closed") return reply({ success: false, message: "RSVPs for this event are currently closed.", code: "RSVP_CLOSED" }, 403);
     if (result.status === "denied") return reply({ success: false, message: "Open RSVP is unavailable for this event." }, 403);
     return reply({ success: true, result }, 200);
   } catch {

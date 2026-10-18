@@ -38,6 +38,7 @@ export default function Page() {
         <EntourageSection />
         <GallerySection />
         <CelebrationSection />
+        <PhotoBreakSection id="timeline-photo-break" photo={photos.afterTimeline} title={wedding.couple.display} cinematic />
         <AttireSection />
         <GiftRegistrySection />
         <PhotoBreakSection id="photo-break" photo={photos.closing} title="Our next chapter begins with you." />

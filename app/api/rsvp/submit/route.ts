@@ -354,6 +354,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           message: "RSVPs for this event are currently closed.",
+          code: "RSVP_CLOSED",
         },
         { status: 403 },
       );

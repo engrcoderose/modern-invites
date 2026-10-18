@@ -10,9 +10,15 @@ import styles from "../styles/invitation.module.css";
 const slideInterval = 3000;
 const fadeDuration = 0.9;
 const zoomDuration = slideInterval + fadeDuration * 1000;
-// Landscape photos cover the viewport height, 96px parallax overscan, and 3% zoom.
-// The minimum also covers the content height in short landscape viewports.
-const imageSizes = "max(103vw, calc(155dvh + 150px), 790px)";
+// Account for each source's aspect ratio, parallax overscan and 3% zoom.
+// Phones reserve the 64px navigation and retain 48px bottom overscan.
+// The 510px floor covers the hero content in short landscape viewports.
+function imageSizes(photo: (typeof heroPhotos)[number]) {
+  const ratio = photo.src && typeof photo.src !== "string" ? photo.src.width / photo.src.height : 1.5;
+  const mobileSizes = `max(103vw, calc(${(103 * ratio).toFixed(1)}dvh - ${(16 * 1.03 * ratio).toFixed(1)}px), ${Math.ceil((510 - 16) * 1.03 * ratio)}px)`;
+  const desktopSizes = `max(103vw, calc(${(103 * ratio).toFixed(1)}dvh + ${(99 * ratio).toFixed(1)}px), ${Math.ceil(510 * 1.03 * ratio)}px)`;
+  return `(max-width: 639px) ${mobileSizes}, ${desktopSizes}`;
+}
 
 export default function HeroSlideshow() {
   const frame = useRef<HTMLDivElement>(null);
@@ -125,14 +131,15 @@ export default function HeroSlideshow() {
   }
 
   return (
-    <div ref={frame} role="region" aria-roledescription="carousel" aria-label="Wedding photographs" className="absolute inset-0"
+    // On phones, begin the photo below the 64px navigation instead of behind it.
+    <div ref={frame} role="region" aria-roledescription="carousel" aria-label="Wedding photographs" className="absolute inset-x-0 bottom-0 top-16 sm:top-0"
       onFocusCapture={event => { if (!(event.target as HTMLElement).closest("[data-slideshow-playback]")) pausePlayback(); }}
       onKeyDown={event => {
         if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
         event.preventDefault();
         selectSlide((active + (event.key === "ArrowRight" ? 1 : heroPhotos.length - 1)) % heroPhotos.length);
       }}>
-      <ParallaxLayer background>
+      <ParallaxLayer background backgroundInsets="top-0 -bottom-12 sm:-inset-y-12">
       {/* Keep visited photos mounted in a fixed order so a swap never moves image layers. */}
       {mounted.map(index => (
         <div key={heroPhotos[index].id} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${heroPhotos.length}`} aria-hidden={index !== active}
@@ -145,11 +152,11 @@ export default function HeroSlideshow() {
           onTransitionEnd={event => {
             if (event.target === event.currentTarget && event.propertyName === "opacity" && index === active) setPrevious(null);
           }}>
-          <div className={`${index === active || index === previous ? styles.slideshowZoom : ""} absolute inset-0`} style={{
+          <div className={`${index === active || index === previous ? styles.slideshowZoom : ""} absolute inset-0 origin-top sm:origin-center`} style={{
             animationDuration: `${zoomDuration}ms`,
             animationPlayState: playing && (index === active || index === previous) ? "running" : "paused",
           }}>
-            <PhotoFrame photo={heroPhotos[index]} sizes={imageSizes} fullBleed
+            <PhotoFrame photo={heroPhotos[index]} sizes={imageSizes(heroPhotos[index])} fullBleed
               onLoad={event => void loadSlide(index, event)} onError={() => handleError(index)} />
           </div>
         </div>

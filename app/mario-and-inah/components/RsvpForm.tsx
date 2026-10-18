@@ -2,6 +2,7 @@
 
 import { SmartRsvpFlow } from "@/components/smart-rsvp/SmartRsvpFlow";
 import type { SmartRsvpTheme } from "@/components/smart-rsvp/theme";
+import { coupleRsvpClosedMessage } from "@/components/smart-rsvp/RsvpClosedNotice";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
 
@@ -21,6 +22,7 @@ export default function RsvpForm() {
       eventSlug={wedding.rsvp.eventSlug}
       accessMode="name_search"
       allowUnlistedReplies={false}
+      closedMessage={coupleRsvpClosedMessage}
       theme={theme}
       className="mx-auto w-full"
       searchAppearance="minimal"

@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import attireImage from "../assets/photos/attire-inspiration.webp";
 
 const baseUrl = "https://assets.moderninvites.com/mario-and-inah/images/designs";
 
@@ -23,7 +24,7 @@ const timelineLower = designImage("hero-right-upper-flower.webp", 478, 480);
 
 export const artwork = { heroLeft, heroRight, countdownLeft, countdownRight, entouragePattern, entourageBouquet, entourageLeft, entourageRight, venueLine, venueUpper, venueLower, timelineUpper, timelineLower };
 
-export const attireInspiration = designImage("attire inspo.png", 1536, 1024);
+export const attireInspiration = attireImage;
 
 export const rosePainting = designImage("gallery-rose-painting.png", 1198, 605);
 

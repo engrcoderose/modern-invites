@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 import { AccessStep } from "./AccessStep";
 import { InitializationStep } from "./InitializationStep";
+import { RsvpClosedNotice } from "./RsvpClosedNotice";
 import { OpenRsvpFlow } from "./OpenRsvpFlow";
 import { PartyStep, type PartyDisplayOptions } from "./PartyStep";
 import { SearchStep, type SearchHeaderOptions } from "./SearchStep";
@@ -25,6 +26,9 @@ interface SmartRsvpFlowProps {
   openFormAppearance?: "card" | "minimal";
   partyDisplay?: PartyDisplayOptions;
   fields?: RsvpFieldOptions;
+  closedMessage?: string;
+  closedAppearance?: "card" | "minimal";
+  closedTitleClassName?: string;
 }
 
 type SmartRsvpThemeProperties = CSSProperties & {
@@ -60,6 +64,9 @@ export function SmartRsvpFlow({
   openFormAppearance,
   partyDisplay,
   fields,
+  closedMessage,
+  closedAppearance,
+  closedTitleClassName,
 }: SmartRsvpFlowProps) {
   const {
     stage,
@@ -73,6 +80,7 @@ export function SmartRsvpFlow({
     isSearching,
     loadingInvitationId,
     accessError,
+    rsvpClosed,
     searchError,
     partyError,
     updateRsvpCode,
@@ -84,6 +92,16 @@ export function SmartRsvpFlow({
     returnToSearch,
     reset,
   } = useSmartRsvp(eventSlug, accessMode);
+  const noticeAppearance = closedAppearance ?? searchAppearance ?? openFormAppearance;
+  const noticeTitleClassName = closedTitleClassName ?? searchHeader?.titleClassName;
+
+  if (rsvpClosed) {
+    return (
+      <div className={cn("w-full", className)} style={createThemeProperties(theme)}>
+        <RsvpClosedNotice message={closedMessage} appearance={noticeAppearance} titleClassName={noticeTitleClassName} />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -125,10 +143,13 @@ export function SmartRsvpFlow({
         />
       )}
 
-      {allowUnlistedReplies && (stage === "open" || stage === "search") && event?.accessMode === "open" && <OpenRsvpFlow key={event.slug} event={event} fields={fields} appearance={openFormAppearance} />}
+      {allowUnlistedReplies && (stage === "open" || stage === "search") && event?.accessMode === "open" && <OpenRsvpFlow key={event.slug} event={event} fields={fields} appearance={openFormAppearance} closedMessage={closedMessage} closedAppearance={noticeAppearance} closedTitleClassName={noticeTitleClassName} />}
 
       {stage === "party" && event && party && selectedMatch && (
         <PartyStep
+          closedMessage={closedMessage}
+          closedAppearance={noticeAppearance}
+          closedTitleClassName={noticeTitleClassName}
           display={partyDisplay}
           fields={fields}
           event={event}

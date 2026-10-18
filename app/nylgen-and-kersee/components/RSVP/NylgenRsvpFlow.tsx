@@ -21,6 +21,8 @@ import {
   usePartyResponse,
   useSmartRsvp,
   SmartRsvpFlow,
+  RsvpClosedNotice,
+  coupleRsvpClosedMessage,
   nylgenKerseeSmartRsvpTheme,
 } from "@/components/smart-rsvp";
 
@@ -69,6 +71,10 @@ function PaperPanel({ children, className = "" }: PaperPanelProps) {
       {children}
     </div>
   );
+}
+
+function ClosedRsvp() {
+  return <PaperPanel><RsvpClosedNotice appearance="minimal" message={coupleRsvpClosedMessage} titleClassName="font-wedding-display text-4xl font-normal" className="font-wedding-body text-wedding-sage-deep" /></PaperPanel>;
 }
 
 function LoadingPanel({
@@ -310,6 +316,7 @@ function PartyPanel({
     exceedsMaximum,
     isSubmitting,
     submissionError,
+    rsvpClosed,
     summary,
     setEmail,
     setPhone,
@@ -328,6 +335,8 @@ function PartyPanel({
     event.preventDefault();
     void submitResponse();
   }
+
+  if (rsvpClosed) return <ClosedRsvp />;
 
   if (summary) {
     const submittedGuest = party.guests[0];
@@ -682,7 +691,8 @@ export function NylgenRsvpFlow({
   confirmationMessage,
 }: NylgenRsvpFlowProps) {
   const controller = useSmartRsvp(eventSlug, "name_search");
-  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={nylgenKerseeSmartRsvpTheme} />;
+  if (controller.rsvpClosed) return <ClosedRsvp />;
+  if (controller.event?.accessMode === "open") return <SmartRsvpFlow eventSlug={eventSlug} accessMode="open" theme={nylgenKerseeSmartRsvpTheme} closedMessage={coupleRsvpClosedMessage} closedTitleClassName="font-wedding-display text-4xl font-normal" />;
 
   return (
     <AnimatePresence mode="wait">

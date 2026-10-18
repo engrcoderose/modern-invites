@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 
 import {
   SmartRsvpFlow,
+  coupleRsvpClosedMessage,
   weddingSmartRsvpTheme,
 } from "@/components/smart-rsvp";
 
@@ -81,6 +82,8 @@ export default function RSVPForm({
             <SmartRsvpFlow
               eventSlug={eventSlug}
               theme={weddingSmartRsvpTheme}
+              closedMessage={coupleRsvpClosedMessage}
+              closedTitleClassName="font-libreBaskerville text-2xl font-bold italic"
               className="max-w-2xl"
             />
           </motion.div>

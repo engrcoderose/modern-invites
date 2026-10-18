@@ -6,6 +6,7 @@ import { ArrowDown } from "lucide-react";
 import { PrenupPoster } from "../photo-media";
 import { UmbrellaWalk } from "../prenup-media";
 import { prenupVideoStartedEvent } from "../lib/events";
+import { prenupVideoSrc } from "../media";
 import SectionPetals from "./SectionPetals";
 import Reveal from "./motion/Reveal";
 
@@ -72,8 +73,8 @@ export default function PrenupVideo({ active = true }: { active?: boolean }) {
             window.dispatchEvent(new Event(prenupVideoStartedEvent));
           }}
         >
-          <source src="/videos/anjo-and-jasmin/prenup.mp4" type="video/mp4" />
-          Your browser does not support embedded video. <a href="/videos/anjo-and-jasmin/prenup.mp4">Watch the prenup video</a>.
+          <source src={prenupVideoSrc} type="video/mp4" />
+          Your browser does not support embedded video. <a href={prenupVideoSrc}>Watch the prenup video</a>.
         </video>
       </Reveal>
       <a href="#top" aria-label="Continue to the wedding invitation" className="absolute bottom-7 left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center gap-3 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">

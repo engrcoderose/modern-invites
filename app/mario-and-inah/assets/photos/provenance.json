@@ -1,0 +1,171 @@
+{
+  "origin": "User-supplied Mario & Inah wedding photographs and attire reference",
+  "processing": "EXIF orientation applied; resized within 2560 × 2560 without enlargement; WebP quality 85, effort 6; metadata stripped. Originals preserved.",
+  "images": [
+    {
+      "file": "attire-inspiration.webp",
+      "source": "../Mario&Inah - Wedding/attire inspo.png",
+      "sourceSha256": "8c6ee9fd3669f2c7b1b545b66a578076f7cb2b945f6a36618c2001dde740ede0",
+      "sourceBytes": 1738370,
+      "width": 1536,
+      "height": 1024,
+      "bytes": 106572,
+      "sha256": "49e0b2da0dadc8b4c39c886b64b4e5310efef2bb1303bbd90d6b10df02c45535"
+    },
+    {
+      "file": "img_2546.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2546.JPG",
+      "sourceSha256": "bdaf1ea49531dc2647413cf14b06b2d206148c1472bf9ec905a3bb301b00fc1c",
+      "sourceBytes": 7127146,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 67802,
+      "sha256": "5855bd619f1fc7d9595b45a4eff922cc700cf45838b908b53314222fe36c974a",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2546.webp"
+    },
+    {
+      "file": "img_2547.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2547.JPG",
+      "sourceSha256": "f7bacd2529c3e7472460baed8c32032d22f0dc112ca43fdbd75f570df64d9cea",
+      "sourceBytes": 6914906,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 51296,
+      "sha256": "5345fcb05c1fefcefa44a7981413f038bfadfd5ba76da2a7f684146a212948f5",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2547.webp"
+    },
+    {
+      "file": "img_2551.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2551.JPG",
+      "sourceSha256": "69146d2e56556107a1ef99acff8ccb1ec8aca9df565037d713ce5d5f405b03c9",
+      "sourceBytes": 7551565,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 79822,
+      "sha256": "c49b04409d34a30e51370a529327b375a4acb30669b8fd523877f012cd402a4e",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2551.webp"
+    },
+    {
+      "file": "img_2552.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2552.JPG",
+      "sourceSha256": "7626097e1ba2b710c6418b46587dd14c356ae4469c5c994aad084b6f7182824d",
+      "sourceBytes": 7183733,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 59948,
+      "sha256": "511425847e93860a85f55680e52e21da4a4a595c9ea7564be1aff297840486be",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2552.webp"
+    },
+    {
+      "file": "img_2561.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2561.JPG",
+      "sourceSha256": "0155e636755d6b1f8967726be98d177a7dcf3105ecc1f6b1b59f271d264fc301",
+      "sourceBytes": 7024693,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 63704,
+      "sha256": "b04604f769e4fa958d1229f0c7974fbcb47a0e345bc9aab971d3c2228c5eed2d",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2561.webp"
+    },
+    {
+      "file": "img_2562.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2562.JPG",
+      "sourceSha256": "f6a49b586e61910326d3280217a8ee1c8574f081284b120bc29d6fb360cd70a2",
+      "sourceBytes": 7171057,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 57944,
+      "sha256": "93206290772dddf3c125a574fa632acabb65c77620bb2d4f30a9b52f1bcf5378",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2562.webp"
+    },
+    {
+      "file": "img_2566.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2566.JPG",
+      "sourceSha256": "34321068a111f3976eb86cae1593d6edbc1de1a1dd57dd9bd0c1860dba5e3790",
+      "sourceBytes": 8852796,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 335906,
+      "sha256": "c3a3cb2a62b6effa95c3a7c3631dcf04ba0c534d2620721ddedf4eee90a87f85",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2566.webp"
+    },
+    {
+      "file": "img_2572.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2572.JPG",
+      "sourceSha256": "2ae38ec61557c68ebf52b1b127b882e9b70238a36fdf3c8d03639c828b9f56a3",
+      "sourceBytes": 8983359,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 324052,
+      "sha256": "79249a1ea9f7b02b498fcd8518bb58c876cdea7059c091b3e24d3afee50f8933",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2572.webp"
+    },
+    {
+      "file": "img_2578.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2578.JPG",
+      "sourceSha256": "e843267868c8655d343eed0af624fc4766e2ed29b3089b9084e4edfba84920b9",
+      "sourceBytes": 9118245,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 410916,
+      "sha256": "2d5c06bea1f6336de9ac334047ec83cafb286a755bd9801f37f132c89820ae13",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2578.webp"
+    },
+    {
+      "file": "img_2584.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2584.JPG",
+      "sourceSha256": "444327e10bde495702d690dd050630c04efbd5451a3e4e4c993ab5fa9bb82da5",
+      "sourceBytes": 8740290,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 295132,
+      "sha256": "c0b9ed7ef162d44055c0f10c85e97ea68390513d15f0304b1f0b566225c5807d",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2584.webp"
+    },
+    {
+      "file": "img_2587.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2587.JPG",
+      "sourceSha256": "23aaac48a9189453450984cabb5e6ef7ee4efeea4164700af07165fe989ba8a4",
+      "sourceBytes": 7862409,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 199066,
+      "sha256": "76fb1556b5bdd04bfd61302fa75777d68ace7cc34d11cffaf79444eeec845df6",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2587.webp"
+    },
+    {
+      "file": "img_2594.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2594.JPG",
+      "sourceSha256": "f7eda5ed876ecd784809d1808f5a3a9f913c646dd27844338da9f1e98e888362",
+      "sourceBytes": 6733057,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 120518,
+      "sha256": "95611660e3a0100fe57d22a651b115ff42b56fb5c42e0adde97531c35dc42cdc",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2594.webp"
+    },
+    {
+      "file": "img_2598.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2598.JPG",
+      "sourceSha256": "3b7e24544fbec893fe12f562d6a4d2045d4533079f84c81bcf01f247a430a518",
+      "sourceBytes": 8415367,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 261910,
+      "sha256": "ab08d5e3b7f4da2b75e2feaf9ab0b4a1087f1c38f918172ad2733e52353d15a0",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2598.webp"
+    },
+    {
+      "file": "img_2637.webp",
+      "source": "../Mario&Inah - Wedding/IMG_2637.JPG",
+      "sourceSha256": "27356e55ba0f5483b6b0100dd1cf96688bed43d711289dbab166a61d3b7ee6bf",
+      "sourceBytes": 9305148,
+      "width": 1707,
+      "height": 2560,
+      "bytes": 390976,
+      "sha256": "05adfd2aa4a0db6351325c0d48aeff11ca2013992141cdd1ede277324d82f7f3",
+      "url": "https://assets.moderninvites.com/mario-and-inah/images/prenups/img_2637.webp"
+    }
+  ],
+  "storage": "Prenup WebP images are hosted on R2; local optimized copies were removed after byte-for-byte verification. The attire WebP remains local. Source paths and hashes are retained as historical provenance."
+}

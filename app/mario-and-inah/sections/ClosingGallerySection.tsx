@@ -47,7 +47,6 @@ export default function ClosingGallerySection() {
             );
           })}
         </div>
-        {closingGalleryPhotos.some(photo => photo.sample) && <p data-reveal="text" className="mt-6 text-center text-xs leading-6">Sample photographs · Mario &amp; Inah’s photos to follow.</p>}
       </div>
       <GalleryLightbox dialog={dialog} photos={closingGalleryPhotos} selected={selected} open={open}
         onClose={() => {

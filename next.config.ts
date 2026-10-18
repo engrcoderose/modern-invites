@@ -40,6 +40,16 @@ const nextConfig: NextConfig = {
           has: [
             {
               type: "host",
+              value: "anjoandjasminwedding\\.moderninvites\\.com",
+            },
+          ],
+          destination: "/anjo-and-jasmin",
+        },
+        {
+          source: "/",
+          has: [
+            {
+              type: "host",
               value: "leslieandserjwedding\\.moderninvites\\.com",
             },
           ],
@@ -102,6 +112,13 @@ const nextConfig: NextConfig = {
         hostname: 'assets.moderninvites.com',
         port: '',
         pathname: '/mario-and-inah/images/designs/**',
+        search: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.moderninvites.com',
+        port: '',
+        pathname: '/mario-and-inah/images/prenups/**',
         search: '',
       },
       {

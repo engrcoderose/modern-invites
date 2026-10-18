@@ -6,13 +6,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { openRsvpSchema, type OpenRsvpInput } from "@/features/rsvp/domain/open-rsvp";
-import { requestOpenRsvpSubmission, RsvpApiError } from "./api";
+import { isRsvpClosedError, requestOpenRsvpSubmission, RsvpApiError } from "./api";
+import { RsvpClosedNotice } from "./RsvpClosedNotice";
 import type { EventInformation, RsvpFieldOptions } from "./types";
 
 const defaultFieldClass = "min-h-11 border-[var(--smart-rsvp-border)] bg-white text-base focus-visible:ring-[var(--smart-rsvp-accent)]";
 const buttonClass = "min-h-11 bg-[var(--smart-rsvp-heading)] px-6 text-white hover:bg-[var(--smart-rsvp-heading)] hover:opacity-90";
 
 interface OpenRsvpFormProps {
+  closedMessage?: string;
+  closedAppearance?: "card" | "minimal";
+  closedTitleClassName?: string;
+  onClosed?: () => void;
   event: EventInformation;
   fields?: RsvpFieldOptions;
   appearance?: "card" | "minimal";
@@ -23,7 +28,7 @@ interface OpenRsvpFormProps {
   onNameConflict?: (status: "responded" | "ambiguous") => void;
 }
 
-export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = requestOpenRsvpSubmission, preview = false, verifiedName, onNameConflict }: OpenRsvpFormProps) {
+export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = requestOpenRsvpSubmission, preview = false, verifiedName, onNameConflict, closedMessage, closedAppearance, closedTitleClassName, onClosed }: OpenRsvpFormProps) {
   const minimal = appearance === "minimal";
   const fieldClass = minimal
     ? "min-h-12 rounded-none border border-[var(--smart-rsvp-border-soft)] bg-transparent px-3 text-base shadow-none focus-visible:ring-[var(--smart-rsvp-accent)] sm:min-h-14 md:text-base"
@@ -33,6 +38,7 @@ export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = re
   const [pending, setPending] = useState(false);
   const [savedName, setSavedName] = useState("");
   const [error, setError] = useState("");
+  const [rsvpClosed, setRsvpClosed] = useState(false);
   const submitting = useRef(false);
   const receipt = useRef<{ payload: string; requestId: string } | null>(null);
   const confirmation = useRef<HTMLHeadingElement>(null);
@@ -67,6 +73,11 @@ export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = re
       setSavedName(parsed.data.fullName);
       requestAnimationFrame(() => confirmation.current?.focus());
     } catch (cause) {
+      if (isRsvpClosedError(cause)) {
+        setRsvpClosed(true);
+        onClosed?.();
+        return;
+      }
       if (cause instanceof RsvpApiError && onNameConflict && (cause.code === "ALREADY_RESPONDED" || cause.code === "AMBIGUOUS_NAME")) {
         onNameConflict(cause.code === "ALREADY_RESPONDED" ? "responded" : "ambiguous");
         return;
@@ -77,6 +88,8 @@ export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = re
       setPending(false);
     }
   }
+
+  if (rsvpClosed) return <RsvpClosedNotice message={closedMessage} appearance={closedAppearance ?? appearance} titleClassName={closedTitleClassName} />;
 
   return <section aria-label={`RSVP for ${event.name}`} className={minimal ? "text-[var(--smart-rsvp-heading)]" : "rounded-xl border border-[var(--smart-rsvp-border)] bg-white p-6 text-gray-800 sm:p-8"}>
     {savedName ? <div className="space-y-4 text-center">

@@ -3,6 +3,7 @@
 import { Search } from "lucide-react";
 import dynamic from "next/dynamic";
 import type { SmartRsvpTheme } from "@/components/smart-rsvp/theme";
+import { coupleRsvpClosedMessage } from "@/components/smart-rsvp/RsvpClosedNotice";
 import styles from "../styles/rsvp.module.css";
 
 const SmartRsvpFlow = dynamic(() => import("@/components/smart-rsvp/SmartRsvpFlow").then((module) => module.SmartRsvpFlow));
@@ -23,6 +24,7 @@ export default function RsvpFlow({ eventSlug, pendingMessage }: { eventSlug: str
       <SmartRsvpFlow
         eventSlug={eventSlug}
         accessMode="name_search"
+        closedMessage={coupleRsvpClosedMessage}
         theme={theme}
         searchAppearance="minimal"
         className={styles.flow}

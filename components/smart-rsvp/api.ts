@@ -14,6 +14,10 @@ export class RsvpApiError extends Error {
   constructor(message: string, readonly status: number, readonly code?: string) { super(message); }
 }
 
+export function isRsvpClosedError(error: unknown): error is RsvpApiError {
+  return error instanceof RsvpApiError && error.code === "RSVP_CLOSED";
+}
+
 async function postJson<T>(url: string, body: unknown): Promise<T> {
   const response = await fetch(url, {
     method: "POST",

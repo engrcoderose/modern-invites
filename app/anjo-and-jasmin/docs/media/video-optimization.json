@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-18",
+  "sourceFilename": "Anjo & Jasmin Pre-Wedding Film.mp4",
+  "sourceBytes": 1785436076,
+  "optimizedFilename": "pre-wedding-film-2026-10-18.mp4",
+  "localCopyRetained": false,
+  "optimizedBytes": 86307741,
+  "reductionPercent": 95.17,
+  "sha256": "d278f480985bdb8adc310c243410bd8c0740d60b6faaddc6a5ef96d86aedfb65",
+  "video": {
+    "codec": "H.264",
+    "profile": "High",
+    "level": "4.1",
+    "width": 1920,
+    "height": 1080,
+    "frameRate": "24000/1001",
+    "frames": 7050,
+    "preset": "slow",
+    "crf": 23,
+    "maximumBitrateKbps": 2500,
+    "bufferKbits": 5000,
+    "maximumKeyframeInterval": 48,
+    "pixelFormat": "yuv420p",
+    "colorSpace": "bt709"
+  },
+  "audio": {
+    "codec": "AAC-LC",
+    "bitrateKbps": 128,
+    "sampleRate": 48000,
+    "channels": 2
+  },
+  "fastStart": true,
+  "mp4Boxes": [
+    {
+      "type": "ftyp",
+      "offset": 0,
+      "bytes": 32
+    },
+    {
+      "type": "moov",
+      "offset": 32,
+      "bytes": 200281
+    },
+    {
+      "type": "free",
+      "offset": 200313,
+      "bytes": 8
+    },
+    {
+      "type": "mdat",
+      "offset": 200321,
+      "bytes": 86107420
+    }
+  ],
+  "verification": {
+    "fullVideoAndAudioDecode": "Passed without decoder errors",
+    "visualComparisonSeconds": [
+      45,
+      150,
+      270
+    ],
+    "lint": "Passed",
+    "targetedTypeScript": "Passed",
+    "originalModified": false,
+    "browserPlayback": {
+      "environment": "Local optimized file in headless Chrome; invitation player markup checked separately with inert visual wrappers.",
+      "viewports": [
+        390,
+        1440
+      ],
+      "seekSeconds": [
+        45,
+        150,
+        270
+      ],
+      "loop": true,
+      "unmute": true,
+      "decodeErrors": null
+    },
+    "invitationPlayer": {
+      "beforeOpeningVideoRequests": 0,
+      "preload": "none",
+      "controls": true,
+      "muted": true,
+      "playsInline": true,
+      "viewportWidths": [
+        390,
+        1440
+      ],
+      "horizontalOverflow": false
+    }
+  },
+  "reproduction": "ffmpeg -i \"Anjo & Jasmin Pre-Wedding Film.mp4\" -map 0:v:0 -map 0:a:0 -c:v libx264 -preset slow -crf 23 -maxrate 2500k -bufsize 5000k -threads 4 -pix_fmt yuv420p -profile:v high -level:v 4.1 -refs 4 -g 48 -keyint_min 24 -c:a aac -b:a 128k -movflags +faststart -map_metadata -1 pre-wedding-film-2026-10-18.mp4",
+  "publicUrl": "https://assets.moderninvites.com/anjo-and-jasmin/video/pre-wedding-film-2026-10-18.mp4",
+  "r2Verification": {
+    "date": "2026-10-18",
+    "status": 200,
+    "contentType": "video/mp4",
+    "bytes": 86307741,
+    "sizeMatchesOptimizedFile": true,
+    "etag": "6f193e13c1d37112ce674956c35720ac",
+    "etagMatchesLocalMd5": true,
+    "rangeStatus": 206,
+    "contentRange": "bytes 0-1023/86307741",
+    "rangeMatchesLocalBytes": true
+  }
+}

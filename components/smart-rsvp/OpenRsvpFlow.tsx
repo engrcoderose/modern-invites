@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { openRsvpNameSchema, type OpenRsvpInput, type OpenRsvpNameInput, type OpenRsvpNameResult } from "@/features/rsvp/domain/open-rsvp";
-import { requestOpenRsvpNameCheck } from "./api";
+import { isRsvpClosedError, requestOpenRsvpNameCheck } from "./api";
+import { RsvpClosedNotice } from "./RsvpClosedNotice";
 import { OpenRsvpForm } from "./OpenRsvpForm";
 import type { EventInformation, RsvpFieldOptions } from "./types";
 
 interface Props {
+  closedMessage?: string;
+  closedAppearance?: "card" | "minimal";
+  closedTitleClassName?: string;
   event: EventInformation;
   fields?: RsvpFieldOptions;
   appearance?: "card" | "minimal";
@@ -19,12 +23,13 @@ interface Props {
   preview?: boolean;
 }
 
-export function OpenRsvpFlow({ event, fields, appearance = "card", onCheckName = requestOpenRsvpNameCheck, onSubmit, preview = false }: Props) {
+export function OpenRsvpFlow({ event, fields, appearance = "card", onCheckName = requestOpenRsvpNameCheck, onSubmit, preview = false, closedMessage, closedAppearance, closedTitleClassName }: Props) {
   const id = useId();
   const [name, setName] = useState("");
   const [result, setResult] = useState<OpenRsvpNameResult | null>(null);
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState("");
+  const [rsvpClosed, setRsvpClosed] = useState(false);
   const pending = useRef(false);
   const input = useRef<HTMLInputElement>(null);
   const notice = useRef<HTMLHeadingElement>(null);
@@ -42,6 +47,7 @@ export function OpenRsvpFlow({ event, fields, appearance = "card", onCheckName =
       setResult(checked);
       requestAnimationFrame(() => notice.current?.focus());
     } catch (cause) {
+      if (isRsvpClosedError(cause)) setRsvpClosed(true);
       setError(cause instanceof Error ? cause.message : "We could not check your name. Please try again.");
     } finally { pending.current = false; setChecking(false); }
   }
@@ -51,8 +57,11 @@ export function OpenRsvpFlow({ event, fields, appearance = "card", onCheckName =
     requestAnimationFrame(() => input.current?.focus());
   }
 
+  if (rsvpClosed) return <RsvpClosedNotice message={closedMessage} appearance={closedAppearance ?? appearance} titleClassName={closedTitleClassName} />;
+
   if (result?.status === "available") return <>
     <OpenRsvpForm key={result.fullName} event={event} fields={fields} appearance={appearance} verifiedName={result.fullName} preview={preview} onSubmit={onSubmit}
+      closedMessage={closedMessage} closedAppearance={closedAppearance} closedTitleClassName={closedTitleClassName} onClosed={() => setRsvpClosed(true)}
       onNameConflict={(status) => {
         setResult({ status, fullName: result.fullName });
         requestAnimationFrame(() => notice.current?.focus());

@@ -29,7 +29,6 @@
 .openButton:hover, .openButton:focus-visible, .openButton[aria-busy="true"] { color: var(--mi-ink); }
 .openButton:hover::before, .openButton:focus-visible::before, .openButton[aria-busy="true"]::before { transform: scaleX(1); }
 .openButton:focus-visible { outline: 2px solid var(--mi-ivory); outline-offset: 6px; }
-.hint { color: color-mix(in srgb, var(--mi-ivory) 65%, transparent); font-size: .53rem; letter-spacing: .23em; text-transform: uppercase; }
 .content[data-opening="true"] [data-hero-copy] { visibility: hidden; }
 @media (max-height: 500px) {
   .names { font-size: clamp(2.6rem, 12dvh, 4.5rem); line-height: .9; }

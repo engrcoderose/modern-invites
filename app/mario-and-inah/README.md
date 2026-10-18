@@ -6,7 +6,7 @@ A continuous photo-first floral invitation matching the user-pinned reference at
 
 ## Current sequence
 
-Full-screen photo welcome → slideshow hero → floral countdown → full-width photograph → sage botanical entourage → rose-backed photo triptych → lilac venue with blush card → schedule → attire → gift registry → closing photograph → Frequently Asked Questions → second gallery → RSVP → footer.
+Full-screen photo welcome → slideshow hero → floral countdown → full-width photograph → sage botanical entourage → rose-backed photo triptych → lilac venue with blush card → schedule → sunglasses portrait photo break → attire → gift registry → closing photograph → Frequently Asked Questions → second gallery → RSVP → footer.
 
 Imperial Script supplies names and main headings; Libre Baskerville supplies formal details, with Inter for prose and controls. Instrument Serif remains in the attire subtitle. The first gallery retains its rose-backed triptych. `ClosingGallerySection` presents seven configured photos on sage with ivory frames: a central portrait surrounded by four smaller moments and two wide images underneath. On mobile the centerpiece comes first, followed by paired photos. Both galleries retain distinct section and heading IDs. The venue card uses the uploaded `wedding-venue.jpg` from the client R2 designs folder.
 
@@ -20,10 +20,10 @@ the existing responsive thumbnail sizes, photo order, and crops remain intact.
 ## Files and content
 
 - `data/wedding.ts`: confirmed names, date, venue, directions, schedule, RSVP contact/deadline, attire palette, and pending music configuration.
-- `data/photos.ts` and `data/sample-photos.ts`: client-local photo placement, dimensions, focal positions and sample provenance. Stable shared URLs under `https://assets.moderninvites.com/placeholder-images/prenups/` reuse the user-selected collection also used by Vincent & Gabrielle.
+- `data/photos.ts` and `data/opening.ts`: placements, focal positions and descriptive alternatives for all 14 supplied couple photos. Photos use public R2 URLs under `https://assets.moderninvites.com/mario-and-inah/images/prenups/`, with their verified 1707 × 2560 dimensions retained for responsive sizing. The unused local prenup WebP copies have been removed; `assets/photos/` retains the locally imported attire illustration and photo provenance.
 - `data/entourage.ts`: confirmed names and separately recorded pending roles.
 - `data/guest-information.ts`: the supplied monetary-gift note and eight FAQs. The RSVP deadline comes from `data/wedding.ts`. `GiftRegistrySection` and `FaqSection` reuse the floral artwork, theme and content reveals; FAQs use the shared accessible accordion. Navigation links include both sections, with the mobile menu retained through tablet widths.
-- `data/artwork.ts` and `components/FloralArtwork.tsx`: R2-hosted floral cutouts, pattern, attire illustration, gallery painting and venue photograph. `assets/provenance.json` consolidates source records, sidecar metadata and exact generation prompts; embedded origins are retained.
+- `data/artwork.ts` and `components/FloralArtwork.tsx`: R2-hosted floral cutouts, pattern, gallery painting and venue photograph, plus the locally optimized attire illustration. `assets/provenance.json` consolidates source records, sidecar metadata and exact generation prompts; embedded origins are retained.
 - `sections/` and `components/`: focused sections, photo frames, countdown and backend-connected RSVP.
 - `styles/invitation.module.css`: scoped typography, colors and decoration; simple layouts use Tailwind in JSX.
 - `DESIGN.md`, `.impeccable/design.json` and `docs/direction.md`: current client-only system and reference contract.
@@ -113,3 +113,23 @@ Targeted ESLint and TypeScript checks passed for this addition. Browser CDP was 
 
 All 16 design images now load from https://assets.moderninvites.com/mario-and-inah/images/designs/ through the existing Next Image optimizer. Verified dimensions, responsive sizes, image qualities and the shared 31-day cache remain intact. Public R2 downloads matched local SHA-256 hashes before local copies were removed. URLs, dimensions and hashes are recorded in assets/provenance.json. Change filenames when replacing artwork to avoid stale cached images. Music and RSVP are unchanged.
 
+
+## Supplied photo update — October 17, 2026
+
+All 14 photographs and the attire illustration from `assets/Mario&Inah - Wedding/` were optimized into `assets/photos/`. Original source paths and hashes remain recorded. EXIF orientation was applied before resizing to a maximum 2560px edge; WebP quality 85 removed unnecessary metadata. Total source size was 112,722,141 bytes; optimized sources totaled 2,825,564 bytes (97.49% smaller). This is a source-asset comparison, not measured deployment bandwidth or a page-load payload. After the 14 prenup uploads were verified byte-for-byte on R2, their unused local WebP copies were removed, freeing 2,718,992 bytes. The attire WebP remains locally imported. `assets/photos/provenance.json` retains dimensions, processing, source hashes, output hashes and the public photo URLs.
+
+The cover, four-slide hero, two photo breaks and both galleries use the supplied photographs. Each placement reuses one optimized source with Next Image responsive widths and the existing loading/decoding behavior. Hero sizing now uses the actual portrait aspect ratio, with parallax overscan and zoom included. Slideshow timing, transitions, controls, reduced motion, event details and RSVP integration are preserved. The attire reference uses its 1536px WebP source with the default Next Image quality; the shared image cache and quality allowlist are unchanged.
+
+Validation for this update: repository TypeScript, targeted invitation ESLint, `git diff --check`, and an isolated Next.js production build passed. Browser review covered 390px phone, 768px tablet and 1280/1440px desktop layouts, corrected wide portrait crops, image loading, responsive requests, opening, hero selection, gallery viewing, next-photo navigation and Escape dismissal. No horizontal overflow or broken images was found in the checked views. The final preview console returned no errors. Backend requests were stubbed locally; live RSVP/Supabase behavior was not tested.
+
+## Mobile hero headroom — October 18, 2026
+
+Below 640px, the slideshow frame starts below the 64px navigation. Its background keeps only bottom overscan, and zoom uses a top origin so it does not push heads upward. Responsive image sizes account for this smaller mobile frame. Desktop framing, photo positions, opacity transitions and controls are unchanged. `ParallaxLayer` accepts optional background inset utilities; its existing defaults remain intact for every other placement.
+
+Verified the supplied hero states at 390px, the first portrait at 467px and unchanged desktop framing at 1440px. No horizontal overflow or console errors appeared. TypeScript, targeted ESLint, the isolated production build and whitespace checks passed. The close-up source (`img_2594.webp`) itself crops the very top of Mario’s hair; positioning cannot recover pixels absent from that photo.
+
+## Closed RSVP message
+
+Confirmed RSVP closure shows **RSVP Closed** with “Sorry, this RSVP is already closed. Kindly contact the couple directly.” The shared flow recognizes the explicit `RSVP_CLOSED` code throughout access, search, invitation loading, name verification and submission. The notice uses Mario and Inah's existing minimal presentation, heading font and theme colors, displays a calendar-closed icon and omits retry for this state. Other errors retain the existing error message and retry control. See the [shared RSVP guidance](../../components/smart-rsvp/README.md) for theme and message options.
+
+Validation used simulated closed, temporary-failure and other forbidden responses in an isolated preview. All ten invitation RSVP implementations were checked at phone and desktop widths, along with closure during search, name verification and submission. The 48 RSVP tests, repository TypeScript, targeted ESLint, whitespace checks and the isolated production build passed. No live event settings or Supabase data were accessed or changed.

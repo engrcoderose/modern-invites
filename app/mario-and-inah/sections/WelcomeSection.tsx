@@ -51,7 +51,6 @@ export default function WelcomeSection({ enhanced, requested, closing, reducedMo
             <span className="relative">{requested ? "Opening invitation" : "Open the invitation"}</span>
             <span aria-hidden="true" className="relative text-[8px]">◆</span>
           </a>
-          <p className={`${styles.hint} mt-3`}>Tap anywhere to enter</p>
         </div>
       </div>
     </section>

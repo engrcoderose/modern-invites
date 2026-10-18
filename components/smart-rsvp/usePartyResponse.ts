@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { requestRsvpSubmission } from "./api";
+import { isRsvpClosedError, requestRsvpSubmission } from "./api";
 import type {
   AttendanceChoice,
   GuestResponseDraft,
@@ -47,6 +47,7 @@ export function usePartyResponse({
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState("");
+  const [rsvpClosed, setRsvpClosed] = useState(false);
   const [summary, setSummary] = useState<SubmissionSummary | null>(null);
 
   const answeredCount = party.guests.filter(
@@ -142,6 +143,7 @@ export function usePartyResponse({
 
       setSummary(result);
     } catch (error) {
+      if (isRsvpClosedError(error)) setRsvpClosed(true);
       setSubmissionError(
         error instanceof Error ? error.message : "Unable to save the RSVP.",
       );
@@ -161,6 +163,7 @@ export function usePartyResponse({
     exceedsMaximum,
     isSubmitting,
     submissionError,
+    rsvpClosed,
     summary,
     setEmail,
     setPhone,

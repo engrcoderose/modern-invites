@@ -20,7 +20,6 @@ export default function GallerySection({ id = "gallery", photos = galleryPhotos.
         <div className="grid grid-cols-3 items-center gap-3 sm:gap-7">
           {photos.map((photo, index) => <figure data-reveal="photo" data-reveal-delay={index * 0.06} key={photo.id}><PhotoFrame photo={photo} sizes="(min-width: 976px) 280px, (min-width: 640px) calc((100vw - 136px) / 3), calc((100vw - 72px) / 3)" className={index % 3 === 1 ? "aspect-[3/5]" : "aspect-[3/4]"} /><figcaption className="sr-only">{photo.caption}</figcaption></figure>)}
         </div>
-        {photos.some(photo => photo.sample) && <p data-reveal="text" className="mt-6 text-center text-xs leading-6">Sample photographs · Mario & Inah’s photos to follow.</p>}
       </div>
     </section>
   );

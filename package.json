@@ -10,7 +10,7 @@
     "test": "npm run test:rsvp && npm run test:auth && npm run test:client-auth && npm run test:clients && npm run test:dashboard && npm run test:seating && npm run test:marketing",
     "test:marketing": "node --experimental-strip-types --test tests/marketing-reveal.test.mts tests/package-inquiry.test.mts",
     "test:seating": "node --experimental-strip-types --test tests/seating.test.mts tests/seating-database.test.mts tests/client-services-compatibility.test.mts tests/table-geometry.test.mts tests/object-transform.test.mts tests/seating-canvas.test.mts tests/seating-history.test.mts",
-    "test:rsvp": "node --experimental-strip-types --test tests/rsvp-security.test.mts tests/rsvp-event-access.test.mts tests/rsvp-response-scope.test.mts tests/rsvp-name-search.test.mts tests/open-rsvp.test.mts tests/open-rsvp-database.test.mts",
+    "test:rsvp": "node --experimental-strip-types --test tests/rsvp-security.test.mts tests/rsvp-event-access.test.mts tests/rsvp-response-scope.test.mts tests/rsvp-name-search.test.mts tests/open-rsvp.test.mts tests/open-rsvp-database.test.mts tests/smart-rsvp-fields.test.mts",
     "test:auth": "node --experimental-strip-types --test tests/admin-auth.test.mts",
     "test:client-auth": "node --experimental-strip-types --test tests/client-auth.test.mts",
     "test:clients": "node --experimental-strip-types --test tests/client-provisioning.test.mts tests/admin-event-creation.test.mts tests/admin-event-management.test.mts",

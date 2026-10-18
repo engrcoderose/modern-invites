@@ -1,6 +1,6 @@
 "use client";
 
-import { SmartRsvpFlow } from "@/components/smart-rsvp";
+import { SmartRsvpFlow, coupleRsvpClosedMessage } from "@/components/smart-rsvp";
 import type { SmartRsvpTheme } from "@/components/smart-rsvp/theme";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
@@ -18,6 +18,7 @@ const theme: SmartRsvpTheme = {
 export default function RsvpForm() {
   return (
     <SmartRsvpFlow eventSlug={wedding.slug} accessMode="open" theme={theme} openFormAppearance="minimal"
+      closedMessage={coupleRsvpClosedMessage} closedTitleClassName="font-normal"
       className={[
         styles.rsvpForm,
         "[&>section]:rounded-none [&>section]:border-0 [&>section]:bg-transparent [&>section]:p-0 [&>section]:text-[var(--dr-ink)]",

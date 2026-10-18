@@ -1,6 +1,6 @@
 "use client";
 
-import { SmartRsvpFlow } from "@/components/smart-rsvp";
+import { SmartRsvpFlow, coupleRsvpClosedMessage } from "@/components/smart-rsvp";
 import type { SmartRsvpTheme } from "@/components/smart-rsvp/theme";
 import styles from "../styles/wedding.module.css";
 
@@ -19,6 +19,7 @@ export default function RsvpFlow({ eventSlug }: { eventSlug: string }) {
     <SmartRsvpFlow
       eventSlug={eventSlug}
       accessMode="name_search"
+      closedMessage={coupleRsvpClosedMessage}
       theme={theme}
       searchAppearance="minimal"
       partyDisplay={{

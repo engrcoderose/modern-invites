@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
+  isRsvpClosedError,
   requestGuestSearch,
   requestInvitationParty,
   requestRsvpAccess,
@@ -43,6 +44,7 @@ export function useSmartRsvp(
   );
 
   const [accessError, setAccessError] = useState("");
+  const [rsvpClosed, setRsvpClosed] = useState(false);
 
   const [searchError, setSearchError] = useState("");
 
@@ -51,17 +53,25 @@ export function useSmartRsvp(
   // Preserve the code-first interface unless the event explicitly enables open RSVP.
   useEffect(() => {
     if (initialAccessMode !== "shared_code") return;
+    setRsvpClosed(false);
     let cancelled = false;
     void requestRsvpAccess(eventSlug, "").then(configured => {
       if (!cancelled && configured.accessMode === "open") {
         setEvent(configured);
         setStage("open");
       }
-    }).catch(() => { /* Existing code verification remains available. */ });
+    }).catch(error => {
+      if (!cancelled && isRsvpClosedError(error)) {
+        setAccessError(error.message);
+        setRsvpClosed(true);
+      }
+      // Other failures leave the existing code verification available.
+    });
     return () => { cancelled = true; };
   }, [eventSlug, initialAccessMode]);
 
   const initializeNameSearch = useCallback(async () => {
+    setRsvpClosed(false);
     setStage("initializing");
     setIsCheckingCode(true);
     setAccessError("");
@@ -80,6 +90,7 @@ export function useSmartRsvp(
       setEvent(configuredEvent);
       setStage(configuredEvent.accessMode === "open" ? "open" : "search");
     } catch (error) {
+      setRsvpClosed(isRsvpClosedError(error));
       setAccessError(
         error instanceof Error
           ? error.message
@@ -103,6 +114,7 @@ export function useSmartRsvp(
   }, [eventSlug, initialAccessMode, initializeNameSearch]);
 
   function updateRsvpCode(value: string) {
+    setRsvpClosed(false);
     setRsvpCode(value.toUpperCase());
     setAccessError("");
   }
@@ -125,6 +137,7 @@ export function useSmartRsvp(
     }
 
     setIsCheckingCode(true);
+    setRsvpClosed(false);
     setAccessError("");
 
     try {
@@ -143,6 +156,7 @@ export function useSmartRsvp(
 
       setStage(verifiedEvent.accessMode === "open" ? "open" : "search");
     } catch (error) {
+      setRsvpClosed(isRsvpClosedError(error));
       setAccessError(
         error instanceof Error
           ? error.message
@@ -188,6 +202,7 @@ export function useSmartRsvp(
       setSearchMatches(matches);
       await onMatches?.(matches);
     } catch (error) {
+      if (isRsvpClosedError(error)) setRsvpClosed(true);
       setSearchError(
         error instanceof Error
           ? error.message
@@ -214,6 +229,7 @@ export function useSmartRsvp(
       setParty(loadedParty);
       setStage("party");
     } catch (error) {
+      if (isRsvpClosedError(error)) setRsvpClosed(true);
       setPartyError(
         error instanceof Error
           ? error.message
@@ -232,6 +248,7 @@ export function useSmartRsvp(
   }
 
   function reset() {
+    setRsvpClosed(false);
     setRsvpCode("");
     setFullName("");
 
@@ -271,6 +288,7 @@ export function useSmartRsvp(
     loadingInvitationId,
 
     accessError,
+    rsvpClosed,
     searchError,
     partyError,
 

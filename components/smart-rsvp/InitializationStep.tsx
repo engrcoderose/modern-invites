@@ -1,4 +1,5 @@
 import { Loader2, RefreshCw } from "lucide-react";
+import { RsvpClosedNotice } from "./RsvpClosedNotice";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,21 +12,26 @@ import {
 interface InitializationStepProps {
   errorMessage: string;
   onRetry: () => Promise<void>;
+  closed?: boolean;
+  closedMessage?: string;
 }
 
 export function InitializationStep({
   errorMessage,
   onRetry,
+  closed = false,
+  closedMessage,
 }: InitializationStepProps) {
+  if (closed) return <RsvpClosedNotice message={closedMessage} />;
   return (
     <Card className="border-2 border-[var(--smart-rsvp-border)] bg-white shadow-xl">
       <CardHeader className="border-b border-[var(--smart-rsvp-border-soft)] bg-[var(--smart-rsvp-soft)] text-center">
         {errorMessage ? (
-          <RefreshCw className="mx-auto mb-3 size-8 text-[var(--smart-rsvp-accent)]" />
+          <RefreshCw aria-hidden="true" className="mx-auto mb-3 size-8 text-[var(--smart-rsvp-accent)]" />
         ) : (
-          <Loader2 className="mx-auto mb-3 size-8 animate-spin text-[var(--smart-rsvp-accent)]" />
+          <Loader2 aria-hidden="true" className="mx-auto mb-3 size-8 animate-spin text-[var(--smart-rsvp-accent)]" />
         )}
-        <CardTitle className="font-libreBaskerville text-2xl text-[var(--smart-rsvp-heading)]">
+        <CardTitle role="heading" aria-level={3} className="font-libreBaskerville text-2xl text-[var(--smart-rsvp-heading)]">
           {errorMessage ? "Unable to Open RSVP" : "Preparing Your RSVP"}
         </CardTitle>
       </CardHeader>

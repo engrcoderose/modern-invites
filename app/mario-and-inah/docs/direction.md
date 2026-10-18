@@ -1,6 +1,6 @@
 # Mario & Inah — floral reference redesign
 
-Scope: /mario-and-inah. Mode: Experience. Reference: C:/Users/Spades/Downloads/4.png. Preserve confirmed names, date, venue, schedule, entourage, attire and email RSVP. Couple photographs remain samples in data/provenance with one gallery disclosure; per-image watermarks are removed. The uploaded Panaad Garden venue photograph is displayed.
+Scope: /mario-and-inah. Mode: Experience. Reference: C:/Users/Spades/Downloads/4.png. Preserve confirmed names, date, venue, schedule, entourage, attire and email RSVP. Couple photographs use the supplied studio collection with optimized sources hosted on R2; sample notices and per-image watermarks are removed. The uploaded Panaad Garden venue photograph is displayed.
 
 ## Direction contract
 
@@ -18,9 +18,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 ## Content constraints
 
-Reference photo subjects and sample entourage names are not client facts. Preserve confirmed event data and sample disclosures. The venue uses assets/designs/wedding-venue.jpg supplied by the user. RSVP prepares a mailto draft without automatically sending or storing it. No private environment-file access or Supabase.
+Reference photo subjects and sample entourage names are not client facts. Preserve confirmed event data and use the supplied couple photographs. The venue uses assets/designs/wedding-venue.jpg supplied by the user. RSVP prepares a mailto draft without automatically sending or storing it. No private environment-file access or Supabase.
 
-A usable music file, couple photographs, secondary sponsor names and the individual ring bearer remain pending; no invented content or inactive media controls are displayed.
+Secondary sponsor names and the individual ring bearer remain pending; no invented content or inactive media controls are displayed.
 
 ## Current evidence
 
@@ -36,7 +36,7 @@ The venue panel explicitly labels the confirmed time as Ceremony at 4:00 PM.
 
 Both photo breaks fill at least one dynamic viewport height, edge to edge, with cover cropping and responsive image sizes accounting for the landscape source aspect ratio.
 
-The hero cycles through four configured sample photographs with a 900ms fade and 3-second reading interval. Each photo slowly zooms from 1 to 1.03 over 3.9 seconds, continuing gently through its crossfade; zoom pauses with playback and offscreen/hidden-page state and is removed for reduced motion. Hero copy remains independent of slideshow changes; first-entry text reveals and gentle floral parallax run separately. Only the first photo loads initially; each next photo is mounted when requested and decoded before replacing the current image. Controls support pause/play, direct selection and left/right arrow keys. Focused selection pauses autoplay. Offscreen and hidden-tab playback stops; reduced motion disables autoplay and uses instant manual changes. With JavaScript disabled the first photo remains visible and controls are omitted.
+The hero cycles through four configured couple photographs with a 900ms fade and 3-second reading interval. Each photo slowly zooms from 1 to 1.03 over 3.9 seconds, continuing gently through its crossfade; zoom pauses with playback and offscreen/hidden-page state and is removed for reduced motion. Hero copy remains independent of slideshow changes; first-entry text reveals and gentle floral parallax run separately. Only the first photo loads initially; each next photo is mounted when requested and decoded before replacing the current image. Controls support pause/play, direct selection and left/right arrow keys. Focused selection pauses autoplay. Offscreen and hidden-tab playback stops; reduced motion disables autoplay and uses instant manual changes. With JavaScript disabled the first photo remains visible and controls are omitted.
 
 
 The refined welcome stacks Mario and Inah in ivory Imperial calligraphy, separated by a smaller Libre Baskerville ampersand. A fine hairline and diamond divider sits beneath the confirmed date, and a transparent outlined Open invitation action completes the composition. The names enter in a restrained stagger; short-height screens scale the lettering down while keeping the action visible. The existing photo drift, floral exit and cover dissolve remain intact.
