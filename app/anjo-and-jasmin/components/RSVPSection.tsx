@@ -39,7 +39,7 @@ export default function RSVPSection({ deadline }: RSVPSectionProps) {
           </figure>
         </Reveal>
         <Reveal delay={0.1} className="mx-auto w-full min-w-0 max-w-2xl">
-          <RsvpFlow />
+          <RsvpFlow deadline={deadline} />
           <div className="mt-8 text-center text-xs leading-7 text-[rgb(var(--aj-muted))] sm:text-sm">
             <p>Please reply by <span className="font-medium">{deadline}</span>.</p>
             <p className="mt-2">
