@@ -60,7 +60,7 @@ export default function WeddingProgram({ events: program }: { events: TimelineEv
           <Image src={BrownLineFlower} alt="" aria-hidden="true" sizes="(max-width: 639px) 176px, 224px" className="mx-auto mb-6 h-auto w-44 sm:w-56" />
           <h2 id="wedding-timeline-title" className="font-instrumentSerif text-4xl leading-[1.1] sm:text-6xl">Wedding <em className="font-meaCulpa font-normal text-[rgb(var(--aj-accent-dark))]">timeline</em></h2>
           <p className="mt-4 text-[10px] uppercase tracking-[.2em] text-[rgb(var(--aj-muted))] sm:text-xs">{wedding.dateDisplay}</p>
-          <p className="mt-3 text-xs leading-5 text-[rgb(var(--aj-muted))]">2:30 PM church arrival · {wedding.time} ceremony</p>
+          <p className="mt-3 text-xs leading-5 text-[rgb(var(--aj-muted))]">{wedding.entourageCallTime} Entourage Call Time | {wedding.time} Ceremony</p>
         </Reveal>
         <div className="relative mx-auto mt-10 w-full max-w-[16rem] sm:mt-12 sm:max-w-[22rem] lg:max-w-none">
           <div ref={trackRef} aria-hidden="true" data-timeline-track className="absolute left-[84px] w-px bg-[repeating-linear-gradient(to_bottom,rgb(var(--aj-line))_0_3px,transparent_3px_8px)] sm:left-[128px] lg:left-1/2" style={{ top: track.top, height: track.length }}>

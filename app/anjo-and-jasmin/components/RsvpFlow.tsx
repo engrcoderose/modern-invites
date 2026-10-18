@@ -14,7 +14,7 @@ const theme: SmartRsvpTheme = {
   softStrong: "rgb(var(--aj-sand))",
 };
 
-export default function RsvpFlow() {
+export default function RsvpFlow({ deadline }: { deadline: string }) {
   return (
     <SmartRsvpFlow
       eventSlug={rsvpEventSlug}
@@ -25,8 +25,15 @@ export default function RsvpFlow() {
       fields={{ email: false, dietaryRestrictions: false, message: false }}
       className="[&>div]:rounded-none [&>div]:border-0 [&>div]:bg-transparent [&>div]:shadow-none [&>div>div]:px-0"
       searchHeader={{
-        title: "Kindly reply",
-        description: "Find your invitation to let us know if you can join us.",
+        title: <>Kindly <span className="aj-rsvp-word">RSVP</span> here</>,
+        description: (
+          <>
+            Find your invitation to let us know if you can join us.
+            <strong className="mt-3 block text-balance font-semibold">
+              On or Before {deadline}
+            </strong>
+          </>
+        ),
         titleClassName: "font-meaCulpa text-5xl font-normal leading-[1.2] tracking-normal sm:text-6xl",
         showVerification: false,
       }}

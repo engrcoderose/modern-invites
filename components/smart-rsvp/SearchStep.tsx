@@ -1,4 +1,4 @@
-import type { FormEvent } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { CheckCircle2, Loader2, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -11,9 +11,9 @@ import type { EventInformation, SearchMatch } from "./types";
 import { SearchResults } from "./SearchResults";
 
 export interface SearchHeaderOptions {
-  title?: string;
+  title?: ReactNode;
   titleClassName?: string;
-  description?: string;
+  description?: ReactNode;
   showVerification?: boolean;
 }
 
