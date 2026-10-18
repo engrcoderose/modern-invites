@@ -133,3 +133,9 @@ Verified the supplied hero states at 390px, the first portrait at 467px and unch
 Confirmed RSVP closure shows **RSVP Closed** with “Sorry, this RSVP is already closed. Kindly contact the couple directly.” The shared flow recognizes the explicit `RSVP_CLOSED` code throughout access, search, invitation loading, name verification and submission. The notice uses Mario and Inah's existing minimal presentation, heading font and theme colors, displays a calendar-closed icon and omits retry for this state. Other errors retain the existing error message and retry control. See the [shared RSVP guidance](../../components/smart-rsvp/README.md) for theme and message options.
 
 Validation used simulated closed, temporary-failure and other forbidden responses in an isolated preview. All ten invitation RSVP implementations were checked at phone and desktop widths, along with closure during search, name verification and submission. The 48 RSVP tests, repository TypeScript, targeted ESLint, whitespace checks and the isolated production build passed. No live event settings or Supabase data were accessed or changed.
+
+## Portrait framing and gift photo — October 19, 2026
+
+The sunglasses photograph uses face-preserving framing in the hero and the photo break after the timeline. Its foreground width is limited on wide, short screens so both heads fit, with a soft backdrop using the same optimized image URL and responsive size. The welcome cover and other photographs keep their existing framing. Hero timing, transitions, controls and section heights are unchanged.
+
+The gift section reuses the R2 ring-box photograph (`img_2547.webp`) below the existing gift message in a responsive 16:9 frame.

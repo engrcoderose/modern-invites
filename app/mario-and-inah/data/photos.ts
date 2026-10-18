@@ -29,6 +29,7 @@ export type InvitationPhoto = {
   alt: string;
   caption: string;
   position?: string;
+  preserveFaces?: boolean;
 };
 
 // One optimized source per photograph, reused across placements and the viewer.
@@ -56,11 +57,12 @@ export const photos = {
   rsvp: { ...collection.portrait, position: "50% 0%" },
   story: [collection.together, collection.dance],
   cinematic: collection.twirl,
-  afterTimeline: { ...collection.sunglasses, position: "50% 0%" },
+  afterTimeline: { ...collection.sunglasses, position: "50% 0%", preserveFaces: true },
+  gift: collection.proposal,
   closing: collection.nextChapter,
 };
 
-export const heroPhotos: InvitationPhoto[] = [photos.closing, photos.welcome, collection.kiss, collection.embrace];
+export const heroPhotos: InvitationPhoto[] = [photos.closing, { ...photos.welcome, position: "50% 0%", preserveFaces: true }, collection.kiss, collection.embrace];
 
 export const galleryPhotos: InvitationPhoto[] = [collection.hands, collection.bouquet, collection.reaching];
 

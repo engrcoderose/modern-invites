@@ -21,7 +21,7 @@ export default function HeroSection() {
         <p data-hero-detail="date" className={`${styles.heroDetail} ${styles.date} mt-5`}>{wedding.date.display}</p>
         <p data-hero-detail="location" className={`${styles.heroDetail} ${styles.date} mt-2`}>Tagaytay City, Philippines</p>
         <ParallaxLayer inline className="mx-auto mt-6 w-[clamp(3rem,12dvh,7rem)] sm:w-[clamp(3rem,15dvh,9rem)] [@media(max-height:500px)]:w-12">
-          <FloralArtwork name="heroRight" className="h-auto w-full" sizes="(max-height: 500px) 48px, (min-width: 640px) clamp(48px, 15dvh, 144px), clamp(48px, 12dvh, 112px)" />
+          <FloralArtwork name="heroRight" className={`${styles.heroFlower} h-auto w-full`} sizes="(max-height: 500px) 48px, (min-width: 640px) clamp(48px, 15dvh, 144px), clamp(48px, 12dvh, 112px)" />
         </ParallaxLayer>
         <a data-hero-detail="explore" href="#countdown" aria-label="Explore our wedding invitation" className={`${styles.heroDetail} mx-auto mt-8 flex size-11 items-center justify-center [@media(max-height:500px)]:mt-3`}><ArrowDown size={20} strokeWidth={1.2} aria-hidden="true" /></a>
       </div>
