@@ -11,7 +11,7 @@ import type { EventInformation, SearchMatch } from "./types";
 import { SearchResults } from "./SearchResults";
 
 export interface SearchHeaderOptions {
-  title?: string;
+  title?: ReactNode;
   titleClassName?: string;
   description?: ReactNode;
   showVerification?: boolean;

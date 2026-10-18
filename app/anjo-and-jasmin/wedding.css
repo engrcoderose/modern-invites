@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "AJ Noto Serif";
+  src: url("./assets/fonts/noto-serif-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.classic-garden-invitation .aj-rsvp-word {
+  font-family: "AJ Noto Serif", Georgia, serif;
+}
+
 .classic-garden-invitation {
   /* Reference palette: cream, yellow sand, clay, and terracotta. */
   --aj-cream: 245 242 238;

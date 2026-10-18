@@ -25,7 +25,7 @@ export default function RsvpFlow({ deadline }: { deadline: string }) {
       fields={{ email: false, dietaryRestrictions: false, message: false }}
       className="[&>div]:rounded-none [&>div]:border-0 [&>div]:bg-transparent [&>div]:shadow-none [&>div>div]:px-0"
       searchHeader={{
-        title: "Kindly RSVP here",
+        title: <>Kindly <span className="aj-rsvp-word">RSVP</span> here</>,
         description: (
           <>
             Find your invitation to let us know if you can join us.
