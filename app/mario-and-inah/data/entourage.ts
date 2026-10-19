@@ -6,7 +6,7 @@ export const parents = [
 export const entourage = [
   { title: "Maid of honor", members: ["Jonaleen Orense"] },
   { title: "Best man", members: ["Robert Jones Quebec"] },
-  { title: "Principal sponsors", members: ["Mr. Ricardo Orense", "Ms. Merle Orense", "Mr. Vergil Gapac", "Mrs. Maridol Galvez", "Mr. Dane Mangoba", "Ms. Maricar Cristofani"] },
+  { title: "Principal sponsors", members: ["Mr. Ricardo Orense", "Ms. Merle Orense", "Mr. Vergil Gapac", "Mrs. Maridol Galvez", "Mr. Achilles Dane Mangoba", "Ms. Maricar Cristofani"] },
   { title: "Bridesmaids", members: ["Mary Ceñidoza", "Grace Ceñidoza", "Nicole Mallari", "Alexandra Feliciano"] },
   { title: "Groomsmen", members: ["Zandrex Osorio", "Jhune Villarete", "Elloyd Cruz", "Isaac Tajolosa"] },
   { title: "Flower girl", members: ["Julia Perleen Reyes"] },

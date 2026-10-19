@@ -6,8 +6,6 @@
   animation: petal-fall 20s linear infinite;
 }
 .field[data-paused="true"] .petal { animation-play-state: paused; }
-.control { background: var(--mi-paper); color: var(--mi-ink); border: 1px solid var(--mi-rule); }
-.control:hover { background: var(--mi-sage); }
 @supports (height: 1cqh) {
   .petal { --fall-distance: calc(100cqh + 48px); }
 }

@@ -85,8 +85,8 @@
 .lilac { background: var(--mi-lilac); }
 .galleryBackdrop { background: #59413f; color: var(--mi-ivory); }
 .groupTitle { font-family: var(--font-inter), sans-serif; font-size: .75rem; font-weight: 500; line-height: 1.9; letter-spacing: .12em; text-transform: uppercase; }
-.roleTitle { font-size: .75rem; font-weight: 400; line-height: 1.7; letter-spacing: .08em; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
-.entourageNames { font-family: var(--font-libre-baskerville), Georgia, serif; font-size: clamp(1rem, 1.3vw, 1.125rem); line-height: 1.75; text-wrap: balance; overflow-wrap: anywhere; }
+.roleTitle { font-size: clamp(1.0625rem, 1.5vw, 1.25rem); font-weight: 400; line-height: 1.6; letter-spacing: .06em; text-transform: uppercase; text-wrap: balance; overflow-wrap: anywhere; }
+.entourageNames { font-family: var(--font-libre-baskerville), Georgia, serif; font-size: clamp(.875rem, 1.1vw, 1rem); line-height: 1.75; text-wrap: balance; overflow-wrap: anywhere; }
 .entourageRule { background: linear-gradient(90deg, transparent, var(--mi-rule)); }
 .entourageSponsors { border-block: 1px solid var(--mi-rule); }
 .venuePanel { background: var(--mi-blush); border: 1px solid #c99399; }

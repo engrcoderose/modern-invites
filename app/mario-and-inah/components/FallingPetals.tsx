@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
-import { Pause, Play } from "lucide-react";
 import styles from "../styles/petals.module.css";
 
 // Fixed paths avoid hydration changes and keep the shower sparse.
@@ -16,7 +15,6 @@ const petals = Array.from({ length: 10 }, (_, index) => ({
 } as CSSProperties));
 
 export default function FallingPetals() {
-  const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -28,17 +26,11 @@ export default function FallingPetals() {
 
   return (
     <div className={styles.petals}>
-      <div aria-hidden="true" data-paused={paused || !visible}
+      <div aria-hidden="true" data-paused={!visible}
         className={`${styles.field} pointer-events-none fixed inset-0 z-30 overflow-hidden select-none`}>
         {petals.map((style, index) => <span key={index} style={style} data-mi-petal
-          className={`${styles.petal} absolute -top-6 ${index % 2 ? "hidden sm:block" : ""}`} />)}
+          className={`${styles.petal} absolute -top-6`} />)}
       </div>
-      <button type="button" aria-label={paused ? "Resume falling petals" : "Pause falling petals"}
-        title={paused ? "Resume falling petals" : "Pause falling petals"}
-        aria-pressed={paused} onClick={() => setPaused(!paused)}
-        className={`${styles.control} fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 z-40 flex min-h-11 min-w-11 items-center justify-center rounded-full sm:left-6`}>
-        {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
-      </button>
     </div>
   );
 }
