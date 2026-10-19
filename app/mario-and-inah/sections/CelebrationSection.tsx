@@ -25,7 +25,7 @@ export default function CelebrationSection() {
           </ParallaxLayer>
           <div className={`${styles.venuePanel} mx-auto max-w-md p-4 sm:p-6`}>
             <p data-reveal="text" className={`${styles.serifDetail} mb-4 text-xs uppercase tracking-wider`}>Ceremony & Reception</p>
-            <Image data-reveal="photo" src={venuePhoto} alt="The poolside garden and pavilion at Panaad Garden Tagaytay" sizes="(min-width: 640px) 400px, calc(100vw - 82px)" className="h-auto w-full" />
+            <Image data-reveal="photo-rise" src={venuePhoto} alt="The poolside garden and pavilion at Panaad Garden Tagaytay" sizes="(min-width: 640px) 400px, calc(100vw - 82px)" className="h-auto w-full" />
             <h3 data-reveal="heading" className={`${styles.venueName} mt-6`}>{wedding.venue.name}</h3>
             <p data-reveal="text" className={`${styles.serifDetail} mx-auto mt-4 max-w-xs text-xs leading-6 sm:text-sm`}>{wedding.venue.address}</p>
             <p data-reveal="text" className={`${styles.serifDetail} mt-3 text-sm`}>Ceremony at 4:00 PM</p>

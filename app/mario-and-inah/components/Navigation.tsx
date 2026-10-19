@@ -6,7 +6,7 @@ import styles from "../styles/invitation.module.css";
 
 const links = [
   { href: "#entourage", label: "Entourage" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "#gallery-before-rsvp", label: "Gallery" },
   { href: "#celebration", label: "Venue" },
   { href: "#attire", label: "Attire" },
   { href: "#gifts", label: "Gifts" },

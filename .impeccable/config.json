@@ -21,6 +21,24 @@
         ],
         "createdAt": "2026-10-13T20:20:54.864Z",
         "reason": "Agent review: existing self-hosted Ryan and Anne date and location font documented in the client README; root DESIGN.md explicitly excludes client invitation themes."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "libre baskerville",
+        "files": [
+          ".next-preview-mario-update/site/app/globals.css"
+        ],
+        "createdAt": "2026-10-19T15:09:29.785Z",
+        "reason": "Codex: isolated verification fixture preserves the existing Mario and Inah invitation fonts; no new typography is introduced."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "imperial script",
+        "files": [
+          ".next-preview-mario-update/site/app/globals.css"
+        ],
+        "createdAt": "2026-10-19T15:09:29.950Z",
+        "reason": "Codex: isolated verification fixture preserves the existing Mario and Inah invitation fonts; no new typography is introduced."
       }
     ]
   }

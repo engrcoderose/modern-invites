@@ -11,11 +11,12 @@ const slideInterval = 3000;
 const fadeDuration = 0.9;
 const zoomDuration = slideInterval + fadeDuration * 1000;
 // Account for each source's aspect ratio, parallax overscan and 3% zoom.
-// Phones reserve the 64px navigation and retain 48px bottom overscan.
+// Phones reserve the 64px navigation, with 24px top and 48px bottom overscan
+// so the 18px parallax drift cannot expose the hero background below the nav.
 // The 510px floor covers the hero content in short landscape viewports.
 function imageSizes(photo: (typeof heroPhotos)[number]) {
   const ratio = photo.src && typeof photo.src !== "string" ? photo.src.width / photo.src.height : 1.5;
-  const mobileSizes = `max(103vw, calc(${(103 * ratio).toFixed(1)}dvh - ${(16 * 1.03 * ratio).toFixed(1)}px), ${Math.ceil((510 - 16) * 1.03 * ratio)}px)`;
+  const mobileSizes = `max(103vw, calc(${(103 * ratio).toFixed(1)}dvh + ${(8 * 1.03 * ratio).toFixed(1)}px), ${Math.ceil((510 + 8) * 1.03 * ratio)}px)`;
   const desktopSizes = `max(103vw, calc(${(103 * ratio).toFixed(1)}dvh + ${(99 * ratio).toFixed(1)}px), ${Math.ceil(510 * 1.03 * ratio)}px)`;
   return `(max-width: 639px) ${mobileSizes}, ${desktopSizes}`;
 }
@@ -139,7 +140,7 @@ export default function HeroSlideshow() {
         event.preventDefault();
         selectSlide((active + (event.key === "ArrowRight" ? 1 : heroPhotos.length - 1)) % heroPhotos.length);
       }}>
-      <ParallaxLayer background backgroundInsets="top-0 -bottom-12 sm:-inset-y-12">
+      <ParallaxLayer background backgroundInsets="-top-6 -bottom-12 sm:-inset-y-12">
       {/* Keep visited photos mounted in a fixed order so a swap never moves image layers. */}
       {mounted.map(index => (
         <div key={heroPhotos[index].id} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${heroPhotos.length}`} aria-hidden={index !== active}

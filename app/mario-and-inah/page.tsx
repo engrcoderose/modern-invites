@@ -17,13 +17,20 @@ import { photos } from "./data/photos";
 import styles from "./styles/invitation.module.css";
 
 const title = `${wedding.couple.display} | ${wedding.date.display}`;
-const description = `Join Mario & Inah for their wedding on ${wedding.date.display} at ${wedding.venue.name}.`;
+const description = "It's official… we're tying the knot!\n\nMario & Inah are getting married, and YOU are invited!";
+const previewImage = {
+  url: "/mario-and-inah/sharing/proposal-02d29584.jpg",
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+  alt: "Mario presenting an open ring box to Inah as she reaches for his hand",
+};
 
 export const metadata: Metadata = {
   title, description,
   alternates: { canonical: "/mario-and-inah" },
-  openGraph: { title, description, url: "/mario-and-inah", type: "website", locale: "en_PH" },
-  twitter: { card: "summary", title, description },
+  openGraph: { title, description, url: "/mario-and-inah", type: "website", locale: "en_PH", images: [previewImage] },
+  twitter: { card: "summary_large_image", title, description, images: [previewImage] },
   robots: { index: false, follow: false },
 };
 

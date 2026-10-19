@@ -9,7 +9,7 @@ export const wedding = {
     note: "Ladies, please avoid white dresses, and gentlemen, please skip the blue jeans.",
     footwear: "For your comfort, we recommend block heels, wedges, or pretty flats to enjoy the day on grass and uneven ground.",
   },
-  music: { title: "Kasama Kang Tumanda", version: "Stagecrew", src: "/mario-and-inah/music/kasama-kang-tumanda-ffc2af93.mp3" },
+  music: { title: "Kasama Kang Tumanda", version: "Stagecrew", src: "/mario-and-inah/music/kasama-kang-tumanda-934c3664.mp3" },
 } as const;
 
 export const timeline = [

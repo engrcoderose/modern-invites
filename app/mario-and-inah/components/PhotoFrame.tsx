@@ -9,14 +9,14 @@ type PhotoFrameProps = {
   sizes: string;
   priority?: boolean;
   fullBleed?: boolean;
-  reveal?: boolean;
+  reveal?: boolean | "rise";
   onLoad?: ImageProps["onLoad"];
   onError?: ImageProps["onError"];
 };
 
 export default function PhotoFrame({ photo, className = "", sizes, priority = false, fullBleed = false, reveal = false, onLoad, onError }: PhotoFrameProps) {
   return (
-    <div data-reveal={reveal ? "photo" : undefined} className={`${styles.photoFrame} ${fullBleed ? "absolute inset-0" : "relative"} overflow-hidden ${className}`}>
+    <div data-reveal={reveal === "rise" ? "photo-rise" : reveal ? "photo" : undefined} className={`${styles.photoFrame} ${fullBleed ? "absolute inset-0" : "relative"} overflow-hidden ${className}`}>
       {photo.src ? (
         <>
           {photo.preserveFaces && <Image src={photo.src} alt="" aria-hidden="true" fill sizes={sizes} quality={85} className="scale-105 object-cover blur-xl" style={{ objectPosition: photo.position ?? "50% 50%" }} />}

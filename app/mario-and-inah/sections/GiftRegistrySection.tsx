@@ -11,7 +11,7 @@ export default function GiftRegistrySection() {
         <h2 data-reveal="heading" id="mi-gifts-title" className={styles.heading}>Gift Registry</h2>
         <FloralArtwork reveal name="venueLine" className="mx-auto mt-7 h-auto w-56 max-w-full sm:w-72" sizes="(min-width: 640px) 288px, 224px" />
         <p data-reveal="text" className="mx-auto mt-7 max-w-xl text-sm leading-8 sm:text-base">{giftNote}</p>
-        <PhotoFrame photo={photos.gift} reveal className="mt-10 aspect-video rounded-sm" sizes="(min-width: 752px) 672px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)" />
+        <PhotoFrame photo={photos.gift} reveal="rise" className="mt-10 aspect-video rounded-sm" sizes="(min-width: 752px) 672px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)" />
       </div>
     </section>
   );

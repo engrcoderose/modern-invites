@@ -8,8 +8,6 @@
   --mi-lilac: #dacfdf;
   --mi-rule: #a9b69e;
   --mi-ivory: #fff0d1;
-  --mi-hero-detail-duration: .9s;
-  --mi-hero-location-delay: 7.12s;
   background: var(--mi-paper);
   color: var(--mi-ink);
   font-family: var(--font-inter), sans-serif;
@@ -56,16 +54,17 @@
 .heroCopy { color: var(--mi-ivory); text-shadow: 0 2px 5px rgb(0 0 0 / 50%); }
 .heroWrittenName { clip-path: inset(-.3em -.4em); }
 .heroLabel, .heroDetail, .heroFlower { opacity: 1; transform: translateY(0); }
-/* Begin after the cover handoff; the names write in order over six seconds. */
-.invitation[data-invitation-open="true"] .heroLabel { animation: mi-hero-detail-in .7s ease-out both; }
-.invitation[data-invitation-open="true"] .heroWrittenName { animation: mi-hero-write 3s linear .8s both; }
-.invitation[data-invitation-open="true"] .heroWrittenName:nth-child(2) { animation-duration: .4s; animation-delay: 3.8s; }
-.invitation[data-invitation-open="true"] .heroWrittenName:nth-child(3) { animation-duration: 2.6s; animation-delay: 4.2s; }
-.invitation[data-invitation-open="true"] .heroDetail { animation: mi-hero-detail-in var(--mi-hero-detail-duration) cubic-bezier(.16, 1, .3, 1) 6.95s both; }
-.invitation[data-invitation-open="true"] [data-hero-detail="location"] { animation-delay: var(--mi-hero-location-delay); }
-/* Let the location finish its entrance before revealing the flower. */
-.invitation[data-invitation-open="true"] .heroFlower { animation: mi-hero-detail-in var(--mi-hero-detail-duration) cubic-bezier(.16, 1, .3, 1) calc(var(--mi-hero-location-delay) + var(--mi-hero-detail-duration) + .1s) both; }
-.invitation[data-invitation-open="true"] [data-hero-detail="explore"] { animation-delay: 7.29s; }
+/* Cues follow accents in the trimmed song. useHeroMusicSync anchors these CSS
+   entrances to playback; without audio they run normally after the cover opens. */
+.invitation[data-invitation-open="true"] .heroLabel { animation: mi-hero-detail-in .7s ease-out 1.24s both; }
+.invitation[data-invitation-open="true"] .heroWrittenName { animation: mi-hero-write 2.98s linear 2.26s both; }
+.invitation[data-invitation-open="true"] .heroWrittenName:nth-child(2) { animation-duration: .44s; animation-delay: 5.24s; }
+.invitation[data-invitation-open="true"] .heroWrittenName:nth-child(3) { animation-duration: 1.36s; animation-delay: 5.68s; }
+.invitation[data-invitation-open="true"] .heroDetail { animation: mi-hero-detail-in .6s cubic-bezier(.16, 1, .3, 1) 7.04s both; }
+.invitation[data-invitation-open="true"] [data-hero-detail="location"] { animation-duration: .54s; animation-delay: 7.66s; }
+/* The location is fully visible at 8.2s, before the flower's next musical cue. */
+.invitation[data-invitation-open="true"] .heroFlower { animation: mi-hero-detail-in .78s cubic-bezier(.16, 1, .3, 1) 8.56s both; }
+.invitation[data-invitation-open="true"] [data-hero-detail="explore"] { animation-delay: 9.98s; }
 .invitation[data-invitation-open="true"] .heroDetail:focus-visible { animation: none; }
 @keyframes mi-hero-write {
   from { clip-path: inset(-.3em calc(100% + .4em) -.3em -.4em); }

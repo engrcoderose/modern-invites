@@ -12,7 +12,7 @@ export default function AttireSection() {
         <h2 data-reveal="heading" id="mi-attire-title" className={styles.heading}>The Dresscode</h2>
         <p data-reveal="text" className={`${styles.smallHeading} mt-7`}>{wedding.attire.title}</p>
         <p data-reveal="text" data-reveal-delay="0.08" className="mx-auto mt-4 max-w-lg text-sm leading-7">Please wear pastel colors and keep it semi casual. Take inspiration from the outfits below.</p>
-        <figure data-reveal="photo" className="mx-auto mt-10 overflow-hidden">
+        <figure data-reveal="photo-rise" className="mx-auto mt-10 overflow-hidden">
           <Image src={attireInspiration} alt="Pastel semi-casual outfit ideas: blush, lilac and sage dresses, pastel shirts and light trousers."
             sizes="(min-width: 1024px) 896px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)" className="h-auto w-full" />
         </figure>

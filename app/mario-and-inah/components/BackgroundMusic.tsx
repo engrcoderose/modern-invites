@@ -5,7 +5,7 @@ import { Pause, Play } from "lucide-react";
 import { wedding } from "../data/wedding";
 
 type PlaybackStatus = "paused" | "loading" | "playing" | "failed";
-export type BackgroundMusicHandle = { play: () => Promise<void> };
+export type BackgroundMusicHandle = { play: () => Promise<void>; getAudio: () => HTMLAudioElement | null };
 
 export default function BackgroundMusic({ ref, visible }: { ref?: Ref<BackgroundMusicHandle>; visible: boolean }) {
   const audio = useRef<HTMLAudioElement>(null);
@@ -34,7 +34,7 @@ export default function BackgroundMusic({ ref, visible }: { ref?: Ref<Background
     }
   }, []);
 
-  useImperativeHandle(ref, () => ({ play }), [play]);
+  useImperativeHandle(ref, () => ({ play, getAudio: () => audio.current }), [play]);
 
   return (
     <>
