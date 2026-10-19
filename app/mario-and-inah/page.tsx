@@ -18,6 +18,7 @@ import styles from "./styles/invitation.module.css";
 
 const title = `${wedding.couple.display} | ${wedding.date.display}`;
 const description = "It's official… we're tying the knot!\n\nMario & Inah are getting married, and YOU are invited!";
+const shareTitle = description.replace(/\n+/g, " ");
 const previewImage = {
   url: "/mario-and-inah/sharing/proposal-02d29584.jpg",
   width: 1200,
@@ -29,8 +30,8 @@ const previewImage = {
 export const metadata: Metadata = {
   title, description,
   alternates: { canonical: "/mario-and-inah" },
-  openGraph: { title, description, url: "/mario-and-inah", type: "website", locale: "en_PH", images: [previewImage] },
-  twitter: { card: "summary_large_image", title, description, images: [previewImage] },
+  openGraph: { title: shareTitle, description, url: "/mario-and-inah", type: "website", locale: "en_PH", images: [previewImage] },
+  twitter: { card: "summary_large_image", title: shareTitle, description, images: [previewImage] },
   robots: { index: false, follow: false },
 };
 
