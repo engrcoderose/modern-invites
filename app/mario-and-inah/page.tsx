@@ -19,8 +19,9 @@ import styles from "./styles/invitation.module.css";
 const title = `${wedding.couple.display} | ${wedding.date.display}`;
 const description = "It's official… we're tying the knot!\n\nMario & Inah are getting married, and YOU are invited!";
 const shareTitle = description.replace(/\n+/g, " ");
+const invitationUrl = "https://marioandinahwedding.moderninvites.com";
 const previewImage = {
-  url: "/mario-and-inah/sharing/proposal-02d29584.jpg",
+  url: `${invitationUrl}/mario-and-inah/sharing/proposal-02d29584.jpg`,
   width: 1200,
   height: 630,
   type: "image/jpeg",
@@ -28,9 +29,10 @@ const previewImage = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(invitationUrl),
   title, description,
-  alternates: { canonical: "/mario-and-inah" },
-  openGraph: { title: shareTitle, description, url: "/mario-and-inah", type: "website", locale: "en_PH", images: [previewImage] },
+  alternates: { canonical: invitationUrl },
+  openGraph: { title: shareTitle, description, url: invitationUrl, type: "website", locale: "en_PH", images: [previewImage] },
   twitter: { card: "summary_large_image", title: shareTitle, description, images: [previewImage] },
   robots: { index: false, follow: false },
 };

@@ -43,6 +43,7 @@ test("Anjo and Jasmin's subdomain serves the invitation without redirecting", as
 
 test("existing invitation and seat-finder domains retain their destinations", async () => {
   for (const [host, destination] of [
+    ["marioandinahwedding.moderninvites.com", "/mario-and-inah"],
     ["leslieandserjwedding.moderninvites.com", "/leslie-and-serj"],
     ["seatfinder.anjoandjasminwedding.moderninvites.com", "/seat-finder/anjo-and-jasmin"],
   ]) {
@@ -58,9 +59,25 @@ test("the main site and nonmatching hosts keep their root routes", async () => {
     "otheranjoandjasminwedding.moderninvites.com",
     "anjoandjasminweddingXmoderninvitesXcom",
     "anjoandjasminwedding.moderninvites.com.example.org",
+    "othermarioandinahwedding.moderninvites.com",
+    "marioandinahweddingXmoderninvitesXcom",
+    "marioandinahwedding.moderninvites.com.example.org",
   ]) {
     const response = await unstable_getResponseFromNextConfig({ url: `https://${host}/`, nextConfig });
     assert.equal(getRewrittenUrl(response), null);
+  }
+});
+
+test("Mario and Inah's root preserves guest links and media stays outside the rewrite", async () => {
+  const origin = "https://marioandinahwedding.moderninvites.com";
+  const response = await unstable_getResponseFromNextConfig({ url: `${origin}/?ref=invitation`, nextConfig });
+  assert.equal(getRewrittenUrl(response), `${origin}/mario-and-inah?ref=invitation`);
+  assert.equal(getRedirectUrl(response), null);
+
+  for (const pathname of ["/api/rsvp/access", "/_next/image", "/mario-and-inah/music/song.mp3", "/mario-and-inah/sharing/proposal-02d29584.jpg"]) {
+    const mediaResponse = await unstable_getResponseFromNextConfig({ url: `${origin}${pathname}`, nextConfig });
+    assert.equal(getRewrittenUrl(mediaResponse), null);
+    assert.equal(getRedirectUrl(mediaResponse), null);
   }
 });
 

@@ -1,6 +1,39 @@
 # Mario & Inah wedding invitation
 
-Route: `/mario-and-inah`.
+Public URL: `https://marioandinahwedding.moderninvites.com`.
+Internal route: `/mario-and-inah`. Direct requests to this old page return HTTP
+404 on every host, including the main domain, preview deployments and the new
+subdomain. Only the new subdomain's `/` is rewritten internally to the invitation.
+Existing photo, music and sharing-image paths remain available. The RSVP event
+slug stays `mario-and-inah`; this migration does not change guest data or RSVP settings.
+
+## Subdomain setup (project owner)
+
+1. Add `marioandinahwedding.moderninvites.com` under the existing Vercel
+   project's **Settings > Domains**, assigned to **Production**, serving this
+   project rather than redirecting to another domain. Do not create a separate project.
+2. In the DNS zone for `moderninvites.com`, create the record Vercel displays:
+   **Type:** `CNAME`; **Name/Host:** `marioandinahwedding`; **Target/Value:**
+   the exact target shown in Vercel. Keep the apex and `www` records unchanged.
+   If the provider requires a full name, use `marioandinahwedding.moderninvites.com`.
+3. Wait for Vercel to show valid configuration and an HTTPS certificate for the
+   subdomain. Add any ownership-verification TXT record Vercel requests.
+4. Deploy these code changes to the same production project. The old path starts
+   returning 404 when this deployment becomes active; it does not redirect guests.
+5. Open the new domain, open the invitation and check navigation, images and
+   music. The owner should manually verify RSVP name search and submission.
+   Confirm both main-domain `/mario-and-inah` URLs (with and without `www`,
+   query strings or a trailing slash) no longer display the invitation, and that
+   the main homepage and other invitation domains still work.
+6. Replace shared links/QR codes with the new root URL and refresh its metadata
+   using Meta's Sharing Debugger if an older preview is cached. Canonical,
+   Open Graph and social-image URLs now explicitly use the new domain.
+
+References: [Vercel domain setup](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
+DNS and hosting setup are left to the owner. No credentials or Supabase data are
+needed for these routing changes. For a local preview, use a Host header for the
+new domain or map it to `127.0.0.1` in a local hosts file and use the dev-server port;
+the old localhost path is intentionally blocked too.
 
 A continuous photo-first floral invitation matching the user-pinned reference at `C:/Users/Spades/Downloads/4.png`, with supplied floral artwork and confirmed questionnaire content. The first screen is immediately readable. No navigation row is rendered, and the footer greeting is removed. The user requested removal of per-image Sample photo watermarks and the Save our date section; the separate invitation-details section and its calendar action are no longer rendered. Client-specific files and documentation stay in this folder.
 
