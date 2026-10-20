@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { getInvitationUrl } from "@/lib/invitation-url";
 import { getClientAccess } from "@/features/auth/application/get-client-access";
 import { createSupabaseClientAuthRepository } from "@/features/auth/infrastructure/supabase-client-auth-repository";
 import { getClientEventWorkspace } from "@/features/dashboard/application/get-client-event-workspace";
@@ -129,7 +130,7 @@ export default async function WeddingDashboardPage({
 
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="outline" className="bg-white">
-            <Link href={`/${workspace.event.slug}`} target="_blank">
+            <Link href={getInvitationUrl(workspace.event.slug)} target="_blank" rel="noopener noreferrer">
               View invitation
               <ExternalLink aria-hidden="true" />
             </Link>

@@ -6,6 +6,14 @@ import {
   unstable_getResponseFromNextConfig,
 } from "next/experimental/testing/server.js";
 import nextConfig from "../next.config.ts";
+import { getInvitationUrl } from "../lib/invitation-url.ts";
+
+test("the dashboard's Mario and Inah link reaches the invitation through its root rewrite", async () => {
+  const url = getInvitationUrl("mario-and-inah");
+  const response = await unstable_getResponseFromNextConfig({ url, nextConfig });
+  assert.equal(getRewrittenUrl(response), "https://marioandinahwedding.moderninvites.com/mario-and-inah");
+  assert.equal(getRedirectUrl(response), null);
+});
 
 test("the old main-site invitation URLs permanently redirect to the final subdomain", async () => {
   for (const host of ["moderninvites.com", "www.moderninvites.com"]) {

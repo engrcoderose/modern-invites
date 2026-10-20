@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { getInvitationUrl } from "../lib/invitation-url.ts";
 
 import { exportEventRsvpWorkbook } from "../features/dashboard/application/export-event-rsvp-workbook.ts";
 import {
@@ -32,6 +33,22 @@ const assignedEvent: AssignedDashboardEvent = {
   rsvpDeadline: "2026-12-01",
   role: "owner",
 };
+
+test("View invitation uses the public domain for migrated invitations", () => {
+  for (const [slug, url] of [
+    ["mario-and-inah", "https://marioandinahwedding.moderninvites.com/"],
+    ["anjo-and-jasmin", "https://anjoandjasminwedding.moderninvites.com/"],
+    ["jasmin-and-anjo-wedding", "https://anjoandjasminwedding.moderninvites.com/"],
+    ["leslie-and-serj", "https://leslieandserjwedding.moderninvites.com/"],
+  ]) {
+    assert.equal(getInvitationUrl(slug), url);
+  }
+});
+
+test("View invitation preserves routes for invitations without a custom domain", () => {
+  assert.equal(getInvitationUrl(assignedEvent.slug), "/nylgen-and-kersee");
+  assert.equal(getInvitationUrl("ryan-and-anne"), "/ryan-and-anne");
+});
 
 class FakeDashboardRepository implements ClientDashboardRepository {
   role: DashboardEventRole | null = "owner";
