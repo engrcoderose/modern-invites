@@ -3,6 +3,7 @@ import { getPhoto } from "@/app/ryan-and-anne/data/prenup-media";
 import jaydeeBackground from "@/app/jaydee-and-bea/assets/designs/hero-watercolor-background.webp";
 import jaydeeIllustration from "@/app/jaydee-and-bea/assets/designs/hero-couples.webp";
 import { TreeDance, SunlitPortrait } from "@/app/anjo-and-jasmin/prenup-media";
+import { photos as marioInahPhotos } from "@/app/mario-and-inah/data/photos";
 
 export type PortfolioItem = {
  id: string; title: string; category: string; description: string; href: string;
@@ -29,6 +30,20 @@ import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenu
 import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
 
 const invitationCatalog: PortfolioItem[] = [
+  {
+    id: "mario-and-inah",
+    title: "Mario & Inah",
+    category: "Wedding Invitation",
+    description:
+      "Floral details, photo slideshows, music, and RSVP.",
+    href: "https://marioandinahwedding.moderninvites.com",
+    bgImage: marioInahPhotos.welcome.src,
+    previewImage: marioInahPhotos.invitation.src,
+    previewAlt: marioInahPhotos.invitation.alt,
+    accent: "#414b36",
+    accentLight: "#f5f0e4",
+    tags: ["Pastel Garden", "Floral"],
+  },
   {
     id: "ryan-and-anne", title: "Ryan & Anne", category: "Wedding Invitation",
     hidden: true,

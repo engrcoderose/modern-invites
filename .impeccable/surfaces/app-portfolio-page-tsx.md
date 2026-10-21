@@ -18,3 +18,5 @@ User-confirmed package metadata retained on hidden entries: Ryan & Anne and Jayd
 Vincent & Gabrielle is a Signature Bundle; use that exact badge in both galleries.
 
 Nylgen & Kersee is a Classic Bundle; show that badge alongside Botanical and Ivory & Sage in both galleries.
+
+Mario & Inah is the newest visible entry in the shared portfolio and homepage recent invitations. Reuse their existing portrait assets and pastel garden palette, linking directly to `https://marioandinahwedding.moderninvites.com`; the internal `/mario-and-inah` path is not a public entry point. No package tier has been confirmed for its badge.

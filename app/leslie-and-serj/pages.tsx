@@ -20,7 +20,7 @@ import {
 } from "./data";
 import { Ornament } from "./artwork";
 import { churchLogo, receptionLogo, weddingIllustration, attireReference } from "./media";
-import giftRegistryQr from "./assets/designs/Leslie and Serj - QR for Gift Registry.png";
+import GiftOptions from "./gift-options";
 import PhotoBreak from "./photo-break";
 import RsvpFlow from "./rsvp-flow";
 
@@ -700,30 +700,7 @@ export function createInvitationPages({
             <p className="lj-body whitespace-pre-line">{wedding.gifts.message}</p>
             <p className="lj-body">{wedding.gifts.registryMessage}</p>
           </div>
-          <figure className="w-fit">
-            <a
-              href={giftRegistryQr.src}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Open a larger gift registry QR code (opens in a new tab)"
-              data-lj-reveal
-              className="lj-registry-qr relative block aspect-square w-[220px] overflow-hidden mix-blend-multiply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5a6946] [@media(max-height:740px)]:w-[200px]"
-            >
-              <Image
-                src={giftRegistryQr}
-                alt="QR code for Leslie and Serj’s gift registry"
-                fill
-                sizes="220px"
-                unoptimized
-                className="object-contain p-1"
-              />
-            </a>
-            <figcaption data-lj-reveal className="mt-2 text-[11px] leading-relaxed text-[#646650]">
-              Scan to view our gift registry.
-              <br />
-              Tap the code to enlarge.
-            </figcaption>
-          </figure>
+          <GiftOptions />
           {wedding.gifts.registryUrl && (
             <a
               className="lj-button inline-flex items-center justify-center gap-[14px] min-h-11 py-[15px] px-6 mt-[26px] lj-button-outline"
