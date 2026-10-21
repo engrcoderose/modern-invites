@@ -1,0 +1,30 @@
+import { r2Image } from "./lib/remote-image";
+
+// Artwork and source dimensions verified against the public R2 uploads.
+export const MonogramArtwork = r2Image("designs/aj-monogram.png", 1254, 1254);
+export const BlueFlowers = r2Image("designs/blue-fower-water-color.png", 250, 246);
+export const BrownLineFlower = r2Image("designs/brow-line-flower.png", 386, 120);
+export const BrownFlower2 = r2Image("designs/brown-flower-2.png", 413, 209);
+export const BrownFlower3 = r2Image("designs/brown-flower-3.png", 753, 768);
+export const BrownFlowerWavyLine = r2Image("designs/brown-flower-wavy-line.png", 640, 438);
+export const BrownFlowers = r2Image("designs/brown-flowers.png", 288, 246);
+export const BrownLeafs = r2Image("designs/brown-leafs.png", 244, 222);
+export const EmbossedPaper = r2Image("designs/embossed-cotton-paper.png", 1254, 1254);
+export const FlowerBorder = r2Image("designs/flower-border.png", 753, 759);
+export const FlowerPattern2 = r2Image("designs/flower-pattern-2.png", 1366, 1366);
+export const FlowerPattern = r2Image("designs/flower-pattern-bg.png", 1366, 2044);
+export const FooterFlowers = r2Image("designs/flowers.png", 1370, 396);
+export const GuestAttire = r2Image("designs/guest-attire-watercolor.png", 2172, 724);
+export const LinearBrownFlowers = r2Image("designs/linear-brown-flowers.png", 795, 279);
+export const PinkPetals = r2Image("designs/pink-petals.png", 416, 417);
+export const SponsorAttire = r2Image("designs/sponsor-attire-watercolor.png", 1145, 1374);
+export const TimelineChurch = r2Image("designs/timeline-church.png", 232, 305);
+export const TimelineCocktails = r2Image("designs/timeline-cocktail.png", 422, 631);
+export const TimelineDinner = r2Image("designs/timeline-dinner.png", 495, 364);
+export const TimelineParty = r2Image("designs/timeline-party.png", 249, 334);
+export const TimelinePhotos = r2Image("designs/timeline-photos.png", 327, 189);
+export const TimelineProgram = r2Image("designs/timeline-program.png", 260, 328);
+export const MeadowFlowers = r2Image("designs/water-color-flowers.png", 810, 579);
+export const WaxStamp = r2Image("designs/wax-stamp.png", 254, 254);
+export const WhitePetals = r2Image("designs/white-petals.png", 951, 1070);
+export const ReceptionDirections = r2Image("designs/reception-directions.png", 1170, 711);

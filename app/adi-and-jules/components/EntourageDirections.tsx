@@ -1,0 +1,105 @@
+import { ArrowUpRight, Clock3, MapPin } from "lucide-react";
+import { entouragePreparation, type EntouragePreparation } from "../data";
+import Reveal from "./motion/Reveal";
+
+export default function EntourageDirections() {
+  if (!entouragePreparation.length) return null;
+  const preparations: EntouragePreparation[] = entouragePreparation;
+
+  return (
+    <Reveal className="mb-10">
+      <section
+        id="entourage-directions"
+        aria-labelledby="entourage-directions-title"
+        className="overflow-hidden rounded-xl border border-[rgb(var(--aj-line))]/70 bg-[rgb(var(--aj-paper))] shadow-[0_12px_40px_-25px_#51423740]"
+      >
+        <header className="border-b border-[rgb(var(--aj-line))]/70 bg-[rgb(var(--aj-sand))] px-6 py-8 text-center sm:px-9">
+          <h3
+            id="entourage-directions-title"
+            className="font-instrumentSerif text-3xl text-[rgb(var(--aj-ink))] sm:text-4xl"
+          >
+            Entourage preparation &amp; directions
+          </h3>
+        </header>
+        <div className="divide-y divide-[rgb(var(--aj-line))]/40">
+          {preparations.map((preparation, index) => {
+            const mapHref =
+              preparation.mapUrl ||
+              (preparation.address
+                ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([preparation.venue, preparation.address].filter(Boolean).join(", "))}`
+                : undefined);
+
+            return (
+              <article
+                key={`${preparation.group}-${index}`}
+                className="px-6 py-7 sm:p-9"
+              >
+                <h4 className="font-instrumentSerif text-2xl text-[rgb(var(--aj-ink))] sm:text-3xl">
+                  {preparation.group}
+                </h4>
+                <dl className="mt-6 grid gap-6 sm:grid-cols-[1.3fr_1fr]">
+                  <div>
+                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[rgb(var(--aj-accent-dark))]">
+                      <MapPin size={16} aria-hidden="true" />
+                      Preparation venue
+                    </dt>
+                    <dd className="mt-3 text-sm leading-7 text-[rgb(var(--aj-muted))]">
+                      {preparation.venue && (
+                        <span className="block font-medium text-[rgb(var(--aj-ink))]">
+                          {preparation.venue}
+                        </span>
+                      )}
+                      <span className="block">
+                        {preparation.address ||
+                          "Venue and address to be confirmed."}
+                      </span>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="flex items-center gap-2 text-xs font-medium uppercase tracking-[.12em] text-[rgb(var(--aj-accent-dark))]">
+                      <Clock3 size={16} aria-hidden="true" />
+                      Arrival time
+                    </dt>
+                    <dd className="mt-3 text-sm leading-7 text-[rgb(var(--aj-muted))]">
+                      {preparation.arrivalTime ||
+                        "Preparation schedule to follow."}
+                    </dd>
+                  </div>
+                </dl>
+                <div className="mt-6 rounded-xl bg-[rgb(var(--aj-sand))]/70 px-5 py-4">
+                  <h5 className="text-sm font-medium text-[rgb(var(--aj-ink))]">
+                    Special instructions
+                  </h5>
+                  {preparation.instructions?.length ? (
+                    <ul className="mt-2 list-disc space-y-2 pl-4 text-sm leading-7 text-[rgb(var(--aj-muted))]">
+                      {preparation.instructions.map(
+                        (instruction, instructionIndex) => (
+                          <li key={instructionIndex}>{instruction}</li>
+                        ),
+                      )}
+                    </ul>
+                  ) : (
+                    <p className="mt-2 text-sm leading-7 text-[rgb(var(--aj-muted))]">
+                      Preparation reminders will be shared here once confirmed.
+                    </p>
+                  )}
+                </div>
+                {mapHref && (
+                  <a
+                    href={mapHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[rgb(var(--aj-accent))] px-6 py-3 text-sm text-[rgb(var(--aj-ivory))] transition-colors hover:bg-[rgb(var(--aj-accent-dark))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgb(var(--aj-accent))]"
+                  >
+                    Directions to preparation venue
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </a>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </Reveal>
+  );
+}

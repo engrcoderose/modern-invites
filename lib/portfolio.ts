@@ -42,7 +42,7 @@ const invitationCatalog: PortfolioItem[] = [
     previewAlt: marioInahPhotos.invitation.alt,
     accent: "#414b36",
     accentLight: "#f5f0e4",
-    tags: ["Pastel Garden", "Floral"],
+    tags: ["Signature", "Pastel Garden"],
   },
   {
     id: "ryan-and-anne", title: "Ryan & Anne", category: "Wedding Invitation",
@@ -66,6 +66,13 @@ const invitationCatalog: PortfolioItem[] = [
     description: "Envelope opening, prenup film, galleries, love story, and RSVP.",
     href: "/anjo-and-jasmin", bgImage: TreeDance, previewImage: SunlitPortrait,
     accent: "#755b35", accentLight: "#f5f0e7", tags: ["Luxury", "Ivory & Gold", "Cinematic"],
+  },
+  {
+    id: "adi-and-jules", title: "Adi & Jules", category: "Wedding Invitation",
+    description: "A romantic garden theme with an animated envelope opening, prenup film, photo galleries, love story, RSVP, and a reception seat finder.",
+    href: "/adi-and-jules", bgImage: TreeDance, previewImage: SunlitPortrait,
+    previewAlt: "Couple portrait in the Adi and Jules portfolio invitation",
+    accent: "#755b35", accentLight: "#f5f0e7", tags: ["Luxury", "Seat Finder"],
   },
   {
     id: "vincent-and-gabrielle",

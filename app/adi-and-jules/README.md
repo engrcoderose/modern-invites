@@ -1,0 +1,15 @@
+# Adi & Jules — portfolio edition
+
+Public route: `/adi-and-jules`. This separate invitation preserves the Anjo and Jasmin design and approved media, using the fictional names and event information supplied for portfolio use. The original invitation, event configuration, and guest records are unchanged.
+
+Content lives in `wedding-details.ts` and `data.ts`. Program, attire, palette, music, gift note, and guest policies remain as requested from the source invitation. The RSVP deadline is January 23, 2027, about three weeks before the wedding. The fictional coordinator is Jamie Rivera; only the name is displayed in the RSVP section and FAQ, with no phone number or sample label. The ceremony and reception cards use the supplied Pasig Cathedral and Glass Garden exterior photos, optimized as local WebP assets. Both cards retain their Google Maps links.
+
+RSVP uses the shared event-scoped full-name search flow. The seat finder at `/seat-finder/adi-and-jules` uses the shared published seating repository and guest lookup. Both are configured for `adi-and-jules-wedding` in `data/event.ts`; no original client event IDs or guest lists are reused. Until a seating plan is published, the seat finder shows the normal seating-details-coming-soon message.
+
+Create the event manually in admin using slug **adi-and-jules-wedding**, enable RSVP and full-name search (`name_search`), set the January 23, 2027 deadline in Philippine time, and add the invitations/guests intended for the public portfolio. Enable the seating service, assign tables/seats, and publish its plan. Guests will then use the same admin-managed RSVP and seating features as other invitations. Existing API behavior controls access, validation, submission, and unavailable states; these cannot be verified against the real event until you create/configure it.
+
+Photo/artwork/audio/video URLs intentionally reuse the approved original public media, including their existing URL paths. Binary assets are not duplicated. Image descriptions and invitation labels use the portfolio display names. The existing AJ monogram also matches Adi and Jules. The font is reused from the original invitation's local font file; all portfolio CSS is scoped to `.adi-jules-invitation`.
+
+No database record was created or accessed by the coding agent. No credentials or Supabase connections were used during implementation or verification. Runtime integration uses the repository's existing backend configuration after you create the event. Reusing the original media does not anonymize faces, media filenames, or any identifying text/audio embedded in the film.
+
+Verification uses isolated local API/repository fixtures with no environment files or database access. Real admin event activation, RSVP persistence, guest search, and published seat assignments remain for manual verification after setup. Earlier browser checks covered the invitation at 390px mobile, 768px tablet, and 1440px desktop; no horizontal page overflow was observed. Reduced-motion and iOS Safari behavior were preserved in code but were not separately browser-tested. Full autoplay-loop/frame-recording verification was not performed.

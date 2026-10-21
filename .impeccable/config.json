@@ -39,6 +39,15 @@
         ],
         "createdAt": "2026-10-19T15:09:29.950Z",
         "reason": "Codex: isolated verification fixture preserves the existing Mario and Inah invitation fonts; no new typography is introduced."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "adi jules noto serif",
+        "files": [
+          "app/adi-and-jules/wedding.css"
+        ],
+        "createdAt": "2026-10-21T06:29:51.155Z",
+        "reason": "User requested the same invitation design and fonts; this is the existing Anjo and Jasmin Noto Serif font reused under an isolated portfolio family name."
       }
     ]
   }
