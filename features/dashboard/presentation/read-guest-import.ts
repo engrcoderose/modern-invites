@@ -1,4 +1,5 @@
 import { MAX_IMPORT_FILE_BYTES, MAX_IMPORT_GUESTS, validateImportRows } from "../domain/guest-import.ts";
+import { decodeGuestCsv } from "./decode-guest-csv.ts";
 
 const headers: Record<string, string> = {
   "guest name": "fullName", "full name": "fullName", "name": "fullName",
@@ -67,7 +68,7 @@ export function guestTableToRows(table: string[][]) {
 
 export async function readGuestImport(file: File) {
   if (file.size > MAX_IMPORT_FILE_BYTES) throw new Error("Choose a file smaller than 2 MB.");
-  if (/\.csv$/i.test(file.name)) return guestTableToRows(parseGuestCsv(await file.text()));
+  if (/\.csv$/i.test(file.name)) return guestTableToRows(parseGuestCsv(decodeGuestCsv(await file.arrayBuffer())));
   if (!/\.xlsx$/i.test(file.name)) throw new Error("Choose an Excel (.xlsx) or CSV (.csv) file.");
   const ExcelJS = await import("exceljs");
   const workbook = new ExcelJS.default.Workbook();

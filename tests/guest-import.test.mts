@@ -22,6 +22,57 @@ test("CSV handles UTF-8 BOM, quoted commas, quotes, multiline notes, CRLF and em
   assert.equal(result.rows[1].guestType, "adult");
 });
 
+test("CSV imports preserve UTF-8 names, accents and non-Latin text with or without a BOM", async () => {
+  for (const bom of ["", "\uFEFF"]) {
+    const csv = `${bom}Guest name,Household,Dietary notes\r\nJoyce Zuñiga,Peña Family,No piñon nuts\r\nJosé Niño,,\r\n李 明,,\r\n`;
+    const result = await readGuestImport(new File([csv], "guests.csv"));
+    assert.deepEqual(result.issues, []);
+    assert.deepEqual(result.rows.map(row => row.fullName), ["Joyce Zuñiga", "José Niño", "李 明"]);
+    assert.equal(result.rows[0].householdName, "Peña Family");
+    assert.equal(result.rows[0].dietaryRestrictions, "No piñon nuts");
+  }
+});
+
+test("legacy Excel Windows CSV preserves ñ, Ñ and accents", async () => {
+  const csv = Buffer.from('Guest name,Household,Dietary notes\r\nJoyce Zu\xf1iga,Pe\xf1a Family,No pi\xf1on nuts\r\nJos\xe9 NI\xd1O,,\r\n', "latin1");
+  // Blob.text() used to replace the legacy byte with U+FFFD before parsing.
+  assert.match(await new File([csv], "guests.csv").text(), /\uFFFD/u);
+  const result = await readGuestImport(new File([csv], "guests.csv"));
+  assert.deepEqual(result.issues, []);
+  assert.deepEqual(result.rows.map(row => row.fullName), ["Joyce Zuñiga", "José NIÑO"]);
+  assert.equal(result.rows[0].householdName, "Peña Family");
+  assert.equal(result.rows[0].dietaryRestrictions, "No piñon nuts");
+});
+
+test("BOM-marked UTF-16 CSV imports preserve names in either byte order", async () => {
+  const csv = Buffer.from("\uFEFFGuest name\r\nJoyce Zuñiga\r\n", "utf16le");
+  for (const bytes of [csv, Buffer.from(csv).swap16()]) {
+    const result = await readGuestImport(new File([bytes], "guests.csv"));
+    assert.deepEqual(result.issues, []);
+    assert.equal(result.rows[0].fullName, "Joyce Zuñiga");
+  }
+});
+
+test("damaged CSV text and invalid declared Unicode encodings are rejected before preview", async () => {
+  for (const bytes of [
+    Buffer.from("Guest name\nJoyce Zu\uFFFDiga"),
+    Buffer.from("\xef\xbb\xbfGuest name\nJoyce Zu\xf1iga", "latin1"),
+    Buffer.from([0xff, 0xfe, 0x47]),
+    Buffer.from("Guest name\nJoyce Zuñiga", "utf16le"),
+  ]) {
+    await assert.rejects(readGuestImport(new File([bytes], "guests.csv")), /unreadable characters.*original spreadsheet.*CSV UTF-8/);
+  }
+});
+
+test("Unicode composition is normalized without merging distinct accented names", async () => {
+  const csv = "Guest name\nJoyce Zun\u0303iga\nJoyce Zuñiga\nJoyce Zuniga\n";
+  const result = await readGuestImport(new File([csv], "guests.csv"));
+  assert.equal(result.rows[0].fullName, "Joyce Zuñiga");
+  assert.equal(result.issues.length, 1);
+  assert.equal(result.issues[0].rowNumber, 3);
+  assert.match(result.issues[0].message, /also appears on row 2/);
+});
+
 test("malformed files, missing names, duplicate headers and excess rows are rejected", () => {
   assert.throws(() => parseGuestCsv('Guest name\n"Unclosed'), /unclosed/);
   assert.throws(() => parseGuestCsv('Guest name\n"Closed"broken'), /quotes/);

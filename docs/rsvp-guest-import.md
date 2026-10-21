@@ -16,6 +16,10 @@ Owners and editors can use **Dashboard → Guest list and RSVPs → Import guest
 
 Limits: 500 guests and 2 MB per file. Excel uses the sheet named **Guest List**, or the first sheet if that name is absent. Use text values rather than formulas. The preview identifies ignored columns; RSVP status, contact details, messages, and other columns are never imported.
 
+CSV imports support UTF-8 (with or without a BOM), legacy Windows-1252 Excel CSV, and BOM-marked UTF-16. Names such as **Joyce Zuñiga**, **José Niño**, and **Peña** retain their accents. Prefer **CSV UTF-8** or `.xlsx` when saving a guest list; other legacy encodings should be converted in the original spreadsheet first.
+
+If a file already contains the replacement character **�**, the importer rejects it because the original letter has been lost. Correct those names in the source spreadsheet before uploading again. For names already imported incorrectly, use **Edit guest** to enter the correct spelling and save; imports never overwrite existing guests or RSVP responses.
+
 Duplicate names within a file or matching existing event guests block the batch. Matches ignore case, extra whitespace, and Unicode composition differences. Existing household names also block the batch, including empty households. To add members to an existing household, use **Add guest**. Add different guests with identical names manually so their invitation groups can be checked deliberately.
 
 Existing guests, households, and RSVP responses are never updated by the import. The database rechecks conflicts at save time and writes each batch in one transaction. If saving times out, use **Retry this import safely**: the same request ID returns its recorded result without inserting the batch again. A later upload of the same names is rejected as a duplicate.

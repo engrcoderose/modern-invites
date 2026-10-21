@@ -80,8 +80,13 @@ function GuestEditDialog({
   deleteAction: GuestMutationAction;
   onClose: () => void;
 }) {
+  const [fullName, setFullName] = useState(guest.fullName);
   const [updateState, updateFormAction, isUpdating] = useActionState(
-    updateAction,
+    async (previousState: typeof initialGuestMutationState, formData: FormData) => {
+      const result = await updateAction(previousState, formData);
+      if (result.status === "success") onClose();
+      return result;
+    },
     initialGuestMutationState,
   );
   const [deleteState, deleteFormAction, isDeleting] = useActionState(
@@ -132,7 +137,8 @@ function GuestEditDialog({
             <Input
               id={`full-name-${guest.id}`}
               name="fullName"
-              defaultValue={guest.fullName}
+              value={fullName}
+              onChange={(event) => setFullName(event.target.value)}
               required
               maxLength={120}
               className="bg-white"

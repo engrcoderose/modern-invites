@@ -48,7 +48,7 @@ const invitationCatalog: PortfolioItem[] = [
     id: "ryan-and-anne", title: "Ryan & Anne", category: "Wedding Invitation",
     hidden: true,
     description: "Envelope opening, love story, galleries, and RSVP.",
-    href: "/ryan-and-anne", bgImage: ryanPhoto("cafe-overhead-portrait"), previewImage: ryanPhoto("cafe-doorway-facing-portrait"),
+    href: "https://ryanandannewedding.moderninvites.com/", bgImage: ryanPhoto("cafe-overhead-portrait"), previewImage: ryanPhoto("cafe-doorway-facing-portrait"),
     accent: "#29251f", accentLight: "#f5f0e7", tags: ["Signature", "Editorial", "Black & Champagne"],
   },
   {

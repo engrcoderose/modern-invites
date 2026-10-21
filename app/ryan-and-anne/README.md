@@ -1,6 +1,10 @@
 # Ryan & Anne
 
-Route: `/ryan-and-anne`. An editorial wedding invitation in black, champagne gold, and ivory. Headlines use Mea Culpa; body copy and details use self-hosted Noto Serif; the hero date and location use self-hosted Roboto Mono. Font files and licenses live in `assets/fonts/`.
+Public URL: `https://ryanandannewedding.moderninvites.com/`. Its root rewrites internally to `/ryan-and-anne`; the old main-site route redirects permanently to the public URL. Local previews keep `/ryan-and-anne`, and the RSVP event slug remains `ryan-and-anne`.
+
+Add the hostname to the existing Vercel project's domains and configure the DNS records requested by Vercel, then deploy the routing changes. The code does not create the hosting or DNS configuration.
+
+An editorial wedding invitation in black, champagne gold, and ivory. Headlines use Mea Culpa; body copy and details use self-hosted Noto Serif; the hero date and location use self-hosted Roboto Mono. Font files and licenses live in `assets/fonts/`.
 
 ## Structure
 

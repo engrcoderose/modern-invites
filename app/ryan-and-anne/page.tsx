@@ -24,11 +24,12 @@ import styles from "./styles/wedding.module.css";
 
 const title = `${wedding.title} | ${wedding.date}`;
 const description = `Celebrate the wedding of ${wedding.title} on ${wedding.date} in Quezon. A love we have built, a family we cherish, and a promise for forever.`;
+const invitationUrl = "https://ryanandannewedding.moderninvites.com/";
 
 export const metadata: Metadata = {
   title, description,
-  alternates: { canonical: "/ryan-and-anne" },
-  openGraph: { title, description, url: "/ryan-and-anne", type: "website", locale: "en_PH" },
+  alternates: { canonical: invitationUrl },
+  openGraph: { title, description, url: invitationUrl, type: "website", locale: "en_PH" },
   twitter: { card: "summary", title, description },
   robots: { index: false, follow: false },
 };

@@ -27,7 +27,7 @@ export default function RsvpSection() {
           <p className={`${styles.eyebrow} mb-6 text-center`}>Celebrate with us</p>
           <RsvpFlow eventSlug={wedding.rsvpEventSlug} />
           <p className="mt-8 text-center text-sm leading-7 text-[#615b50]">
-            Please reply by <span className="font-medium">{wedding.rsvpDeadline}</span>.
+            Kindly respond on or before <span className="font-medium">{wedding.rsvpDeadline}</span>.
           </p>
         </div>
       </div>

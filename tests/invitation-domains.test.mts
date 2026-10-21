@@ -8,6 +8,32 @@ import {
 import nextConfig from "../next.config.ts";
 import { getInvitationUrl } from "../lib/invitation-url.ts";
 
+test("Ryan and Anne's final domain serves the invitation and preserves guest links", async () => {
+  const origin = "https://ryanandannewedding.moderninvites.com";
+  assert.equal(getInvitationUrl("ryan-and-anne"), `${origin}/`);
+  const response = await unstable_getResponseFromNextConfig({ url: `${origin}/?ref=invitation`, nextConfig });
+  assert.equal(getRewrittenUrl(response), `${origin}/ryan-and-anne?ref=invitation`);
+  assert.equal(getRedirectUrl(response), null);
+});
+
+test("Ryan and Anne's old main-site links redirect permanently without affecting local previews", async () => {
+  for (const host of ["moderninvites.com", "www.moderninvites.com"]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `https://${host}/ryan-and-anne?ref=invitation`, nextConfig });
+    assert.equal(response.status, 308);
+    assert.equal(getRedirectUrl(response), "https://ryanandannewedding.moderninvites.com/?ref=invitation");
+  }
+  const preview = await unstable_getResponseFromNextConfig({ url: "http://localhost:3000/ryan-and-anne", nextConfig });
+  assert.equal(getRedirectUrl(preview), null);
+});
+
+test("Ryan and Anne's APIs, image optimizer and invitation path stay outside the root rewrite", async () => {
+  for (const pathname of ["/api/rsvp/access", "/_next/image", "/icon.png", "/ryan-and-anne"]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `https://ryanandannewedding.moderninvites.com${pathname}`, nextConfig });
+    assert.equal(getRewrittenUrl(response), null);
+    assert.equal(getRedirectUrl(response), null);
+  }
+});
+
 test("the dashboard's Mario and Inah link reaches the invitation through its root rewrite", async () => {
   const url = getInvitationUrl("mario-and-inah");
   const response = await unstable_getResponseFromNextConfig({ url, nextConfig });
@@ -70,6 +96,9 @@ test("the main site and nonmatching hosts keep their root routes", async () => {
     "othermarioandinahwedding.moderninvites.com",
     "marioandinahweddingXmoderninvitesXcom",
     "marioandinahwedding.moderninvites.com.example.org",
+    "otherryanandannewedding.moderninvites.com",
+    "ryanandanneweddingXmoderninvitesXcom",
+    "ryanandannewedding.moderninvites.com.example.org",
   ]) {
     const response = await unstable_getResponseFromNextConfig({ url: `https://${host}/`, nextConfig });
     assert.equal(getRewrittenUrl(response), null);
