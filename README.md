@@ -24,6 +24,12 @@ Elegant e-invite website for any occasion - built with Next.js 15, React 19, Typ
 
 ## 📦 Installation
 
+Use Node.js **22.23.4 or newer within 22.x**. This is the minimum patched version
+for the October 2026 Node.js security release, including CVE-2026-111497. Check
+your installation with `node --version` and restart development servers after
+upgrading. The `engines.node` range in `package.json` keeps local development and
+hosted deployments on Node 22 without opting into a new major version.
+
 1. Clone the repository
 2. Install dependencies:
 
@@ -122,6 +128,24 @@ The easiest way to deploy this Next.js app is using [Vercel](https://vercel.com)
 2. Import your repository on Vercel
 3. Vercel will automatically detect Next.js and configure the build
 4. Deploy!
+
+### Node.js runtime on Vercel
+
+- `package.json` selects Node **22.x** with a minimum of **22.23.4**. Vercel uses
+  the major version from this range and manages minor and patch updates; the
+  range cannot force a particular hosted patch version.
+- In **Project Settings → Build and Deployment → Node.js Version**, select
+  **22.x** to match the repository. The `package.json` setting takes precedence.
+- Deploy the updated commit. To verify the build runtime, temporarily use
+  `node --version && npm run build` as the Vercel Build Command and confirm the
+  logs report **22.23.4 or newer within 22.x**. If checking a Function runtime,
+  log `process.version` in an existing server handler and inspect its logs.
+- Check Vercel's security bulletin for the managed runtime patch rollout. WAF
+  protection does not replace updating local Node installations or external
+  servers. No Next.js dependency change fixes this Node.js runtime vulnerability.
+
+References: [Node.js October 2026 security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases)
+and [Vercel Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions).
 
 Alternatively, you can deploy to:
 - Netlify

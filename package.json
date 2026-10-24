@@ -2,6 +2,9 @@
   "name": "modern-invites",
   "version": "1.0.0",
   "description": "Elegant e-invite website for any occasion",
+  "engines": {
+    "node": "^22.23.4"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
