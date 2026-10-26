@@ -2,8 +2,9 @@
 
 Public URL: `https://marioandinahwedding.moderninvites.com`.
 Internal route: `/mario-and-inah`. Direct requests to this old page return HTTP
-404 on every host, including the main domain, preview deployments and the new
-subdomain. Only the new subdomain's `/` is rewritten internally to the invitation.
+404 on deployed hosts, including the main domain, preview deployments and the new
+subdomain. Localhost development permits this path for previews. Only the new
+subdomain's `/` is rewritten internally to the invitation.
 Existing photo, music and sharing-image paths remain available. The RSVP event
 slug stays `mario-and-inah`; this migration does not change guest data or RSVP settings.
 
@@ -31,9 +32,10 @@ slug stays `mario-and-inah`; this migration does not change guest data or RSVP s
 
 References: [Vercel domain setup](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
 DNS and hosting setup are left to the owner. No credentials or Supabase data are
-needed for these routing changes. For a local preview, use a Host header for the
-new domain or map it to `127.0.0.1` in a local hosts file and use the dev-server port;
-the old localhost path is intentionally blocked too.
+needed for these routing changes. For a local preview, run `npm run dev` from the
+repository root and open `http://localhost:3000/mario-and-inah` (use the port shown
+in the terminal if 3000 is occupied). The direct path is allowed only in development
+on `localhost`, `127.0.0.1`, or `[::1]`; deployed routing remains unchanged.
 
 A continuous photo-first floral invitation matching the user-pinned reference at `C:/Users/Spades/Downloads/4.png`, with supplied floral artwork and confirmed questionnaire content. The first screen is immediately readable. No navigation row is rendered, and the footer greeting is removed. The user requested removal of per-image Sample photo watermarks and the Save our date section; the separate invitation-details section and its calendar action are no longer rendered. Client-specific files and documentation stay in this folder.
 

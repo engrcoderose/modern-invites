@@ -10,11 +10,11 @@ export const entourage = [
   { title: "Bridesmaids", members: ["Mary Ceñidoza", "Grace Ceñidoza", "Nicole Mallari", "Alexandra Feliciano"] },
   { title: "Groomsmen", members: ["Zandrex Osorio", "Jhune Villarete", "Elloyd Cruz", "Isaac Tajolosa"] },
   { title: "Flower girl", members: ["Julia Perleen Reyes"] },
-  { title: "Bible bearer", members: ["Hikaru Benedict Cortes"] },
+  { title: "Bible bearer", members: ["Yuan Jacob Cayabyab"] },
+  { title: "Ring bearer", members: ["Hikaru Benedict Cortes"] },
   { title: "Coin bearer", members: ["Blessy Calli Orense"] },
   { title: "Little bride", members: ["Umi Serin O. Shimizu"] },
 ] as const;
 
 // Veil, candle and cord sponsors are unnamed in the questionnaire.
-// The ring bearer is one of the groomsmen; the individual is unconfirmed.
-export const pendingEntourage = ["Veil sponsors", "Candle sponsors", "Cord sponsors", "Ring bearer"] as const;
+export const pendingEntourage = ["Veil sponsors", "Candle sponsors", "Cord sponsors"] as const;

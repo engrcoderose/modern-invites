@@ -35,7 +35,8 @@ export default function EntourageSection() {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 [@media(max-width:359px)]:grid-cols-1 sm:gap-x-14 sm:gap-y-12">
           {entourage.map(group => {
             const principal = group.title === "Principal sponsors";
-            return <div key={group.title} className={`min-w-0 ${principal ? `${styles.entourageSponsors} col-span-full py-8 sm:py-10` : ""}`}>
+            const fullWidth = principal || group.title === "Little bride";
+            return <div key={group.title} className={`min-w-0 ${fullWidth ? "col-span-full" : ""} ${principal ? `${styles.entourageSponsors} py-8 sm:py-10` : ""}`}>
               <h3 data-reveal="text" className={styles.roleTitle}>{group.title}</h3>
               <MemberList members={group.members} paired={principal} />
             </div>;
