@@ -1,0 +1,31 @@
+.album {
+  --album-ink: #512c38;
+  --album-muted: #795360;
+  --album-accent: #963e5c;
+  --album-line: #e5c6d0;
+  --album-paper: #fffafc;
+  --album-wash: #f3e2e8;
+  color: var(--album-ink);
+  background: #fcf5f7;
+}
+
+.album ::selection { background: #eac3d1; color: var(--album-ink); }
+.album :is(input, textarea) { caret-color: var(--album-accent); }
+.album :is(button, a, input, textarea):focus-visible { outline: 2px solid var(--album-accent); outline-offset: 4px; }
+.albumTitle { text-wrap: balance; }
+.photoPrint { box-shadow: 0 14px 35px -12px rgb(81 44 56 / 0.22); }
+.printLeft { transform: rotate(-6deg); }
+.printRight { transform: rotate(5deg); }
+.galleryPrint { box-shadow: 0 6px 20px -10px rgb(81 44 56 / 0.2); }
+.uploadPaper { box-shadow: 0 16px 45px -20px rgb(81 44 56 / 0.16); }
+.uploadNote { background: linear-gradient(155deg, #f8e8ee 0%, var(--album-paper) 75%); }
+.dropTarget { transition: background-color 180ms ease, border-color 180ms ease; }
+.dropTarget:focus-within { border-color: var(--album-accent); }
+.albumEntrance { animation: album-arrive 650ms cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes album-arrive { from { transform: translateY(12px); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .albumEntrance { animation: none; } }
+
+.management ::selection { background: theme('colors.sage.100'); color: theme('colors.forest.DEFAULT'); }
+.management :is(button, a, input, textarea):focus-visible { outline: 2px solid theme('colors.forest.DEFAULT'); outline-offset: 4px; }
+
+.photo { object-fit: cover; }

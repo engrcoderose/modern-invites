@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Armchair, LayoutDashboard } from "lucide-react";
+import { Armchair, Images, LayoutDashboard } from "lucide-react";
 
 export function ClientNavigation({ hasSeatFinder }: { hasSeatFinder: boolean }) {
   const pathname = usePathname();
   const seatingActive = pathname.startsWith("/dashboard/seat-finder");
+  const photoSharingActive = pathname.startsWith("/dashboard/photo-sharing");
   const items = [
-    { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, active: !seatingActive },
+    { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, active: !seatingActive && !photoSharingActive },
     ...(hasSeatFinder ? [{ href: "/dashboard/seat-finder", label: "Seat Finder", icon: Armchair, active: seatingActive }] : []),
+    { href: "/dashboard/photo-sharing", label: "Photo Sharing (demo)", icon: Images, active: photoSharingActive },
   ];
   return <nav aria-label="Client navigation" className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-4 sm:px-6 lg:px-8">
     {items.map(({ href, label, icon: Icon, active }) => <Link key={href} href={href} aria-current={active ? "page" : undefined}
