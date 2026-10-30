@@ -1,0 +1,51 @@
+[
+  {
+    "file": "sample-hero.webp",
+    "source": "public/images/hero-scroll-romantic-couple.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 197948
+  },
+  {
+    "file": "sample-cinematic.webp",
+    "source": "public/images/hero-scroll-cinematic.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 186426
+  },
+  {
+    "file": "sample-cover.webp",
+    "source": "app/isabella-and-daniel/assets/ring-focus.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 85084
+  },
+  {
+    "file": "sample-invitation.webp",
+    "source": "app/isabella-and-daniel/assets/walking-couple.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 112616
+  },
+  {
+    "file": "sample-story.webp",
+    "source": "app/isabella-and-daniel/assets/inlove-couple.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 142430
+  },
+  {
+    "file": "sample-flowers.webp",
+    "source": "app/isabella-and-daniel/assets/couple-with-flowers.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 147374
+  },
+  {
+    "file": "sample-portrait.webp",
+    "source": "app/isabella-and-daniel/assets/pexels-camera-treasure-928922-16841002.jpg",
+    "kind": "existing repository sample photograph",
+    "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
+    "bytes": 206448
+  }
+]

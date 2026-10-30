@@ -1,0 +1,50 @@
+export const wedding = {
+  slug: "jahzen-and-glyzell",
+  couple: { display: "Jahzen & Glyzell", groom: "Jahzen Mendoza Nobles", bride: "Glyzell Terante Gaudillo" },
+  date: { display: "May 30, 2027", day: "Sunday", iso: "2027-05-30T16:30:00+08:00" },
+  rsvpDeadline: "May 1, 2027",
+  hashtag: "#JahzenGotGlyedAway",
+  venue: {
+    name: "La Fina Grand Hall",
+    detail: "by Kastelo Verde",
+    address: "McArthur Highway, Talaga, Capas, Tarlac, Philippines",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Fina+Grand+Hall+by+Kastelo+Verde+Talaga+Capas+Tarlac",
+  },
+  timeline: [
+    { time: "4:00 PM", title: "Guest arrival", description: "Settle in and find your seat." },
+    { time: "4:30 PM", title: "The ceremony", description: "The beginning of our marriage." },
+    { time: "5:00 PM", title: "Cocktail hour", description: "A little time to mingle." },
+    { time: "6:00 PM", title: "The reception", description: "Dinner, laughter, and celebration." },
+    { time: "8:00 PM", title: "After party", description: "Let the celebration continue." },
+  ],
+  story: [
+    "Some stories begin with a meeting, while ours began with a message. We never knew that a simple online connection in 2025 would lead us to the person we would one day call our forever. Although we had never met in person, we already shared something meaningful — our faith in Jehovah. Across 6,600 miles and different time zones, our conversations gradually grew longer, our familiar voices became a source of comfort, and the distance between us became a little easier to bear. Through it all, we found more reasons to keep choosing each other and realized that what we had was becoming something worth holding on to.",
+    "After six months of loving each other from afar, we finally had the chance to meet in person when Glyzell came home to the Philippines for six weeks. It was our chance to discover the person beyond the screen — to understand our differences, recognize our compatibility, and see whether our spiritual goals and dreams for the future were aligned. We both understood that loving each other was one thing, but deciding to spend our lives together was another. Two days before Glyzell was set to leave the Philippines, Jahzen proposed. When she asked why he had waited until then, he explained that those six weeks had given him enough time to get to know her better and become certain that she was the woman he wanted to spend the rest of his life with.",
+    "On May 30, 2027, we will stand beside each other in Tarlac, Philippines, ready to make a commitment that means so much more than a wedding day. What began with a message will become a marriage. And with Jehovah at the heart of our life together, we look forward to building a future shaped by faith, mutual understanding, and enduring love. As we prepare to say “I do,” we know that our wedding day will not mark the end of our story, but the beginning of our forever.",
+  ],
+  entourage: [
+    { role: "Parents of the groom", names: ["Obed & Adora Nobles"] },
+    { role: "Parents of the bride", names: ["Joel & Engracia Gaudillo"] },
+    { role: "Best man", names: ["Jezzer Nobles"] },
+    { role: "Maid of honor", names: ["Jannelle Quesada"] },
+    { role: "Bridal escorts", names: ["Jogie Gaudillo", "Jap Joasen Gaudillo", "Jaylen Jeff Gaudillo"] },
+    { role: "Witnesses to our marriage", names: ["Mr. Florante Dela Vega Jr.", "Mrs. Jaztel Gunnarsson"] },
+    { role: "Ring bearer", names: ["Jaiden Nobles"] },
+    { role: "Bible bearer", names: ["Jace Kaeleb Gaudillo"] },
+    { role: "Song book bearer", names: ["Jóhann Abbý Gaudillo"] },
+  ],
+  attire: {
+    gentlemen: "Formal suits in Navy Blue or Espresso Brown are kindly requested.",
+    ladies: "Elegant, floor-length dresses or gowns are kindly requested. Refined styles and fabrics such as silk or satin are encouraged, and a touch of gold is welcome, depending on your preference.",
+    palette: [
+      { name: "Navy blue", color: "#142e43" },
+      { name: "Espresso", color: "#4b2e1d" },
+      { name: "Champagne gold", color: "#c5a05e" },
+    ],
+  },
+  guestNotes: [
+    { title: "Reserved seating", text: "We have reserved a seat for each guest named on your invitation. We kindly ask that attendance be limited to those listed. Thank you for your understanding and for celebrating this special occasion with us." },
+    { title: "An adults-only celebration", text: "As we prepare for our special day, we kindly request that our wedding celebration be an adults-only occasion. A special exception has been made for Jaiden, Jace, and Jóhann, who are members of our immediate family. We sincerely appreciate your kind understanding and look forward to celebrating this meaningful occasion with you." },
+    { title: "A note on gifts", text: "The joy of sharing our special day with you means more to us than words can express. For those who wish to give a gift, monetary gifts would be graciously appreciated. However, any gift given from the heart will be received with love and gratitude." },
+  ],
+} as const;

@@ -1,0 +1,116 @@
+{
+  "reason": "Eight photos and one separately exported crop were removed at the owner request. New owner-supplied replacement exports are recorded in replacement-photos.json.",
+  "originalsPreserved": true,
+  "pendingPlacements": [],
+  "images": [
+    {
+      "original": "IMG_1556.JPG",
+      "originalBytes": 1005221,
+      "originalWidth": 2384,
+      "originalHeight": 3480,
+      "sourceSha256": "6f2c0e77c60973c826497aac52efe131bb8862893744f7e2075110e071dcf89d",
+      "duplicateOf": null,
+      "filename": "apreal-burgundy-gown-arched-hallway-cropped.webp",
+      "bytes": 235838,
+      "width": 1644,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-14.jpeg",
+      "originalBytes": 11324471,
+      "originalWidth": 6000,
+      "originalHeight": 4000,
+      "sourceSha256": "49c7a68fc6db01197d5a9830501f02f0db906c02105d5de4e5286d3b5363bbbb",
+      "duplicateOf": null,
+      "filename": "apreal-sequin-dress-wooden-staircase.webp",
+      "bytes": 304634,
+      "width": 2400,
+      "height": 1600
+    },
+    {
+      "original": "Pre wedding-89.jpeg",
+      "originalBytes": 11689063,
+      "originalWidth": 4525,
+      "originalHeight": 5302,
+      "sourceSha256": "c2b0674f2c59f51286a5030dccdcf154d230c1ad2c3501b1f44221c8497fbdb6",
+      "duplicateOf": null,
+      "filename": "sequin-dress-balcony-full-length.webp",
+      "bytes": 584902,
+      "width": 2048,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-93.jpeg",
+      "originalBytes": 10661957,
+      "originalWidth": 3968,
+      "originalHeight": 6048,
+      "sourceSha256": "4f3ddc2907a51a70f46398816f3ee47989c53a9883b0508fd9767d1cc6c01d4c",
+      "duplicateOf": null,
+      "filename": "sequin-dress-balcony-seated-edcel.webp",
+      "bytes": 384096,
+      "width": 1575,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-152.jpeg",
+      "originalBytes": 10809607,
+      "originalWidth": 4338,
+      "originalHeight": 5531,
+      "sourceSha256": "86faf5b0c3e9682619f4a66228c67163f9f94ca8b92646688a958c9c0b7888a4",
+      "duplicateOf": null,
+      "filename": "ivory-dress-sofa-portrait-wide.webp",
+      "bytes": 360950,
+      "width": 1882,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-371.jpeg",
+      "originalBytes": 14003781,
+      "originalWidth": 4054,
+      "originalHeight": 5920,
+      "sourceSha256": "3fee27027c3c7270595ef1de8f6fe96cf371c2c47855e3f830471f1b9687d12f",
+      "duplicateOf": null,
+      "filename": "apreal-burgundy-gown-arched-hallway-full-length.webp",
+      "bytes": 377026,
+      "width": 1644,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-423.jpeg",
+      "originalBytes": 18248581,
+      "originalWidth": 6000,
+      "originalHeight": 4000,
+      "sourceSha256": "fb043035f221eed0a9268550811d36c65726f7444031a4d3e1bfcabddf041035",
+      "duplicateOf": null,
+      "filename": "burgundy-gown-terrace-linked-arms-closeup.webp",
+      "bytes": 491620,
+      "width": 2400,
+      "height": 1600
+    },
+    {
+      "original": "Pre wedding-455.jpeg",
+      "originalBytes": 13122161,
+      "originalWidth": 4033,
+      "originalHeight": 5950,
+      "sourceSha256": "f76e3afd69e28dc65450e2a6176514ad44232e0f9c04ea2d6dc99402363fcab1",
+      "duplicateOf": null,
+      "filename": "burgundy-gown-vintage-suitcase-sunglasses.webp",
+      "bytes": 382922,
+      "width": 1627,
+      "height": 2400
+    },
+    {
+      "original": "Pre wedding-468.jpeg",
+      "originalBytes": 13974882,
+      "originalWidth": 6000,
+      "originalHeight": 4000,
+      "sourceSha256": "4fd8dc1e883bec862555f72b6a589f1b9c555fe5242fa47ccdc288bd74ba1040",
+      "duplicateOf": null,
+      "filename": "burgundy-gown-arched-hallway-tilted.webp",
+      "bytes": 375332,
+      "width": 2400,
+      "height": 1600
+    }
+  ],
+  "replacementRecord": "replacement-photos.json"
+}

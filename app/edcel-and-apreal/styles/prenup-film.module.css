@@ -1,0 +1,72 @@
+.section {
+  color: #401522;
+  background: #eee0c4;
+}
+.frame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  border: clamp(16px, 4vw, 32px) solid transparent;
+  border-image-source: var(--film-frame);
+  border-image-slice: 19% 18%;
+  border-image-repeat: round;
+  background: #eee0c4;
+}
+.player { position: relative; aspect-ratio: 16 / 9; width: 100%; }
+.mobileArtwork { display: none; opacity: .65; }
+.continue { color: #f8f0e5; background: #401522e6; }
+.play {
+  color: #f8f0e5;
+  border: 1px solid #f8f0e599;
+  background: #401522bf;
+  box-shadow: 0 4px 24px #16050d55;
+  transition: background-color .2s ease, box-shadow .2s ease;
+}
+.play:hover { background: #652235; box-shadow: 0 6px 30px #16050d88; }
+@media (max-width: 1023px) and (orientation: portrait) {
+  .frame {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: max(100%, calc((100svh - 64px) * 941 / 1672));
+    aspect-ratio: 941 / 1672;
+    transform: translate(-50%, -50%);
+    border: 0;
+    border-image: none;
+  }
+  .mobileArtwork { display: block; }
+  .player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(70%, calc(100vw - 40px));
+    transform: translate(-50%, -50%);
+  }
+}
+@media (min-width: 1024px) and (min-aspect-ratio: 5/4) {
+  .frame {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: max(100%, calc((100svh - 64px) * 1672 / 941));
+    aspect-ratio: 1672 / 941;
+    transform: translate(-50%, -50%);
+    border: 0;
+    border-image: none;
+    background-image: var(--film-frame);
+    background-size: 100% 100%;
+  }
+  .player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Keep the film inside the paper opening and reserve 80px above/below
+       when a wide screen crops the decorative background. */
+    width: min(62.6%, calc((100svh - 64px - 160px) * 16 / 9));
+    transform: translate(-50%, -50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .play { transition: none; }
+}

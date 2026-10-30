@@ -1,0 +1,8 @@
+.panel, .player { color: #652235; border-color: #d9b9b1; }
+.panel { background: #f8f0e5; }
+.player { background: #f8f0e5f5; backdrop-filter: blur(12px); }
+.title { font-family: var(--font-ea-script), cursive; font-weight: 400; line-height: 1.4; }
+.play { background: #652235; color: #f8f0e5; }
+.play:hover { background: #401522; }
+.track { border-color: transparent; }
+.track:hover, .track[aria-current="true"] { background: #ead5d6; border-color: #d9b9b1; }

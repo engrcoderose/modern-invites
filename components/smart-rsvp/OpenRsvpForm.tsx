@@ -14,6 +14,7 @@ const defaultFieldClass = "min-h-11 border-[var(--smart-rsvp-border)] bg-white t
 const buttonClass = "min-h-11 bg-[var(--smart-rsvp-heading)] px-6 text-white hover:bg-[var(--smart-rsvp-heading)] hover:opacity-90";
 
 interface OpenRsvpFormProps {
+  description?: string;
   closedMessage?: string;
   closedAppearance?: "card" | "minimal";
   closedTitleClassName?: string;
@@ -28,7 +29,7 @@ interface OpenRsvpFormProps {
   onNameConflict?: (status: "responded" | "ambiguous") => void;
 }
 
-export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = requestOpenRsvpSubmission, preview = false, verifiedName, onNameConflict, closedMessage, closedAppearance, closedTitleClassName, onClosed }: OpenRsvpFormProps) {
+export function OpenRsvpForm({ event, fields, description, appearance = "card", onSubmit = requestOpenRsvpSubmission, preview = false, verifiedName, onNameConflict, closedMessage, closedAppearance, closedTitleClassName, onClosed }: OpenRsvpFormProps) {
   const minimal = appearance === "minimal";
   const fieldClass = minimal
     ? "min-h-12 rounded-none border border-[var(--smart-rsvp-border-soft)] bg-transparent px-3 text-base shadow-none focus-visible:ring-[var(--smart-rsvp-accent)] sm:min-h-14 md:text-base"
@@ -103,7 +104,7 @@ export function OpenRsvpForm({ event, fields, appearance = "card", onSubmit = re
         <p className="text-sm leading-6">Please confirm your attendance below.</p>
         <p className="text-xs leading-6" aria-live="polite">{attendance ? 1 : 0} of 1 answered</p>
       </div>}
-      {(!minimal || !verifiedName) && <p className="mt-3 text-sm leading-6">{verifiedName ? "Your name is ready. Please complete your RSVP below." : "Anyone can RSVP. Enter your details below to reply for yourself."}</p>}
+      {(!minimal || !verifiedName) && <p className="mt-3 text-sm leading-6">{description ?? (verifiedName ? "Your name is ready. Please complete your RSVP below." : "Anyone can RSVP. Enter your details below to reply for yourself.")}</p>}
       {preview && <p className="mt-3 text-sm leading-6 text-gray-600">Preview only. Replies are not sent or saved.</p>}
       <form onSubmit={submit} className={minimal ? "mt-7 space-y-6 text-left" : "mt-6 space-y-5"}>
         <fieldset disabled={pending} className="min-w-0 space-y-5 disabled:opacity-70">

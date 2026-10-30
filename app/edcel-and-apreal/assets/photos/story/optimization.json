@@ -1,0 +1,47 @@
+[
+  {
+    "original": "First photo.jpg",
+    "filename": "first-hello.webp",
+    "originalBytes": 3098585,
+    "optimizedBytes": 141518,
+    "width": 1800,
+    "height": 1350,
+    "sourceQuality": 85
+  },
+  {
+    "original": "Second.JPG",
+    "filename": "shared-adventures.webp",
+    "originalBytes": 212786,
+    "optimizedBytes": 118196,
+    "width": 1200,
+    "height": 1200,
+    "sourceQuality": 85
+  },
+  {
+    "original": "Third.jpeg",
+    "filename": "next-chapter.webp",
+    "originalBytes": 7807481,
+    "optimizedBytes": 47634,
+    "width": 1200,
+    "height": 1800,
+    "sourceQuality": 85
+  },
+  {
+    "original": "Fourth.jpg",
+    "filename": "a-beautiful-yes.webp",
+    "originalBytes": 318256,
+    "optimizedBytes": 248182,
+    "width": 1350,
+    "height": 1800,
+    "sourceQuality": 85
+  },
+  {
+    "original": "Last photo_.jpg",
+    "filename": "save-the-date.webp",
+    "originalBytes": 4546256,
+    "optimizedBytes": 218526,
+    "width": 1800,
+    "height": 1088,
+    "sourceQuality": 85
+  }
+]

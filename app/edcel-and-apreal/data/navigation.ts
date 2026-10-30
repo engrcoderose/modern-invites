@@ -1,0 +1,18 @@
+export const navigationLinks = [
+  { id: "prenup-film", label: "Prenup Video" },
+  { id: "home", label: "Home" },
+  { id: "countdown", label: "Countdown" },
+  { id: "gallery", label: "Gallery" },
+  { id: "story", label: "Our Story", desktop: true },
+  { id: "schedule", label: "Program", desktop: true },
+  { id: "entourage", label: "Entourage", desktop: true },
+  { id: "celebration", label: "Venue", desktop: true },
+  { id: "attire", label: "Dress Code", desktop: true },
+  { id: "gifts", label: "Gift Registry" },
+  { id: "guest-notes", label: "Reminders" },
+  { id: "seat-finder", label: "Seat Finder" },
+  { id: "faq", label: "FAQ" },
+  { id: "memories", label: "Memories" },
+  { id: "rsvp", label: "RSVP", desktop: true },
+  { id: "closing", label: "With Love" },
+] satisfies { id: string; label: string; desktop?: boolean }[];

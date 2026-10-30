@@ -1,0 +1,449 @@
+{
+  "clientRoot": "C:\\Users\\Spades\\Documents\\modern-invites\\app\\edcel-and-apreal",
+  "imageCount": 115,
+  "keptCount": 42,
+  "removedCount": 73,
+  "removedBytes": 30841373,
+  "removed": [
+    {
+      "path": "assets/burgundy-seal.png",
+      "bytes": 89211,
+      "sha256": "33c292a5db5c3828ab5aa61c96a0398a9aba0ddcaa356c65a2bcd9288bbc69a8",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/countdown/burgundy-satin-florals-mobile.webp",
+      "bytes": 187266,
+      "sha256": "eec17bfc186ed7d94a4164db873210ed05e8b07e4c2f766b1d0246ce9948998d",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/countdown/burgundy-satin-florals.webp",
+      "bytes": 268016,
+      "sha256": "37f3b59e46019ec4abb7dba1aefa6aa0e18dae24afaced114ee5e41d6970f5a1",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/designs/enrourage-bg",
+      "bytes": 3577896,
+      "sha256": "7669c3c9f53147aa04aa109e8290c2f1645f2628c390c340845fcbbee3f89cfb",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/designs/flower-design.png",
+      "bytes": 223017,
+      "sha256": "4de2ecf498c757221e9dd711fbdf61bccabf90f1ba9c7fd057f82d7b8e037f89",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/designs/lace-design.png",
+      "bytes": 149958,
+      "sha256": "73f10e8456d571f66d66a8f4ab8281c4c00bc644199f963df0a0d7f54923e967",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/ephemera/burgundy-orchid-spray.webp",
+      "bytes": 109904,
+      "sha256": "c533d4aa4ba8c27307f36ea89873f2f796f18962e34738bc021618f4b44649ce",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/ephemera/gold-heart-charm-444.webp",
+      "bytes": 257968,
+      "sha256": "613fb906b80494e6e5e453a3033f0b189bdd11c2b600770def1da153d74b78f9",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/ephemera/ivory-swan.webp",
+      "bytes": 114382,
+      "sha256": "6c0c1d7d9e83fd441fdd3c6e42d91694e8f987b246c009d9e6736d3427aa7355",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/ephemera/pressed-burgundy-hibiscus.webp",
+      "bytes": 244170,
+      "sha256": "6f83507b7cdff5fb0fee35d1149474deded6188665fd33c081c4e011795e832b",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/florals/rose-hibiscus-cascade.webp",
+      "bytes": 201010,
+      "sha256": "50f63f4ff76cf5225583be9da647549ef8b7ee0557f47a03a58e709ce8df7857",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/florals/wine-and-gold-hibiscus.webp",
+      "bytes": 123174,
+      "sha256": "97baaaca344b75685dd31511467586248eeac713ebd5990f1373bc1d847ab978",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/monograms/ea-lockup-burgundy.png",
+      "bytes": 116416,
+      "sha256": "794673bdb13ad5088036cc96c32e20241228ecf696c68aa2f7a6ba689f3706f5",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/photos/prenup/apreal-burgundy-gown-terrace-leaning.webp",
+      "bytes": 370962,
+      "sha256": "21055c32a7489689a52af60a40e8147ea95325c9e13db2d9ec5b591e54d982cc",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/apreal-sequin-dress-red-gloves-portrait.webp",
+      "bytes": 467242,
+      "sha256": "26ff39607e69b7225acaa8df029318e162210b2bfabf873a8a3e79aed48550f0",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/apreal-sequin-dress-staircase-overhead.webp",
+      "bytes": 306072,
+      "sha256": "4d477c40ea64e1214481de46eabdbc0b28b1fa34bc88d1c516e0be6c0379b94a",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/apreal-sequin-dress-wooden-staircase-revised.webp",
+      "bytes": 291240,
+      "sha256": "ce8ba10b40cf11995b00b01a1507273308f775010fe7c40bf9eaf966330e2ccf",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-arched-hallway-chandelier.webp",
+      "bytes": 367268,
+      "sha256": "8f21af049032994bc968569835ae31171aa61d7aa08df6f4915e93162a2c3171",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-arched-hallway-facing-each-other.webp",
+      "bytes": 247394,
+      "sha256": "f8361786db4326b4e8866ac8593e5768e99171f1d3cc1810ca91dd80f02b4579",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-arched-hallway-standing.webp",
+      "bytes": 243206,
+      "sha256": "1833a592f8b8e74cef72efac3e06756762e920c8961c4903d9ce3e5f12133fed",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-arched-hallway-tilted-revised.webp",
+      "bytes": 344228,
+      "sha256": "8ded1bec957663b3cc66a03a4be1bcbe65b0e3f2267fbccf4cd40fb5778c02dd",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-chaise-seated-edcel-facing.webp",
+      "bytes": 514282,
+      "sha256": "91b9e0343b6d6bcf1d8a95d679d040c717782e2988231b0b0f843a81720f1e3f",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-chaise-seated-edcel-profile.webp",
+      "bytes": 399626,
+      "sha256": "62d6b397e2a411741172aed8eaa1016557918bd5e6e31be60d116fb49cfdc774",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-doorway-close-portrait.webp",
+      "bytes": 433408,
+      "sha256": "256cf571a288c3f01f145c35cca019bd7636f72d9f7ee6722730d4d7c982b1de",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-doorway-smiling-portrait.webp",
+      "bytes": 305110,
+      "sha256": "e95137d705e2b01199aa983db7109cf9ecfcf81b5047f587f8a0172e3845faee",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-painted-balcony-wide.webp",
+      "bytes": 440182,
+      "sha256": "8eb126fdb32ee2c7734a3169dfeb48da38d84ab0662b1446e209942857228f11",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-painted-doorway-full-length.webp",
+      "bytes": 501602,
+      "sha256": "d4e8f0fbbe382406982d1387d939af2d0fcb7fce22321a600a83997549cdbef8",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-rooftop-terrace-wide.webp",
+      "bytes": 563562,
+      "sha256": "b076f6bc13d8e561fb511bf468f6cae4331d0883a60bcdd3078483dceae8893d",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-terrace-linked-arms-closeup-revised.webp",
+      "bytes": 327956,
+      "sha256": "3477a5b89c49691d1a1f45ae3b23b0c9e03e325fb4cf68fde95097ecd7ce7122",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-terrace-linked-arms-full-length.webp",
+      "bytes": 605764,
+      "sha256": "1e2e3ff7e69cc8a990df3c3a07d03152ae019c5dba3b2837a61070c098c0a421",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-vintage-suitcase-holding-hands.webp",
+      "bytes": 426684,
+      "sha256": "4649f2882e01d0b8b0f5a4b99413a8287b9ab66d22a338b163e3ad8a1a5ad74b",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/burgundy-gown-vintage-suitcase-sunglasses-revised.webp",
+      "bytes": 356494,
+      "sha256": "dc7bfdb0eaf8c919c2bacf1a19628bc84bca3ae6016ef23fde8aba198ee784b1",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/couple-window-silhouette.webp",
+      "bytes": 691574,
+      "sha256": "d36b691f7f70b1969678dda00079f2f638a3714ff289970a6f3f03e99fd2a26b",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/edcel-black-shirt-window-overhead.webp",
+      "bytes": 508282,
+      "sha256": "4ed3048f9997102b55eebec40df17e455280d766f7be38c0594d73cba7379f1d",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/edcel-black-shirt-window-profile.webp",
+      "bytes": 469210,
+      "sha256": "780344b159b395b9d23cad96391f10fe73e5156e6919062f801a766ef06d2441",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/edcel-black-suit-arched-hallway.webp",
+      "bytes": 300998,
+      "sha256": "0ff5d873a73f5718d1ddd9c48174306d97484c679a3bf025dd0af5f0d34bc75e",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/edcel-black-suit-terrace-profile.webp",
+      "bytes": 386876,
+      "sha256": "f02b7e01fee7e6e1bb878eb84a6f3dcc29e8751c3bb82091704c6962218ee4ed",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-forehead-kiss.webp",
+      "bytes": 333688,
+      "sha256": "72a0c3127373413cf56b8cc817d57b83e66018ca160eb3e040d9f587620d5ea4",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-garden-hand-in-hand-walk.webp",
+      "bytes": 428730,
+      "sha256": "d4f899d5c1b5adce7c8d26144ceee6d755ef62b85309f0cbfdfece2a68217336",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-garden-sunglasses-playful.webp",
+      "bytes": 565990,
+      "sha256": "566e915df29347bf0c174dde2848cb83d0f2664e879ad835cccd176d891f8aed",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-garden-sunglasses-standing.webp",
+      "bytes": 471206,
+      "sha256": "8ba92d1158c51ee7a0a34952501df2cd69841dba4ba399dfda2450186b809c63",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-garden-sunglasses-veil.webp",
+      "bytes": 534856,
+      "sha256": "576afea70d4134a21be3b22ff1137ed948269766b7378c0c24d5775114aaf4f1",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-hand-in-hand-painted-wall.webp",
+      "bytes": 401022,
+      "sha256": "8aa6870c96a186e595ab173344d0c35e46b23c56ce55c4d686454e58e1f0e4cd",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-sofa-portrait-cropped.webp",
+      "bytes": 326784,
+      "sha256": "6b521a0107f17cbea3c1945aac37aa946f086d651bbebdc29ab9918950266317",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-sofa-portrait-wide-revised.webp",
+      "bytes": 349090,
+      "sha256": "e8e8875b29be82528345dd2864c855824d4bfcd4e1ecf8e5204bdcda7c7d7190",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-stone-balcony-wide.webp",
+      "bytes": 972414,
+      "sha256": "c0a1c99d96898780b9e84120be92548c0bd369e7ac5267b069783a4608821777",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-window-seat-portrait.webp",
+      "bytes": 431120,
+      "sha256": "9812df8daa2f107a6cceee68d9f0aed8eab50f66995629b737b51fd62d72c772",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-window-seat-wide.webp",
+      "bytes": 515482,
+      "sha256": "c5b41eed8812004fa5b29f8c339de9a0ba71d58d22343b8b473d34441367e1f5",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/ivory-dress-wood-paneled-window-portrait.webp",
+      "bytes": 358626,
+      "sha256": "b52553db8373abdd94983db0ce90ec9e973c1a8fcd7f96c3b413dc34674c7b76",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/save-the-date-newspapers-closeup.webp",
+      "bytes": 262544,
+      "sha256": "25c8fe5cfeb94aeb3b1e49c5ab4942dc25815c4833f1397c9b5baad33f6bbc6d",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/save-the-date-newspapers-portrait.webp",
+      "bytes": 323758,
+      "sha256": "a4e24d5c8a5c2a97db6bc4b5ba8c905967ecbc315e99ce882b55db0858a75a71",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-apreal-foreground.webp",
+      "bytes": 346260,
+      "sha256": "0b718be70107578ed223dc2e15b59571f873c1cf7fe08f35bac4004050e11d0a",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-embrace-closeup.webp",
+      "bytes": 474364,
+      "sha256": "efc2913d32e3113c1aa059db0e1c12e71b265a15d21b0fa553f5df7eeffbaa7e",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-full-length-revised.webp",
+      "bytes": 555438,
+      "sha256": "057a0eb2c69fe96c1f62158ba0028d95a93c4814b26443d2d2e584ebbca55fe9",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-leaning-closeup.webp",
+      "bytes": 318950,
+      "sha256": "f55d9988044fa8b9086fff7e15fda8183cfb64ab89a5ef35474fab12b36babcd",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-mirror-reflection.webp",
+      "bytes": 604350,
+      "sha256": "f9f9c1a91c3683b0c3d124be4b6d7c4891655a4ca20333bae22412248dc4d7bc",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-seated-edcel-revised.webp",
+      "bytes": 358348,
+      "sha256": "cf746915a9c867add60fd719a0ec2aae4650623141adbd46db9c686386805f71",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-standing-portrait.webp",
+      "bytes": 379664,
+      "sha256": "71b44ef357fb624d1babeae9049afe4fae6c39b29e80b469969c87133791d5c5",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-balcony-tilted-portrait.webp",
+      "bytes": 560252,
+      "sha256": "846f5b6786e950959833ba8d0a617024be912f483ed6627a76f9b0ab160fd62b",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-spiral-staircase-seated-revised.webp",
+      "bytes": 308252,
+      "sha256": "8ed3044da2cd4c23bd5a3187d50be34ffd15e62a92cfb74f6e9551ece4591ca2",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-spiral-staircase-seated.webp",
+      "bytes": 332994,
+      "sha256": "ed20a78c14caf3fe84334383bd63762a353ebf9384b7d62cad4e4ca088acd295",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-spiral-staircase-standing.webp",
+      "bytes": 399400,
+      "sha256": "bbb6bf6465a44a48ad3eb4688095d8fb70caf4b6bfb5e5126e82422d988b4ec9",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-staircase-wide-overhead.webp",
+      "bytes": 443922,
+      "sha256": "194320fa27d95e7c783431bf3f27a0c822eb7aeec0b3c2a9ae10a3d0d2a407d2",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/prenup/sequin-dress-window-framed-embrace.webp",
+      "bytes": 190892,
+      "sha256": "921eb1ee05a18ac46f917942b75491dd5bbe92ca36a536a34d1ec680125f5640",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/story/a-beautiful-yes.webp",
+      "bytes": 248182,
+      "sha256": "bba0f7b034b006938241b967cbe92b56d1121fbce9c5444046500eb5091de715",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/story/first-hello.webp",
+      "bytes": 141518,
+      "sha256": "79fdaecb3136400c8580c47c904a88f47b503d9164c21632e754441d8aadcc72",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/story/next-chapter.webp",
+      "bytes": 47634,
+      "sha256": "61ad97a3659c311648dfe31c2f9f0fa339c3dc06586fc0ba9bc821acd4ae77f8",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/story/save-the-date.webp",
+      "bytes": 218526,
+      "sha256": "27095e2bf3f163f5a7ae6285de4b8407e04131b099e838dd8dd29e5fe178f9d7",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/photos/story/shared-adventures.webp",
+      "bytes": 118196,
+      "sha256": "7ff7297c2bc4ce0d60432309aa97c684255584253d2c599c5eb338060ef45aba",
+      "reason": "Local copy replaced by verified R2 source"
+    },
+    {
+      "path": "assets/timeline/timeline-flower-heart.png",
+      "bytes": 478205,
+      "sha256": "3e381b08e00e571d549704a5e697be229788302996bf52c7e0cfcb401dabca37",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/venues/chandelier-events-place.webp",
+      "bytes": 192322,
+      "sha256": "ef29d4ca1259039a68fee0d45ff2e0074f956f6e27e98464f51ba56fe035bf20",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/venues/transfiguration-church.webp",
+      "bytes": 239466,
+      "sha256": "8672f4f10d044fba64551f7e7dc0d73085e518ebee643058438e63930245836a",
+      "reason": "Not referenced by the invitation"
+    },
+    {
+      "path": "assets/vintage-roses.png",
+      "bytes": 2077318,
+      "sha256": "102ff5d1971a5d0cdd924c98b0f9ae3a43005bcc7f86b22cf670bf62f6f66690",
+      "reason": "Not referenced by the invitation"
+    }
+  ],
+  "backupDirectory": "C:\\Users\\Spades\\.codex\\visualizations\\2026\\10\\27\\01a17e24-f4f5-7951-9e8a-63715425a9ea\\edcel-apreal-unused-images-backup-20261031",
+  "completedAt": "2026-10-30T19:23:32.7729921Z"
+}

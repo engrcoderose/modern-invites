@@ -1,0 +1,2 @@
+.viewer::backdrop { background: #260d15f2; backdrop-filter: blur(8px); }
+.viewer:focus-visible { outline: none; }

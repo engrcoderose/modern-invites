@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T08:52:53.913Z",
+  "title": "Design System: Joy and Rolly",
+  "extensions": {
+    "colorMeta": {
+      "plum": {
+        "role": "primary",
+        "displayName": "Bouquet Plum",
+        "tonalRamp": [
+          "oklch(15% 0.13401 323.76)",
+          "oklch(26% 0.13401 323.76)",
+          "oklch(38% 0.13401 323.76)",
+          "oklch(49% 0.13401 323.76)",
+          "oklch(61% 0.13401 323.76)",
+          "oklch(72% 0.13401 323.76)",
+          "oklch(84% 0.13401 323.76)",
+          "oklch(95% 0.13401 323.76)"
+        ]
+      },
+      "plum-hover": {
+        "role": "primary",
+        "displayName": "Plum Hover",
+        "tonalRamp": [
+          "oklch(15% 0.14983 324.27)",
+          "oklch(26% 0.14983 324.27)",
+          "oklch(38% 0.14983 324.27)",
+          "oklch(49% 0.14983 324.27)",
+          "oklch(61% 0.14983 324.27)",
+          "oklch(72% 0.14983 324.27)",
+          "oklch(84% 0.14983 324.27)",
+          "oklch(95% 0.14983 324.27)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Ivory Paper",
+        "tonalRamp": [
+          "oklch(15% 0.00452 78.30)",
+          "oklch(26% 0.00452 78.30)",
+          "oklch(38% 0.00452 78.30)",
+          "oklch(49% 0.00452 78.30)",
+          "oklch(61% 0.00452 78.30)",
+          "oklch(72% 0.00452 78.30)",
+          "oklch(84% 0.00452 78.30)",
+          "oklch(95% 0.00452 78.30)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Plum Ink",
+        "tonalRamp": [
+          "oklch(15% 0.04237 316.68)",
+          "oklch(26% 0.04237 316.68)",
+          "oklch(38% 0.04237 316.68)",
+          "oklch(49% 0.04237 316.68)",
+          "oklch(61% 0.04237 316.68)",
+          "oklch(72% 0.04237 316.68)",
+          "oklch(84% 0.04237 316.68)",
+          "oklch(95% 0.04237 316.68)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Mauve",
+        "tonalRamp": [
+          "oklch(15% 0.04416 319.16)",
+          "oklch(26% 0.04416 319.16)",
+          "oklch(38% 0.04416 319.16)",
+          "oklch(49% 0.04416 319.16)",
+          "oklch(61% 0.04416 319.16)",
+          "oklch(72% 0.04416 319.16)",
+          "oklch(84% 0.04416 319.16)",
+          "oklch(95% 0.04416 319.16)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Lavender Rule",
+        "tonalRamp": [
+          "oklch(15% 0.03299 316.41)",
+          "oklch(26% 0.03299 316.41)",
+          "oklch(38% 0.03299 316.41)",
+          "oklch(49% 0.03299 316.41)",
+          "oklch(61% 0.03299 316.41)",
+          "oklch(72% 0.03299 316.41)",
+          "oklch(84% 0.03299 316.41)",
+          "oklch(95% 0.03299 316.41)"
+        ]
+      },
+      "hero-paper": {
+        "role": "neutral",
+        "displayName": "Cloudy lavender hero ground"
+      },
+      "lavender-paper": {
+        "role": "secondary",
+        "displayName": "Lavender Paper",
+        "tonalRamp": [
+          "oklch(15% 0.01370 299.79)",
+          "oklch(26% 0.01370 299.79)",
+          "oklch(38% 0.01370 299.79)",
+          "oklch(49% 0.01370 299.79)",
+          "oklch(61% 0.01370 299.79)",
+          "oklch(72% 0.01370 299.79)",
+          "oklch(84% 0.01370 299.79)",
+          "oklch(95% 0.01370 299.79)"
+        ]
+      },
+      "blue-paper": {
+        "role": "secondary",
+        "displayName": "Powder Blue Paper",
+        "tonalRamp": [
+          "oklch(15% 0.01102 243.65)",
+          "oklch(26% 0.01102 243.65)",
+          "oklch(38% 0.01102 243.65)",
+          "oklch(49% 0.01102 243.65)",
+          "oklch(61% 0.01102 243.65)",
+          "oklch(72% 0.01102 243.65)",
+          "oklch(84% 0.01102 243.65)",
+          "oklch(95% 0.01102 243.65)"
+        ]
+      },
+      "footer-paper": {
+        "role": "neutral",
+        "displayName": "Footer Paper",
+        "tonalRamp": [
+          "oklch(15% 0.01476 312.24)",
+          "oklch(26% 0.01476 312.24)",
+          "oklch(38% 0.01476 312.24)",
+          "oklch(49% 0.01476 312.24)",
+          "oklch(61% 0.01476 312.24)",
+          "oklch(72% 0.01476 312.24)",
+          "oklch(84% 0.01476 312.24)",
+          "oklch(95% 0.01476 312.24)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Border",
+        "tonalRamp": [
+          "oklch(15% 0.06638 316.64)",
+          "oklch(26% 0.06638 316.64)",
+          "oklch(38% 0.06638 316.64)",
+          "oklch(49% 0.06638 316.64)",
+          "oklch(61% 0.06638 316.64)",
+          "oklch(72% 0.06638 316.64)",
+          "oklch(84% 0.06638 316.64)",
+          "oklch(95% 0.06638 316.64)"
+        ]
+      },
+      "field-border-soft": {
+        "role": "neutral",
+        "displayName": "Field Border Soft",
+        "tonalRamp": [
+          "oklch(15% 0.04185 313.14)",
+          "oklch(26% 0.04185 313.14)",
+          "oklch(38% 0.04185 313.14)",
+          "oklch(49% 0.04185 313.14)",
+          "oklch(61% 0.04185 313.14)",
+          "oklch(72% 0.04185 313.14)",
+          "oklch(84% 0.04185 313.14)",
+          "oklch(95% 0.04185 313.14)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(26% 0.00000 89.88)",
+          "oklch(38% 0.00000 89.88)",
+          "oklch(49% 0.00000 89.88)",
+          "oklch(61% 0.00000 89.88)",
+          "oklch(72% 0.00000 89.88)",
+          "oklch(84% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      },
+      "hero-ink": {
+        "role": "primary",
+        "displayName": "Dark plum hero lettering"
+      },
+      "satin-paper": {
+        "role": "neutral",
+        "displayName": "Ivory satin countdown ground"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero names",
+        "purpose": "Single-line Joy & Rolly hero names in Imperial Script at clamp(3.4rem, 15.5vw, 14rem), line-height 1.08; italic Libre Baskerville ampersand at 0.44em."
+      },
+      "cover-display": {
+        "displayName": "Cover names",
+        "purpose": "Height-aware Imperial Script names at clamp(3rem, min(18vw, 13svh), 6rem), compact phone spacing."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Balanced plum Instrument Serif headings."
+      },
+      "title": {
+        "displayName": "Information title",
+        "purpose": "Serif subheadings."
+      },
+      "body": {
+        "displayName": "Body copy",
+        "purpose": "16px phone reading text, 14px from 640px; readable line spacing and safe wrapping."
+      },
+      "form": {
+        "displayName": "Form control",
+        "purpose": "Readable text inside RSVP controls."
+      },
+      "hero-details": {
+        "displayName": "Hero date and invitation prose",
+        "purpose": "Readable uppercase Libre Baskerville hero information, minimum 14px, with safe wrapping under enlargement."
+      },
+      "countdown-heading": {
+        "displayName": "Counting down to forever",
+        "purpose": "Imperial Script, clamp(2.5rem, 7.5vw, 6rem), line-height 1.25, over ivory satin and lavender lilies."
+      },
+      "countdown-numbers": {
+        "displayName": "Live countdown digits",
+        "purpose": "Four tabular serif columns at ordinary sizes, reflowing to two or one via container queries when text is enlarged."
+      }
+    },
+    "shadows": [
+      {
+        "name": "timeline-halo",
+        "value": "0 0 0 5px #eeebf5",
+        "purpose": "Separates the marker from its track; no raised surface."
+      },
+      {
+        "name": "shared-submit-shadow",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Inherited shared RSVP button shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "stationery-ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Central cover frame and scroll reveal easing."
+      },
+      {
+        "name": "cover-open",
+        "value": "700ms",
+        "purpose": "Central frame only: opacity 1 to 0.92; y 0 to -18px; scale 1 to 1.025. Opaque cover paper and flowers retain their resting appearance until the atomic handoff to main content."
+      },
+      {
+        "name": "cover-reduced",
+        "value": "150ms",
+        "purpose": "Central frame opacity 1 to 0.92 only, with translation and scale disabled. Cover paper and flowers remain unchanged until the atomic handoff."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "550ms",
+        "purpose": "Once-only reveal; default 16px movement, delays capped at 240ms."
+      },
+      {
+        "name": "button-hover",
+        "value": "180ms ease",
+        "purpose": "Cover background-color transition, removed in reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Open invitation",
+      "kind": "button",
+      "refersTo": "button-open",
+      "description": "Custom plum cover action with a guarded opening state.",
+      "html": "<button class=\"ds-open\">Open invitation <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-open{font-family:var(--font-inter,Inter),sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:48px;padding:12px 28px;background:#5b1962;color:#fff;border:1px solid #5b1962;border-radius:2px;font-size:14px;line-height:20px;cursor:pointer;transition:background-color 180ms ease}.ds-open:hover{background:#74287b}.ds-open:focus-visible{outline:2px solid #5b1962;outline-offset:5px;}.ds-open[aria-disabled=\"true\"]{cursor:wait}@media(prefers-reduced-motion:reduce){.ds-open{transition:none}}"
+    },
+    {
+      "name": "RSVP submit",
+      "kind": "button",
+      "refersTo": "button-rsvp",
+      "description": "Shared form button in the client's ink color.",
+      "html": "<button class=\"ds-rsvp\">Submit RSVP</button>",
+      "css": ".ds-rsvp{font-family:var(--font-inter,Inter),sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:44px;padding:8px 24px;background:#49394f;color:#fff;border:0;border-radius:6px;font-size:14px;line-height:20px;font-weight:500;cursor:pointer;box-shadow:0 1px 3px 0 rgb(0 0 0 / .1),0 1px 2px -1px rgb(0 0 0 / .1);transition:color 150ms,background-color 150ms,border-color 150ms}.ds-rsvp:hover{opacity:.9}.ds-rsvp:focus-visible{outline:2px solid #5b1962;outline-offset:5px;}.ds-rsvp:disabled{pointer-events:none;opacity:.5}"
+    },
+    {
+      "name": "Minimal RSVP field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Transparent, square name field with a lavender stroke.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-name\">Full name</label><input class=\"ds-field\" id=\"ds-name\" autocomplete=\"name\" placeholder=\"Your full name\" />",
+      "css": ".ds-field-label{font-family:var(--font-inter,Inter),sans-serif;display:block;margin-bottom:8px;font-size:14px;font-weight:500;color:#49394f}.ds-field{font-family:var(--font-inter,Inter),sans-serif;display:block;width:100%;min-height:48px;padding:4px 12px;border:1px solid #c7b6d1;border-radius:0;background:transparent;color:#49394f;font-size:16px;line-height:24px;caret-color:#5b1962;box-shadow:none}.ds-field::placeholder{color:#6d5a72}.ds-field:focus-visible{outline:2px solid #5b1962;outline-offset:5px;box-shadow:0 0 0 1px #5b1962}.ds-field:disabled{cursor:not-allowed;opacity:.5}@media(min-width:640px){.ds-field{min-height:56px}}"
+    },
+    {
+      "name": "Attendance choice",
+      "kind": "custom",
+      "description": "Two square tiles with an explicit selected treatment.",
+      "html": "<fieldset class=\"ds-attendance\"><legend>Will you attend?</legend><div class=\"ds-choices\"><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-attendance\" checked /> Yes</label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-attendance\" /> No</label></div></fieldset>",
+      "css": ".ds-attendance{font-family:var(--font-inter,Inter),sans-serif;border:0;padding:0;color:#49394f}.ds-attendance legend{font-size:14px;margin-bottom:8px}.ds-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ds-choice{display:flex;align-items:center;gap:12px;min-height:48px;border:1px solid #c7b6d1;padding:12px 16px;font-size:16px;cursor:pointer}.ds-choice:has(:checked){border-color:#5b1962;background:#eeebf5}.ds-choice input{width:16px;height:16px;accent-color:#5b1962}.ds-choice input:focus-visible{outline:2px solid #5b1962;outline-offset:5px;}"
+    },
+    {
+      "name": "Invitation navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Desktop horizontal navigation preview. Below 1024px the implemented invitation has a 44px Menu control, a scrollable disclosure panel, Escape focus return, and closing after section navigation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Invitation preview\"><a class=\"ds-monogram\" href=\"#ds-top\">J &amp; R</a><div class=\"ds-links\"><a href=\"#ds-details\">Details</a><a href=\"#ds-entourage\">Entourage</a><a href=\"#ds-attire\">Attire</a><a href=\"#ds-rsvp\">RSVP</a></div></nav>",
+      "css": ".ds-nav{font-family:var(--font-inter,Inter),sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:#fbf9f6f7;border-bottom:1px solid #e8dfeb;color:#49394f}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none;text-underline-offset:5px}.ds-nav a:hover{text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid #5b1962;outline-offset:5px;}.ds-nav .ds-monogram{font-family:var(--font-instrument-serif,'Instrument Serif'),Georgia,serif;font-size:21.6px;color:#5b1962;white-space:nowrap}.ds-links{display:flex;gap:4px}.ds-links a{padding:0 8px;font-size:12px}@media(min-width:640px){.ds-nav{padding-inline:32px}.ds-links{gap:20px}.ds-links a{font-size:14px}}"
+    },
+    {
+      "name": "Timeline item",
+      "kind": "custom",
+      "refersTo": "timeline",
+      "description": "Stacked phone timeline, with the horizontal time/title layout from 640px. Text wraps safely under enlargement.",
+      "html": "<div class=\"ds-timeline\"><div class=\"ds-event\"><time>3:00 PM</time><div><h3>The ceremony</h3><p>The beginning of our forever.</p></div></div></div>",
+      "css": ".ds-timeline{font-family:var(--font-inter,Inter),sans-serif;background:#eeebf5;color:#49394f;padding:32px 24px}.ds-event{position:relative;display:grid;grid-template-columns:1fr;gap:8px;padding-left:24px}.ds-event:before{content:\"\";position:absolute;left:4px;top:9px;bottom:0;width:1px;background:#c6b6d0}.ds-event:after{content:\"\";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:50%;background:#5b1962;box-shadow:0 0 0 5px #eeebf5}.ds-event time{padding-top:4px;text-align:left;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}.ds-event h3{font-family:var(--font-instrument-serif,'Instrument Serif'),Georgia,serif;margin:0;font-size:24px;line-height:32px;font-weight:400}.ds-event p{margin:8px 0 12px;color:#6d5a72;font-size:14px;line-height:24px}@media(min-width:640px){.ds-event{grid-template-columns:110px 1fr;gap:36px;padding-left:0}.ds-event:before{left:128px}.ds-event:after{left:124px}.ds-event time{font-size:14px;text-align:right}.ds-event h3{font-size:30px;line-height:36px}}"
+    },
+    {
+      "name": "Fine arch",
+      "kind": "custom",
+      "description": "Opening cover stationery frame only. The main hero is unframed. Cover florals use 260px below 768px and 430px above; footer uses 240px and 330px. The hero uses 145px/135px mobile bouquets and 24vw/21vw bouquets from 768px, over a full-width cloudy lavender backplate.",
+      "html": "<div class=\"ds-arch\"><div class=\"ds-names\">Joy<br /><span>and</span><br />Rolly</div><p>March 12, 2027</p></div>",
+      "css": ".ds-arch{max-width:570px;padding:20px 12px;border:1px solid #d6c7dc;border-radius:48% 48% 2px 2px / 25% 25% 2px 2px;background:#fbf9f6;text-align:center;color:#49394f}.ds-names{font-family:var(--font-imperial,'Imperial Script'),'Brush Script MT',cursive;font-size:clamp(3rem,min(18vw,13svh),6rem);font-weight:400;line-height:.9;color:#5b1962}.ds-names span{font-size:.4em;line-height:1}.ds-arch p{font-family:var(--font-instrument-serif,'Instrument Serif'),Georgia,serif;font-size:20px;margin:20px 0 0}@media(min-width:640px){.ds-arch{padding:64px 48px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Floral Wedding Stationery",
+    "overview": "An ivory arch-framed opening cover leads into the user’s reference-led main hero: cloudy lavender watercolor, colored bouquets and opposite botanical line art, a JR monogram, date and time above oversized one-line Joy & Rolly calligraphy, and uppercase invitation prose. The full names and functional countdown remain immediately below the hero. Other invitation sections and the opening interaction retain their approved design.",
+    "keyCharacteristics": [
+      "Plum calligraphic names with refined serif headings.",
+      "Ivory paper, pale colored section fields, and hairline rules.",
+      "Original transparent watercolor florals reused at opposing corners.",
+      "A separate opening cover with a guarded transition and focus handoff.",
+      "Flat, spacious content with a minimal RSVP preview.",
+      "Ivory satin countdown with lavender lilies, a script heading, and four live dark plum numeric fields.",
+      "User-supplied church and reception photographs in 4:3 responsive frames above the unchanged venue details.",
+      "Hero uses original designs/flower-1.png, flower-2.png, and monogram.png over a decoration-free lavender wash; source PNGs remain unchanged.",
+      "Mobile-friendly compact opening, a touch Menu below 1024px, larger phone copy, stacked timeline, and safe 200% text reflow."
+    ],
+    "rules": [
+      {
+        "name": "The Bouquet Rule",
+        "body": "Preserve the distinction between the source bouquet palette, the pale interface fields, and the named attire swatches.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Voices Rule",
+        "body": "Reserve script for the couple's names, serif for invitation information and headings, and sans-serif for instructions and controls.",
+        "section": "typography"
+      },
+      {
+        "name": "The Separate States Rule",
+        "body": "Never reveal or activate the main invitation while the opening cover still owns the experience.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve the plum, pale paper fields, fine arches, and transparent watercolor material.",
+      "Do use the three established font roles and reuse their existing root resources.",
+      "Do keep layouts flexible, retain keyboard focus, and respect reduced motion.",
+      "Do keep the RSVP explicitly local preview until the user's admin configuration is available."
+    ],
+    "donts": [
+      "Don't invent missing photographs, stories, or entourage entries.",
+      "Don't replace the opening interaction with a scroll to the next section.",
+      "Don't let the cover and main invitation become visible and interactive together.",
+      "Don't apply the marketing site's visual system to this client invitation."
+    ]
+  }
+}

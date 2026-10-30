@@ -1,0 +1,64 @@
+.hero { background: #260d15; color: #fbf2e7; }
+.photoSurface { background: #3c1923; }
+.shade {
+  background: linear-gradient(180deg, #16081038, #260d155c 28%, #260d157d 58%, #260d15b3);
+}
+.photoSlide { transition: opacity 1.2s ease-in-out; }
+.copy { text-shadow: 0 1px 4px #16050d88, 0 2px 18px #16050d99; }
+.eyebrow, .request, .metadata { text-wrap: balance; }
+.names {
+  font-family: var(--font-ea-script), cursive;
+  font-size: clamp(3.25rem, min(18vw, 12svh), 6rem);
+  font-weight: 400;
+  line-height: .98;
+}
+.connector {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .3em;
+}
+.ornament { color: #d6a8ac; }
+.metadata { border-top: 1px solid #e1b5ad55; color: #edcbd0; }
+.scroll { color: #edcbd0; transition: color .2s; }
+.scroll:hover { color: #fff; }
+.keyboardPlayback { background: var(--ea-burgundy); color: var(--ea-paper); }
+.groomName { --name-drift: -28px; --name-turn: -1.5deg; --hero-delay: 1.05s; }
+.connector { --hero-delay: 2.1s; }
+.brideName { --name-drift: 28px; --name-turn: 1.5deg; --hero-delay: 2.7s; }
+.request { --hero-delay: 4.15s; }
+.date { --hero-delay: 5.35s; }
+.metadata { --hero-delay: 5.95s; }
+.scroll { --hero-delay: 6.55s; }
+:global([data-hero-revealed="true"]) .entrance { animation: heroReveal 2.25s cubic-bezier(.22, .61, .36, 1) var(--hero-delay, 0s) both; }
+:global([data-hero-revealed="true"]) .name { animation: heroNameReveal 3.25s cubic-bezier(.22, .61, .36, 1) var(--hero-delay) both; }
+:global([data-hero-revealed="true"]) .ornament > span:nth-child(odd) { animation: heroRuleReveal 2.25s cubic-bezier(.22, .61, .36, 1) 4.85s both; }
+:global([data-hero-revealed="true"]) .ornament > span:nth-child(2) { animation: heroReveal 2.25s cubic-bezier(.22, .61, .36, 1) 4.85s both; }
+.hero .scroll:focus-visible { animation: none; }
+@keyframes heroReveal {
+  from { opacity: 0; transform: translate3d(0, 22px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes heroNameReveal {
+  from { opacity: 0; transform: translate3d(var(--name-drift), 44px, 0) scale(.92) rotate(var(--name-turn)); filter: blur(5px); }
+  65% { opacity: 1; filter: blur(0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(0); filter: blur(0); }
+}
+@keyframes heroRuleReveal {
+  from { opacity: 0; transform: scaleX(0); }
+  to { opacity: .6; transform: scaleX(1); }
+}
+@media (min-width: 768px) {
+  .shade { background: linear-gradient(180deg, #16081055, #260d1555 20%, #260d15c7 75%, #260d15e8), linear-gradient(90deg, #260d1520, #260d1555 50%, #260d1520); }
+  .names { font-size: clamp(7.5rem, 11vw, 10rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photoSlide, .scroll { transition: none; }
+  :global([data-hero-revealed="true"]) :is(.entrance, .name),
+  :global([data-hero-revealed="true"]) .ornament > span:nth-child(n) { animation: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero[data-hero-revealed="false"] :is(.entrance, .name, .ornament > span) { opacity: 0; }
+  .hero[data-hero-revealed="false"] .scroll:focus-visible { opacity: 1; }
+}

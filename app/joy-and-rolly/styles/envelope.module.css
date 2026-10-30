@@ -1,0 +1,18 @@
+.cover { background: #eee8f2; }
+.envelope { perspective: 1400px; isolation: isolate; box-shadow: 0 24px 48px #49394f26, 0 5px 10px #49394f14; border-radius: 3px; cursor: pointer; }
+.envelope[aria-disabled="true"] { cursor: wait; }
+.back { background: #c9b9d2; border-radius: inherit; box-shadow: inset 0 6px 16px #49394f26; }
+.letter { container-type: inline-size; color: #5b1962; background: #f7f3e8; box-shadow: 0 2px 8px #49394f26; border-radius: 2px; }
+.cardTitle { font-family: var(--font-imperial), "Brush Script MT", cursive; font-size: 18cqw; line-height: 1.15; white-space: nowrap; }
+.cardDetails { font-family: var(--font-libre-baskerville), Georgia, serif; font-size: clamp(11px, 3cqw, 16px); font-weight: 700; line-height: 1.6; letter-spacing: 0.12em; text-transform: uppercase; }
+.leftFold { clip-path: polygon(0 0, 56% 55%, 0 100%); background: linear-gradient(115deg, #e6dcec, #d4c4dd); }
+.rightFold { clip-path: polygon(100% 0, 44% 55%, 100% 100%); background: linear-gradient(245deg, #e2d6e9, #cbb9d6); }
+.pocket { clip-path: polygon(0 100%, 0 3%, 50% 57%, 100% 3%, 100% 100%); background: linear-gradient(180deg, #f0e9f4, #e3d7eb); border-radius: 0 0 3px 3px; }
+.pocket::after { content: ""; position: absolute; inset: 0; clip-path: polygon(0 100%, 0 97%, 50% 54%, 100% 97%, 100% 100%, 50% 58%); background: #c8b3d12e; }
+.flap { transform-style: preserve-3d; }
+.flapFront, .flapBack { clip-path: polygon(0 0, 100% 0, 50% 100%); backface-visibility: hidden; }
+.flapFront { background: linear-gradient(180deg, #eae0ef, #d6c6e0); transform: translateZ(1px); }
+.flapBack { background: #d2c0dc; transform: rotateY(180deg); }
+.seal { border-radius: 46% 54% 48% 52% / 52% 46% 54% 48%; background: linear-gradient(135deg, #853a81, #5b1962 65%, #46164b); box-shadow: inset 0 0 0 4px #ffffff14, inset 0 0 0 6px #3d124842, 0 4px 7px #49394f40; }
+.names { font-family: var(--font-imperial), "Brush Script MT", cursive; font-size: clamp(3rem, 9vw, 5rem); font-weight: 400; line-height: 1.1; color: #5b1962; text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .envelope { perspective: none; } }

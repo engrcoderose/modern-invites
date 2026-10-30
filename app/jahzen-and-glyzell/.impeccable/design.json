@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T19:44:03.947001Z",
+  "title": "Design System: Jahzen & Glyzell",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "primary",
+        "displayName": "Midnight navy",
+        "canonical": "#142e43"
+      },
+      "navy-deep": {
+        "role": "primary",
+        "displayName": "Deep navy",
+        "canonical": "#102537"
+      },
+      "espresso": {
+        "role": "secondary",
+        "displayName": "Espresso",
+        "canonical": "#39271f"
+      },
+      "champagne": {
+        "role": "primary",
+        "displayName": "Champagne",
+        "canonical": "#d0af72"
+      },
+      "champagne-hover": {
+        "role": "primary",
+        "displayName": "Champagne hover",
+        "canonical": "#e1c794"
+      },
+      "antique-gold": {
+        "role": "primary",
+        "displayName": "Antique gold",
+        "canonical": "#816237"
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "#f8f3e9"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#efe7d9"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#66574b"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#cfc0a8"
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field border",
+        "canonical": "#c3b397"
+      },
+      "selected": {
+        "role": "neutral",
+        "displayName": "Selected",
+        "canonical": "#e6dac6"
+      },
+      "timeline-navy": {
+        "role": "primary",
+        "displayName": "Timeline navy",
+        "canonical": "#081f2d"
+      },
+      "timeline-champagne": {
+        "role": "primary",
+        "displayName": "Timeline champagne",
+        "canonical": "#e4c48a"
+      },
+      "timeline-icon": {
+        "role": "primary",
+        "displayName": "Timeline line icon",
+        "canonical": "#dcc38b"
+      },
+      "timeline-time": {
+        "role": "neutral",
+        "displayName": "Timeline time",
+        "canonical": "#f1e5d2"
+      },
+      "timeline-muted": {
+        "role": "neutral",
+        "displayName": "Timeline description",
+        "canonical": "#d3dce1"
+      },
+      "timeline-intro": {
+        "role": "neutral",
+        "displayName": "Timeline introduction",
+        "canonical": "#e7e6df"
+      },
+      "placeholder-paper": {
+        "role": "neutral",
+        "displayName": "Placeholder paper",
+        "canonical": "#eee5d7"
+      },
+      "placeholder-text": {
+        "role": "neutral",
+        "displayName": "Placeholder text",
+        "canonical": "#6f5c43"
+      },
+      "placeholder-navy": {
+        "role": "neutral",
+        "displayName": "Placeholder navy",
+        "canonical": "#112b3a"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Editorial names",
+        "purpose": "Instrument Serif hero names; a distinct cover size is documented in prose."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Expressive Instrument Serif headings with italic gold emphasis."
+      },
+      "title": {
+        "displayName": "Subgroup heading",
+        "purpose": "Venue groups, attire categories and FAQ questions."
+      },
+      "body": {
+        "displayName": "General copy",
+        "purpose": "Inter practical copy and interface text."
+      },
+      "prose": {
+        "displayName": "Narrative",
+        "purpose": "Libre Baskerville story, attire, guest policy and RSVP passages."
+      },
+      "signature": {
+        "displayName": "Script accent",
+        "purpose": "Brief Imperial Script signatures and expressive accents."
+      },
+      "label": {
+        "displayName": "Practical metadata",
+        "purpose": "Dates, roles and practical metadata; story and timeline labels are specific to their user-selected references, not a general decorative kicker pattern."
+      },
+      "action": {
+        "displayName": "Opening action",
+        "purpose": "Tracked Inter opening button text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "signature-seal",
+        "value": "0 14px 34px #10253733",
+        "purpose": "Localized lift for the circular script seal."
+      },
+      {
+        "name": "attire-caption",
+        "value": "0 14px 34px #39271f21",
+        "purpose": "Localized lift for the ivory attire caption."
+      },
+      {
+        "name": "hero-text",
+        "value": "0 6px 24px #10253780",
+        "purpose": "Text shadow supporting large names over photography."
+      }
+    ],
+    "motion": [
+      {
+        "name": "cover-foreground",
+        "value": "0.9s cubic-bezier(.4,0,.6,1)",
+        "purpose": "Foreground moves upward 14px and retains 0.25 opacity through the handoff."
+      },
+      {
+        "name": "cover-fade",
+        "value": "opacity 0.25s; delay 0.65s",
+        "purpose": "Motion transition specifies duration/delay; its default tween easing applies. Final cover fade completes before main content is shown."
+      },
+      {
+        "name": "content-entrance",
+        "value": "0.85s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Main content opacity rises from 0.25 to 1; skipped for reduced motion."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "1000ms cubic-bezier(0.16,1,0.3,1)",
+        "purpose": "Once-only reveal from opacity 0.4 and translateY(20px); skipped for reduced motion."
+      },
+      {
+        "name": "action-hover",
+        "value": "0.2s",
+        "purpose": "Background and border color changes; removed under reduced motion."
+      },
+      {
+        "name": "hero-scroll",
+        "value": "scale 1 to 1.12; text translateY 0 to -65px",
+        "purpose": "Scroll-linked sticky hero framing; only the inner image scales, leaving the sample caption stationary and visible. Hydration-safe reduced-motion preference restores neutral image scale 1 and text y 0."
+      },
+      {
+        "name": "cinematic-scroll",
+        "value": "inset(10% 6% round 12px) to inset(0% 0% round 0px) to inset(6% 4% round 12px); scale 1.1 to 1",
+        "purpose": "Sticky photograph clipping and inner-image zoom linked to scroll; sample caption stays within its stationary frame. Hydration-safe reduced-motion preference restores neutral image scale 1 and clip-path none."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gold action",
+      "kind": "button",
+      "refersTo": "button-gold",
+      "description": "Opening control on the photographic cover.",
+      "html": "<button class=\"ds-gold\">Open invitation</button>",
+      "css": ".ds-gold{font-family:var(--font-inter, Arial),Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:12px 28px;border:1px solid #d0af72;border-radius:0;background:#d0af72;color:#102537;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background-color .2s,border-color .2s}.ds-gold:hover{background:#e1c794;border-color:#e1c794}.ds-gold:disabled{opacity:.65;cursor:wait}.ds-gold:focus-visible,.ds-field:focus-visible,.ds-choice input:focus-visible{outline:2px solid #d0af72;outline-offset:5px;}@media(prefers-reduced-motion:reduce){.ds-gold{transition:none}}"
+    },
+    {
+      "name": "Minimal RSVP field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Transparent square field on the paper preview form.",
+      "html": "<div class=\"ds-form\"><label class=\"ds-label\" for=\"ds-name\">Full name</label><input class=\"ds-field\" id=\"ds-name\" autocomplete=\"name\" required minlength=\"2\" maxlength=\"150\"></div>",
+      "css": ".ds-form{background:#efe7d9;color:#39271f;padding:24px;font-family:var(--font-inter, Arial),Arial,sans-serif;}.ds-label{display:block;margin-bottom:8px;font-size:12px;font-weight:500}.ds-field{font-family:var(--font-inter, Arial),Arial,sans-serif;display:block;box-sizing:border-box;width:100%;min-height:48px;padding:4px 12px;border:1px solid #c3b397;border-radius:0;background:transparent;color:#39271f;font-size:16px;box-shadow:none;caret-color:#816237;transition:color .15s,border-color .15s}.ds-field:focus-visible{box-shadow:0 0 0 1px #816237}.ds-field:disabled{cursor:not-allowed;opacity:.5}.ds-gold:focus-visible,.ds-field:focus-visible,.ds-choice input:focus-visible{outline:2px solid #d0af72;outline-offset:5px;}@media(min-width:640px){.ds-field{min-height:56px}}"
+    },
+    {
+      "name": "Attendance choice",
+      "kind": "custom",
+      "description": "Two bordered RSVP choices with warm selected fill.",
+      "html": "<fieldset class=\"ds-choices\"><legend>Will you attend?</legend><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-attend\" value=\"yes\" aria-label=\"Yes, I’ll be there\">Yes</label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-attend\" value=\"no\" aria-label=\"Sorry, I can’t attend\">No</label></fieldset>",
+      "css": ".ds-choices{font-family:var(--font-inter, Arial),Arial,sans-serif;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:24px;border:0;background:#efe7d9;color:#39271f}.ds-choices legend{font-size:12px}.ds-choice{display:flex;align-items:center;gap:12px;min-height:48px;box-sizing:border-box;padding:12px 16px;border:1px solid #c3b397;font-size:12px;white-space:nowrap;cursor:pointer}.ds-choice:has(:checked){border-color:#816237;background:#e6dac6}.ds-choice input{width:16px;height:16px;accent-color:#816237}.ds-gold:focus-visible,.ds-field:focus-visible,.ds-choice input:focus-visible{outline:2px solid #d0af72;outline-offset:5px;}"
+    },
+    {
+      "name": "Navigation RSVP",
+      "kind": "button",
+      "refersTo": "nav-rsvp",
+      "description": "Persistent compact RSVP action over photographic or solid navigation.",
+      "html": "<div class=\"ds-nav-surface\"><a class=\"ds-nav-rsvp\" href=\"#rsvp\">RSVP</a></div>",
+      "css": ".ds-nav-surface{padding:20px;background:#102537}.ds-nav-rsvp{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border:1px solid #d0af7299;border-radius:0;background:#1025374d;color:#f8f3e9;font-family:var(--font-inter,Arial),Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-decoration:none}.ds-nav-rsvp:hover{background:#102537}.ds-nav-rsvp:focus-visible{outline:2px solid #d0af72;outline-offset:5px}"
+    },
+    {
+      "name": "Invitation navigation",
+      "kind": "nav",
+      "description": "Solid scrolled state of the fixed serif/script navigation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Invitation\"><a class=\"ds-nav-mark\" href=\"#invitation\">J <span>&amp;</span> G</a><a class=\"ds-nav-link\" href=\"#story\">Our story</a><a class=\"ds-nav-link\" href=\"#details\">Guest details</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:24px;padding:24px 32px;background:#102537;color:#f8f3e9;border-bottom:1px solid #d0af723b;font-family:var(--font-inter,Arial),Arial,sans-serif}.ds-nav a{text-decoration:none}.ds-nav-mark{margin-right:auto;color:#f8f3e9;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:27px;line-height:1;letter-spacing:.03em}.ds-nav-mark span{color:#d0af72;font-family:var(--font-imperial,cursive),cursive}.ds-nav-link{color:#f1e7d8;font-size:10px;letter-spacing:.11em;text-transform:uppercase;text-underline-offset:6px}.ds-nav-link:hover{color:#d0af72;text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid #d0af72;outline-offset:5px}"
+    },
+    {
+      "name": "Venue panel",
+      "kind": "card",
+      "refersTo": "venue-panel",
+      "description": "Square paper event panel from the ruled ceremony/reception grid.",
+      "html": "<article class=\"ds-venue\"><h3>The ceremony</h3><p class=\"ds-venue-name\">La Fina Grand Hall</p><p class=\"ds-venue-detail\">by Kastelo Verde</p><p class=\"ds-venue-time\">4:30 PM</p><a href=\"#map\">View on map</a></article>",
+      "css": ".ds-venue{padding:48px;background:#efe7d9;color:#39271f;border-radius:0}.ds-venue h3{margin:0 0 28px;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:29px;font-weight:400;line-height:1.2}.ds-venue-name{margin:0;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:clamp(2.5rem,4vw,3.8rem);line-height:1.04}.ds-venue-detail{margin:8px 0 0;color:#816237;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:25px;font-style:italic}.ds-venue-time{margin:32px 0 0;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:34px;line-height:1.2}.ds-venue a{display:inline-flex;align-items:center;min-height:44px;margin-top:28px;color:#816237;font-family:var(--font-inter,Arial),Arial,sans-serif;font-size:12px;text-decoration:none;text-underline-offset:6px}.ds-venue a:hover{text-decoration:underline}.ds-venue a:focus-visible{outline:2px solid #d0af72;outline-offset:5px}@media(max-width:639px){.ds-venue{padding:40px 28px}}"
+    },
+    {
+      "name": "Vertical timeline",
+      "kind": "custom",
+      "refersTo": "timeline-panel",
+      "description": "User-requested navy vertical schedule with continuous champagne rule, dots and SVG line icons. The live section has an empty Reception photo placeholder below the schedule.",
+      "html": "<section class=\"ds-timeline\"><div><p class=\"ds-timeline-label\"><span></span>The order of events</p><h2>The timeline<br>of our day.</h2><p class=\"ds-timeline-intro\">Here’s what to expect as we celebrate our love and begin this new chapter together.</p></div><ol class=\"ds-timeline-list\"><li><time>4:00 PM</time><span class=\"ds-timeline-dot\"></span><svg aria-hidden=\"true\" width=\"38\" height=\"38\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\"><circle cx=\"18\" cy=\"15\" r=\"6\"/><circle cx=\"32\" cy=\"17\" r=\"5\"/><path d=\"M7 38v-6a11 11 0 0 1 22 0v6M31 26a10 10 0 0 1 10 10v2\"/></svg><div><h3>Guest arrival</h3><p>Please arrive by 4:00 PM.</p></div></li><li><time>4:30 PM</time><span class=\"ds-timeline-dot\"></span><svg aria-hidden=\"true\" width=\"38\" height=\"38\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.1\"><circle cx=\"19\" cy=\"29\" r=\"12\"/><circle cx=\"30\" cy=\"29\" r=\"12\"/><path d=\"m23 5 6 2 2 5-7 6-7-6 2-5 4-2Z M17 12h14\"/></svg><div><h3>Ceremony</h3><p>Our wedding ceremony begins.</p></div></li></ol></section>",
+      "css": ".ds-timeline{display:grid;gap:48px;padding:56px 24px 80px;background:#081f2d;color:#f8f3e9;font-family:var(--font-inter,Arial),Arial,sans-serif}.ds-timeline-label{display:flex;align-items:center;gap:16px;margin:0 0 24px;color:#e8d4ad;font-size:10px;line-height:1.6;letter-spacing:.24em;text-transform:uppercase}.ds-timeline-label span{width:40px;height:1px;background:#d0af72b3}.ds-timeline h2{margin:0;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:clamp(3.5rem,6.5vw,5.5rem);font-weight:400;line-height:.97;letter-spacing:-.025em}.ds-timeline-intro{max-width:448px;margin:24px 0 0;color:#e7e6df;font-family:var(--font-libre-baskerville,Georgia),Georgia,serif;font-size:15px;line-height:1.65}.ds-timeline-list{position:relative;margin:0;padding:12px 0 0;list-style:none}.ds-timeline-list:before{content:\"\";position:absolute;left:68px;top:24px;bottom:-48px;width:1px;background:#d0af7299}.ds-timeline-list li{position:relative;display:grid;grid-template-columns:52px 8px 36px minmax(0,1fr);column-gap:12px;padding-bottom:32px}.ds-timeline-list li:last-child{padding-bottom:0}.ds-timeline time{padding-top:12px;color:#f1e5d2;font-size:10px;line-height:1.5;letter-spacing:.13em;white-space:nowrap;font-variant-numeric:tabular-nums}.ds-timeline-dot{position:relative;width:8px;height:8px;margin-top:16px;border-radius:50%;background:#e4c48a}.ds-timeline svg{margin-top:4px;color:#dcc38b}.ds-timeline h3{margin:0;color:#f8f3e9;font-family:var(--font-instrument-serif,Georgia),Georgia,serif;font-size:clamp(1.8rem,3.2vw,2.5rem);font-weight:400;line-height:1.1;text-transform:capitalize}.ds-timeline-list p{margin:4px 0 0;color:#d3dce1;font-size:12px;line-height:1.6}@media(min-width:1024px){.ds-timeline{grid-template-columns:.9fr 1.1fr;gap:80px;padding:112px 40px 256px}}"
+    },
+    {
+      "name": "Empty photo placeholders",
+      "kind": "custom",
+      "refersTo": "photo-placeholder",
+      "description": "Code-native light story frame and dark reception frame with full-opacity labels; no image asset or generated imagery.",
+      "html": "<div class=\"ds-placeholder-examples\"><figure class=\"ds-placeholder\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/></svg><figcaption><span>A simple beginning</span><small>Photo to follow</small></figcaption></figure><figure class=\"ds-placeholder ds-placeholder-dark\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"m21 15-5-5L5 21\"/></svg><figcaption><span>Reception photo</span><small>Photo to follow</small></figcaption></figure></div>",
+      "css": ".ds-placeholder-examples{display:grid;gap:16px}.ds-placeholder{display:flex;min-height:192px;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:0;padding:32px 16px;border:1px solid #cfc0a8;border-radius:0;background:#eee5d7;color:#6f5c43;text-align:center;font-family:var(--font-inter,Arial),Arial,sans-serif}.ds-placeholder figcaption span{display:block;font-size:12px;line-height:16px}.ds-placeholder small{display:block;margin-top:8px;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.ds-placeholder-dark{border-color:#d0af725c;background:#112b3a;color:#d0af72}"
+    },
+    {
+      "name": "Story chapter",
+      "kind": "custom",
+      "description": "Numbered questionnaire narrative with a fine gold rule and diamond; preserved wording is supplied by the four-chapter data configuration.",
+      "html": "<article class=\"ds-story-chapter\"><h3><span>01</span><span>A Simple Beginning</span></h3><div class=\"ds-story-copy\"><p>Some stories begin with a meeting, while ours began with a message.</p></div></article>",
+      "css": ".ds-story-chapter{position:relative;padding:24px 24px 24px 16px;border-left:1px solid #a68b5e;background:#f8f3e9;color:#4e4234}.ds-story-chapter:before{content:\"\";position:absolute;top:43px;left:-4px;width:7px;height:7px;background:#94743d;transform:rotate(45deg)}.ds-story-chapter h3{display:flex;align-items:flex-start;gap:12px;margin:0 0 16px;color:#5e4b36;font-family:var(--font-inter,Arial),Arial,sans-serif;font-size:10px;font-weight:400;line-height:1.6;letter-spacing:.2em;text-transform:uppercase}.ds-story-chapter h3 span:first-child{font-family:var(--font-libre-baskerville,Georgia),Georgia,serif;letter-spacing:.08em;font-variant-numeric:tabular-nums}.ds-story-copy{font-family:var(--font-libre-baskerville,Georgia),Georgia,serif;font-size:12px;line-height:1.65}.ds-story-copy p{margin:0}@media(min-width:640px){.ds-story-chapter{padding-left:24px}.ds-story-chapter h3{gap:16px}.ds-story-copy{font-size:14px;line-height:1.8}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Wedding Editorial",
+    "overview": "A cinematic, photographic invitation carries Jahzen & Glyzell's navy, espresso, champagne and ivory identity. Large editorial serif names and headings, script accents and generous reading space alternate between shaded photographs, midnight passages and warm paper surfaces.\n\nThe user-selected format is `app/isabella-and-daniel`; it supersedes the former typography-and-oval folio composition. This is a client-scoped translation of that photographic format, with confirmed questionnaire content and policies preserved. The couple’s photographs are pending. The latest instruction is to use placeholders only and not generate images. Existing repository stock photographs remain explicitly labeled placeholders in the previously approved surfaces; the revised love story and timeline use empty, code-native photo frames. Generated client assets and their sidecars have been removed. The story and timeline follow the user’s newer supplied section references within the established page format.",
+    "keyCharacteristics": [
+      "Full-bleed photography, sticky cinematic passages and asymmetric photo/text compositions.",
+      "Instrument Serif display, Imperial Script accents, Libre Baskerville narrative and Inter controls.",
+      "Flat ivory story and detail passages alternating with navy gallery, timeline and RSVP passages.",
+      "An opaque cover handoff, once-only reveals and reduced-motion alternatives."
+    ],
+    "rules": [
+      {
+        "name": "The Surface Pairing Rule",
+        "body": "Use champagne emphasis on dark surfaces and antique gold emphasis on light surfaces.",
+        "section": "colors"
+      },
+      {
+        "name": "The Editorial Voice Rule",
+        "body": "Keep large names, headings and the sentence-case cover introduction in Instrument Serif, narrative in Libre Baskerville, practical UI in Inter and brief expressive accents in Imperial Script.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do preserve the confirmed palette, attire guidance and guest policies while following the user-selected photographic format.",
+      "Do retain existing stock placeholder captions and provenance, leaving new story and reception frames empty until approved couple photos arrive.",
+      "Do keep decoration scoped and simple responsive layout in JSX utilities.",
+      "Do preserve the opaque cover handoff, navy backing, focus transfer and reduced-motion support.",
+      "Do keep the RSVP preview explicitly unsaved until the established guest flow is connected.",
+      "Do calculate responsive image sizes from frame width, covered height, intrinsic source ratio and maximum motion zoom; use the same hero sizes for decoding and rendering.",
+      "Do keep sample captions stationary and visible while only the inner photograph zooms.",
+      "Do preserve the entire questionnaire narrative in the four derived story chapters.",
+      "Do use code-native empty placeholders for the three story photo frames and reception photo frame.",
+      "Do stack paired story rows below 360px with 192px empty frames, retaining alternating two-column spreads from 360px and full-opacity placeholder text."
+    ],
+    "donts": [
+      "Don't promote attire swatches or inherited shared form exceptions into general interface rules.",
+      "Don't use script for long instructions, body text or fields.",
+      "Don't copy this client's palette or layout into unrelated invitations or shared marketing.",
+      "Don't invent backend records, live RSVP persistence or unavailable licensed audio.",
+      "Don't generate or use generated images for this invitation; use placeholders only.",
+      "Don't present stock placeholders as photographs of Jahzen & Glyzell."
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+# Venue artwork
+
+Current status after the October 31 image cleanup: only artwork referenced by the invitation remains locally. Prenup and story photos load from R2. Unused exports were backed up outside the repository; the descriptions and measurements below retain their historical provenance. See `docs/media/unused-image-cleanup.json` in the invitation folder for removed paths and recovery details.
+
+`transfiguration-church.webp` is an optimized copy of the supplied `Church and Venue Photos/IMG_1314.png`: 1200 × 675 pixels, WebP quality 85, 239,466 bytes (original 3,135,499 bytes). The original is untouched. This photograph is retained as the architecture reference for the watercolor artwork.
+
+`chandelier-events-place.webp` is an optimized copy of the supplied `Downloads/IMG_6214.PNG`: 1200 × 772 pixels, WebP quality 85, 192,322 bytes (original 2,505,046 bytes; 92.3% smaller). The original is untouched and retained as the architecture reference for the watercolor artwork.
+
+`transfiguration-church-watercolor.webp` (422,190 bytes) and `chandelier-events-place-watercolor.webp` (563,942 bytes) are generated watercolor adaptations of those actual buildings using the user's style references. Both are 1122 × 1402, WebP quality 85 with alpha quality 100 and preserved transparent feathered edges. They are fitted inside the existing 4:5 arched frames using `object-contain`, keeping the full architecture visible. Static imports, blur placeholders, lazy loading, default Next quality and sizes matched to the actual frame preserve responsive loading. The section retains its mobile stacking, vintage garlands and confirmed names, times, addresses and Google Maps queries. `VenueName` continues to use script only for each word's first letter. See `watercolor-venue-artwork.md` for source paths and exact built-in generation prompts.
+
+`vintage-rose-garland.webp` is one transparent, generated floral arrangement reused under both arches. The native 2048 × 768 PNG was trimmed to remove transparent padding and resized to 1200 × 247, then optimized to 139,716 bytes using WebP quality 85 and alpha quality 100. Transparency is preserved. It is statically imported and lazily optimized with responsive sizes at default Next quality. Its existing reduced-motion-aware decorative parallax is limited to 5px. See `vintage-rose-garland.prompt.md` for the exact built-in generation prompt and source path.
+

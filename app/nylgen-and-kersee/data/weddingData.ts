@@ -195,7 +195,7 @@ export const weddingData = {
     {
       role: "Candle",
       people: [
-        { name: "Russlyn Arabelle Isles" },
+        { name: "Russlyn Arabella Isles" },
         { name: "Gian Judiel Bondad" },
       ],
     },
@@ -266,12 +266,12 @@ export const weddingData = {
       sponsorTwo: { name: "Mrs. Gemma Fontanilla" },
     },
     {
-      sponsorOne: { name: "Mr. Philip Jones Berguila" },
+      sponsorOne: { name: "Mr. Philip Jone Berguila" },
       sponsorTwo: { name: "Mrs. Amihan Bondad" },
     },
     {
       sponsorOne: { name: "Mr. Teejay Allan Ciar" },
-      sponsorTwo: { name: "Mrs. Rovelyn Ciar" },
+      sponsorTwo: { name: "Mrs. Robelyn Ciar" },
     },
   ],
   giftGuide: {

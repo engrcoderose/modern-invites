@@ -1,0 +1,5 @@
+# Independent countdown animation layer
+
+Tool: built-in image generation. Reference: the existing smaller-flower landscape countdown artwork. Transparent alpha requested and verified; WebP export preserves transparency.
+
+Extract ONLY the floral bouquet in the TOP RIGHT corner of the supplied wedding countdown artwork. Keep the exact burgundy roses, crimson dahlias, old-rose accents and antique-gold leaves and sprigs, with realistic fine petal detail. Remove all wine-red satin/background and remove the bottom-left bouquet. Output a single isolated floral corner decoration on a genuinely TRANSPARENT background (alpha channel), not a colored or checkerboard background. Preserve the bouquet's corner geometry, anchored at the TOP and RIGHT canvas edges, with foliage tapering toward the lower-left and empty transparent space to its left and below. Tight composition, no extra margins at the top/right, roughly square canvas. Preserve the original flowers and palette rather than inventing a new arrangement. NO text, no shadowy rectangle, no border.
