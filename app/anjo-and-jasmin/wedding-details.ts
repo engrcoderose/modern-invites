@@ -8,10 +8,10 @@ export const wedding = {
   hashtag: "#JAStheoneforANJO",
   time: "3:00 PM",
   entourageCallTime: "2:00 PM",
-  ceremony: "San Bartolome Parish",
+  ceremony: "Minor Basilica of San Bartolome",
   reception: "St. John XXIII Hall",
   receptionFloor: "2/F",
-  location: "San Bartolome Parish, Malabon",
+  location: "Minor Basilica of San Bartolome, Malabon",
   story: {
     title: "It all started with a “Happy New Year”",
     chapters: [

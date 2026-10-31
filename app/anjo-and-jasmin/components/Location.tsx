@@ -11,16 +11,16 @@ export default function Location() {
     {
       id: "ceremony", title: "The ceremony", name: wedding.ceremony,
       address: "Malabon, Philippines", time: wedding.time,
-      query: "San+Bartolome+Parish+Malabon", icon: Church, image: ChurchImage,
-      imageAlt: "Watercolor illustration of San Bartolome Parish, Malabon",
+      query: "Minor+Basilica+of+San+Bartolome+Malabon", icon: Church, image: ChurchImage,
+      imageAlt: `Watercolor illustration of ${wedding.location}`,
     },
     {
       id: "reception", title: "The reception", name: wedding.reception,
       address: `${wedding.receptionFloor}, ${wedding.location}`,
       time: "Reception follows the ceremony",
-      query: "St+John+XXIII+Hall+San+Bartolome+Parish+Malabon", icon: Wine,
+      query: "St+John+XXIII+Hall+Minor+Basilica+of+San+Bartolome+Malabon", icon: Wine,
       image: ReceptionDirections,
-      imageAlt: "Reception directions from San Bartolome Parish to St. John XXIII Hall, beside Rizal Avenue Extension in Malabon.",
+      imageAlt: `Reception directions from ${wedding.ceremony} to St. John XXIII Hall, beside Rizal Avenue Extension in Malabon.`,
     },
   ];
   return (
