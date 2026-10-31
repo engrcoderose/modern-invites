@@ -1,31 +1,26 @@
-import { main1, main2, main3, main4, main5, group1, group2, group3, group4, group5 } from "./prenup-media";
+import { prenupPhotos as photos } from "./prenup-media";
 import type { GalleryPhoto } from "../types/wedding";
 
-// Draft prenup assets only. Replace with the couple's approved photographs.
-export const placeholderGalleries: readonly (readonly GalleryPhoto[])[] = [
+export const galleries: readonly (readonly GalleryPhoto[])[] = [
   [
-    { src: main1, alt: "Placeholder prenup portrait of a couple silhouetted against a pink sunset" },
-    { src: main2, alt: "Placeholder prenup portrait of a couple seated beside red lanterns" },
-    { src: main3, alt: "Placeholder prenup portrait of a couple beneath an ornate green arch" },
-    { src: main4, alt: "Placeholder prenup portrait of a couple holding hands beside a yellow wall" },
-    { src: main5, alt: "Placeholder prenup portrait of a couple outside a lantern-filled courtyard" },
+    photos.dscf1541, photos.dscf0947, photos.dscf1472RevC, photos.dscf1558,
+    photos.dscf1588, photos.dscf1678RevA, photos.dscf1768,
   ],
   [
-    { src: group1, alt: "Placeholder prenup photograph of a couple walking along a yellow wall" },
-    { src: group2, alt: "Placeholder prenup photograph of a couple facing a historic yellow wall" },
-    { src: group3, alt: "Placeholder prenup photograph of a couple silhouetted beneath a pavilion at sunset" },
-    { src: group4, alt: "Placeholder prenup photograph of a couple holding hands below red lanterns" },
-    { src: group5, alt: "Placeholder prenup photograph of a couple walking past a tiled-roof courtyard" },
+    photos.ljd4660, photos.dscf0734, photos.dscf0759, photos.dscf0810,
+    photos.dscf1089RevA, photos.dscf1139, photos.dscf1201, photos.dscf1232,
+    photos.dscf1360, photos.dscf1426RevB, photos.dscf1443RevB, photos.dscf1521,
+    photos.dscf1533, photos.dscf1793RevB, photos.ljd4620, photos.ljd4626,
+    photos.ljd4631, photos.ljd4731, photos.ljd4746, photos.ljd4770,
+    photos.ljd4794, photos.ljd4819BluGreen, photos.croppedDscf1597, photos.engagementPic,
   ],
 ];
 
 export const photoBreaks = {
-  afterStory: placeholderGalleries[1][2],
-  timelineSlides: placeholderGalleries[0].slice(1, 4),
-  afterEntourage: placeholderGalleries[1][4],
+  afterStory: photos.dscf1426RevB,
+  timelineSlides: galleries[0],
+  afterEntourage: photos.ljd4794,
 };
 
-// Reuse the yellow-wall photograph selected for the welcome screen.
-export const welcomePhoto = placeholderGalleries[1][1];
-
-export const rsvpPhoto = placeholderGalleries[1][3];
+export const welcomePhoto = photos.ljd4660;
+export const rsvpPhoto = photos.dscf1232;

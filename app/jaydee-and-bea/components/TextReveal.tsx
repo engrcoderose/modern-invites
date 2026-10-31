@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import ScrollScene from "./ScrollScene";
 import ScrollLayer from "./ScrollLayer";
 
 interface TextRevealProps {
@@ -12,7 +11,7 @@ interface TextRevealProps {
   "aria-describedby"?: string;
 }
 
-// Each block settles before it reaches the reading area, with no movement on exit.
+// Text owns its timed entrance; the wrapper preserves the existing block layout.
 export default function TextReveal({ as = "p", phase = 0, ...props }: TextRevealProps) {
-  return <ScrollScene as="div" reveal><ScrollLayer as={as} profile="text" phase={phase} {...props} /></ScrollScene>;
+  return <div><ScrollLayer as={as} profile="text" phase={phase} {...props} /></div>;
 }

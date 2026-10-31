@@ -18,15 +18,17 @@
 .serif, .venueName, .entourageName { font-family: var(--font-instrument-serif), Georgia, serif; font-weight: 400; overflow-wrap: anywhere; }
 .heading { font-family: var(--font-imperial), "Brush Script MT", cursive; font-weight: 400; color: var(--jr-plum); font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.2; overflow-wrap: anywhere; text-wrap: balance; }
 .muted { color: var(--jr-muted); }
-.heroNames, .footerNames { font-family: var(--font-imperial), "Brush Script MT", cursive; font-weight: 400; color: var(--jr-plum); }
+.heroNames, .footerNames, .subheading { font-family: var(--font-imperial), "Brush Script MT", cursive; font-weight: 400; color: var(--jr-plum); }
+.subheading { font-size: clamp(2.5rem, 4vw, 3.25rem); line-height: 1.2; overflow-wrap: anywhere; }
 .heroNames { color: var(--jr-hero-ink); font-size: clamp(3.75rem, 17.5vw, 7rem); line-height: 1.08; }
 .heroAmpersand { font-family: var(--font-libre-baskerville), Georgia, serif; font-size: 0.44em; font-style: italic; line-height: 1; }
 .footerNames { font-size: clamp(3.25rem, 8vw, 5rem); line-height: 1.25; }
-.hero { --jr-hero-ink: #4c2551; color: var(--jr-hero-ink); background: #eae3ed; }
+.hero { --jr-hero-ink: #fff; color: var(--jr-hero-ink); background: #675071; text-shadow: 0 1px 8px #28163445; }
+.heroShade { background: linear-gradient(180deg, #2d183529, #2d18358f 20%, #2d18358f 90%, #2d18354d); }
+.heroMonogram { filter: brightness(0) invert(1); }
 .heroFlower { animation: heroFlowerSway 9s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; animation-play-state: paused; }
 .heroBouquetLeft { transform-origin: bottom left; --jr-sway-angle: 1.1deg; --jr-sway-x: 2px; --jr-sway-y: -5px; }
 .heroBouquetRight { transform-origin: center; animation-duration: 10s; animation-delay: 0.4s; --jr-sway-angle: -1deg; --jr-sway-x: -3px; --jr-sway-y: 4px; }
-.heroBotanicalLeft { transform-origin: top left; animation-duration: 12s; animation-delay: 0.8s; --jr-sway-angle: -0.8deg; --jr-sway-x: 2px; --jr-sway-y: 3px; }
 .heroBotanicalRight { transform-origin: bottom right; animation-duration: 11s; animation-delay: 0.2s; --jr-sway-angle: 0.8deg; --jr-sway-x: -2px; --jr-sway-y: -3px; }
 .invitation[data-invitation-open="true"] [data-floral-motion="active"] .heroFlower { animation-play-state: running; }
 @keyframes heroFlowerSway {

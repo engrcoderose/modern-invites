@@ -1,5 +1,11 @@
 # Formal attire illustration
 
+## November 1 story artwork
+
+`story-portrait-floral.webp` is the lossless, transparent derivative of the user-supplied extensionless PNG `story-section-image-one` (834 × 1005). It contains the couple's actual portrait and the supplied floral arch composition. `story-flower-border.webp` derives from `line-flowers.png` (2073 × 153). Visible pixel colors and alpha values are preserved exactly. Sources remain intact; derivative sizes are 570,748 and 324,822 bytes respectively. The wide story photo's subtle floral accent reuses `hero-right-upper-flower.webp`.
+
+The countdown uses the generated transparent `countdown-timer-flowers-watercolor.png`; its generation prompt and source reference are saved in the adjacent `.png.json` file.
+
 `formal-attire-inspiration.webp` reuses the repository’s generic fashion artwork from `app/joshua-and-bea/assets/images/designs/dress-code-ispo-2.png`. Its client-specific R2 upload keeps Jaydee and Bea’s invitation independent of another client’s folder. The source artwork is unchanged. This is illustrative attire inspiration, not a photograph of the couple or their guests.
 
 `countdown-petals.webp` reuses the generic white-petal artwork from `app/joshua-and-bea/assets/images/designs/white-petals.png`, matching the requested countdown reference. The source artwork is unchanged and uploaded to this invitation’s R2 folder.

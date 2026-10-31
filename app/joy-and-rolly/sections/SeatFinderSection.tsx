@@ -10,10 +10,10 @@ export default function SeatFinderSection() {
       <InvitationReveal as="h2" id="jr-seat-finder-title" className={`${styles.heading} mx-auto max-w-2xl`}>
         <span className="block sm:inline">Your place at </span><span className="block sm:inline">our celebration</span>
       </InvitationReveal>
-      <p className="mx-auto mt-6 max-w-[36ch] text-base leading-7">Find your table and settle in for an evening of love and celebration.</p>
-      <button type="button" disabled className="mt-8 inline-flex min-h-14 w-full cursor-default items-center justify-center gap-3 border border-[var(--jr-plum)] bg-[var(--jr-plum)] px-6 py-4 text-sm text-[var(--jr-paper)] sm:w-auto sm:px-8">
+      <InvitationReveal as="p" delay={0.06} className="mx-auto mt-6 max-w-[36ch] text-base leading-7">Find your table and settle in for an evening of love and celebration.</InvitationReveal>
+      <InvitationReveal delay={0.12} className="mt-8"><button type="button" disabled className="inline-flex min-h-14 w-full cursor-default items-center justify-center gap-3 border border-[var(--jr-plum)] bg-[var(--jr-plum)] px-6 py-4 text-sm text-[var(--jr-paper)] sm:w-auto sm:px-8">
         Find My Seat <ArrowRight size={18} aria-hidden="true" className="shrink-0" />
-      </button>
+      </button></InvitationReveal>
     </div>
   </section>;
 }

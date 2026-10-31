@@ -18,6 +18,26 @@ interface GallerySectionProps {
   showHeading?: boolean;
 }
 
+// Cover crops need enough source pixels for the frame's height as well as width.
+function galleryImageSizes(photo: GalleryPhoto, featured: boolean) {
+  const ratio = typeof photo.src === "string" ? 1 : photo.src.width / photo.src.height;
+  const cover = photo.fit !== "contain";
+  const tileScale = cover ? Math.max(1, ratio * 1.25) : 1;
+  const desktopScale = featured && cover ? Math.max(1, ratio * 2.5) : tileScale;
+  const rowGap = featured && cover && ratio * 2.5 > 1 ? ratio * 20 : 0;
+  const mobileScale = featured && cover ? Math.max(1, ratio * 0.75) : tileScale;
+  const scaled = (vw: number, inset: number, scale: number, extra = 0) =>
+    `calc(${(vw * scale).toFixed(3)}vw - ${(inset * scale - extra).toFixed(3)}px)`;
+
+  return [
+    `(min-width:1248px) ${((1112 / 3) * desktopScale + rowGap).toFixed(1)}px`,
+    `(min-width:1024px) ${scaled(100 / 3, 136 / 3, desktopScale, rowGap)}`,
+    `(min-width:768px) ${scaled(100 / 3, 104 / 3, desktopScale, rowGap)}`,
+    `(min-width:640px) ${scaled(featured ? 100 : 50, featured ? 64 : 42, mobileScale)}`,
+    scaled(featured ? 100 : 50, featured ? 40 : 26, mobileScale),
+  ].join(", ");
+}
+
 export default function GallerySection({ id, title, photos, carousel = false, showHeading = true }: GallerySectionProps) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [selected, setSelected] = useState(0);
@@ -55,7 +75,7 @@ export default function GallerySection({ id, title, photos, carousel = false, sh
                     : "aspect-[4/5]"
                 }`}
               >
-                <ScrollLayer profile="photo" phase={index * 0.025} className="absolute inset-0"><Image src={image.src} alt={image.alt} fill sizes={index === 0 ? "(min-width:1280px) 370px, (min-width:768px) 33vw, calc(100vw - 40px)" : "(min-width:1280px) 370px, (min-width:768px) 33vw, 50vw"} className="object-cover" loading="lazy" /></ScrollLayer>
+                <ScrollLayer profile="photo" phase={index * 0.025} className="absolute inset-0"><Image src={image.src} alt={image.alt} fill sizes={galleryImageSizes(image, index === 0)} className={image.fit === "contain" ? "object-contain" : "object-cover"} loading="lazy" /></ScrollLayer>
               </button>
             ))}
           </div>

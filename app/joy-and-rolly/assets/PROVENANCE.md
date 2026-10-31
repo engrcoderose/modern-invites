@@ -1,5 +1,9 @@
 # Floral artwork provenance
 
+## Envelope and Save the Date
+
+The user supplied `../designs/close-envelope.png` (684×684), `../designs/open-envelope.png` (492×641), and `../designs/joy-and-rolly-save-the-date.png` (437×567) on November 1, 2026 for the opening sequence. The original transparent PNGs are unchanged. Scoped CSS accounts for source padding and clips layers along the envelope's actual folds; Framer Motion animates those layers and the complete Save the Date image. The small envelope PNGs reuse their already compressed originals, while the card uses responsive Next Image optimization. Each original has an adjacent provenance sidecar. No image generation, redrawing, or retouching was used.
+
 ## Entourage background
 
 `entourage-blue-floral-pattern.webp` uses the user's blue floral pattern, attachment `codex-clipboard-5187bc93-78f7-4320-a0d3-0fc90cad7550.png`. It was resized from 1152×2048 to 768px wide and compressed as WebP at quality 85, with no generation, recoloring, or retouching. The Wedding Entourage section repeats it on a separate decorative background layer at 12% opacity, leaving all text fully opaque. The adjacent metadata sidecar records its origin.
@@ -15,6 +19,8 @@ Exact generation prompt:
 Use case: illustration-story. Asset type: transparent decorative floral artwork for Joy and Rolly wedding invitation website. Create one exquisite fine art watercolor floral arrangement, isolated on a genuinely transparent background, no lettering, no borders, no paper, no shadow. Loose asymmetric L-shaped corner bouquet, with the flowers concentrated in the bottom left and delicate stems reaching up and toward the right, airy negative space in the top right. English garden roses in ivory and powder blue #A4CFFA, delicate lavender #8288BE lisianthus, a few deep plum #5B1962 lisianthus, muted sage eucalyptus leaves, tiny white flowers, painterly translucent petals and sophisticated natural botanical detail. Overall mostly ivory, lavender and powder blue with small plum accents. Designed for premium printed wedding stationery. Entire bouquet contained within image, unclipped leaf tips. Portrait approximately 4:5 composition.
 
 ## Hero background
+
+The active hero background is the user's `../designs/hero-bg.jpg`, a 1170×775 lavender-and-peach sunset painting of a swan lake and wisteria, matching the reference supplied on November 1, 2026. The original JPEG is statically imported without generation or source-file changes. A separate CSS plum gradient supports live white text, and the existing monogram is displayed white via CSS. The adjacent `designs/hero-bg.jpg.json` records the source. The previous wash below is no longer imported by the hero.
 
 `hero-lavender-wash.webp` is an opaque, decoration-free lavender watercolor wash. The earlier generated botanical drawings and small flower were removed with the built-in image editing tool so they do not duplicate the user's supplied artwork. Names and dates remain live HTML; the hero's original monogram and two botanical line-art flowers are direct static imports from `../designs/monogram.png`, `../designs/flower-1.png`, and `../designs/flower-2.png`. Those source PNGs are unchanged. The wash is compressed as WebP at quality 85, with the exact edit prompt in the adjacent metadata sidecar. The superseded decorated backdrop has been removed from the project.
 

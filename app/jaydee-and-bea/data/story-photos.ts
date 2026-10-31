@@ -1,15 +1,7 @@
-import { storyPortrait as portrait } from "./design-media";
-import { group1 as landscape } from "./prenup-media";
+import { prenupPhotos } from "./prenup-media";
+import portrait from "../assets/designs/story-portrait-floral.webp";
 
-// Requested placeholder photos. Replace these imports with approved portraits.
 export const storyPhotos = {
-  portrait: {
-    src: portrait,
-    alt: "Placeholder wedding portrait of a couple framed by an arch and pink flowers",
-  },
-  landscape: {
-    src: landscape,
-    alt: "Placeholder prenup photo of a couple walking hand in hand past a yellow wall",
-    position: "50% 60%",
-  },
+  portrait: { src: portrait, alt: prenupPhotos.dscf1768.alt },
+  landscape: { ...prenupPhotos.dscf1793RevB, position: "50% 50%" },
 };

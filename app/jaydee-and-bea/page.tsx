@@ -18,7 +18,7 @@ import HashtagSection from "./sections/HashtagSection";
 import RsvpSection from "./sections/RsvpSection";
 import Footer from "./sections/Footer";
 import { wedding } from "./data/wedding-data";
-import { photoBreaks, placeholderGalleries } from "./data/photo-layout";
+import { photoBreaks, galleries } from "./data/photo-layout";
 import styles from "./styles/wedding.module.css";
 
 const title = `${wedding.couple.display} | ${wedding.date.display}`;
@@ -47,13 +47,13 @@ export default function Page() {
           <StorySection />
           <PhotoBreakSection id="story-photo" photo={photoBreaks.afterStory} />
           <TimelineSection />
-          <GallerySection id="gallery" title="Jaydee and Bea photo gallery" photos={wedding.gallery.photos.length ? wedding.gallery.photos : placeholderGalleries[0]} carousel showHeading={false} />
+          <GallerySection id="gallery" title="Jaydee and Bea photo gallery" photos={wedding.gallery.photos} carousel showHeading={false} />
           <EntourageSection />
           <PhotoBreakSection id="entourage-photo" photo={photoBreaks.afterEntourage} />
           <DetailsSection />
           <AttireSection />
           <HashtagSection />
-          <GallerySection id="gallery-more" title="More little moments." photos={placeholderGalleries[1]} />
+          <GallerySection id="gallery-more" title="More little moments." photos={galleries[1]} />
           <RsvpSection />
         </main>
         <Footer />

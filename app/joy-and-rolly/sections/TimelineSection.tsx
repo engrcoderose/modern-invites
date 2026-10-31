@@ -11,7 +11,7 @@ export default function TimelineSection() {
     <SectionFlorals />
     <div className="mx-auto max-w-4xl">
       <InvitationReveal as="h2" id="jr-timeline" className={`${styles.heading} text-center`}>The celebration unfolds</InvitationReveal>
-      <p className={`${styles.serif} mt-5 text-center text-lg`}>{wedding.date.day}, {wedding.date.display}</p>
+      <InvitationReveal as="p" delay={0.06} className={`${styles.serif} mt-5 text-center text-lg`}>{wedding.date.day}, {wedding.date.display}</InvitationReveal>
       <ol className={`${styles.timeline} mx-auto mt-12 max-w-[20rem] space-y-10`}>
         {wedding.timeline.map((item, index) => {
           const Icon = timelineIcons[item.icon];
@@ -20,10 +20,7 @@ export default function TimelineSection() {
               <Icon aria-hidden="true" strokeWidth={1.25} className={`${styles.role} size-7`} />
               <time className={`${styles.serif} block text-2xl leading-9 sm:text-3xl`}>{item.time}</time>
             </div>
-            <div className="col-start-3 flex min-w-0 flex-col justify-center text-center">
-              <h3 className="text-base leading-6">{item.title}</h3>
-              <p className={`${styles.muted} mt-2 text-base leading-6 sm:text-sm`}>{item.description}</p>
-            </div>
+            <h3 className="col-start-3 flex min-w-0 items-center justify-center text-center text-base leading-6">{item.title}</h3>
           </InvitationReveal>;
         })}
       </ol>

@@ -20,11 +20,11 @@ export default function TimelineSection() {
                   {index < wedding.timeline.length - 1 && <span className="jb-timeline-stem absolute -bottom-6 left-1/2 top-5 w-[2px] -translate-x-1/2 sm:-bottom-8" />}
                   <Heart className="relative mx-auto mt-1 h-3.5 w-3.5" fill={wedding.palette[index % wedding.palette.length].hex} stroke="#93869a" strokeWidth={0.8} />
                 </div>
-                <ScrollScene as="div" reveal className="min-w-0 text-left">
+                <div className="min-w-0 text-left">
                   <ScrollLayer profile="text" phase={index * 0.02}>
                     <h3 className="jb-serif text-[13px] leading-[22px] text-[#65536b] sm:text-[15px]">{event.title}</h3>
                   </ScrollLayer>
-                </ScrollScene>
+                </div>
               </li>
             ))}
           </ol>

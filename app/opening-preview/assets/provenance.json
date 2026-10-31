@@ -1,0 +1,12 @@
+[
+  {
+    "asset": "silver-satin-bow.webp",
+    "tool": "built-in image_gen.imagegen",
+    "prompt": "Use case: product-mockup. Create a single front-facing silver-white satin ribbon bow cutout for an elegant digital wedding invitation opening animation. True transparent background. Realistic silk sheen and fine fabric weave, luminous ivory-silver with cool gray folds, soft natural top-left lighting. Wide two loop bow with a small tight central knot and two gently hanging tapering fishtail ribbon tails, left tail longer. Perfectly front-on orthographic composition, completely isolated, no paper, no box, no flowers, no text, no people, no additional objects, no external cast shadow, no watermark. Bow occupies about 85% of image width; leave a small clear margin. Main loops occupy the top half and the two tails the lower half. Photographic quality, wedding stationery product detail."
+  },
+  {
+    "asset": "blue-botanical-frame.webp",
+    "tool": "built-in image_gen.imagegen",
+    "prompt": "Use case: illustration-story. Create a portrait wedding invitation border artwork, approximately 2:3 aspect ratio. Antique blue and white botanical toile engraving on warm ivory paper. Dense beautiful cobalt and navy peonies, roses, hydrangeas, delicate leaves and stems around all four edges, especially lush upper-left and lower-right corners. Flowers rendered as refined fine engraved copperplate linework with pale blue shading, inspired by antique Delft blue floral wedding stationery. Center has a large absolutely clean blank warm ivory rectangular area, from x=25% to 75% and y=27% to 74%, for HTML invitation text. Thin antique gold rectangular hairline framing the blank center. Entire flat paper surface viewed straight on, no perspective, no hands, no mockup scene, no bows, no typography, no letters, no watermark. Edge-to-edge artwork, premium intricate botanical detail."
+  }
+]
