@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import FloralArtwork from "./FloralArtwork";
-import flowerOne from "../designs/flower-1.png";
 import flowerTwo from "../designs/flower-2.png";
 import styles from "../styles/invitation.module.css";
 
@@ -30,12 +29,10 @@ export default function HeroFlorals() {
 
   return <div ref={layer} aria-hidden="true" data-floral-motion={active ? "active" : "paused"}
     className="pointer-events-none absolute inset-0 -z-10">
-    <FloralArtwork sizes="(min-width: 768px) 24vw, 145px"
-      className={`${styles.heroFlower} ${styles.heroBouquetLeft} absolute -bottom-5 -left-9 w-[145px] md:-left-2 md:w-[24vw]`} />
-    <FloralArtwork sizes="(min-width: 768px) 21vw, 135px"
-      className={`${styles.heroFlower} ${styles.heroBouquetRight} absolute -right-8 -top-5 w-[135px] rotate-180 md:-right-2 md:w-[21vw]`} />
-    <Image src={flowerOne} alt="" sizes="(min-width: 768px) 24vw, 200px"
-      className={`${styles.heroFlower} ${styles.heroBotanicalLeft} absolute -left-12 -top-24 h-auto w-[200px] select-none opacity-45 md:-left-[3vw] md:-top-[11vw] md:w-[24vw]`} />
+    <FloralArtwork sizes="(min-width: 768px) 18vw, min(145px, 18svh)"
+      className={`${styles.heroFlower} ${styles.heroBouquetLeft} absolute -bottom-5 -left-9 w-[min(145px,18svh)] md:-left-2 md:w-[18vw]`} />
+    <FloralArtwork sizes="(min-width: 768px) 16vw, 135px"
+      className={`${styles.heroFlower} ${styles.heroBouquetRight} absolute -right-8 -top-5 w-[135px] rotate-180 md:-right-2 md:w-[16vw]`} />
     <Image src={flowerTwo} alt="" sizes="(min-width: 768px) 23vw, 180px"
       className={`${styles.heroFlower} ${styles.heroBotanicalRight} absolute -bottom-16 -right-8 h-auto w-[180px] select-none opacity-45 md:-bottom-[6vw] md:-right-[3vw] md:w-[23vw]`} />
   </div>;

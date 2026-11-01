@@ -6,7 +6,7 @@
 
 .names {
   margin: 0;
-  font-family: var(--font-imperial), "Brush Script MT", cursive;
+  font-family: var(--jb-title-font);
   font-size: clamp(3.4rem, 12vw, 6rem);
   font-weight: 400;
   line-height: 1.2;

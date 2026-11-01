@@ -8,8 +8,8 @@ colors:
   ink: "#49394f"
   muted: "#6d5a72"
   rule: "#d6c7dc"
-  hero-paper: "#eae3ed"
-  hero-ink: "#4c2551"
+  hero-paper: "#675071"
+  hero-ink: "#fff"
   satin-paper: "#f8f6f7"
   lavender-paper: "#eeebf5"
   blue-paper: "#eaf1f7"
@@ -25,9 +25,9 @@ typography:
     lineHeight: 1.08
   cover-display:
     fontFamily: 'Imperial Script, "Brush Script MT", cursive'
-    fontSize: "clamp(3rem, 9vw, 5rem)"
+    fontSize: "clamp(1.75rem, 9cqw, 3.5rem)"
     fontWeight: 400
-    lineHeight: 1.1
+    lineHeight: 1.15
   headline:
     fontFamily: 'Imperial Script, "Brush Script MT", cursive'
     fontSize: "clamp(3rem, 6vw, 4.5rem)"
@@ -61,12 +61,10 @@ spacing:
   section-desktop: "112px"
 components:
   button-open:
-    backgroundColor: "{colors.plum}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.button}"
-    padding: "12px 28px"
-  button-open-hover:
-    backgroundColor: "{colors.plum-hover}"
+    backgroundColor: "transparent"
+    textColor: "{colors.ink}"
+    rounded: "0px"
+    padding: "0px"
   button-rsvp:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.white}"
@@ -93,7 +91,7 @@ components:
 
 **Creative North Star: "Floral Wedding Stationery"**
 
-The invitation uses personal stationery as its visual model: a lavender envelope with a plum seal and Save the Date insert, followed by a floral hero with a cloudy lavender watercolor ground and plum calligraphy. The main hero places the date and time above large one-line “Joy & Rolly” lettering, with sentence-case invitation prose below. Readable serif details and quiet sans-serif copy carry practical information. The hero's separate monogram and Save the Date block were removed at the user's request.
+The invitation uses personal stationery as its visual model: a lavender envelope with a plum seal and Save the Date insert, followed by the user's lavender-and-peach swan-lake sunset artwork. The hero centers a white monogram, the date and time, large white “Joy & Rolly” calligraphy, and sentence-case invitation prose. A separate plum tint supports text contrast over the scenery. Colored corner bouquets and lower-right botanical line art frame the view. Readable serif details and quiet sans-serif copy carry practical information.
 
 Lavender and powder-blue fields distinguish the schedule and attire. Decoration frames the content rather than becoming a substitute for it. This system applies only to this client invitation; the repository's marketing identity is a separate system.
 
@@ -155,7 +153,7 @@ Footer names use `clamp(3.25rem, 8vw, 5rem)` with a 1.25 line height. The satin 
 
 ## Layout
 
-The cover fills the viewport and centers a frame with a maximum width of 570px. It remains scrollable on short displays. The main hero is unframed, spans the viewport width, and centers a maximum 72rem composition with the date above the names. Its minimum height is the small viewport height minus the 61px navigation. The functional countdown sits in its own section immediately below the hero.
+The cover fills the viewport and centers a 1:1.78 animation scene. Envelope width is capped by 560px, the viewport width minus 40px, and available viewport height; the complete card-and-envelope composition stays onscreen. Its card is 96% of the envelope width, with the seal resting just above the front pocket, matching the supplied position reference. The main hero is unframed, spans the viewport width, and centers a maximum 72rem composition with the date above the names. Its minimum height is the small viewport height minus the 61px navigation. The functional countdown sits in its own section immediately below the hero.
 
 Ordinary content uses centered maximum widths of 64rem or 72rem, with 24px mobile gutters and 48px desktop gutters. Most content sections use the section spacing tokens; the colored schedule and attire fields use 96px vertical padding on desktop. Navigation uses a 72rem container with tighter gutters and stays at the top after opening.
 
@@ -174,7 +172,7 @@ The page is predominantly flat. Fine borders and alternating paper colors create
 
 ## Shapes
 
-The cover retains its fine arch frame with elliptical upper corners and nearly square lower corners: `48% 48% 2px 2px / 25% 25% 2px 2px`. The hero has no enclosing frame; colored bouquets and opposite botanical line-art corners frame the watercolor ground.
+The opening uses the user's actual closed/open envelope PNGs and lace-edged oval Save the Date artwork, preserving their transparency and proportions. CSS clips duplicate envelope layers along their existing paper folds to place the card behind the pocket; it does not recreate the artwork. The hero has no enclosing frame; opposing colored bouquets and lower-right botanical line art frame the sunset scene. The background's own wisteria occupies the upper left.
 
 Controls have restrained corners: the custom cover button is subtly rounded, minimal RSVP fields and attendance tiles are square, and the shared RSVP submit button retains its 6px radius. Attire swatches are 64px circles with a thin translucent ink border. These circles describe color choices rather than interactive chips.
 
@@ -186,9 +184,13 @@ The seat finder uses a lavender field, an ivory bordered stationery panel, the e
 
 ### Entourage patterned paper
 
+Principal and secondary sponsor headings share the venue subtitles' Imperial Script treatment at 40–52px. Individual roles and names retain their existing readable typography.
+
 The Wedding Entourage uses the user's blue floral pattern on its own full-width background layer at 6% opacity. The warm paper base and text keep full opacity, and the existing 64rem content container preserves the names and grouping. A 640px-wide repeating tile stays proportional on phone and desktop layouts. The background is decorative and pointer-transparent; the previous floral corner images remain removed. Conservative contrast against the composited pattern exceeds 8:1 for the section's ink and plum text.
 
 ### Venue photographs
+
+“The ceremony” and “The reception” use Imperial Script at 40–52px with a 1.2 line height. Venue names and practical details keep their readable serif/sans-serif styling.
 
 The venues section uses the user's ivory embossed-floral texture as a full-width, centered cover background. Its existing 72rem content container retains the previous photo and text alignment. The compressed local WebP is referenced through scoped CSS so the build supplies a content-hashed URL. The existing plum text, pale photo mats, and lavender corner decorations sit above the textured paper.
 
@@ -220,9 +222,11 @@ A sticky, nearly opaque ivory strip has a fine lower border and a serif J & R li
 
 ### Timeline
 
-The reference-led timeline is a compact, centered three-column composition with a vertical lavender rail on the section axis. Each thin plum icon has its Instrument Serif time centered directly underneath in the left column. Event titles and descriptions sit in the right column, centered vertically beside the icon/time pair. The wedding date sits below the script section title. Rows have 40px gaps and flexible height for wrapping at phone sizes and enlarged text. Icons come from the existing Lucide library and are decorative. Color swatches remain 64px decorative circles and can wrap, so text enlargement does not widen the attire section.
+The reference-led timeline is a compact, centered three-column composition with a vertical lavender rail on the section axis. Each thin plum icon has its Instrument Serif time centered directly underneath in the left column. Concise event titles sit in the right column, centered vertically beside the icon/time pair. The wedding date sits below the script section title. Rows have 40px gaps and flexible height for wrapping at phone sizes and enlarged text. Icons come from the existing Lucide library and are decorative. Color swatches remain 64px decorative circles and can wrap, so text enlargement does not widen the attire section.
 
 ### Satin countdown
+
+The heading and each number/label pair use the existing once-only upward fade. Units have short 0.08–0.23s delays, with no outer timer fade layered over them. Clock updates retain the mounted reveal elements and do not restart the animation. Reduced motion shows the heading and all units immediately.
 
 The user-provided countdown reference supplies ivory satin, lavender lilies at the lower-left and upper-right edges, dark plum lettering, a centered script heading, and large numerals separated by colons. The section uses a static optimized opaque background with live HTML typography. Its minimum height is `clamp(360px, 56vw, 760px)` with 80px vertical padding. It retains a clear central reading area, four flexible numeric columns, the real wedding timestamp. Hidden tabs pause updates; returning tabs recalculate against the timestamp. The timer has `aria-live="off"` to avoid announcements every second. Elapsed countdowns show a permanent readable message instead of negative numbers.
 
@@ -234,17 +238,17 @@ The RSVP section spans the viewport so its flowers sit at the outer screen edges
 
 The same transparent watercolor asset appears at opposing corners, with one copy rotated 180 degrees. It is decorative, pointer-transparent, and hidden from assistive technology. Cover flowers remain at 90% opacity, hero flowers at full opacity, and footer flowers at 55%. Preserve its transparency and provenance; do not introduce invented couple photography.
 
-Each artwork use supplies explicit responsive image sizes matching its rendered width. Below 768px, the cover flowers are 190px wide, the hero's colored left and right flowers are 145px and 135px, and footer flowers are 240px. At 768px and above, cover flowers are 360px, colored hero flowers use 24vw and 21vw, and footer flowers are 330px. The 100vw opaque hero backdrop contains only watercolor texture. The hero imports the user's original transparent `designs/flower-1.png` and `designs/flower-2.png` separately at top-left and bottom-right, with 45% opacity; their widths are 200px/180px below 768px and 24vw/23vw above it. The original `designs/monogram.png` replaces the constructed letters and embedded flower, at widths 70px, 80px from 640px, and 100px from 1024px. The small monogram uses its original PNG directly. There is no generic default image size, and source PNGs remain unchanged.
+Each artwork use supplies explicit responsive image sizes matching its rendered width. Below 768px, the cover flowers are 190px wide, the hero's colored left and right flowers are 145px and 135px, and footer flowers are 240px. At 768px and above, cover flowers are 360px, colored hero flowers use 18vw and 16vw, and footer flowers are 330px. The hero statically imports `designs/hero-bg.jpg`, with responsive image sizing accounting for its tall mobile cover crop. The lower-right `designs/flower-2.png` remains at 45% opacity, 180px on phones and 23vw from 768px. The original `designs/monogram.png` is rendered white using CSS at 64px on phones and 80px from 640px; the closed envelope has no added monogram seal. Source files remain unchanged.
 
-The opaque lavender cover and main invitation are separate visual states. `EnvelopeCover` owns the folded paper geometry, ivory card, and plum seal in scoped `envelope.module.css`; Framer Motion owns each animated transform and opacity. The seal lifts 6px and releases over 0.4s. After 0.25s, the flap eases to -176 degrees over 1.8s, moving behind the card at 1.2s. The card rises 56% over 1.2s after 1.45s, then stays fully revealed for 2.4s. Only after that hold does the foreground fade over 0.55s with a subtle scale to 0.99. Its opaque canvas and corner flowers remain steady until the 5.6s completion callback synchronously removes the cover, restores scrolling, and focuses the couple's names. Reduced motion shows the opened envelope and raised card immediately, retains the 2.4s reading hold, then fades over 0.15s without spatial movement. Live preference changes remain supported. Refresh restarts the envelope; valid direct section links bypass it.
+The opaque lavender cover and main invitation remain separate visual states. `EnvelopeCover` layers the supplied envelope PNGs and `joy-and-rolly-save-the-date.png`; `envelopeMotion` supplies Framer Motion variants and `useEnvelopeOpening` coordinates completion. The front/back flap halves open over approximately two seconds, and the card then rises over 2.8s with a gentle start and finish. It stops close to the opening, with the wax seal clear of the pocket. After the final card paint, a full three-second reading hold begins. The foreground then fades over 0.7s while a measured copy of the shared sunset backdrop fades in over one second. Only after exit completion does the synchronous handoff reveal the invitation, restore scrolling, and focus the couple's names. Reduced motion immediately sets the open composition, keeps the three-second hold, and uses a 0.2s transition. Preference changes retain the elapsed hold; repeated clicks cannot restart the sequence. Refresh restarts the envelope; valid direct section links bypass it.
 
-The card follows the supplied Save the Date reference: compact uppercase serif “Joy & Rolly / Are getting married” above large Imperial Script lettering, then the numeric date “12.03.27” below. Warm ivory paper and plum ink retain this invitation's palette. Typography and internal padding scale with the envelope's inline-size container so the printed insert fits short landscape and enlarged-text layouts; full event information remains accessible in the main invitation. Names and date are sourced from `data/wedding.ts`.
+The provided Save the Date PNG is the card itself: all lace edges, lettering, date, names, and its wax seal remain intact. Responsive image sizing follows the height-aware scene, while HTML alt text and a live announcement expose its event details. A readable text fallback appears if the card image fails. Critical artwork is decoded before motion with a bounded wait, so a failed load cannot trap the guest at the cover. No new dependencies or backend access are required.
 
 After opening from the cover, the main hero's details, names, and invitation message arrive over 0.8s with 80/160/240ms delays, an 8px rise, and a brief 2px-to-zero text blur. Scoped CSS retains fully visible base styles; the final message's animation-end event clears the entry state so later preference changes cannot replay the introduction. Direct section entries and reduced motion show the hero immediately. No extra motion is applied to navigation or form controls.
 
-The hero's four floral images sway gently using scoped CSS individual `rotate` and `translate`, preserving the upper bouquet's existing 180-degree transform. Alternating 9–12 second cycles vary by layer, with 0.8–1.1 degree rotation and 2–5px travel. `HeroFlorals` observes viewport intersection and document visibility; motion remains paused behind the envelope and resumes only while the opened hero is visible. Reduced motion removes the decorative animation entirely. Artwork stays behind the stationary text, clipped within the hero, with no opacity pulsing or layout movement.
+The hero's three floral images sway gently using scoped CSS individual `rotate` and `translate`, preserving the upper bouquet's existing 180-degree transform. Alternating 9–11 second cycles vary by layer, with 0.8–1.1 degree rotation and 2–5px travel. `HeroFlorals` observes viewport intersection and document visibility; motion remains paused behind the envelope and resumes only while the opened hero is visible. Reduced motion removes the decorative animation entirely. Artwork stays behind the stationary text, clipped within the hero, with no opacity pulsing or layout movement.
 
-`InvitationReveal` configures the existing shared visible-by-default reveal component for this client with a gentler fade and 8px movement. It retains once-only 0.55s easing, a 0.24s maximum delay, immediate reduced-motion visibility, and focus-triggered exposure. The shared component itself is unchanged.
+`InvitationReveal` configures the existing shared visible-by-default reveal component with an 8px upward fade over 0.55s. Headings, supporting paragraphs, individual entourage names, the countdown group, RSVP panel, and footer reveal once as they enter view. Brief 0.025–0.16s delays gently separate related text. Reading text is not nested inside multiple animated wrappers; timeline rows and attire groups reveal together. Countdown updates and form state changes do not replay the entrance. Reduced motion shows everything immediately, and focusing a control exposes its wrapper immediately. The shared component and other invitations are unchanged.
 
 **The Separate States Rule.** Never reveal or activate the main invitation while the opening cover still owns the experience.
 

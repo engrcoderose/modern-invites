@@ -7,11 +7,11 @@ import { pavilion, leafyDivider as divider, rightVine, leftVine } from "../data/
 
 function MemberList({ members }: { members: readonly string[] }) {
   return (
-    <ScrollScene as="ul" reveal className="jb-serif space-y-0.5 text-sm leading-snug text-[#293327] sm:text-base">
+    <ul className="jb-serif space-y-0.5 text-sm leading-snug text-[#293327] sm:text-base">
       {members.map((member, index) => (
         <ScrollLayer as="li" profile="text" phase={Math.min(index * 0.018, 0.18)} key={member}>{member}</ScrollLayer>
       ))}
-    </ScrollScene>
+    </ul>
   );
 }
 

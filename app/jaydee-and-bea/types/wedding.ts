@@ -22,6 +22,7 @@ export interface EntourageGroup {
 export interface GalleryPhoto {
   src: string | StaticImageData;
   alt: string;
+  fit?: "cover" | "contain";
 }
 
 export interface TimelineEvent {

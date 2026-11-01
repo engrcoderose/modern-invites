@@ -1,0 +1,153 @@
+.preview {
+  --paper: #f3eadb;
+  --ink: #524b3e;
+  --blue: #1e3b65;
+  --ease-paper: cubic-bezier(.4, 0, .16, 1);
+  background: radial-gradient(ellipse at 50% 40%, #fffcf7 0, #eee8de 75%, #e8e0d5 100%);
+  color: var(--ink);
+  font-family: var(--font-inter, Arial, sans-serif);
+}
+
+.preview ::selection { background: #ccd7e5; color: #18385e; }
+
+.packet {
+  width: min(88vw, calc(57.97dvh - 74.21px), 420px);
+  aspect-ratio: 400 / 690;
+  container-type: inline-size;
+  perspective: 1600px;
+  background: var(--paper);
+  box-shadow: 0 24px 48px -18px #51433440, 0 5px 14px -6px #51433430;
+}
+
+.card {
+  background: #f7f0df;
+  transform: scale(.91);
+}
+
+.cardCopy { inset: 29% 26% 27%; color: var(--blue); }
+.cardTitle {
+  font-family: var(--font-instrument-serif, Georgia, serif);
+  font-size: clamp(.9rem, 10cqw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: -.025em;
+}
+.cardScript, .coverTitle {
+  font-family: var(--font-imperial, "Brush Script MT", cursive);
+  font-weight: 400;
+}
+.cardScript { font-size: clamp(.8rem, 8.4cqw, 2.2rem); }
+.cardMessage {
+  font-family: var(--font-instrument-serif, Georgia, serif);
+  font-size: clamp(.4rem, 3.8cqw, 1rem);
+  line-height: 1.5;
+}
+.rule { height: 1px; background: #ab9164; }
+.cardCopy > * { opacity: 0; }
+
+.panels { transform-style: preserve-3d; }
+.leftDoor, .rightDoor {
+  z-index: 3;
+  transform-style: preserve-3d;
+  background: #eaddc6;
+  box-shadow: 1px 0 2px #7b624533;
+}
+.leftDoor { transform-origin: left center; }
+.rightDoor { transform-origin: right center; }
+.paperFace {
+  background: linear-gradient(105deg, #f6ecdc 0%, #e9dcc6 74%, #f1e6d3 100%);
+  box-shadow: inset -1px 0 #b5a18370, inset 1px 0 #fff8ea;
+}
+.rightDoor .paperFace { transform: scaleX(-1); }
+.upperFold {
+  clip-path: polygon(0 0, 100% 0, 100% 34.1%);
+  background: linear-gradient(140deg, #fbf3e6, #f2e8d8 70%, #dac9ad);
+}
+.lowerFold {
+  clip-path: polygon(0 100%, 100% 65.9%, 100% 100%);
+  background: linear-gradient(28deg, #fbf3e4, #e8dbc3 80%);
+}
+.topFlap, .bottomFlap {
+  z-index: 2;
+  height: 27%;
+  backface-visibility: hidden;
+  background: linear-gradient(175deg, #ecdfc8, #f9efdf);
+}
+.topFlap { clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; }
+.bottomFlap { clip-path: polygon(0 100%, 100% 100%, 50% 0); transform-origin: bottom center; }
+
+.coverTitle {
+  z-index: 4;
+  top: 11%;
+  color: #6b5d49;
+  font-size: clamp(1.5rem, min(7vw, 4.2dvh), 2.25rem);
+}
+.ribbon { z-index: 5; }
+.ribbonBandLeft, .ribbonBandRight {
+  top: 46.1%;
+  height: 4.6%;
+  background: linear-gradient(#b7b4b1, #f8f7f5 9%, #e9e7e5 35%, #cbc9c7 74%, #f3f1ef 93%, #b4b0ac);
+  box-shadow: 0 3px 4px #554d4933;
+}
+.ribbonBandLeft { transform-origin: left center; }
+.ribbonBandRight { transform-origin: right center; }
+.bow {
+  top: 33.1%;
+  width: 82%;
+  aspect-ratio: 1355 / 1159;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 5px 3px #4e443c36);
+}
+.ribbonCanvas { visibility: hidden; opacity: 0; filter: drop-shadow(0 4px 3px #4e443c30); }
+.ribbon[data-renderer="mesh"] .ribbonCanvas { visibility: visible; }
+
+.openButton { z-index: 6; cursor: pointer; border: 0; background: transparent; color: #665943; }
+.openButton:focus-visible { outline: 2px solid var(--blue); outline-offset: 7px; }
+.openLabel { font-size: clamp(.55rem, 2vw, .65rem); letter-spacing: .16em; text-transform: uppercase; }
+.replay { color: #645c50; transition: color .2s; border-radius: 2px; }
+.replay:hover { color: var(--blue); }
+.replay:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.previewNote { color: #736859; letter-spacing: .11em; }
+
+/* Ribbon completion starts this paper sequence; the phases cannot overlap.
+   Persist the final values in the opened state before retiring the cover. */
+.packet[data-state="opening"] { animation: packetReveal 4.15s var(--ease-paper) both; }
+.packet[data-state="opened"] { transform: scale(1.045); }
+.packet[data-state="untying"] .coverTitle,
+.packet[data-state="untying"] .openLabel { animation: quietLabel .35s ease-out both; }
+.packet[data-state="opening"] .coverTitle,
+.packet[data-state="opening"] .openLabel { opacity: 0; }
+.packet[data-state="opening"] .leftDoor { animation: openLeft 2.35s var(--ease-paper) both; }
+.packet[data-state="opening"] .rightDoor { animation: openRight 2.35s .15s var(--ease-paper) both; }
+.packet[data-state="opening"] .topFlap { animation: openTop 1.25s 1.35s var(--ease-paper) both; }
+.packet[data-state="opening"] .bottomFlap { animation: openBottom 1.25s 1.45s var(--ease-paper) both; }
+.packet[data-state="opening"] .card { animation: cardArrive 1.6s 2.15s var(--ease-paper) both; }
+.packet[data-state="opened"] .card { transform: scale(1); }
+.packet[data-state="opening"] .cardCopy > * { animation: revealWords .85s 3s ease-out both; }
+.packet[data-state="opening"] .cardCopy > :nth-child(2) { animation-delay: 3.15s; }
+.packet[data-state="opening"] .cardCopy > :nth-child(3) { animation-delay: 3.25s; }
+.packet[data-state="opening"] .cardCopy > :nth-child(4) { animation-delay: 3.3s; }
+.packet[data-state="opened"] .cardCopy > * { opacity: 1; transform: translateY(0); }
+
+@keyframes quietLabel { to { opacity: 0; } }
+@keyframes openLeft {
+  0% { transform: rotateY(0); opacity: 1; }
+  78% { opacity: 1; }
+  100% { transform: translateX(-32%) rotateY(-135deg); opacity: 0; }
+}
+@keyframes openRight {
+  0% { transform: rotateY(0); opacity: 1; }
+  78% { opacity: 1; }
+  100% { transform: translateX(32%) rotateY(135deg); opacity: 0; }
+}
+@keyframes openTop { to { transform: rotateX(150deg); opacity: 0; } }
+@keyframes openBottom { to { transform: rotateX(-150deg); opacity: 0; } }
+@keyframes cardArrive { from { transform: scale(.91); } to { transform: scale(1); } }
+@keyframes revealWords { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes packetReveal { 0%, 68% { transform: scale(1); } 100% { transform: scale(1.045); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .packet[data-state="opening"], .packet[data-state="opening"] * { animation-duration: .01ms; animation-delay: 0ms; }
+  .packet[data-state="opened"] { transform: none; }
+  .replay { transition: none; }
+}

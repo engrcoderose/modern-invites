@@ -1,10 +1,15 @@
 "use client";
 
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import type { RefObject } from "react";
 import FloralArtwork from "./FloralArtwork";
-import monogram from "../designs/monogram.png";
+import HeroBackdrop from "./HeroBackdrop";
+import useEnvelopeOpening from "./useEnvelopeOpening";
+import { envelopeMotion } from "./envelopeMotion";
+import closedEnvelope from "../designs/close-envelope.png";
+import openEnvelope from "../designs/open-envelope.png";
+import saveTheDate from "../designs/joy-and-rolly-save-the-date.png";
 import { wedding } from "../data/wedding";
 import styles from "../styles/envelope.module.css";
 
@@ -16,50 +21,76 @@ type EnvelopeCoverProps = {
   onOpened: () => void;
 };
 
-const ease = [0.22, 1, 0.36, 1] as const;
-const paperEase = [0.45, 0.05, 0.2, 1] as const;
-const timing = { seal: 0.4, flapDelay: 0.25, flap: 1.8, flapBehind: 1.2, cardDelay: 1.45, card: 1.2, hold: 2.4, exit: 0.55 };
-const exitDelay = timing.cardDelay + timing.card + timing.hold;
-
 export default function EnvelopeCover({ opening, reducedMotion, actionRef, onOpen, onOpened }: EnvelopeCoverProps) {
-  return <div data-envelope-cover className={`${styles.cover} fixed inset-0 z-50 overflow-y-auto overscroll-y-contain`} aria-label="Wedding invitation envelope">
-    <div className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-8 pt-[max(5rem,16svh)] text-center">
-      <FloralArtwork priority sizes="(min-width: 768px) 360px, 190px" className="absolute -bottom-8 -left-14 w-[190px] opacity-70 md:w-[360px]" />
-      <FloralArtwork sizes="(min-width: 768px) 360px, 190px" className="absolute -right-14 -top-8 w-[190px] rotate-180 opacity-70 md:w-[360px]" />
-      <motion.div className="relative z-10 flex w-full flex-col items-center"
-        initial={false} animate={{ opacity: opening ? 0 : 1, scale: opening && !reducedMotion ? 0.99 : 1 }}
-        transition={{ delay: opening ? (reducedMotion ? timing.hold : exitDelay) : 0, duration: reducedMotion ? 0.15 : timing.exit, ease: paperEase }}
-        onAnimationComplete={() => { if (opening) onOpened(); }}>
-        <button ref={actionRef} type="button" aria-label="Open invitation" aria-describedby="jr-envelope-hint" aria-disabled={opening}
-          onClick={onOpen} className={`${styles.envelope} relative block aspect-[3/2] w-full max-w-[min(640px,70svh)] text-center`}>
-          <span aria-hidden="true" className={`${styles.back} absolute inset-0`} />
-          <motion.span aria-hidden="true" className={`${styles.letter} absolute inset-x-[7%] top-[8%] z-[5] flex h-[84%] flex-col items-center justify-start gap-[8px] px-[3%] pt-[5%]`}
-            initial={false} animate={{ y: opening ? "-56%" : "0%" }}
-            transition={{ delay: reducedMotion ? 0 : timing.cardDelay, duration: reducedMotion ? 0 : timing.card, ease }}>
-            <span className={styles.cardDetails}><span className="block">{wedding.couple.shortDisplay}</span><span className="block">Are getting married</span></span>
-            <span className={styles.cardTitle}>Save the Date</span>
-            <span className={styles.cardDetails}>{wedding.date.numeric}</span>
-          </motion.span>
-          <span aria-hidden="true" className={`${styles.leftFold} absolute inset-0 z-10`} />
-          <span aria-hidden="true" className={`${styles.rightFold} absolute inset-0 z-10`} />
-          <span aria-hidden="true" className={`${styles.pocket} absolute inset-0 z-20`} />
-          <motion.span aria-hidden="true" className={`${styles.flap} absolute inset-x-0 top-0 h-[62%] origin-top`}
-            initial={false} animate={{ rotateX: opening ? -176 : 0, zIndex: opening ? 0 : 30 }}
-            transition={{ delay: reducedMotion ? 0 : timing.flapDelay, duration: reducedMotion ? 0 : timing.flap, ease: paperEase, zIndex: { delay: reducedMotion ? 0 : timing.flapBehind, duration: 0 } }}>
-            <span className={`${styles.flapFront} absolute inset-0`} />
-            <span className={`${styles.flapBack} absolute inset-0`} />
-          </motion.span>
-          <motion.span aria-hidden="true" className={`${styles.seal} absolute left-1/2 top-[52%] z-40 -ml-[clamp(28px,6vw,45px)] flex aspect-square w-[clamp(56px,12vw,90px)] items-center justify-center`}
-            initial={false} animate={{ opacity: opening ? 0 : 1, y: opening && !reducedMotion ? -6 : 0, scale: opening && !reducedMotion ? 1.025 : 1 }}
-            transition={{ duration: reducedMotion ? 0 : timing.seal, ease }}>
-            <span className="flex size-[78%] items-center justify-center rounded-full bg-[#fbf9f6]">
-              <Image src={monogram} alt="" priority unoptimized className="pointer-events-none size-[88%] select-none object-contain" />
+  const cover = useRef<HTMLDivElement>(null);
+  const [cardFailed, setCardFailed] = useState(false);
+  const [heroFrame, setHeroFrame] = useState({ top: 61, height: 0 });
+  const { paper, exit, phase } = useEnvelopeOpening({ opening, reducedMotion, onOpened, cover });
+
+  useLayoutEffect(() => {
+    const hero = document.getElementById("invitation");
+    if (!hero) return;
+    const measure = () => {
+      const rect = hero.getBoundingClientRect();
+      setHeroFrame({ top: rect.top + window.scrollY, height: rect.height });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(hero);
+    const navigation = hero.closest("main")?.previousElementSibling;
+    if (navigation) observer.observe(navigation);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={cover} data-envelope-cover data-opening-phase={phase} className={`${styles.cover} fixed inset-0 z-50 overflow-x-hidden overflow-y-auto overscroll-y-contain`} aria-label="Wedding invitation envelope">
+    <motion.div aria-hidden="true" initial="closed" animate={exit}
+      variants={{ closed: { opacity: 0 }, exited: { opacity: 1, transition: { duration: reducedMotion ? 0.2 : 1, ease: "easeInOut" } } }}
+      className="pointer-events-none absolute inset-0 bg-[#fbf9f6]">
+      <div className="absolute inset-x-0 isolate" style={{ top: heroFrame.top, height: heroFrame.height }}><HeroBackdrop /></div>
+    </motion.div>
+    <motion.div initial="closed" animate={exit}
+      variants={{ closed: { opacity: 1, scale: 1 }, exited: { opacity: 0, scale: reducedMotion ? 1 : 0.99, transition: { duration: reducedMotion ? 0.2 : 0.7, ease: "easeInOut" } } }}
+      className="relative flex min-h-[100svh] items-center justify-center py-5">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <FloralArtwork sizes="(min-width: 768px) 360px, 190px" className="absolute -bottom-8 -left-14 w-[190px] opacity-70 md:w-[360px]" />
+        <FloralArtwork sizes="(min-width: 768px) 360px, 190px" className="absolute -right-14 -top-8 w-[190px] rotate-180 opacity-70 md:w-[360px]" />
+      </div>
+      <div className={`${styles.scene} relative`}>
+        <motion.div initial="closed" animate={paper} variants={envelopeMotion.anchor} className={`${styles.envelopeAnchor} absolute inset-x-0 bottom-0`}>
+          <button ref={actionRef} type="button" aria-label="Open invitation" aria-describedby="jr-envelope-hint" aria-disabled={opening}
+            onClick={() => { if (!opening) onOpen(); }} className={`${styles.envelope} relative block size-full text-center`}>
+            <span aria-hidden="true" className={`${styles.bodyBase} absolute inset-0`} />
+            <span aria-hidden="true" className={`${styles.openBody} pointer-events-none absolute inset-0`}>
+              <Image src={openEnvelope} alt="" unoptimized loading="eager" className={styles.openedArtwork} />
             </span>
-          </motion.span>
-        </button>
-        <h1 className={`${styles.names} mt-9`}>{wedding.couple.display}</h1>
-        <p id="jr-envelope-hint" className="mt-4 text-base leading-6">{opening ? "Opening your invitation…" : "Tap the seal to open"}</p>
-      </motion.div>
-    </div>
+            <motion.span aria-hidden="true" initial="closed" animate={paper} variants={envelopeMotion.openFlap} className={`${styles.openFlap} pointer-events-none absolute inset-x-0 bottom-full`}>
+              <Image src={openEnvelope} alt="" unoptimized loading="eager" className={styles.openFlapArtwork} />
+            </motion.span>
+            <span className={`${styles.cardWindow} pointer-events-none absolute inset-x-0 bottom-0 z-10 overflow-hidden`}>
+              <motion.span data-envelope-card initial="closed" animate={paper} variants={envelopeMotion.card} className={`${styles.card} absolute bottom-0 block`}>
+                {cardFailed ? <span className={`${styles.cardFallback} absolute inset-0 flex flex-col items-center justify-center gap-4 p-4`}>
+                  <span className={styles.fallbackTitle}>Save the Date</span><span>{wedding.date.display}</span><span>{wedding.couple.shortDisplay}</span>
+                </span> : <Image src={saveTheDate} alt={`Save the Date — ${wedding.couple.shortDisplay}, ${wedding.date.display}`} fill loading="eager"
+                  sizes="min(538px, calc(96vw - 38.4px), calc(53.93svh - 43.15px))" onError={() => setCardFailed(true)} className="select-none object-contain" />}
+              </motion.span>
+            </span>
+            <motion.span aria-hidden="true" initial="closed" animate={paper} variants={envelopeMotion.pocket} className={`${styles.frontPocket} pointer-events-none absolute inset-0 z-20`}>
+              <Image src={openEnvelope} alt="" unoptimized loading="eager" className={styles.openedArtwork} />
+            </motion.span>
+            <motion.span aria-hidden="true" initial="closed" animate={paper} variants={envelopeMotion.closedBody} className={`${styles.closedBody} pointer-events-none absolute inset-0 z-30`}>
+              <Image src={closedEnvelope} alt="" priority unoptimized className={styles.closedArtwork} />
+            </motion.span>
+            <motion.span aria-hidden="true" initial="closed" animate={paper} variants={envelopeMotion.closedFlap} className={`${styles.closedFlap} pointer-events-none absolute inset-0 z-40`}>
+              <Image src={closedEnvelope} alt="" unoptimized loading="eager" className={styles.closedArtwork} />
+            </motion.span>
+          </button>
+        </motion.div>
+        <motion.div initial="closed" animate={paper} variants={envelopeMotion.caption} className="absolute inset-x-0 top-[76%] text-center">
+          <h1 className={styles.names}>{wedding.couple.display}</h1>
+          <p id="jr-envelope-hint" className="mt-3 text-base leading-6">{opening ? "Opening your invitation…" : "Tap the envelope to open"}</p>
+        </motion.div>
+      </div>
+    </motion.div>
+    <p role="status" className="sr-only">{phase === "holding" ? `Save the Date — ${wedding.couple.shortDisplay}, ${wedding.date.display}.` : ""}</p>
   </div>;
 }

@@ -1,14 +1,16 @@
 import Image from "next/image";
 import HeroFlorals from "../components/HeroFlorals";
-import backdrop from "../assets/hero-lavender-wash.webp";
+import HeroBackdrop from "../components/HeroBackdrop";
+import monogram from "../designs/monogram.png";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
 
 export default function HeroSection() {
   return <section id="invitation" className={`${styles.hero} relative isolate flex min-h-[calc(100svh-61px)] items-center justify-center overflow-hidden px-5 py-14 text-center sm:px-10 sm:py-12 lg:py-20`}>
-    <Image src={backdrop} alt="" fill sizes="100vw" className="pointer-events-none -z-20 select-none object-cover" />
+    <HeroBackdrop />
     <HeroFlorals />
     <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center">
+      <Image src={monogram} alt="" aria-hidden="true" sizes="(min-width: 640px) 80px, 64px" className={`${styles.heroMonogram} mb-6 h-auto w-16 sm:w-20`} />
       <div className={`${styles.heroDetails} ${styles.heroIntroDetails} space-y-3`}>
         <p>{wedding.date.display}</p>
         <p>Friday · 3:00 PM · Davao City</p>

@@ -1,4 +1,5 @@
 import type { WeddingData } from "../types/wedding";
+import { galleries } from "./photo-layout";
 
 export const wedding: WeddingData = {
   couple: { names: ["Jaydee", "Bea"], display: "Jaydee & Bea", initials: "J & B", fullNames: null },
@@ -114,12 +115,12 @@ export const wedding: WeddingData = {
     pendingMessage: "RSVP opens soon.",
   },
   gallery: {
-    photos: [], placeholder: "[WEDDING PHOTOS — TO BE PROVIDED]",
+    photos: galleries[0], placeholder: "",
     draftCaptions: ["Our story, in frames", "The little moments", "A lifetime of us"],
   },
   music: {
-    src: "/jaydee-and-bea/music/until-i-found-you-db66ec5d.mp3",
-    title: "Until I Found You — Stephen Sanchez",
+    src: "/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3",
+    title: "Could I Love You Any More — Renée Dominique feat. Jason Mraz",
   },
   hashtag: { value: null, placeholder: "[WEDDING HASHTAG — TO BE PROVIDED]" },
   pending: {
