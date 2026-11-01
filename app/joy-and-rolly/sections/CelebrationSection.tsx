@@ -15,11 +15,10 @@ export default function CelebrationSection() {
     </div>
     <div className="relative mx-auto max-w-6xl px-6 pb-32 pt-20 md:px-12 md:py-28">
       <InvitationReveal as="h2" className={`${styles.heading} text-center`}>The Venues</InvitationReveal>
-      <p className="mx-auto mt-5 max-w-lg text-center text-base sm:text-sm leading-7">Two hearts, one promise, and our favorite people.<br />We can’t wait to celebrate with you.</p>
+      <InvitationReveal as="p" delay={0.06} className="mx-auto mt-5 max-w-lg text-center text-base sm:text-sm leading-7">Two hearts, one promise, and our favorite people.<br />We can’t wait to celebrate with you.</InvitationReveal>
       <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-16">
-        {wedding.venues.map((venue, index) => <InvitationReveal key={venue.label} delay={index * 0.12}>
-          <article className="text-center">
-            <div className={`${styles.venuePhotoFrame} relative mb-10 p-2 sm:p-3`}>
+        {wedding.venues.map((venue, index) => <article key={venue.label} className="text-center">
+            <InvitationReveal delay={index * 0.08} className={`${styles.venuePhotoFrame} relative mb-10 p-2 sm:p-3`}>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image src={venue.image.src} alt={venue.image.alt} fill
                   sizes="(min-width: 1152px) 470px, (min-width: 768px) calc((100vw - 212px) / 2), (min-width: 640px) calc(100vw - 74px), calc(100vw - 66px)"
@@ -27,13 +26,12 @@ export default function CelebrationSection() {
               </div>
               <Image src={floralSpray} alt="" aria-hidden="true" sizes="(min-width: 768px) 144px, 104px"
                 className="pointer-events-none absolute -bottom-5 -right-2 h-auto w-[104px] select-none md:-bottom-6 md:-right-3 md:w-36" />
-            </div>
-            <h3 className={`${styles.serif} text-3xl`}>{venue.label}</h3>
-            <p className={`${styles.venueName} mx-auto mt-5 max-w-sm text-2xl leading-snug`}>{venue.name}</p>
-            <p className="mt-4 text-base sm:text-sm font-medium">{venue.time}</p>
-            <p className={`${styles.muted} mx-auto mt-3 min-h-14 max-w-[38ch] text-base sm:text-sm leading-7`}>{venue.address}</p>
-          </article>
-        </InvitationReveal>)}
+            </InvitationReveal>
+            <InvitationReveal as="h3" className={styles.subheading}>{venue.label}</InvitationReveal>
+            <InvitationReveal as="p" delay={0.04} className={`${styles.venueName} mx-auto mt-5 max-w-sm text-2xl leading-snug`}>{venue.name}</InvitationReveal>
+            <InvitationReveal as="p" delay={0.08} className="mt-4 text-base sm:text-sm font-medium">{venue.time}</InvitationReveal>
+            <InvitationReveal as="p" delay={0.12} className={`${styles.muted} mx-auto mt-3 min-h-14 max-w-[38ch] text-base sm:text-sm leading-7`}>{venue.address}</InvitationReveal>
+          </article>)}
       </div>
     </div>
   </section>;

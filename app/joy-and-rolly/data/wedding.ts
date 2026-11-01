@@ -21,11 +21,11 @@ export const wedding = {
     },
   ],
   timeline: [
-    { time: "2:30 PM", title: "Guest arrival", description: "A little early, a little excited.", icon: "arrival" },
-    { time: "3:00 PM", title: "The ceremony", description: "The beginning of our forever.", icon: "ceremony" },
-    { time: "5:00 PM", title: "Cocktail hour", description: "A toast to love and good company.", icon: "cocktails" },
-    { time: "6:00 PM", title: "Reception dinner", description: "Gather around, celebrate with us.", icon: "dinner" },
-    { time: "8:00 PM", title: "After party", description: "Let the celebration continue.", icon: "party" },
+    { time: "2:30 PM", title: "Guest Arrival", icon: "arrival" },
+    { time: "3:00 PM", title: "Ceremony", icon: "ceremony" },
+    { time: "5:00 PM", title: "Cocktail Hour", icon: "cocktails" },
+    { time: "6:00 PM", title: "Reception Dinner", icon: "dinner" },
+    { time: "8:00 PM", title: "After Party", icon: "party" },
   ],
   attire: [
     { group: "Team Bride", colors: [{ label: "Lilac", hex: "#b7a0c8" }] },

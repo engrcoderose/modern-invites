@@ -1,5 +1,47 @@
 # Jaydee & Bea · Whimsical Garden
 
+## Love-story redesign · November 1, 2026
+
+The story follows the new supplied composition: a floral arched portrait, purple Fleur De Leah title and serif story text on the existing pale paper texture, an inset wide lakeside photograph with a soft pink floral corner, and a meadow flower strip along the bottom. The supplied `story-section-image-one` and `line-flowers.png` were converted to lossless WebPs with transparency preserved; the originals remain intact. The photo corner reuses existing hero artwork. Photo selections remain in `data/story-photos.ts` and styling in `styles/story.module.css`.
+
+The four confirmed story paragraphs and their chronological order remain unchanged. On phones, the opening text wraps beside and below the arched portrait at the existing readable body size; tablet and desktop use two columns. The wide image uses a 5:3 frame and responsive Next Image widths. The existing slower, once-only text reveals and reduced-motion support remain. The old divider, urns, vine and superseded story selectors were removed.
+
+Verification: the isolated production build, client lint and type checks passed. Browser review at 320, 390, 768 and 1440 px confirmed exact preservation of all four paragraphs, the selected fonts, loaded artwork/photos, and no text or page overflow or runtime errors. The story heading was checked before, during and after its slower reveal. WebP verification found no changed visible RGB values or alpha values in either supplied artwork derivative. Review artifacts: `.next-preview-jaydee-photos/love-story-*.png` and `story-checks.json`. No private environment files or Supabase access were used.
+
+## Floral countdown redesign · November 1, 2026
+
+The countdown follows the supplied reference: a warm cream background, the generated washed-watercolor floral border, purple date and typography, a Fleur De Leah “Counting down to our wedding day” heading, and serif digits separated by colons with title-case unit labels. The confirmed January 16, 2027 ceremony date/time and timezone remain the countdown target. The displayed values stay live; the reference's sample numbers are not hardcoded.
+
+`styles/countdown.module.css` owns the scoped palette, typography and decorative mobile masks. `sections/InvitationSection.tsx` composes the date, heading, artwork and timer. Both floral sides reuse the same statically imported PNG and optimized responsive source. On phones, each side is cropped independently and softly faded inward so the flowers keep their proportions around the text. Tablet and desktop use the reference's wide composition. Existing slower text reveals, reduced-motion behavior, non-announcing timer updates and finished state remain. The old petals, halo and countdown-specific global selectors were removed.
+
+Verification: the final isolated production build, client lint and type checks passed. Production-browser review at 320, 390, 768, 848 (the reference width), and 1440 px confirmed no text or horizontal page overflow, loaded artwork at its original proportions, reuse of one optimized floral source, and no runtime errors. A synthetic browser clock verified the reference's `24 : 13 : 02 : 00`, the next-second rollover, and the zero/finished state without changing production dates or hardcoding values. Screenshots and results: `.next-preview-jaydee-photos/countdown-reference-*.png` and `countdown-checks.json`. No private credentials or Supabase access were used.
+
+## Current background music · November 1, 2026
+
+The user selected “Could I Love You Any More” by Renée Dominique featuring Jason Mraz, replacing “Until I Found You.” The supplied MP3 remains in `assets/music/`; its byte-identical public copy is `public/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3` (SHA-256: `2a7f2771fa37470ff07acd98cb0bb1f634f3880c68b7dfbe48e3892a97732d24`). The content-versioned URL avoids stale audio caches. Existing play-on-open behavior, looping, 40% volume, pause/resume controls, and retry feedback remain unchanged. This supersedes earlier music notes below.
+
+Verification: lint and isolated type checking passed. The isolated browser preview decoded the 190.82-second track, requested no audio before Open, started the correct song on opening, and passed pause/keyboard-resume, looping, volume, and browser-error checks. No private environment files or Supabase access were used. The obsolete public copy of the previous song was removed; both supplied source MP3s remain intact.
+
+## Slower scroll text reveals · November 1, 2026
+
+Text now plays a timed entrance when it reaches the bottom 8% inset of the viewport: 2.2 seconds for headings, 1.8 seconds for body text and countdown values, and 2 seconds for countdown copy. Small existing staggers are capped at 240 ms. A quick swipe no longer compresses the animation into the scroll distance; each reveal completes once and stays readable when revisited. `utils/text-reveals.ts` owns the timings, and `components/ScrollTextLayer.tsx` owns the viewport-triggered motion. Artwork retains its existing parallax. Opening and hero entrances retain their existing timing.
+
+Server-rendered and initially visible text stays readable. Reduced motion and keyboard focus immediately settle the text; the existing subscribed motion-preference hook also responds to setting changes while the page is open. Superseded text scroll profiles and their nested spring wrappers were removed.
+
+The isolated production build, type check, and client ESLint passed. Browser timing samples at 390 and 1440 px confirmed heading and body reveals were still progressing after 700 ms and fully settled afterward, including after rapid scrolling. Completed reveals did not replay. Initial reduced motion and live preference changes restored all text to full opacity. No page errors or horizontal overflow were found. Screenshots and samples: `.next-preview-jaydee-photos/slow-text-*`.
+
+## Current title typography · November 1, 2026
+
+The user-selected Fleur De Leah, normal weight 400, is now used for the welcome/hero names and display titles throughout the invitation, including section, entourage, attire, gallery, and RSVP headings. Noto Serif remains the body and event-detail font. A local Latin WOFF2 and its license live in `assets/fonts/`; `--jb-title-font` is scoped to this invitation. This supersedes historical Imperial Script and Instrument Serif title references below.
+
+The isolated production build, lint, and type checks passed. Browser review at 320, 390, 768, and 1440 px confirmed the local font loaded, all 29 display titles used normal weight 400, Noto Serif body copy remained intact, and no title or page overflow occurred. Review screenshots and computed typography are in `.next-preview-jaydee-photos/`. The requested face has a scoped design-detector exception; pre-existing shared-marketing type-ramp advisories remain unchanged.
+
+## Current photographs · November 1, 2026
+
+The invitation now uses all 31 user-supplied photographs from `Invitation Pics`. Seven portrait photos appear in the slideshow and carousel; the remaining 24 appear in “More little moments.” The welcome, story, photo breaks, and RSVP also use actual couple photographs. This supersedes references to draft/sample photography in the historical notes below. Static imports and alt text live in `data/prenup-media.ts`, selections in `data/photo-layout.ts` and `data/story-photos.ts`, and optimized local WebPs in `assets/photos/`. See `assets/photos/README.md` for source and optimization details. No backend configuration changed.
+
+Verification: client ESLint and the isolated production build (including type checking) passed. Browser checks at 390, 768, and 1440 px confirmed all 31 gallery photos load, carousel selections and lightbox controls work, keyboard navigation wraps correctly, and the page has no horizontal overflow or browser errors. The seven slideshow photos completed two autoplay loops, including wraparound; reduced-motion views remained stationary. Gallery sizing accounts for landscape photos covering portrait frames: the featured image selected 640, 1080, and 1920 px sources respectively at these viewport widths. Review artifacts are in `.next-preview-jaydee-photos/`. No private environment files or Supabase access were used.
+
 Route: `/jaydee-and-bea`. This is a mobile-first invitation built using the existing Next.js App Router, Tailwind, and Lucide. Details and body copy use the requested Noto Serif, self-hosted as normal and italic Latin WOFF2 files under `assets/fonts`, with weights 400–600 and the accompanying license. Headings retain the root layout’s Instrument Serif and Imperial Script. These heading fonts are provisional draft choices. Client implementation and media configuration live in this folder; the new hero uses local static artwork imports, while other raster artwork and photos use verified public R2 uploads. No dependencies were added.
 
 ## Updating content
@@ -37,7 +79,7 @@ The supplied pasted request is authoritative. The questionnaire is source eviden
 - **Maps:** each `mapUrl` is null; there are no guessed location links or map embeds. Set each approved URL to display a View Location link.
 - **Photos:** `gallery.photos` is empty and visibly labeled draft frames are rendered. Add local static image imports (preferred) or approved image sources with meaningful `alt` text. Real photos are lazy loaded; tapping them opens a native dialog lightbox with close/Escape, previous/next, arrow keys, native focus trapping and focus restoration. Approved remote images must meet the repository’s existing Next Image configuration.
 - **Hashtag:** the requested placeholder is shown. Replace `hashtag.value` once confirmed.
-- **Music:** Until I Found You by Stephen Sanchez is supplied. BackgroundMusic starts playback in the Open Invitation gesture, loops at 40% volume, and provides a floating pause/play control with retry feedback. The original MP3 remains in assets/music; a byte-identical, content-versioned copy is served from public/jaydee-and-bea/music. It uses preload=none and never delays opening.
+- **Music:** Could I Love You Any More by Renée Dominique featuring Jason Mraz is supplied. BackgroundMusic starts playback in the Open Invitation gesture, loops at 40% volume, and provides a floating pause/play control with retry feedback. The original MP3 remains in assets/music; a byte-identical, content-versioned copy is served from public/jaydee-and-bea/music. It uses preload=none and never delays opening.
 - **Fonts:** Noto Serif is confirmed for details and body. Confirm the remaining draft heading typography or provide licensed font files.
 
 The draft is marked `noindex, nofollow`. Remove this only when it is approved for launch. No invented photos, names, songs, hashtags, RSVP deadlines, or map URLs are used. Botanical SVG artwork is original decorative vector artwork, not a photo placeholder or Pokémon character.
