@@ -1,4 +1,5 @@
-.cover { background: #eee8f2; }
+.cover { background: #5b1961; color: #fff; }
+.cover .envelope:focus-visible { outline-color: #fff; }
 .scene { width: min(560px, calc(100vw - 40px), calc((100svh - 80px) / 1.78)); aspect-ratio: 1 / 1.78; container-type: inline-size; }
 .envelopeAnchor { aspect-ratio: 477 / 347; }
 .envelope { perspective: 1400px; isolation: isolate; cursor: pointer; }
@@ -16,5 +17,5 @@
 .card { width: 96%; left: 2%; aspect-ratio: 437 / 567; }
 .cardFallback { border-radius: 50%; background: #f6f1e9; color: #49394f; font-family: var(--font-instrument-serif), Georgia, serif; font-size: clamp(12px, 5cqw, 22px); }
 .fallbackTitle { font-family: var(--font-imperial), cursive; font-size: 12cqw; line-height: 1.1; }
-.names { font-family: var(--font-imperial), "Brush Script MT", cursive; font-size: clamp(1.75rem, 9cqw, 3.5rem); font-weight: 400; line-height: 1.15; color: #5b1962; text-wrap: balance; }
+.names { font-family: var(--font-imperial), "Brush Script MT", cursive; font-size: clamp(1.75rem, 9cqw, 3.5rem); font-weight: 400; line-height: 1.15; color: inherit; text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .envelope { perspective: none; } }

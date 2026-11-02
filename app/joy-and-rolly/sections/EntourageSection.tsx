@@ -21,7 +21,7 @@ export default function EntourageSection() {
         <ul className="mt-6 grid gap-x-10 gap-y-3 md:grid-cols-2">{principalSponsors.map((name, index) => <InvitationReveal as="li" key={name} delay={Math.min(index * 0.025, 0.15)} className={`${styles.entourageName} text-lg leading-relaxed`}>{name}</InvitationReveal>)}</ul>
       </div>
       <div className={`${styles.entourageDivider} my-11 border-t`} />
-      <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">{weddingParty.map(group => <Group key={group.role} {...group} />)}</div>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-12">{weddingParty.map(group => <Group key={group.role} {...group} />)}</div>
       <InvitationReveal as="h3" className={`${styles.subheading} mb-8 mt-14 text-center`}>Secondary sponsors</InvitationReveal>
       <div className="grid gap-8 md:grid-cols-3">{secondarySponsors.map(group => <Group key={group.role} {...group} />)}</div>
       <div className={`${styles.entourageDivider} my-11 border-t`} />

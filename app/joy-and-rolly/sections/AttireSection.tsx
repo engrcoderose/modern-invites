@@ -1,11 +1,18 @@
 import Image from "next/image";
 import InvitationReveal from "../components/InvitationReveal";
 import attireGuide from "../assets/attire-guide.png";
+import attireFlowers from "../designs/flower-design-2.png";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
 
 export default function AttireSection() {
-  return <section id="attire" className={`${styles.blueSection} scroll-mt-16 px-6 py-20 md:py-24`}>
+  return <section id="attire" className={`${styles.blueSection} relative isolate scroll-mt-16 px-6 py-20 md:py-24`}>
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none">
+      <Image src={attireFlowers} alt="" sizes="(min-width: 768px) 192px, 128px"
+        className="absolute -right-4 -top-12 h-auto w-32 -scale-y-100 md:-right-6 md:-top-20 md:w-48" />
+      <Image src={attireFlowers} alt="" sizes="(min-width: 768px) 192px, 128px"
+        className="absolute -bottom-8 -left-4 h-auto w-32 -scale-x-100 md:-bottom-12 md:-left-6 md:w-48" />
+    </div>
     <div className="mx-auto max-w-4xl text-center">
       <InvitationReveal as="h2" className={styles.heading}>Dressed for the occasion</InvitationReveal>
       <InvitationReveal as="p" delay={0.04} className={`${styles.serif} mt-6 text-3xl`}>Formal attire</InvitationReveal>
@@ -21,7 +28,7 @@ export default function AttireSection() {
         <Image src={attireGuide} alt="Formal outfit examples: a lilac long gown, a dusty blue long-sleeved shirt with beige trousers, an ivory Barong Tagalog with tan trousers, and a tan one-shoulder gown."
           sizes="(min-width: 816px) 768px, calc(100vw - 48px)" className="h-auto w-full" />
       </a>
-      <InvitationReveal as="p" className={`${styles.muted} mt-3 text-base sm:text-sm`}>Tap the illustration to view it larger.</InvitationReveal>
+      <InvitationReveal as="p" className={`${styles.muted} mt-3 text-xs`}>Tap the illustration to view it larger.</InvitationReveal>
     </div>
   </section>;
 }
