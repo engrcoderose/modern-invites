@@ -4,7 +4,7 @@
 .controls { border-radius: 999px; background: #172015a6; }
 .dot { width: 6px; background: #cbd2bb; transition: width 180ms ease, background 180ms ease; }
 .currentDot { width: 20px; background: #f8f5e9; }
-.photoNames { color: var(--ae-paper); text-shadow: 0 2px 15px #172015b3; }
+.photoNames { color: var(--ae-paper); font-family: var(--font-ae-display), cursive; font-weight: 400; line-height: 1.05; text-shadow: 0 2px 15px #172015b3; }
 @media (prefers-reduced-motion: reduce) {
   .slide, .dot { transition: none; }
 }

@@ -16,6 +16,8 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(false);
   const pendingIndex = useRef<number | null>(null);
+  const slideStartedAt = useRef<number | null>(null);
+  const failedImages = useRef(new Set<number>());
   const present = useIsPresent();
   const reduced = useReducedMotion();
 
@@ -27,7 +29,8 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
   }, []);
 
   const requestSlide = useCallback((index: number) => {
-    if (failed === index) {
+    if (failed === index || failedImages.current.has(index)) {
+      failedImages.current.delete(index);
       setAttempts(current => ({ ...current, [index]: (current[index] ?? 0) + 1 }));
       setDecoded(current => current.filter(value => value !== index));
     }
@@ -51,6 +54,7 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
   useEffect(() => {
     if (pending === null || previous !== null || !decoded.includes(pending) || pendingIndex.current !== pending) return;
     setPrevious(reduced ? null : active);
+    slideStartedAt.current = performance.now();
     setActive(pending);
     pendingIndex.current = null;
     setPending(null);
@@ -65,12 +69,21 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
 
   const playing = enabled && present && visible && !paused && !reduced && decoded.includes(active);
   useEffect(() => {
-    if (!playing || pending !== null || previous !== null) return;
-    const timer = window.setTimeout(() => requestSlide((active + 1) % count), slideInterval);
+    if (!playing) {
+      slideStartedAt.current = null;
+      return;
+    }
+    slideStartedAt.current ??= performance.now();
+    const next = (active + 1) % count;
+    setMounted(current => current.includes(next) ? current : [...current, next]);
+    if (pending !== null || previous !== null) return;
+    const remaining = Math.max(0, slideInterval - (performance.now() - slideStartedAt.current));
+    const timer = window.setTimeout(() => requestSlide(next), remaining);
     return () => window.clearTimeout(timer);
   }, [active, count, pending, playing, previous, requestSlide]);
 
   function handleError(index: number) {
+    failedImages.current.add(index);
     if (index !== active && pendingIndex.current !== index) return;
     pendingIndex.current = null;
     setPending(null);
@@ -87,6 +100,7 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
       return;
     }
     if (!image.isConnected) return;
+    failedImages.current.delete(index);
     // Flush the hidden starting style even for newly mounted, cached images.
     image.closest("[data-photo-layer]")?.getBoundingClientRect();
     setDecoded(current => current.includes(index) ? current : [...current, index]);

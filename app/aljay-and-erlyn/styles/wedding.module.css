@@ -66,12 +66,16 @@
 .countdownNumber { color: var(--ae-olive); font-size: clamp(30px, 7vw, 52px); font-weight: 400; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .storyHeading { font-family: var(--font-ae-display), cursive; font-size: clamp(22px, 3svh, 29px); font-weight: 400; line-height: 0.95; white-space: nowrap; color: var(--ae-olive); }
 .storyCopy { font-family: var(--font-ae-body), Georgia, serif; font-size: 11.5px; line-height: 1.6; text-align: center; color: var(--ae-paper); }
+@media (min-width: 768px) {
+  .storyHeading { font-size: clamp(18px, 3svh, 26px); }
+}
 .venueName { font-family: var(--font-ae-display), cursive; font-size: clamp(34px, 3.7vw, 46px); font-weight: 400; line-height: 1.15; text-wrap: balance; }
 .textLink { border-bottom: 1px solid currentColor; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
 .timelineRow { border-bottom: 1px solid #bfb59a80; }
 .timelineTime { font-size: 11px; font-variant-numeric: tabular-nums; }
 .timelineTitle { font-size: 30px; line-height: 1.25; font-family: var(--font-ae-display), cursive; }
 .pairedNames, .parentNames { font-size: 14px; line-height: 1.6; font-style: italic; overflow-wrap: anywhere; }
+.entourageRole { font-size: clamp(13px, 3.7vw, 16px); font-weight: 700; line-height: 1.5; letter-spacing: 0.025em; text-transform: uppercase; }
 .oliveLeaf .heading { font-size: clamp(28px, 6.5vw, 40px); }
 .attireCode { font-size: 13px; line-height: 1.65; }
 .attirePage .heading { font-size: 42px; }

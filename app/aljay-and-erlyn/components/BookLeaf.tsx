@@ -5,7 +5,8 @@ import Image from "next/image";
 import { animate, motion, useIsPresent, useMotionValue, usePresenceData, useReducedMotion, useTransform, type Variants } from "framer-motion";
 import { pageFold } from "../utils/page-fold";
 import WoodlandBackdrop from "./WoodlandBackdrop";
-import entourageBackground from "../assets/design/entourage-floral-bg.png";
+import { usePageTextReveal } from "./usePageTextReveal";
+import entourageBackground from "../assets/design/entourage-bg-2.png";
 import styles from "../styles/wedding.module.css";
 
 const pageTurn = { duration: 1.25, ease: [0.38, 0.05, 0.25, 1] as const };
@@ -64,21 +65,7 @@ export default function BookLeaf({ children, id, label, ready, tone = "ivory", o
     return () => animation.stop();
   }, [present, direction, reduced, progress]);
 
-  useLayoutEffect(() => {
-    if (!ready || !present || !ref.current) return;
-    const targets = Array.from(ref.current.querySelectorAll<HTMLElement>("[data-reveal]"));
-    const controls = targets.map((target, index) => animate(0, 1, {
-      duration: reduced ? 0 : 0.65,
-      delay: reduced ? 0 : Math.min(index * 0.075, 0.3),
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (value) => { target.style.opacity = String(value); target.style.transform = reduced ? "none" : `translateY(${(1 - value) * 12}px)`; },
-      onComplete: () => { target.style.opacity = "1"; target.style.transform = "none"; },
-    }));
-    return () => {
-      controls.forEach((control) => control.stop());
-      targets.forEach((target) => { target.style.opacity = "1"; target.style.transform = "none"; });
-    };
-  }, [ready, present, reduced]);
+  usePageTextReveal({ root: ref, ready, present, reduced: Boolean(reduced), id });
 
   return (
     <motion.section
@@ -118,7 +105,7 @@ export default function BookLeaf({ children, id, label, ready, tone = "ivory", o
         style={{ clipPath: frontClip }}
       >
         {tone === "woodland" && <WoodlandBackdrop />}
-        {tone === "olive" && <Image src={entourageBackground} alt="" fill sizes="max(100vw, 56.25dvh)" className="pointer-events-none object-cover object-top opacity-40" />}
+        {tone === "olive" && <Image src={entourageBackground} alt="" fill sizes="max(100vw, 63.4dvh)" className="pointer-events-none object-cover object-top opacity-40" />}
         <div ref={scrollContent} className={`absolute inset-x-0 top-0 ${id === "together" ? "bottom-0" : "bottom-[var(--ae-controls-height)]"} overflow-y-auto overscroll-contain`}>
           <div className={fullBleed ? "relative h-full" : "relative flex min-h-full flex-col items-center justify-center px-6 py-10 sm:px-12 sm:py-12 [@media(max-height:800px)]:py-6"}>{children}</div>
         </div>

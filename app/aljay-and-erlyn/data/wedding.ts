@@ -51,7 +51,7 @@ export const chapters = [
   { id: "us", label: "Us · photos" },
   { id: "the-day", label: "The day" },
   { id: "parents", label: "Our parents" },
-  { id: "godparents", label: "Our godparents" },
+  { id: "godparents", label: "Principal sponsors" },
   { id: "wedding-party", label: "The wedding party" },
   { id: "little-ones", label: "Our little ones" },
   { id: "together", label: "Together · photos" },

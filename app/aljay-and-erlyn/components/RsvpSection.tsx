@@ -12,7 +12,7 @@ export default function RsvpSection() {
     <div className="mx-auto mb-3 w-[clamp(230px,35svh,280px)] max-w-full">
       <FramedHeading headingClassName={styles.rsvpHeading} sizes="min(calc(100vw - 48px), clamp(230px, 35svh, 280px))">Kindly Reply</FramedHeading>
     </div>
-    <div className={`${styles.rsvpCard} px-5 py-7 sm:px-9`}>
+    <div className={`${styles.rsvpCard} px-5 py-7 sm:px-9`} data-reveal>
       <p className={`${styles.body} mb-3 text-center`}>Find your invitation to let us know if you can join us.</p>
       <p className={`${styles.small} text-center`}>Please reply by <strong>{wedding.rsvpDeadline}</strong>.</p>
       {enabled && wedding.rsvp.eventSlug ? <SmartRsvpFlow

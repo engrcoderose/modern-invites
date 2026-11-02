@@ -29,6 +29,12 @@ Current reference-design assets:
 
 - `design/story-title-frame.png`: owner-supplied transparent ornamental frame copied unchanged from `codex-clipboard-afc23d1a-4df2-436a-a896-aeef0ed684fc.png`. It replaces the earlier drawn frame; the story and RSVP titles remain editable HTML through `FramedHeading` in `components/Stationery.tsx`. The original frame asset is reused without duplication.
 
-- `design/entourage-floral-bg.png`: owner-supplied 1152 × 2048 green background with hanging ivory flowers (clipboard-4ba1e2a0), copied unchanged and statically imported for all four entourage pages. Next Image provides responsive, top-aligned cover sizing and optimization. Render the artwork at 40% opacity over deep olive #30391f; the source remains unchanged. The earlier `design/entourage-bg.png` is retained as unused source artwork.
+- `design/entourage-floral-bg.png`: owner-supplied 1152 × 2048 green background with hanging ivory flowers (clipboard-4ba1e2a0), copied unchanged; now unused after the owner supplied entourage-bg-2.png. Next Image provides responsive, top-aligned cover sizing and optimization. Render the artwork at 40% opacity over deep olive #30391f; the source remains unchanged. The earlier `design/entourage-bg.png` is retained as unused source artwork.
 
-- `design/olive-oval-aljay-erlyn-seaside.png`: image-tool composite using the couple’s IMG_2911 seaside photo, zoomed inside an olive frame with ivory flowers. Used above the countdown heading with responsive 140–220px height and default Next Image optimization. Its generation/edit prompt is saved alongside it; earlier oval concepts remain unused.
+- `design/olive-oval-aljay-erlyn-seaside.png`: image-tool composite using the couple’s IMG_2911 seaside photo, zoomed inside an olive frame with ivory flowers. Used above the countdown heading with responsive 140–220px height on mobile, 160–250px on desktop, and default Next Image optimization. Its generation/edit prompt is saved alongside it; earlier oval concepts remain unused.
+
+- `design/slideshow-ivory-flowers.png`: transparent cutout prepared with the built-in image tool from the supplied clipboard-27c5cdc5 floral image. Earlier lower-left overlap, now unused after the owner supplied red.png. The prompt is saved alongside the PNG.
+
+- `design/red.png`: owner-supplied transparent 169 × 253 floral arrangement with pink/red trailing accents, used unchanged on the first (Us) slideshow’s lower-left corner.
+
+- `design/entourage-bg-2.png`: latest owner-supplied 1824 × 2879 olive damask background, statically imported unchanged for all four entourage chapters. Keep the established 40% opacity over deep olive #30391f; Next Image uses responsive cover sizing for this asset’s aspect ratio.

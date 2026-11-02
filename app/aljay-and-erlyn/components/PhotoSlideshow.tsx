@@ -5,7 +5,12 @@ import Image from "next/image";
 import type { SlideshowPhoto } from "../data/photos";
 import { usePhotoSlideshow } from "./usePhotoSlideshow";
 import styles from "../styles/slideshow.module.css";
-import weddingStyles from "../styles/wedding.module.css";
+import slideshowFlowers from "../assets/design/red.png";
+
+const portraitAspect = 3 / 4;
+const portraitWidthShare = 0.68;
+const floralOverhang = 0.25;
+const nameOverhang = 0.2;
 
 export default function PhotoSlideshow({ title, photos, fullPage = false, enabled }: {
   title: string;
@@ -23,8 +28,11 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
     const available = fullPage ? element : element.parentElement;
     if (!available) return;
     const measure = () => {
-      const width = fullPage ? available.clientWidth : Math.min(available.clientWidth, available.clientHeight * 3 / 4);
-      setSize({ width, height: fullPage ? available.clientHeight : width * 4 / 3 });
+      const width = fullPage ? available.clientWidth : Math.min(
+        available.clientWidth * portraitWidthShare,
+        available.clientHeight * portraitAspect / (1 + floralOverhang + nameOverhang),
+      );
+      setSize({ width, height: fullPage ? available.clientHeight : width / portraitAspect });
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -45,7 +53,7 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
   </div>;
 
   return <div
-    className={`${styles.gallery} ${fullPage ? "relative h-full overflow-hidden" : "relative grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_auto] items-center gap-10 px-8 pb-4 pt-10 sm:px-12 sm:pt-12"}`}
+    className={`${styles.gallery} ${fullPage ? "relative h-full overflow-hidden" : "relative grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_auto] items-center gap-10 px-8 pb-4 pt-14 sm:px-12 sm:pt-16"}`}
     role="region" aria-roledescription="carousel" aria-label={`${title} · photo gallery`}
     onFocusCapture={slideshow.pause}
     onKeyDown={event => {
@@ -57,7 +65,7 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
   >
     <h2 className="sr-only">{title}</h2>
     <div className={fullPage ? "absolute inset-0" : "flex h-full min-h-0 min-w-0 items-center justify-center"}>
-      <div ref={frame} className={`${styles.frame} ${fullPage ? "absolute inset-0 overflow-hidden" : "relative max-w-full"}`}
+      <div ref={frame} className={`${styles.frame} ${fullPage ? "absolute inset-0 overflow-hidden" : "relative max-w-full -translate-y-[2.5%]"}`}
         style={fullPage ? undefined : { width: size.width, height: size.height }}>
         {slideshow.initialLoading && slideshow.failed === null && <p role="status" className="absolute inset-0 grid place-items-center px-4 text-center text-xs">Loading photographs…</p>}
         {size.width > 0 && slideshow.mounted.map(index => {
@@ -77,7 +85,12 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
             className="object-cover" style={{ objectPosition: photo.position }} draggable={false}
             onLoad={event => void slideshow.load(index, event)} onError={() => slideshow.handleError(index)} /></div>;
         })}
-        {!fullPage && <p aria-hidden="true" className={`${styles.photoNames} ${weddingStyles.heading} pointer-events-none absolute inset-0 z-10`}><span className="absolute -left-4 -top-9 sm:-left-7">Aljay</span><span className="absolute -bottom-9 -right-4 sm:-right-7">Erlyn</span></p>}
+        {!fullPage && size.width > 0 && <Image
+          src={slideshowFlowers} alt="" aria-hidden="true" draggable={false}
+          sizes={`${Math.ceil(Math.min(size.width * 0.54, 180))}px`}
+          className="pointer-events-none absolute -bottom-[25%] -left-[22%] z-[3] h-auto w-[54%] max-w-[180px]"
+        />}
+        {!fullPage && <p aria-hidden="true" className={`${styles.photoNames} pointer-events-none absolute inset-0 z-10`} style={{ fontSize: size.width * 0.26 }}><span className="absolute -left-[34%] -top-[8%]">Aljay</span><span className="absolute -bottom-[10%] -right-[24%]">Erlyn</span></p>}
       </div>
     </div>
     {fullPage ? <div className="absolute inset-x-4 bottom-[calc(var(--ae-controls-height)+12px)] z-20 flex justify-center">{controls}</div> : controls}
