@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T05:18:07.769Z",
+  "title": "Design System: Aljay and Erlyn",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0162 95.22)",
+          "oklch(26% 0.0162 95.22)",
+          "oklch(38% 0.0162 95.22)",
+          "oklch(49% 0.0162 95.22)",
+          "oklch(61% 0.0162 95.22)",
+          "oklch(72% 0.0162 95.22)",
+          "oklch(84% 0.0162 95.22)",
+          "oklch(95% 0.0162 95.22)"
+        ]
+      },
+      "olive": {
+        "role": "primary",
+        "displayName": "Olive",
+        "tonalRamp": [
+          "oklch(15% 0.0463 128.31)",
+          "oklch(26% 0.0463 128.31)",
+          "oklch(38% 0.0463 128.31)",
+          "oklch(49% 0.0463 128.31)",
+          "oklch(61% 0.0463 128.31)",
+          "oklch(72% 0.0463 128.31)",
+          "oklch(84% 0.0463 128.31)",
+          "oklch(95% 0.0463 128.31)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0327 131.52)",
+          "oklch(26% 0.0327 131.52)",
+          "oklch(38% 0.0327 131.52)",
+          "oklch(49% 0.0327 131.52)",
+          "oklch(61% 0.0327 131.52)",
+          "oklch(72% 0.0327 131.52)",
+          "oklch(84% 0.0327 131.52)",
+          "oklch(95% 0.0327 131.52)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0434 127.31)",
+          "oklch(26% 0.0434 127.31)",
+          "oklch(38% 0.0434 127.31)",
+          "oklch(49% 0.0434 127.31)",
+          "oklch(61% 0.0434 127.31)",
+          "oklch(72% 0.0434 127.31)",
+          "oklch(84% 0.0434 127.31)",
+          "oklch(95% 0.0434 127.31)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.0321 115.16)",
+          "oklch(26% 0.0321 115.16)",
+          "oklch(38% 0.0321 115.16)",
+          "oklch(49% 0.0321 115.16)",
+          "oklch(61% 0.0321 115.16)",
+          "oklch(72% 0.0321 115.16)",
+          "oklch(84% 0.0321 115.16)",
+          "oklch(95% 0.0321 115.16)"
+        ]
+      },
+      "rose": {
+        "role": "secondary",
+        "displayName": "Rose",
+        "tonalRamp": [
+          "oklch(15% 0.0566 33.84)",
+          "oklch(26% 0.0566 33.84)",
+          "oklch(38% 0.0566 33.84)",
+          "oklch(49% 0.0566 33.84)",
+          "oklch(61% 0.0566 33.84)",
+          "oklch(72% 0.0566 33.84)",
+          "oklch(84% 0.0566 33.84)",
+          "oklch(95% 0.0566 33.84)"
+        ]
+      },
+      "olive-hover": {
+        "role": "primary",
+        "displayName": "Olive Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0391 131.29)",
+          "oklch(26% 0.0391 131.29)",
+          "oklch(38% 0.0391 131.29)",
+          "oklch(49% 0.0391 131.29)",
+          "oklch(61% 0.0391 131.29)",
+          "oklch(72% 0.0391 131.29)",
+          "oklch(84% 0.0391 131.29)",
+          "oklch(95% 0.0391 131.29)"
+        ]
+      },
+      "story": {
+        "role": "primary",
+        "displayName": "Story",
+        "tonalRamp": [
+          "oklch(15% 0.0436 131.82)",
+          "oklch(26% 0.0436 131.82)",
+          "oklch(38% 0.0436 131.82)",
+          "oklch(49% 0.0436 131.82)",
+          "oklch(61% 0.0436 131.82)",
+          "oklch(72% 0.0436 131.82)",
+          "oklch(84% 0.0436 131.82)",
+          "oklch(95% 0.0436 131.82)"
+        ]
+      },
+      "story-signature": {
+        "role": "neutral",
+        "displayName": "Story Signature",
+        "tonalRamp": [
+          "oklch(15% 0.0339 73.17)",
+          "oklch(26% 0.0339 73.17)",
+          "oklch(38% 0.0339 73.17)",
+          "oklch(49% 0.0339 73.17)",
+          "oklch(61% 0.0339 73.17)",
+          "oklch(72% 0.0339 73.17)",
+          "oklch(84% 0.0339 73.17)",
+          "oklch(95% 0.0339 73.17)"
+        ]
+      },
+      "preview": {
+        "role": "neutral",
+        "displayName": "Preview",
+        "tonalRamp": [
+          "oklch(15% 0.0200 109.88)",
+          "oklch(26% 0.0200 109.88)",
+          "oklch(38% 0.0200 109.88)",
+          "oklch(49% 0.0200 109.88)",
+          "oklch(61% 0.0200 109.88)",
+          "oklch(72% 0.0200 109.88)",
+          "oklch(84% 0.0200 109.88)",
+          "oklch(95% 0.0200 109.88)"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field",
+        "tonalRamp": [
+          "oklch(15% 0.0107 95.16)",
+          "oklch(26% 0.0107 95.16)",
+          "oklch(38% 0.0107 95.16)",
+          "oklch(49% 0.0107 95.16)",
+          "oklch(61% 0.0107 95.16)",
+          "oklch(72% 0.0107 95.16)",
+          "oklch(84% 0.0107 95.16)",
+          "oklch(95% 0.0107 95.16)"
+        ]
+      },
+      "caution": {
+        "role": "secondary",
+        "displayName": "Caution",
+        "tonalRamp": [
+          "oklch(15% 0.0542 35.35)",
+          "oklch(26% 0.0542 35.35)",
+          "oklch(38% 0.0542 35.35)",
+          "oklch(49% 0.0542 35.35)",
+          "oklch(61% 0.0542 35.35)",
+          "oklch(72% 0.0542 35.35)",
+          "oklch(84% 0.0542 35.35)",
+          "oklch(95% 0.0542 35.35)"
+        ]
+      },
+      "cover-paper": {
+        "role": "neutral",
+        "displayName": "Cover Paper",
+        "tonalRamp": [
+          "oklch(15% 0.0162 95.22)",
+          "oklch(26% 0.0162 95.22)",
+          "oklch(38% 0.0162 95.22)",
+          "oklch(49% 0.0162 95.22)",
+          "oklch(61% 0.0162 95.22)",
+          "oklch(72% 0.0162 95.22)",
+          "oklch(84% 0.0162 95.22)",
+          "oklch(95% 0.0162 95.22)"
+        ]
+      },
+      "cover-rule": {
+        "role": "neutral",
+        "displayName": "Cover Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0447 119.32)",
+          "oklch(26% 0.0447 119.32)",
+          "oklch(38% 0.0447 119.32)",
+          "oklch(49% 0.0447 119.32)",
+          "oklch(61% 0.0447 119.32)",
+          "oklch(72% 0.0447 119.32)",
+          "oklch(84% 0.0447 119.32)",
+          "oklch(95% 0.0447 119.32)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Couple Names",
+        "purpose": "Imperial Script centerpiece; the cover and compact-height layouts have contextual sizing."
+      },
+      "headline": {
+        "displayName": "Chapter Heading",
+        "purpose": "Balanced script chapter titles."
+      },
+      "title": {
+        "displayName": "Supporting Title",
+        "purpose": "Instrument Serif venue, gift and reply-preview titles."
+      },
+      "body": {
+        "displayName": "Invitation Prose",
+        "purpose": "Readable Libre Baskerville narrative and instructions."
+      },
+      "field": {
+        "displayName": "Reply Field",
+        "purpose": "16px editable form values."
+      },
+      "label": {
+        "displayName": "Role Label",
+        "purpose": "Actual event and entourage roles, set uppercase."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Restrained serif controls and links."
+      }
+    },
+    "shadows": [
+      {
+        "name": "cover",
+        "value": "8px 16px 50px #28331b26",
+        "purpose": "Stationery over garden art."
+      },
+      {
+        "name": "page-edge",
+        "value": "9px 2px 25px #26361c14",
+        "purpose": "The turning sheet's subtle edge."
+      },
+      {
+        "name": "mobile-menu",
+        "value": "0 12px 20px #26361c14",
+        "purpose": "Overlaid chapter menu."
+      }
+    ],
+    "motion": [
+      {
+        "name": "cover-perspective",
+        "value": "1800px",
+        "purpose": "Cover turn depth."
+      },
+      {
+        "name": "cover-ready-fallback",
+        "value": "2200ms",
+        "purpose": "Bound readiness if image/font signals fail."
+      },
+      {
+        "name": "cover-entrance",
+        "value": "450ms cubic-bezier(0.42, 0, 0.2, 1)",
+        "purpose": "Reveal ready cover panel."
+      },
+      {
+        "name": "cover-open",
+        "value": "1100ms cubic-bezier(0.42, 0, 0.2, 1)",
+        "purpose": "Fade and rotate card to -82deg with -30px horizontal travel."
+      },
+      {
+        "name": "garden-exit",
+        "value": "1050ms",
+        "purpose": "Fade decorative cover background."
+      },
+      {
+        "name": "page-turn",
+        "value": "1250ms cubic-bezier(0.38, 0.05, 0.25, 1)",
+        "purpose": "Exact Leslie and Serj diagonal corner fold: clipped front, reflected reverse, localized shadow and crease gradient. Forward folds outgoing above incoming; backward unfolds incoming above outgoing."
+      },
+      {
+        "name": "text-reveal",
+        "value": "650ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Up to 12px travel; 75ms stagger capped at 300ms; final inline values remain visible."
+      },
+      {
+        "name": "control-state",
+        "value": "180ms",
+        "purpose": "Primary button color/border and FAQ plus transform."
+      },
+      {
+        "name": "faq-answer",
+        "value": "220ms ease-out",
+        "purpose": "Answer opacity reveal."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "180–200ms cover fade; 0ms turns and text reveals",
+        "purpose": "No spatial opening or turning; CSS animations/transitions disabled."
+      },
+      {
+        "name": "slideshow-crossfade",
+        "value": "900ms ease-in-out opacity transition",
+        "purpose": "Decode incoming photos, retain the opaque outgoing layer until transitionend, keep visited layers mounted and queue rapid selections."
+      },
+      {
+        "name": "slideshow-autoplay",
+        "value": "4000ms after photo readiness and fade completion",
+        "purpose": "Incremental playback; pause on manual navigation, page departure or hidden document; no autoplay with reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "two-column-small",
+        "value": "640px"
+      },
+      {
+        "name": "desktop-chapters",
+        "value": "768px"
+      },
+      {
+        "name": "compact-height",
+        "value": "max-height: 800px"
+      },
+      {
+        "name": "short-cover",
+        "value": "max-height: 700px"
+      }
+    ],
+    "focus": [
+      {
+        "name": "interactive",
+        "value": "2px solid currentColor; outline-offset: 5px",
+        "purpose": "Buttons, links, inputs, selectors, textareas and summaries."
+      },
+      {
+        "name": "page-handoff",
+        "value": "focus({ preventScroll: true })",
+        "purpose": "Active page receives focus after opening/settling; its programmatic outline is suppressed."
+      }
+    ],
+    "states": [
+      {
+        "name": "disabled-control",
+        "value": "opacity: 0.35; cursor: default",
+        "purpose": "Unavailable navigation and guarded opening."
+      },
+      {
+        "name": "current-chapter",
+        "value": "underline; text-underline-offset: 5px",
+        "purpose": "Top links with aria-current=page."
+      },
+      {
+        "name": "selected-attendance",
+        "value": "Preview fill; Olive border and native radio accent",
+        "purpose": "Checked attendance label."
+      },
+      {
+        "name": "invalid-field",
+        "value": "Rose border",
+        "purpose": "Native user-invalid state; name validation also rejects whitespace."
+      },
+      {
+        "name": "unopened-book",
+        "value": "visibility: hidden; inert; aria-hidden",
+        "purpose": "Prevent overlapping cover and book or premature interaction."
+      },
+      {
+        "name": "preview-reply",
+        "value": "Local React state; no persistence",
+        "purpose": "Explicit review summary and editable draft; live integration remains disabled."
+      }
+    ],
+    "surfaces": [
+      {
+        "name": "cover",
+        "purpose": "Decorative prioritized garden plus translucent ivory double-rule panel; image is not an actual venue."
+      },
+      {
+        "name": "ordinary-page",
+        "purpose": "Paper sheet with inset rule and internal scrolling."
+      },
+      {
+        "name": "story-page",
+        "purpose": "Dark olive leaf with Paper prose and warm signature; arch garden crop."
+      },
+      {
+        "name": "reply-notice",
+        "purpose": "Preview-toned, explicit non-persistence notice."
+      }
+    ],
+    "notes": [
+      "Tonal ramps are synthesized OKLCH display aids from source RGB hue/chroma; only DESIGN.md colors are normative.",
+      "Client-scoped CSS variables are not root tokens; component snippets resolve palette values to literals and inherit existing root font variables.",
+      "Wedding date confirmed: 18 December 2026. Final reception time, couple photographs, hashtag, authorized audio source and approved admin RSVP configuration remain pending.",
+      "Documentation records source behavior, not a final review verdict or production backend verification."
+    ]
+  },
+  "components": [
+    {
+      "name": "Opening Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The guarded cover action; a 48px minimum height and square olive stationery treatment.",
+      "html": "<button class=\"ds-primary\">Open invitation<svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.3\"><path d=\"M5 12h14M12 5l7 7-7 7\"/></svg></button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:20px;min-height:48px;padding:12px 28px;background:#536044;color:#f8f5e9;border:1px solid #536044;border-radius:0;font-family:var(--font-libre-baskerville, Georgia, serif);font-size:11px;letter-spacing:.06em;cursor:pointer;transition:background 180ms,border-color 180ms}.ds-primary:hover{background:#3d4933;border-color:#3d4933}.ds-primary:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-primary:disabled{opacity:.35;cursor:default}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Text Action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "A quiet underlined action for editing a preview or copying a gift account.",
+      "html": "<button class=\"ds-text-action\">Edit preview</button>",
+      "css": ".ds-text-action{min-height:44px;padding:8px 12px;border:0;background:transparent;color:#394331;font-family:var(--font-libre-baskerville, Georgia, serif);font-size:11px;text-decoration:underline;text-underline-offset:5px;cursor:pointer}.ds-text-action:hover{color:#536044}.ds-text-action:focus-visible{outline:2px solid currentColor;outline-offset:5px;}"
+    },
+    {
+      "name": "Reply Field",
+      "kind": "input",
+      "refersTo": "input-reply",
+      "description": "A readable, square field with olive focus and rose invalid state.",
+      "html": "<label class=\"ds-field-label\">Full name<input class=\"ds-field\" name=\"name\" autocomplete=\"name\" minlength=\"2\" required></label>",
+      "css": ".ds-field-label{display:block;color:#394331;font-family:var(--font-libre-baskerville, Georgia, serif);font-size:12px;line-height:1.8}.ds-field{display:block;width:calc(100% - 26px);min-height:24px;margin-top:8px;padding:12px;background:#fffdf54d;color:#394331;border:1px solid #b6baa3;border-radius:0;font-family:inherit;font-size:16px;line-height:1.5;caret-color:#536044}.ds-field:focus{border-color:#536044}.ds-field:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-field:user-invalid{border-color:#93695f}"
+    },
+    {
+      "name": "Attendance Choice",
+      "kind": "chip",
+      "refersTo": "choice-reply",
+      "description": "A real radio label that changes paper tone and border when checked.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" name=\"ds-attendance\" value=\"attending\">Joyfully attending</label>",
+      "css": ".ds-choice{display:flex;align-items:center;gap:12px;min-height:24px;padding:12px;color:#394331;border:1px solid #b6baa3;font-family:var(--font-libre-baskerville, Georgia, serif);font-size:10px;cursor:pointer}.ds-choice input{accent-color:#536044}.ds-choice:has(input:checked){background:#e8e9da;border-color:#536044}.ds-choice input:focus-visible{outline:2px solid currentColor;outline-offset:5px;}"
+    },
+    {
+      "name": "Stationery Cover",
+      "kind": "card",
+      "refersTo": "cover",
+      "description": "The ivory double-rule panel, represented without its route-specific garden background.",
+      "html": "<div class=\"ds-cover\"><span class=\"ds-cover-monogram\">A &amp; E</span><h2 class=\"ds-cover-names\">Aljay &amp; Erlyn</h2><p class=\"ds-cover-note\">A love twelve years in the making,<br>a lifetime still to come.</p></div>",
+      "css": ".ds-cover{position:relative;max-width:334px;padding:40px 28px;background:#f8f5e9f5;color:#394331;box-shadow:8px 16px 50px #28331b26;text-align:center}.ds-cover:before,.ds-cover:after{content:\"\";position:absolute;inset:12px;border:1px solid #9aa283;pointer-events:none}.ds-cover:after{inset:17px;border-color:#b6baa37d}.ds-cover-monogram{font-family:var(--font-imperial,cursive);font-size:47px;line-height:1}.ds-cover-names{margin:28px 0;font-family:var(--font-imperial,cursive);font-size:clamp(60px,12vw,80px);font-weight:400;line-height:1.1}.ds-cover-note{font-family:var(--font-libre-baskerville, Georgia, serif);font-size:12px;font-style:italic;line-height:1.9}"
+    },
+    {
+      "name": "Chapter Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Thin-rule navigation with a current chapter underline and outlined reply link.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Wedding chapters\"><a href=\"#our-story\" aria-current=\"page\">Our story</a><a href=\"#venues\">The venues</a><a class=\"ds-nav-reply\" href=\"#rsvp\">RSVP</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:36px;min-height:64px;padding:0 24px;background:#f8f5e9;color:#394331;border-bottom:1px solid #b6baa35e;font-family:var(--font-libre-baskerville, Georgia, serif);font-size:10px;letter-spacing:.06em;flex-wrap:wrap}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}.ds-nav a[aria-current=page]{text-decoration:underline;text-underline-offset:5px}.ds-nav a:hover{color:#536044}.ds-nav a:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-nav .ds-nav-reply{min-height:20px;padding:12px 20px;border:1px solid #536044}"
+    },
+    {
+      "name": "Book Page",
+      "kind": "card",
+      "refersTo": "page",
+      "description": "A flat ivory sheet with its subtle inset rule and soft page-edge shadow.",
+      "html": "<section class=\"ds-page\"><h2 class=\"ds-page-title\">Where love gathers</h2><p class=\"ds-page-copy\">Together with our families, we invite you to celebrate.</p></section>",
+      "css": ".ds-page{position:relative;min-height:200px;padding:40px 24px;background:#f8f5e9;color:#394331;box-shadow:9px 2px 25px #26361c14;text-align:center}.ds-page:before{content:\"\";position:absolute;inset:16px;border:1px solid #b6baa34d;pointer-events:none}.ds-page-title{margin:0 0 28px;font-family:var(--font-imperial,cursive);font-size:clamp(46px,6vw,74px);font-weight:400;line-height:1.12;text-wrap:balance}.ds-page-copy{font-family:var(--font-libre-baskerville, Georgia, serif);font-size:13px;line-height:1.95}@media(max-width:767px){.ds-page:before{inset:10px}}"
+    },
+    {
+      "name": "Guest Question",
+      "kind": "custom",
+      "description": "Native disclosure with a fine divider, turning plus and brief answer fade.",
+      "html": "<details class=\"ds-faq\"><summary>When should I RSVP?<span class=\"ds-faq-plus\" aria-hidden=\"true\">+</span></summary><p>Please reply by 8 November 2026. Online replies are not open yet; please contact us directly.</p></details>",
+      "css": ".ds-faq{padding:4px 0;color:#394331;border-bottom:1px solid #b6baa380;font-family:var(--font-libre-baskerville, Georgia, serif)}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:32px;padding:12px 0;font-size:13px;list-style:none;cursor:pointer}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:hover{color:#536044}.ds-faq summary:focus-visible{outline:2px solid currentColor;outline-offset:5px;}.ds-faq-plus{font-size:24px;transition:transform 180ms}.ds-faq[open] .ds-faq-plus{transform:rotate(45deg)}.ds-faq p{padding:0 16px 20px 0;font-size:13px;line-height:1.95}.ds-faq[open]>p{animation:ds-answer-in 220ms ease-out}@keyframes ds-answer-in{from{opacity:0}to{opacity:1}}@media(prefers-reduced-motion:reduce){.ds-faq-plus{transition:none}.ds-faq[open]>p{animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Romantic Garden Keepsake",
+    "overview": "Muted olive ink, warm ivory sheets, expressive calligraphy and fine stationery rules frame an invitation that opens like a keepsake book. The structure inherits Leslie and Serj's full-screen page-turn experience while this couple's generated garden painting, paired swans and twelve-year jeepney story give it an individual identity.\n\nThis system belongs only to `app/aljay-and-erlyn`. The repository's marketing design is separate. The source implementation is the authority for this record; this document does not assert client approval or a completed craft-review verdict.",
+    "keyCharacteristics": [
+      "A separate garden cover hands off to a single visible invitation chapter.",
+      "Imperial Script names and headings pair with readable Libre Baskerville and Instrument Serif titles.",
+      "Thin olive stationery rules, square controls and restrained paper shadows establish material depth.",
+      "Warm ivory pages are interrupted by one dark olive story spread.",
+      "Reply controls clearly describe a local preview that sends and saves nothing."
+    ],
+    "rules": [
+      {
+        "name": "The Local Ink Rule",
+        "body": "Keep this palette inside the client folder; it neither replaces nor extends the shared marketing identity.",
+        "section": "colors"
+      },
+      {
+        "name": "The Script Hierarchy Rule",
+        "body": "Reserve calligraphy for names and short headings; keep essential instructions, form fields and longer prose in the readable serif roles.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Depth Rule",
+        "body": "Use depth for the cover, page edge and overlaid navigation; retain flat reading and form surfaces within a leaf.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the olive-and-ivory stationery book and this couple's own garden artwork.",
+      "Do keep essential prose and form instructions in readable serif type.",
+      "Do preserve internal page scrolling, visible keyboard focus and safe-area-aware navigation.",
+      "Do reveal the book only after the opening cover has fully completed.",
+      "Do keep preview feedback explicit about sending and saving nothing.",
+      "Do preserve the confirmed wedding date, 18 December 2026, and keep unconfirmed reception timing, photographs, hashtag, audio and live RSVP configuration pending."
+    ],
+    "donts": [
+      "Don't copy this client's tokens or artwork into shared marketing styles.",
+      "Don't replace original payment QRs with generated or reconstructed imagery.",
+      "Don't invent photographs, a countdown, a wedding date or successful persisted replies.",
+      "Don't make important content depend on temporary animation fill states."
+    ]
+  }
+}

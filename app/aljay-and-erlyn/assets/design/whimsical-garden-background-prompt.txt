@@ -1,0 +1,14 @@
+Mode: Built-in image_gen tool; new image generation from a written description of the owner's visual reference.
+Source output: C:/Users/rosas/.codex/generated_images/01a1904c-4fea-7ff3-88d8-1bed9c65b9d0/exec-86b2bad9-d732-454b-958f-4589cfeda32d.png
+Asset: whimsical-garden-background.png
+Purpose: Background-only artwork, now used by components/OpeningCover.tsx.
+
+Exact prompt:
+Use case: illustration-story.
+Asset type: background-only landscape artwork for a romantic, whimsical wedding invitation.
+Primary request: Create an elegant painterly secret-garden pond scene, inspired by the mood of an antique romantic garden painting. Landscape composition, approximately 3:2, high resolution.
+Scene: A tranquil pond stretches from the foreground into a softly misted garden. Graceful weeping willows frame the upper left and upper right edges, with delicate branches hanging down. Soft olive and sage foliage, distant trees and faint flowering shrubs surround the water. Lily pads and a few delicate pale ivory and blush water lilies cluster naturally near the lower corners. The water reflects warm ivory light and a soft dusty blush sky.
+Style: Fine-art oil painting with subtle watercolor softness, atmospheric depth, delicate organic brushwork, softly aged canvas texture. Muted olive, sage, warm ivory and very restrained dusty blush. Elegant, dreamy, intimate, whimsical and romantic; restrained rather than cartoon-like.
+Composition: Edge-to-edge immersive garden scenery. Keep the middle portion calm, luminous and relatively uncluttered, with open water and hazy distant light, so invitation content could later be placed there. Darker leafy edges gently frame the softly glowing center. The garden must continue naturally across the entire center; do not include a blank white panel.
+Constraints: BACKGROUND ONLY. Absolutely no text, lettering, names, typography, monograms, numbers, envelope, stationery, card, paper rectangle, wax seal, logo, people, interface, buttons, border, rounded corners, frame or watermark. No neon colors, glitter or fantasy creatures. Opaque image, not transparent.
+

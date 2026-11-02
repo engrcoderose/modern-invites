@@ -1,0 +1,273 @@
+{
+  "couple": {
+    "display": "Marian & Dee Jay",
+    "bride": "Marian Dolores Pejo Guerrero",
+    "groom": "Dee Jay Slao Tailan"
+  },
+  "date": {
+    "display": "January 19, 2027",
+    "iso": "2027-01-19",
+    "ceremonyTime": "2:00 PM",
+    "timezone": "Asia/Manila"
+  },
+  "contact": {
+    "email": "mariandolores.guerrero@lorma.edu",
+    "bridePhone": "0955 608 5678",
+    "coordinator": {
+      "name": "Donna Mae Tailan",
+      "phone": "0995 790 3026"
+    }
+  },
+  "design": {
+    "theme": "Romantic",
+    "palette": [
+      {
+        "name": "Light Yellow",
+        "hex": "#FFF9C4"
+      },
+      {
+        "name": "Pastel Yellow",
+        "hex": "#FFF2B2"
+      },
+      {
+        "name": "Butter Yellow",
+        "hex": "#F5DE9A"
+      },
+      {
+        "name": "Beige",
+        "hex": "#E8D8B8"
+      },
+      {
+        "name": "Sand Beige",
+        "hex": "#D6C1A0"
+      },
+      {
+        "name": "Light Brown",
+        "hex": "#B89B7A"
+      }
+    ],
+    "aesthetic": "Warm, soft, romantic, and timeless",
+    "styleDirection": "Elegant, soft, muted tones; suited to a minimalist or rustic wedding invitation."
+  },
+  "ceremony": {
+    "venue": "Iglesia ni Cristo – Lokal ng Baguio",
+    "address": "389 Magsaysay Avenue, Baguio City, Benguet 2602, Philippines",
+    "arrivalNote": "Please arrive at least 30 MINUTES before the ceremony starts. This will give you enough time to find parking, settle in, and be part of our special moment from the very beginning.",
+    "suggestedArrivalTime": "1:30 PM"
+  },
+  "reception": {
+    "venue": "Lafaayette Luxury Suites Baguio",
+    "address": "#1 Military Cut-off Road, corner Loakan Road, Baguio City, Benguet 2600, Philippines"
+  },
+  "timeline": [
+    {
+      "time": "2:00 PM",
+      "label": "Wedding Ceremony"
+    },
+    {
+      "time": "3:00 PM",
+      "label": "Post-Ceremony Photos"
+    },
+    {
+      "time": "4:00 PM",
+      "label": "Travel to the Reception Venue"
+    },
+    {
+      "time": "5:00 PM",
+      "label": "Guest Arrival & Photo Opportunities"
+    },
+    {
+      "time": "6:00 PM",
+      "label": "Wedding Reception Program"
+    },
+    {
+      "time": "7:00 PM",
+      "label": "Dinner & Celebration"
+    }
+  ],
+  "parents": [
+    {
+      "title": "Parents of the bride",
+      "members": [
+        "Mary Jane Pejo Guerrero",
+        "Ceasar Ian Imbat Guerrero"
+      ]
+    },
+    {
+      "title": "Parents of the groom",
+      "members": [
+        "Jocelyn Eslao Tailan",
+        "Francisco Cas-Oy Tailan Jr."
+      ]
+    }
+  ],
+  "entourage": {
+    "maidOfHonor": "Ian Jennylyn Pejo Guerrero",
+    "bestMan": "Darwin Jay Eslao Tailan",
+    "principalSponsors": [
+      [
+        "Cecilia Eslao Soriano",
+        "Omar Flores Soriano"
+      ],
+      [
+        "Julie Eslao Baliwan",
+        "Robert Epie Baliwan"
+      ],
+      [
+        "Leody Presente Asuegue",
+        "Editha Asuegue Gatchalian"
+      ],
+      [
+        "Elsie Aquino Imbat",
+        "Sonny Imbat Guerrero"
+      ],
+      [
+        "Ernestina Guevarra Jordan",
+        "Loreto Tambo Jordan"
+      ],
+      [
+        "Elizabeth Rillera Fernandez",
+        "Jimmy Asuegue Eslao"
+      ],
+      [
+        "Cherry Gutierrez Kim",
+        "Willy Ramos Abad Jr."
+      ],
+      [
+        "Raquel Ticol Belino",
+        "Enrico Marco Valdez"
+      ],
+      [
+        "Elena Chegyem Budada",
+        "Joselito Baluda Shontogan"
+      ],
+      [
+        "Connie Guerrero Catbagan",
+        "Porferio Guerrero Valdez"
+      ],
+      [
+        "Christine Delim Javar",
+        "Christian Andrada Javar"
+      ],
+      [
+        "Leriza Delim Bucsit",
+        "Leo Jose Almoite Bucsit"
+      ],
+      [
+        "Loida Imbat Del Rosario",
+        "Johnny Lacanieta Del Rosario"
+      ],
+      [
+        "Glenda Imbat Sotelo",
+        "Norman Peralta Sotelo Sr."
+      ],
+      [
+        "Irene Rosario Bondoc",
+        "Arnold Lumamba Bondoc"
+      ]
+    ],
+    "bridesmaids": [
+      "Marjorie Nebrida Espinal",
+      "Donna Mae Eslao Tailan",
+      "Bealyssa Flores Santos",
+      "Charmane Eslao Baliwan",
+      "Jeciel Jeeann Babalo Fontanos",
+      "Aira Kristle Dimaranan Ami"
+    ],
+    "groomsmen": [
+      "Julius Ceasar Pejo Guerrero",
+      "Mandy Soley Madino",
+      "Charles Eslao Baliwan",
+      "Carl Aaron Tailan Estepa",
+      "Jeffrey Harold Rosario Bondoc",
+      "Richard Tailan Resquer"
+    ],
+    "flowerGirls": [
+      "Calistha Joyce Angeles Tailan",
+      "Celestine Caelie Espinal Guerrero",
+      "Xyronia Mckenzy Novillos Araneta"
+    ],
+    "ringBearers": [
+      "Tristan Eslao Macaraeg",
+      "Arkydeen Fionn Delim Javar"
+    ]
+  },
+  "rsvp": {
+    "deadline": "December 20, 2026",
+    "deadlineIso": "2026-12-20",
+    "integrationStatus": "Not connected; admin record and configuration pending."
+  },
+  "attire": {
+    "principalSponsors": {
+      "ninang": "Modern Filipiniana or light yellow gown",
+      "ninong": "Barong + slacks / trousers"
+    },
+    "femaleGuests": [
+      "Light yellow",
+      "Pastel yellow",
+      "Butter yellow"
+    ],
+    "maleGuests": [
+      "Beige",
+      "Sand beige",
+      "Light brown"
+    ],
+    "notes": "We would love to see you in your finest formal attire as we celebrate our special day.\n\nLadies: Light Yellow | Pastel Yellow | Butter Yellow  \nGentlemen:Beige | Sand Beige | Light Brown\n\nTo complement our wedding theme, we kindly ask our guests to wear the suggested colors and avoid sneakers, slippers, denim, miniskirts, and T-shirts. As Barong Tagalog and Filipiniana are designated for our wedding entourage, we kindly ask our guests to wear other formal attire instead.\n\nThank you for being part of our special day. We can't wait to celebrate this beautiful moment with you!"
+  },
+  "faqs": [
+    {
+      "question": "Is parking available at the venues?",
+      "answer": "Yes, parking is available at the venues. We recommend arriving early to allow ample time for parking and to settle in comfortably before the ceremony."
+    },
+    {
+      "question": "May I bring a plus-one?",
+      "answer": "We regret that we are unable to accommodate additional guests, as our celebration is reserved exclusively for those personally invited. We sincerely appreciate your understanding as we celebrate this intimate and meaningful occasion."
+    },
+    {
+      "question": "Can I take photos during the ceremony?",
+      "answer": "As our wedding ceremony will be held at the Iglesia Ni Cristo Church of Christ, we kindly ask everyone to respect the solemnity of the occasion by keeping their phones and other devices silenced and put away throughout the ceremony. We invite you to be fully present as we exchange our vows while our official photographer captures these precious moments. We’ll be happy to share the photos with you after the celebration. Thank you for your understanding and for helping us keep this special occasion solemn and meaningful."
+    },
+    {
+      "question": "Are children allowed?",
+      "answer": "We love little ones! However, our wedding will be an adults-only celebration, except for children specifically included in the invitation. Thank you for understanding!"
+    },
+    {
+      "question": "What time should I arrive?",
+      "answer": "We kindly ask that you arrive at least 30 minutes before the ceremony begins to allow sufficient time for parking and seating. Your punctuality will help us begin the celebration as scheduled."
+    },
+    {
+      "question": "Who may I contact for questions or concerns?",
+      "answer": "Feel free to reach out to the bride at 0955 608 5678 or our wedding coordinator, Donna Mae Tailan, at 0995 790 3026. We're happy to help!"
+    },
+    {
+      "question": "When should I RSVP?",
+      "answer": "Kindly send us your RSVP on or before December 20, 2026 so we can prepare everything with love and make your experience as comfortable as possible."
+    }
+  ],
+  "giftNote": "Your presence on our special day is truly the greatest gift we could ask for. If you wish to bless us with a gift, a monetary gift would be greatly appreciated as we begin this new chapter together.",
+  "social": {
+    "title": "Capture the love",
+    "message": "We’d love for you to capture and share your favorite moments from our special day. When posting on social media, don’t forget to use our wedding hashtag so we can cherish and relive these beautiful memories together.",
+    "hashtag": "#DEEJAYnuinegiftofgodforMARIAN"
+  },
+  "music": {
+    "requestedTrack": "Libu-Libong Buwan Uuwian By Kyle Raphael",
+    "asset": null
+  },
+  "guestReminders": [
+    "Please arrive on time.",
+    "Kindly stay until the event ends.",
+    "Please keep your phones away during the ceremony.",
+    "Most importantly, relax, enjoy, and have fun!"
+  ],
+  "source": {
+    "file": "../docs/e-invites.xlsx",
+    "sheet": "Sheet2",
+    "notes": [
+      "Names converted from uppercase per user request; hashtag preserved exactly.",
+      "Reception spelling retained from source: Lafaayette Luxury Suites Baguio.",
+      "Malformed punctuation normalized in timeline, FAQ and social copy.",
+      "Workbook designer notes are reference content, not execution instructions."
+    ]
+  }
+}
