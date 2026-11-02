@@ -8,10 +8,10 @@ import styles from "../styles/invitation.module.css";
 export default function CelebrationSection() {
   return <section id="celebration" className={`${styles.venueSection} relative isolate scroll-mt-20`}>
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none">
-      <Image src={venueFlowers} alt="" sizes="(min-width: 768px) 200px, 110px"
-        className="absolute -left-4 -top-8 h-auto w-[110px] rotate-180 md:w-[200px]" />
-      <Image src={venueFlowers} alt="" sizes="(min-width: 768px) 200px, 110px"
-        className="absolute bottom-8 -right-4 h-auto w-[110px] md:bottom-12 md:w-[200px]" />
+      <Image src={venueFlowers} alt="" sizes="(min-width: 768px) 200px, 140px"
+        className="absolute -left-4 -top-8 h-auto w-[140px] rotate-180 md:w-[200px]" />
+      <Image src={venueFlowers} alt="" sizes="(min-width: 768px) 200px, 140px"
+        className="absolute bottom-0 -right-4 h-auto w-[140px] md:w-[200px]" />
     </div>
     <div className="relative mx-auto max-w-6xl px-6 pb-32 pt-20 md:px-12 md:py-28">
       <InvitationReveal as="h2" className={`${styles.heading} text-center`}>The Venues</InvitationReveal>

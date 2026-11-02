@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import styles from "../styles/invitation.module.css";
 
-const links = [["celebration", "Details"], ["entourage", "Entourage"], ["attire", "Attire"], ["seat-finder", "Seat Finder"], ["rsvp", "RSVP"]] as const;
+const links = [["celebration", "Details"], ["entourage", "Entourage"], ["attire", "Attire"], ["gifts", "Gifts"], ["photo-sharing", "Photo Sharing"], ["seat-finder", "Seat Finder"], ["gallery", "Gallery"], ["rsvp", "RSVP"]] as const;
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
