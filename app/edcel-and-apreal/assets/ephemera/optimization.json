@@ -7,13 +7,6 @@
     "alpha": true
   },
   {
-    "key": "ivory-swan",
-    "width": 768,
-    "height": 591,
-    "bytes": 114382,
-    "alpha": true
-  },
-  {
     "key": "oval-rose-wax-seal",
     "width": 768,
     "height": 907,
@@ -25,20 +18,6 @@
     "width": 768,
     "height": 702,
     "bytes": 214524,
-    "alpha": true
-  },
-  {
-    "key": "burgundy-orchid-spray",
-    "width": 768,
-    "height": 517,
-    "bytes": 109904,
-    "alpha": true
-  },
-  {
-    "key": "pressed-burgundy-hibiscus",
-    "width": 768,
-    "height": 724,
-    "bytes": 244170,
     "alpha": true
   },
   {
@@ -81,20 +60,6 @@
     "width": 768,
     "height": 679,
     "bytes": 208010,
-    "alpha": true
-  },
-  {
-    "key": "gold-heart-charm-444",
-    "width": 768,
-    "height": 848,
-    "bytes": 257968,
-    "alpha": true
-  },
-  {
-    "key": "wine-kiss-print",
-    "width": 768,
-    "height": 556,
-    "bytes": 304394,
     "alpha": true
   }
 ]

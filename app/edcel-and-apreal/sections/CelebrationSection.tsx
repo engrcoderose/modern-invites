@@ -43,7 +43,7 @@ export default function CelebrationSection() {
             <p data-reveal className={`${styles.venueNote} mt-4 text-sm`}>{note}</p>
             <div data-reveal className="mt-auto flex justify-center pt-6">
               <a href={venueMapUrl(name, address)} target="_blank" rel="noopener noreferrer" aria-label={`View map for ${name} (opens in a new tab)`}
-                className="inline-flex min-h-11 items-center justify-center border border-[var(--ea-wine)] px-8 py-3 text-[10px] uppercase tracking-[.25em] text-[var(--ea-wine)] transition-colors hover:bg-[var(--ea-wine)] hover:text-[var(--ea-paper)]">Google Maps</a>
+                className="inline-flex min-h-11 items-center justify-center border border-[var(--ea-wine)] px-8 py-3 text-[10px] uppercase tracking-[.25em] text-[var(--ea-text)] transition-colors hover:bg-[var(--ea-wine)] hover:text-[var(--ea-paper)]">Google Maps</a>
             </div>
           </article>)}
         </div>

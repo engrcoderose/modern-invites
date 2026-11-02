@@ -5,7 +5,6 @@ Regenerated with the built-in image-generation tool from the user-supplied attir
 - `principal-sponsors-attire.png`: full-body old-rose gown and black suit with burgundy tie; 1254 × 1254 pixels, alpha transparency.
 - `guest-outfit-inspiration.png`: ten semi-formal guest outfit examples; 2120 × 742 pixels, alpha transparency.
 - `guest-outfit-inspiration-mobile.png`: the same ten outfit examples regenerated as two rows of five complete figures for phones; 1122 × 1402 pixels, alpha transparency.
-- The matching `.prompt.md` files contain the exact final generation prompts.
 
 The original generated PNGs remain in the Codex generated-images folder. These project copies retain their pixels and transparency. Static imports and the existing Next.js image optimizer provide responsive versions, lazy loading and content-hashed URLs.
 

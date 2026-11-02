@@ -9,10 +9,10 @@ const theme: SmartRsvpTheme = {
   accent: "var(--ea-wine)",
   accentHover: "var(--ea-burgundy)",
   heading: "var(--ea-ink)",
-  border: "#b88b8d",
+  border: "var(--ea-old-rose)",
   borderSoft: "var(--ea-line)",
   soft: "var(--ea-paper)",
-  softStrong: "#f0e0d9",
+  softStrong: "var(--ea-blush)",
 };
 
 export default function RsvpForm() {

@@ -40,7 +40,7 @@ export default function TimelinePhotoSlideshow() {
       style={{ opacity: index === show.active || index === show.previous ? 1 : 0, zIndex: index === show.active ? 1 : 0, transitionDuration: show.reducedMotion || index !== show.active ? "0s" : undefined }}
       onTransitionEnd={event => show.finishTransition(index, event)}>
       <Image src={photos[index].src} alt="" aria-hidden="true" fill quality={85} sizes={imageSizes(photos[index])} loading={index === 0 ? "lazy" : "eager"} className={`${styles.backdrop} object-cover`} />
-      <div aria-hidden="true" className="absolute inset-0 bg-[#260d15]/30" />
+      <div aria-hidden="true" className="absolute inset-0 bg-[#4b0f1f]/30" />
       <div className="absolute inset-x-6 bottom-24 top-6 mx-auto max-w-6xl sm:inset-x-10 sm:top-10">
         <Image src={photos[index].src} alt={photos[index].alt} fill quality={85} sizes={imageSizes(photos[index])} loading={index === 0 ? "lazy" : "eager"} className={`${styles.foreground} object-contain`}
           onLoad={event => void show.loadPhoto(index, event)} onError={() => show.failPhoto(index)} />

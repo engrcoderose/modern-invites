@@ -1,5 +1,0 @@
-# lace-ribbon-bow
-
-Tool: built-in image generation. Reference: the user's vintage embellishment collage (`codex-clipboard-6efc4332-7eff-4101-9ec8-199e3a8c98d3.png`). Transparent alpha requested.
-
-Regenerate ONE isolated vintage wedding scrapbook embellishment from the supplied reference collage. Target item: The tall antique champagne-gold lace ribbon bow at the upper left. Intricate ivory woven damask floral pattern on gold ribbon, tied bow with two long curling trailing ribbon ends; preserve full flowing silhouette. Match the reference's romantic vintage wine-red, burgundy, warm ivory and antique-gold palette and tactile fine detail. Output ONLY this single target object, complete and unclipped, centered with small transparent breathing room and a tight useful crop. Genuinely TRANSPARENT alpha background. No white/gray/checkerboard background, no white sticker fringe, no rectangular cast shadow, no other collage items, no border, no watermark, no labels or lettering. Sharp realistic decorative asset, suitable for a luxury wedding invitation.

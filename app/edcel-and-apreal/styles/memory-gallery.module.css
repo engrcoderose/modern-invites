@@ -1,2 +1,4 @@
-.viewer::backdrop { background: #260d15f2; backdrop-filter: blur(8px); }
+.memories, .viewer { --ea-text: #fff; color: var(--ea-text); }
+.memories { background: #4b0f1f; }
+.viewer::backdrop { background: #4b0f1f; }
 .viewer:focus-visible { outline: none; }

@@ -23,7 +23,6 @@ export default function RsvpSection() {
         <div className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-center text-sm">
           {rsvpContacts.map((contact) => <a key={contact.name} href={contact.href} className={`${styles.textLink} inline-flex min-h-11 items-center`}>{contact.name} · {contact.display}</a>)}
         </div>
-        <div className="mt-5 flex justify-end"><VintageAccent variant="kissPrint" className="w-14 -rotate-12" sizes="56px" /></div>
       </div>
     </div>
   </section>;

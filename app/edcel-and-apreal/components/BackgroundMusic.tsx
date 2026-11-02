@@ -49,9 +49,9 @@ export default function BackgroundMusic() {
           </button>
         </li>)}
       </ol>
-      <label className="mt-4 flex items-center gap-3 border-t border-[#d9b9b1] pt-3">
+      <label className="mt-4 flex items-center gap-3 border-t border-[var(--ea-line)] pt-3">
         <Volume2 size={18} aria-hidden="true" /><span className="sr-only">Music volume</span>
-        <input type="range" aria-label="Music volume" min="0" max="1" step=".05" value={music.volume} onChange={event => music.changeVolume(Number(event.target.value))} className="min-h-11 min-w-0 flex-1 accent-[#652235]" />
+        <input type="range" aria-label="Music volume" min="0" max="1" step=".05" value={music.volume} onChange={event => music.changeVolume(Number(event.target.value))} className="min-h-11 min-w-0 flex-1 accent-[var(--ea-wine)]" />
         <span className="w-8 text-right text-[10px] tabular-nums">{Math.round(music.volume * 100)}%</span>
       </label>
     </section>}
