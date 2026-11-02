@@ -28,7 +28,7 @@ The film defaults to unmuted. Open requests then immediately pauses playback on 
 
 Tablet layouts fit the lace frame around the uncropped film over burgundy; phone and desktop retain their existing artwork compositions.
 
-The active playlist in `data/music.ts` is Iris, Can't Help Falling in Love, Until I Found You. Runtime MP3s are in `public/edcel-and-apreal/music/`. Starting the film pauses background music; Continue starts music and pauses the film. Manual pause, volume, playlist controls and track wrapping remain in the existing music hook.
+The active playlist in `data/music.ts` is Iris (Jada Facer acoustic cover), Can't Help Falling in Love, Until I Found You. The first track is `iris-jada-facer-b2861c80.mp3`, an unchanged 3,982,509-byte copy of the owner's supplied MP3, lasting 165.888 seconds. Runtime MP3s are in `public/edcel-and-apreal/music/`. Starting the film pauses background music; Continue starts music and pauses the film. Manual pause, volume, playlist controls and track wrapping remain in the existing music hook.
 
 ## Photos and artwork
 
