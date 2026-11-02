@@ -40,9 +40,9 @@ export default function MemoryViewer({ photos, selected, onSelect, onClose }: Pr
         else move(event.key === "ArrowLeft" ? -1 : 1);
       }
     }}
-    className={`${styles.viewer} fixed inset-0 m-auto h-full max-h-none w-full max-w-none flex-col items-center justify-center gap-5 overflow-hidden border-0 bg-transparent px-3 py-16 text-[#f8f0e5] open:flex`}>
+    className={`${styles.viewer} fixed inset-0 m-auto h-full max-h-none w-full max-w-none flex-col items-center justify-center gap-5 overflow-hidden border-0 bg-transparent px-3 py-16 open:flex`}>
     <button autoFocus type="button" aria-label="Close memory viewer" onClick={() => dialog.current?.close()}
-      className="absolute right-4 top-4 z-10 grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#401522]/70 sm:right-6 sm:top-6"><X size={23} aria-hidden="true" /></button>
+      className="absolute right-4 top-4 z-10 grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#4b0f1f]/70 sm:right-6 sm:top-6"><X size={23} aria-hidden="true" /></button>
     <div className="relative h-[min(70svh,850px)] w-[min(1100px,94vw)] touch-pan-y"
       onPointerDown={event => {
         if (event.pointerType === "mouse") return;
@@ -61,9 +61,9 @@ export default function MemoryViewer({ photos, selected, onSelect, onClose }: Pr
         sizes={`min(94vw, 1100px, ${70 * ratio}svh, ${850 * ratio}px)`} className="pointer-events-none select-none object-contain" />
     </div>
     <div className="flex items-center justify-center gap-6">
-      <button type="button" aria-label="Previous memory photograph" onClick={() => move(-1)} className="grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#401522]/70"><ChevronLeft size={23} aria-hidden="true" /></button>
+      <button type="button" aria-label="Previous memory photograph" onClick={() => move(-1)} className="grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#4b0f1f]/70"><ChevronLeft size={23} aria-hidden="true" /></button>
       <p aria-live="polite" aria-atomic="true" className="min-w-16 text-center text-xs tracking-[.12em]">{selected + 1} / {photos.length}</p>
-      <button type="button" aria-label="Next memory photograph" onClick={() => move(1)} className="grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#401522]/70"><ChevronRight size={23} aria-hidden="true" /></button>
+      <button type="button" aria-label="Next memory photograph" onClick={() => move(1)} className="grid size-11 place-items-center rounded-full border border-[#f8f0e5]/40 bg-[#4b0f1f]/70"><ChevronRight size={23} aria-hidden="true" /></button>
     </div>
   </dialog>;
 }

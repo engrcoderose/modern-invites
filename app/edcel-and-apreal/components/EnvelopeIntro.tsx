@@ -72,7 +72,7 @@ export default function EnvelopeIntro({ onOpening, onOpened }: { onOpening: () =
           </motion.div>
         </motion.div>
       </button>
-      <motion.p className="text-center text-[9px] uppercase tracking-[.25em] text-[#665840] peer-focus-visible:underline peer-focus-visible:underline-offset-4 sm:text-[10px]"
+      <motion.p className="text-center text-[9px] uppercase tracking-[.25em] text-[var(--ea-text)] peer-focus-visible:underline peer-focus-visible:underline-offset-4 sm:text-[10px]"
         animate={{ opacity: opening ? 0 : 1 }} transition={{ duration: reducedMotion ? 0 : .2 }}>Tap the seal to open</motion.p>
       <p role="status" className="sr-only">{opening ? "Opening your invitation." : ""}</p>
     </motion.div>

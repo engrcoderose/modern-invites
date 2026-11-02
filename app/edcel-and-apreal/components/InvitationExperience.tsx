@@ -8,6 +8,7 @@ import { InvitationOpenContext } from "./InvitationState";
 import { newIconScript } from "../styles/fonts";
 import styles from "../styles/invitation.module.css";
 import useInvitationTextMotion from "../hooks/useInvitationTextMotion";
+import { prenupFilm } from "../data/prenup-film";
 
 const fallbackStyles = `.${styles.invitation} [data-invitation-content]{display:block;position:static;overflow:visible;visibility:visible}.${styles.invitation} [data-envelope-intro]{display:none}`;
 
@@ -23,6 +24,16 @@ export default function InvitationExperience({ children }: { children: React.Rea
   }, [phase]);
 
   function openInvitation() {
+    // Request sound on this same media element during the Open gesture.
+    // Pause immediately so the film still starts at the envelope handoff.
+    // Browsers that deny the later attempt retain the film's Play button.
+    const film = root.current?.querySelector<HTMLVideoElement>("#prenup-film video");
+    if (film && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      film.src = prenupFilm.src;
+      film.muted = false;
+      void film.play().catch(() => {});
+      film.pause();
+    }
     window.scrollTo({ top: 0, behavior: "instant" });
     setPhase("opening");
   }

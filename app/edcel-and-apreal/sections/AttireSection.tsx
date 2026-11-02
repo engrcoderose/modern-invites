@@ -5,7 +5,7 @@ import DecorativeParallax from "../components/DecorativeParallax";
 import principalSponsors from "../assets/attire/principal-sponsors-attire.png";
 import guestOutfits from "../assets/attire/guest-outfit-inspiration.png";
 import guestOutfitsMobile from "../assets/attire/guest-outfit-inspiration-mobile.png";
-import attireBackground from "../assets/backgrounds/attire-burgundy-fabric.webp";
+import attireBackground from "../assets/backgrounds/attire-fabric-4b0f1f-v2.webp";
 import { attireGuide } from "../data/attire";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";

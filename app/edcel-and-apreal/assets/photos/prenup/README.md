@@ -1,7 +1,5 @@
 # Edcel & Apreal prenup photos
 
-Current status after the October 31 image cleanup: only artwork referenced by the invitation remains locally. Prenup and story photos load from R2. Unused exports were backed up outside the repository; the descriptions and measurements below retain their historical provenance. See `docs/media/unused-image-cleanup.json` in the invitation folder for removed paths and recovery details.
-
 51 retained optimized images from 52 source files. The original collection is in `C:/Users/Spades/Downloads/Invitation/Prenup Photos/`; the nine new replacements are in `C:/Users/Spades/Downloads/`. Original files were left untouched.
 
 Each filename describes the visible outfit, setting, or pose. See [rename-map.csv](rename-map.csv) for the original-to-descriptive filename mapping and [optimization.json](optimization.json) for dimensions, hashes, and per-image measurements.

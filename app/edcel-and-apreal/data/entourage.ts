@@ -5,7 +5,7 @@ export const family = [
 export const principalSponsors = [
   ["Vice Mayor Tito Sanchez", "Ms. Evanjalita Dabu"],
   ["Engr. Yasmin Lailludin", "Mrs. Juana Lopez"],
-  ["Engr. Rolly Falculan", "Ms. Susan Dabu"],
+  ["Engr. Rolly Falculan", "Mrs. Susan Dabu"],
   ["Mr. Ronald Allan Polloso", "Mrs. Eden Polloso"],
   ["Mr. Bernardo Alcause, Jr.", "Mrs. Thelma Alzaga"],
   ["Mr. Julius Edgar San Juan", "Mrs. Ceriza San Juan"],
@@ -23,7 +23,7 @@ export const weddingParty = [
   { role: "Groomsmen", names: ["Engr. Darwin John Bagona", "Mr. Lawrence Banquerigo", "Mr. Vicjay Mia", "Engr. Glenn Francisco", "Engr. Kent Kevin Nieves", "Engr. Mark Alvin Bigar"] },
 ];
 export const secondarySponsors = [
-  { role: "Veil", names: ["Ms. Angelica Fernandez", "Engr. Juan Paolo Dumalaog"] },
+  { role: "Veil", names: ["Ms. Angerica Fernandez", "Engr. Juan Paolo Dumalaog"] },
   { role: "Candle", names: ["Ms. Jamillah Guialil", "Engr. Rome John Francisco"] },
   { role: "Cord", names: ["Ms. Rina Moreno", "Engr. Robee Kaye Conde"] },
 ];

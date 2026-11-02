@@ -2,21 +2,27 @@
 name: Edcel & Apreal
 description: Romantic vintage wedding stationery in wine, old rose, and warm ivory.
 colors:
-  wine: "#652235"
-  burgundy: "#401522"
-  rose: "#bd8791"
-  paper: "#f8f0e5"
-  ink: "#4d2931"
-  muted: "#76515a"
-  line: "#d9b9b1"
-  blush-surface: "#ead2cf"
-  field-surface: "#fbf5ec"
-  field-border: "#b88b8d"
-  light-rose: "#dfb5bb"
-  envelope-table: "#e8e0d3"
-  envelope-interior: "#3e0811"
-  envelope-underside: "#64101d"
-  story-photo-paper: "#fdf8f0"
+  wine: "#722F37"
+  burgundy: "#4B0F1F"
+  rose: "#B76E79"
+  mauve: "#9F759A"
+  dusty-rose: "#A6747B"
+  deep-berry: "#6B1F2D"
+  rose-taupe: "#8D6E72"
+  blush-pink: "#E7C9CD"
+  dusty-mauve: "#8A5A6B"
+  paper: "#F8F0E5"
+  ink: "#4B0F1F"
+  muted: "#4B0F1F"
+  line: "#8D6E7280"
+  blush-surface: "#E7C9CD"
+  field-surface: "#F8F0E5"
+  field-border: "#B76E79"
+  light-rose: "#E7C9CD"
+  envelope-table: "#E7C9CD"
+  envelope-interior: "#4B0F1F"
+  envelope-underside: "#722F37"
+  story-photo-paper: "#F8F0E5"
 typography:
   display:
     fontFamily: "New Icon Script, cursive"
@@ -64,7 +70,7 @@ components:
     rounded: "{rounded.field}"
     padding: "0.875rem 1rem"
   attendance-selected:
-    backgroundColor: "#e4c5c7"
+    backgroundColor: "#E7C9CD"
     textColor: "{colors.ink}"
     padding: "0.75rem 1rem"
   nav-reply:
@@ -89,16 +95,23 @@ Warm ivory stationery, burgundy ink, old-rose botanicals, fine arch rules, and e
 
 ## Colors
 
-### Primary
-- **Wine** supplies names, headings, links, buttons, focus context, and selected form borders.
-- **Burgundy** grounds the cover, venue passage, and closing; it also deepens interactive hover states.
+The owner's [palette reference](docs/color-palette-reference.png) defines the interface theme. The scoped variables at the top of `styles/invitation.module.css` are the source of truth.
 
-### Secondary
-- **Old rose** supplies botanical harmony and the attire palette. **Light rose** supports text on dark passages; **blush surface** separates the schedule and attire.
+| Color | Hex | Token |
+| --- | --- | --- |
+| Wine red | `#722F37` | `--ea-wine` |
+| Burgundy | `#4B0F1F` | `--ea-burgundy` |
+| Old rose | `#B76E79` | `--ea-old-rose` |
+| Mauve | `#9F759A` | `--ea-mauve` |
+| Dusty rose | `#A6747B` | `--ea-dusty-rose` |
+| Deep berry | `#6B1F2D` | `--ea-deep-berry` |
+| Rose taupe | `#8D6E72` | `--ea-rose-taupe` |
+| Blush pink | `#E7C9CD` | `--ea-blush` |
+| Dusty mauve | `#8A5A6B` | `--ea-dusty-mauve` |
 
-### Neutral
-- **Paper** is the recurring stationery background. **Ink** carries prose, **muted** carries supporting notes, and **line** provides fine borders and dividers.
-- **Field surface** and **field border** distinguish editable controls without introducing a new accent.
+Wine red supplies primary controls; burgundy anchors ink, overlays, the last gallery and footer. Old rose and dusty rose supply accent surfaces; blush pink supplies the Love Story and Gentle Reminders backgrounds. White and warm ivory remain readability neutrals. Shadows and dividers use translucent palette colors; existing paper and lace artwork retains its natural cream tones.
+
+**Dress-code exception:** The owner explicitly requested that dress-code details, original clothing swatch names and hex colors, illustrations, typography, and text colors stay unchanged. `data/attire.ts` retains the previously confirmed palette, independently of the interface theme. The attire section keeps its ivory, champagne and blush text treatment; its fabric background now uses the separately requested `#4B0F1F` recoloring. Event photographs and floral artwork also retain their original colors.
 
 ## Typography
 

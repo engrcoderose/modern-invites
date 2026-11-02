@@ -1,8 +1,8 @@
-.panel, .player { color: #652235; border-color: #d9b9b1; }
-.panel { background: #f8f0e5; }
+.panel, .player { color: var(--ea-text); border-color: var(--ea-line); }
+.panel { background: var(--ea-paper); }
 .player { background: #f8f0e5f5; backdrop-filter: blur(12px); }
 .title { font-family: var(--font-ea-script), cursive; font-weight: 400; line-height: 1.4; }
-.play { background: #652235; color: #f8f0e5; }
-.play:hover { background: #401522; }
+.play { background: var(--ea-wine); color: var(--ea-paper); }
+.play:hover { background: var(--ea-deep-berry); }
 .track { border-color: transparent; }
-.track:hover, .track[aria-current="true"] { background: #ead5d6; border-color: #d9b9b1; }
+.track:hover, .track[aria-current="true"] { background: var(--ea-blush); border-color: var(--ea-line); }

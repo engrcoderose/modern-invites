@@ -1,26 +1,26 @@
 .section {
-  background: #30060e;
-  color: #f8e7d8;
-  border-bottom: 1px solid #bc8f81;
+  background: var(--ea-burgundy);
+  color: var(--ea-paper);
+  border-bottom: 1px solid var(--ea-old-rose);
 }
 .shade {
-  background: radial-gradient(ellipse at center, #20030966, #20030908 75%);
+  background: radial-gradient(ellipse at center, #4b0f1f66, #4b0f1f08 75%);
 }
 .title {
   font-family: var(--font-ea-script), cursive;
   font-size: clamp(2.9rem, 5.4vw, 4.75rem);
   font-weight: 400;
   line-height: 1.25;
-  color: #dfa9ae;
+  color: var(--ea-blush);
   text-wrap: balance;
-  text-shadow: 0 2px 18px #200309;
+  text-shadow: 0 2px 18px #4b0f1f;
 }
 .number {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: clamp(2.15rem, 8vw, 5.5rem);
   line-height: 1.05;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 2px 18px #200309;
+  text-shadow: 0 2px 18px #4b0f1f;
 }
 .unit:not(:last-child)::after {
   content: ":";
@@ -31,4 +31,4 @@
   font-size: clamp(1.8rem, 6vw, 4.5rem);
   line-height: 1.05;
 }
-.label { text-shadow: 0 1px 8px #200309; }
+.label { text-shadow: 0 1px 8px #4b0f1f; }

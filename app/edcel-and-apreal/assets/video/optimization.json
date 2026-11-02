@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-02",
+  "source": {
+    "filename": "EDCEL & APREAL SAVE THE DATE 4k FINAL.mp4",
+    "bytes": 1149584466,
+    "sha256": "fdf2f83026fb70bfdad7d9efb51aa0c2d7a066f3d00c82c68b7177da4900e299",
+    "width": 3840,
+    "height": 2160,
+    "durationSeconds": 120.703917,
+    "frameRate": "24000/1001",
+    "frames": 2894
+  },
+  "output": {
+    "url": "https://assets.moderninvites.com/edcel-and-apreal/prenup/save-the-date-1080p-07f4f465.mp4",
+    "path": "public/edcel-and-apreal/video/save-the-date-1080p-07f4f465.mp4",
+    "bytes": 97271715,
+    "sha256": "07f4f4650b9518cfdf5becfd82aa6407214307dd2075ba0743d0474c645e5887",
+    "width": 1920,
+    "height": 1080,
+    "durationSeconds": 120.703917,
+    "frameRate": "24000/1001",
+    "frames": 2894,
+    "sizeReductionPercent": 91.5385325848688
+  },
+  "encoding": {
+    "tool": "FFmpeg 9.0.2",
+    "resolutionApprovedByUser": "High-quality 1080p for faster web playback",
+    "video": "libx264",
+    "preset": "slow",
+    "crf": 21,
+    "profile": "High",
+    "level": "4.1",
+    "pixelFormat": "yuv420p",
+    "scale": "1920:1080:flags=lanczos",
+    "color": "BT.709, limited range",
+    "maxKeyframeIntervalFrames": 48,
+    "frameRateMode": "passthrough",
+    "audio": "copy original AAC LC, 48000 Hz, stereo",
+    "metadata": "strip source container metadata; faststart",
+    "losslessVideo": false
+  },
+  "verification": {
+    "fullVideoDecode": "passed, 2894 frames",
+    "duplicatedFrames": 0,
+    "droppedFrames": 0,
+    "audioPayloadSha256": "72aec08ba251f7aca173f78d8eec37542ceba726d0340fd66e0f0618de4ebb9d",
+    "sourceAndOutputAudioPayloadMatch": true,
+    "vmaf": {
+      "reference": "Original scaled to 1920x1080 with Lanczos",
+      "model": "FFmpeg libvmaf default",
+      "frameSubsample": 4,
+      "sampledFrames": 724,
+      "mean": 97.415597,
+      "minimum": 89.389478,
+      "harmonicMean": 97.372206
+    },
+    "visualComparisonsSeconds": [15.015, 61.019292],
+    "realDeviceSafari": "not tested"
+  }
+}

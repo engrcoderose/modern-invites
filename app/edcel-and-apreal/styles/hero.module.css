@@ -1,10 +1,10 @@
-.hero { background: #260d15; color: #fbf2e7; }
-.photoSurface { background: #3c1923; }
+.hero { background: var(--ea-burgundy); color: var(--ea-paper); }
+.photoSurface { background: var(--ea-burgundy); }
 .shade {
-  background: linear-gradient(180deg, #16081038, #260d155c 28%, #260d157d 58%, #260d15b3);
+  background: linear-gradient(180deg, #4b0f1f38, #4b0f1f5c 28%, #4b0f1f7d 58%, #4b0f1fb3);
 }
 .photoSlide { transition: opacity 1.2s ease-in-out; }
-.copy { text-shadow: 0 1px 4px #16050d88, 0 2px 18px #16050d99; }
+.copy { text-shadow: 0 1px 4px #4b0f1f88, 0 2px 18px #4b0f1f99; }
 .eyebrow, .request, .metadata { text-wrap: balance; }
 .names {
   font-family: var(--font-ea-script), cursive;
@@ -18,9 +18,9 @@
   line-height: 1.6;
   letter-spacing: .3em;
 }
-.ornament { color: #d6a8ac; }
-.metadata { border-top: 1px solid #e1b5ad55; color: #edcbd0; }
-.scroll { color: #edcbd0; transition: color .2s; }
+.ornament { color: var(--ea-blush); }
+.metadata { border-top: 1px solid #e7c9cd55; color: var(--ea-blush); }
+.scroll { color: var(--ea-blush); transition: color .2s; }
 .scroll:hover { color: #fff; }
 .keyboardPlayback { background: var(--ea-burgundy); color: var(--ea-paper); }
 .groomName { --name-drift: -28px; --name-turn: -1.5deg; --hero-delay: 1.05s; }
@@ -49,7 +49,7 @@
   to { opacity: .6; transform: scaleX(1); }
 }
 @media (min-width: 768px) {
-  .shade { background: linear-gradient(180deg, #16081055, #260d1555 20%, #260d15c7 75%, #260d15e8), linear-gradient(90deg, #260d1520, #260d1555 50%, #260d1520); }
+  .shade { background: linear-gradient(180deg, #4b0f1f55, #4b0f1f55 20%, #4b0f1fc7 75%, #4b0f1fe8), linear-gradient(90deg, #4b0f1f20, #4b0f1f55 50%, #4b0f1f20); }
   .names { font-size: clamp(7.5rem, 11vw, 10rem); }
 }
 @media (prefers-reduced-motion: reduce) {

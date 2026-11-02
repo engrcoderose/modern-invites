@@ -1,5 +1,0 @@
-# Smaller floral corners
-
-Tool: built-in image generation. Edit target: the existing mobile countdown WebP. User requested slightly smaller flowers; prompt targets a 25% reduction in linear size while preserving corner positions.
-
-Edit this exact wedding countdown background. Make ONLY the two floral corner arrangements about 25 percent smaller in both width and height (75 percent of their current linear size). Keep each scaled bouquet anchored tightly to its existing corner: top-right and bottom-left. Replace the newly freed space with a seamless continuation of the existing wine-red satin fabric and its flowing diagonal folds. Preserve the exact burgundy, old-rose and antique-gold palette, the same kinds of flowers, realistic fine petal detail, satin texture, lighting and romantic vintage treatment. Maintain the original portrait 3:4, matching the input portrait proportions. Do not redesign the flowers, add decorations, move the corners, or change the background color. Keep the entire center dark and empty for native web countdown text. NO TEXT, no numbers, no border, no watermark. Preserve sharp high-definition detail.

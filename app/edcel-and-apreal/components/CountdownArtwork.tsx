@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { useInvitationOpen } from "./InvitationState";
-import satin from "../assets/countdown/wine-satin-background.webp";
+import satin from "../assets/countdown/wine-satin-burgundy-4b0f1f-v2.webp";
 import topFlowers from "../assets/countdown/floral-top-right.webp";
 import bottomFlowers from "../assets/countdown/floral-bottom-left.webp";
 

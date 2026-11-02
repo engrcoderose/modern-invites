@@ -1,4 +1,4 @@
-.gallery { background: #cfacad; color: var(--ea-burgundy); }
+.gallery { background: var(--ea-old-rose); color: var(--ea-text); }
 .carousel { opacity: 1; transform: translateY(0) scale(1); transition: opacity .85s ease-in, transform .85s cubic-bezier(.42, 0, .58, 1); }
 :global([data-invitation-open="true"]) .carousel[data-gallery-entered="false"] { opacity: 0; transform: translateY(22px) scale(.985); }
 :global([data-invitation-open="true"]) .carousel:focus-within { opacity: 1; transform: none; transition: none; }
@@ -9,20 +9,21 @@
   touch-action: pan-y;
 }
 .card {
-  background: #e8d0c7;
+  background: var(--ea-blush);
   border: 1px solid #fff5e9cc;
-  box-shadow: 0 18px 35px #4015221c;
+  box-shadow: 0 18px 35px #4b0f1f1c;
   transform: translate(-50%, -50%) translateX(var(--card-x)) rotateY(var(--card-turn)) scale(var(--card-scale));
   transition: transform .85s cubic-bezier(.42, 0, .58, 1), opacity .65s ease-in-out;
   backface-visibility: hidden;
 }
 .card[data-hidden="true"] { transition: none; }
-.carousel:focus-visible { outline: 2px solid var(--ea-wine); outline-offset: -5px; }
-.arrow { background: var(--ea-wine); color: var(--ea-paper); border: 1px solid #f8f0e5cc; box-shadow: 0 5px 20px #40152224; transition: background .2s; }
+.carousel:focus-visible { outline: 2px solid var(--ea-burgundy); outline-offset: -5px; }
+.arrow { background: var(--ea-wine); color: var(--ea-paper); border: 1px solid #f8f0e5cc; box-shadow: 0 5px 20px #4b0f1f24; transition: background .2s; }
 .arrow:hover { background: var(--ea-burgundy); }
 .arrow:disabled { opacity: .65; }
-.dot { display: block; width: 7px; height: 7px; border-radius: 50%; background: #65223566; transition: background-color .3s ease, transform .3s ease; }
+.dot { display: block; width: 7px; height: 7px; border-radius: 50%; background: #6b1f2d66; transition: background-color .3s ease, transform .3s ease; }
 .activeDot { background: var(--ea-wine); transform: scale(1.4); }
+.carousel > [role="status"]:not(:empty) { background: var(--ea-paper); }
 @media (min-width: 768px) {
   .stage { --gallery-card-width: clamp(190px, 28vw, 420px); }
 }

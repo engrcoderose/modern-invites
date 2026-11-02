@@ -65,14 +65,14 @@ export default function Navigation() {
         </nav>
         <button ref={toggle} type="button" aria-expanded={expanded} aria-controls="ea-navigation-sections"
           aria-label={expanded ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setExpanded(value => !value)} className="flex min-h-11 min-w-11 items-center justify-center gap-2 border border-[#d9b9b1] px-3 xl:px-4">
+          onClick={() => setExpanded(value => !value)} className="flex min-h-11 min-w-11 items-center justify-center gap-2 border border-[var(--ea-line)] px-3 xl:px-4">
           <span className="hidden text-xs xl:inline">All sections</span>
           {expanded ? <X size={21} strokeWidth={1.5} aria-hidden="true" /> : <Menu size={21} strokeWidth={1.5} aria-hidden="true" />}
         </button>
       </div>
     </div>
     <nav ref={panel} id="ea-navigation-sections" aria-label="All invitation sections" hidden={!expanded} data-text-motion-skip
-      className={`${navigation.panel} absolute inset-x-0 top-full max-h-[calc(100svh-65px)] overflow-y-auto overscroll-contain border-b border-[#d9b9b1]`}>
+      className={`${navigation.panel} absolute inset-x-0 top-full max-h-[calc(100svh-65px)] overflow-y-auto overscroll-contain border-b border-[var(--ea-line)]`}>
       <div className="mx-auto max-w-6xl px-6 pb-6 pt-5 sm:px-8">
         <p className={`${navigation.title} mb-4`}>Explore the invitation</p>
         <ul className="grid grid-cols-2 gap-x-5 gap-y-1 sm:grid-cols-3 xl:grid-cols-4">

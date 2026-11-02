@@ -1,5 +1,5 @@
 .section {
-  color: #401522;
+  color: var(--ea-text);
   background: #eee0c4;
 }
 .frame {
@@ -15,16 +15,16 @@
 }
 .player { position: relative; aspect-ratio: 16 / 9; width: 100%; }
 .mobileArtwork { display: none; opacity: .65; }
-.continue { color: #f8f0e5; background: #401522e6; }
+.continue { color: #f8f0e5; background: #4b0f1fe6; }
 .play {
   color: #f8f0e5;
   border: 1px solid #f8f0e599;
-  background: #401522bf;
-  box-shadow: 0 4px 24px #16050d55;
+  background: #4b0f1fbf;
+  box-shadow: 0 4px 24px #4b0f1f55;
   transition: background-color .2s ease, box-shadow .2s ease;
 }
-.play:hover { background: #652235; box-shadow: 0 6px 30px #16050d88; }
-@media (max-width: 1023px) and (orientation: portrait) {
+.play:hover { background: #722f37; box-shadow: 0 6px 30px #4b0f1f88; }
+@media (max-width: 639px) and (orientation: portrait) {
   .frame {
     inset: auto;
     top: 50%;
@@ -44,7 +44,7 @@
     transform: translate(-50%, -50%);
   }
 }
-@media (min-width: 1024px) and (min-aspect-ratio: 5/4) {
+@media (min-width: 1400px), (min-width: 1024px) and (min-aspect-ratio: 3/2) {
   .frame {
     inset: auto;
     top: 50%;
@@ -65,6 +65,32 @@
        when a wide screen crops the decorative background. */
     width: min(62.6%, calc((100svh - 64px - 160px) * 16 / 9));
     transform: translate(-50%, -50%);
+  }
+}
+@media (min-width: 640px) and (max-width: 1399px) and (max-aspect-ratio: 3/2) {
+  .section {
+    --film-tablet-border: clamp(14px, 2vw, 24px);
+    /* Keep 80px above and below the card for navigation and Continue. */
+    --film-tablet-clearance: 160px;
+    background: var(--ea-burgundy);
+  }
+  .frame {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: min(calc(100% - 48px), calc((100svh - 64px - var(--film-tablet-clearance) - 2 * var(--film-tablet-border)) * 16 / 9 + 2 * var(--film-tablet-border)));
+    aspect-ratio: auto;
+    transform: translate(-50%, -50%);
+    border: var(--film-tablet-border) solid transparent;
+    border-image: var(--film-frame) 19% 18% / 1 / 0 round;
+    background-image: none;
+  }
+  .mobileArtwork { display: none; }
+  .player {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    transform: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {

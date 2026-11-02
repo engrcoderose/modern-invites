@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import MemoryViewer from "../components/MemoryViewer";
 import { memoryPhotos as photos, type MemoryPhoto } from "../data/memory-photos";
 import invitation from "../styles/invitation.module.css";
+import styles from "../styles/memory-gallery.module.css";
 
 const previewPhotos = photos.slice(0, 10);
 const remainingCount = photos.length - (previewPhotos.length - 1);
@@ -24,7 +25,7 @@ export default function MemoryGallerySection() {
     opener.current?.focus({ preventScroll: true });
   }
 
-  return <section id="memories" aria-labelledby="ea-memories-title" className="bg-[var(--ea-paper)] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
+  return <section id="memories" aria-labelledby="ea-memories-title" className={`${styles.memories} px-5 py-16 sm:px-8 sm:py-24 lg:px-12`}>
     <div className="mx-auto max-w-7xl">
       <h2 id="ea-memories-title" className={`${invitation.sectionTitle} mb-8 text-center sm:mb-10 sm:text-left`}>A lifetime of <em>memories.</em></h2>
       <div data-text-motion-skip className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
@@ -36,7 +37,7 @@ export default function MemoryGallerySection() {
             className={`group relative block aspect-square min-h-0 min-w-0 cursor-zoom-in overflow-hidden rounded-sm border border-[var(--ea-line)] bg-[#e8d7ce] ${index < 2 ? "md:row-span-2 md:aspect-auto" : "md:aspect-[4/3]"}`}>
             <Image src={photo.src} alt={photo.alt} fill sizes={thumbnailSizes(photo, index)} loading="lazy" style={{ objectPosition: photo.position }}
               className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105 motion-reduce:transform-none motion-reduce:transition-none" />
-            {more && <span aria-hidden="true" className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[#401522]/75 text-[#f8f0e5] sm:gap-2">
+            {more && <span aria-hidden="true" className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-[#4b0f1f]/75 text-[var(--ea-text)] sm:gap-2">
               <span className="text-4xl leading-none sm:text-5xl">+{remainingCount}</span>
               <span className="text-[9px] uppercase tracking-[.18em] sm:text-xs">More photos</span>
             </span>}

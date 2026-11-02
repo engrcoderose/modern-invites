@@ -28,8 +28,8 @@ export default function PrenupFilmSection() {
       video.pause();
       return;
     }
-    // Match the established muted opening playback; native controls remain
-    // usable when the browser requires another gesture before playing.
+    // Opening requests sound during the seal tap. Start at the handoff,
+    // retaining the Play button if the browser requires another gesture.
     void video.play().catch(() => {});
   }, [opened, reducedMotion]);
 
@@ -59,21 +59,21 @@ export default function PrenupFilmSection() {
     <h2 id="ea-film-title" tabIndex={-1} className="sr-only">{prenupFilm.title}</h2>
     <div className={styles.frame}>
       <Image src={mobileFrameArtwork} alt="" fill sizes="max(100vw, calc((100svh - 64px) * 0.563))" className={styles.mobileArtwork} />
-      <div className={`${styles.player} overflow-hidden bg-[#260d15]`}>
+      <div className={`${styles.player} overflow-hidden bg-[#4b0f1f]`}>
         <video ref={videoRef} src={opened ? prenupFilm.src : undefined} poster={posterSrc}
-          autoPlay={opened && reducedMotion === false} muted controls loop playsInline preload="none"
+          autoPlay={opened && reducedMotion === false} muted={false} controls loop playsInline preload="none"
           aria-label={prenupFilm.title} className="block h-full w-full object-contain"
           onPlay={() => { setPaused(false); setFailed(false); window.dispatchEvent(new Event(filmPlayEvent)); }} onPause={() => setPaused(true)} onError={() => setFailed(true)}>
-          Your browser does not support embedded video. <a href={prenupFilm.src}>Watch the film preview</a>.
+          Your browser does not support embedded video. <a href={prenupFilm.src}>Watch the prenup film</a>.
         </video>
-        {paused && !failed && <button type="button" onClick={playFilm} aria-label="Play prenup film preview"
+        {paused && !failed && <button type="button" onClick={playFilm} aria-label={`Play ${prenupFilm.title}`}
           className={`${styles.play} absolute left-1/2 top-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full sm:size-16`}>
           <Play size={24} fill="currentColor" strokeWidth={1} aria-hidden="true" />
         </button>}
       </div>
     </div>
-    {failed && <p role="status" className="absolute inset-x-4 bottom-24 z-10 mx-auto max-w-md bg-[#401522] px-4 py-3 text-center text-sm text-[#f8f0e5]">The film could not load. You can <a href={prenupFilm.src} className="underline underline-offset-4">open the preview</a> or continue to the invitation below.</p>}
-    <noscript><p className="absolute inset-x-4 bottom-24 z-10 text-center text-sm"><a href={prenupFilm.src} className="underline underline-offset-4">Watch the film preview</a></p></noscript>
+    {failed && <p role="status" className="absolute inset-x-4 bottom-24 z-10 mx-auto max-w-md bg-[#4b0f1f] px-4 py-3 text-center text-sm text-[var(--ea-paper)]">The film could not load. You can <a href={prenupFilm.src} className="underline underline-offset-4">open the film</a> or continue to the invitation below.</p>}
+    <noscript><p className="absolute inset-x-4 bottom-24 z-10 text-center text-sm"><a href={prenupFilm.src} className="underline underline-offset-4">Watch the prenup film</a></p></noscript>
     <a href="#home" onClick={() => { videoRef.current?.pause(); startInvitationMusic(); }} className={`${styles.continue} absolute bottom-5 left-1/2 z-10 flex min-h-11 -translate-x-1/2 items-center justify-center gap-3 whitespace-nowrap rounded-full px-4 py-2 text-[10px] uppercase tracking-[.15em] sm:bottom-6 sm:text-xs`}>
       Continue to our invitation<ArrowDown size={18} strokeWidth={1} aria-hidden="true" />
     </a>

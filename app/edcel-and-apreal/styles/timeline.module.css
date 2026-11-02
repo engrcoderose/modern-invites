@@ -1,7 +1,7 @@
-.section { color: #7a2831; background-color: #35070d; background-image: var(--timeline-fabric); background-size: 600px auto; background-repeat: repeat; }
+.section { color: var(--ea-text); background-color: var(--ea-burgundy); background-image: var(--timeline-fabric); background-size: 600px auto; background-repeat: repeat; }
 .card {
-  --timeline-ink: #8a3c43;
-  --timeline-track: #9d606166;
+  --timeline-ink: var(--ea-wine);
+  --timeline-track: #8a5a6b66;
   --timeline-paper: #f2e4c6;
   border-style: solid;
   border-color: transparent;

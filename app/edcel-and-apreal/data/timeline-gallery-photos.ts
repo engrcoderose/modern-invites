@@ -1,11 +1,11 @@
 import { prenupMedia } from "./photo-media";
+import sofaEmbrace from "../assets/photos/prenup/ivory-dress-sofa-embrace.webp";
 const chaise = prenupMedia["burgundy-gown-chaise-seated-edcel-facing.webp"];
 const embrace = prenupMedia["sequin-dress-balcony-embrace-closeup.webp"];
 const garden = prenupMedia["ivory-dress-garden-hand-in-hand-walk.webp"];
 const doorway = prenupMedia["burgundy-gown-painted-doorway-full-length.webp"];
 const staircase = prenupMedia["sequin-dress-spiral-staircase-standing.webp"];
 const terrace = prenupMedia["burgundy-gown-terrace-linked-arms-closeup-revised.webp"];
-const silhouette = prenupMedia["couple-window-silhouette.webp"];
 const doorwayClose = prenupMedia["burgundy-gown-doorway-close-portrait.webp"];
 const paintedBalcony = prenupMedia["burgundy-gown-painted-balcony-wide.webp"];
 const balconyStanding = prenupMedia["sequin-dress-balcony-standing-portrait.webp"];
@@ -17,7 +17,7 @@ export const timelineGalleryPhotos = [
   { src: doorway, alt: "Edcel and Apreal in a black suit and burgundy gown together in a painted vintage doorway." },
   { src: staircase, alt: "Edcel and Apreal standing together at a wooden spiral staircase." },
   { src: terrace, alt: "Edcel and Apreal standing arm in arm on a rooftop terrace at dusk." },
-  { src: silhouette, alt: "Edcel and Apreal facing each other in silhouette against a golden window." },
+  { src: sofaEmbrace, alt: "Edcel seated behind Apreal in her ivory dress, embracing her in front of an ornate vintage sofa." },
   { src: doorwayClose, alt: "Edcel standing beside Apreal in her burgundy gown at a painted doorway." },
   { src: paintedBalcony, alt: "Edcel and Apreal standing apart on an ornate balcony against a painted wall." },
   { src: balconyStanding, alt: "Edcel and Apreal standing together at a vintage balcony railing." },
