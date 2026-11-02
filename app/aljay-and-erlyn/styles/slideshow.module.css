@@ -1,13 +1,10 @@
-.gallery { color: #f8f5e9; background: #394331; }
+.gallery { color: var(--ae-paper); }
 .frame { background: #293323; }
 .slide { transition-property: opacity; transition-timing-function: ease-in-out; }
-.controls { background: #394331; }
+.controls { border-radius: 999px; background: #172015a6; }
 .dot { width: 6px; background: #cbd2bb; transition: width 180ms ease, background 180ms ease; }
 .currentDot { width: 20px; background: #f8f5e9; }
-.placeholderNote { color: #f8f5e9; font-size: 10px; line-height: 1.8; }
-.photoHeading { color: #f8f5e9; text-shadow: 0 2px 12px #10170c; }
-.gallery::before { content: ""; pointer-events: none; position: absolute; z-index: 3; inset: 0 0 55%; background: linear-gradient(#10170ca6, #10170c00); }
-.gallery:not(:has(.photoHeading))::before { display: none; }
+.photoNames { color: var(--ae-paper); text-shadow: 0 2px 15px #172015b3; }
 @media (prefers-reduced-motion: reduce) {
   .slide, .dot { transition: none; }
 }

@@ -4,8 +4,9 @@ export const wedding = {
   groom: "Alfred John Gorgonio",
   email: "erlandjay08@gmail.com",
   date: "18 December 2026",
+  ceremonyISO: "2026-12-18T15:00:00+08:00",
   rsvpDeadline: "8 November 2026",
-  music: { title: "Spring Snow", artist: "10CM", src: null as string | null },
+  music: { title: "Spring Snow", artist: "10CM", src: "/aljay-and-erlyn/music/spring-snow.mp3" as string | null },
   // Enable only after the owner creates and approves this event's admin record.
   rsvp: { enabled: false, eventSlug: null as string | null },
   story: [
@@ -14,13 +15,15 @@ export const wedding = {
     "For more than 12 years, Aljay and Erlyn showed what a match made in heaven looked like.",
   ],
   venues: [
-    { name: "Holy Family Parish Church", detail: "Parang, Marikina · Diocese of Antipolo", address: "233 C.M. Recto St, Marikina, 1800 Metro Manila", time: "3:00 in the afternoon", type: "The ceremony", mapQuery: "Holy Family Parish Church Parang 233 C.M. Recto St Marikina" },
-    { name: "Teodore Events Place", detail: "Marikina, Metro Manila", address: "61 Katipunan St, Marikina, 1800 Metro Manila", time: "Reception to follow", type: "The reception", mapQuery: "Teodore Events Place 61 Katipunan St Marikina" },
+    { id: "ceremony" as const, name: "Holy Family Parish Church", detail: "Parang, Marikina · Diocese of Antipolo", address: "233 C.M. Recto St, Marikina, 1800 Metro Manila", time: "3:00 in the afternoon", type: "The ceremony", mapQuery: "Holy Family Parish Church Parang 233 C.M. Recto St Marikina" },
+    { id: "reception" as const, name: "Teodore Events Place", detail: "Marikina, Metro Manila", address: "61 Katipunan St, Marikina, 1800 Metro Manila", time: "6:00 PM · Reception Dinner", type: "The reception", mapQuery: "Teodore Events Place 61 Katipunan St Marikina" },
   ],
   timeline: [
-    { time: "2:30 PM", title: "Guest arrival", detail: "Settle in at Holy Family Parish Church." },
-    { time: "3:00 PM", title: "The ceremony", detail: "The beginning of our forever." },
-    { time: "To follow", title: "The reception", detail: "At Teodore Events Place. Time to be confirmed." },
+    { time: "2:30 PM", title: "Guest Arrival", detail: "Settle in at Holy Family Parish Church." },
+    { time: "3:00 PM", title: "Ceremony", detail: "The beginning of our forever." },
+    { time: "5:00 PM", title: "Cocktail Hour", detail: "" },
+    { time: "6:00 PM", title: "Reception Dinner", detail: "At Teodore Events Place." },
+    { time: "9:00 PM", title: "After Party", detail: "" },
   ],
   attire: {
     code: "Casual, Semi-Formal, and Formal",
@@ -36,16 +39,15 @@ export const wedding = {
     { question: "What time should I arrive?", answer: "Please arrive at 2:30 PM. Our ceremony starts at 3:00 PM at Holy Family Parish Church in Parang, Marikina." },
     { question: "What is the dress code?", answer: "Casual, Semi-Formal, and Formal. Please avoid: All yellow, All Green, White, Black, and Red. See the attire page for outfit inspiration." },
   ],
-  gifts: [
-    { name: "Security Bank", account: "0000078530019", image: "security-bank" },
-    { name: "GCash", account: "09566672531", image: "gcash" },
-  ],
 };
+
+export type Venue = (typeof wedding.venues)[number];
 
 export const chapters = [
   { id: "invitation", label: "The invitation" },
   { id: "our-story", label: "Our story" },
-  { id: "venues", label: "The venues" },
+  { id: "ceremony", label: "The ceremony" },
+  { id: "reception", label: "The reception" },
   { id: "us", label: "Us · photos" },
   { id: "the-day", label: "The day" },
   { id: "parents", label: "Our parents" },
@@ -54,8 +56,8 @@ export const chapters = [
   { id: "little-ones", label: "Our little ones" },
   { id: "together", label: "Together · photos" },
   { id: "attire", label: "The dress code" },
-  { id: "gifts", label: "A note on gifts" },
   { id: "questions", label: "Your questions" },
+  { id: "countdown", label: "Wedding countdown" },
   { id: "rsvp", label: "Kindly reply" },
   { id: "with-love", label: "With love" },
 ] as const;

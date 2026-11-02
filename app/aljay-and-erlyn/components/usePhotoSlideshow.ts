@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { useIsPresent, useReducedMotion } from "framer-motion";
 
-const slideInterval = 4000;
+const slideInterval = 3000;
 
 export function usePhotoSlideshow(count: number, enabled: boolean) {
   const [active, setActive] = useState(0);
@@ -98,7 +98,6 @@ export function usePhotoSlideshow(count: number, enabled: boolean) {
     loading: !decoded.includes(active) || pending !== null,
     load, handleError, select, pause,
     retry: () => { if (failed !== null) requestSlide(failed); },
-    togglePlayback: () => { if (paused) setPaused(false); else pause(); },
     complete: (index: number) => { if (index === active) setPrevious(null); },
   };
 }

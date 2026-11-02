@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { animate, motion, useIsPresent, useMotionValue, usePresenceData, useReducedMotion, useTransform, type Variants } from "framer-motion";
 import { pageFold } from "../utils/page-fold";
+import WoodlandBackdrop from "./WoodlandBackdrop";
+import entourageBackground from "../assets/design/entourage-floral-bg.png";
 import styles from "../styles/wedding.module.css";
 
-// Match Leslie and Serj's corner-led page fold, including timing and shading.
 const pageTurn = { duration: 1.25, ease: [0.38, 0.05, 0.25, 1] as const };
 const leaf: Variants = {
   enter: { opacity: 1 },
@@ -13,8 +15,16 @@ const leaf: Variants = {
   exit: { opacity: 0, transition: { duration: 0, delay: pageTurn.duration } },
 };
 
-export default function BookLeaf({ children, id, label, ready, dark, onSettled, fullBleed = false }: {
-  children: ReactNode; id: string; label: string; ready: boolean; dark: boolean; onSettled: (element: HTMLElement) => void; fullBleed?: boolean;
+const tones = {
+  ivory: { className: "", reverse: "#eee8da" },
+  olive: { className: styles.oliveLeaf, reverse: "#46533b" },
+  woodland: { className: styles.woodlandLeaf, reverse: "#46533b" },
+  venues: { className: styles.venuesLeaf, reverse: "#454b1c" },
+  story: { className: styles.storyLeaf, reverse: "var(--ae-story)" },
+};
+
+export default function BookLeaf({ children, id, label, ready, tone = "ivory", onSettled, fullBleed = false }: {
+  children: ReactNode; id: string; label: string; ready: boolean; tone?: keyof typeof tones; onSettled: (element: HTMLElement) => void; fullBleed?: boolean;
 }) {
   const ref = useRef<HTMLElement>(null);
   const scrollContent = useRef<HTMLDivElement>(null);
@@ -57,7 +67,6 @@ export default function BookLeaf({ children, id, label, ready, dark, onSettled, 
   useLayoutEffect(() => {
     if (!ready || !present || !ref.current) return;
     const targets = Array.from(ref.current.querySelectorAll<HTMLElement>("[data-reveal]"));
-    // Animate numeric values into rendered inline styles; cleanup cannot restore a hidden fill state.
     const controls = targets.map((target, index) => animate(0, 1, {
       duration: reduced ? 0 : 0.65,
       delay: reduced ? 0 : Math.min(index * 0.075, 0.3),
@@ -98,7 +107,6 @@ export default function BookLeaf({ children, id, label, ready, dark, onSettled, 
         const content = scrollContent.current;
         if (!content) return;
         event.preventDefault();
-        // Keep a little overlap when paging through the sheet's scrollable content.
         content.scrollBy({ top: content.clientHeight * 0.9 * (event.key === "PageDown" ? 1 : -1) });
       }}
       onAnimationComplete={(state) => {
@@ -106,10 +114,12 @@ export default function BookLeaf({ children, id, label, ready, dark, onSettled, 
       }}
     >
       <motion.div
-        className={`${styles.leaf} ${dark ? styles.darkLeaf : ""} absolute inset-0 h-full w-full overflow-hidden`}
+        className={`${styles.leaf} ${tones[tone].className} absolute inset-0 h-full w-full overflow-hidden`}
         style={{ clipPath: frontClip }}
       >
-        <div ref={scrollContent} className="absolute inset-0 overflow-y-auto overscroll-contain">
+        {tone === "woodland" && <WoodlandBackdrop />}
+        {tone === "olive" && <Image src={entourageBackground} alt="" fill sizes="max(100vw, 56.25dvh)" className="pointer-events-none object-cover object-top opacity-40" />}
+        <div ref={scrollContent} className={`absolute inset-x-0 top-0 ${id === "together" ? "bottom-0" : "bottom-[var(--ae-controls-height)]"} overflow-y-auto overscroll-contain`}>
           <div className={fullBleed ? "relative h-full" : "relative flex min-h-full flex-col items-center justify-center px-6 py-10 sm:px-12 sm:py-12 [@media(max-height:800px)]:py-6"}>{children}</div>
         </div>
       </motion.div>
@@ -136,7 +146,7 @@ export default function BookLeaf({ children, id, label, ready, dark, onSettled, 
             </motion.linearGradient>
           </defs>
           <motion.g style={{ opacity: foldOpacity }}>
-            <motion.path d={reversePath} fill={dark ? "#46533b" : "#eee8da"} filter={`url(#${foldShadow})`} />
+            <motion.path d={reversePath} fill={tones[tone].reverse} filter={`url(#${foldShadow})`} />
             <motion.path d={reversePath} fill={`url(#${foldGradient})`} />
           </motion.g>
         </svg>

@@ -1,0 +1,19 @@
+{
+  "title": "Spring Snow",
+  "artist": "10CM",
+  "originalFilename": "10cm – Spring Snow (봄눈) [Lovely Runner OST Part 8] [Rom Eng Lyric].mp3",
+  "publicPath": "/aljay-and-erlyn/music/spring-snow.mp3",
+  "bytes": 4848254,
+  "sha256": "2d7cd7567b8eebe0341adad451dca79c9a34376b2c138031885f0c0942b89ab7",
+  "processing": "Supplied MP3 moved to the client public folder without transcoding or changes.",
+  "durationSeconds": 201.943946,
+  "localPlaybackVerification": {
+    "silentBeforeOpen": true,
+    "keyboardOpeningStartsPlayback": true,
+    "pauseResume": true,
+    "continuesAcrossChapterChanges": true,
+    "singleAudioElement": true,
+    "loopAttribute": true,
+    "mediaError": null
+  }
+}

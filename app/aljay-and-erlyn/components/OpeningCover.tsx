@@ -1,56 +1,65 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Garden from "./Garden";
-import { Monogram, Names, Ornament } from "./Stationery";
+import gardenBackground from "../assets/design/whimsical-garden-background.png";
+import { WeddingLogo } from "./Stationery";
 import styles from "../styles/wedding.module.css";
 
 export default function OpeningCover({ onStart, onComplete }: { onStart: () => void; onComplete: () => void }) {
   const [opening, setOpening] = useState(false);
   const started = useRef(false);
-  const [imageReady, setImageReady] = useState(false);
-  const [fontsReady, setFontsReady] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [destination, setDestination] = useState({ x: 0, y: 0, scale: 1 });
+  const [aligned, setAligned] = useState(false);
+  const cover = useRef<HTMLDivElement>(null);
+  const artwork = useRef<HTMLSpanElement>(null);
   const openButton = useRef<HTMLButtonElement>(null);
   const reducedMotion = useReducedMotion();
-  const ready = imageReady && fontsReady;
 
   useEffect(() => {
     let cancelled = false;
-    document.fonts.ready.then(() => { if (!cancelled) setFontsReady(true); });
-    // A failed asset or font must never leave the invitation locked shut.
-    const fallback = window.setTimeout(() => { setImageReady(true); setFontsReady(true); }, 2200);
+    const images = Array.from(cover.current?.querySelectorAll("img") ?? []);
+    Promise.all([document.fonts.ready, ...images.map(image => image.decode().catch(() => {}))]).then(() => { if (!cancelled) setReady(true); });
+    const fallback = window.setTimeout(() => setReady(true), 2200);
     return () => { cancelled = true; window.clearTimeout(fallback); };
   }, []);
   useEffect(() => { if (ready) openButton.current?.focus({ preventScroll: true }); }, [ready]);
 
   function open() {
-    if (started.current) return;
+    if (started.current || !ready) return;
     started.current = true;
+    const target = document.querySelector<HTMLElement>("#ae-invitation-art");
+    if (!reducedMotion && artwork.current && target) {
+      const source = artwork.current.getBoundingClientRect();
+      const end = target.getBoundingClientRect();
+      setDestination({ x: end.left + end.width / 2 - source.left - source.width / 2, y: end.top + end.height / 2 - source.top - source.height / 2, scale: end.height / source.height });
+      setAligned(true);
+    }
     onStart();
     setOpening(true);
   }
 
-  return <div role="dialog" aria-modal="true" aria-labelledby="ae-cover-title" className={`${styles.cover} fixed inset-0 z-50 overflow-y-auto`}>
-    <motion.div className="absolute inset-0" animate={{ opacity: opening ? 0 : 1 }} transition={{ duration: reducedMotion ? 0.18 : 1.05 }}>
-      <Garden priority onReady={() => setImageReady(true)} />
-      <div className={styles.coverVignette} />
+  return <div ref={cover} role="dialog" aria-modal="true" aria-labelledby="ae-cover-title" aria-busy={!ready || opening} className={`${styles.cover} fixed inset-0 z-50 h-dvh overflow-hidden`}>
+    <h1 id="ae-cover-title" className="sr-only">Aljay and Erlyn — your wedding invitation</h1>
+    <motion.div className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: ready && !opening ? 1 : 0 }} transition={{ duration: reducedMotion ? 0.2 : opening ? 1.8 : 0.7 }} onAnimationComplete={() => { if (opening) onComplete(); }}>
+      <Image src={gardenBackground} alt="" fill priority sizes="(max-aspect-ratio: 3/2) 150dvh, 100vw" className="pointer-events-none object-cover" />
     </motion.div>
-    <div className="relative flex min-h-full items-center justify-center px-5 py-8 sm:py-10">
-      <motion.div className={`${styles.coverCard} relative flex w-full max-w-[430px] flex-col items-center px-7 py-10 text-center sm:px-12 sm:py-12`}
-        initial={false} animate={{ opacity: opening || !ready ? 0 : 1, rotateY: opening && !reducedMotion ? -82 : 0, x: opening && !reducedMotion ? -30 : 0 }}
-        transition={{ duration: reducedMotion ? 0.2 : opening ? 1.1 : 0.45, ease: [0.42, 0, 0.2, 1] }}
-        onAnimationComplete={() => { if (opening) onComplete(); }}>
-        <Monogram className="mb-5" />
-        <Ornament />
-        <h1 id="ae-cover-title" className="my-7"><span className="sr-only">The wedding of </span><Names cover /></h1>
-        <p className={`${styles.coverNote} mb-7 max-w-[230px]`}>A love twelve years in the making,<br />a lifetime still to come.</p>
-        <button type="button" ref={openButton} disabled={opening || !ready} onClick={open} className={`${styles.button} inline-flex min-h-12 items-center justify-center gap-5 px-7 py-3`}>
-          {opening ? "Opening…" : "Open invitation"}<ArrowRight size={16} strokeWidth={1.3} aria-hidden="true" />
-        </button>
-        <p className={`${styles.tiny} mt-7`}>With love, for you.</p>
-      </motion.div>
-    </div>
+    <motion.div className="relative mx-auto flex h-full max-w-xl flex-col items-center justify-center px-6 py-8" initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }} transition={{ duration: reducedMotion ? 0.15 : 0.7 }}>
+      <button ref={openButton} type="button" disabled={!ready || opening} aria-label="Open Aljay and Erlyn’s wedding invitation" onClick={open} className="group flex max-w-full flex-col items-center gap-6 focus-visible:outline-none">
+        <span className="relative block h-[clamp(250px,52svh,400px)] aspect-[33/46] max-w-full">
+          <motion.span ref={artwork} className="absolute inset-0" animate={{ ...(opening && !reducedMotion ? destination : { x: 0, y: 0, scale: 1 }), opacity: opening && (reducedMotion || !aligned) ? 0 : 1 }} transition={{ duration: reducedMotion ? 0.15 : 1.5, ease: [0.38, 0.05, 0.25, 1] }} style={{ transformOrigin: "center" }}>
+            <motion.span className="absolute inset-0" initial={false} animate={{ opacity: opening && aligned ? 0 : 1 }} transition={{ duration: 0.65, delay: opening ? 0.35 : 0 }}>
+              <WeddingLogo priority className="h-full w-full" sizes="clamp(179px, 37.3svh, 287px)" />
+            </motion.span>
+            <motion.span aria-hidden="true" className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: opening && aligned ? 1 : 0 }} transition={{ duration: 0.65, delay: opening ? 0.35 : 0 }}>
+              <WeddingLogo variant="green" priority className="h-full w-full" sizes="clamp(179px, 37.3svh, 287px)" />
+            </motion.span>
+          </motion.span>
+        </span>
+        <motion.span className={`${styles.openPrompt} min-h-11 border-b px-2 py-3 group-focus-visible:border-b-2 group-focus-visible:border-current`} animate={{ opacity: opening ? 0 : 1 }} transition={{ duration: 0.3 }}>Click to open</motion.span>
+      </button>
+    </motion.div>
   </div>;
 }

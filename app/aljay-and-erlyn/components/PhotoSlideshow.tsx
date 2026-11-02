@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Pause, Play } from "lucide-react";
 import type { SlideshowPhoto } from "../data/photos";
 import { usePhotoSlideshow } from "./usePhotoSlideshow";
 import styles from "../styles/slideshow.module.css";
@@ -35,26 +34,20 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
 
   const controls = <div className={`${styles.controls} relative z-10 mx-auto w-fit max-w-full px-2 py-1 text-center`}>
     {slideshow.failed !== null && <p role="status" className="mb-1 px-2 text-xs leading-6">This photo couldn’t load. <button type="button" className="min-h-11 px-2 underline underline-offset-4" onClick={slideshow.retry}>Retry photo</button></p>}
-    <div className="flex items-center justify-center" aria-label={`${title} photo controls`}>
+    <div className="flex flex-wrap items-center justify-center" aria-label={`${title} photo controls`}>
       {photos.map((photo, index) => <button
         key={photo.src.src} type="button" aria-label={`Show ${title} photo ${index + 1}`}
         aria-pressed={index === slideshow.active}
         onClick={() => slideshow.select(index)} className="flex size-11 shrink-0 items-center justify-center rounded-full"
       ><span className={`${styles.dot} ${index === slideshow.active ? styles.currentDot : ""} block h-1.5 rounded-full`} /></button>)}
-      {!slideshow.reduced && <button type="button" data-slideshow-playback
-        aria-label={slideshow.paused ? `Play ${title} slideshow` : `Pause ${title} slideshow`}
-        aria-pressed={!slideshow.paused} onClick={slideshow.togglePlayback}
-        className="flex size-11 shrink-0 items-center justify-center rounded-full"
-      >{slideshow.paused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}</button>}
     </div>
-    <p className={`${styles.placeholderNote} px-2 pb-1`}>Placeholder photos · Vincent & Gabrielle</p>
     <p className="sr-only" role="status" aria-live={slideshow.paused ? "polite" : "off"}>Photo {slideshow.active + 1} of {photos.length}{slideshow.loading ? " · Loading photo" : ""}</p>
   </div>;
 
   return <div
-    className={`${styles.gallery} ${fullPage ? "relative h-full overflow-hidden" : "relative grid h-full grid-cols-1 grid-rows-[auto_minmax(0,1fr)_auto] items-center gap-3 px-6 py-5 sm:gap-4 sm:py-6"}`}
-    role="region" aria-roledescription="carousel" aria-label={`${title} · placeholder photo gallery`}
-    onFocusCapture={event => { if (!(event.target as HTMLElement).closest("[data-slideshow-playback]")) slideshow.pause(); }}
+    className={`${styles.gallery} ${fullPage ? "relative h-full overflow-hidden" : "relative grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_auto] items-center gap-10 px-8 pb-4 pt-10 sm:px-12 sm:pt-12"}`}
+    role="region" aria-roledescription="carousel" aria-label={`${title} · photo gallery`}
+    onFocusCapture={slideshow.pause}
     onKeyDown={event => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
@@ -62,14 +55,13 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
       slideshow.select((slideshow.active + (event.key === "ArrowRight" ? 1 : photos.length - 1)) % photos.length);
     }}
   >
-    <h2 className={`${weddingStyles.heading} ${fullPage ? `${styles.photoHeading} pointer-events-none absolute left-6 top-5 z-10 sm:left-10 sm:top-7` : "relative z-10 text-center"}`}>{title}</h2>
-    <div className={fullPage ? "absolute inset-x-0 top-1/2 h-full -translate-y-1/2 [@media(max-width:767px)]:max-h-[166.667vw]" : "flex h-full min-h-0 min-w-0 items-center justify-center"}>
-      <div ref={frame} className={`${styles.frame} ${fullPage ? "absolute inset-0" : "relative max-w-full overflow-hidden"}`}
+    <h2 className="sr-only">{title}</h2>
+    <div className={fullPage ? "absolute inset-0" : "flex h-full min-h-0 min-w-0 items-center justify-center"}>
+      <div ref={frame} className={`${styles.frame} ${fullPage ? "absolute inset-0 overflow-hidden" : "relative max-w-full"}`}
         style={fullPage ? undefined : { width: size.width, height: size.height }}>
         {slideshow.initialLoading && slideshow.failed === null && <p role="status" className="absolute inset-0 grid place-items-center px-4 text-center text-xs">Loading photographs…</p>}
         {size.width > 0 && slideshow.mounted.map(index => {
           const photo = photos[index];
-          // Size the cover image from its actual frame, including source-aspect cropping.
           const imageWidth = Math.ceil(Math.max(size.width, size.height * photo.src.width / photo.src.height));
           return <div key={`${index}-${slideshow.attempts[index] ?? 0}`} data-photo-layer
             className={`${styles.slide} pointer-events-none absolute inset-0`}
@@ -85,8 +77,9 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
             className="object-cover" style={{ objectPosition: photo.position }} draggable={false}
             onLoad={event => void slideshow.load(index, event)} onError={() => slideshow.handleError(index)} /></div>;
         })}
+        {!fullPage && <p aria-hidden="true" className={`${styles.photoNames} ${weddingStyles.heading} pointer-events-none absolute inset-0 z-10`}><span className="absolute -left-4 -top-9 sm:-left-7">Aljay</span><span className="absolute -bottom-9 -right-4 sm:-right-7">Erlyn</span></p>}
       </div>
     </div>
-    {fullPage ? <div className="absolute inset-x-4 bottom-4 z-20 flex justify-center sm:bottom-6">{controls}</div> : controls}
+    {fullPage ? <div className="absolute inset-x-4 bottom-[calc(var(--ae-controls-height)+12px)] z-20 flex justify-center">{controls}</div> : controls}
   </div>;
 }

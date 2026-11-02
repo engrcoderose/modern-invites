@@ -1,0 +1,116 @@
+{
+  "verifiedAt": "2026-11-01T19:04:26.346409+00:00",
+  "scope": "Public image GET requests only; no R2 credentials or bucket changes.",
+  "images": [
+    {
+      "filename": "img-2541.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2541.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 1095960,
+      "width": 1920,
+      "height": 2560,
+      "sha256": "e251109ddcc6eb14d491be9393b2d9575b4b6a2679853134fe8e0606c63396be",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-2632.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2632.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 1028816,
+      "width": 1920,
+      "height": 2560,
+      "sha256": "7bca153033b42e2ba0a186e17c63a4952fe1930c8540f387de4646c32a1f14a7",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-2911.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2911.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 668356,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "f340e3652c0e9f8b97f624c3581d9f23394b28e7dc5994faab28ef7479b3570a",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-2927.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2927.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 804974,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "f227d3781dbb454fea8b72ab05a9850c13c44039c60f479f8e379243215ccb4a",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-2949.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2949.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 828878,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "869f3a648ee21fba71ce6adc145b20cc3dbae772e0079be33fdba1ebc04c5472",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-2961.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-2961.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 953912,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "3c6fa7b9edfdedc9caa8856ae890728c1fbd551185174ef1d1a804e6f43bcdd5",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-3707.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-3707.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 527442,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "083e83d6f9b39935889355e3c40f6d5b682e53ce6954cf297392b139dc23fa87",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-3833.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-3833.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 932526,
+      "width": 2560,
+      "height": 1920,
+      "sha256": "5d4d4815e20452c4d645c9a79449d8dc71ba9bb9cfc58074418542ec6228d5ee",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-3876.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-3876.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 2019032,
+      "width": 1920,
+      "height": 2560,
+      "sha256": "9a1e378261753205733929e603989f062304e1dbb3a927c3e28a8a3cbf1bea32",
+      "matchesPreparedExport": true
+    },
+    {
+      "filename": "img-4008.webp",
+      "url": "https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/img-4008.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 931294,
+      "width": 1920,
+      "height": 2560,
+      "sha256": "36cd036caf2668a54f606a68cd60cf4ecc36fee64e8158ca50a35622ffa8b934",
+      "matchesPreparedExport": true
+    }
+  ]
+}
