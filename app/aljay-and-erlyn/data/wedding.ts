@@ -7,8 +7,7 @@ export const wedding = {
   ceremonyISO: "2026-12-18T15:00:00+08:00",
   rsvpDeadline: "8 November 2026",
   music: { title: "Spring Snow", artist: "10CM", src: "/aljay-and-erlyn/music/spring-snow.mp3" as string | null },
-  // Enable only after the owner creates and approves this event's admin record.
-  rsvp: { enabled: false, eventSlug: null as string | null },
+  rsvp: { eventSlug: "aljay-and-erlyn" },
   story: [
     "There really is such a thing as love at first sight! One look was all it took for Aljay to notice Erlyn across the Jeepney ride home from school.",
     "He was a social butterfly and could easily get along with everyone while she was reserved and only showed her playful side to those she’s comfortable with.",
@@ -32,13 +31,6 @@ export const wedding = {
     avoid: "Please avoid: All yellow, All Green, White, Black, and Red",
     otherGuidance: "Kindly avoid ripped jeans, mini-skirts, Crocs, flip-flops, and slippers.",
   },
-  faqs: [
-    { question: "When should I RSVP?", answer: "Please reply by 8 November 2026. We can’t wait to celebrate with you! Online replies will open once the invitation is finalized. In the meantime, please contact us directly." },
-    { question: "Are children invited?", answer: "We’ve decided to keep the wedding adults-only except for the entourage. We hope you can still join us for a well-earned night off." },
-    { question: "Can I bring a plus-one?", answer: "Our numbers are really tight, so we’re only able to accommodate the guests who received the RSVP. Thank you for understanding." },
-    { question: "What time should I arrive?", answer: "Please arrive at 2:30 PM. Our ceremony starts at 3:00 PM at Holy Family Parish Church in Parang, Marikina." },
-    { question: "What is the dress code?", answer: "Casual, Semi-Formal, and Formal. Please avoid: All yellow, All Green, White, Black, and Red. See the attire page for outfit inspiration." },
-  ],
 };
 
 export type Venue = (typeof wedding.venues)[number];
@@ -56,7 +48,6 @@ export const chapters = [
   { id: "little-ones", label: "Our little ones" },
   { id: "together", label: "Together · photos" },
   { id: "attire", label: "The dress code" },
-  { id: "questions", label: "Your questions" },
   { id: "countdown", label: "Wedding countdown" },
   { id: "rsvp", label: "Kindly reply" },
   { id: "with-love", label: "With love" },

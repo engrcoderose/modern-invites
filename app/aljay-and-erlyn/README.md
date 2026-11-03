@@ -27,7 +27,7 @@ The confirmed timeline is 2:30 PM Guest Arrival, 3:00 PM Ceremony, 5:00 PM Cockt
 - `components/Invitation.tsx`: opening state, chapter composition and navigation.
 - `components/OpeningCover.tsx`, `BookLeaf.tsx`, `utils/page-fold.ts`: opening and page transitions.
 - `components/Stationery.tsx`, `WoodlandBackdrop.tsx`: stationery artwork.
-- `sections/`: invitation content, entourage, attire, FAQs and countdown.
+- `sections/`: invitation content, entourage, attire and countdown.
 - `components/PhotoSlideshow.tsx`, `usePhotoSlideshow.ts`, `data/photos.ts`: incremental, decoded CSS crossfades using the couple's 10 supplied photographs. R2 filenames, dimensions, descriptions and focal points are centralized in `data/photos.ts`.
 - `styles/`: scoped visual styling; simple layout uses JSX Tailwind utilities.
 
@@ -37,7 +37,7 @@ The source PDF provides attire illustrations, entourage, original QR images and 
 
 ## Countdown
 
-The book has 16 chapters. `#countdown` is page 14, followed by RSVP on page 15 and the closing page on page 16. The mobile chapter menu and previous/next controls use the same chapter list.
+The book has 15 chapters. `#countdown` is page 13, followed by RSVP on page 14 and the closing page on page 15. The helpful-details/FAQ page and its navigation links have been removed at the owner’s request; dress code now leads directly to the countdown. The mobile chapter menu and previous/next controls use the same chapter list.
 
 `wedding.ceremonyISO` is `2026-12-18T15:00:00+08:00`: the confirmed 3 PM ceremony in Philippine time. `sections/CountdownPage.tsx` composes the artwork, date and timer; `components/WeddingCountdown.tsx` owns the one-second clock, and `utils/countdown.ts` contains pure time calculations. The clock uses absolute timestamps, pauses interval updates when hidden or inactive, resyncs on visibility changes, stops at zero, and shows “Our forever has begun.” after the target. Timer updates are not announced every second to screen readers.
 
@@ -45,9 +45,9 @@ Timezone, unit rollover, subsecond, exact-deadline and past-deadline assertions 
 
 ## RSVP
 
-The RSVP follows Leslie and Serj’s compact name-entry card and separate native reply dialog. The local preview validates attendance and optional email, shows a reply summary, and supports editing, Escape, close, and focus restoration. Nothing is matched against a guest list, sent, or persisted; notices and button wording disclose that limitation. The existing optional email, dietary needs, and message fields are preserved. Do not enable `wedding.rsvp.enabled` or fill `eventSlug` until the owner creates the approved admin record. The gated live branch reuses shared SmartRsvpFlow with name search and unlisted replies disabled. No database IDs or endpoints were invented.
+The owner confirmed the admin event identifier `aljay-and-erlyn`. `wedding.rsvp.eventSlug` uses that confirmed identifier. The RSVP card shows only the invitation-search message, deadline, full-name field/hint and Find my invitation button. `RsvpNameEntry` uses the existing `useSmartRsvp` name-search hook and opens the shared `PartyStep` in a native dialog after the guest selects a matched invitation. Invited guests only, the olive/ivory theme, optional email, dietary needs and message fields are retained. Already-locked replies show a contact-the-couple message instead of another form. Search, invitation loading and response submission use the established `/api/rsvp/access`, `/api/rsvp/search`, `/api/rsvp/party` and `/api/rsvp/submit` routes. The server supplies household/individual response rules and RSVP closure status. No admin record or shared backend behavior was changed.
 
-Do not read or load real environment files or access Supabase. Preview/build checks must use an isolated copy without environment files, API routes or middleware. Live RSVP and admin configuration remain for the owner.
+The local reply preview and its obsolete styles are removed; the invitation uses the real integration. Credential files and live Supabase/admin records must not be accessed. Integration checks use synthetic responses in an environment-free local preview; live guest lookup and persistence must be verified by the owner.
 
 ## Revision verification
 
@@ -115,3 +115,7 @@ Entourage role headings now use a larger 13–16px bold uppercase style with tig
 Bridesmaids/Groomsmen headings now render inside the paired-name grid, using the same width, responsive gap and text alignment as the names below. Desktop and 390px mobile measurements confirmed matching column edges and no horizontal overflow or console errors. Scoped ESLint, repository TypeScript and whitespace checks passed.
 
 The latest entourage background (`entourage-bg-2.png`) is now used across parents, Principal Sponsors, wedding party and little ones. The prior 40% opacity/deep-olive treatment, decorative frames and typography are preserved. Mobile and desktop checks confirmed the new content-hashed image loaded on all four chapters, with no horizontal overflow or console errors. Scoped ESLint, repository TypeScript and whitespace checks passed.
+
+## Admin RSVP connection verification
+
+The owner confirmed `aljay-and-erlyn` as the admin event identifier. Scoped ESLint, TypeScript and whitespace checks passed. An environment-free preview with synthetic access/search/party/submit routes verified the exact event slug, no-match feedback, explicit invitation selection, two-guest attendance and dietary/contact/message payloads, submission failure and successful retry, and dialog close/focus restoration. The initial card was inspected at 320×568, 390×844 and 1280×720 with no horizontal overflow. Synthetic replies were handled only by local fixture routes; no real guest data, admin records, credential files or Supabase connection was used. Live lookup and persistence remain for the owner to verify.

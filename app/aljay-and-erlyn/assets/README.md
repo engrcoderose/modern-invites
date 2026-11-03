@@ -25,9 +25,9 @@ Current reference-design assets:
 
 - `design/ribbon-deco.png`: owner-supplied ivory ribbon, statically imported unchanged above the dress-code heading. Responsive height is 48–72px, with decorative empty alt text.
 
-- `design/flower-with-green-ribbon.png`: owner-supplied flower, used unchanged below the FAQ list. The FAQ ornament stays below expanded answers and shrinks to 48px on short screens.
+- `design/flower-with-green-ribbon.png`: owner-supplied flower retained as an unused source asset after removal of the FAQ page.
 
-- `design/story-title-frame.png`: owner-supplied transparent ornamental frame copied unchanged from `codex-clipboard-afc23d1a-4df2-436a-a896-aeef0ed684fc.png`. It replaces the earlier drawn frame; the story and RSVP titles remain editable HTML through `FramedHeading` in `components/Stationery.tsx`. The original frame asset is reused without duplication.
+- `design/story-title-frame.png`: owner-supplied transparent ornamental frame copied unchanged from `codex-clipboard-afc23d1a-4df2-436a-a896-aeef0ed684fc.png`. It replaces the earlier drawn frame; the story title remains editable HTML through `FramedHeading` in `components/Stationery.tsx`. The original frame asset is reused without duplication.
 
 - `design/entourage-floral-bg.png`: owner-supplied 1152 × 2048 green background with hanging ivory flowers (clipboard-4ba1e2a0), copied unchanged; now unused after the owner supplied entourage-bg-2.png. Next Image provides responsive, top-aligned cover sizing and optimization. Render the artwork at 40% opacity over deep olive #30391f; the source remains unchanged. The earlier `design/entourage-bg.png` is retained as unused source artwork.
 
@@ -38,3 +38,5 @@ Current reference-design assets:
 - `design/red.png`: owner-supplied transparent 169 × 253 floral arrangement with pink/red trailing accents, used unchanged on the first (Us) slideshow’s lower-left corner.
 
 - `design/entourage-bg-2.png`: latest owner-supplied 1824 × 2879 olive damask background, statically imported unchanged for all four entourage chapters. Keep the established 40% opacity over deep olive #30391f; Next Image uses responsive cover sizing for this asset’s aspect ratio.
+
+- `design/pastel-butterflies.png`: transparent pastel butterfly cluster, placed beside the upper-right of the framed couple on the countdown page. Responsive sizing preserves the faces and single-line heading.
