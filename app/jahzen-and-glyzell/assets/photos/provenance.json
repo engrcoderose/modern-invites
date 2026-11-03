@@ -47,5 +47,12 @@
     "kind": "existing repository sample photograph",
     "use": "Temporary layout preview, approved by user; not a photograph of Jahzen and Glyzell",
     "bytes": 206448
+  },
+  {
+    "file": "gallery-garden.webp",
+    "source": "User-provided codex-clipboard-27b04558-1ee9-4255-ad56-b74c781a05e4.png",
+    "kind": "user-provided garden photograph",
+    "use": "Blurred backdrop behind the gallery slideshow",
+    "bytes": 53012
   }
 ]

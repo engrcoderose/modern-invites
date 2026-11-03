@@ -1,0 +1,9 @@
+{
+  "file": "gallery-garden.webp",
+  "kind": "user-provided garden photograph",
+  "source": "codex-clipboard-27b04558-1ee9-4255-ad56-b74c781a05e4.png",
+  "use": "Blurred background behind the gallery slideshow only",
+  "width": 500,
+  "height": 333,
+  "optimization": "WebP quality 85; original dimensions retained. The small, intentionally blurred image is served directly without additional optimizer variants."
+}

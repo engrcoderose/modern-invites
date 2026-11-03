@@ -6,9 +6,10 @@ import { getImageProps } from "next/image";
 import { ArrowRight } from "lucide-react";
 import { wedding } from "../data/wedding";
 import SamplePhoto from "./SamplePhoto";
-import { photos, photoSizes } from "../data/photos";
+import { photos, photoSizes, heroSlides, heroImageQuality } from "../data/photos";
 import styles from "../styles/invitation.module.css";
 import useHydratedReducedMotion from "../hooks/useHydratedReducedMotion";
+import BackgroundMusic, { type BackgroundMusicHandle } from "./BackgroundMusic";
 
 type Phase = "closed" | "preparing" | "opening" | "opened";
 
@@ -18,6 +19,7 @@ export default function InvitationExperience({ children }: { children: ReactNode
   const reducedMotion = useHydratedReducedMotion();
   const action = useRef<HTMLButtonElement>(null);
   const opening = useRef(false);
+  const music = useRef<BackgroundMusicHandle>(null);
   const opened = phase === "opened";
 
   useEffect(() => { setReady(true); }, []);
@@ -43,9 +45,10 @@ export default function InvitationExperience({ children }: { children: ReactNode
     if (!ready || opening.current) return;
     opening.current = true;
     setPhase("preparing");
+    void music.current?.play();
     // Decode only the next visible image, using the same responsive optimizer
     // selection as the hero. A loading failure must never trap a guest.
-    const { props } = getImageProps({ src: photos.hero, alt: "", fill: true, sizes: photoSizes.hero });
+    const { props } = getImageProps({ src: heroSlides[0].src, alt: "", fill: true, sizes: photoSizes.hero, quality: heroImageQuality });
     const nextPhoto = new window.Image();
     nextPhoto.sizes = props.sizes ?? "100vw";
     nextPhoto.srcset = props.srcSet ?? "";
@@ -76,6 +79,7 @@ export default function InvitationExperience({ children }: { children: ReactNode
     <div className={`jg-content ${opened ? styles.contentOpened : ""}`} hidden={!opened}>
       {children}
     </div>
+    <BackgroundMusic ref={music} visible={opened} />
     <noscript><style>{`.jg-cover{display:none}.jg-content[hidden]{display:block}`}</style><p className="p-5 text-center">Please enable JavaScript to use the RSVP preview.</p></noscript>
   </div>;
 }

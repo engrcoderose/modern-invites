@@ -1,6 +1,6 @@
 export const parents = [
   { role: "Parents of the bride", names: ["Cristy E. Sablay", "Eduardo N. Sablay Jr"] },
-  { role: "Parents of the groom", names: ["Jasmin O. Gorgonio", "Michael O. Gorgonio"] },
+  { role: "Parent of the groom", names: ["Jasmin O. Gorgonio"] },
 ];
 
 // Preserve the PDF's column order and pairings, including its final unpaired godparent.

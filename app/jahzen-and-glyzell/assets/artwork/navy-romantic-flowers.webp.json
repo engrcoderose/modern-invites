@@ -1,0 +1,19 @@
+{
+  "file": "navy-romantic-flowers.webp",
+  "kind": "AI-generated navy-blue botanical decoration",
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: illustration-story.\nAsset type: high-quality transparent floral decoration for a moody, romantic navy-blue wedding invitation.\nPrimary request: an elegant organic cluster of deep NAVY BLUE roses, with three generously layered open blooms in varied sizes, a few small rosebuds, slender curving stems and softly tapering foliage. Navy blue must be the dominant flower color: midnight ink-blue and deep blue-gray petals with restrained smoky slate-blue highlights so the intricate petal folds remain readable. Leaves are muted deep olive and desaturated blue-green. Keep the composition airy and naturally asymmetric, with stems and leaves extending gracefully around the blooms, suitable as a small decorative floral accent.\nStyle: refined vintage botanical painting with realistic flower anatomy, velvety petals, subtle hand-painted texture and soft natural shading. Luxurious, intimate and romantic, with carefully preserved fine edges. Avoid a flat icon or cartoon look.\nComposition: one cohesive isolated floral arrangement, comfortably framed with a clear margin around every leaf and petal; portrait canvas approximately 4:5. Show the entire arrangement, no cropped blooms or clipped foliage. No typography space needs to be built into the artwork.\nBackground: genuinely transparent outside the flowers, leaves and stems. No dark square, cream paper, checkerboard pattern, background scene, vignette or ground shadow.\nConstraints: no white, pink, purple, burgundy, royal-blue or bright cyan flowers; no metallic flowers or gold glitter; no vase, bow, ribbon, border, frame, text, logo, watermark or extra objects. Only the navy floral arrangement on transparency.",
+  "authorization": "User explicitly requested navy-blue romantic moody flowers for decoration.",
+  "dimensions": {
+    "width": 1122,
+    "height": 1402
+  },
+  "optimization": {
+    "format": "WebP",
+    "quality": 88,
+    "alphaQuality": 100,
+    "transparentBackground": true,
+    "bytes": 368214
+  },
+  "use": "Prepared floral decoration asset for Jahzen and Glyzell; section placement has not been assigned."
+}

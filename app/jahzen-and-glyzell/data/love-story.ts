@@ -11,17 +11,30 @@ const [meeting, proposal] = divideAt(wedding.story[1], "Two days before Glyzell"
 const [firstMeeting, learningEachOther] = divideAt(meeting, "It was our chance");
 const [sharedGoals, choosingMarriage] = divideAt(learningEachOther, "We both understood");
 
-// Keep the complete questionnaire narrative, arranging it into the four
-// reference chapters rather than shortening or rewriting the couple's words.
-export const loveStory = {
-  title: ["A Love That", "Found Its Way."],
-  intro,
-  chapters: [
-    { number: "01", title: "A Simple Beginning", paragraphs: [beginning.replace(intro, "").trim(), acrossTheMiles].filter(Boolean), photo: "hands" },
-    { number: "02", title: "Meeting in Person", paragraphs: [firstMeeting, sharedGoals, choosingMarriage].filter(Boolean), photo: "together" },
-    { number: "03", title: "The Proposal", paragraphs: [proposal].filter(Boolean), photo: "proposal" },
-    { number: "04", title: "A Forever to Look Forward To", paragraphs: [wedding.story[2]], photo: null },
-  ],
-} as const;
+export type StoryMilestoneData = {
+  id: string;
+  label: string;
+  dateTime?: string;
+  title: string;
+  paragraphs: string[];
+};
 
-export type LoveStoryChapter = (typeof loveStory.chapters)[number];
+// Group the complete questionnaire wording without inventing milestone dates.
+export const storyMilestones: StoryMilestoneData[] = [
+  {
+    id: "beginning", label: "2025", dateTime: "2025", title: "A simple beginning",
+    paragraphs: [intro, beginning.replace(intro, "").trim(), acrossTheMiles].filter(Boolean),
+  },
+  {
+    id: "meeting", label: "Six months later", title: "Beyond the screen",
+    paragraphs: [firstMeeting, sharedGoals, choosingMarriage].filter(Boolean),
+  },
+  {
+    id: "proposal", label: "Before her departure", title: "A promise of forever",
+    paragraphs: [proposal].filter(Boolean),
+  },
+  {
+    id: "forever", label: "May 30, 2027", dateTime: "2027-05-30", title: "Our next chapter",
+    paragraphs: [wedding.story[2]],
+  },
+];

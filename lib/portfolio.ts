@@ -4,6 +4,7 @@ import jaydeeBackground from "@/app/jaydee-and-bea/assets/designs/hero-watercolo
 import jaydeeIllustration from "@/app/jaydee-and-bea/assets/designs/hero-couples.webp";
 import { TreeDance, SunlitPortrait } from "@/app/anjo-and-jasmin/prenup-media";
 import { photos as marioInahPhotos } from "@/app/mario-and-inah/data/photos";
+import { prenupMedia as edcelAprealPhotos } from "@/app/edcel-and-apreal/data/photo-media";
 
 export type PortfolioItem = {
  id: string; title: string; category: string; description: string; href: string;
@@ -30,6 +31,20 @@ import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenu
 import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
 
 const invitationCatalog: PortfolioItem[] = [
+  {
+    id: "edcel-and-apreal",
+    title: "Edcel & Apreal",
+    category: "Wedding Invitation",
+    description:
+      "Animated envelope opening, prenup film, love story, photo galleries, music, and RSVP.",
+    href: "https://edcelandaprealwedding.moderninvites.com/",
+    bgImage: edcelAprealPhotos["burgundy-gown-rooftop-terrace-wide.webp"],
+    previewImage: edcelAprealPhotos["burgundy-gown-terrace-linked-arms-full-length.webp"],
+    previewAlt: "Edcel and Apreal arm in arm on a vintage terrace in a black suit and burgundy gown",
+    accent: "#4b0f1f",
+    accentLight: "#e7c9cd",
+    tags: ["Luxury", "Burgundy & Old Rose"],
+  },
   {
     id: "mario-and-inah",
     title: "Mario & Inah",

@@ -1,0 +1,22 @@
+{
+  "authorization": "User supplied these three MP3s and requested adding them to the invitation.",
+  "order": [
+    {
+      "file": "He Knows - Almira Lat (Lyrics) Wedding Song.mp3",
+      "title": "He Knows",
+      "artist": "Almira Lat"
+    },
+    {
+      "file": "Dito Muna Tayo - Syd Hartha ft. Toneejay OPM Pop (Lyric Video).mp3",
+      "title": "Dito Muna Tayo",
+      "artist": "Syd Hartha feat. Toneejay"
+    },
+    {
+      "file": "I DO (CHERISH YOU) - Cover song Michael Pangilinan.mp3",
+      "title": "I Do (Cherish You)",
+      "artist": "Michael Pangilinan · Cover"
+    }
+  ],
+  "processing": "Original audio files are unchanged. Webpack emits content-hashed static media URLs.",
+  "behavior": "User-gesture start, selected-track-only loading, sequential repeat playlist and pause/selection/volume controls."
+}

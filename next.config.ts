@@ -1,6 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.mp3$/i,
+      type: "asset/resource",
+      generator: { filename: "static/media/[name].[contenthash:8][ext]" },
+    });
+    return config;
+  },
   // Concurrent local previews must not overwrite each other's generated assets.
   distDir: process.env.NEXT_DIST_DIR || ".next",
   async redirects() {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Menu, Pause, Play, X } from "lucide-react";
 import { chapters, wedding, type ChapterId } from "../data/wedding";
-import { ClosingPage, FormalInvitation, TimelinePage } from "../sections/InvitationPages";
+import { ClosingPage, FormalInvitation, QuestionsPage, TimelinePage } from "../sections/InvitationPages";
 import StoryPage from "../sections/StoryPage";
 import VenuePage from "../sections/VenuePage";
 import { GodparentsPage, LittleOnesPage, ParentsPage, WeddingPartyPage } from "../sections/EntouragePages";
@@ -18,7 +18,7 @@ import styles from "../styles/wedding.module.css";
 import PhotoSlideshow from "./PhotoSlideshow";
 import { usPhotos, togetherPhotos } from "../data/photos";
 
-const headerLinks: { id: ChapterId; label: string }[] = [{ id: "ceremony", label: "The Wedding Venues" }, { id: "parents", label: "Entourage" }, { id: "rsvp", label: "RSVP" }];
+const headerLinks: { id: ChapterId; label: string }[] = [{ id: "ceremony", label: "The Wedding Venues" }, { id: "parents", label: "Entourage" }, { id: "questions", label: "FAQs" }, { id: "rsvp", label: "RSVP" }];
 const ignoredGesture = "a,button,input,textarea,select,summary,label";
 const musicVolume = 0.4;
 
@@ -101,7 +101,7 @@ export default function Invitation() {
   const pages: Record<ChapterId, React.ReactNode> = {
     invitation: <FormalInvitation />, "our-story": <StoryPage active={opened && !turning} />, ceremony: <VenuePage venue={wedding.venues[0]} active={opened && !turning} />, reception: <VenuePage venue={wedding.venues[1]} active={opened && !turning} />, "the-day": <TimelinePage />,
     parents: <ParentsPage />, godparents: <GodparentsPage />, "wedding-party": <WeddingPartyPage />, "little-ones": <LittleOnesPage />,
-    attire: <AttirePage />, rsvp: <RsvpSection />,
+    attire: <AttirePage />, questions: <QuestionsPage />, rsvp: <RsvpSection />,
     countdown: <CountdownPage enabled={opened && !turning} />,
     "with-love": <ClosingPage />,
     us: <PhotoSlideshow title="Us" photos={usPhotos} enabled={opened && !turning} />,

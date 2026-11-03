@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { SlideshowPhoto } from "../data/photos";
 import { usePhotoSlideshow } from "./usePhotoSlideshow";
+import SlideshowImage from "./SlideshowImage";
 import styles from "../styles/slideshow.module.css";
 import slideshowFlowers from "../assets/design/red.png";
 
@@ -70,9 +71,8 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
         {slideshow.initialLoading && slideshow.failed === null && <p role="status" className="absolute inset-0 grid place-items-center px-4 text-center text-xs">Loading photographs…</p>}
         {size.width > 0 && slideshow.mounted.map(index => {
           const photo = photos[index];
-          const imageWidth = Math.ceil(Math.max(size.width, size.height * photo.src.width / photo.src.height));
           return <div key={`${index}-${slideshow.attempts[index] ?? 0}`} data-photo-layer
-            className={`${styles.slide} pointer-events-none absolute inset-0`}
+            className={`${styles.slide} ${photo.crop ? styles.croppedSlide : ""} pointer-events-none absolute inset-0`}
             role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${photos.length}`}
             aria-hidden={index !== slideshow.active}
             style={{ zIndex: index === slideshow.active ? 2 : index === slideshow.previous ? 1 : 0,
@@ -81,8 +81,7 @@ export default function PhotoSlideshow({ title, photos, fullPage = false, enable
             onTransitionEnd={event => {
               if (event.target === event.currentTarget && event.propertyName === "opacity") slideshow.complete(index);
             }}
-          ><Image src={photo.src} alt={photo.alt} fill quality={85} sizes={`${imageWidth}px`}
-            className="object-cover" style={{ objectPosition: photo.position }} draggable={false}
+          ><SlideshowImage photo={photo} width={size.width} height={size.height}
             onLoad={event => void slideshow.load(index, event)} onError={() => slideshow.handleError(index)} /></div>;
         })}
         {!fullPage && size.width > 0 && <Image

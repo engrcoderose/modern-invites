@@ -1,0 +1,12 @@
+{
+  "file": "vinatge_envelope_blue.png",
+  "kind": "Existing workspace artwork",
+  "source": "Present in the Jahzen and Glyzell artwork folder before this change; original creation/source was not provided in this task.",
+  "authorization": "User requested a small vintage envelope before the entourage title.",
+  "dimensions": {
+    "width": 315,
+    "height": 386
+  },
+  "processing": "No pixel edits. Rendered with responsive Next/Image optimization and preserved transparency.",
+  "use": "Decorative navy floral envelope, centered before the entourage label and heading; 96px on phones and 112px from 640px."
+}

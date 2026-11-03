@@ -1,0 +1,20 @@
+{
+  "file": "guest-notes-flowers.webp",
+  "kind": "User-provided floral decoration with AI background extraction",
+  "tool": "Built-in image_gen edit",
+  "prompt": "Use case: background-extraction. Input image 1 is the EDIT TARGET. Remove only the flat gray background and narrow white backing around this exact floral decoration, replacing all backing outside and between the flowers with genuine transparency. Faithfully preserve the original compact arrangement: the large metallic champagne-gold flower on the right, the dark espresso-brown flower at lower left, and bronze-brown petals/flower at upper left. Keep the original silhouette, overlap, petal shapes, detailed veins, metallic sheen, colors and proportions. Preserve opaque cream/gold highlights on the petals. Do not redesign, recolor, rearrange, add flowers, leaves, stems or ornaments. Keep the complete floral cluster intact with clean anti-aliased edges and a modest transparent margin. No rectangle, white or gray fringe, checkerboard, added shadow, glow, text, watermark or extra objects. Transparent decorative cutout for the bottom-right corner of a dark espresso wedding invitation section.",
+  "editTarget": "C:/Users/rosas/AppData/Local/Temp/codex-clipboard-518daf78-5267-44bb-9571-754a51c5c8a8.png",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1a07c-a9cf-7770-94f4-1d5b9a3a2c86/exec-608d9af6-8559-467b-8d81-91512db65bd8.png",
+  "authorization": "User requested these flowers at the bottom right of the A few loving notes section.",
+  "optimization": "512px-wide WebP, quality 88 and alpha quality 100; transparent background preserved.",
+  "use": "Decorative corner accent in a protected footer area of the guest-notes section, with no overlap on the text.",
+  "dimensions": {
+    "width": 512,
+    "height": 580
+  },
+  "outputBytes": 84992,
+  "alphaRange": [
+    0,
+    255
+  ]
+}

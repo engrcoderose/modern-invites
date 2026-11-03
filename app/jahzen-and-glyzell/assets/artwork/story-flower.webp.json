@@ -1,0 +1,19 @@
+{
+  "file": "story-flower.webp",
+  "kind": "AI-generated botanical ornament",
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: illustration-story.\nAsset type: one small, elegant botanical ornament for a moody romantic wedding invitation.\nReference image 1 is the visual guide for the flower's shape, palette, and pose. Generate a clean, higher-detail botanical illustration matching that reference: a single open ivory cream rose blossom in a gentle side view near the upper center, soft pale blush shadows on the petals, fine antique champagne-gold and warm brown petal edges, a slender naturally curving olive-green stem descending toward the bottom, and one prominent dark muted olive-green leaf pointing toward the lower left. Keep the bloom and stem delicate, like a vintage hand-painted botanical specimen, with subtle brush texture and realistic organic petal and leaf detail.\nComposition: upright portrait canvas approximately 4:5, entire single flower and leaf visible with a modest clear margin, no clipping. Flower head at the top, stem and one leaf below, close to the reference silhouette. This will be displayed as a small centered ornament below a paragraph on a deep espresso background.\nBackground: genuinely transparent everywhere outside the botanical silhouette; no cream paper rectangle, checkerboard, colored field, cast shadow or vignette.\nConstraints: one flower only, no bouquet, vase, ribbon, frame, text, symbols, logos or watermarks. No heavy outline, cartoon styling or shiny metallic petals. Preserve the natural ivory, antique-gold accents and muted olive palette.",
+  "reference": "User-provided codex-clipboard-84a5bd7f-7a04-4718-bfbb-6be866c0be21.png (shape, pose and palette reference)",
+  "authorization": "User explicitly requested generating this flower and placing it after the Our Story paragraph.",
+  "dimensions": {
+    "width": 384,
+    "height": 480
+  },
+  "optimization": {
+    "format": "WebP",
+    "quality": 88,
+    "alphaQuality": 100,
+    "transparentBackground": true
+  },
+  "use": "Decorative ornament centered after the final Our Story paragraph; 80px wide on phones and 96px on larger screens."
+}

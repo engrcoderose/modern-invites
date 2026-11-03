@@ -1,0 +1,28 @@
+{
+  "file": "story-heart-record.webp",
+  "kind": "User-provided artwork with AI background extraction",
+  "tool": "Built-in image_gen edit",
+  "prompt": "Use case: background-extraction. Input image 1 is the EDIT TARGET, not a style reference. Remove only the white background surrounding this exact heart-shaped dark brown vintage vinyl record and make it genuinely transparent. Preserve the original record's heart silhouette, orientation, dark brown color, grooves, scratches, sheen, cream circular label, gold lettering ('Eternal Love Songs' and 'Side A'), and small gold heart. Preserve the object faithfully rather than redrawing or redesigning it. The small central spindle hole may also be transparent, while all cream label material remains opaque. Keep the entire record intact with clean anti-aliased edges and a modest transparent margin, centered on a square canvas. No white fringe or rectangular backing, checkerboard, extra shadows, text, ornaments, glow, scene, or added objects. This is a transparent decorative cutout for a dark espresso wedding invitation.",
+  "editTarget": "C:/Users/rosas/AppData/Local/Temp/codex-clipboard-bf8b4fa2-4fb4-4b96-9c8d-82d7488ce523.png",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1a07c-a9cf-7770-94f4-1d5b9a3a2c86/exec-de3eb884-6df0-40c7-bd37-aa993a6b69cd.png",
+  "authorization": "User requested this decorative image with a clear background before the Our Story title.",
+  "optimization": "512px WebP, quality 88 and alpha quality 100; transparent background preserved.",
+  "use": "Centered decorative ornament above Our Story; 128px on phones and 144px from 640px.",
+  "dimensions": {
+    "width": 512,
+    "height": 512
+  },
+  "outputBytes": 28248,
+  "transparencyVerified": {
+    "alphaRange": [
+      0,
+      255
+    ],
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

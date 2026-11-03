@@ -16,7 +16,7 @@ Refreshing restarts at the opening cover and first invitation page, clearing the
 
 - Bride: **Erlyn Joy E. Sablay**. Groom: **Alfred John Gorgonio**.
 - Dress code: **Casual, Semi-Formal, and Formal**.
-- Color request: **Please avoid: All yellow, All Green, White, Black, and Red**.
+- Color guidance: **Feel free to wear any color you love. We kindly ask that you avoid all-yellow or all-green outfits, as well as white, black, and red.** The dress-code page and FAQ use the same wording.
 - RSVP deadline: **8 November 2026**.
 
 The confirmed timeline is 2:30 PM Guest Arrival, 3:00 PM Ceremony, 5:00 PM Cocktail Hour, 6:00 PM Reception Dinner and 9:00 PM After Party. The schedule may change accordingly. The hashtag remains pending. The couple's 10 real photographs are uploaded to R2 and publicly verified. The supplied Spring Snow by 10CM MP3 is served from `/aljay-and-erlyn/music/spring-snow.mp3`. It starts from the guest's opening gesture, loops at 40% volume, and has a floating play/pause control. The audio uses `preload="none"`; playback errors can be retried.
@@ -27,17 +27,17 @@ The confirmed timeline is 2:30 PM Guest Arrival, 3:00 PM Ceremony, 5:00 PM Cockt
 - `components/Invitation.tsx`: opening state, chapter composition and navigation.
 - `components/OpeningCover.tsx`, `BookLeaf.tsx`, `utils/page-fold.ts`: opening and page transitions.
 - `components/Stationery.tsx`, `WoodlandBackdrop.tsx`: stationery artwork.
-- `sections/`: invitation content, entourage, attire and countdown.
+- `sections/`: invitation content, entourage, attire, FAQs and countdown.
 - `components/PhotoSlideshow.tsx`, `usePhotoSlideshow.ts`, `data/photos.ts`: incremental, decoded CSS crossfades using the couple's 10 supplied photographs. R2 filenames, dimensions, descriptions and focal points are centralized in `data/photos.ts`.
 - `styles/`: scoped visual styling; simple layout uses JSX Tailwind utilities.
 
-Us uses a portrait frame with names on opposite corners. Together fills the page. Quality 85, measured responsive image sizing, outgoing-layer retention, manual photo selection, keyboard controls and failure recovery are preserved. Images mount incrementally rather than fetching the entire gallery initially. Each gallery contains five real photos. The galleries use `https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/`. All 10 public files returned HTTP 200 with the expected dimensions and matching SHA-256 checksums. See `docs/media/r2-photo-upload.md`, `prenup-optimization.json` and `r2-prenup-verification.json`.
+Us uses a portrait frame with names on opposite corners. Together fills the page except for `img-2961.webp`, whose right-side portrait crop is contained on the existing olive background to keep the couple visible head to foot and exclude left-side bystanders. Quality 85, measured responsive image sizing, outgoing-layer retention, manual photo selection, keyboard controls and failure recovery are preserved. Images mount incrementally rather than fetching the entire gallery initially. Each gallery contains five real photos. The galleries use `https://assets.moderninvites.com/aljay-and-erlyn/images/prenups/`. All 10 public files returned HTTP 200 with the expected dimensions and matching SHA-256 checksums. See `docs/media/r2-photo-upload.md`, `prenup-optimization.json` and `r2-prenup-verification.json`.
 
 The source PDF provides attire illustrations, entourage, original QR images and guest policies. The supplied `laced-church.png` and `laced-reception.png` are used on the venue pages with their complete lace frames and flowers. The gifts page and payment details have been removed at the owner's request. Original QR images and the earlier generated garden artwork remain unused source assets.
 
 ## Countdown
 
-The book has 15 chapters. `#countdown` is page 13, followed by RSVP on page 14 and the closing page on page 15. The helpful-details/FAQ page and its navigation links have been removed at the owner’s request; dress code now leads directly to the countdown. The mobile chapter menu and previous/next controls use the same chapter list.
+The book has 16 chapters. The restored FAQ page (`#questions`) is page 13 after dress code, followed by countdown on page 14, RSVP on page 15 and the closing page on page 16. The mobile chapter menu and previous/next controls use the same chapter list.
 
 `wedding.ceremonyISO` is `2026-12-18T15:00:00+08:00`: the confirmed 3 PM ceremony in Philippine time. `sections/CountdownPage.tsx` composes the artwork, date and timer; `components/WeddingCountdown.tsx` owns the one-second clock, and `utils/countdown.ts` contains pure time calculations. The clock uses absolute timestamps, pauses interval updates when hidden or inactive, resyncs on visibility changes, stops at zero, and shows “Our forever has begun.” after the target. Timer updates are not announced every second to screen readers.
 
@@ -119,3 +119,15 @@ The latest entourage background (`entourage-bg-2.png`) is now used across parent
 ## Admin RSVP connection verification
 
 The owner confirmed `aljay-and-erlyn` as the admin event identifier. Scoped ESLint, TypeScript and whitespace checks passed. An environment-free preview with synthetic access/search/party/submit routes verified the exact event slug, no-match feedback, explicit invitation selection, two-guest attendance and dietary/contact/message payloads, submission failure and successful retry, and dialog close/focus restoration. The initial card was inspected at 320×568, 390×844 and 1280×720 with no horizontal overflow. Synthetic replies were handled only by local fixture routes; no real guest data, admin records, credential files or Supabase connection was used. Live lookup and persistence remain for the owner to verify.
+
+## Coastal photograph crop
+
+The owner requested removing the people on the left of Together photo 4 (`img-2961.webp`). Its normalized crop is configured in `data/photos.ts`, and `components/SlideshowImage.tsx` displays that region without changing or duplicating the original R2 asset. A contained 3:4 frame preserves both subjects from head to foot on desktop and mobile. The full incoming crop layer has an opaque olive background for stable crossfades. Responsive `sizes` reflect the source image’s actual rendered width; quality remains 85. Desktop/mobile crops and transitions into/out of the image were checked in an environment-free preview using exact local exports. Sampled painted frames around transition completion remained on the incoming image. Scoped ESLint, TypeScript and whitespace checks passed; no console errors or horizontal overflow were observed.
+
+## First Us photo replacement
+
+The owner supplied `IMG_3981.heic` to replace the first Us slideshow photograph. Its optimized local static import is `assets/photos/img-3981.webp` (2033×2560, quality 85, 964,358 bytes), with source/output checksums in its sidecar. Color is converted to sRGB, orientation baked into pixels, and embedded metadata removed. The source HEIC is unchanged. Names, flower decoration, remaining gallery photos, slideshow timing and the separate love-story bridge image are preserved. Existing R2 URLs are unchanged; this replacement needs no upload.
+
+## Fourth Us photo replacement
+
+The supplied `IMG_2789.HEIC` replaces the dark pavilion photograph in Us slide 4. Its local static import is `assets/photos/img-2789.webp`: 1920×2560, quality 85, 1,168,194 bytes, with sRGB conversion and metadata removal. The source is unchanged and no R2 upload is needed. The portrait composition, names, flower, other slides and three-second timing are preserved.

@@ -21,7 +21,7 @@ export default function StoryPage({ active }: { active: boolean }) {
 
   return (
     <motion.div
-      className="flex min-h-full w-full flex-col items-center justify-center gap-6 px-6 py-5 sm:px-10"
+      className="flex min-h-full w-full flex-col items-center justify-center gap-6 px-6 pb-20 pt-10 sm:px-10 md:pb-5"
       initial={false} animate={active ? "visible" : "hidden"}
       variants={{ hidden: {}, visible: {} }} data-reveal-managed
     >

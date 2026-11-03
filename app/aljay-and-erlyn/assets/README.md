@@ -25,7 +25,7 @@ Current reference-design assets:
 
 - `design/ribbon-deco.png`: owner-supplied ivory ribbon, statically imported unchanged above the dress-code heading. Responsive height is 48–72px, with decorative empty alt text.
 
-- `design/flower-with-green-ribbon.png`: owner-supplied flower retained as an unused source asset after removal of the FAQ page.
+- `design/flower-with-green-ribbon.png`: owner-supplied flower restored below the FAQ list. It stays below expanded answers and shrinks to 48px on short screens.
 
 - `design/story-title-frame.png`: owner-supplied transparent ornamental frame copied unchanged from `codex-clipboard-afc23d1a-4df2-436a-a896-aeef0ed684fc.png`. It replaces the earlier drawn frame; the story title remains editable HTML through `FramedHeading` in `components/Stationery.tsx`. The original frame asset is reused without duplication.
 
@@ -40,3 +40,7 @@ Current reference-design assets:
 - `design/entourage-bg-2.png`: latest owner-supplied 1824 × 2879 olive damask background, statically imported unchanged for all four entourage chapters. Keep the established 40% opacity over deep olive #30391f; Next Image uses responsive cover sizing for this asset’s aspect ratio.
 
 - `design/pastel-butterflies.png`: transparent pastel butterfly cluster, placed beside the upper-right of the framed couple on the countdown page. Responsive sizing preserves the faces and single-line heading.
+
+- `photos/img-3981.webp`: replacement first photo of the Us slideshow, converted from the supplied `IMG_3981.heic` through libheif and Sharp. Export: 2033×2560 WebP, quality 85, sRGB, with orientation baked in and metadata removed. The sidecar records source/output checksums and dimensions. This static import receives a content-hashed URL; no R2 upload is needed. The love-story bridge photograph remains unchanged.
+
+- `photos/img-2789.webp`: replacement fourth photo of the Us slideshow, converted from the supplied `IMG_2789.HEIC`. It replaces the dark pavilion photograph with the brighter railing/lantern photograph. Export: 1920×2560 WebP, quality 85, sRGB, metadata removed; the sidecar records provenance and checksums. Served through a content-hashed static import without an R2 upload.

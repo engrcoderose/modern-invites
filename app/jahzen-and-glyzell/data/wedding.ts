@@ -8,6 +8,7 @@ export const wedding = {
     name: "La Fina Grand Hall",
     detail: "by Kastelo Verde",
     address: "McArthur Highway, Talaga, Capas, Tarlac, Philippines",
+    arrivalNote: "Guest arrival at 4:00 PM. Cocktail hour at 5:00 PM.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=La+Fina+Grand+Hall+by+Kastelo+Verde+Talaga+Capas+Tarlac",
   },
   timeline: [
@@ -34,6 +35,7 @@ export const wedding = {
     { role: "Song book bearer", names: ["Jóhann Abbý Gaudillo"] },
   ],
   attire: {
+    reservedNote: "White is reserved for the bride and mocha brown for the groom. We kindly request that guests refrain from wearing these reserved colors.",
     gentlemen: "Formal suits in Navy Blue or Espresso Brown are kindly requested.",
     ladies: "Elegant, floor-length dresses or gowns are kindly requested. Refined styles and fabrics such as silk or satin are encouraged, and a touch of gold is welcome, depending on your preference.",
     palette: [
@@ -45,6 +47,6 @@ export const wedding = {
   guestNotes: [
     { title: "Reserved seating", text: "We have reserved a seat for each guest named on your invitation. We kindly ask that attendance be limited to those listed. Thank you for your understanding and for celebrating this special occasion with us." },
     { title: "An adults-only celebration", text: "As we prepare for our special day, we kindly request that our wedding celebration be an adults-only occasion. A special exception has been made for Jaiden, Jace, and Jóhann, who are members of our immediate family. We sincerely appreciate your kind understanding and look forward to celebrating this meaningful occasion with you." },
-    { title: "A note on gifts", text: "The joy of sharing our special day with you means more to us than words can express. For those who wish to give a gift, monetary gifts would be graciously appreciated. However, any gift given from the heart will be received with love and gratitude." },
   ],
+  giftNote: "The joy of sharing our special day with you means more to us than words can express. For those who wish to give a gift, monetary gifts would be graciously appreciated. However, any gift given from the heart will be received with love and gratitude.",
 } as const;

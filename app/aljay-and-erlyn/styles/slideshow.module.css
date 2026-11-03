@@ -1,10 +1,14 @@
 .gallery { color: var(--ae-paper); }
-.frame { background: #293323; }
+.frame, .croppedSlide { background: #293323; }
 .slide { transition-property: opacity; transition-timing-function: ease-in-out; }
+.photo { object-position: var(--ae-photo-position); }
 .controls { border-radius: 999px; background: #172015a6; }
 .dot { width: 6px; background: #cbd2bb; transition: width 180ms ease, background 180ms ease; }
 .currentDot { width: 20px; background: #f8f5e9; }
 .photoNames { color: var(--ae-paper); font-family: var(--font-ae-display), cursive; font-weight: 400; line-height: 1.05; text-shadow: 0 2px 15px #172015b3; }
+@media (max-width: 767px) {
+  .photo { object-position: var(--ae-photo-mobile-position); }
+}
 @media (prefers-reduced-motion: reduce) {
   .slide, .dot { transition: none; }
 }

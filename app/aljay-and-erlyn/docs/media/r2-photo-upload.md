@@ -14,7 +14,7 @@ The invitation is configured for:
 
 The owner uploaded all 10 files under this path. Each public URL returned HTTP 200 with image/webp content, matching dimensions and a matching SHA-256 checksum. Verification used public GET requests only, with no R2 credentials or bucket changes. See `r2-prenup-verification.json` for the results.
 
-Us: img-2541.webp, img-2632.webp, img-2911.webp, img-4008.webp, img-3833.webp.
+Us: local `assets/photos/img-3981.webp`, R2 img-2632.webp, R2 img-2911.webp, local `assets/photos/img-2789.webp`, then R2 img-3833.webp. The supplied IMG_3981.heic replaces the first gallery photo and IMG_2789.HEIC replaces the dark fourth pavilion photo. R2 img-2541.webp remains the love-story photograph.
 Together: img-3876.webp, img-2927.webp, img-2949.webp, img-2961.webp, img-3707.webp.
 
 See prenup-optimization.json in the client docs for source mappings, dimensions, object keys, sizes and SHA-256 checksums. Replacing an image later requires a new filename and matching configuration update; do not append a fresh timestamp on every request.

@@ -1,0 +1,17 @@
+{
+  "file": "venue-lily-linework.webp",
+  "kind": "User-supplied floral linework with background extraction",
+  "tool": "Built-in image_gen edit",
+  "prompt": "Use case: background-extraction. Input image 1 is the edit target. Faithfully extract the existing navy-blue line drawing of the vertical lily branch, keeping its three flowers, stems, leaves, arrangement, proportions and fine hand-drawn ink strokes. Remove ALL white paper, including the white interiors within petals, leaves and every negative space, so only the blue ink strokes remain on a genuinely transparent background. The petal interiors must be transparent, not white filled shapes. Do not add shading, fills, color washes, new strokes, extra foliage, text, borders, shadows or ornaments. Keep the complete branch centered and intact, with only a modest transparent margin around the drawing. Clean anti-aliased lines without a white fringe. Preserve the supplied drawing rather than redesigning it. This will be used as a subtle CSS alpha-mask decoration on a wedding venue section.",
+  "editTarget": "C:/Users/rosas/AppData/Local/Temp/codex-clipboard-62752b79-7dbe-4260-bab8-0c0a93e8e889.png",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1a07c-a9cf-7770-94f4-1d5b9a3a2c86/exec-dbb60f47-ed62-46a6-b13b-767055bda8a6.png",
+  "authorization": "User requested simple flowers at the venue like the countdown decoration, supplying both drawings.",
+  "processing": "Transparent linework resized and encoded as WebP at quality 85 and alpha quality 95; scoped CSS uses its alpha as a muted antique-gold mask.",
+  "use": "Lower-left venue edge flourish.",
+  "dimensions": {
+    "width": 640,
+    "height": 1067
+  },
+  "outputBytes": 186532,
+  "workspaceAsset": "C:/Users/rosas/Documents/Work/modern-invites/app/jahzen-and-glyzell/assets/artwork/venue-lily-linework.webp"
+}

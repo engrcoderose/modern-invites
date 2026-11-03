@@ -1,0 +1,6 @@
+{
+  "file": "countdown-flowers.png",
+  "source": "app/ryan-and-anne/assets/design/flower-outline.png",
+  "kind": "existing repository decorative line artwork",
+  "use": "Client-local copy for the user-selected countdown layout; no image generation"
+}

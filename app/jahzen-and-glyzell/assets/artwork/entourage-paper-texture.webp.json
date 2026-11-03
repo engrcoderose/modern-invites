@@ -1,0 +1,15 @@
+{
+  "file": "entourage-paper-texture.webp",
+  "kind": "AI-generated handmade-paper texture",
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: photorealistic-natural. Asset type: seamless square background texture for a premium moody romantic wedding invitation. Create a photorealistic straight-on macro scan of fine handmade cotton paper, edge to edge, with delicate pressed fibers, tiny natural flecks and gently mottled paper density. The entire image is only paper material, no objects or scene. Neutral warm medium gray, approximately #808080 overall, with restrained fine light/dark variation, so the texture can be blended subtly over an existing dark espresso background in CSS without changing its hue. Flat even diffuse lighting, tactile matte finish, refined archival stationery paper. Seamless repeat on all four edges, uniform scale and exposure, square composition, around 1024 by 1024 pixels. Keep the texture quiet and fine enough for readable cream wedding-party names over it. No text, lettering, watermark, symbols, lines, border, vignette, creases, folds, tears, stains, burnt edges, rough concrete, fabric weave, harsh shadows or glossy highlights. Opaque background.",
+  "authorization": "User requested a paper-like background pattern for the entourage section.",
+  "source": "C:/Users/rosas/.codex/generated_images/01a1a07c-a9cf-7770-94f4-1d5b9a3a2c86/exec-16dcbc3f-38d3-4d8a-9f05-58b290a797ef.png",
+  "optimization": "Resized to 1024px square and encoded as WebP at quality 85. Opaque texture blended in scoped CSS over the existing espresso surface.",
+  "use": "Decorative, non-interactive, approaching-viewport-loaded background in the entourage section only.",
+  "dimensions": {
+    "width": 1024,
+    "height": 1024
+  },
+  "outputBytes": 103078
+}

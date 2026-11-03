@@ -23,6 +23,5 @@ export default function SamplePhoto({ src, alt, sizes, priority = false, positio
   return <figure ref={frame} className={`${styles.photo} relative h-full w-full overflow-hidden`}>
     <motion.div className="absolute inset-0" style={zoom ? { scale: zoom } : { scale: 1 }}><Image src={src} alt={alt} fill sizes={sizes} priority={priority} loading={priority ? undefined : nearby ? "eager" : "lazy"} className="object-cover" style={{ objectPosition: position }} /></motion.div>
     {shade && <div className={`${styles.photoShade} pointer-events-none absolute inset-0`} />}
-    <figcaption className={`${styles.sampleCaption} absolute bottom-3 left-3 z-10 px-3 py-1.5`}>Placeholder photo · to be replaced</figcaption>
   </figure>;
 }

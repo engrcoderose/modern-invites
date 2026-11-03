@@ -1,0 +1,15 @@
+{
+  "file": "story-background-pattern.webp",
+  "kind": "Existing user-requested ornamental background",
+  "source": "app/ryan-and-anne/assets/design/bg-pattern.png",
+  "authorization": "User requested Ryan and Anne background patterns for Jahzen and Glyzell love story section.",
+  "processing": "Lossless WebP format conversion only; original transparency preserved. Grayscale is applied in scoped CSS to match the reference.",
+  "dimensions": {
+    "width": 1366,
+    "height": 1427
+  },
+  "alphaMax": 14,
+  "sourceBytes": 649412,
+  "outputBytes": 383998,
+  "use": "Decorative repeating background in the Our Story section only."
+}

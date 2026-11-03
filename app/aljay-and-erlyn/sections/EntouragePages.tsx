@@ -10,7 +10,7 @@ function PairedNames({ pairs, headings }: { pairs: string[][]; headings?: readon
 }
 
 export function ParentsPage() {
-  return <div className="w-full max-w-[740px] text-center"><Ornament /><div className="mt-6"><PageHeading>With Love and Gratitude</PageHeading></div><div className="space-y-10 sm:space-y-12">{parents.map((group) => <section key={group.role} data-reveal><h3 className={`${styles.entourageRole} mb-4`}>{group.role}</h3><div className={`${styles.parentNames} grid grid-cols-2 gap-x-6`}>{group.names.map((name, index) => <p key={name} className={index === 0 ? "text-right" : "text-left"}>{name}</p>)}</div></section>)}</div></div>;
+  return <div className="w-full max-w-[740px] text-center"><Ornament /><div className="mt-6"><PageHeading>With Love and Gratitude</PageHeading></div><div className="space-y-10 sm:space-y-12">{parents.map((group) => <section key={group.role} data-reveal><h3 className={`${styles.entourageRole} mb-4`}>{group.role}</h3><div className={`${styles.parentNames} grid grid-cols-2 gap-x-6`}>{group.names.map((name, index) => <p key={name} className={group.names.length === 1 ? "col-span-2 text-center" : index === 0 ? "text-right" : "text-left"}>{name}</p>)}</div></section>)}</div></div>;
 }
 
 export function GodparentsPage() {

@@ -1,0 +1,19 @@
+{
+  "file": "invitation-collage.webp",
+  "kind": "AI-generated wedding collage of fictional adult subjects",
+  "tool": "Built-in image_gen",
+  "prompt": "Use case: photorealistic-natural.\nAsset type: one finished photographic collage asset for a moody, romantic wedding invitation website, no text.\nReference image 1 is composition and mood guidance, not an identity reference. Generate new fictional adult wedding subjects, not a claimed portrait of a real couple.\nPrimary request: closely follow the reference's two-photo arrangement. A tall, straight-edged rectangular color photograph occupies the upper-left and center: a stylish adult bride and groom embracing or sharing a gentle kiss in an intimate old stone city lane at dusk, full bodies visible, with a small warm light at the far end. He wears a midnight navy suit, she an elegant ivory bridal dress. Deep charcoal, espresso and restrained amber highlights, realistic photographic texture. Overlapping the rectangular photograph's lower-right corner is a large, upright oval antique champagne-gold picture frame, with finely carved romantic baroque ornament, realistic gold relief and subtle soft shadow. Inside that oval is a different close-up black-and-white photograph of the same fictional newlyweds sharing a tender kiss, natural hands and facial anatomy.\nComposition: portrait canvas approximately 4:5. The rectangular photo spans roughly x=8%-66%, y=4%-70%. The gold oval spans roughly x=49%-96%, y=45%-96%. Keep the entire ornate oval frame inside the canvas. The frame and the rectangle are separate layered objects, with empty space around their silhouettes like the reference.\nBackground: genuinely transparent outside both photographs and the oval frame, including the upper-right and lower-left negative space. No paper rectangle, no opaque cream backdrop, no checkerboard baked into the image.\nStyle: refined editorial wedding photography, romantic and atmospheric, restrained antique gold, no exaggerated fantasy effects.\nConstraints: no lettering, names, logos, watermarks, captions, extra frames, flowers or interface elements. This is only the finished collage artwork, not a screenshot or website mockup. Preserve crisp frame ornament and believable photographic detail.",
+  "reference": "User-provided codex-clipboard-42a582bb-8b06-42d2-a177-c9546c7e11c1.png (composition and mood only)",
+  "authorization": "User explicitly requested generation for the invitation section; limited exception to the earlier placeholders-only preference.",
+  "dimensions": {
+    "width": 1122,
+    "height": 1402
+  },
+  "optimization": {
+    "format": "WebP",
+    "quality": 88,
+    "alphaQuality": 100,
+    "transparentBackground": true
+  },
+  "use": "Invitation message section only; does not depict Jahzen and Glyzell."
+}

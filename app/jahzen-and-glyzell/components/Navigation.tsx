@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import styles from "../styles/invitation.module.css";
-const links = [{ href: "#story", label: "Our story" }, { href: "#celebration", label: "The celebration" }, { href: "#entourage", label: "Entourage" }, { href: "#gallery", label: "Gallery" }, { href: "#details", label: "Guest details" }];
+const links = [{ href: "#gallery", label: "Gallery" }, { href: "#story", label: "Our story" }, { href: "#entourage", label: "Entourage" }, { href: "#celebration", label: "The celebration" }, { href: "#details", label: "Guest details" }];
 export default function Navigation() {
   const [expanded,setExpanded] = useState(false);
   const [scrolled,setScrolled] = useState(false);
