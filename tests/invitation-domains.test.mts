@@ -8,6 +8,27 @@ import {
 import nextConfig from "../next.config.ts";
 import { getInvitationUrl } from "../lib/invitation-url.ts";
 
+test("Edcel and Apreal's public domain serves the invitation and preserves guest links", async () => {
+  const origin = "https://edcelandaprealwedding.moderninvites.com";
+  assert.equal(getInvitationUrl("edcel-and-apreal"), `${origin}/`);
+  const response = await unstable_getResponseFromNextConfig({ url: `${origin}/?ref=invitation`, nextConfig });
+  assert.equal(getRewrittenUrl(response), `${origin}/edcel-and-apreal?ref=invitation`);
+  assert.equal(getRedirectUrl(response), null);
+});
+
+test("Edcel and Apreal's APIs and media stay outside the root rewrite", async () => {
+  const origin = "https://edcelandaprealwedding.moderninvites.com";
+  for (const pathname of [
+    "/api/rsvp/access", "/_next/image", "/icon.png", "/edcel-and-apreal",
+    "/edcel-and-apreal/music/iris-jada-facer-b2861c80.mp3",
+    "/edcel-and-apreal/video/save-the-date-1080p-07f4f465.mp4",
+  ]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `${origin}${pathname}`, nextConfig });
+    assert.equal(getRewrittenUrl(response), null);
+    assert.equal(getRedirectUrl(response), null);
+  }
+});
+
 test("Ryan and Anne's final domain serves the invitation and preserves guest links", async () => {
   const origin = "https://ryanandannewedding.moderninvites.com";
   assert.equal(getInvitationUrl("ryan-and-anne"), `${origin}/`);
@@ -90,6 +111,9 @@ test("the main site and nonmatching hosts keep their root routes", async () => {
   for (const host of [
     "moderninvites.com",
     "www.moderninvites.com",
+    "otheredcelandaprealwedding.moderninvites.com",
+    "edcelandaprealweddingXmoderninvitesXcom",
+    "edcelandaprealwedding.moderninvites.com.example.org",
     "otheranjoandjasminwedding.moderninvites.com",
     "anjoandjasminweddingXmoderninvitesXcom",
     "anjoandjasminwedding.moderninvites.com.example.org",

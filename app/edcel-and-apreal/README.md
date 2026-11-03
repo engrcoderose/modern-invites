@@ -1,6 +1,8 @@
 # Edcel & Apreal
 
-Invitation route: `/edcel-and-apreal`. This client uses the repository's existing Next.js, Tailwind, Motion and Lucide dependencies, the supplied New Icon Script font and root Playfair Display font.
+Public URL: `https://edcelandaprealwedding.moderninvites.com/`. This client uses the repository's existing Next.js, Tailwind, Motion and Lucide dependencies, the supplied New Icon Script font and root Playfair Display font.
+
+Only `/` on that exact hostname rewrites internally to `/edcel-and-apreal`, preserving query parameters. Direct requests to the old `/edcel-and-apreal` page return HTTP 404 on all deployed hosts, including the main domain, deployment previews and the new subdomain. The page remains available on `localhost`, `127.0.0.1` and `[::1]` for local development and production previews. Media and API paths are excluded from this page-only restriction. The dashboard invitation link and canonical URL use the new domain; the RSVP event slug, guest records and media URLs remain unchanged. Deploy the routing changes to activate this behavior after the owner's Vercel/DNS setup.
 
 ## Structure
 
@@ -43,5 +45,7 @@ Photo crossfades, text reveals, countdown flowers, decorative parallax, timeline
 The confirmed event slug `edcel-and-apreal` connects the existing shared SmartRsvpFlow. The backend supplies invitation access, guest records, household capacity, deadlines and response rules. This client does not invent database identifiers or create event records.
 
 Never load real environment files, credentials or Supabase for checks. Use an isolated frontend copy with synthetic RSVP data. Run appropriate scoped lint, TypeScript and isolated production-build checks. Real iOS Safari and live RSVP verification require separate checks within the repository's access boundaries.
+
+Domain regressions are covered by `tests/invitation-domains.test.mts`, `tests/invitation-route-access.test.mts` and `tests/client-dashboard.test.mts`. The middleware tests use synthetic environments and replace the auth import before execution, preventing backend access. The isolated production check verifies the public root, retired-path 404s, localhost access, canonical metadata and unchanged API/media routing.
 
 The November 2 cleanup removed unused media, generation instructions and old agent review records. Active application files, animation styles, content data and runtime media were preserved without modification.

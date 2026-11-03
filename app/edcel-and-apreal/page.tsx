@@ -24,6 +24,7 @@ import { attirePhotoBreak, entouragePhotoBreak, entouragePortraitBreak, reminder
 export const metadata: Metadata = {
   title: `${wedding.couple.display} | ${wedding.date.display}`,
   description: "Join Edcel & Apreal as they celebrate their wedding on December 4, 2026 in Antipolo City, Rizal.",
+  alternates: { canonical: "https://edcelandaprealwedding.moderninvites.com/" },
   robots: { index: false, follow: false },
 };
 

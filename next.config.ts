@@ -62,6 +62,16 @@ const nextConfig: NextConfig = {
           has: [
             {
               type: "host",
+              value: "edcelandaprealwedding\\.moderninvites\\.com",
+            },
+          ],
+          destination: "/edcel-and-apreal",
+        },
+        {
+          source: "/",
+          has: [
+            {
+              type: "host",
               value: "ryanandannewedding\\.moderninvites\\.com",
             },
           ],

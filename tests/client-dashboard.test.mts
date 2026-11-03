@@ -36,6 +36,7 @@ const assignedEvent: AssignedDashboardEvent = {
 
 test("View invitation uses the public domain for migrated invitations", () => {
   for (const [slug, url] of [
+    ["edcel-and-apreal", "https://edcelandaprealwedding.moderninvites.com/"],
     ["ryan-and-anne", "https://ryanandannewedding.moderninvites.com/"],
     ["mario-and-inah", "https://marioandinahwedding.moderninvites.com/"],
     ["anjo-and-jasmin", "https://anjoandjasminwedding.moderninvites.com/"],
