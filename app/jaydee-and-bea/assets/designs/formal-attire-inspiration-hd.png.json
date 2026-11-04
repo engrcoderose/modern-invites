@@ -1,0 +1,18 @@
+{
+  "generation_tool": "built-in image_gen",
+  "intent": "high-resolution redraw",
+  "source_artwork": "https://assets.moderninvites.com/jaydee-and-bea/images/designs/formal-attire-inspiration.webp",
+  "original_dimensions": [
+    397,
+    150
+  ],
+  "native_generated_dimensions": [
+    2048,
+    768
+  ],
+  "output": "formal-attire-inspiration-hd.png",
+  "transparent_background": true,
+  "processing": "Retained the native generated resolution. Recompressed as PNG and cleared RGB values only in fully transparent pixels; visible artwork and alpha were preserved. The generated master remains untouched.",
+  "usage": "Dress Code attire inspiration illustration",
+  "prompt": "Use case: style-transfer / high-resolution redraw. Recreate the supplied transparent wedding attire inspiration illustration as a crisp, high-definition editorial watercolor fashion illustration. This is a redraw with newly resolved garment details, not a blurry enlargement. Preserve the exact arrangement: SEVEN full-length adult figures, FOUR women and THREE men, in FOUR well-separated groups across a single panoramic row: (1) a woman in an olive-green thin-strap floor-length gown beside a bearded man in an ivory long-sleeve barong-style shirt, beige trousers and brown shoes; (2) one woman alone in a champagne sleeveless floor-length gown, one hand on her hip; (3) a man in an ivory long-sleeve barong-style shirt and beige trousers beside a woman in a flowing sleeveless ivory dress with a delicate sage floral print; (4) a woman in an ivory floral midi dress with short puff sleeves, beige heels and a small tan handbag beside a glasses-wearing man in an olive-green collared long-sleeve shirt and light cream trousers. Follow the reference's poses, relative heights, outfit silhouettes and palette closely. All figures must be fully visible from head to toe, with complete shoes and hems, aligned on the same ground baseline, and no overlaps between the four groups. Keep faces intentionally minimal and stylized, as in a fashion plate, while rendering hair, seams, embroidered shirt fronts, floral prints, draping fabric and garment edges cleanly and elegantly. Soft watercolor shading with refined, sharp garment contours; natural ivory, champagne, nude, sage and olive colors. Wide panoramic 8:3 canvas at the highest available native resolution, ideally 3200 x 1200 or at least 2400 pixels wide. Leave only modest transparent margins above and below and clear spacing between groups. Output a genuinely transparent PNG: no lavender or paper backdrop, no floor, opaque rectangle, text, labels, border, logo, watermark or cast shadows. Do not add people or change the attire types."
+}

@@ -40,7 +40,7 @@ export default function Countdown() {
           (label, index) => (
             <Fragment key={label}>
               {index > 0 && <span aria-hidden="true" className={styles.numerals}>:</span>}
-              <ScrollLayer profile="countdown-value" phase={0.07 + index * 0.015} className="min-w-0">
+              <ScrollLayer profile="countdown-value" staggerIndex={2 + index} className="min-w-0">
                 <span className={`${styles.numerals} block tabular-nums`}>
                   {remaining ? String(remaining[label]).padStart(2, "0") : "—"}
                 </span>

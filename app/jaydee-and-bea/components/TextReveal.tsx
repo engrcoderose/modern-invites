@@ -7,11 +7,11 @@ interface TextRevealProps {
   className?: string;
   id?: string;
   dateTime?: string;
-  phase?: number;
+  staggerIndex?: number;
   "aria-describedby"?: string;
 }
 
 // Text owns its timed entrance; the wrapper preserves the existing block layout.
-export default function TextReveal({ as = "p", phase = 0, ...props }: TextRevealProps) {
-  return <div><ScrollLayer as={as} profile="text" phase={phase} {...props} /></div>;
+export default function TextReveal({ as = "p", staggerIndex = 0, ...props }: TextRevealProps) {
+  return <div><ScrollLayer as={as} profile="text" staggerIndex={staggerIndex} {...props} /></div>;
 }

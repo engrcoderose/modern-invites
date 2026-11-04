@@ -1,4 +1,6 @@
 import { remoteImage } from "../utils/remote-image";
+import washedRoseUrn from "../assets/designs/rose-urn-washed-watercolor.png";
+import hdFormalAttire from "../assets/designs/formal-attire-inspiration-hd.png";
 
 const designBasePath = "jaydee-and-bea/images/designs";
 const designImage = (filename: string, width: number, height: number) =>
@@ -11,8 +13,8 @@ export const pavilion = designImage("gardern-arch.webp", 354, 315);
 export const leafyDivider = designImage("vines-1.webp", 315, 82);
 export const rightVine = designImage("flower-vines.webp", 319, 672);
 export const leftVine = designImage("flower-vines-2.webp", 389, 702);
-export const roseUrn = designImage("whimsi-pink-flower.webp", 353, 356);
-export const formalAttire = designImage("formal-attire-inspiration.webp", 397, 150);
+export const roseUrn = washedRoseUrn;
+export const formalAttire = hdFormalAttire;
 export const churchArtwork = designImage("church-image.webp", 1195, 896);
 export const receptionArtwork = designImage("reception-image.webp", 1195, 896);
 export const afterPartyArtwork = designImage("after-party-image.webp", 1033, 768);

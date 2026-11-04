@@ -1,10 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { animate } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import bow from "../assets/silver-satin-bow.webp";
-import { createRibbonRenderer } from "../utils/ribbon-renderer";
-import { RIBBON_RELEASE_SECONDS, smooth } from "../utils/ribbon-motion";
-import styles from "../styles/opening.module.css";
+import bow from "./assets/silver-satin-bow.webp";
+import { createRibbonRenderer } from "./utils/ribbon-renderer";
+import { RIBBON_RELEASE_SECONDS, smooth } from "./utils/ribbon-motion";
+import styles from "./styles/opening.module.css";
 
 export default function SatinBow({ releasing, onReleased }: { releasing: boolean; onReleased: () => void }) {
   const canvas = useRef<HTMLCanvasElement>(null);

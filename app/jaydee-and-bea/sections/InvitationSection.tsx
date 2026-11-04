@@ -21,7 +21,7 @@ export default function InvitationSection() {
       </div>
       <div className="relative mx-auto w-full max-w-5xl">
         <ScrollLayer as="time" profile="countdown-copy" dateTime={wedding.date.iso} className={`${styles.date} block text-sm leading-6 sm:text-base lg:text-lg`}>{wedding.date.display}</ScrollLayer>
-        <ScrollLayer as="h2" profile="countdown-copy" phase={0.035} id="jb-invitation-title" className={`${styles.heading} mt-2 text-balance`}>Counting down to our wedding day</ScrollLayer>
+        <ScrollLayer as="h2" profile="countdown-copy" staggerIndex={1} id="jb-invitation-title" className={`${styles.heading} mt-2 text-balance`}>Counting down to our wedding day</ScrollLayer>
         <p className="sr-only">Together with our families, we, {wedding.couple.display}, invite you to join us as we begin our married life. Your presence would make our day all the more beautiful.</p>
         <Countdown />
       </div>

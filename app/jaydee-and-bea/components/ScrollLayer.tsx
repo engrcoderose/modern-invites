@@ -1,36 +1,39 @@
 "use client";
 
 import { motion, useTransform } from "motion/react";
-import type { ReactNode } from "react";
+import type { ReactNode, MouseEventHandler } from "react";
 import { useScrollScene } from "./ScrollScene";
 import { scrollProfiles, type ScrollProfileName } from "../utils/scroll-profiles";
-import { isTextReveal, type TextRevealProfile } from "../utils/text-reveals";
-import ScrollTextLayer from "./ScrollTextLayer";
+import { isEntranceProfile, type EntranceProfile } from "../utils/scroll-entrance";
+import ScrollEntrance from "./ScrollEntrance";
 
 export interface ScrollLayerProps {
   children?: ReactNode;
   className?: string;
   id?: string;
-  as?: "div" | "figure" | "header" | "h2" | "h3" | "h4" | "p" | "li" | "time" | "article";
+  as?: "div" | "figure" | "header" | "h2" | "h3" | "h4" | "p" | "li" | "time" | "article" | "button" | "details";
   dateTime?: string;
-  profile: ScrollProfileName | TextRevealProfile;
-  phase?: number;
+  profile: ScrollProfileName | EntranceProfile;
+  staggerIndex?: number;
+  type?: "button";
+  onClick?: MouseEventHandler<HTMLElement>;
   "aria-hidden"?: boolean;
   "aria-label"?: string;
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
+  "aria-live"?: "off" | "polite" | "assertive";
 }
 
 export default function ScrollLayer({ profile, ...props }: ScrollLayerProps) {
-  return isTextReveal(profile)
-    ? <ScrollTextLayer profile={profile} {...props} />
+  return isEntranceProfile(profile)
+    ? <ScrollEntrance profile={profile} {...props} />
     : <ScrollParallaxLayer profile={profile} {...props} />;
 }
 
-function ScrollParallaxLayer({ as = "div", profile, phase = 0, ...props }: Omit<ScrollLayerProps, "profile"> & { profile: ScrollProfileName }) {
+function ScrollParallaxLayer({ as = "div", profile, staggerIndex: _staggerIndex, ...props }: Omit<ScrollLayerProps, "profile"> & { profile: ScrollProfileName }) {
   const { progress, enabled } = useScrollScene();
   const config = scrollProfiles[profile];
-  const input = config.input.map((point, index) => index === config.input.length - 1 ? 1 : Math.min(0.95, point + phase));
+  const input = config.input;
   const zeros = input.map(() => 0);
   const ones = input.map(() => 1);
   const x = useTransform(progress, input, config.x ?? zeros);

@@ -5,11 +5,22 @@ import { Pause, Play } from "lucide-react";
 import { wedding } from "../data/wedding-data";
 
 export interface BackgroundMusicHandle {
+  prepare: () => void;
   play: () => void;
+}
+
+const MUSIC_VOLUME = 0.4;
+interface MusicOutput {
+  context: AudioContext;
+  gain: GainNode;
+  source: MediaElementAudioSourceNode;
 }
 
 const BackgroundMusic = forwardRef<BackgroundMusicHandle, { visible: boolean }>(function BackgroundMusic({ visible }, ref) {
   const audio = useRef<HTMLAudioElement>(null);
+  const output = useRef<MusicOutput | null>(null);
+  const prepared = useRef(false);
+  const started = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,7 +30,17 @@ const BackgroundMusic = forwardRef<BackgroundMusicHandle, { visible: boolean }>(
     setError(null);
     if (player.error) player.load();
     try {
-      await player.play();
+      if (!started.current) {
+        started.current = true;
+        if (player.readyState >= HTMLMediaElement.HAVE_METADATA) player.currentTime = 0;
+      }
+      const graph = output.current;
+      if (graph) graph.gain.gain.setValueAtTime(MUSIC_VOLUME, graph.context.currentTime);
+      // Invoke both immediately so a manual retry retains its user gesture.
+      const resume = graph && graph.context.state !== "running" ? graph.context.resume() : Promise.resolve();
+      const playback = player.play();
+      await Promise.all([resume, playback]);
+      setPlaying(!player.paused);
     } catch (cause) {
       // Pausing a pending play request is an intentional cancellation.
       if (cause instanceof DOMException && cause.name === "AbortError") return;
@@ -30,12 +51,46 @@ const BackgroundMusic = forwardRef<BackgroundMusicHandle, { visible: boolean }>(
     }
   }, []);
 
-  useImperativeHandle(ref, () => ({ play: () => { void playMusic(); } }), [playMusic]);
+  const prepareMusic = useCallback(() => {
+    const player = audio.current;
+    if (!player || prepared.current) return;
+    prepared.current = true;
+    let context: AudioContext | undefined;
+    try {
+      if (!window.AudioContext) { player.load(); return; }
+      context = new AudioContext();
+      const gain = context.createGain();
+      gain.gain.value = 0;
+      gain.connect(context.destination);
+      const source = context.createMediaElementSource(player);
+      source.connect(gain);
+      output.current = { context, gain, source };
+      player.volume = 1;
+      // Unlock playback in the original tap, routing it through a silent output.
+      // The envelope's completion callback rewinds the song and raises the gain.
+      const resume = context.resume();
+      const playback = player.play();
+      void Promise.all([resume, playback]).catch(() => {
+        // The normal start/retry path handles any playback failure after opening.
+      });
+    } catch {
+      if (context && !output.current) void context.close().catch(() => {});
+      if (!output.current) player.load();
+    }
+  }, []);
+
+  useImperativeHandle(ref, () => ({ prepare: prepareMusic, play: () => { void playMusic(); } }), [playMusic, prepareMusic]);
 
   useEffect(() => {
     const player = audio.current;
-    if (player) player.volume = 0.4;
-    return () => { player?.pause(); };
+    if (player) player.volume = MUSIC_VOLUME;
+    return () => {
+      player?.pause();
+      const graph = output.current;
+      graph?.source.disconnect();
+      graph?.gain.disconnect();
+      if (graph && graph.context.state !== "closed") void graph.context.close().catch(() => {});
+    };
   }, []);
 
   if (!wedding.music.src) return null;
@@ -47,7 +102,7 @@ const BackgroundMusic = forwardRef<BackgroundMusicHandle, { visible: boolean }>(
         src={wedding.music.src}
         loop
         preload="none"
-        onPlay={() => setPlaying(true)}
+        onPlay={() => { if (started.current) setPlaying(true); }}
         onPause={() => setPlaying(false)}
         onError={() => {
           setPlaying(false);

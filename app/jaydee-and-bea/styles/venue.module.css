@@ -1,0 +1,15 @@
+.leftEdge {
+  mask-image: linear-gradient(to right, #000 45%, transparent);
+}
+
+.rightEdge {
+  mask-image: linear-gradient(to left, #000 45%, transparent);
+}
+
+.topWash {
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+}
+
+.bottomWash {
+  mask-image: linear-gradient(to top, #000 65%, transparent);
+}

@@ -1,0 +1,12 @@
+.entrance {
+  transition-property: var(--jb-entrance-properties, none);
+  transition-duration: var(--jb-entrance-duration, 0s);
+  transition-delay: var(--jb-entrance-delay, 0s);
+  transition-timing-function: var(--jb-entrance-ease, ease-in-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrance {
+    transition: none;
+  }
+}

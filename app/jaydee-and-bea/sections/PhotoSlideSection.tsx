@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "motion/react";
 import type { GalleryPhoto } from "../types/wedding";
 import { usePageVisibility } from "../hooks/usePageVisibility";
+import ScrollLayer from "../components/ScrollLayer";
 
 const SLIDE_INTERVAL_MS = 3000;
 // Both layers reuse the width selected for the sharp portrait in the height-limited 2:3 frame.
@@ -53,13 +54,13 @@ export default function PhotoSlideSection({ photos }: { photos: readonly Gallery
         ))}
         <div className="absolute inset-0 bg-[#1c271b]/30" />
       </div>
-      <div aria-live="off" className="relative aspect-[2/3] h-full max-w-full shadow-[0_24px_65px_#00000050]">
+      <ScrollLayer profile="photo" aria-live="off" className="relative aspect-[2/3] h-full max-w-full">
         {nearViewport && photos.map((photo, index) => requested.includes(index) && (
           <div key={photo.alt} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${photos.length}`} aria-hidden={active !== index} data-active={active === index} className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:transition-none ${active === index ? "opacity-100" : "opacity-0"}`}>
             <Image src={photo.src} alt={photo.alt} fill loading="eager" sizes={IMAGE_SIZES} quality={85} onLoad={() => markLoaded(`photo-${index}`)} className="object-contain" />
           </div>
         ))}
-      </div>
+      </ScrollLayer>
       <p aria-live="off" className="sr-only">Photo {active + 1} of {photos.length}</p>
     </section>
   );

@@ -48,19 +48,19 @@ export const wedding: WeddingData = {
   story: [
     {
       date: "It started with a swipe", title: "One little swipe.\nA whole new world.",
-      description: "Seven years ago, Jaydee and Bea’s story began when they both swiped right. They soon found themselves talking every day, checking in on each other until they decided to meet at McDonald’s and Greenwich. Jaydee was so shy that he barely spoke during their first meeting, spending much of it looking at his phone. Bea even had to show him how to court her. Yet after that first meeting, Jaydee knew his feelings were real, and he continued pursuing their growing connection.",
+      description: "Jaydee and Bea met on Tinder. At first, neither of them believed that a real relationship could begin on a dating app. They had created their accounts simply to talk to strangers about their lives and everyday frustrations. Then Bea swiped right, and they matched. Neither sent a message that day; a few days passed before Bea finally said “hello.” Their conversations began with friendly chats and playful teasing, but Jaydee once took a joke too far by calling Bea lazy. Since they barely knew each other, Bea felt judged and thought he was acting too familiar. Hurt and annoyed, she stopped replying for a few days. Jaydee thought he would never hear from her again, until she unexpectedly sent another message. They talked things through and forgave each other.",
     },
     {
-      date: "August 25, 2019", title: "Choosing each other, every day.",
-      description: "Bea eventually admitted that she had a crush on Jaydee. He confessed that he had liked her long before she said anything. On August 25, 2019, they officially became a couple. Their relationship was not always easy, but through the happy days and the difficult ones, they continued choosing to stay by each other’s side. Those seven years brought Jaydee a kind of happiness he had never imagined. People had often thought of him as unfeeling, but Bea brought out feelings he had never known how to express.",
+      date: "Their first meeting", title: "An unexpected first impression.",
+      description: "Their first meeting came about because of a playful bet: whoever won would treat the other to a meal. They met at a fast-food restaurant, but Bea was not immediately drawn to Jaydee. He was younger and looked like a high school student. He was also quiet in person, and to Bea, he did not seem particularly gentlemanly.",
     },
     {
-      date: "February 1, 2026", title: "A yes at the altar.",
-      description: "On February 1, 2026, Jaydee spoke with the church leadership at Barasoain Church, where he worked in the parish office, to arrange his proposal. After the 6:00 PM Mass, he proposed to Bea at the altar, surrounded by their family, friends, fellow members of the church community, and priests. It was the beginning of a new chapter in their story.",
+      date: "Two different perspectives", title: "A shy beginning.",
+      description: "When they left McDonald’s, Jaydee walked out first without holding the door open for Bea, and she ended up bumping her head. That annoyed her, as did the way he walked ahead of her. She began to think that perhaps he was not interested in her at all. From Jaydee’s point of view, however, it was the complete opposite. He was simply shy and unaccustomed to talking to women in person. He liked Bea when they met and even told her that he hoped they would see each other again.",
     },
     {
-      date: "January 16, 2027", title: "And now, forever.",
-      description: "From a simple swipe right to a promise of forever, Jaydee and Bea are now preparing for their wedding day. On January 16, 2027, they will begin the next chapter together, surrounded by the people they love.",
+      date: "August 25, 2019", title: "Choosing each other.",
+      description: "As they continued talking, their feelings for each other grew. Bea was the first to admit that she liked Jaydee and had a crush on him. Knowing how shy he was, she took a chance and hoped that her honesty would encourage him to share his feelings too. She was right: Jaydee had only been waiting for her to make the first move because he was afraid of being rejected. On August 25, 2019, they officially became a couple.",
     },
   ],
   entourage: [

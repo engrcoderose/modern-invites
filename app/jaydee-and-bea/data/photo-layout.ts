@@ -1,26 +1,39 @@
 import { prenupPhotos as photos } from "./prenup-media";
+import { storyPhotos } from "./story-photos";
 import type { GalleryPhoto } from "../types/wedding";
 
-export const galleries: readonly (readonly GalleryPhoto[])[] = [
-  [
-    photos.dscf1541, photos.dscf0947, photos.dscf1472RevC, photos.dscf1558,
-    photos.dscf1588, photos.dscf1678RevA, photos.dscf1768,
-  ],
-  [
-    photos.ljd4660, photos.dscf0734, photos.dscf0759, photos.dscf0810,
-    photos.dscf1089RevA, photos.dscf1139, photos.dscf1201, photos.dscf1232,
-    photos.dscf1360, photos.dscf1426RevB, photos.dscf1443RevB, photos.dscf1521,
-    photos.dscf1533, photos.dscf1793RevB, photos.ljd4620, photos.ljd4626,
-    photos.ljd4631, photos.ljd4731, photos.ljd4746, photos.ljd4770,
-    photos.ljd4794, photos.ljd4819BluGreen, photos.croppedDscf1597, photos.engagementPic,
-  ],
+const carouselPhotos: readonly GalleryPhoto[] = [
+  photos.dscf1541, photos.dscf0947, photos.dscf1472RevC, photos.dscf1558,
+  photos.dscf1588, photos.dscf1678RevA, photos.dscf1768,
 ];
 
 export const photoBreaks = {
-  afterStory: photos.dscf1426RevB,
-  timelineSlides: galleries[0],
+  afterStory: photos.ljd4626,
+  // First pictures section: supplied F1–F5 reference, top row then bottom row.
+  timelineSlides: [
+    photos.dscf1360,
+    photos.dscf1232,
+    photos.dscf1472RevC,
+    photos.ljd4819BluGreen,
+    photos.dscf0947,
+  ],
   afterEntourage: photos.ljd4794,
 };
 
-export const welcomePhoto = photos.ljd4660;
 export const rsvpPhoto = photos.dscf1232;
+
+const usedPhotoSources = new Set<GalleryPhoto["src"]>([
+  ...carouselPhotos,
+  ...photoBreaks.timelineSlides,
+  photoBreaks.afterStory,
+  photoBreaks.afterEntourage,
+  rsvpPhoto,
+  ...Object.values(storyPhotos),
+].map((photo) => photo.src));
+
+export const galleries: readonly (readonly GalleryPhoto[])[] = [
+  carouselPhotos,
+  // Lead with the unused portrait for the tall featured tile, then exclude used photos.
+  [photos.ljd4631, ...Object.values(photos).filter((photo) => photo !== photos.ljd4631)]
+    .filter((photo) => !usedPhotoSources.has(photo.src)),
+];

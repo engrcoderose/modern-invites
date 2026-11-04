@@ -1,0 +1,19 @@
+.section {
+  color: #64439b;
+  background-color: #fff3b0;
+  background-image: linear-gradient(#fff3b08c, #fff3b08c), url("https://assets.moderninvites.com/jaydee-and-bea/images/designs/floral-bg.webp");
+  background-position: center top;
+  background-size: auto, auto 640px;
+  background-repeat: no-repeat, repeat;
+  background-blend-mode: normal, multiply;
+}
+
+.script {
+  font-family: var(--jb-title-font);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+}

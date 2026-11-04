@@ -102,6 +102,7 @@
 .ribbon[data-renderer="mesh"] .ribbonCanvas { visibility: visible; }
 
 .openButton { z-index: 6; cursor: pointer; border: 0; background: transparent; color: #665943; }
+.openButton[aria-disabled="true"] { cursor: wait; }
 .openButton:focus-visible { outline: 2px solid var(--blue); outline-offset: 7px; }
 .openLabel { font-size: clamp(.55rem, 2vw, .65rem); letter-spacing: .16em; text-transform: uppercase; }
 .replay { color: #645c50; transition: color .2s; border-radius: 2px; }
@@ -117,6 +118,9 @@
 .packet[data-state="untying"] .openLabel { animation: quietLabel .35s ease-out both; }
 .packet[data-state="opening"] .coverTitle,
 .packet[data-state="opening"] .openLabel { opacity: 0; }
+.packet[data-state="waiting"] .coverTitle,
+.packet[data-state="waiting"] .openLabel { opacity: 0; }
+.packet[data-state="waiting"][data-reveal-ready="false"] .openLabel { opacity: 1; }
 .packet[data-state="opening"] .leftDoor { animation: openLeft 2.35s var(--ease-paper) both; }
 .packet[data-state="opening"] .rightDoor { animation: openRight 2.35s .15s var(--ease-paper) both; }
 .packet[data-state="opening"] .topFlap { animation: openTop 1.25s 1.35s var(--ease-paper) both; }

@@ -1,4 +1,4 @@
-import styles from "../styles/opening.module.css";
+import styles from "./styles/opening.module.css";
 
 function FoldLines() {
   return (

@@ -27,14 +27,16 @@ silver material. The renderer draws only when the ribbon or its frame changes.
 Unsupported graphics uses a connected whole-ribbon fallback; image failure cannot
 block opening.
 
-Components, styles, and artwork are isolated in this folder. The page inherits
+The reusable packet, ribbon renderer, styles, and artwork live in
+`components/invitation-opening/`, shared with Jaydee and Bea's opening screen.
+This route keeps its generic card copy and replay controls. The page inherits
 the repository's existing display/script font variables. No packages were added.
 
 Generated assets use the built-in Imagegen tool, then are resized and saved as WebP:
 
-- `assets/silver-satin-bow.webp`: transparent front-on silver-white satin bow,
+- `components/invitation-opening/assets/silver-satin-bow.webp`: transparent front-on silver-white satin bow,
   two loops, small knot, two fishtail tails, realistic silk sheen, no text or scene.
-- `assets/blue-botanical-frame.webp`: antique cobalt botanical engraving on ivory,
+- `components/invitation-opening/assets/blue-botanical-frame.webp`: antique cobalt botanical engraving on ivory,
   lush peonies and hydrangeas around a clear central panel with a fine gold rule.
 
 The source video and extracted review frames remain local temporary review material;

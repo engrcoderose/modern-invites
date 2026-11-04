@@ -1,14 +1,62 @@
-.shade {
-  background:
-    linear-gradient(to top, rgb(16 20 13 / 86%), rgb(16 20 13 / 40%) 34%, transparent 68%),
-    rgb(16 20 13 / 8%);
+.cover {
+  --jb-opening-duration: 1.2s;
+  --jb-opening-ease: cubic-bezier(.4, 0, .16, 1);
 }
 
-.names {
-  margin: 0;
-  font-family: var(--jb-title-font);
-  font-size: clamp(3.4rem, 12vw, 6rem);
-  font-weight: 400;
-  line-height: 1.2;
-  text-shadow: 0 2px 12px rgb(16 20 13 / 35%);
+/* Keep keyboard focus visible without outlining the entire envelope. */
+.cover button[aria-label="Open invitation"]:focus-visible {
+  outline: none;
+}
+
+.cover button[aria-label="Open invitation"]:focus-visible > span {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .35em;
+}
+
+.heroCanvas {
+  transform-origin: center;
+}
+
+.heroCanvas [data-opening-part] {
+  transform-origin: 0 0;
+  transform: var(--jb-card-transform, none);
+}
+
+.heroCanvas :is([data-hero-kicker], [data-hero-name], [data-hero-detail]) {
+  --jb-letter-delay: 0ms;
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 850ms ease-in-out var(--jb-letter-delay), transform 850ms ease-in-out var(--jb-letter-delay);
+}
+
+.heroCanvas [data-hero-name] { --jb-letter-delay: 120ms; }
+.heroCanvas h1 > :nth-child(2) [data-hero-name] { --jb-letter-delay: 240ms; }
+.heroCanvas h1 > :last-child [data-hero-name] { --jb-letter-delay: 360ms; }
+.heroCanvas [data-hero-detail] { --jb-letter-delay: 480ms; }
+.heroCanvas[data-lettering="waiting"] :is([data-hero-kicker], [data-hero-name], [data-hero-detail]) {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: none;
+}
+
+.expandingPacket {
+  transition-property: left, top, width, height;
+  transition-duration: var(--jb-opening-duration);
+  transition-timing-function: var(--jb-opening-ease);
+}
+
+.expandingCanvas {
+  transition: transform var(--jb-opening-duration) var(--jb-opening-ease);
+}
+
+.expandingCanvas [data-opening-part] {
+  transform: none;
+  transition: transform var(--jb-opening-duration) var(--jb-opening-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expandingPacket, .expandingCanvas, .heroCanvas [data-opening-part],
+  .heroCanvas :is([data-hero-kicker], [data-hero-name], [data-hero-detail]) { transition: none; }
 }

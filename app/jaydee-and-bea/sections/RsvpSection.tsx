@@ -2,6 +2,8 @@ import Image from "next/image";
 import { wedding } from "../data/wedding-data";
 import { rsvpPhoto } from "../data/photo-layout";
 import RsvpFlow from "../components/RsvpFlow";
+import ScrollLayer from "../components/ScrollLayer";
+import TextReveal from "../components/TextReveal";
 import floralBackground from "../assets/designs/gallery-floral-background.webp";
 import leftFlowers from "../assets/designs/hero-left-upper-flower.webp";
 import rightFlowers from "../assets/designs/hero-right-upper-flower.webp";
@@ -20,12 +22,12 @@ export default function RsvpSection() {
         <Image src={rightFlowers} alt="" sizes="(min-width: 640px) 160px, 96px" />
       </div>
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-16">
-        <figure className="relative hidden aspect-[4/3] overflow-hidden lg:block">
-          <Image src={rsvpPhoto.src} alt={rsvpPhoto.alt} fill sizes="(min-width: 1380px) 517px, (min-width: 1024px) calc((100vw - 160px) * .425), 1px" className="object-cover" />
-        </figure>
+        <ScrollLayer as="figure" profile="photo" staggerIndex={1} className="relative mx-auto aspect-[4/3] w-full max-w-2xl overflow-hidden">
+          <Image src={rsvpPhoto.src} alt={rsvpPhoto.alt} fill sizes="(min-width: 1380px) 517px, (min-width: 1024px) calc((100vw - 160px) * .425), (min-width: 736px) 672px, (min-width: 640px) calc(100vw - 64px), calc(100vw - 40px)" className="object-cover" loading="lazy" />
+        </ScrollLayer>
         <div className="mx-auto w-full min-w-0 max-w-2xl">
           <RsvpFlow eventSlug={wedding.rsvp.eventSlug} pendingMessage={wedding.rsvp.pendingMessage} />
-          {wedding.rsvp.deadline && <p className={`${styles.status} mt-8 text-sm leading-7`}>Please reply by {wedding.rsvp.deadline}.</p>}
+          {wedding.rsvp.deadline && <TextReveal staggerIndex={3} className={`${styles.status} mt-8 text-sm leading-7`}>Please reply by {wedding.rsvp.deadline}.</TextReveal>}
         </div>
       </div>
     </section>

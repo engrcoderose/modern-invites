@@ -16,6 +16,7 @@ import PhotoBreakSection from "./sections/PhotoBreakSection";
 import PhotoSlideSection from "./sections/PhotoSlideSection";
 import HashtagSection from "./sections/HashtagSection";
 import RsvpSection from "./sections/RsvpSection";
+import FaqSection from "./sections/FaqSection";
 import Footer from "./sections/Footer";
 import { wedding } from "./data/wedding-data";
 import { photoBreaks, galleries } from "./data/photo-layout";
@@ -36,12 +37,12 @@ export default function Page() {
   return (
     <InvitationMotion className={`${styles.invitation} relative min-h-screen bg-[rgb(var(--jb-paper))] text-[rgb(var(--jb-ink))]`}>
       <RefreshScrollReset />
-      <InvitationWelcome>
+      <InvitationWelcome openingHero={<HeroSection openingPreview />}>
         <FallingPetals />
         <a href="#invitation" className="jb-skip-link absolute left-4 top-4 z-50 rounded-full bg-[rgb(var(--jb-ink))] px-6 py-3 text-sm text-[rgb(var(--jb-paper))]">Skip to invitation</a>
         <Navigation />
         <main>
-          <HeroSection />
+          <HeroSection revealOnEntry={false} />
           <InvitationSection />
           <PhotoSlideSection photos={photoBreaks.timelineSlides} />
           <StorySection />
@@ -54,6 +55,7 @@ export default function Page() {
           <AttireSection />
           <HashtagSection />
           <GallerySection id="gallery-more" title="More little moments." photos={galleries[1]} />
+          <FaqSection />
           <RsvpSection />
         </main>
         <Footer />

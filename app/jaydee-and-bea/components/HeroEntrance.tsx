@@ -3,9 +3,8 @@
 import { useContext, useEffect, useLayoutEffect, type ReactNode } from "react";
 import { stagger, useAnimate, useInView, useReducedMotion } from "motion/react";
 import { InvitationEntryContext } from "./InvitationEntryContext";
+import { ENTRANCE_DURATION, ENTRANCE_DISTANCE, ENTRANCE_EASE, ENTRANCE_STAGGER } from "../utils/scroll-entrance";
 
-const GARDEN_EASE = [0.16, 1, 0.3, 1] as const;
-const INK_EASE = [0.22, 0.35, 0.3, 1] as const;
 const ENTRANCE_ELEMENTS = "[data-hero-art], [data-hero-kicker], [data-hero-name], [data-hero-detail]";
 const NAME_MASK = "linear-gradient(90deg, #000 45%, transparent 60%)";
 const GARDEN_MASK = "linear-gradient(to top, #000 45%, transparent 65%)";
@@ -17,7 +16,7 @@ function clearEntrance(root: HTMLDivElement | null) {
 }
 
 /** One invitation reveal; bird flight keeps a separate nested transform. */
-export default function HeroEntrance({ children }: { children: ReactNode }) {
+export default function HeroEntrance({ children, skipEntrance = false }: { children: ReactNode; skipEntrance?: boolean }) {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const inView = useInView(scope, { once: true, amount: 0.1 });
   const reducedMotion = useReducedMotion();
@@ -25,7 +24,7 @@ export default function HeroEntrance({ children }: { children: ReactNode }) {
 
   useLayoutEffect(() => {
     const root = scope.current;
-    if (!root || reducedMotion !== false) return;
+    if (skipEntrance || !root || reducedMotion !== false) return;
     root.querySelectorAll<HTMLElement>(ENTRANCE_ELEMENTS).forEach((element) => {
       element.style.opacity = "0";
     });
@@ -44,22 +43,22 @@ export default function HeroEntrance({ children }: { children: ReactNode }) {
       garden.style.maskPosition = "0% 0%";
     }
     return () => clearEntrance(root);
-  }, [reducedMotion, scope]);
+  }, [reducedMotion, scope, skipEntrance]);
 
   useEffect(() => {
-    if (!entered || !inView || reducedMotion !== false) return;
+    if (skipEntrance || !entered || !inView || reducedMotion !== false) return;
     const root = scope.current;
     let cancelled = false;
     const controls = animate([
-      ["[data-hero-kicker]", { opacity: [0, 1], y: [2, 0] }, { at: 0, duration: 0.7, ease: GARDEN_EASE }],
-      ["[data-hero-art='grass']", { opacity: [0, 1], y: [6, 0] }, { at: 0, duration: 1.2, ease: GARDEN_EASE }],
-      ["[data-hero-art='upper-flower']", { opacity: [0, 1], scale: [0.985, 1] }, { at: 0.1, duration: 1.3, ease: GARDEN_EASE }],
-      ["[data-hero-art='arch']", { opacity: [0, 1], y: [6, 0], maskPosition: ["0% 0%", "0% 100%"] }, { at: 0.3, duration: 2.1, ease: INK_EASE }],
-      ["[data-hero-name]", { opacity: [0, 1], y: [3, 0], maskPosition: ["100% 0%", "0% 0%"] }, { at: 0.4, duration: 3, delay: stagger(0.32), ease: INK_EASE }],
-      ["[data-hero-art='couple']", { opacity: [0, 1], y: [6, 0], scale: [0.995, 1] }, { at: 1.05, duration: 1.6, ease: GARDEN_EASE }],
-      ["[data-hero-art='left-birds']", { opacity: [0, 1], x: [-8, 0], y: [3, 0] }, { at: 1.8, duration: 1, ease: GARDEN_EASE }],
-      ["[data-hero-art='right-birds']", { opacity: [0, 1], x: [8, 0], y: [3, 0] }, { at: 2, duration: 1, ease: GARDEN_EASE }],
-      ["[data-hero-detail]", { opacity: [0, 1], y: [3, 0] }, { at: 4.1, duration: 0.75, ease: GARDEN_EASE }],
+      ["[data-hero-kicker]", { opacity: [0, 1], y: [ENTRANCE_DISTANCE, 0] }, { at: 0, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-art='grass']", { opacity: [0, 1], y: [6, 0] }, { at: 0, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-art='upper-flower']", { opacity: [0, 1], scale: [0.985, 1] }, { at: ENTRANCE_STAGGER, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-art='arch']", { opacity: [0, 1], y: [6, 0], maskPosition: ["0% 0%", "0% 100%"] }, { at: ENTRANCE_STAGGER * 2, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-name]", { opacity: [0, 1], y: [ENTRANCE_DISTANCE, 0], maskPosition: ["100% 0%", "0% 0%"] }, { at: ENTRANCE_STAGGER * 3, duration: ENTRANCE_DURATION, delay: stagger(ENTRANCE_STAGGER), ease: ENTRANCE_EASE }],
+      ["[data-hero-art='couple']", { opacity: [0, 1], y: [6, 0], scale: [0.995, 1] }, { at: ENTRANCE_STAGGER * 4, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-art='left-birds']", { opacity: [0, 1], x: [-8, 0], y: [3, 0] }, { at: ENTRANCE_STAGGER * 5, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-art='right-birds']", { opacity: [0, 1], x: [8, 0], y: [3, 0] }, { at: ENTRANCE_STAGGER * 6, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
+      ["[data-hero-detail]", { opacity: [0, 1], y: [ENTRANCE_DISTANCE, 0] }, { at: ENTRANCE_STAGGER * 7, duration: ENTRANCE_DURATION, ease: ENTRANCE_EASE }],
     ]);
     void controls.then(() => {
       if (!cancelled) clearEntrance(root);
@@ -69,7 +68,7 @@ export default function HeroEntrance({ children }: { children: ReactNode }) {
       controls.stop();
       clearEntrance(root);
     };
-  }, [animate, entered, inView, reducedMotion, scope]);
+  }, [animate, entered, inView, reducedMotion, scope, skipEntrance]);
 
   return (
     <div ref={scope} className="relative min-h-[inherit]">

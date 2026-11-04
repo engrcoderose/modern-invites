@@ -2,6 +2,8 @@
 
 import { useEffect, useState, type RefObject } from "react";
 
+const HERO_READY_TIMEOUT_MS = 10000;
+
 async function waitForImage(image: HTMLImageElement, signal: AbortSignal) {
   if (!image.complete) {
     await new Promise<void>((resolve) => {
@@ -27,11 +29,19 @@ export default function useHeroReady(scope: RefObject<HTMLDivElement | null>, re
   useEffect(() => {
     if (!requested || !scope.current) return;
     const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      // A stalled request must not trap a guest on the finished invitation card.
+      setReady(true);
+      controller.abort();
+    }, HERO_READY_TIMEOUT_MS);
     const images = Array.from(scope.current.querySelectorAll<HTMLImageElement>("#top img"));
-    void Promise.all(images.map((image) => waitForImage(image, controller.signal))).then(() => {
-      if (!controller.signal.aborted) setReady(true);
+    void Promise.all([...images.map((image) => waitForImage(image, controller.signal)), document.fonts.ready]).then(() => {
+      if (!controller.signal.aborted) {
+        window.clearTimeout(timeout);
+        setReady(true);
+      }
     });
-    return () => controller.abort();
+    return () => { window.clearTimeout(timeout); controller.abort(); };
   }, [requested, scope]);
 
   return ready;
