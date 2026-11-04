@@ -1,6 +1,6 @@
 # Aljay and Erlyn
 
-Draft route: `/aljay-and-erlyn`. Wedding: **18 December 2026**. Arrival: **2:30 PM**; ceremony: **3:00 PM** at Holy Family Parish Church, Parang, Marikina. Reception follows at Teodore Events Place. RSVP deadline: **8 November 2026**.
+Draft route: `/aljay-and-erlyn`. Wedding: **18 December 2026**. Arrival: **2:30 PM**; ceremony: **3:00 PM** at Holy Family Parish Church, Parang, Marikina. Reception follows at Teodore Events Place. RSVP deadline: **10 November 2026**.
 
 ## Design
 
@@ -17,7 +17,7 @@ Refreshing restarts at the opening cover and first invitation page, clearing the
 - Bride: **Erlyn Joy E. Sablay**. Groom: **Alfred John Gorgonio**.
 - Dress code: **Casual, Semi-Formal, and Formal**.
 - Color guidance: **Feel free to wear any color you love. We kindly ask that you avoid all-yellow or all-green outfits, as well as white, black, and red.** The dress-code page and FAQ use the same wording.
-- RSVP deadline: **8 November 2026**.
+- RSVP deadline: **10 November 2026**.
 
 The confirmed timeline is 2:30 PM Guest Arrival, 3:00 PM Ceremony, 5:00 PM Cocktail Hour, 6:00 PM Reception Dinner and 9:00 PM After Party. The schedule may change accordingly. The hashtag remains pending. The couple's 10 real photographs are uploaded to R2 and publicly verified. The supplied Spring Snow by 10CM MP3 is served from `/aljay-and-erlyn/music/spring-snow.mp3`. It starts from the guest's opening gesture, loops at 40% volume, and has a floating play/pause control. The audio uses `preload="none"`; playback errors can be retried.
 
@@ -131,3 +131,7 @@ The owner supplied `IMG_3981.heic` to replace the first Us slideshow photograph.
 ## Fourth Us photo replacement
 
 The supplied `IMG_2789.HEIC` replaces the dark pavilion photograph in Us slide 4. Its local static import is `assets/photos/img-2789.webp`: 1920×2560, quality 85, 1,168,194 bytes, with sRGB conversion and metadata removal. The source is unchanged and no R2 upload is needed. The portrait composition, names, flower, other slides and three-second timing are preserved.
+
+## RSVP deadline revision
+
+The invitation, FAQ and JavaScript-disabled fallback now share the November 10, 2026 deadline from `data/wedding.ts`. The live cutoff is controlled separately by the admin event record. Set the `aljay-and-erlyn` event’s RSVP Deadline to `2026-11-10` in admin settings, or manually run `docs/admin/update-rsvp-deadline.sql`. The script updates only that event’s deadline and modification timestamp, aborts unless one event matches, and includes a verification query. No live admin/Supabase access or SQL execution was performed.

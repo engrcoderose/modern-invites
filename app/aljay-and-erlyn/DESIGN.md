@@ -38,9 +38,9 @@ Keep all client content, components and CSS in this folder. Use Tailwind for ord
 
 - Countdown artwork: use the existing pastel butterfly cluster beside the upper-right of the olive couple frame. Reveal the frame and butterflies as one decorative composition, with no additional motion.
 
-- RSVP entry: show only the invitation-search message, November 8 deadline, full-name input and Find my invitation button. The script Kindly Reply title appears inside the reply dialog, after a guest selects an invitation. Use shared RSVP hooks and reply components for the confirmed `aljay-and-erlyn` admin event.
+- RSVP entry: show only the invitation-search message, November 10 deadline, full-name input and Find my invitation button. The script Kindly Reply title appears inside the reply dialog, after a guest selects an invitation. Use shared RSVP hooks and reply components for the confirmed `aljay-and-erlyn` admin event.
 
-- FAQ: restore “A Few Helpful Details” after dress code and before countdown. Use the five existing questions and native single-open accordions, with the supplied flower and green ribbon centered below the list. The RSVP answer directs guests to the connected form and the November 8 deadline. Keep the ornament below expanded answers and preserve scrolling on compact screens.
+- FAQ: restore “A Few Helpful Details” after dress code and before countdown. Use the five existing questions and native single-open accordions, with the supplied flower and green ribbon centered below the list. The RSVP answer directs guests to the connected form and the November 10 deadline. Keep the ornament below expanded answers and preserve scrolling on compact screens.
 
 - Coastal photo crop: `togetherPhotos[3].crop` selects normalized left/top/width/height 0.625/0.28/0.36/0.64 from the unchanged source. `SlideshowImage` fits that region within the gallery and sizes the optimized source from its actual rendered width. Keep the complete incoming slide opaque behind this narrower photo so the outgoing photo cannot reappear at fade completion.
 
