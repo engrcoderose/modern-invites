@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getInvitationUrl } from "@/lib/invitation-url";
 import Invitation from "./components/Invitation";
 import { wedding } from "./data/wedding";
 
@@ -17,9 +18,16 @@ const body = localFont({
   display: "swap",
 });
 
+const title = `${wedding.title} | ${wedding.date}`;
+const description = `From one jeepney ride to a lifetime of love. Join Aljay and Erlyn as they begin their forever on ${wedding.date} in Marikina.`;
+const invitationUrl = getInvitationUrl("aljay-and-erlyn");
+
 export const metadata: Metadata = {
-  title: `${wedding.title} | ${wedding.date}`,
-  description: `From one jeepney ride to a lifetime of love. Join Aljay and Erlyn as they begin their forever on ${wedding.date} in Marikina.`,
+  title,
+  description,
+  alternates: { canonical: invitationUrl },
+  openGraph: { title, description, url: invitationUrl, type: "website", locale: "en_PH" },
+  twitter: { card: "summary", title, description },
   robots: { index: false, follow: false },
 };
 

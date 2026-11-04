@@ -86,6 +86,17 @@ test("the retired-page matcher excludes public roots, RSVP APIs and invitation m
   }
 });
 
+test("Aljay's local invitation route bypasses auth and retired-page middleware in development and production", () => {
+  for (const environment of ["development", "production"] as const) {
+    const { config } = loadMiddleware(environment);
+    for (const origin of ["http://localhost:3000", "http://localhost:3017", "http://127.0.0.1:3023", "http://[::1]:3000"]) {
+      for (const suffix of ["", "/", "?ref=preview"]) {
+        assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}/aljay-and-erlyn${suffix}` }), false);
+      }
+    }
+  }
+});
+
 test("Mario and Inah retain their existing development-only localhost exception", async () => {
   const local = new NextRequest("http://localhost:3000/mario-and-inah");
   assert.equal((await loadMiddleware("development").middleware(local)).headers.get("x-middleware-next"), "1");

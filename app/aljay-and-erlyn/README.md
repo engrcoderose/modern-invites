@@ -1,6 +1,12 @@
 # Aljay and Erlyn
 
-Draft route: `/aljay-and-erlyn`. Wedding: **18 December 2026**. Arrival: **2:30 PM**; ceremony: **3:00 PM** at Holy Family Parish Church, Parang, Marikina. Reception follows at Teodore Events Place. RSVP deadline: **10 November 2026**.
+Public URL: `https://aljayanderlynwedding.moderninvites.com/`. Internal/local route: `/aljay-and-erlyn`. Wedding: **18 December 2026**. Arrival: **2:30 PM**; ceremony: **3:00 PM** at Holy Family Parish Church, Parang, Marikina. Reception follows at Teodore Events Place. RSVP deadline: **10 November 2026**.
+
+The exact public hostname's root rewrites internally to `/aljay-and-erlyn`. The old `/aljay-and-erlyn` link on `moderninvites.com` and `www.moderninvites.com`, plus the previous `aljayandarlynwedding.moderninvites.com` root, permanently redirect to the corrected domain, preserving query parameters. Local preview routes, RSVP API paths, images and music keep their existing paths. Dashboard invitation links and canonical/social metadata use the new public URL. The RSVP event identifier remains `aljay-and-erlyn`; no admin record or guest data changes are needed.
+
+The old route remains directly accessible at `http://localhost:3000/aljay-and-erlyn` (replace `3000` with the running preview port). `localhost`, `127.0.0.1` and IPv6 loopback work in development and local production. Local invitation requests bypass auth/retired-page middleware and do not redirect to the public domain.
+
+To activate the public URL, connect `aljayanderlynwedding.moderninvites.com` to the existing Vercel project's Production environment, configure the DNS records requested by Vercel, and deploy these routing changes. Keep the previous `aljayandarlynwedding.moderninvites.com` hostname connected if its redirect is needed. Hosting/DNS configuration and deployment have not been performed by this repository change. Local routing checks use synthetic requests without environment files or backend access.
 
 ## Design
 

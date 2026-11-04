@@ -14,6 +14,28 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "aljayandarlynwedding\\.moderninvites\\.com",
+          },
+        ],
+        destination: "https://aljayanderlynwedding.moderninvites.com",
+        permanent: true,
+      },
+      {
+        source: "/aljay-and-erlyn",
+        has: [
+          {
+            type: "host",
+            value: "(?:www\\.)?moderninvites\\.com",
+          },
+        ],
+        destination: "https://aljayanderlynwedding.moderninvites.com",
+        permanent: true,
+      },
+      {
         source: "/ryan-and-anne",
         has: [
           {
@@ -65,6 +87,16 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        {
+          source: "/",
+          has: [
+            {
+              type: "host",
+              value: "aljayanderlynwedding\\.moderninvites\\.com",
+            },
+          ],
+          destination: "/aljay-and-erlyn",
+        },
         {
           source: "/",
           has: [
