@@ -1,5 +1,5 @@
 import { bandPoint, knotPosition, smooth } from "./ribbon-motion";
-import { RIBBON_WIDTH, ribbonStrips, type RibbonPoint, type RibbonStrip } from "./ribbon-strips";
+import { RIBBON_WIDTH, ribbonFeed, ribbonStrips, type RibbonPoint, type RibbonStrip } from "./ribbon-strips";
 
 const ACROSS = 10;
 const STRIDE = 8;
@@ -9,32 +9,62 @@ const vertexSource = `
   attribute vec3 normal;
   varying vec2 fabricUv;
   varying vec3 fabricNormal;
+  varying vec2 fabricPosition;
   void main() {
     gl_Position = vec4(position.x * 2.0 - 1.0, 1.0 - position.y, -position.z / 200.0, 1.0);
     fabricUv = uv;
     fabricNormal = normal;
+    fabricPosition = position.xy;
   }
 `;
 const fragmentSource = `
   precision mediump float;
   uniform sampler2D artwork;
-  uniform bool satin;
+  uniform int material;
+  uniform float knotX;
   varying vec2 fabricUv;
   varying vec3 fabricNormal;
+  varying vec2 fabricPosition;
+  float mirror(float value) {
+    return .5 - .5 * cos(value * 3.14159265);
+  }
   void main() {
-    if (satin) {
+    if (material == 1 || material == 2) {
+      float inward = material == 1 ? fabricUv.x : 1.0 - fabricUv.x;
+      if (inward > .49 || fabricUv.y > .60 - .36 * inward) discard;
+      // The photographed fabric passes behind the opaque knot at full scale.
+      // It is occluded there, rather than compressed into a smaller loop image.
+      if (material == 1 && fabricPosition.x > knotX + .018) discard;
+      if (material == 2 && fabricPosition.x < knotX - .018) discard;
+    }
+    if (material >= 3) {
+      vec2 photoUv;
+      float travel = mirror(fabricUv.x * 2.45 + .18);
+      if (material == 3) {
+        float along = .5 + .34 * travel;
+        photoUv = vec2(.59 - .43 * along + (fabricUv.y - .5) * .14, along + (fabricUv.y - .5) * .025);
+      } else if (material == 4) {
+        float along = .49 + .23 * travel;
+        photoUv = vec2(.32 + .58 * along + (fabricUv.y - .5) * .11, along - (fabricUv.y - .5) * .025);
+      } else if (material == 5) {
+        photoUv = vec2(.435 + .13 * fabricUv.y, .275 + .11 * travel);
+      } else {
+        float along = .61 + .14 * mirror(fabricUv.x);
+        photoUv = vec2(.59 - .43 * along + (fabricUv.y - .5) * .12, along);
+      }
+      vec4 photographed = texture2D(artwork, photoUv);
+      if (photographed.a < .15) photographed = texture2D(artwork, vec2(.33, .65));
       vec3 n = normalize(fabricNormal);
       if (n.z < 0.0) n = -n;
       vec3 light = normalize(vec3(-.45, -.55, 1.0));
       vec3 halfLight = normalize(light + vec3(0.0, 0.0, 1.0));
       float diffuse = max(dot(n, light), 0.0);
       float specular = pow(max(dot(n, halfLight), 0.0), 18.0);
-      float sheen = .59 + .2 * diffuse + .09 * specular;
-      sheen += .1 * exp(-pow((fabricUv.y - .25) * 4.0, 2.0));
-      sheen += .004 * sin(fabricUv.x * 1800.0);
-      float edge = smoothstep(.008, .035, fabricUv.y) * (1.0 - smoothstep(.965, .992, fabricUv.y));
-      sheen -= .09 * (1.0 - edge);
-      gl_FragColor = vec4(vec3(sheen) * vec3(1.0, .993, .985), 1.0);
+      // Keep the photograph's deep folds, fine weave, and baked satin shine.
+      // Surface rotation adds only a small light change, never a replacement color.
+      float lighting = .94 + .065 * diffuse + .025 * specular;
+      vec3 color = photographed.rgb / max(photographed.a, .02);
+      gl_FragColor = vec4(color * lighting, 1.0);
     } else {
       vec4 color = texture2D(artwork, fabricUv);
       if (color.a < .025) discard;
@@ -102,7 +132,8 @@ export function createRibbonRenderer(canvas: HTMLCanvasElement, image: HTMLImage
   for (const parameter of [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER]) gl.texParameteri(gl.TEXTURE_2D, parameter, gl.LINEAR);
   gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   gl.enable(gl.DEPTH_TEST); gl.depthFunc(gl.LEQUAL);
-  const material = gl.getUniformLocation(program, "satin");
+  const material = gl.getUniformLocation(program, "material");
+  const knotUniform = gl.getUniformLocation(program, "knotX");
   const pool = new Map<string, { data: Float32Array; indices: Uint16Array }>();
   const facing = { x: 0, y: 0, z: 1 };
   let lastProgress = 0;
@@ -114,8 +145,8 @@ export function createRibbonRenderer(canvas: HTMLCanvasElement, image: HTMLImage
     return result;
   }
 
-  function render(shape: ReturnType<typeof mesh>, satin: boolean) {
-    gl.uniform1i(material, satin ? 1 : 0);
+  function render(shape: ReturnType<typeof mesh>, mode: number) {
+    gl.uniform1i(material, mode);
     gl.bufferData(gl.ARRAY_BUFFER, shape.data, gl.DYNAMIC_DRAW);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, shape.indices, gl.DYNAMIC_DRAW);
     gl.drawElements(gl.TRIANGLES, shape.indices.length, gl.UNSIGNED_SHORT, 0);
@@ -150,12 +181,36 @@ export function createRibbonRenderer(canvas: HTMLCanvasElement, image: HTMLImage
           point.z + widthVector.z * offset + normal.z * crown, distance / 400, v, surface);
       }
     });
-    render(shape, true);
+    render(shape, strip.width ? 5 : strip.points[0].x < 0 ? 3 : 4);
+  }
+
+  function drawPhotographedLoop(side: -1 | 1, progress: number) {
+    const shape = mesh(40, 44);
+    const feed = ribbonFeed(side, progress);
+    const knot = knotPosition(progress);
+    for (let row = 0; row <= 44; row++) for (let column = 0; column <= 40; column++) {
+      const u = (side === -1 ? 0 : .5) + column / 80;
+      const v = row / 44 * .6;
+      const originalX = (u - .5) * .82;
+      const originalY = (v - .34) * .4066;
+      const travelled = originalX - side * feed * .41;
+      const bend = Math.sin(feed * Math.PI) * .2;
+      const entrance = (1 - smooth(.025, .14, Math.abs(travelled))) * smooth(0, .12, feed);
+      // Translate the original photographic surface through the knot. A shallow
+      // curl changes its pose without shrinking its texture or losing its folds.
+      const curl = Math.sin((u - .5) * Math.PI * 2) * bend;
+      write(shape.data, (row * 41 + column) * STRIDE,
+        knot.x + travelled + Math.sin(curl) * originalY * .16,
+        knot.y + originalY * (1 - entrance * .97) + Math.sin(feed * Math.PI) * .008,
+        10 + Math.sin(curl) * 25 + entrance * 12, u, v, facing);
+    }
+    render(shape, side === -1 ? 1 : 2);
   }
 
   function draw(progress: number) {
     lastProgress = progress;
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.uniform1f(knotUniform, knotPosition(progress).x);
     const aspect = canvas.clientWidth / (canvas.clientHeight / 2);
     const band = mesh(36, ACROSS);
     for (const side of [-1, 1] as const) {
@@ -168,12 +223,13 @@ export function createRibbonRenderer(canvas: HTMLCanvasElement, image: HTMLImage
         const length = Math.hypot(dx, dy) || 1; const offset = (across / ACROSS - .5) * .046;
         write(band.data, (across * 37 + i) * STRIDE, point.x - dy / length * offset / aspect, point.y + dx / length * offset, -30, t, across / ACROSS, facing);
       }
-      render(band, true);
+      render(band, 6);
     }
-    ribbonStrips(progress).forEach(strip => drawStrip(strip, progress));
+    ribbonStrips(progress).filter(strip => strip.tail || strip.width).forEach(strip => drawStrip(strip, progress));
+    drawPhotographedLoop(-1, progress);
+    drawPhotographedLoop(1, progress);
 
-    // Only the small knot cap retains the photograph. It turns aside as the
-    // full-width strip underneath unfolds; no loop image is scaled or warped.
+    // The same photographic knot turns aside over a matching textured surface.
     const undo = smooth(.59, .78, progress);
     if (undo < 1) {
       const cap = mesh(1, 1); const knot = knotPosition(progress); const angle = undo * Math.PI / 2;
@@ -182,7 +238,7 @@ export function createRibbonRenderer(canvas: HTMLCanvasElement, image: HTMLImage
           knot.x - .0656 + column * .1312 * Math.cos(angle), knot.y - .036 + row * .06912 + undo * .014,
           80 + column * 52 * Math.sin(angle), .42 + column * .16, .25 + row * .17, facing);
       }
-      render(cap, false);
+      render(cap, 0);
     }
   }
 

@@ -7,6 +7,10 @@ const ORIGIN: RibbonPoint = { x: 0, y: 0, z: 0 };
 export const RIBBON_WIDTH = 53;
 const CURVE_STEPS = 64;
 
+export function ribbonFeed(side: -1 | 1, progress: number) {
+  return smooth(side === 1 ? .08 : .3, side === 1 ? .43 : .67, progress);
+}
+
 function cubic(a: RibbonPoint, b: RibbonPoint, c: RibbonPoint, d: RibbonPoint, t: number): RibbonPoint {
   const s = 1 - t;
   return {
@@ -62,7 +66,7 @@ function tail(side: -1 | 1, length: number, progress: number) {
 export function ribbonStrips(progress: number): RibbonStrip[] {
   const strips: RibbonStrip[] = [];
   for (const side of [-1, 1] as const) {
-    const feed = smooth(side === 1 ? .08 : .3, side === 1 ? .43 : .67, progress);
+    const feed = ribbonFeed(side, progress);
     const points = loop(side, feed);
     const restingLength = side === 1 ? REST_LOOP_LENGTH.right : REST_LOOP_LENGTH.left;
     const remaining = stripLength(points);
