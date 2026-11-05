@@ -13,6 +13,17 @@ interface GalleryCarouselProps {
 
 const SWIPE_THRESHOLD = 45;
 
+// A landscape photo needs extra source width when cover fills a tall 2:3 card.
+function carouselImageSizes(photo: GalleryPhoto) {
+  const ratio = typeof photo.src === "string" ? 1 : photo.src.width / photo.src.height;
+  const cropScale = Math.max(1, ratio * 1.5);
+  return [
+    `(min-width:643px) ${(360 * cropScale).toFixed(1)}px`,
+    `(min-width:375px) ${(56 * cropScale).toFixed(3)}vw`,
+    `${(210 * cropScale).toFixed(1)}px`,
+  ].join(", ");
+}
+
 export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps) {
   const [selected, setSelected] = useState(0);
   const reducedMotion = useReducedMotion();
@@ -90,7 +101,7 @@ export default function GalleryCarousel({ photos, onOpen }: GalleryCarouselProps
                   onClick={() => active ? onOpen(index) : setSelected(index)}
                   className={`jb-carousel-photo absolute inset-0 overflow-hidden rounded-lg border border-[rgb(var(--jb-paper))]/90 bg-[#eeeee4] sm:rounded-2xl ${active ? "cursor-zoom-in" : "cursor-pointer"}`}
                 >
-                  <Image src={photo.src} alt={photo.alt} fill draggable={false} sizes="(min-width:643px) 360px, (min-width:375px) 56vw, 210px" className="pointer-events-none select-none object-cover" loading="lazy" />
+                  <Image src={photo.src} alt={photo.alt} fill draggable={false} sizes={carouselImageSizes(photo)} quality={85} className="pointer-events-none select-none object-cover" loading="lazy" />
                 </motion.button>
               );
             })}

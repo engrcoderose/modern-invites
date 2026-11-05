@@ -1,8 +1,32 @@
 # Jaydee & Bea · Whimsical Garden
 
+## Unused-file cleanup · November 5, 2026
+
+Removed four superseded design/source images, two unused source music files, and three image-generation prompt sidecars (8,229,454 bytes in total). The active public music file was verified against its source before removing the duplicate. All 31 photo files, active artwork, self-hosted fonts and licenses, and all 72 referenced source/style files remain. Five unused media exports were removed from `data/design-media.ts`. The portfolio's two direct artwork imports were checked and preserved.
+
+Earlier dated notes below describe historical versions; references there to retained source originals or generation prompt sidecars are superseded by this cleanup. Current asset information is in `assets/designs/README.md` and `assets/photos/README.md`.
+
+## Sponsor alignment and RSVP deadline emphasis · November 5, 2026
+
+Paired secondary-sponsor lists reserve two lines for the first member on phones, so the second members align even when a first name wraps. Desktop spacing is unchanged. `RsvpDeadline` displays the approved date in larger semibold text above Full Name through the existing shared search-header description slot and the draft fallback. The former below-form deadline was removed. Visual RSVP checks use a query-gated mock event in the ignored isolated preview; no live event, guest lookup, or submission is used for these layout checks.
+
+## RSVP event connection · November 5, 2026
+
+`wedding.rsvp.eventSlug` now uses the user-confirmed admin event identifier `jaydee-and-bea`. This enables the existing `SmartRsvpFlow` instead of the disabled draft form. Guest lookup and submission use the shared RSVP API and the event's admin configuration. No invitation record, guest data, credentials, or database settings were changed; live backend verification was not performed under the repository's Supabase-access restrictions.
+
+## Carousel image sharpness · November 5, 2026
+
+The carousel's responsive source sizing accounts for the original photo ratio and the tall 2:3 card's cover crop. Landscape images therefore request enough pixels for the card's height instead of enlarging a source chosen only for its narrow visible width. Portraits retain their smaller appropriate source selection. Carousel quality is 85, matching the first slideshow; responsive optimization, lazy loading, the existing design, and unique photo assignments remain in place.
+
+## Unique photo assignments · November 5, 2026
+
+Each photograph is assigned to one section. The first five requested slideshow photos remain unchanged. The seven-photo carousel excludes them and the story photos, while RSVP uses `ljd4660`. The framed story portrait uses `dscf1558`; `storyPhotoSources` records that original identity so the unframed version cannot appear again. The source was visually verified against the supplied photo collection, and its alt text now matches the photograph.
+
+`data/photo-layout.ts` reserves sources by their URL and assigns both galleries from the remaining photos. This also removes repeated entries within a gallery. “More little moments.” contains the remaining 14 photos, with ten preview tiles and “+4 more photos.” Photos are retained in the asset folder.
+
 ## Compact photo-gallery preview · November 4, 2026
 
-“More little moments.” follows Anjo & Jasmin's `GalleryBreak` pattern: ten preview tiles, with a remaining-photo overlay on the last tile. The current 18-photo collection shows “+8 more photos”; that tile opens photo 11 in the full viewer. The desktop grid has four columns and two tall opening frames, while phones use two columns of square tiles. The heading, palette, unused-photo filtering, and complete photo order remain Jaydee & Bea's.
+“More little moments.” follows Anjo & Jasmin's `GalleryBreak` pattern: ten preview tiles, with a remaining-photo overlay on the last tile. The remaining-photo tile opens photo 11 in the full viewer. The desktop grid has four columns and two tall opening frames, while phones use two columns of square tiles. The heading, palette, unused-photo filtering, and complete photo order remain Jaydee & Bea's.
 
 `GalleryPreview` renders only the preview images, with responsive source sizing that accounts for cover crops. The existing `GalleryLightbox` renders only the selected full-size image and adds a visible counter, Home/End navigation, the reference's touch-swipe handling, and explicit focus restoration. Existing arrow controls, native Escape/backdrop closing, scroll locking, and entrance preferences remain.
 
@@ -96,7 +120,7 @@ Route: `/jaydee-and-bea`. This is a mobile-first invitation built using the exis
 
 The RSVP follows the user's form screenshots: a large Imperial Script “Kindly reply” heading, lookup instruction, Full Name label and helper, underlined field, and full-width Find My Invitation action. Self-hosted JB Noto Serif, the reused watercolor texture, and faint floral bottom corners preserve the invitation's theme. Desktop pairs the form with the existing landscape placeholder photograph; below 1024 px the form stands alone. `data/photo-layout.ts` selects `rsvpPhoto` from `placeholderGalleries[1][3]`, retaining its truthful placeholder alt text. `sections/RsvpSection.tsx` uses Tailwind for responsive layout; `styles/rsvp.module.css` owns scoped typography and input/action states. Existing decorative artwork uses local static imports and responsive Next Image sizing. The form has no framed paper panel or entrance/text animation.
 
-`components/RsvpFlow.tsx` conditionally loads the existing shared SmartRsvpFlow only when `rsvp.eventSlug` is configured, using its name-search and household-response flow. With the slug still null, no initial lookup requests occur: the name field remains editable, Find My Invitation stays disabled, Enter cannot submit, and “RSVP opens soon.” explains availability. The field uses name autocomplete, a 3–150 character limit, an associated label, helper/status descriptions, and visible keyboard focus. The legacy `rsvp.url` is unused by this form. `rsvp.deadline` remains null; an approved deadline renders when supplied. The reference screenshot's November deadline was not copied.
+`components/RsvpFlow.tsx` loads the existing shared SmartRsvpFlow for the configured `rsvp.eventSlug`, `jaydee-and-bea`, using its name-search and household-response flow. Event availability and guest access follow the admin-side configuration. The disabled “RSVP opens soon.” draft form remains a fallback only when no event slug is supplied. The legacy `rsvp.url` is unused by this form. The user-approved `rsvp.deadline` is December 16, 2027, emphasized above the Full Name field. This display setting does not update the admin event's submission cutoff.
 
 `data/wedding-data.ts` is the source of truth for event content, venues, timeline, story, entourage, attire, gallery, RSVP, music, hashtag, palette, and pending values. Types live in `types/wedding.ts`. `page.tsx` composes focused sections. Simple layout uses Tailwind; decorative, typographic, and animation styles are scoped by `styles/wedding.module.css`.
 
@@ -120,9 +144,9 @@ The supplied pasted request is authoritative. The questionnaire is source eviden
 
 - **Full names:** the PDF assigns `Jose Daniel I. Rabon` to Bride and `Bea Lene L. Montalan` to Groom. Assignments remain unconfirmed; neither full name is rendered.
 - **Color:** the original `#D6C9FZ` was invalid. The newly supplied palette image confirms lavender as `#D6C9F0`, now used with the other five supplied colors for timeline hearts. The separate nude dress palette remains unchanged.
-- **RSVP:** the PDF deadline `December 16, 2027` is after the wedding and remains unconfirmed; `rsvp.deadline` is null, so no deadline is shown. The form is prepared to reuse the shared guest lookup and household-response flow when an approved `rsvp.eventSlug` is configured. That value remains null: guests can type a name, but Find My Invitation is disabled with “RSVP opens soon.” and no response is collected or sent. Live guest lookup and response submission have not been verified. `rsvp.url` no longer controls this form. Backend setup and any remote verification require the user's manual action within the repository's private-credential boundaries.
+- **RSVP:** the user confirmed the displayed deadline as `December 16, 2027` and the existing admin event identifier as `jaydee-and-bea`. The shared guest lookup and household-response flow is enabled. Frontend lint and the isolated production build, including type checking, passed. Live guest lookup and response submission have not been verified under the repository's private-credential boundaries. `rsvp.url` no longer controls this form; the admin configuration determines the actual submission cutoff.
 - **Ceremony time:** the PDF venue field says 2:30 PM; its schedule says 3:00 PM. The pasted request explicitly chooses 3:00 PM ceremony and 2:30 PM entourage assembly. The invitation follows the request.
-- **Secondary sponsors:** the PDF table labels Mr. Michael Angelo Montalan / Ms. Kim Lamarca as Cord On, and Mr. Aldrin Aguilar / Ms. Lorraine Bernardino as Cord Out. The pasted request instead specifies Michael Angelo as Candle Out, Kim / Aldrin as Cord On, and Lorraine as Cord Out. The invitation follows the explicit requested groupings; confirm these with the client.
+- **Secondary sponsors:** the user's November 5 correction tables confirm five pairs: Veil On — Mr. Agustin Jade Clemente / Ar. Marianne F. Timbol; Veil Out — Mr. Michael Bryan Magaling / Ms. Rence Rina B. Membreve; Candle On/Out — Mr. Jhon Nicol Cruz / Ms. Yssabel Lamarca; Cord On — Mr. Michael Angelo Montalan / Ms. Kim Jayzel Lamarca; Cord Out — Mr. Aldrin Aguilar / Ar. Loraine Bernardino. These supersede the earlier assignments and spellings.
 - **Bridesmaids / groomsmen:** replacement placeholders are centralized and their pending groups stay hidden. Replace the names and remove `pending: true` to display them.
 - **Maps:** each `mapUrl` is null; there are no guessed location links or map embeds. Set each approved URL to display a View Location link.
 - **Photos:** `gallery.photos` is empty and visibly labeled draft frames are rendered. Add local static image imports (preferred) or approved image sources with meaningful `alt` text. Real photos are lazy loaded; tapping them opens a native dialog lightbox with close/Escape, previous/next, arrow keys, native focus trapping and focus restoration. Approved remote images must meet the repository’s existing Next Image configuration.

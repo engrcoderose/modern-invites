@@ -3,11 +3,12 @@ import TextReveal from "./TextReveal";
 import type { EntourageGroup as EntourageGroupData } from "../types/wedding";
 import styles from "../styles/entourage.module.css";
 
-function MemberList({ members, align = "center" }: { members: readonly string[]; align?: "left" | "right" | "center" }) {
+function MemberList({ members, align = "center", alignFirstRow = false }: { members: readonly string[]; align?: "left" | "right" | "center"; alignFirstRow?: boolean }) {
   const alignment = align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
   return (
     <ul className={`jb-serif ${alignment} space-y-0.5 text-sm leading-[1.4] sm:text-base`}>
-      {members.map((member, index) => <ScrollLayer as="li" profile="text" staggerIndex={index + 1} key={member}>{member}</ScrollLayer>)}
+      {members.map((member, index) => <ScrollLayer as="li" profile="text" staggerIndex={index + 1} key={member}
+        className={alignFirstRow && index === 0 ? "min-h-[2lh] sm:min-h-0" : undefined}>{member}</ScrollLayer>)}
     </ul>
   );
 }
@@ -28,12 +29,15 @@ export default function EntourageGroup({ group, id }: { group: EntourageGroupDat
       )}
       {roles && (
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-10 sm:gap-y-10">
-          {roles.map((role, index) => (
-            <div key={role.title} className={roles.length % 2 === 1 && index === roles.length - 1 ? "col-span-2" : undefined}>
-              <TextReveal as="h4" className={`${styles.script} mb-2 text-[1.4rem] sm:text-[1.9rem]`}>{role.title}</TextReveal>
-              <MemberList members={role.members} />
-            </div>
-          ))}
+          {roles.map((role, index) => {
+            const fullWidth = roles.length % 2 === 1 && index === roles.length - 1;
+            return (
+              <div key={role.title} className={fullWidth ? "col-span-2" : undefined}>
+                <TextReveal as="h4" className={`${styles.script} mb-2 text-[1.4rem] sm:text-[1.9rem]`}>{role.title}</TextReveal>
+                <MemberList members={role.members} alignFirstRow={group.title === "Secondary Sponsors" && !fullWidth} />
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

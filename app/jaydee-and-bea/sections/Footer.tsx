@@ -14,6 +14,9 @@ export default function Footer() {
       <ScrollLayer profile="text" staggerIndex={3} className="mx-auto mt-12 flex max-w-6xl items-center justify-center border-t border-[rgb(var(--jb-sage))]/20 pt-6 text-xs text-[#65705e]">
         <a href="#top" className="inline-flex min-h-11 items-center gap-3">Back to top <ArrowUp size={15} aria-hidden="true" /></a>
       </ScrollLayer>
+      <p className="mt-2 flex items-center justify-center gap-1 text-xs text-[#526445]">
+        Made by <a href="https://www.moderninvites.com" className="inline-flex min-h-11 items-center font-medium underline decoration-[#526445]/40 underline-offset-4 transition-colors hover:text-[#36472e]">Modern Invites</a>
+      </p>
     </footer>
   );
 }

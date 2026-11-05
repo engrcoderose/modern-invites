@@ -1,8 +1,0 @@
-{
-  "tool": "built-in image_gen",
-  "mode": "style-transfer edit",
-  "source": "countdown-timer-flowers.png",
-  "output": "countdown-timer-flowers-watercolor.png",
-  "transparent_background": true,
-  "prompt": "Use case: style-transfer. Edit target: the supplied transparent floral border. Create a washed watercolor version of these exact flowers for an elegant wedding invitation. Preserve the original wide landscape aspect ratio and arrangement: dense meandering flowers and stems down the left edge, blue and blush tulips hanging across the upper-left corner, blue tulips clustered at the lower-left corner, and a slimmer irregular pink/cream floral border down the right edge. Preserve the very large completely empty transparent center and the open top and bottom middle. Keep the same recognizable flower varieties, stems, leaves, approximate positions and border widths; do not invent a complete rectangular wreath. Change only the painting treatment to delicate hand-painted wet-on-wet watercolor: pale diluted dusty blush pink, powder blue, muted sage green, soft buttercream, and faint lavender; translucent layered pigment, soft feathered edges, gentle pigment blooms and subtle granulation within the petals and leaves. Make the overall flowers substantially softer, lighter, airy and washed, while preserving enough petal and botanical detail to recognize the original arrangement. Actual transparent alpha background, including the center and all gaps between flowers. No black background, no white or beige rectangle, no paper sheet, no colored backdrop, no solid fill, no text, no border line, no mockup, no shadow. Retain clean usable transparent edges and soft painted alpha transitions."
-}

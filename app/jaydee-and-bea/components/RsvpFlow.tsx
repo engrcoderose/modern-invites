@@ -7,6 +7,7 @@ import { coupleRsvpClosedMessage } from "@/components/smart-rsvp/RsvpClosedNotic
 import styles from "../styles/rsvp.module.css";
 import ScrollLayer from "./ScrollLayer";
 import TextReveal from "./TextReveal";
+import RsvpDeadline from "./RsvpDeadline";
 
 const SmartRsvpFlow = dynamic(() => import("@/components/smart-rsvp/SmartRsvpFlow").then((module) => module.SmartRsvpFlow));
 
@@ -20,7 +21,7 @@ const theme: SmartRsvpTheme = {
   softStrong: "#e8ebdf",
 };
 
-export default function RsvpFlow({ eventSlug, pendingMessage }: { eventSlug: string | null; pendingMessage: string }) {
+export default function RsvpFlow({ eventSlug, pendingMessage, deadline }: { eventSlug: string | null; pendingMessage: string; deadline: string | null }) {
   if (eventSlug) {
     return (
       <ScrollLayer profile="card">
@@ -34,7 +35,7 @@ export default function RsvpFlow({ eventSlug, pendingMessage }: { eventSlug: str
           searchHeader={{
             title: "Kindly reply",
             titleClassName: styles.heading,
-            description: "Find your invitation to let us know if you can join us.",
+            description: <>Find your invitation to let us know if you can join us.<RsvpDeadline deadline={deadline} /></>,
             showVerification: false,
           }}
           partyDisplay={{ appearance: "minimal", householdLabel: "Your household" }}
@@ -46,7 +47,7 @@ export default function RsvpFlow({ eventSlug, pendingMessage }: { eventSlug: str
   return (
     <div>
       <ScrollLayer as="h2" profile="heading" id="jb-rsvp-title" className={`${styles.heading} text-balance`}>Kindly reply</ScrollLayer>
-      <TextReveal staggerIndex={1} className="mx-auto mt-3 max-w-[38ch] text-balance text-base leading-8 sm:text-lg lg:max-w-none">Find your invitation to let us know if you can join us.</TextReveal>
+      <TextReveal staggerIndex={1} className="mx-auto mt-3 max-w-[38ch] text-balance text-base leading-8 sm:text-lg lg:max-w-none">Find your invitation to let us know if you can join us.<RsvpDeadline deadline={deadline} /></TextReveal>
       <ScrollLayer profile="card" staggerIndex={2}>
         <form aria-labelledby="jb-rsvp-title" className="mt-10 sm:mt-12" onSubmit={(event) => event.preventDefault()}>
           <label htmlFor="jb-rsvp-name" className="block text-xs uppercase tracking-[.18em]">Full Name</label>

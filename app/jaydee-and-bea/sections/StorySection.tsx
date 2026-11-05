@@ -7,6 +7,12 @@ import flowerBorder from "../assets/designs/story-flower-border.webp";
 import photoFlowers from "../assets/designs/flower.png";
 import styles from "../styles/story.module.css";
 
+function storyText(description: string) {
+  return description.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith("**") ? <strong key={index} className="font-semibold">{part.slice(2, -2)}</strong> : part,
+  );
+}
+
 export default function StorySection() {
   const [opening, relationship, ...chapters] = wedding.story;
 
@@ -21,10 +27,10 @@ export default function StorySection() {
           <div className="text-sm leading-[1.8] sm:text-base lg:text-[1.0625rem] lg:leading-[1.85]">
             <ScrollLayer as="h2" profile="heading" id="jb-story-title" className={`${styles.heading} mb-5 whitespace-pre-line py-1 text-center sm:mb-7`}>{opening.title}</ScrollLayer>
             <div className="space-y-5 sm:space-y-7">
-              <TextReveal staggerIndex={2}>{opening.description}</TextReveal>
+              <TextReveal staggerIndex={2} className="whitespace-pre-line">{storyText(opening.description)}</TextReveal>
               <div>
                 <h3 className="sr-only">{relationship.title}</h3>
-                <TextReveal staggerIndex={3}>{relationship.description}</TextReveal>
+                <TextReveal staggerIndex={3} className="whitespace-pre-line">{storyText(relationship.description)}</TextReveal>
               </div>
             </div>
           </div>
@@ -42,7 +48,7 @@ export default function StorySection() {
           {chapters.map((chapter, index) => (
             <div key={chapter.title}>
               <h3 className="sr-only">{chapter.title}</h3>
-              <TextReveal staggerIndex={index + 1}>{chapter.description}</TextReveal>
+              <TextReveal staggerIndex={index + 1} className="whitespace-pre-line">{storyText(chapter.description)}</TextReveal>
             </div>
           ))}
         </div>
