@@ -69,7 +69,7 @@ const invitationCatalog: PortfolioItem[] = [
     id: "jaydee-and-bea", title: "Jaydee & Bea", category: "Wedding Invitation",
     hidden: true,
     description: "Floral illustrations, love story, and event details.",
-    href: "/jaydee-and-bea", bgImage: jaydeeBackground, previewImage: jaydeeIllustration,
+    href: "https://jaydeeandbeawedding.moderninvites.com/", bgImage: jaydeeBackground, previewImage: jaydeeIllustration,
     previewAlt: "Garden couple illustration from Jaydee and Bea’s invitation",
     previewFit: "contain",
     accent: "#455f4b", accentLight: "#f7f4e9", tags: ["Signature", "Whimsical Garden", "Illustrated"],

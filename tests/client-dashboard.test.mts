@@ -36,6 +36,7 @@ const assignedEvent: AssignedDashboardEvent = {
 
 test("View invitation uses the public domain for migrated invitations", () => {
   for (const [slug, url] of [
+    ["jaydee-and-bea", "https://jaydeeandbeawedding.moderninvites.com/"],
     ["edcel-and-apreal", "https://edcelandaprealwedding.moderninvites.com/"],
     ["ryan-and-anne", "https://ryanandannewedding.moderninvites.com/"],
     ["mario-and-inah", "https://marioandinahwedding.moderninvites.com/"],
@@ -50,7 +51,6 @@ test("View invitation uses the public domain for migrated invitations", () => {
 
 test("View invitation preserves routes for invitations without a custom domain", () => {
   assert.equal(getInvitationUrl(assignedEvent.slug), "/nylgen-and-kersee");
-  assert.equal(getInvitationUrl("jaydee-and-bea"), "/jaydee-and-bea");
 });
 
 class FakeDashboardRepository implements ClientDashboardRepository {

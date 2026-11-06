@@ -3,6 +3,7 @@ import ScrollReveal from "@/components/landing/ScrollReveal";
 import SectionHeading from "@/components/landing/SectionHeading";
 import PackageCard from "@/components/pricing/PackageCard";
 import ModularPricing from "@/components/pricing/ModularPricing";
+import DigitalInvitationsPricing from "@/components/pricing/DigitalInvitationsPricing";
 import PricingGuide from "@/components/pricing/PricingGuide";
 import PricingHero from "@/components/pricing/PricingHero";
 import PricingBenefits from "@/components/pricing/PricingBenefits";
@@ -54,6 +55,7 @@ export default function Pricing() {
       </section>
 
       <ModularPricing />
+      <DigitalInvitationsPricing />
 
       <PricingGuide />
     </>

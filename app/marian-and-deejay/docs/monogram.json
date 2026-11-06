@@ -1,0 +1,7 @@
+{
+  "source": "../assets/designs/client-monogram.png",
+  "output": "../assets/designs/client-monogram-transparent-v1.png",
+  "tool": "built-in image_gen",
+  "transparentBackground": true,
+  "prompt": "Use case: background-extraction. Remove only the cream/pale-yellow background from this exact client wedding monogram. Output a PNG with genuine transparent alpha, including all negative spaces inside and between the letters and leaves. Preserve the exact interlocking M and D letterforms, delicate swashes, gold metallic shading, fine outlines, pale gold floral leaves, layout, aspect ratio and proportions. No redesign, no new elements, no glow, no shadow, no checkerboard baked into the image. Keep every part of the supplied artwork fully inside the canvas."
+}

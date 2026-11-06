@@ -1,5 +1,15 @@
 # Jaydee & Bea · Whimsical Garden
 
+## Principal sponsor order · November 6, 2026
+
+`entourage` in `data/wedding-data.ts` now defines the principal sponsors through `memberRows`, matching the supplied order: two centered clergy rows, followed by the requested pairings and the Samuel Pagsibigan / Minnie Reyes / Allen Camacho row. All 27 existing names are retained. Rows preserve pair alignment when a name wraps; the three-name row stacks in reading order below 640 px. The former independent columns and trailing centered names were removed from the client type and renderer. Other entourage groups retain their existing layout and text reveals.
+
+## Public domain · November 6, 2026
+
+Public URL: `https://jaydeeandbeawedding.moderninvites.com/`. Only `/` on that exact hostname rewrites internally to `/jaydee-and-bea`, preserving query parameters. Direct requests to the old `/jaydee-and-bea` page return HTTP 404 on deployed hosts, including the main domain, Vercel previews, and the new subdomain. The route remains available on `localhost`, `127.0.0.1`, and `[::1]` in development and local production previews. Media and API paths remain available.
+
+Canonical, Open Graph, Twitter image, dashboard, and portfolio links use the public domain. The RSVP event slug remains `jaydee-and-bea`; no backend records or credentials changed. Add the domain to the existing Vercel project, complete its DNS verification, and deploy these changes to activate the public URL and old-route restriction.
+
 ## Unused-file cleanup · November 5, 2026
 
 Removed four superseded design/source images, two unused source music files, and three image-generation prompt sidecars (8,229,454 bytes in total). The active public music file was verified against its source before removing the duplicate. All 31 photo files, active artwork, self-hosted fonts and licenses, and all 72 referenced source/style files remain. Five unused media exports were removed from `data/design-media.ts`. The portfolio's two direct artwork imports were checked and preserved.

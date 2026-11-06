@@ -18,7 +18,7 @@
 .mj-invitation :is(a, button, input, textarea, summary):focus-visible { outline: 2px solid var(--mj-ink); outline-offset: 5px; }
 .mj-invitation :is(section, h1) { scroll-margin-top: 95px; }
 .mj-invitation a { text-underline-offset: 5px; }
-.mj-invitation :is(h1, h2, h3, h4, h5, h6, .mj-script, .mj-heading, .mj-film-script, .mj-monogram) { font-family: var(--mj-citadel), "Brush Script MT", cursive; font-weight: 400; font-style: normal; text-transform: none; }
+.mj-invitation :is(h1, h2, h3, h4, h5, h6, .mj-script, .mj-heading, .mj-film-script) { font-family: var(--mj-citadel), "Brush Script MT", cursive; font-weight: 400; font-style: normal; text-transform: none; }
 .mj-invitation .mj-heading { font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.3; letter-spacing: 0; text-wrap: balance; }
 .mj-invitation .mj-heading em { color: var(--mj-secondary); font-style: normal; }
 .mj-invitation [data-mj-reveal-state] { opacity: 1; translate: 0 0; }
@@ -50,11 +50,11 @@
 .mj-invitation .mj-skip:focus { transform: translateY(0); }
 .mj-invitation .mj-hero { background: var(--mj-palette-3); }
 .mj-invitation .mj-hero-slide { transition-property: opacity; transition-timing-function: ease-in-out; }
-.mj-invitation .mj-hero-wash { background: radial-gradient(ellipse at 50% 48%, #fff9e7ed 0%, #fff9e7d6 28%, #fff9e745 75%), linear-gradient(0deg, #fff9e782, transparent 28%, transparent 80%, #fff9e754); }
-.mj-invitation .mj-hero-names { text-shadow: 0 2px 16px #fffdf4b3; outline: none; }
+.mj-invitation .mj-hero-wash { background: linear-gradient(180deg, #fff4bf66 0%, #fff4bf26 28%, #fff4bf40 50%, #fff4bfb3 76%, #fff4bf80 100%); }
+.mj-invitation .mj-hero-names { text-shadow: 0 1px 2px #fffdf4cc, 0 2px 14px #fff4bfaa; outline: none; }
 .mj-invitation .mj-hero-and { font-family: inherit; font-style: normal; }
 .mj-invitation .mj-hero-copy { text-shadow: 0 1px 10px #fffdf4; }
-.mj-invitation .mj-hero-controls { color: var(--mj-ink); background: #fff9e7ed; border: 1px solid #b89b7a70; }
+.mj-invitation .mj-hero-controls { color: var(--mj-ink); }
 .mj-invitation .mj-hero-dot { background: currentColor; }
 .mj-invitation .mj-date { border-color: #b89b7a88; }
 .mj-invitation :is(.mj-venue, .mj-attire-note, .mj-faq details) { border-color: var(--mj-line); }
@@ -67,6 +67,8 @@
 .mj-invitation .mj-gallery-arrow { background: var(--mj-ink); color: var(--mj-paper); border: 1px solid var(--mj-paper); transition: background .2s; }
 .mj-invitation .mj-gallery-arrow:hover { background: #76543a; }
 .mj-invitation .mj-gallery-arrow:disabled { opacity: .6; cursor: wait; }
+.mj-invitation .mj-memory-viewer::backdrop { background: #241607f5; }
+.mj-invitation .mj-memory-viewer .mj-memory-control:focus-visible { outline-color: var(--mj-paper); }
 .mj-invitation .mj-countdown { background: #fafaf6; }
 .mj-invitation .mj-countdown-number { font-size: clamp(2rem, 7vw, 4.5rem); font-weight: 500; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
 .mj-invitation .mj-wedding-timeline {
@@ -99,8 +101,6 @@
 .mj-invitation .mj-swatch { border: 1px solid #59432e24; }
 .mj-invitation .mj-attire { background: radial-gradient(ellipse at 50% 40%, var(--mj-paper), var(--mj-palette-0)); }
 .mj-invitation .mj-attire-label { font-family: var(--font-playfair), Georgia, serif; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 600; text-transform: uppercase; }
-.mj-invitation .mj-attire-monogram { border: 1px solid var(--mj-palette-5); border-radius: 50%; color: var(--mj-palette-5); }
-.mj-invitation .mj-attire-monogram::before { content: ""; position: absolute; inset: 4px; border: 1px solid currentColor; border-radius: inherit; }
 .mj-invitation .mj-gift { background: #fff9e8; }
 .mj-invitation .mj-gift-message { border-color: var(--mj-palette-5); }
 .mj-invitation .mj-gift .mj-heading { font-size: clamp(2.5rem, 4vw, 3.75rem); }

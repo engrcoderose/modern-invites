@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-06",
+  "method": "Compared every upload with all 15 existing invitation photos using normalized 64x64 RGB RMSE, then visually reviewed both contact sheets. Repeated captures were skipped; distinct poses and individual portraits were retained. Included photos were auto-oriented, resized to a maximum 1920px edge, and encoded as WebP quality 85 without metadata.",
+  "included": 5,
+  "skipped": 9,
+  "originalBytes": 110226845,
+  "optimizedBytes": 779036,
+  "photos": [
+    {
+      "upload": 1,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut7940.webp",
+      "comparisonRmse": 7.175
+    },
+    {
+      "upload": 2,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut7427.webp",
+      "comparisonRmse": 2.904
+    },
+    {
+      "upload": 3,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut6991.webp",
+      "comparisonRmse": 2.059
+    },
+    {
+      "upload": 4,
+      "decision": "included",
+      "output": "assets/images/memories/beach-lift-v1.webp",
+      "originalBytes": 17777619,
+      "optimizedBytes": 114092,
+      "width": 1281,
+      "height": 1920
+    },
+    {
+      "upload": 5,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut6822.webp",
+      "comparisonRmse": 2.034
+    },
+    {
+      "upload": 6,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut6973.webp",
+      "comparisonRmse": 1.647
+    },
+    {
+      "upload": 7,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut7696.webp",
+      "comparisonRmse": 3.34
+    },
+    {
+      "upload": 8,
+      "decision": "included",
+      "output": "assets/images/memories/groom-in-the-mist-v1.webp",
+      "originalBytes": 21504658,
+      "optimizedBytes": 96012,
+      "width": 1281,
+      "height": 1920
+    },
+    {
+      "upload": 9,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut6536.webp",
+      "comparisonRmse": 1.807
+    },
+    {
+      "upload": 10,
+      "decision": "included",
+      "output": "assets/images/memories/beach-dance-v1.webp",
+      "originalBytes": 22214209,
+      "optimizedBytes": 138838,
+      "width": 1281,
+      "height": 1920
+    },
+    {
+      "upload": 11,
+      "decision": "included",
+      "output": "assets/images/memories/bride-on-the-staircase-v1.webp",
+      "originalBytes": 22858990,
+      "optimizedBytes": 230678,
+      "width": 1281,
+      "height": 1920
+    },
+    {
+      "upload": 12,
+      "decision": "included",
+      "output": "assets/images/memories/bridal-staircase-portrait-v1.webp",
+      "originalBytes": 25871369,
+      "optimizedBytes": 199416,
+      "width": 1281,
+      "height": 1920
+    },
+    {
+      "upload": 13,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut7763.webp",
+      "comparisonRmse": 3.558
+    },
+    {
+      "upload": 14,
+      "decision": "skipped",
+      "reason": "Same photograph already displayed in the invitation, with minor compression/color or framing differences.",
+      "matches": "nhut7111.webp",
+      "comparisonRmse": 2.763
+    }
+  ]
+}

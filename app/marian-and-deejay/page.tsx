@@ -15,6 +15,7 @@ import GuestRemindersSection from "./sections/GuestRemindersSection";
 import FaqSection from "./sections/FaqSection";
 import DressCodeSection from "./sections/DressCodeSection";
 import RsvpSection from "./sections/RsvpSection";
+import MemoryGallerySection from "./sections/MemoryGallerySection";
 import Footer from "./sections/Footer";
 import wedding from "./data/wedding-details.json";
 import { citadel } from "./styles/fonts";
@@ -43,6 +44,7 @@ export default function Page() {
         <SocialSection />
         <GuestRemindersSection />
         <FaqSection />
+        <MemoryGallerySection />
         <RsvpSection />
       </main>
       <Footer />

@@ -24,12 +24,21 @@ import styles from "./styles/wedding.module.css";
 
 const title = `${wedding.couple.display} | ${wedding.date.display}`;
 const description = `Together with their families, ${wedding.couple.display} invite you to celebrate their wedding on ${wedding.date.display} in Malolos, Bulacan.`;
+const invitationUrl = "https://jaydeeandbeawedding.moderninvites.com/";
+const previewImage = {
+  url: new URL("jaydee-and-bea/sharing/envelope-8dfe0d26.jpg", invitationUrl).href,
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
+  alt: "A cream invitation envelope tied with a silver satin bow, with You're invited written above it",
+};
 
 export const metadata: Metadata = {
+  metadataBase: new URL(invitationUrl),
   title, description,
-  alternates: { canonical: "/jaydee-and-bea" },
-  openGraph: { title, description, url: "/jaydee-and-bea", type: "website", locale: "en_PH" },
-  twitter: { card: "summary", title, description },
+  alternates: { canonical: invitationUrl },
+  openGraph: { title, description, url: invitationUrl, type: "website", locale: "en_PH", images: [previewImage] },
+  twitter: { card: "summary_large_image", title, description, images: [previewImage] },
   robots: { index: false, follow: false },
 };
 

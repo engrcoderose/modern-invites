@@ -11,6 +11,7 @@ type OpeningState = "closed" | "untying" | "waiting" | "opening" | "opened";
 interface GatefoldPacketProps {
   children?: ReactNode;
   onRequest?: () => void;
+  onRibbonReleased?: () => void;
   onOpened: () => void;
   autoFocus?: boolean;
   card?: ReactNode;
@@ -21,10 +22,11 @@ interface GatefoldPacketProps {
   onTransitionEnd?: TransitionEventHandler<HTMLDivElement>;
 }
 
-export default function GatefoldPacket({ children, onRequest, onOpened, autoFocus = false, card, readyToReveal = true, packetRef, className, style, onTransitionEnd }: GatefoldPacketProps) {
+export default function GatefoldPacket({ children, onRequest, onRibbonReleased, onOpened, autoFocus = false, card, readyToReveal = true, packetRef, className, style, onTransitionEnd }: GatefoldPacketProps) {
   const [state, setState] = useState<OpeningState>("closed");
   const requested = useRef(false);
   const notified = useRef(false);
+  const ribbonNotified = useRef(false);
   const skipMotion = useRef(false);
   const button = useRef<HTMLButtonElement>(null);
   const opened = state === "opened";
@@ -36,6 +38,12 @@ export default function GatefoldPacket({ children, onRequest, onOpened, autoFocu
   }, [readyToReveal, state]);
 
   useEffect(() => { if (autoFocus) button.current?.focus({ preventScroll: true }); }, [autoFocus]);
+
+  useEffect(() => {
+    if (state === "closed" || state === "untying" || ribbonNotified.current) return;
+    ribbonNotified.current = true;
+    onRibbonReleased?.();
+  }, [onRibbonReleased, state]);
 
   useEffect(() => {
     if (!opened || notified.current) return;

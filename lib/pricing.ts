@@ -21,6 +21,12 @@ export type ModularFeature = {
   category: "design" | "guests";
 };
 
+export const DIGITAL_INVITATION_SERVICES: Pick<ModularFeature, "name" | "price">[] = [
+  { name: "Ninong & Ninang video invitations", price: "299" },
+  { name: "Digital invitation with full details, QR maps & RSVP", price: "450" },
+  { name: "Invitation layout", price: "350+" },
+];
+
 export const PRICING_PACKAGES: PricingPackage[] = [
   {
     id: "classic",
@@ -104,38 +110,38 @@ export const MODULAR_FEATURES: ModularFeature[] = [
   {
     name: "Monogram (Logo Only)",
     description: "A monogram logo for your invitation",
-    price: "100",
+    price: "150",
     category: "design",
   },
   {
     name: "Photo Gallery Section",
     description: "One curated photo gallery section",
-    note: "(with 5 images only)",
-    price: "199",
+    note: "(with 10 images only)",
+    price: "150",
     category: "design",
   },
   {
     name: "Story / About Us",
     description: "A personal story section with photos",
-    price: "199",
+    price: "150",
     category: "design",
   },
   {
     name: "Event Timeline",
     description: "A visual schedule of event moments",
-    price: "199",
+    price: "150",
     category: "design",
   },
   {
     name: "Google Maps",
     description: "Interactive map and venue directions",
-    price: "199",
+    price: "150",
     category: "guests",
   },
   {
-    name: "Background Music",
+    name: "Additional Background Music",
     description: "One selected track with playback control",
-    price: "199",
+    price: "150",
     category: "design",
   },
   {
@@ -153,19 +159,19 @@ export const MODULAR_FEATURES: ModularFeature[] = [
   {
     name: "Gift Registry",
     description: "Gift preferences and registry links",
-    price: "199",
+    price: "150",
     category: "guests",
   },
   {
     name: "FAQ Section",
     description: "Answers to your guests’ common questions",
-    price: "199",
+    price: "150",
     category: "guests",
   },
   {
     name: "Where to Stay / Guest Guide Section",
     description: "Accommodation suggestions and practical guest information",
-    price: "199",
+    price: "150",
     category: "guests",
   },
   {
@@ -193,8 +199,8 @@ export const MODULAR_FEATURES: ModularFeature[] = [
     category: "guests",
   },
   {
-    name: "Custom Design Theme",
-    description: "Personalized colors, type, and visual styling",
+    name: "Custom Animated Opening Design",
+    description: "A personalized animated opening for your invitation",
     price: "499",
     category: "design",
   },

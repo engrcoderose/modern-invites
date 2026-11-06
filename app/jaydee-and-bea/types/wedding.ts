@@ -14,8 +14,7 @@ export interface Venue {
 export interface EntourageGroup {
   title: string;
   members?: readonly string[];
-  memberColumns?: readonly (readonly string[])[];
-  centeredMembers?: readonly string[];
+  memberRows?: readonly (readonly string[])[];
   roles?: readonly { title: string; members: readonly string[] }[];
   pending?: boolean;
 }

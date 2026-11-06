@@ -92,6 +92,16 @@ const nextConfig: NextConfig = {
           has: [
             {
               type: "host",
+              value: "jaydeeandbeawedding\\.moderninvites\\.com",
+            },
+          ],
+          destination: "/jaydee-and-bea",
+        },
+        {
+          source: "/",
+          has: [
+            {
+              type: "host",
               value: "aljayanderlynwedding\\.moderninvites\\.com",
             },
           ],

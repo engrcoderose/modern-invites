@@ -9,6 +9,30 @@ import nextConfig from "../next.config.ts";
 import { getInvitationUrl } from "../lib/invitation-url.ts";
 import { isCrossSiteRequest } from "../lib/rsvp/security.ts";
 
+test("Jaydee and Bea's public domain serves the invitation and preserves guest links", async () => {
+  const origin = "https://jaydeeandbeawedding.moderninvites.com";
+  assert.equal(getInvitationUrl("jaydee-and-bea"), `${origin}/`);
+  const response = await unstable_getResponseFromNextConfig({ url: `${origin}/?ref=invitation`, nextConfig });
+  assert.equal(getRewrittenUrl(response), `${origin}/jaydee-and-bea?ref=invitation`);
+  assert.equal(getRedirectUrl(response), null);
+});
+
+test("Jaydee and Bea's APIs, share image and music stay outside the root rewrite", async () => {
+  const host = "jaydeeandbeawedding.moderninvites.com";
+  for (const pathname of [
+    "/api/rsvp/access", "/api/rsvp/search", "/api/rsvp/party", "/api/rsvp/submit",
+    "/_next/image", "/_next/static/chunk.js", "/icon.png",
+    "/jaydee-and-bea/sharing/envelope-8dfe0d26.jpg",
+    "/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3",
+  ]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `https://${host}${pathname}`, nextConfig });
+    assert.equal(getRewrittenUrl(response), null);
+    assert.equal(getRedirectUrl(response), null);
+  }
+  assert.equal(isCrossSiteRequest({ origin: `https://${host}`, host, forwardedHost: null, fetchSite: "same-origin" }), false);
+  assert.equal(isCrossSiteRequest({ origin: "https://other.example", host, forwardedHost: null, fetchSite: "cross-site" }), true);
+});
+
 test("Aljay and Erlyn's requested public domain serves the invitation and preserves guest links", async () => {
   const origin = "https://aljayanderlynwedding.moderninvites.com";
   assert.equal(getInvitationUrl("aljay-and-erlyn"), `${origin}/`);
@@ -171,6 +195,9 @@ test("the main site and nonmatching hosts keep their root routes", async () => {
   for (const host of [
     "moderninvites.com",
     "www.moderninvites.com",
+    "otherjaydeeandbeawedding.moderninvites.com",
+    "jaydeeandbeaweddingXmoderninvitesXcom",
+    "jaydeeandbeawedding.moderninvites.com.example.org",
     "otheraljayanderlynwedding.moderninvites.com",
     "otheraljayandarlynwedding.moderninvites.com",
     "aljayandarlynweddingXmoderninvitesXcom",

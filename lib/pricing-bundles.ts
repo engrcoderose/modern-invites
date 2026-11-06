@@ -34,9 +34,8 @@ function createBundle(id: string, packageId: PackageId, addOnNames: string[], sa
 }
 
 export const PRICING_BUNDLES = [
-  createBundle("gallery-rsvp", "classic", ["Photo Gallery Section", "RSVP with Person Limit"], 147),
-  createBundle("gallery-story-music", "classic", ["Photo Gallery Section", "Story / About Us", "Background Music"]),
-  createBundle("gallery-rsvp-seating", "classic", ["Photo Gallery Section", "RSVP with Person Limit", "Seat Finder with Admin Dashboard"], 146),
-  createBundle("signature-video-seating", "signature", ["Prenup Video Integration", "Seat Finder with Admin Dashboard"], 147),
-  createBundle("signature-guest-guide", "signature", ["FAQ Section", "Gift Registry", "Prenup Video Integration", "Where to Stay / Guest Guide Section"], 145),
+  createBundle("gallery-rsvp", "classic", ["Photo Gallery Section", "RSVP with Person Limit"]),
+  createBundle("gallery-rsvp-seating", "classic", ["Photo Gallery Section", "RSVP with Person Limit", "Seat Finder with Admin Dashboard"]),
+  createBundle("signature-video-seating", "signature", ["Prenup Video Integration", "Seat Finder with Admin Dashboard"]),
+  createBundle("signature-guest-guide", "signature", ["FAQ Section", "Gift Registry", "Prenup Video Integration", "Where to Stay / Guest Guide Section"]),
 ];

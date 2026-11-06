@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Pause, Play } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from "react";
 import { heroPhotos, heroTiming } from "../data/hero-photos";
 import { useInvitationOpen } from "./InvitationState";
 
@@ -145,7 +144,9 @@ export default function HeroSlideshow() {
           }}>
           <Image key={reloadCounts[index] ?? 0} src={photo.src} alt={photo.alt} fill priority={index === 0} loading={index === 0 ? undefined : "eager"} quality={85}
             sizes="(max-width: 639px) max(100vw, calc(150svh - 111px), 1080px), max(100vw, calc(150svh - 111px), 1020px)"
-            className="object-cover" style={{ objectPosition: photo.position }} onLoad={(event) => void loadSlide(index, event)} onError={() => handleError(index)} />
+            className="object-cover [object-position:var(--mj-hero-mobile-position)] sm:[object-position:var(--mj-hero-position)]"
+            style={{ "--mj-hero-position": photo.position, "--mj-hero-mobile-position": photo.mobilePosition ?? photo.position } as CSSProperties}
+            onLoad={(event) => void loadSlide(index, event)} onError={() => handleError(index)} />
         </div>
       ))}
       <div className="mj-hero-wash pointer-events-none absolute inset-0 z-[3]" aria-hidden="true" />
@@ -156,7 +157,7 @@ export default function HeroSlideshow() {
             disabled={pending !== null || previous !== null} className="flex h-11 w-9 items-center justify-center" onClick={() => { pausePlayback(); requestSlide(index); }}>
             <span className={`mj-hero-dot block h-1.5 w-1.5 rounded-full ${index === active ? "opacity-100" : "opacity-40"}`} aria-hidden="true" />
           </button>)}
-          {!reducedMotion && <button type="button" className="ml-2 flex h-11 w-11 items-center justify-center" aria-label={paused ? "Play slideshow" : "Pause slideshow"} onClick={() => paused ? setPaused(false) : pausePlayback()}>{paused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}</button>}
+          {!reducedMotion && <button type="button" className="sr-only focus:not-sr-only focus:absolute focus:bottom-full focus:whitespace-nowrap focus:bg-[var(--mj-paper)] focus:px-4 focus:py-3 focus:text-xs" onClick={() => paused ? setPaused(false) : pausePlayback()}>{paused ? "Play slideshow" : "Pause slideshow"}</button>}
         </div>
       </div>
     </div>

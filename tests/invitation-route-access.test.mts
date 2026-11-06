@@ -34,53 +34,60 @@ function loadMiddleware(environment: "development" | "production"): MiddlewareUn
   return module.exports as MiddlewareUnderTest;
 }
 
-test("Edcel's retired page returns uncached 404 responses on every deployed host", async () => {
-  for (const environment of ["development", "production"] as const) {
-    const { middleware } = loadMiddleware(environment);
-    for (const host of [
-      "moderninvites.com", "www.moderninvites.com",
-      "edcelandaprealwedding.moderninvites.com", "preview.vercel.app",
-    ]) {
-      for (const suffix of ["", "/", "?ref=invitation"]) {
-        const response = await middleware(new NextRequest(`https://${host}/edcel-and-apreal${suffix}`));
-        assert.equal(response.status, 404);
-        assert.equal(response.headers.get("cache-control"), "no-store");
-        assert.equal(await response.text(), "Not found");
+for (const [name, slug, domain] of [
+  ["Edcel", "edcel-and-apreal", "edcelandaprealwedding.moderninvites.com"],
+  ["Jaydee", "jaydee-and-bea", "jaydeeandbeawedding.moderninvites.com"],
+]) {
+  test(`${name}'s retired page returns uncached 404 responses on every deployed host`, async () => {
+    for (const environment of ["development", "production"] as const) {
+      const { middleware } = loadMiddleware(environment);
+      for (const host of [
+        "moderninvites.com", "www.moderninvites.com",
+        domain, "preview.vercel.app",
+      ]) {
+        for (const suffix of ["", "/", "?ref=invitation"]) {
+          const response = await middleware(new NextRequest(`https://${host}/${slug}${suffix}`));
+          assert.equal(response.status, 404);
+          assert.equal(response.headers.get("cache-control"), "no-store");
+          assert.equal(await response.text(), "Not found");
+        }
       }
     }
-  }
-});
+  });
 
-test("Edcel's old route remains available on loopback hosts in development and local production", async () => {
-  for (const environment of ["development", "production"] as const) {
-    const { middleware } = loadMiddleware(environment);
-    for (const host of ["localhost:3000", "127.0.0.1:3000", "[::1]:3000"]) {
-      const response = await middleware(new NextRequest(`http://${host}/edcel-and-apreal?ref=preview`));
-      assert.equal(response.headers.get("x-middleware-next"), "1");
+  test(`${name}'s old route remains available on loopback hosts in development and local production`, async () => {
+    for (const environment of ["development", "production"] as const) {
+      const { middleware } = loadMiddleware(environment);
+      for (const host of ["localhost:3000", "127.0.0.1:3000", "[::1]:3000"]) {
+        const response = await middleware(new NextRequest(`http://${host}/${slug}?ref=preview`));
+        assert.equal(response.headers.get("x-middleware-next"), "1");
+      }
     }
-  }
-});
+  });
 
-test("an internal loopback server URL does not allow the old page on an external Host", async () => {
-  for (const environment of ["development", "production"] as const) {
-    const { middleware } = loadMiddleware(environment);
-    const request = new NextRequest("http://127.0.0.1:3000/edcel-and-apreal", {
-      headers: { host: "moderninvites.com", "x-forwarded-host": "localhost:3000" },
-    });
-    assert.equal((await middleware(request)).status, 404);
-  }
-});
+  test(`${name}'s internal loopback server URL does not allow the old page on an external Host`, async () => {
+    for (const environment of ["development", "production"] as const) {
+      const { middleware } = loadMiddleware(environment);
+      const request = new NextRequest(`http://127.0.0.1:3000/${slug}`, {
+        headers: { host: "moderninvites.com", "x-forwarded-host": "localhost:3000" },
+      });
+      assert.equal((await middleware(request)).status, 404);
+    }
+  });
+}
 
 test("the retired-page matcher excludes public roots, RSVP APIs and invitation media", () => {
   const { config } = loadMiddleware("production");
   const origin = "https://edcelandaprealwedding.moderninvites.com";
-  for (const pathname of ["/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/admin/events"]) {
+  for (const pathname of ["/jaydee-and-bea", "/jaydee-and-bea/", "/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/admin/events"]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), true);
   }
   for (const pathname of [
     "/", "/?ref=invitation", "/api/rsvp/access", "/_next/image", "/_next/static/chunk.js",
     "/edcel-and-apreal/music/iris-jada-facer-b2861c80.mp3",
     "/edcel-and-apreal/video/save-the-date-1080p-07f4f465.mp4",
+    "/jaydee-and-bea/sharing/envelope-8dfe0d26.jpg",
+    "/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3",
   ]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), false);
   }

@@ -3,12 +3,26 @@ import TextReveal from "./TextReveal";
 import type { EntourageGroup as EntourageGroupData } from "../types/wedding";
 import styles from "../styles/entourage.module.css";
 
-function MemberList({ members, align = "center", alignFirstRow = false }: { members: readonly string[]; align?: "left" | "right" | "center"; alignFirstRow?: boolean }) {
-  const alignment = align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
+function MemberList({ members, alignFirstRow = false }: { members: readonly string[]; alignFirstRow?: boolean }) {
   return (
-    <ul className={`jb-serif ${alignment} space-y-0.5 text-sm leading-[1.4] sm:text-base`}>
+    <ul className="jb-serif space-y-0.5 text-center text-sm leading-[1.4] sm:text-base">
       {members.map((member, index) => <ScrollLayer as="li" profile="text" staggerIndex={index + 1} key={member}
         className={alignFirstRow && index === 0 ? "min-h-[2lh] sm:min-h-0" : undefined}>{member}</ScrollLayer>)}
+    </ul>
+  );
+}
+
+function MemberRows({ rows }: { rows: readonly (readonly string[])[] }) {
+  return (
+    <ul className="jb-serif space-y-2 text-sm leading-[1.4] sm:space-y-0.5 sm:text-base">
+      {rows.map((members, index) => (
+        <ScrollLayer as="li" profile="text" staggerIndex={index + 1} key={members.join("|")}
+          className={`grid items-start gap-x-5 sm:gap-x-6 ${members.length === 2 ? "grid-cols-2" : members.length === 3 ? "grid-cols-1 gap-y-0.5 sm:flex sm:justify-center" : "grid-cols-1"}`}>
+          {members.map((member, memberIndex) => (
+            <span key={member} className={`min-w-0 ${members.length === 2 ? memberIndex === 0 ? "text-right" : "text-left" : "text-center"}`}>{member}</span>
+          ))}
+        </ScrollLayer>
+      ))}
     </ul>
   );
 }
@@ -22,12 +36,7 @@ export default function EntourageGroup({ group, id }: { group: EntourageGroupDat
         <TextReveal as="h3" id={id} className={`${styles.script} mb-5 text-[2rem] sm:mb-7 sm:text-[2.5rem]`}>{group.title}</TextReveal>
       )}
       {group.members && <MemberList members={group.members} />}
-      {group.memberColumns && (
-        <div className="grid grid-cols-2 gap-x-5 sm:gap-x-12">
-          {group.memberColumns.map((members, index) => <MemberList key={index} members={members} align={index === 0 ? "right" : "left"} />)}
-        </div>
-      )}
-      {group.centeredMembers && <div className="mt-0.5"><MemberList members={group.centeredMembers} /></div>}
+      {group.memberRows && <MemberRows rows={group.memberRows} />}
       {roles && (
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-10 sm:gap-y-10">
           {roles.map((role, index) => {

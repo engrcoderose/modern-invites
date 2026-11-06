@@ -4,6 +4,7 @@ import AttireDrawing from "../components/AttireDrawing";
 import { maleGuestArt, femaleGuestArt, sponsorArt } from "../data/attire-artwork";
 import wedding from "../data/wedding-details.json";
 import roses from "../assets/designs/flower-design-3.png";
+import monogram from "../assets/designs/client-monogram-transparent-v1.png";
 
 export default function DressCodeSection() {
   const colorList = new Intl.ListFormat("en", { style: "long", type: "disjunction" });
@@ -13,9 +14,7 @@ export default function DressCodeSection() {
         <Image src={roses} alt="" sizes="(min-width: 640px) 224px, 112px" className="absolute -left-7 -top-8 h-auto w-28 rotate-12 sm:-left-10 sm:-top-12 sm:w-56" />
         <Image src={roses} alt="" sizes="(min-width: 640px) 224px, 112px" className="absolute -right-7 -top-8 h-auto w-28 -rotate-12 -scale-x-100 sm:-right-10 sm:-top-12 sm:w-56" />
       </div>
-      <div aria-hidden="true" className="mj-attire-monogram absolute right-[9%] top-28 hidden h-20 w-20 md:block">
-        <span className="mj-script absolute left-3 top-0 text-5xl">M</span><span className="mj-script absolute bottom-0 right-3 text-5xl">D</span>
-      </div>
+      <Image src={monogram} alt="" sizes="112px" className="pointer-events-none absolute right-[9%] top-28 hidden h-auto w-28 md:block" />
       <div className="relative mx-auto max-w-6xl">
         <h2 data-mj-reveal id="mj-attire-title" className="mj-heading">Dress Code</h2>
         <p data-mj-reveal className="mt-1 text-xl sm:text-2xl">Formal Attire</p>
