@@ -17,12 +17,12 @@ export default function DressCodeSection() {
         <span className="mj-script absolute left-3 top-0 text-5xl">M</span><span className="mj-script absolute bottom-0 right-3 text-5xl">D</span>
       </div>
       <div className="relative mx-auto max-w-6xl">
-        <h2 id="mj-attire-title" className="mj-heading">Dress Code</h2>
-        <p className="mt-1 text-xl sm:text-2xl">Formal Attire</p>
+        <h2 data-mj-reveal id="mj-attire-title" className="mj-heading">Dress Code</h2>
+        <p data-mj-reveal className="mt-1 text-xl sm:text-2xl">Formal Attire</p>
         <div className="mt-5 grid grid-cols-2 items-end gap-x-5 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1fr)] md:gap-x-4">
           <div className="col-span-2 md:col-span-1 md:col-start-2 md:row-start-1">
             <AttirePalette />
-            <h3 className="mj-attire-label mb-2 mt-6">Guests</h3>
+            <h3 data-mj-reveal className="mj-attire-label mb-2 mt-6">Guests</h3>
             <div className="mx-auto max-w-md space-y-2 text-sm uppercase leading-6 lg:text-base lg:leading-7">
               <p>Gentlemen: Please wear {colorList.format(wedding.attire.maleGuests)}.</p>
               <p>Ladies: Please wear {colorList.format(wedding.attire.femaleGuests)}.</p>
@@ -36,14 +36,14 @@ export default function DressCodeSection() {
           </figure>
         </div>
         <div className="mx-auto mt-7 max-w-3xl">
-          <h3 className="mj-attire-label mb-3">Principal Sponsors</h3>
+          <h3 data-mj-reveal className="mj-attire-label mb-3">Principal Sponsors</h3>
           <dl className="space-y-1 text-sm uppercase leading-6 lg:text-base lg:leading-7">
-            <div><dt className="inline">Ninong: </dt><dd className="inline">{wedding.attire.principalSponsors.ninong}</dd></div>
-            <div><dt className="inline">Ninang: </dt><dd className="inline">{wedding.attire.principalSponsors.ninang}</dd></div>
+            <div data-mj-reveal><dt className="inline">Ninong: </dt><dd className="inline">{wedding.attire.principalSponsors.ninong}</dd></div>
+            <div data-mj-reveal><dt className="inline">Ninang: </dt><dd className="inline">{wedding.attire.principalSponsors.ninang}</dd></div>
           </dl>
           <AttireDrawing artwork={sponsorArt} sizes="(min-width: 640px) 540px, calc(116vw - 56px)" className="relative mx-auto mt-3 w-full max-w-[460px]" />
         </div>
-        <p className="mj-attire-note mx-auto mt-8 max-w-3xl border-t pt-6 text-sm leading-7">{wedding.attire.notes.split("\n\n")[2]}</p>
+        <p data-mj-reveal className="mj-attire-note mx-auto mt-8 max-w-3xl border-t pt-6 text-sm leading-7">{wedding.attire.notes.split("\n\n")[2]}</p>
       </div>
     </section>
   );

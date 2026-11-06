@@ -11,8 +11,8 @@ export default function GiftSection() {
         {Array.from({ length: 8 }, (_, index) => <span key={index} className="mj-gift-petal" />)}
       </div>
       <div className="mj-gift-message relative z-10 mx-auto w-full max-w-3xl border-y py-10 sm:py-12">
-        <h2 id="mj-gift-title" className="mj-heading">Your presence <em>is our present.</em></h2>
-        <p className="mx-auto mt-6 max-w-xl leading-8">{wedding.giftNote}</p>
+        <h2 data-mj-reveal id="mj-gift-title" className="mj-heading">Your presence <em>is our present.</em></h2>
+        <p data-mj-reveal className="mx-auto mt-6 max-w-xl leading-8">{wedding.giftNote}</p>
       </div>
     </section>
   );

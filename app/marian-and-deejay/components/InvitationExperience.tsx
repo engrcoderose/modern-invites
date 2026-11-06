@@ -8,6 +8,7 @@ import useReducedMotionPreference from "@/components/landing/useMarketingReduced
 import OpeningHeroCard from "./OpeningHeroCard";
 import useOpeningHeroReady from "../hooks/useOpeningHeroReady";
 import useOpeningExpansion from "../hooks/useOpeningExpansion";
+import useScrollReveals from "../hooks/useScrollReveals";
 import { InvitationOpenContext } from "./InvitationState";
 import wedding from "../data/wedding-details.json";
 import "../styles/invitation.css";
@@ -32,6 +33,7 @@ export default function InvitationExperience({ children, openingHero, className 
     cover.current?.focus({ preventScroll: true });
   }, []);
   const expansion = useOpeningExpansion({ packet, card, content, requested: requested && !opened, ready: heroReady, unwrapped, letteringReady, reducedMotion, onComplete: finish });
+  useScrollReveals(content, opened, reducedMotion);
 
   useLayoutEffect(() => {
     if (opened) return;
@@ -68,18 +70,6 @@ export default function InvitationExperience({ children, openingHero, className 
     if (!opened) return;
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     content.current?.querySelector<HTMLElement>("#home h1")?.focus({ preventScroll: true });
-  }, [opened]);
-
-  useEffect(() => {
-    if (!opened || !content.current || !("IntersectionObserver" in window)) return;
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) if (entry.isIntersecting) {
-        (entry.target as HTMLElement).dataset.revealed = "true";
-        observer.unobserve(entry.target);
-      }
-    }, { threshold: 0.25 });
-    content.current.querySelectorAll("h2").forEach((heading) => observer.observe(heading));
-    return () => observer.disconnect();
   }, [opened]);
 
   const palette = Object.fromEntries(wedding.design.palette.map((color, index) => [`--mj-palette-${index}`, color.hex])) as CSSProperties;

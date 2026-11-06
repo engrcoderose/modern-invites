@@ -27,6 +27,7 @@ export default function EntourageGroup({ group, id }: { group: EntourageGroupDat
           {group.memberColumns.map((members, index) => <MemberList key={index} members={members} align={index === 0 ? "right" : "left"} />)}
         </div>
       )}
+      {group.centeredMembers && <div className="mt-0.5"><MemberList members={group.centeredMembers} /></div>}
       {roles && (
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-10 sm:gap-y-10">
           {roles.map((role, index) => {

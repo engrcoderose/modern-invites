@@ -9,7 +9,7 @@ export default function RsvpSection() {
     <section id="rsvp" aria-labelledby="mj-rsvp-title" className="mj-rsvp overflow-hidden px-6 py-20 sm:px-10 sm:py-24">
       <h2 id="mj-rsvp-title" className="sr-only">RSVP for Marian and Dee Jay</h2>
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <div className="relative mx-auto w-full max-w-xl">
+        <div data-mj-reveal className="relative mx-auto w-full max-w-xl">
           <div className="mj-rsvp-photo relative aspect-[4/3] overflow-hidden">
             <Image src={rsvpPhoto.src} alt={rsvpPhoto.alt} fill quality={85} sizes="(min-width: 1280px) 536px, (min-width: 1024px) calc((100vw - 160px) / 2), (min-width: 656px) 576px, (min-width: 640px) calc(100vw - 80px), calc(100vw - 48px)" className="object-cover" style={{ objectPosition: rsvpPhoto.position }} />
           </div>
@@ -18,8 +18,8 @@ export default function RsvpSection() {
         </div>
         <div className="mx-auto w-full min-w-0 max-w-xl">
           <RsvpPreviewFlow />
-          <p className="mt-8 text-center text-sm leading-7">Our celebration is reserved for our personally invited guests. Thank you for understanding.</p>
-          <p className="mt-5 text-center text-sm leading-7">Questions? We’re happy to help.<br /><a className="mj-text-link" href={`tel:${wedding.contact.bridePhone.replaceAll(" ", "")}`}>Call Marian</a> · <a className="mj-text-link" href={`tel:${wedding.contact.coordinator.phone.replaceAll(" ", "")}`}>Call our coordinator</a></p>
+          <p data-mj-reveal className="mt-8 text-center text-sm leading-7">Our celebration is reserved for our personally invited guests. Thank you for understanding.</p>
+          <p data-mj-reveal className="mt-5 text-center text-sm leading-7">Questions? We’re happy to help.<br /><a className="mj-text-link" href={`tel:${wedding.contact.bridePhone.replaceAll(" ", "")}`}>Call Marian</a> · <a className="mj-text-link" href={`tel:${wedding.contact.coordinator.phone.replaceAll(" ", "")}`}>Call our coordinator</a></p>
         </div>
       </div>
     </section>

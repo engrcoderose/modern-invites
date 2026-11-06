@@ -21,16 +21,16 @@ export default function HeroSection({ openingPreview = false }: { openingPreview
       <Image data-opening-part="bottom-flower-left" src={bottomLeft} alt="" sizes="(max-width: 639px) 144px, (max-width: 1023px) 256px, 352px" className="pointer-events-none absolute bottom-0 left-0 z-10 w-36 sm:w-64 lg:w-[22rem]" />
       <Image data-opening-part="bottom-flower-right" src={bottomRight} alt="" sizes="(max-width: 639px) 144px, (max-width: 1023px) 256px, 352px" className="pointer-events-none absolute bottom-0 right-0 z-10 w-36 sm:w-64 lg:w-[22rem]" />
       <div className="mj-hero-copy pointer-events-none relative z-10 mx-auto w-full max-w-4xl">
-        <p data-opening-part="intro" className="mx-auto mb-8 max-w-xs text-sm leading-7 sm:mb-10 sm:max-w-none"><span data-hero-kicker>Together with our families, we invite you to celebrate</span></p>
-        <h1 data-opening-part="names" tabIndex={-1} className="mj-script mj-hero-names text-[clamp(3.8rem,8vw,6rem)] leading-[1.2]"><span data-hero-name="bride" className="inline-block">{bride}</span> <span className="mj-hero-and block text-4xl sm:inline sm:text-5xl"><span data-hero-name="and" className="inline-block">&</span></span> <span data-hero-name="groom" className="inline-block">{groom}</span></h1>
-        <p data-opening-part="tagline" className="mj-small mb-7 mt-8"><span data-hero-detail>The beginning of our forever</span></p>
-        <div data-opening-part="date" className="mj-date mx-auto flex w-fit items-center gap-5 border-y px-4 py-5 sm:gap-8">
+        <p data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="intro" className="mx-auto mb-8 max-w-xs text-sm leading-7 sm:mb-10 sm:max-w-none"><span data-hero-kicker>Together with our families, we invite you to celebrate</span></p>
+        <h1 data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="names" tabIndex={-1} className="mj-script mj-hero-names text-[clamp(3.8rem,8vw,6rem)] leading-[1.2]"><span data-hero-name="bride" className="inline-block">{bride}</span> <span className="mj-hero-and block text-4xl sm:inline sm:text-5xl"><span data-hero-name="and" className="inline-block">&</span></span> <span data-hero-name="groom" className="inline-block">{groom}</span></h1>
+        <p data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="tagline" className="mj-small mb-7 mt-8"><span data-hero-detail>The beginning of our forever</span></p>
+        <div data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="date" className="mj-date mx-auto flex w-fit items-center gap-5 border-y px-4 py-5 sm:gap-8">
           <span data-hero-detail className="mj-small">{format({ weekday: "long" })}</span>
           <span data-hero-detail className="mj-date-value text-3xl">{format({ day: "numeric" })} <span className="text-xl italic">{format({ month: "long" })}</span> {format({ year: "numeric" })}</span>
           <span data-hero-detail className="mj-small">{wedding.date.ceremonyTime}</span>
         </div>
-        <p data-opening-part="location" className="mt-6 text-sm"><span data-hero-detail>Baguio City, Philippines</span></p>
-        <a data-opening-part="action" href="#celebration" className="mj-text-link pointer-events-auto mt-8 inline-flex items-center gap-3 py-3 text-sm">A day to remember <ArrowDown size={15} aria-hidden="true" /></a>
+        <p data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="location" className="mt-6 text-sm"><span data-hero-detail>Baguio City, Philippines</span></p>
+        <a data-mj-reveal={openingPreview ? undefined : "opening"} data-opening-part="action" href="#celebration" className="mj-text-link pointer-events-auto mt-8 inline-flex items-center gap-3 py-3 text-sm">A day to remember <ArrowDown size={15} aria-hidden="true" /></a>
       </div>
     </section>
   );

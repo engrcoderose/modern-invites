@@ -46,11 +46,11 @@ export default function CountdownSection() {
     <section id="countdown" aria-labelledby="mj-countdown-title" className="mj-countdown relative isolate flex min-h-[360px] items-center justify-center overflow-hidden px-6 py-20 text-center sm:min-h-[480px] sm:px-10 lg:aspect-[1366/769]">
       <Image src={background} alt="" fill sizes="(max-width: 639px) max(100vw, 680px), (max-width: 1023px) max(100vw, 854px), 100vw" className="pointer-events-none object-cover" />
       <div className="relative mx-auto w-full max-w-3xl">
-        <h2 id="mj-countdown-title" aria-live="polite" className="mj-script mb-6 text-[clamp(2.3rem,4.4vw,4rem)] leading-[1.4] sm:mb-8">{finished ? "Our forever has begun." : "Forever starts soon…"}</h2>
+        <h2 data-mj-reveal id="mj-countdown-title" aria-live="polite" className="mj-script mb-6 text-[clamp(2.3rem,4.4vw,4rem)] leading-[1.4] sm:mb-8">{finished ? "Our forever has begun." : "Forever starts soon…"}</h2>
         <p className="sr-only">Counting down to {wedding.date.display}, {wedding.date.ceremonyTime}, Baguio City time.</p>
         <dl aria-label="Time until the wedding ceremony" aria-live="off" className="mx-auto grid w-full max-w-2xl grid-cols-4">
           {units.map(({ key, label }, index) => (
-            <div key={key} className="flex min-w-0 flex-col">
+            <div data-mj-reveal key={key} className="flex min-w-0 flex-col">
               <dt className="mt-2 text-xs sm:text-sm">{label}</dt>
               <dd className="mj-countdown-number relative -order-1">
                 {remaining ? String(remaining[key]).padStart(2, "0") : "—"}

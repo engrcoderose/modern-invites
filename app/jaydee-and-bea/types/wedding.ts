@@ -15,6 +15,7 @@ export interface EntourageGroup {
   title: string;
   members?: readonly string[];
   memberColumns?: readonly (readonly string[])[];
+  centeredMembers?: readonly string[];
   roles?: readonly { title: string; members: readonly string[] }[];
   pending?: boolean;
 }

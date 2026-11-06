@@ -84,25 +84,27 @@ export default function GallerySection() {
                 opacity: distance < 3 ? 1 : 0,
                 visibility: distance < 4 ? "visible" : "hidden",
               }}>
-                <Image key={pending === index ? attempt : "photo"} src={photo.src} alt={photo.alt} fill quality={85} sizes={`(min-width: 1223px) ${Math.round(330 * cropScale)}px, (min-width: 640px) ${27 * cropScale}vw, (min-width: 322px) ${56 * cropScale}vw, ${180 * cropScale}px`} loading="eager" draggable={false} className="select-none object-cover" onLoad={async (event) => {
-                  try {
-                    await event.currentTarget.decode();
-                    ready.current.add(index);
-                    if (requested.current === index) {
-                      setSelected(index);
-                      requested.current = null;
-                      setPending(null);
-                    }
-                  } catch { failed(index); }
-                }} onError={() => failed(index)} />
+                <div data-mj-reveal className="absolute inset-0">
+                  <Image key={pending === index ? attempt : "photo"} src={photo.src} alt={photo.alt} fill quality={85} sizes={`(min-width: 1223px) ${Math.round(330 * cropScale)}px, (min-width: 640px) ${27 * cropScale}vw, (min-width: 322px) ${56 * cropScale}vw, ${180 * cropScale}px`} loading="eager" draggable={false} className="select-none object-cover" onLoad={async (event) => {
+                    try {
+                      await event.currentTarget.decode();
+                      ready.current.add(index);
+                      if (requested.current === index) {
+                        setSelected(index);
+                        requested.current = null;
+                        setPending(null);
+                      }
+                    } catch { failed(index); }
+                  }} onError={() => failed(index)} />
+                </div>
               </div>
             );
           })}
         </div>
-        <button type="button" aria-label="Previous gallery photo" disabled={pending !== null || !nearby} onClick={() => goTo(selected - 1)} className="mj-gallery-arrow absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full sm:left-[8%]"><ChevronLeft size={25} strokeWidth={1.5} aria-hidden="true" /></button>
-        <button type="button" aria-label="Next gallery photo" disabled={pending !== null || !nearby} onClick={() => goTo(selected + 1)} className="mj-gallery-arrow absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full sm:right-[8%]"><ChevronRight size={25} strokeWidth={1.5} aria-hidden="true" /></button>
+        <button data-mj-reveal type="button" aria-label="Previous gallery photo" disabled={pending !== null || !nearby} onClick={() => goTo(selected - 1)} className="mj-gallery-arrow absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full sm:left-[8%]"><ChevronLeft size={25} strokeWidth={1.5} aria-hidden="true" /></button>
+        <button data-mj-reveal type="button" aria-label="Next gallery photo" disabled={pending !== null || !nearby} onClick={() => goTo(selected + 1)} className="mj-gallery-arrow absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full sm:right-[8%]"><ChevronRight size={25} strokeWidth={1.5} aria-hidden="true" /></button>
       </div>
-      <p aria-live="polite" aria-atomic="true" className="mt-7 text-center text-sm tabular-nums"><span className="sr-only">Photo </span>{selected + 1} <span aria-hidden="true">/</span><span className="sr-only"> of </span> {count}</p>
+      <p data-mj-reveal aria-live="polite" aria-atomic="true" className="mt-7 text-center text-sm tabular-nums"><span className="sr-only">Photo </span>{selected + 1} <span aria-hidden="true">/</span><span className="sr-only"> of </span> {count}</p>
       <p role="status" className="mt-2 min-h-6 px-6 text-center text-sm">{pending !== null ? "Loading photo…" : error ? "This photo couldn’t load. Please try the arrow again." : ""}</p>
     </section>
   );
