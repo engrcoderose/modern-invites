@@ -1,0 +1,20 @@
+{
+  "tool": "Built-in image_gen",
+  "mode": "background-extraction",
+  "date": "2026-11-06",
+  "sourceFiles": [
+    "assets/images/dress-code-inspiration-illustrated-male-variations.png",
+    "assets/images/dress-code-sponsor-couples.png"
+  ],
+  "outputs": [
+    "assets/images/attire-men-transparent-v1.png",
+    "assets/images/attire-women-transparent-v1.png",
+    "assets/images/attire-sponsors-transparent-v1.png"
+  ],
+  "prompts": {
+    "men": "Use case: background-extraction. Edit target: the supplied wedding dress-code poster. Extract ONLY the three faceless male GUEST illustrations in the middle row: beige vest and trousers over a cream shirt, cream long-sleeved collared shirt with beige trousers, and cream short-sleeved polo with brown trousers. Preserve their exact illustrated style, hair, poses, proportions, outfit colors and clothing details. Arrange the same three men as one compact side-by-side full-length group with feet on a shared baseline, as in a wedding dress code guide. Keep every head, hand, shoe and edge fully visible with a small transparent margin. Remove ALL paper/cream background, cast shadows on the paper, words, labels, lines, color circles, floral decoration, and every other person. Output only the three men on a genuine transparent alpha background. No text, no frame, no extra people, no new backdrop.",
+    "women": "Use case: background-extraction. Edit target: the supplied wedding dress-code poster. Extract ONLY the three faceless female GUEST illustrations from the top row wearing light yellow, pastel yellow and butter yellow floor-length gowns. Preserve exactly their illustrated style, hairstyles, gown designs, poses, colors, anatomy and fabric details. Arrange the same three women as one compact side-by-side full-length group with hems on a shared baseline. Keep all heads, hands, hair and full gown hems visible with a small transparent margin. Remove ALL paper/cream background, shadows on the paper, labels, words, rules, color circles, flowers and all other people. Output only these three women with genuine transparent alpha. No text, no border, no extra people, no new background.",
+    "sponsors": "Use case: background-extraction. Edit target: the supplied wide illustration of four wedding couples surrounded by yellow flowers. Extract ALL EIGHT illustrated people, preserving their exact order as four paired couples, faceless illustration style, hairstyles, poses, yellow floor-length gown variations, cream embroidered barong shirts, black trousers and shoes. Keep full bodies, heads, hands and gown hems fully visible on the same baseline, with a small transparent margin. Remove the entire cream paper background, every floral corner, leaf, berry, heart and any ground shadow. Output ONLY the same four couples on genuine transparent alpha, no text, no frame, no new people or objects. Wide horizontal composition."
+  },
+  "notes": "Real alpha transparency verified in all three outputs. Unused source artwork was removed on 2026-11-06 after the user confirmed a backup. Layout frames crop only transparent margins."
+}

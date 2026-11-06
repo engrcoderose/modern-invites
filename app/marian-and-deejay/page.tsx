@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
 import InvitationExperience from "./components/InvitationExperience";
 import HeroSection from "./sections/HeroSection";
+import FilmSection from "./sections/FilmSection";
+import CountdownSection from "./sections/CountdownSection";
+import TimelineSection from "./sections/TimelineSection";
 import CelebrationSection from "./sections/CelebrationSection";
+import GallerySection from "./sections/GallerySection";
+import PhotoBreakSection from "./sections/PhotoBreakSection";
 import EntourageSection from "./sections/EntourageSection";
-import GuestDetailsSection from "./sections/GuestDetailsSection";
+import EntouragePhotoBreakSection from "./sections/EntouragePhotoBreakSection";
+import GiftSection from "./sections/GiftSection";
+import SocialSection from "./sections/SocialSection";
+import GuestRemindersSection from "./sections/GuestRemindersSection";
+import FaqSection from "./sections/FaqSection";
+import DressCodeSection from "./sections/DressCodeSection";
 import RsvpSection from "./sections/RsvpSection";
+import Footer from "./sections/Footer";
 import wedding from "./data/wedding-details.json";
+import { citadel } from "./styles/fonts";
 
 export const metadata: Metadata = {
   title: `${wedding.couple.display} | ${wedding.date.display}`,
@@ -15,19 +27,25 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <InvitationExperience>
+    <InvitationExperience className={citadel.variable} openingHero={<HeroSection openingPreview />}>
       <main>
         <HeroSection />
+        <FilmSection />
+        <CountdownSection />
+        <TimelineSection />
+        <PhotoBreakSection />
         <CelebrationSection />
+        <GallerySection />
         <EntourageSection />
-        <GuestDetailsSection />
+        <EntouragePhotoBreakSection />
+        <DressCodeSection />
+        <GiftSection />
+        <SocialSection />
+        <GuestRemindersSection />
+        <FaqSection />
         <RsvpSection />
       </main>
-      <footer className="px-6 py-16 text-center">
-        <p className="mb-4 text-sm">With love, always</p>
-        <p className="mj-script text-5xl">{wedding.couple.display}</p>
-        <p className="mt-6 text-xs">{wedding.date.display} · Baguio City</p>
-      </footer>
+      <Footer />
     </InvitationExperience>
   );
 }

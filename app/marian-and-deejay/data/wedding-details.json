@@ -7,6 +7,7 @@
   "date": {
     "display": "January 19, 2027",
     "iso": "2027-01-19",
+    "ceremonyIso": "2027-01-19T14:00:00+08:00",
     "ceremonyTime": "2:00 PM",
     "timezone": "Asia/Manila"
   },
@@ -248,7 +249,7 @@
   "social": {
     "title": "Capture the love",
     "message": "We’d love for you to capture and share your favorite moments from our special day. When posting on social media, don’t forget to use our wedding hashtag so we can cherish and relive these beautiful memories together.",
-    "hashtag": "#DEEJAYnuinegiftofgodforMARIAN"
+    "hashtag": "#DEEJAYnuinegiftofGodforMARIAN"
   },
   "music": {
     "requestedTrack": "Libu-Libong Buwan Uuwian By Kyle Raphael",

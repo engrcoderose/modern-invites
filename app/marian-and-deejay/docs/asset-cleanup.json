@@ -1,0 +1,378 @@
+{
+  "date": "2026-11-06",
+  "scope": "app/marian-and-deejay",
+  "authorization": "User requested removal of unused files and unoptimized originals, and confirmed a backup exists.",
+  "method": "Traversed local imports from page and calendar entry points, checked asset string references and external client references, then validated each absolute deletion path.",
+  "removedFiles": [
+    {
+      "path": "assets/designs/entourage_bg_pattern.png",
+      "bytes": 4585979
+    },
+    {
+      "path": "assets/designs/flower-design-1.png",
+      "bytes": 194937
+    },
+    {
+      "path": "assets/designs/flower-design-2.png",
+      "bytes": 156277
+    },
+    {
+      "path": "assets/designs/flower-pattern-1.png",
+      "bytes": 677838
+    },
+    {
+      "path": "assets/designs/flower-pattern-2.png",
+      "bytes": 2343723
+    },
+    {
+      "path": "assets/designs/venue_flower.png",
+      "bytes": 385311
+    },
+    {
+      "path": "assets/images/dress-code-inspiration-illustrated-male-variations.png",
+      "bytes": 2094277
+    },
+    {
+      "path": "assets/images/dress-code-inspiration-illustrated.png",
+      "bytes": 2329016
+    },
+    {
+      "path": "assets/images/dress-code-inspiration.png",
+      "bytes": 1928248
+    },
+    {
+      "path": "assets/images/dress-code-sponsor-couples.png",
+      "bytes": 834480
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6383.JPG",
+      "bytes": 20045102
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6536.JPG",
+      "bytes": 21753102
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6634.JPG",
+      "bytes": 22214209
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6702.JPG",
+      "bytes": 17777619
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6748.JPG",
+      "bytes": 19487576
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6822.JPG",
+      "bytes": 19566150
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6973.JPG",
+      "bytes": 21801500
+    },
+    {
+      "path": "assets/images/Prenup/NHUT6991.JPG",
+      "bytes": 17463086
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7032.JPG",
+      "bytes": 19668262
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7085.JPG",
+      "bytes": 21504658
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7111.JPG",
+      "bytes": 37170994
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7304.JPG",
+      "bytes": 26811446
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7427.JPG",
+      "bytes": 18263034
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7569.JPG",
+      "bytes": 22858990
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7633.JPG",
+      "bytes": 25871369
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7696.JPG",
+      "bytes": 22721928
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7763.JPG",
+      "bytes": 27580327
+    },
+    {
+      "path": "assets/images/Prenup/NHUT7940.JPG",
+      "bytes": 17434628
+    },
+    {
+      "path": "assets/images/Prenup/NHUT8169.JPG",
+      "bytes": 42052605
+    },
+    {
+      "path": "assets/images/Prenup/NHUT8301.JPG",
+      "bytes": 35089415
+    },
+    {
+      "path": "assets/images/Prenup/NHUT8348.JPG",
+      "bytes": 29901493
+    },
+    {
+      "path": "assets/images/Prenup/NHUT8615.JPG",
+      "bytes": 27382678
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6383.webp",
+      "bytes": 2189180
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6634.webp",
+      "bytes": 3255854
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6702.webp",
+      "bytes": 2391796
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7032.webp",
+      "bytes": 2137174
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7085.webp",
+      "bytes": 2751250
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7569.webp",
+      "bytes": 4822124
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7633.webp",
+      "bytes": 5732718
+    },
+    {
+      "path": "assets/videos/prenup-film-4k-hevc.mp4",
+      "bytes": 530314673
+    },
+    {
+      "path": ".gitkeep",
+      "bytes": 0
+    }
+  ],
+  "removedCount": 41,
+  "removedBytes": 1103545026,
+  "beforeFileCount": 139,
+  "beforeBytes": 1209055524,
+  "retainedActiveAssetHashes": [
+    {
+      "path": "assets/images/Prenup/optimized/nhut7304.webp",
+      "sha256": "B2D523A2903BF62ED7E915C694943253163C1B5C1E0787E01EE0F23A24FFB3AB"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6536.webp",
+      "sha256": "85DD80794774DF5B6526A536E45B67796D7C531CA992CB2F28C7015F93C987DB"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut8301.webp",
+      "sha256": "617C139153CCAB706343850B704165C7D02F824346D45B4848ECC52209426621"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut8615.webp",
+      "sha256": "6D8638A21BEDB78946CCE7C4D66EBB1A3B5ECA09316E5321D2A29341E04C39F1"
+    },
+    {
+      "path": "assets/designs/hero-flower-left.png",
+      "sha256": "438859D32F7EDD7EF91CE9C07DCD66559B3E836BEBA6AC10D7D8FB651DE3CDFE"
+    },
+    {
+      "path": "assets/designs/hero-flower-right.png",
+      "sha256": "2AFD18711A0B20940E42895235D1E45DEFAB177089AC462B996EC1AB6E864F52"
+    },
+    {
+      "path": "assets/designs/hero-yellow-flowers-bl.png",
+      "sha256": "2A5AC613BD75788D6A216E25B7C7505F17F4BDBDC39BF68AAB9D1590BB5222BA"
+    },
+    {
+      "path": "assets/designs/hero-yellow-flowers-br.png",
+      "sha256": "73A919909FC2FD25D60B74666D75AED53CF2C3348272EE4DB071A3CD3D45CC78"
+    },
+    {
+      "path": "assets/images/prenup_video_bg.png",
+      "sha256": "50954E5774FB313E084CB8ECCABEFC81EB07AD02F24946B3CA7C08CC02804216"
+    },
+    {
+      "path": "assets/images/prenup-film-poster.jpg",
+      "sha256": "C5BCB4379F6B956A73E6DF62E7A1479CE20EA6AF1C19E5951A5325DC1844C76E"
+    },
+    {
+      "path": "assets/designs/countdown-bg.png",
+      "sha256": "CEFDC314682EB7A5491121B41413F722D9C2605FBDBEA9AD38FB167AAC05717D"
+    },
+    {
+      "path": "assets/designs/timeline_brown.png",
+      "sha256": "F604C809C571256D4ADCF7F283A3D7DC8E179D4571421CB76436677E49A1E5A1"
+    },
+    {
+      "path": "assets/designs/timeline_church.png",
+      "sha256": "2FCAB0910BFE455FC2914EDADFA91F4931A068EE5E108EC46EC0D06C2EB4FB83"
+    },
+    {
+      "path": "assets/designs/timeline_camera.png",
+      "sha256": "0DB01E18033A41C8E392CFA0CEAB3287D5CA2E1835E7B0F265414A43466C662D"
+    },
+    {
+      "path": "assets/designs/timeline_reception.png",
+      "sha256": "23DFFA2E517B5894C1B176AC3B37B1955C44710B656EFCDF3C376DDED6F9EA1A"
+    },
+    {
+      "path": "assets/designs/timeline_guest_arrival.png",
+      "sha256": "74C81D3DCBE8B0A69ACE83FAF43C77AB6254B96C91EEACD91EC1E7C55C6B947C"
+    },
+    {
+      "path": "assets/designs/timeline_wedding_program.png",
+      "sha256": "F6F408FFC9F8A06827EE8F8089C42FBBE6D8A6823A0FC646EA6173CC83CEBE60"
+    },
+    {
+      "path": "assets/designs/timeline_dinner.png",
+      "sha256": "27A72E8616A9DE9F061D0A8F7BAD4783B30E430896C8FBCDD1E5CA6660A401BE"
+    },
+    {
+      "path": "assets/designs/ceremony_image.png",
+      "sha256": "CF0C0AC84E94167FC4A19294B74F7E5882A8661D49C37E4CA9B13F306F8F9AA2"
+    },
+    {
+      "path": "assets/designs/reception_image.png",
+      "sha256": "07672EBE68A13BE4E9084AFFE1D025F2C79F2920F534BFD7365ACC6C509F8A72"
+    },
+    {
+      "path": "assets/designs/venue-flowers-trimmed.webp",
+      "sha256": "784681A17713EB2976ED7C400528934C95C18B08C8B524437457A8DBE9A3BC7F"
+    },
+    {
+      "path": "assets/designs/venues_bg_pattern.png",
+      "sha256": "B6A656031E7B90628083FC1E4DA63F1C9C60B94B8682C9165F0D26F659C4D25A"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7427.webp",
+      "sha256": "060D5E011CF93D7CFA5E88185CE7CA0FD37C0DB038E5E0D3F8D20B928F405265"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7111.webp",
+      "sha256": "0861CB40E429D778145BEB15307FDAAC97C19724C82F3462347E749D146E6CFA"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6822.webp",
+      "sha256": "8F0B750624A1B5FA9F4AC5E666C1A84E432F66B91A426A966A700F2169363D63"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7940.webp",
+      "sha256": "7454DC925B162F7B4ADEBEFCE794368C9C3AC5C01A44F0B02F41F536B903EF5F"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6973.webp",
+      "sha256": "B2D2C5EFB50B3CF993119A56BB7C44A7C37E126DEB10A5DA36654A29173C34C1"
+    },
+    {
+      "path": "assets/designs/photo-break-rose.png",
+      "sha256": "F95997B2A0422E3917C5EFBB3E4EB2C567A6305EC541046559EB474ABA56AB23"
+    },
+    {
+      "path": "assets/designs/photo-break-butterflies.png",
+      "sha256": "B3BB137C1E00AEE0A607DEDE7E8C93AC358567568D9A3720E2F8DB64CEDF302D"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6991.webp",
+      "sha256": "FC1C2C0E98616E97497F7C5C7F29428FF1DBD4572DD4777B0EC975D6E7C72715"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut8169.webp",
+      "sha256": "5BE49F52BBA7306D2030FD6FB7540E68964387BCC68C27189D8B25ABC7F8B803"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut8348.webp",
+      "sha256": "DF453B777BF0FA64E900FD87893F83284C4EFC531C1302EDE7699E1A9206102D"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7696.webp",
+      "sha256": "8518A6A8D4CF27E987B1FF8194B2FA3BD397475994F757022549687FCB91B971"
+    },
+    {
+      "path": "assets/designs/entourage-pattern.webp",
+      "sha256": "E2A3268B680BCB4CD8C37E43E1A0CFE303779B677C93B10F9DA62E6D46B369AF"
+    },
+    {
+      "path": "assets/designs/ent_upper-left.png",
+      "sha256": "E6D85033705A2B550400FD43BCC8723773C8244835C2813AE74E44EFE721F390"
+    },
+    {
+      "path": "assets/designs/ent_upper-right.png",
+      "sha256": "6124287A70896AF1C79C21D5A24789638B560E67A7BF7CC019A7F9DDAFBE117D"
+    },
+    {
+      "path": "assets/designs/ent_bttm-left.png",
+      "sha256": "1B4FF1676894904C8A23D82141F831C022BE51EBAC462E0F071C36A1CFE1A908"
+    },
+    {
+      "path": "assets/designs/ent_bttm-right.png",
+      "sha256": "AEFDB5F871886D6DE11540201201AAFA8512945C440404F6430D0C4D2A0659A8"
+    },
+    {
+      "path": "assets/designs/ent_cntr-flwr.png",
+      "sha256": "65AABDB9271233D03D118F16E99A5E9AEA8AAE2244E521658CBF8149E4A6EF60"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut7763.webp",
+      "sha256": "98CCAA5420E5E2BBFE23B2C37F58D4C0C37B39EE9D190B0A9070D5A0C3B92EB9"
+    },
+    {
+      "path": "assets/images/attire-men-transparent-v1.png",
+      "sha256": "BEBF656055384104307BA3F5B03DB7D553B61BC5DABBB9988DBDB3407D1BC918"
+    },
+    {
+      "path": "assets/images/attire-women-transparent-v1.png",
+      "sha256": "2857ABAE0DCCA75AB31304C267C4232771A9ABF4EFED6805B54DE89F836A39A2"
+    },
+    {
+      "path": "assets/images/attire-sponsors-transparent-v1.png",
+      "sha256": "3F107E91438207841DDA4083211620E82768F5F5AF0A255D44685DD836B64496"
+    },
+    {
+      "path": "assets/designs/flower-design-3.png",
+      "sha256": "753FE288CF02D29286DF177B9ADCEF51F10A31053D3898BA318670A54B4261B5"
+    },
+    {
+      "path": "assets/images/Prenup/optimized/nhut6748.webp",
+      "sha256": "C2A35F568A7E8BD488A3F5F76216C8CCC0F868318F54579BD899D22ADF345BF3"
+    },
+    {
+      "path": "assets/CitadelScriptStd/CitadelScriptStd.otf",
+      "sha256": "E73CA95CD3E6FBEE479D2356CD477FC43AF2D3ABFE81DAEF11D3E2ACB104CE11"
+    }
+  ],
+  "retainedPlayback": {
+    "path": "public/marian-and-deejay/videos/prenup-film-web-v1.mp4",
+    "sha256": "2AB29DFBCFC8C01F46224DE63D79EF97AE278B6CF45D462BD639C0BA5BFBB55C"
+  },
+  "preservedDocumentation": "Saved questionnaire, font attribution, generation provenance and historical optimization reports remain.",
+  "verification": {
+    "missingLocalReferences": 0,
+    "remainingUnusedMedia": 0,
+    "removedFilesStillPresent": 0,
+    "activeAssetChecksumsUnchanged": true,
+    "publicPlaybackChecksumUnchanged": true,
+    "scopedLint": "passed",
+    "isolatedProductionBuild": "passed, including TypeScript validation",
+    "privateCredentialsAccessed": false,
+    "backendAccessed": false
+  }
+}

@@ -81,13 +81,13 @@ And after all the playful teasing, unexpected misunderstandings, and countless c
       { title: "Parents of the Groom", members: ["Nelda I. Rabon", "Wilfredo M. Rabon"] },
     ] },
     { title: "Our honor attendants", roles: [
-      { title: "Maid of Honor", members: ["Ma. Ricca Laine I. Francisco", "Wenjina Carillo"] },
+      { title: "Maid of Honor", members: ["Ma. Ricca Laine I. Francisco", "Ar. Wenjina Carillo"] },
       { title: "Best Man", members: ["Dave Dionisio", "Arben L. Montalan"] },
     ] },
     { title: "Principal Sponsors", memberColumns: [[
       "Mr. Han Benzen Buenaventura", "Engr. Jayver Domingo", "Mr. Henry Rabon", "Mr. Jayson Lamarca",
       "Mr. Gerard Pulumbarit", "Mr. Edwin Faustino", "Mr. Joey Prieto", "Mr. Sammy Panganiban",
-      "Mr. Allen Camacho", "Arch. Aaron Solis", "Mr. Renato Dela Cruz", "Mr. Gabriel Capili",
+      "Mr. Allen Camacho", "Arch. Aaron Solis", "Mr. Enrico De Castro", "Mr. Gabriel Capili",
     ], [
       "Mrs. Minnie Reyes", "Mrs. Elizabeth Buergo", "Mrs. Josefina Lamarca", "Mrs. Julie Santiago",
       "Mrs. Marissa Lagores", "Mrs. Violeta Urap", "Mrs. Maricel Solidum", "Mrs. Rina Cruz",

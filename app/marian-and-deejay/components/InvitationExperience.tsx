@@ -1,37 +1,77 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import FloralOrnament from "./FloralOrnament";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { ArrowDown } from "lucide-react";
+import GatefoldPacket from "@/components/invitation-opening/GatefoldPacket";
+import openingStyles from "@/components/invitation-opening/styles/opening.module.css";
+import useReducedMotionPreference from "@/components/landing/useMarketingReducedMotion";
+import OpeningHeroCard from "./OpeningHeroCard";
+import useOpeningHeroReady from "../hooks/useOpeningHeroReady";
+import useOpeningExpansion from "../hooks/useOpeningExpansion";
+import { InvitationOpenContext } from "./InvitationState";
 import wedding from "../data/wedding-details.json";
 import "../styles/invitation.css";
 
-export default function InvitationExperience({ children }: { children: ReactNode }) {
-  const [phase, setPhase] = useState<"closed" | "opening" | "open">("closed");
+export default function InvitationExperience({ children, openingHero, className = "" }: { children: ReactNode; openingHero: ReactNode; className?: string }) {
+  const [opened, setOpened] = useState(false);
+  const [requested, setRequested] = useState(false);
+  const [unwrapped, setUnwrapped] = useState(false);
+  const [letteringShown, setLetteringShown] = useState(false);
+  const [letteringReady, setLetteringReady] = useState(false);
   const content = useRef<HTMLDivElement>(null);
-  const openButton = useRef<HTMLButtonElement>(null);
-  const opening = useRef(false);
-  const finish = () => setPhase("open");
+  const cover = useRef<HTMLDivElement>(null);
+  const packet = useRef<HTMLDivElement>(null);
+  const card = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotionPreference();
+  const heroReady = useOpeningHeroReady(content, requested);
+  const finish = useCallback(() => setOpened(true), []);
+  const requestOpening = useCallback(() => setRequested(true), []);
+  const finishLettering = useCallback(() => setLetteringShown(true), []);
+  const finishUnwrapping = useCallback(() => {
+    setUnwrapped(true);
+    cover.current?.focus({ preventScroll: true });
+  }, []);
+  const expansion = useOpeningExpansion({ packet, card, content, requested: requested && !opened, ready: heroReady, unwrapped, letteringReady, reducedMotion, onComplete: finish });
+
+  useLayoutEffect(() => {
+    if (opened) return;
+    const previous = document.documentElement.style.overflow;
+    const gutter = document.documentElement.style.scrollbarGutter;
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.scrollbarGutter = "stable";
+    return () => {
+      document.documentElement.style.overflow = previous;
+      document.documentElement.style.scrollbarGutter = gutter;
+    };
+  }, [opened]);
 
   useEffect(() => {
-    if (phase === "open") {
-      content.current?.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
-      return;
-    }
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = previous; };
-  }, [phase]);
+    if (!letteringShown || opened) return;
+    const pause = window.setTimeout(() => setLetteringReady(true), 350);
+    return () => window.clearTimeout(pause);
+  }, [letteringShown, opened]);
 
   useEffect(() => {
-    if (phase !== "opening") return;
-    // Safety handoff if a browser suppresses transitionend (e.g. background tab).
-    const fallback = window.setTimeout(finish, 1800);
+    if (!unwrapped || opened) return;
+    const fallback = window.setTimeout(() => setLetteringReady(true), 2000);
     return () => window.clearTimeout(fallback);
-  }, [phase]);
+  }, [opened, unwrapped]);
 
   useEffect(() => {
-    if (phase !== "open" || !content.current || !("IntersectionObserver" in window)) return;
+    if (!requested || opened) return;
+    // Recover from suppressed ribbon/paper events; normal handoff follows completion.
+    const fallback = window.setTimeout(finish, 22000);
+    return () => window.clearTimeout(fallback);
+  }, [finish, opened, requested]);
+
+  useEffect(() => {
+    if (!opened) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    content.current?.querySelector<HTMLElement>("#home h1")?.focus({ preventScroll: true });
+  }, [opened]);
+
+  useEffect(() => {
+    if (!opened || !content.current || !("IntersectionObserver" in window)) return;
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) if (entry.isIntersecting) {
         (entry.target as HTMLElement).dataset.revealed = "true";
@@ -40,33 +80,24 @@ export default function InvitationExperience({ children }: { children: ReactNode
     }, { threshold: 0.25 });
     content.current.querySelectorAll("h2").forEach((heading) => observer.observe(heading));
     return () => observer.disconnect();
-  }, [phase]);
+  }, [opened]);
 
   const palette = Object.fromEntries(wedding.design.palette.map((color, index) => [`--mj-palette-${index}`, color.hex])) as CSSProperties;
   return (
-    <div className="mj-invitation" style={palette} data-phase={phase}>
-      {phase !== "open" && (
-        <div className="mj-cover fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-5 py-8 text-center" role="dialog" aria-modal="true" aria-label="Your wedding invitation"
-          onKeyDown={(event) => { if (event.key === "Tab") { event.preventDefault(); openButton.current?.focus(); } }}
-          onTransitionEnd={(event) => { if (phase === "opening" && event.target === event.currentTarget && event.propertyName === "opacity") finish(); }}>
-          <div className="mj-cover-fold mj-cover-fold-left" aria-hidden="true" />
-          <div className="mj-cover-fold mj-cover-fold-right" aria-hidden="true" />
-          <div className="mj-cover-card relative m-auto flex min-h-[540px] w-full max-w-2xl shrink-0 flex-col items-center justify-center px-6 py-16 sm:min-h-[620px]">
-            <FloralOrnament className="mj-cover-flower absolute bottom-0 left-0 w-32 sm:w-44" />
-            <p className="mj-small mb-10">A little envelope, a lifetime of love</p>
-            <p className="mj-script text-[clamp(3.8rem,12vw,6rem)] leading-[1.15]">{wedding.couple.display.split(" & ")[0]} <span className="block text-4xl leading-none">&</span> {wedding.couple.display.split(" & ")[1]}</p>
-            <p className="mj-small mb-10 mt-9">{wedding.date.display} · Baguio</p>
-            <button ref={openButton} className="mj-button inline-flex items-center gap-4 px-7 py-4" disabled={phase === "opening"} onClick={() => {
-              if (opening.current) return;
-              opening.current = true;
-              if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) finish();
-              else setPhase("opening");
-            }}>Open our invitation <ArrowUpRight size={16} aria-hidden="true" /></button>
-            <p className="mt-5 text-xs">We saved a place for you in our story.</p>
-          </div>
+    <div className={`mj-invitation ${className}`} style={palette} data-phase={opened ? "open" : requested ? "opening" : "closed"}>
+      {!opened && (
+        <div ref={cover} tabIndex={-1} className={`${openingStyles.preview} mj-opening-cover fixed inset-0 z-50 isolate flex h-dvh items-center justify-center overflow-hidden px-4 py-16 text-center outline-none`} role="dialog" aria-modal="true" aria-label={`${wedding.couple.display} wedding invitation`}
+          onKeyDown={(event) => {
+            if (event.key !== "Tab") return;
+            event.preventDefault();
+            (cover.current?.querySelector<HTMLButtonElement>("button") ?? cover.current)?.focus({ preventScroll: true });
+          }}>
+          <GatefoldPacket autoFocus onRequest={requestOpening} onOpened={finishUnwrapping} readyToReveal={heroReady} packetRef={packet} style={expansion.packetStyle} className={expansion.phase === "expanding" ? "mj-opening-expanding" : undefined} onTransitionEnd={expansion.onTransitionEnd}
+            card={<OpeningHeroCard ref={card} scene={expansion.scene} expanding={expansion.phase === "expanding"} unwrapped={unwrapped} onLetteringComplete={finishLettering}>{openingHero}</OpeningHeroCard>} />
+          <span className="sr-only" role="status">{expansion.phase === "expanding" ? "Entering your invitation." : requested ? "Unwrapping your invitation." : ""}</span>
         </div>
       )}
-      <div ref={content} className="mj-content" inert={phase !== "open"} aria-hidden={phase !== "open"}>
+      <div ref={content} className="mj-content" hidden={!requested} inert={!opened} aria-hidden={!opened}>
         <a href="#celebration" className="mj-skip fixed left-4 top-4 z-40 px-5 py-3">Skip to wedding details</a>
         <header className="mj-navigation sticky top-0 z-30 flex items-center justify-between gap-3 px-4 py-4 sm:px-10">
           <a href="#home" className="mj-monogram shrink-0 whitespace-nowrap text-2xl" aria-label="Marian and Dee Jay, back to top">M <span>&</span> D</a>
@@ -74,7 +105,7 @@ export default function InvitationExperience({ children }: { children: ReactNode
             <a href="#celebration">The day</a><a href="#details">Guest guide</a><a className="mj-nav-rsvp px-3 py-2 sm:px-4" href="#rsvp">Kindly reply <ArrowDown className="ml-1 hidden sm:inline" size={12} aria-hidden="true" /></a>
           </nav>
         </header>
-        {children}
+        <InvitationOpenContext.Provider value={opened}>{requested && children}</InvitationOpenContext.Provider>
       </div>
     </div>
   );

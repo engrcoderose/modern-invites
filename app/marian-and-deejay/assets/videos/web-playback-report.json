@@ -1,0 +1,39 @@
+{
+  "source": "assets/videos/prenup-film-4k-hevc.mp4",
+  "output": "public/marian-and-deejay/videos/prenup-film-web-v1.mp4",
+  "publicUrl": "/marian-and-deejay/videos/prenup-film-web-v1.mp4",
+  "bytes": 90754541,
+  "width": 1920,
+  "height": 1080,
+  "frames": 6309,
+  "frameRate": 30,
+  "durationSeconds": 210.349569,
+  "codec": "h264",
+  "pixelFormat": "yuv420p",
+  "audio": "aac",
+  "audioCopied": true,
+  "audioBitstreamHash": "SHA256=832792b9c0b86ebbb4ca6886e8abe3764974cc0dece4c06a8ddf27655478d66a",
+  "fullDecodePassed": true,
+  "fastStart": true,
+  "httpByteRangesVerified": true,
+  "sampleComparison": {
+    "startSeconds": 40,
+    "durationSeconds": 8,
+    "reference": "4K optimized master downscaled to 1920x1080",
+    "ssim": 0.987792
+  },
+  "settings": {
+    "encoder": "libx264",
+    "preset": "slow",
+    "crf": 20,
+    "maxrateKbps": 3500,
+    "bufferKbits": 7000,
+    "scale": "1920:1080 Lanczos",
+    "compression": "lossy web delivery; original optimized 4K master retained"
+  },
+  "poster": {
+    "file": "assets/images/prenup-film-poster.jpg",
+    "sourceSeconds": 175
+  },
+  "sourceAvailability": "The unused 4K working master was removed from this invitation on 2026-11-06; the public web-playback output remains unchanged."
+}

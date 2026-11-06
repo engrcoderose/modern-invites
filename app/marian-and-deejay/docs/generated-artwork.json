@@ -1,0 +1,16 @@
+{
+  "tool": "Built-in image generation",
+  "reference": "User-provided photo-break collage",
+  "assets": [
+    {
+      "file": "../assets/designs/photo-break-rose.png",
+      "transparentBackground": true,
+      "prompt": "Generate one isolated decorative brown rose cutout, using the small vintage brown rose ornament in the attached wedding collage solely as a style reference. Exactly ONE open rose viewed almost straight on with gently curling layered petals, warm taupe, tan and chocolate brown shading, delicate vintage botanical engraving outlines, romantic hand-painted antique paper illustration. No stem, no leaves, no butterflies, no photos, no text, no collage. Entire blossom and outer petals visible with a small transparent margin. The flower itself should fill most of a square image. A genuinely transparent background, no cream rectangle, no white fringe, no drop shadow outside the flower, no glow."
+    },
+    {
+      "file": "../assets/designs/photo-break-butterflies.png",
+      "transparentBackground": true,
+      "prompt": "Generate an isolated pair of exactly TWO brown butterflies as a decorative cutout for an elegant wedding photo collage, matching the small vintage brown butterflies in the attached reference in illustration style. Warm caramel, sepia, ochre and chocolate brown wing colors, fine dark ink lines and natural detailed wing veins, vintage hand-painted entomology illustration, subtle dimensional shading without photographic realism. Two complete butterflies gently flying diagonally upward to the right: larger lower-left butterfly has fully visible open wings, smaller upper-right butterfly in a slightly angled three-quarter pose. Keep wing outlines delicate and all wings and antennae inside the canvas, no clipping. Composition fills a square canvas with a small margin; butterflies almost touch in a graceful pair. Genuinely transparent background. No roses, no other insects, no leaves, no photos, no text, no paper rectangle, no colored background, no external glow or shadow."
+    }
+  ]
+}

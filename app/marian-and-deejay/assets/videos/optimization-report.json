@@ -1,0 +1,49 @@
+{
+  "source": "PRE LAI HOA 13.3 edit 2.mp4",
+  "output": "prenup-film-4k-hevc.mp4",
+  "originalBytes": 680450650,
+  "optimizedBytes": 530314673,
+  "reductionPercent": 22.06,
+  "width": 3840,
+  "height": 2160,
+  "frameRate": 30,
+  "frames": 6309,
+  "videoDurationSeconds": 210.3,
+  "fileDurationSeconds": 210.349569,
+  "codec": "HEVC / H.265",
+  "containerTag": "hvc1",
+  "pixelFormat": "yuv420p",
+  "colorSpace": "bt709",
+  "colorTransfer": "bt709",
+  "colorPrimaries": "bt709",
+  "encoding": {
+    "tool": "FFmpeg 6.1.1",
+    "encoder": "hevc_nvenc",
+    "preset": "p7",
+    "tune": "hq",
+    "constantQuality": 18,
+    "multipass": "fullres",
+    "lookahead": 32,
+    "spatialAQ": true,
+    "compression": "high-quality lossy, not mathematically lossless"
+  },
+  "verification": {
+    "fullDecodePassed": true,
+    "ssimAll": 0.994083,
+    "ssimLuma": 0.993497,
+    "framesCompared": 6309,
+    "audioCopiedWithoutReencoding": true,
+    "audioBitstreamHash": "SHA256=832792b9c0b86ebbb4ca6886e8abe3764974cc0dece4c06a8ddf27655478d66a",
+    "sourceSha256": "1b5ebf026556d00351ed4bb5e055e6b170a6cb5096429d724aa1399576066f48",
+    "originalHashUnchanged": true,
+    "fastStart": true,
+    "visualComparisonSeconds": [
+      15,
+      90,
+      175
+    ],
+    "note": "SSIM and selected stills supplement visual review; no universal guarantee of imperceptible loss."
+  },
+  "playback": "Requires HEVC-capable playback. Not embedded in the invitation.",
+  "cleanupNote": "On 2026-11-06, unused originals and superseded media were removed at the user’s request after they confirmed a backup. Historical filenames, hashes and measurements are retained as provenance; docs/asset-cleanup.json lists the removed files."
+}
