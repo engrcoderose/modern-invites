@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import MemoryViewer from "../components/MemoryViewer";
 import { memoryPhotos } from "../data/memory-photos";
-import GalleryCaption from "../components/GalleryCaption";
 import flowers from "../assets/designs/flower-design-3.png";
 
 const thumbnailSizes = "(min-width: 1280px) 276px, (min-width: 1024px) calc((100vw - 144px) / 4), (min-width: 768px) calc((100vw - 112px) / 4), (min-width: 640px) calc((100vw - 80px) / 2), calc((100vw - 52px) / 2)";
@@ -23,8 +22,7 @@ export default function MemoryGallerySection() {
     <section id="memories" aria-labelledby="mj-memories-title" className="relative overflow-hidden bg-[var(--mj-paper)] px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
       <Image src={flowers} alt="" sizes="(min-width: 1024px) 192px, (min-width: 640px) 160px, 112px" className="pointer-events-none absolute -right-6 -top-8 h-auto w-28 -rotate-12 opacity-50 sm:w-40 lg:w-48" />
       <div className="relative mx-auto max-w-6xl">
-        <h2 data-mj-reveal id="mj-memories-title" className="mj-heading mb-4 text-center sm:text-left">A lifetime of memories</h2>
-        <GalleryCaption className="mb-8 max-w-2xl text-center sm:mb-10 sm:text-left" />
+        <h2 data-mj-reveal id="mj-memories-title" className="mj-heading mb-8 text-center sm:mb-10 sm:text-left">A lifetime of memories</h2>
         <div data-mj-stagger className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {memoryPhotos.map((photo, index) => (
             <div data-mj-reveal key={photo.src.src} className={`relative min-h-0 min-w-0 ${index < 2 ? "aspect-square md:row-span-2 md:aspect-auto" : index === memoryPhotos.length - 1 ? "col-span-2 aspect-[4/3] md:aspect-[8/3]" : "aspect-square md:aspect-[4/3]"}`}>
