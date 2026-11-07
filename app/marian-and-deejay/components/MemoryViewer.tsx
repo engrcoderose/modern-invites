@@ -42,7 +42,7 @@ export default function MemoryViewer({ selectedIndex, onSelect, onClose }: Memor
     select((selectedIndex + direction + memoryPhotos.length) % memoryPhotos.length);
   }
 
-  const controlClass = "mj-memory-control absolute z-10 grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-black/35";
+  const controlClass = "mj-memory-control absolute z-10 grid h-11 w-11 place-items-center rounded-full border";
 
   return (
     <dialog ref={dialog} aria-label="Memory photo viewer" onCancel={(event) => { event.preventDefault(); close(); }}
@@ -69,7 +69,7 @@ export default function MemoryViewer({ selectedIndex, onSelect, onClose }: Memor
           select(event.key === "Home" ? 0 : memoryPhotos.length - 1);
         }
       }}
-      className="mj-memory-viewer fixed inset-0 m-auto h-full max-h-none w-full max-w-none flex-col items-center justify-center gap-4 overflow-hidden border-0 bg-transparent px-3 py-16 text-[var(--mj-paper)] open:flex sm:gap-5">
+      className="mj-memory-viewer fixed inset-0 m-auto h-full max-h-none w-full max-w-none flex-col items-center justify-center gap-4 overflow-hidden border-0 bg-transparent px-3 py-16 text-[var(--mj-ink)] open:flex sm:gap-5">
       <button ref={closeButton} type="button" onClick={close} aria-label="Close memory viewer" className={`${controlClass} right-3 top-3 sm:right-6 sm:top-6`}><X aria-hidden="true" size={22} strokeWidth={1.5} /></button>
       <div className="relative h-[min(70svh,850px)] w-[min(1100px,94vw)] touch-pan-y"
         onPointerDown={(event) => {
@@ -86,7 +86,7 @@ export default function MemoryViewer({ selectedIndex, onSelect, onClose }: Memor
         }}>
         {failed ? <div role="alert" className="flex h-full flex-col items-center justify-center gap-4 px-12 text-center text-sm leading-7">
           <p>This photo couldn’t load.</p>
-          <button type="button" onClick={() => { setLoading(true); setFailed(false); closeButton.current?.focus({ preventScroll: true }); }} className="mj-memory-control border border-white/40 px-5 py-3">Try again</button>
+          <button type="button" onClick={() => { setLoading(true); setFailed(false); closeButton.current?.focus({ preventScroll: true }); }} className="mj-memory-control border px-5 py-3">Try again</button>
         </div> : <Image key={photo.src.src} src={photo.src} alt={photo.alt} fill loading="eager" sizes="min(94vw, 46.7svh, 568px)" draggable={false}
           className="pointer-events-none select-none object-contain" onLoad={() => setLoading(false)} onError={() => { setFailed(true); setLoading(false); }} />}
         {loading && <p role="status" className="pointer-events-none absolute inset-x-0 bottom-0 text-center text-sm">Loading photo…</p>}

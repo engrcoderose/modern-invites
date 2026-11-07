@@ -1,0 +1,374 @@
+{
+  "date": "2026-11-07",
+  "sourceDirectory": "C:/Users/rosas/Downloads/marian",
+  "invitation": "app/marian-and-deejay",
+  "purpose": "Audit Downloads images and stage missing optimized photos for future revisions; do not implement them yet.",
+  "settings": {
+    "format": "webp",
+    "quality": 92,
+    "effort": 6,
+    "smartSubsample": true,
+    "resized": false,
+    "cropped": false,
+    "originalColorProfile": "preserved",
+    "compression": "High-quality lossy; not an archival pixel-identical copy",
+    "comparison": "RGB PSNR at up to 2048px on the long edge, supplemented by visual checks"
+  },
+  "summary": {
+    "checked": 22,
+    "alreadyImplemented": 20,
+    "alreadyImplementedUnderDifferentNames": 5,
+    "newlyStaged": 2,
+    "pendingDirectory": "assets/images/Prenup/pending-revisions",
+    "sourceBytes": 39713364,
+    "optimizedBytes": 4326354,
+    "reductionPercent": 89.11
+  },
+  "verification": {
+    "sourceOriginalsUnchanged": true,
+    "preexistingImageAssetsUnchanged": true,
+    "websiteSourceFilesUnchanged": true,
+    "newlyStagedImagesImportedByWebsite": false
+  },
+  "files": [
+    {
+      "source": "NHUT6383.JPG",
+      "sourceSha256": "e2587eb2806bd51c86472bde69a5e87169d04fba562c3938b688edcab14bfe8c",
+      "sourceBytes": 20045102,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "optimized-and-staged-only",
+      "asset": "assets/images/Prenup/pending-revisions/nhut6383.webp",
+      "matchingMethod": "No matching photo found among all existing invitation image assets",
+      "codeReferences": [],
+      "optimization": {
+        "source": "NHUT6383.JPG",
+        "destination": "assets/images/Prenup/pending-revisions/nhut6383.webp",
+        "format": "webp",
+        "width": 5464,
+        "height": 8192,
+        "bytes": 2189180,
+        "sourceBytes": 20045102,
+        "reductionPercent": 89.08,
+        "sha256": "a4b82b1f87ea2b78efd6674ac76b46cefbf7e44caa3958fe7392dc3d37c613fe",
+        "iccProfilePreserved": true,
+        "psnrDbAt2048": 47.24,
+        "comparisonWidth": 1366,
+        "comparisonHeight": 2048
+      }
+    },
+    {
+      "source": "NHUT6536.JPG",
+      "sourceSha256": "36af100c4ff5232a84a6417a23712b38b0c1f479bbdf75d13a589ca516d8e66d",
+      "sourceBytes": 21753102,
+      "sourceWidth": 8192,
+      "sourceHeight": 5464,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut6536.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/hero-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT6634.JPG",
+      "sourceSha256": "116a59afc2c0073ea45eee9659d0ecf2ecc30598159233e740c8c508eb6f2be6",
+      "sourceBytes": 22214209,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/memories/beach-dance-v1.webp",
+      "matchingMethod": "Normalized RGB thumbnail comparison and visual side-by-side confirmation",
+      "normalizedRgbRmse64": 1.841,
+      "codeReferences": [
+        "data/memory-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT6702.JPG",
+      "sourceSha256": "25bd59201dfcc5c44308d501a537274168a506e7d0f22c88e90c94f8343d2710",
+      "sourceBytes": 17777619,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/memories/beach-lift-v1.webp",
+      "matchingMethod": "Normalized RGB thumbnail comparison and visual side-by-side confirmation",
+      "normalizedRgbRmse64": 1.974,
+      "codeReferences": [
+        "data/memory-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT6748.JPG",
+      "sourceSha256": "3bc92bf46d2c47e450afece06de1006967d23968073290d2062de025a028ade7",
+      "sourceBytes": 19487576,
+      "sourceWidth": 5351,
+      "sourceHeight": 8023,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut6748.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/rsvp.ts"
+      ]
+    },
+    {
+      "source": "NHUT6822.JPG",
+      "sourceSha256": "6228a16798251f596b8d56bd1cd2ea45a9bb8c0ed6641680dbb1e8544c52418c",
+      "sourceBytes": 19566150,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut6822.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/gallery-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT6973.JPG",
+      "sourceSha256": "0b0b476c5686158ec9f2ee89212384e5b9b7883b2176f24853c8f1091946d388",
+      "sourceBytes": 21801500,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut6973.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/gallery-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT6991.JPG",
+      "sourceSha256": "1416eb05ac094ec382466a2a69c959f37c5ae11210cec51d9a201a160d1fc2b1",
+      "sourceBytes": 17463086,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut6991.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/photo-break.ts"
+      ]
+    },
+    {
+      "source": "NHUT7032.JPG",
+      "sourceSha256": "1f6342de008b79279576fa33c3c20d45cf8666b61a89189c86f7c0ad7b833951",
+      "sourceBytes": 19668262,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "optimized-and-staged-only",
+      "asset": "assets/images/Prenup/pending-revisions/nhut7032.webp",
+      "matchingMethod": "No matching photo found among all existing invitation image assets",
+      "codeReferences": [],
+      "optimization": {
+        "source": "NHUT7032.JPG",
+        "destination": "assets/images/Prenup/pending-revisions/nhut7032.webp",
+        "format": "webp",
+        "width": 5464,
+        "height": 8192,
+        "bytes": 2137174,
+        "sourceBytes": 19668262,
+        "reductionPercent": 89.13,
+        "sha256": "dac06d313fc025b6a5322e69475f2fda4412ed3e2316a771c3b955066fde563b",
+        "iccProfilePreserved": true,
+        "psnrDbAt2048": 47.1,
+        "comparisonWidth": 1366,
+        "comparisonHeight": 2048
+      }
+    },
+    {
+      "source": "NHUT7085.JPG",
+      "sourceSha256": "84f2d06c8f1880729c24eead90b41768fd02b7a6ab7a4ec17c7f52d06dfee39c",
+      "sourceBytes": 21504658,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/memories/groom-in-the-mist-v1.webp",
+      "matchingMethod": "Normalized RGB thumbnail comparison and visual side-by-side confirmation",
+      "normalizedRgbRmse64": 2.389,
+      "codeReferences": [
+        "data/memory-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7111.JPG",
+      "sourceSha256": "03aef866a3c8fb64a5c30c7cf41c37ea44fda15889b39f9f848aa7e5801005a7",
+      "sourceBytes": 37170994,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7111.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/gallery-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7304.JPG",
+      "sourceSha256": "e0d7a26747fcbd70e203ec6f30c8f4ef42d25f852cf674281527d817a58ffe94",
+      "sourceBytes": 26811446,
+      "sourceWidth": 8192,
+      "sourceHeight": 5464,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7304.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/hero-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7427.JPG",
+      "sourceSha256": "3b8fb29611035355d0924d0c1d7667e7b1db36fd5e88d199fac02665f77015e5",
+      "sourceBytes": 18263034,
+      "sourceWidth": 5351,
+      "sourceHeight": 8023,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7427.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/gallery-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7569.JPG",
+      "sourceSha256": "449ddac2e85e450c40338215bf041783c432eeefd30ee64dbb94479f53ca6d64",
+      "sourceBytes": 22858990,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/memories/bride-on-the-staircase-v1.webp",
+      "matchingMethod": "Normalized RGB thumbnail comparison and visual side-by-side confirmation",
+      "normalizedRgbRmse64": 3.544,
+      "codeReferences": [
+        "data/memory-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7633.JPG",
+      "sourceSha256": "2f7a21ce39aa9d7cc472f0a17f4e46b3bc75464860f61cdc33df41a9b45765d0",
+      "sourceBytes": 25871369,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/memories/bridal-staircase-portrait-v1.webp",
+      "matchingMethod": "Normalized RGB thumbnail comparison and visual side-by-side confirmation",
+      "normalizedRgbRmse64": 2.618,
+      "codeReferences": [
+        "data/memory-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT7696.JPG",
+      "sourceSha256": "89c84b8025fa4c47f1184854e4aa2e107fc0fc8420284ef9abec7ee0f57f5483",
+      "sourceBytes": 22721928,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7696.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/photo-break.ts"
+      ]
+    },
+    {
+      "source": "NHUT7763.JPG",
+      "sourceSha256": "59ea422150635b66ea60861485a77c091e1bfaffd5f2ab17f988cd20fc8c91e2",
+      "sourceBytes": 27580327,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7763.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/social.ts"
+      ]
+    },
+    {
+      "source": "NHUT7940.JPG",
+      "sourceSha256": "6ae5066c63800892f9bab42794337e0d01572c83b7d69b806864aa7c6be03aa0",
+      "sourceBytes": 17434628,
+      "sourceWidth": 5351,
+      "sourceHeight": 8023,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut7940.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/gallery-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT8169.JPG",
+      "sourceSha256": "86602f96748c4e4a21b023d20d88bae012669d7ec4401d0576871b41fd8701b1",
+      "sourceBytes": 42052605,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut8169.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/photo-break.ts"
+      ]
+    },
+    {
+      "source": "NHUT8301.JPG",
+      "sourceSha256": "b478ce3c6134dd390ba545a8c1ee98f5bd7ec06cb0cc7da7e622c0b0f884497a",
+      "sourceBytes": 35089415,
+      "sourceWidth": 8192,
+      "sourceHeight": 5464,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut8301.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/hero-photos.ts"
+      ]
+    },
+    {
+      "source": "NHUT8348.JPG",
+      "sourceSha256": "bd60b56f39b41e29492ba9863f3b4bc33cd86cea42ead58efac9284fa0aa7f0c",
+      "sourceBytes": 29901493,
+      "sourceWidth": 5464,
+      "sourceHeight": 8192,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut8348.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/photo-break.ts"
+      ]
+    },
+    {
+      "source": "NHUT8615.JPG",
+      "sourceSha256": "1a72f7a44e0aeaadf19ffd2f21113a70a91e7109c42ea3ced84e1b6853d664f0",
+      "sourceBytes": 27382678,
+      "sourceWidth": 8192,
+      "sourceHeight": 5464,
+      "sourceMatchesHistoricalOptimizationReport": true,
+      "status": "already-implemented",
+      "asset": "assets/images/Prenup/optimized/nhut8615.webp",
+      "matchingMethod": "Original SHA-256 and retained derivative SHA-256 match historical reports",
+      "codeReferences": [
+        "data/hero-photos.ts"
+      ]
+    }
+  ]
+}

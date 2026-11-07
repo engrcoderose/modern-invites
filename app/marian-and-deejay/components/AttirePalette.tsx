@@ -6,7 +6,7 @@ export default function AttirePalette() {
         {wedding.design.palette.map((color) => (
           <li data-mj-reveal key={color.hex} className="text-center">
             <span aria-hidden="true" className="mj-swatch mx-auto mb-2 block h-8 w-8 rounded-full min-[390px]:h-10 min-[390px]:w-10 lg:h-12 lg:w-12" style={{ backgroundColor: color.hex }} />
-            <span className="mx-auto block max-w-[4rem] text-[10px] leading-tight sm:text-xs">{color.name}</span>
+            <span className="mx-auto block max-w-[4rem] text-[10px] leading-tight sm:text-xs">{color.name.charAt(0) + color.name.slice(1).toLowerCase()}</span>
           </li>
         ))}
       </ul>

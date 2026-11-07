@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { galleryPhotos } from "../data/gallery-photos";
 import { useInvitationOpen } from "../components/InvitationState";
+import GalleryCaption from "../components/GalleryCaption";
 
 const count = galleryPhotos.length;
 const wrap = (index: number) => (index + count) % count;
@@ -85,7 +86,7 @@ export default function GallerySection() {
                 visibility: distance < 4 ? "visible" : "hidden",
               }}>
                 <div data-mj-reveal className="absolute inset-0">
-                  <Image key={pending === index ? attempt : "photo"} src={photo.src} alt={photo.alt} fill quality={85} sizes={`(min-width: 1223px) ${Math.round(330 * cropScale)}px, (min-width: 640px) ${27 * cropScale}vw, (min-width: 322px) ${56 * cropScale}vw, ${180 * cropScale}px`} loading="eager" draggable={false} className="select-none object-cover" onLoad={async (event) => {
+                  <Image key={pending === index ? attempt : "photo"} src={photo.src} alt={photo.alt} fill quality={85} sizes={`(min-width: 1223px) ${Math.round(330 * cropScale)}px, (min-width: 640px) ${27 * cropScale}vw, (min-width: 322px) ${56 * cropScale}vw, ${180 * cropScale}px`} loading="eager" draggable={false} className="select-none object-cover" style={{ objectPosition: photo.position }} onLoad={async (event) => {
                     try {
                       await event.currentTarget.decode();
                       ready.current.add(index);
@@ -106,6 +107,7 @@ export default function GallerySection() {
       </div>
       <p data-mj-reveal aria-live="polite" aria-atomic="true" className="mt-7 text-center text-sm tabular-nums"><span className="sr-only">Photo </span>{selected + 1} <span aria-hidden="true">/</span><span className="sr-only"> of </span> {count}</p>
       <p role="status" className="mt-2 min-h-6 px-6 text-center text-sm">{pending !== null ? "Loading photo…" : error ? "This photo couldn’t load. Please try the arrow again." : ""}</p>
+      <GalleryCaption className="mx-auto mt-3 max-w-2xl px-6 text-center" />
     </section>
   );
 }

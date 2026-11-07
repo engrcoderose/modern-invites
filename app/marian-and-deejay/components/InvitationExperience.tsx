@@ -7,6 +7,7 @@ import GatefoldPacket from "@/components/invitation-opening/GatefoldPacket";
 import openingStyles from "@/components/invitation-opening/styles/opening.module.css";
 import useReducedMotionPreference from "@/components/landing/useMarketingReducedMotion";
 import OpeningHeroCard from "./OpeningHeroCard";
+import FallingPetals from "./FallingPetals";
 import BackgroundMusic, { type BackgroundMusicHandle } from "./BackgroundMusic";
 import useOpeningHeroReady from "../hooks/useOpeningHeroReady";
 import useOpeningExpansion from "../hooks/useOpeningExpansion";
@@ -93,6 +94,7 @@ export default function InvitationExperience({ children, openingHero, className 
   return (
     <div className={`mj-invitation ${className}`} style={palette} data-phase={opened ? "open" : requested ? "opening" : "closed"}>
       <BackgroundMusic ref={music} visible={opened} />
+      {opened && !reducedMotion && <FallingPetals />}
       {!opened && (
         <div ref={cover} tabIndex={-1} className={`${openingStyles.preview} mj-opening-cover fixed inset-0 z-50 isolate flex h-dvh items-center justify-center overflow-hidden px-4 py-16 text-center outline-none`} role="dialog" aria-modal="true" aria-label={`${wedding.couple.display} wedding invitation`}
           onKeyDown={(event) => {

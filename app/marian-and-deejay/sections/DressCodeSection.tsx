@@ -21,10 +21,12 @@ export default function DressCodeSection() {
         <div className="mt-5 grid grid-cols-2 items-end gap-x-5 gap-y-6 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)_minmax(0,1fr)] md:gap-x-4">
           <div className="col-span-2 md:col-span-1 md:col-start-2 md:row-start-1">
             <AttirePalette />
-            <h3 data-mj-reveal className="mj-attire-label mb-2 mt-6">Guests</h3>
-            <div className="mx-auto max-w-md space-y-2 text-sm uppercase leading-6 lg:text-base lg:leading-7">
-              <p>Gentlemen: Please wear {colorList.format(wedding.attire.maleGuests)}.</p>
-              <p>Ladies: Please wear {colorList.format(wedding.attire.femaleGuests)}.</p>
+            <div data-mj-stagger>
+              <h3 data-mj-reveal className="mj-attire-label mb-2 mt-6">Guests</h3>
+              <div className="mx-auto max-w-md space-y-2 text-sm leading-6 lg:text-base lg:leading-7">
+                <p data-mj-reveal>Gentlemen: Please wear {colorList.format(wedding.attire.maleGuests)}.</p>
+                <p data-mj-reveal>Ladies: Please wear {colorList.format(wedding.attire.femaleGuests)}.</p>
+              </div>
             </div>
           </div>
           <figure aria-label="Formal attire inspiration for gentlemen" className="flex w-full items-end justify-center md:col-start-1 md:row-start-1">
@@ -34,9 +36,9 @@ export default function DressCodeSection() {
             <AttireDrawing artwork={femaleGuestArt} sizes="(min-width: 768px) 280px, 200px" className="relative w-full max-w-[240px]" />
           </figure>
         </div>
-        <div className="mx-auto mt-7 max-w-3xl">
+        <div data-mj-stagger className="mx-auto mt-7 max-w-3xl">
           <h3 data-mj-reveal className="mj-attire-label mb-3">Principal Sponsors</h3>
-          <dl className="space-y-1 text-sm uppercase leading-6 lg:text-base lg:leading-7">
+          <dl className="space-y-1 text-sm leading-6 lg:text-base lg:leading-7">
             <div data-mj-reveal><dt className="inline">Ninong: </dt><dd className="inline">{wedding.attire.principalSponsors.ninong}</dd></div>
             <div data-mj-reveal><dt className="inline">Ninang: </dt><dd className="inline">{wedding.attire.principalSponsors.ninang}</dd></div>
           </dl>

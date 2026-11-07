@@ -1,15 +1,7 @@
-import type { EventInformation, RsvpFieldOptions } from "@/components/smart-rsvp/types";
-import wedding from "./wedding-details.json";
+import type { RsvpFieldOptions } from "@/components/smart-rsvp/types";
 import photo from "../assets/images/Prenup/optimized/nhut6748.webp";
 
-// Synthetic metadata for shared form validation only. No guest lookup or API call uses it.
-export const rsvpPreviewEvent: EventInformation = {
-  name: wedding.couple.display,
-  slug: "preview-only",
-  rsvpDeadline: wedding.rsvp.deadlineIso,
-  accessMode: "name_search",
-  responseMode: "individual",
-};
+export const rsvpEventSlug = "marian-and-deejay";
 
 export const rsvpFields: RsvpFieldOptions = { email: true, dietaryRestrictions: true, message: true };
 export const rsvpPhoto = {

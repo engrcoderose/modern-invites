@@ -1,25 +1,41 @@
 import Image from "next/image";
-import background from "../assets/images/prenup_video_bg.png";
-import rose from "../assets/designs/photo-break-rose.png";
-import butterflies from "../assets/designs/photo-break-butterflies.png";
+import background from "../assets/designs/yellow-backgroud-gallery-brown-outfit.png";
+import flower from "../assets/designs/yellow-flower-gallery.png";
+import daisy from "../assets/designs/yellow-flower-gallery-2.png";
+import butterflyLeft from "../assets/designs/yellow-butterfly-gallery.png";
+import butterflyRight from "../assets/designs/yellow-butterfly-gallery-1.png";
 import { photoBreak } from "../data/photo-break";
+
+const frames = [
+  { key: "main", sizes: "(max-width: 639px) min(52vw, calc(42.63svh - 27.28px)), min(30vw, 432px, calc(51.61svh - 41.28px))" },
+  { key: "right", sizes: "(max-width: 639px) min(33vw, calc(27.05svh - 17.31px)), min(23vw, 332px, calc(39.56svh - 31.65px))" },
+  { key: "left", sizes: "(max-width: 639px) min(36vw, calc(29.51svh - 18.89px)), min(23vw, 332px, calc(39.56svh - 31.65px))" },
+  { key: "bottom", sizes: "(max-width: 639px) min(40vw, calc(32.79svh - 20.98px)), min(23vw, 332px, calc(39.56svh - 31.65px))" },
+] as const;
+
+const decorations = [
+  { src: flower, className: "mj-photo-flower", sizes: "(max-width: 639px) min(14vw, calc(11.48svh - 7.34px)), min(9vw, 130px, calc(15.48svh - 12.39px))" },
+  { src: daisy, className: "mj-photo-daisy", sizes: "(max-width: 639px) min(16vw, calc(13.11svh - 8.39px)), min(9vw, 130px, calc(15.48svh - 12.39px))" },
+  { src: butterflyLeft, className: "mj-photo-butterfly-left", sizes: "(max-width: 639px) min(14vw, calc(11.48svh - 7.34px)), min(8vw, 116px, calc(13.76svh - 11.01px))" },
+  { src: butterflyRight, className: "mj-photo-butterfly-right", sizes: "(max-width: 639px) min(14vw, calc(11.48svh - 7.34px)), min(8vw, 116px, calc(13.76svh - 11.01px))" },
+] as const;
 
 export default function PhotoBreakSection() {
   return (
-    <section id="photo-break" aria-label="Moments of Marian and Dee Jay" className="mj-photo-break relative isolate overflow-hidden py-8 sm:py-10">
-      <Image src={background} alt="" fill sizes="(max-width: 639px) calc(168vw + 96px), 100vw" className="pointer-events-none object-cover" />
-      <div className="mj-photo-collage relative mx-auto w-full max-w-6xl">
-        <div data-mj-reveal className="mj-photo-main mj-photo-print absolute z-[2] overflow-hidden">
-          <Image src={photoBreak.main.src} alt={photoBreak.main.alt} fill sizes="(max-width: 639px) 50vw, (max-width: 1151px) 32vw, 369px" className="object-cover" style={{ objectPosition: photoBreak.main.position }} />
+    <section id="photo-break" aria-label="Moments of Marian and Dee Jay" className="mj-photo-break relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden py-8 sm:py-10">
+      <Image src={background} alt="" fill sizes="max(100vw, 150svh)" className="pointer-events-none -z-10 object-cover object-[65%_50%]" />
+      <div data-mj-stagger className="mj-photo-collage relative mx-auto max-w-[1440px]">
+        {frames.map(({ key, sizes }) => {
+          const photo = photoBreak[key];
+          return (
+            <div data-mj-reveal key={key} className={`mj-photo-${key} mj-photo-print absolute overflow-hidden ${key === "main" ? "z-[2]" : "z-[3]"}`}>
+              <Image src={photo.src} alt={photo.alt} fill sizes={sizes} className="object-cover" style={{ objectPosition: photo.position }} />
+            </div>
+          );
+        })}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[4]">
+          {decorations.map(decoration => <Image key={decoration.className} src={decoration.src} alt="" sizes={decoration.sizes} className={`${decoration.className} absolute h-auto`} />)}
         </div>
-        <div data-mj-reveal className="mj-photo-left mj-photo-print absolute z-[3] overflow-hidden">
-          <Image src={photoBreak.left.src} alt={photoBreak.left.alt} fill sizes="(max-width: 639px) 32vw, (max-width: 1151px) 23vw, 265px" className="object-cover" style={{ objectPosition: photoBreak.left.position }} />
-        </div>
-        <div data-mj-reveal className="mj-photo-right mj-photo-print absolute z-[3] overflow-hidden">
-          <Image src={photoBreak.right.src} alt={photoBreak.right.alt} fill sizes="(max-width: 639px) 30vw, (max-width: 1151px) 23vw, 265px" className="object-cover" style={{ objectPosition: photoBreak.right.position }} />
-        </div>
-        <Image src={rose} alt="" sizes="(max-width: 639px) 18vw, (max-width: 1151px) 11vw, 127px" className="mj-photo-rose pointer-events-none absolute z-[4]" />
-        <Image src={butterflies} alt="" sizes="(max-width: 639px) 24vw, (max-width: 1151px) 14vw, 162px" className="mj-photo-butterflies pointer-events-none absolute z-[4]" />
       </div>
     </section>
   );

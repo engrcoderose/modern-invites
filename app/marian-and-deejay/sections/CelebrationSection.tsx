@@ -8,7 +8,7 @@ import pattern from "../assets/designs/venues_bg_pattern.png";
 
 const venues = [
   { ...wedding.ceremony, title: "The Ceremony", image: ceremony, alt: "Watercolor of Iglesia ni Cristo in an ornate gold oval frame", time: wedding.date.ceremonyTime },
-  { ...wedding.reception, title: "The Reception", image: reception, alt: "Watercolor of the grand staircase at Lafaayette Luxury Suites in an ornate gold oval frame", time: wedding.timeline.find((item) => item.label === "Wedding Reception Program")?.time },
+  { ...wedding.reception, title: "The Reception", image: reception, alt: "Watercolor of the grand staircase at Lafaayette Luxury Suites in an ornate gold oval frame" },
 ];
 
 export default function CelebrationSection() {
@@ -26,7 +26,7 @@ export default function CelebrationSection() {
               <p data-mj-reveal className="mb-1 text-xl sm:text-2xl">{venue.title}</p>
               <h3 data-mj-reveal className="mj-venue-name mx-auto mb-2 max-w-lg">{venue.venue}</h3>
               <p data-mj-reveal className="mx-auto max-w-sm text-sm italic leading-6 sm:text-base">{venue.address}</p>
-              <p data-mj-reveal className="mt-3 text-sm">{venue.time}</p>
+              {"time" in venue && venue.time && <p data-mj-reveal className="mt-3 text-sm">{venue.time}</p>}
               <a data-mj-reveal href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${venue.venue}, ${venue.address}`)}`} target="_blank" rel="noopener noreferrer" aria-label={`View directions to ${venue.venue}`} className="mj-text-link mt-3 inline-flex items-center gap-2 py-2 text-sm">View directions <ArrowUpRight size={15} aria-hidden="true" /></a>
             </article>
           ))}
