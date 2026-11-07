@@ -1,5 +1,7 @@
-import { ArrowUp, Flower2 } from "lucide-react";
+import Image from "next/image";
+import { ArrowUp } from "lucide-react";
 import { wedding } from "../data/wedding-data";
+import { coupleMonogram } from "../data/design-media";
 
 import TextReveal from "../components/TextReveal";
 import ScrollLayer from "../components/ScrollLayer";
@@ -7,7 +9,9 @@ import ScrollLayer from "../components/ScrollLayer";
 export default function Footer() {
   return (
     <footer className="px-5 pb-8 pt-16 text-center sm:px-8">
-      <ScrollLayer profile="text"><Flower2 aria-hidden="true" className="mx-auto h-6 w-6 text-[#a88071]" strokeWidth={1} /></ScrollLayer>
+      <ScrollLayer profile="text">
+        <Image src={coupleMonogram} alt="Jaydee and Bea’s pink botanical JB monogram" sizes="(min-width: 640px) 192px, 160px" className="mx-auto h-40 w-40 rounded-full sm:h-48 sm:w-48" />
+      </ScrollLayer>
       <TextReveal className="jb-serif mt-5 text-4xl italic">With love, {wedding.couple.display}</TextReveal>
       <TextReveal staggerIndex={1} className="mt-4 text-sm leading-7 text-[#65705e]">Thank you for being a part of our story.<br />We can’t wait to celebrate with you.</TextReveal>
       <TextReveal as="time" staggerIndex={2} dateTime={wedding.date.iso} className="mt-5 block text-xs uppercase tracking-[0.2em]">{wedding.date.display}</TextReveal>

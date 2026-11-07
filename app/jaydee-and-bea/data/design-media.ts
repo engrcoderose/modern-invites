@@ -1,6 +1,7 @@
 import { remoteImage } from "../utils/remote-image";
 import washedRoseUrn from "../assets/designs/rose-urn-washed-watercolor.png";
 import hdFormalAttire from "../assets/designs/formal-attire-inspiration-hd.png";
+export { default as coupleMonogram } from "../assets/designs/couple-monogram-garden.webp";
 
 const designBasePath = "jaydee-and-bea/images/designs";
 const designImage = (filename: string, width: number, height: number) =>

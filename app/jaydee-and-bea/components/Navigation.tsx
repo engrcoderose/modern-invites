@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { wedding } from "../data/wedding-data";
+import { coupleMonogram } from "../data/design-media";
 
 const links = [
   { href: "#story", label: "Our story" },
@@ -30,7 +32,9 @@ export default function Navigation() {
   return (
     <header className="jb-navigation sticky top-0 z-40 border-b border-[rgb(var(--jb-sage))]/15">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        <a href="#top" aria-label={`${wedding.couple.display}, back to top`} className="jb-serif flex min-h-11 items-center text-2xl italic">{wedding.couple.initials}</a>
+        <a href="#top" aria-label={`${wedding.couple.display}, back to top`} className="flex h-[60px] w-[60px] shrink-0 items-center rounded-full">
+          <Image src={coupleMonogram} alt="" sizes="60px" className="h-full w-full rounded-full" />
+        </a>
         <span className="text-xs tracking-[0.16em] text-[#65705e] md:hidden">{wedding.date.short}</span>
         <button id="jb-menu-toggle" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="jb-navigation-links" onClick={() => setOpen(!open)} className="flex h-11 w-11 items-center justify-center rounded-full md:hidden">
           {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
