@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T14:16:19Z",
+  "title": "Design System: Olive & Theo",
+  "extensions": {
+    "colorMeta": {
+      "olive": {
+        "role": "primary",
+        "displayName": "Garden Olive",
+        "tonalRamp": [
+          "oklch(15% 0.0403 124.91)",
+          "oklch(26% 0.0403 124.91)",
+          "oklch(38% 0.0403 124.91)",
+          "oklch(49% 0.0403 124.91)",
+          "oklch(61% 0.0403 124.91)",
+          "oklch(72% 0.0403 124.91)",
+          "oklch(84% 0.0403 124.91)",
+          "oklch(95% 0.0403 124.91)"
+        ]
+      },
+      "clay": {
+        "role": "primary",
+        "displayName": "Warm Clay",
+        "tonalRamp": [
+          "oklch(15% 0.1276 35.21)",
+          "oklch(26% 0.1276 35.21)",
+          "oklch(38% 0.1276 35.21)",
+          "oklch(49% 0.1276 35.21)",
+          "oklch(61% 0.1276 35.21)",
+          "oklch(72% 0.1276 35.21)",
+          "oklch(84% 0.1276 35.21)",
+          "oklch(95% 0.1276 35.21)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Parchment",
+        "tonalRamp": [
+          "oklch(15% 0.0136 92.98)",
+          "oklch(26% 0.0136 92.98)",
+          "oklch(38% 0.0136 92.98)",
+          "oklch(49% 0.0136 92.98)",
+          "oklch(61% 0.0136 92.98)",
+          "oklch(72% 0.0136 92.98)",
+          "oklch(84% 0.0136 92.98)",
+          "oklch(95% 0.0136 92.98)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15% 0.0082 91.48)",
+          "oklch(26% 0.0082 91.48)",
+          "oklch(38% 0.0082 91.48)",
+          "oklch(49% 0.0082 91.48)",
+          "oklch(61% 0.0082 91.48)",
+          "oklch(72% 0.0082 91.48)",
+          "oklch(84% 0.0082 91.48)",
+          "oklch(95% 0.0082 91.48)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Leaf Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0300 126.12)",
+          "oklch(26% 0.0300 126.12)",
+          "oklch(38% 0.0300 126.12)",
+          "oklch(49% 0.0300 126.12)",
+          "oklch(61% 0.0300 126.12)",
+          "oklch(72% 0.0300 126.12)",
+          "oklch(84% 0.0300 126.12)",
+          "oklch(95% 0.0300 126.12)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Leaf",
+        "tonalRamp": [
+          "oklch(15% 0.0325 116.35)",
+          "oklch(26% 0.0325 116.35)",
+          "oklch(38% 0.0325 116.35)",
+          "oklch(49% 0.0325 116.35)",
+          "oklch(61% 0.0325 116.35)",
+          "oklch(72% 0.0325 116.35)",
+          "oklch(84% 0.0325 116.35)",
+          "oklch(95% 0.0325 116.35)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Linen Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0229 106.87)",
+          "oklch(26% 0.0229 106.87)",
+          "oklch(38% 0.0229 106.87)",
+          "oklch(49% 0.0229 106.87)",
+          "oklch(61% 0.0229 106.87)",
+          "oklch(72% 0.0229 106.87)",
+          "oklch(84% 0.0229 106.87)",
+          "oklch(95% 0.0229 106.87)"
+        ]
+      },
+      "sage": {
+        "role": "neutral",
+        "displayName": "Pale Sage",
+        "tonalRamp": [
+          "oklch(15% 0.0187 113.36)",
+          "oklch(26% 0.0187 113.36)",
+          "oklch(38% 0.0187 113.36)",
+          "oklch(49% 0.0187 113.36)",
+          "oklch(61% 0.0187 113.36)",
+          "oklch(72% 0.0187 113.36)",
+          "oklch(84% 0.0187 113.36)",
+          "oklch(95% 0.0187 113.36)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Names",
+        "purpose": "Couple's centerpiece."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Expressive section introductions."
+      },
+      "title": {
+        "displayName": "Detail title",
+        "purpose": "Venue and itinerary headings."
+      },
+      "body": {
+        "displayName": "Reading text",
+        "purpose": "Practical descriptions."
+      },
+      "label": {
+        "displayName": "Form label",
+        "purpose": "Compact field identification."
+      }
+    },
+    "shadows": [
+      {
+        "name": "reply-paper",
+        "value": "0 16px 48px #353c2b0a",
+        "purpose": "Soft ambient depth beneath the warm-white reply sheet."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-transition",
+        "value": "200ms",
+        "purpose": "Color, background, border, and disclosure icon state changes."
+      },
+      {
+        "name": "cover-foreground",
+        "value": "500ms cubic-bezier(.76, 0, .24, 1)",
+        "purpose": "Foreground opacity 1 to 0 and upward translation 0 to -20px over opaque backing."
+      },
+      {
+        "name": "cover-backing",
+        "value": "400ms ease-out",
+        "purpose": "Backing opacity 1 to 0 with the destination visible underneath."
+      },
+      {
+        "name": "names-entry",
+        "value": "650ms cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Clip reveal and upward translation 12px to 0; omitted for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Reply Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Full-width staged RSVP action.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Send my RSVP<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;border-radius:9999px;font:400 14px/20px Inter,sans-serif;cursor:pointer;width:100%;min-height:52px;padding:16px 24px;border:0;background:#414a32;color:#fffdf7;transition:background .2s}.ds-primary:hover{background:#353c2b}.ds-primary:focus-visible{outline:2px solid #a34730;outline-offset:5px;}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "button-outline",
+      "description": "Compact invitation navigation with a persistent RSVP action.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Invitation\"><a class=\"ds-celebration\" href=\"#celebration\">The celebration</a><a class=\"ds-guide\" href=\"#good-to-know\">Good to know</a><a class=\"ds-nav-reply\" href=\"#rsvp\">Kindly RSVP<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 7h10v10M7 17 17 7\"/></svg></a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:20px;color:#353c2b;font:400 12px/16px Inter,sans-serif}.ds-nav a{color:inherit;text-decoration:none}.ds-celebration,.ds-guide{display:none;padding:12px 0}.ds-nav-reply{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;border-radius:9999px;font:400 14px/20px Inter,sans-serif;cursor:pointer;gap:16px;min-height:44px;padding:12px 20px;border:1px solid #d5d5c4;background:transparent;font-size:12px;transition:background-color .2s}.ds-nav-reply:hover{background:#e7e9db}.ds-nav a:focus-visible{outline:2px solid #a34730;outline-offset:5px;}@media(min-width:640px){.ds-nav{gap:32px}.ds-celebration{display:inline-block}}@media(min-width:768px){.ds-guide{display:inline-block}}"
+    },
+    {
+      "name": "Opening Action",
+      "kind": "button",
+      "refersTo": "button-cover",
+      "description": "Inverse outlined invitation-opening button on its olive surface.",
+      "html": "<div class=\"ds-cover-surface\"><button class=\"ds-cover-button\" type=\"button\">Open our invitation<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M18 8l4 4-4 4M2 12h20\"/></svg></button></div>",
+      "css": ".ds-cover-surface{background:#414a32;padding:24px}.ds-cover-button{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;border-radius:9999px;font:400 14px/20px Inter,sans-serif;cursor:pointer;gap:28px;min-height:48px;padding:16px 28px;border:1px solid #bec3ad;background:transparent;color:#f6f3e9;transition:background .2s,color .2s}.ds-cover-button:hover{background:#f6f3e9;color:#414a32}.ds-cover-button:focus-visible{outline:2px solid #a34730;outline-offset:5px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Clearly labeled warm-white text entry.",
+      "html": "<label class=\"ds-field-label\">Your full name<input class=\"ds-input\" name=\"sample-name\" autocomplete=\"name\" placeholder=\"e.g. Avery Santos\"></label>",
+      "css": ".ds-field-label{display:block;color:#353c2b;font:500 12px/1.625 Inter,sans-serif}.ds-input{display:block;width:100%;margin-top:8px;padding:12px 14px;border:1px solid #d5d5c4;border-radius:8px;background:#fffdf7;color:#353c2b;caret-color:#a34730;font:400 16px/24px Inter,sans-serif}.ds-input::placeholder{color:#626651;opacity:1}.ds-input:focus-visible{outline:2px solid #a34730;outline-offset:5px;}"
+    },
+    {
+      "name": "Attendance Choice",
+      "kind": "custom",
+      "refersTo": "attendance",
+      "description": "Label-backed radio with a selected sage surface.",
+      "html": "<label class=\"ds-attendance\"><input class=\"ds-radio\" type=\"radio\" name=\"sample-attendance\" value=\"yes\"><span>Joyfully accept</span><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></label>",
+      "css": ".ds-attendance{display:flex;min-height:56px;align-items:center;justify-content:space-between;gap:12px;padding:16px;border:1px solid #d5d5c4;border-radius:12px;color:#353c2b;font:400 14px/20px Inter,sans-serif;cursor:pointer;transition:background .2s,border-color .2s}.ds-radio{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.ds-attendance:hover{background:#f6f3e9}.ds-attendance:has(:checked){border-color:#414a32;background:#e7e9db}.ds-attendance:has(:focus-visible){outline:2px solid #a34730;outline-offset:4px}"
+    },
+    {
+      "name": "Reply Paper",
+      "kind": "card",
+      "refersTo": "reply-paper",
+      "description": "Warm white correspondence surface for the staged form.",
+      "html": "<section class=\"ds-paper\"><div class=\"ds-paper-heading\"><h3>Your RSVP</h3></div><p>Kindly reply by March 1, 2027.</p></section>",
+      "css": ".ds-paper{padding:24px;border-radius:16px;background:#fffdf7;color:#353c2b;box-shadow:0 16px 48px #353c2b0a}.ds-paper-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #d5d5c4}.ds-paper h3{margin:0;font:400 36px/40px \"Instrument Serif\",Georgia,serif}.ds-paper p{margin:0;color:#626651;font:400 14px/28px Inter,sans-serif}@media(min-width:640px){.ds-paper{padding:36px}}"
+    },
+    {
+      "name": "Circular Date Seal",
+      "kind": "custom",
+      "refersTo": "date-seal",
+      "description": "Clay date marker overlapping the photo.",
+      "html": "<div class=\"ds-date\" aria-label=\"March 20, 2027\"><span class=\"ds-month\">March</span><span class=\"ds-day\">20</span><span class=\"ds-year\">2027</span></div>",
+      "css": ".ds-date{display:flex;flex-direction:column;align-items:center;justify-content:center;width:96px;height:96px;border-radius:9999px;transform:rotate(6deg);background:#a34730;color:#fffdf7;outline:1px solid #f6f3e9;outline-offset:-7px}.ds-month{font:400 10px/15px Inter,sans-serif;letter-spacing:.15em;text-transform:uppercase}.ds-day{font:400 36px/1 \"Instrument Serif\",Georgia,serif}.ds-year{margin-top:4px;font:400 10px/15px Inter,sans-serif;letter-spacing:.18em}@media(min-width:640px){.ds-date{width:128px;height:128px}.ds-day{font-size:48px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Place at the Garden Table",
+    "overview": "A warm, spacious garden invitation pairs expressive serif lettering with plainly readable controls. Parchment and olive establish the atmosphere; clay provides a human, sun-warmed accent. One panoramic tablescape supplies photographic richness while hairline rules organize the practical details.\n\nThis system belongs only to the fictional Olive & Theo portfolio sample. It records the implemented world rather than prescribing a theme for other invitations. The staged reply feels like a small sheet of correspondence, with a simple one-step reply.",
+    "keyCharacteristics": [
+      "Generous parchment space and an olive countdown.",
+      "Expressive serif headings with restrained italic clay accents.",
+      "A rounded photographic canopy and circular date seal.",
+      "Plain tactile form controls and one-step reply submission."
+    ],
+    "rules": [
+      {
+        "name": "The Garden Contrast Rule",
+        "body": "Use olive for large dark surfaces and primary actions; use clay for emphasis and focus. Preserve the warm neutral reading surfaces around both.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Voices Rule",
+        "body": "Keep expressive serif lettering in names, headings, and short sentiments; keep instructions, labels, and form values in Inter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Correspondence Rule",
+        "body": "Reserve the observed soft shadow for the reply sheet; keep the information sections organized by space and rules.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do retain the scoped garden palette, existing font resources, and clear serif/sans role split.",
+      "Do keep primary actions visible and use the established clay focus treatment.",
+      "Do retain opaque backing throughout the cover's foreground exit, then reveal the destination underneath it.",
+      "Do preserve reduced motion, focus transfer, semantic form controls.",
+      "Do use space and hairline rules to organize practical information."
+    ],
+    "donts": [
+      "Don't apply this invitation's palette or silhouettes to unrelated clients.",
+      "Don't use expressive serif lettering for field values or long instructions.",
+      "Don't make all information blocks into elevated cards.",
+      "Don't imply that the in-memory demonstration persists a reply."
+    ]
+  }
+}

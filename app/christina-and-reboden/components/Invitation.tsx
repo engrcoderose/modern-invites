@@ -110,8 +110,8 @@ export default function Invitation() {
         {slides.map((slide, slideIndex) => {
           if (!visited.has(slide.id)) return null;
           const venuePage = slide.id === "ceremony" || slide.id === "reception";
-          const photoPage = slide.id === "our-moments" || slide.id === "together";
-          return <PageLeaf key={slide.id} id={slide.id} label={slide.label} active={index === slideIndex} transition={transition} onTurnComplete={finishTurn} className={styles[slide.tone]}>
+          const photoPage = ["our-love", "hand-in-hand", "our-moments", "together"].includes(slide.id);
+          return <PageLeaf key={slide.id} id={slide.id} label={slide.label} active={index === slideIndex} transition={transition} onTurnComplete={finishTurn} className={styles[slide.tone]} revealReady={opened && index === slideIndex && !menuOpen && !transition}>
             {!photoPage && <Image src={venuePage ? artwork.venueDamask : artwork.damask} alt="" fill sizes="100vw" className={`${venuePage ? styles.venueDamask : styles.damask} pointer-events-none object-cover`} />}
             {slide.content}
           </PageLeaf>;

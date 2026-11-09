@@ -1,0 +1,11 @@
+/* Visible by default: only the initialized observer prepares hidden content. */
+.item[data-cr-reveal-state="pending"] { opacity: 0; translate: 0 24px; }
+.item[data-cr-reveal-state="entering"] {
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity 850ms ease-in-out var(--cr-reveal-delay, 0ms),
+    translate 850ms ease-in-out var(--cr-reveal-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .item[data-cr-reveal-state] { opacity: 1; translate: none; transition: none; }
+}

@@ -18,6 +18,8 @@
 /.impeccable/mocks/
 /.impeccable/questions/
 /.impeccable/review/
+/output/
+/tmp/
 
 # production
 /build

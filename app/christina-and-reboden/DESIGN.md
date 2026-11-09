@@ -163,7 +163,7 @@ The rose primary button uses paper text, a small radius, sans labels, and genero
 
 ### Inputs / Fields
 
-Paper inputs use warm ink, a muted one-pixel border, (2px) corners, and sans text. Inputs and textareas use (16px) entry text. The shared scoped focus treatment is a gold (2px) outline with (5px) offset. RSVP follows Leslie & Serj's separate script heading plaque and ivory stationery panel, adapted to blush and antique gold. The plaque has a fine gold border, an inset-looking outline, and a small ornament across its top edge. The panel is at most 560px wide with a subtle shadow, roomy fields, and an uppercase rose action. The deadline and explicit local-preview notice sit above the form. An optimized beach photograph sits beneath a blush wash; its phone crop occupies the upper 42% of the page to retain both faces. A dedicated internal reading region keeps all steps accessible on short screens. Replies are neither sent nor saved, and RSVP remains the penultimate chapter.
+Paper inputs use warm ink, a muted one-pixel border, (2px) corners, and sans text. Inputs and textareas use (16px) entry text. The shared scoped focus treatment is a gold (2px) outline with (5px) offset. RSVP follows Leslie & Serj's separate script heading plaque and ivory stationery panel, adapted to blush and antique gold. The plaque has a fine gold border, an inset-looking outline, and a small ornament across its top edge. The panel is at most 560px wide with a subtle shadow, roomy fields, and an uppercase rose action. The deadline and explicit local-preview notice sit above the form. An optimized beach photograph sits beneath a blush wash; its phone crop occupies the upper 42% of the page to retain both faces. A dedicated internal reading region keeps the household form accessible on short screens. Replies are neither sent nor saved, and RSVP remains the penultimate chapter.
 
 ### Navigation
 
@@ -171,11 +171,46 @@ Paper rails contain the script name shortcut, contents toggle, Previous/Next act
 
 ### Stationery and Artwork
 
-A recurring ornament, centered script heading, and focused content group establish the page rhythm. The ornament's transparent margins are cropped in a (160px × 52px) viewport so its goldwork reads at the intended size. Save-the-date title, date, and supplied collage have separate proportional positions inside one frame. Both venues use cream damask, the supplied ivory/blush floral bow, the original venue watercolors with gold scroll trim, and matching flower urns on carved pedestals. Script titles and venue names, uppercase serif details, and blush rectangular map buttons follow the supplied reference. The pedestal cutout was created from the user's image with ImageGen; its source prompt accompanies the optimized WebP. The earlier arch is retained as historical artwork and is no longer rendered. The story's beach portrait carries flowers and an overlapping parchment title; all paragraphs follow below in a readable, scrollable column. A shoreline photograph anchors the closing page. The three selected prenup masters are static imports with responsive Next Image sizing, quality 85, and lazy loading. The supplied venue watercolors use static imports from assets/photos/ with responsive sizing and lazy loading.
+A recurring ornament, centered script heading, and focused content group establish the page rhythm. The ornament's transparent margins are cropped in a (160px × 52px) viewport so its goldwork reads at the intended size. Save-the-date title, date, and supplied collage have separate proportional positions inside one frame. Both venues use cream damask, the supplied ivory/blush floral bow, the original venue watercolors with gold scroll trim, and matching flower urns on carved pedestals. Script titles and venue names, uppercase serif details, and blush rectangular map buttons follow the supplied reference. The pedestal cutout was created from the user's image with ImageGen; its source prompt accompanies the optimized WebP. The earlier arch is retained as historical artwork and is no longer rendered. The story's beach portrait carries flowers and an overlapping parchment title; all paragraphs follow below in a readable, scrollable column. The complete black-outfit collage anchors the closing page in its original aspect ratio. The three selected prenup masters are static imports with responsive Next Image sizing, quality 85, and lazy loading. The supplied venue watercolors use static imports from assets/photos/ with responsive sizing and lazy loading.
 
 ### Opening and Page Motion
 
 The cover fades and slightly enlarges before the main presentation becomes visible. The action locks during this transition. Pages use Leslie & Serj's geometric corner fold: (1.25s), easing `(0.38, 0.05, 0.25, 1)`, with a cream reverse and soft directional shading. Forward turns fold the outgoing page away; backward turns unfold the incoming page. Both pages remain mounted and opaque during the turn, and navigation locks until completion. Visited pages stay mounted to preserve RSVP state. Reduced motion changes pages immediately and retains the brief cover fade without scaling. The shared geometry lives in `components/invitation-motion/page-fold.ts`; Leslie & Serj's existing import path re-exports it unchanged.
+
+The opening and all twenty-two invitation pages share a soft content entrance:
+850ms ease-in-out opacity from 0 to 1 and an independent 24px upward translate.
+Visible siblings stagger by 120ms, capped at 600ms for dense lists. Each group
+reveals once, after its page fold settles and at least 12% enters the page's
+viewport. Nested reading regions also trigger these entrances on scroll.
+Framed compositions move together, while backgrounds and page geometry stay
+stationary. Separate translate preserves authored transforms and slideshow
+crossfades. Focus reveals controls immediately; reduced motion displays content
+without movement. RSVP fields added during the local flow follow the same rules.
+
+A single still-photo page, Our love, immediately follows the love story and
+precedes the ceremony. It features the supplied beach photograph of Christina
+smiling at Reboden (`dsc06556.jpg`). The full photograph remains visible on
+portrait screens over a softly blurred copy of the same optimized image;
+landscape screens use the existing full-page cover treatment. It adds no text
+overlay or photo controls. Its entrance, fold, navigation, and counter follow
+the surrounding chapters.
+
+A second still photo, You & me, follows FAQs and precedes Share the Love.
+The supplied beach portrait (`dsc06549.jpg`) fills the entire page on
+both portrait and landscape screens with object-contain, showing both people
+and the entire composition. A dimmed, blurred copy fills unused stage space;
+both layers reuse one responsive quality-85 image URL.
+This photograph is not part of the Save the Date collage.
+The page has no text overlay or photo controls and follows
+the existing entrance/fold treatment. The invitation now has twenty-two pages.
+
+RSVP begins with a full-name search and an explicit household selection, using
+the existing Leslie & Serj interaction pattern. The selected household's guests,
+attendance choices, attendee dietary notes, and optional message share one inline
+form. There is no reply wizard or second details page. Search, empty results,
+required answers, completion, editing, and switching households work locally.
+Fictional sample households and the no-save notice clearly identify the preview;
+live guest lookup and persistence remain pending confirmed admin configuration.
 
 ## Do's and Don'ts
 
@@ -253,9 +288,11 @@ Photo dots match each slideshow collection, with no separate playback icon.
 Activating the current dot toggles pause/resume; labels and keyboard access
 remain. The 3-second photo cycle includes the existing 900ms crossfade rather
 than adding a fresh wait after that fade completes.
-Our Moments now cycles only through the three supplied portrait photographs.
-Landscape photographs are excluded from this portrait presentation. Together
-retains its separate five-photo collection. Photo controls follow each page's
+Our Moments now cycles through six supplied images, including the blue-plaid
+portrait collage. The black-outfit collage is on the closing page. Individual landscape photographs
+remain in Together, whose eight-photo collection includes the paired tree-side
+portraits and the former closing photo of Reboden lifting Christina.
+The new images exclude Save the Date repeats. Photo controls follow each page's
 collection size; the existing borderless treatment and 3-second cycle apply.
 The envelope is the opening interaction. It has no button chrome or separate
 Open CTA; a small italic Tap the envelope to open hint sits below the date. The
@@ -272,7 +309,15 @@ and open the card downward to avoid covering the countdown. Escape and outside
 clicks dismiss the card, and audio continues across page changes.
 
 Forward folds carry a sparse breeze of natural watercolor blush-rose petals.
-The short diagonal paths rotate gently across the turning paper, fade away
-before the fold finishes, and leave the destination clear. Twelve desktop
-petals reduce to eight smaller petals on phones. The transparent botanical
+Fourteen translucent petals follow short curved arcs beside the turning paper,
+with small varied tilts instead of full spins. Travel caps at 160px horizontally
+and 44px vertically; peak opacity varies from .45 to .64. Each arc lasts 1030ms
+with up to 170ms stagger, fading before the fold finishes. Desktop's fourteen petals
+reduce to ten smaller petals on phones. The transparent botanical
 sprite matches the client's blush motif. Reduced motion omits the breeze.
+
+The envelope's rose C & R monogram uses a single centered baseline with a small
+ampersand. Its 28cqw script size follows the envelope container, keeping the
+letters inside the ivory label on compact and large screens. The monogram is
+vertically centered at 64% of the envelope artwork; envelope interaction and
+opening motion remain unchanged.

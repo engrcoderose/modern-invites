@@ -29,7 +29,7 @@ export default function WeddingCountdown({ enabled }: { enabled: boolean }) {
     return () => { window.clearInterval(interval); document.removeEventListener("visibilitychange", sync); };
   }, [enabled]);
 
-  return <div role="timer" aria-live="off" aria-label={`Countdown to ${wedding.date}, 3:00 PM Philippine time`} className="h-11 w-full max-w-xs shrink-0 text-center">
+  return <div data-cr-reveal role="timer" aria-live="off" aria-label={`Countdown to ${wedding.date}, 3:00 PM Philippine time`} className="h-11 w-full max-w-xs shrink-0 text-center">
     {remaining?.complete ? <p role="status" aria-live="polite" className="flex h-full items-center justify-center text-sm italic">Our forever has begun.</p> : <dl className="grid grid-cols-4 gap-3">
       {units.map(([key, label]) => <div key={key} className="flex min-w-0 flex-col items-center gap-1">
         <dt className="order-2 font-sans text-[9px] uppercase leading-3 tracking-[.1em]">{label}</dt>

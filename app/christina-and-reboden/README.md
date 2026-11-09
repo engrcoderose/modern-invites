@@ -3,13 +3,13 @@
 Route: `/christina-and-reboden`
 
 An enchanted, non-scrolling wedding invitation based on the supplied design PNG
-and Signature Package questionnaire. The invitation currently has 20 slides,
+and Signature Package questionnaire. The invitation currently has 22 slides,
 including the full story and full entourage. Previous/Next, horizontal swipes,
 arrow keys, Home/End, and a contents menu navigate the presentation. Refreshing
 returns to the opening envelope. Visited slides stay mounted to preserve form
 details; later artwork loads lazily.
 
-Our Moments follows Reception and precedes Wedding Timeline. Its three-portrait
+Our Moments follows Reception and precedes Wedding Timeline. Its six-image
 slideshow uses optimized prenup masters, centered full photographs, corner script
 names, a dimmed beach backdrop, and matching blurred fills inside the frame.
 Each photograph and its blurred fill reuse one responsive quality-85 variant.
@@ -25,6 +25,20 @@ Our Love Story is one chapter, following Aljay & Erlyn's photo/title/paragraph
 layout. Its full text scrolls inside the page while the invitation navigation
 stays fixed. Keyboard focus enters this reading region; native Page Up/Down and
 Home/End scroll the story. Its reading position is retained when returning.
+
+One still-photo break follows the love story and precedes the ceremony. The
+Our love page uses the optimized `dsc06556.jpg`, keeping the entire photograph
+visible on portrait screens with a soft blurred fill, and filling landscape
+screens. Both layers use one responsive quality-85 image variant. The page has
+the established entrance and fold transitions, without slideshow controls.
+
+You & me is another still-photo break, immediately after FAQs and before
+the hashtag page. It uses the optimized `dsc06549.jpg` photograph of Reboden
+smiling at Christina, showing the entire photograph on every screen.
+This replaces the hand-holding image already featured in Save the Date.
+It reuses `PhotoBreakSlide` with `showWholePhoto`, centering the complete photo
+over a matching blurred fill. Both layers reuse one quality-85 responsive image.
+There are no slideshow controls. RSVP stays penultimate.
 
 All 30 principal sponsors occupy one page in their original paired columns.
 The list scrolls internally when needed on smaller screens, with the same
@@ -84,9 +98,10 @@ All 23 supplied prenup photos are optimized losslessly in
 orientation, and ICC profile matches its source; the measured total reduction
 is 11,244,354 bytes (5.08%). `docs/prenup-optimization.json` contains the per-file
 verification. Source originals remain in Downloads. `data/media.ts` statically
-imports three optimized masters for content-hashed URLs: `dsc06605.jpg` above
-the love story, `dsc06601.jpg` behind RSVP, and `dsc06623.jpg` on the closing
-page. Responsive Next Image variants use quality 85 and placement-specific
+imports optimized masters for content-hashed URLs: `dsc06605.jpg` above
+the love story, `dsc06601.jpg` behind RSVP, and `collage-and-corrections.jpg` on
+the closing page. The former closing image, `dsc06623.jpg`, is in Together.
+Responsive Next Image variants use quality 85 and placement-specific
 sizes and crops; the full-resolution masters remain unchanged. Later chapter
 images load lazily, with a small blur placeholder for the framed photographs.
 
@@ -145,10 +160,21 @@ play option available. The original source remains in `assets/music/`.
 
 ## RSVP integration
 
-`sections/RsvpSlide.tsx` is an explicitly labeled frontend preview. It validates
-the invited name and attendance, shows dietary details only when attending,
-and allows an optional message. Replies exist only in React state; they are
-never sent, saved, or represented as real responses.
+`sections/RsvpSlide.tsx` composes an explicitly labeled frontend preview.
+Guests search by full name, select the matching household, then answer for
+every invited member in one inline form. There is no two-step reply wizard.
+Attendance is required for each guest; dietary notes appear for attendees,
+with one optional household message. Editing or reselecting the same household
+preserves its draft; selecting a different household resets the fields.
+Replies exist only in React state and are never sent or saved.
+
+`components/rsvp/` separates search, household form, and flow state.
+`data/rsvp-preview.ts` contains explicitly fictional sample households, with
+preview keys rather than database IDs. `utilities/rsvpPreview.ts` reuses the
+repository's pure name normalizer and shared RSVP types. Local tests in
+`tests/christina-rsvp-preview.test.mts` cover exact-name matching, middle initials,
+ambiguous results, required attendance, and household limits. No backend calls
+run in this preview; real household lookup still requires confirmed admin setup.
 
 Its styling follows Leslie & Serj's RSVP: a separate ornamental heading plaque
 and an ivory form panel, adapted to this client's blush background and rose
@@ -184,7 +210,7 @@ RSVP persistence have not been verified. The full repository production build
 was not run because it automatically loads private environment files.
 
 Together is a second slideshow immediately after Our Little Loves (the final
-entourage page) and before Dress Code. It uses five additional optimized prenup
+entourage page) and before Dress Code. It uses eight additional optimized prenup
 photos in an edge-to-edge desktop composition, with photo selectors and playback
 controls over a dark translucent capsule. Portrait screens show the complete landscape
 photographs over a matching soft background. The foreground and blurred copy
@@ -231,10 +257,14 @@ play/pause icon is removed on both slideshow pages; the current photo dot toggle
 pause/resume, with accessible labels and keyboard activation. Photo changes use
 a 3,000ms cycle measured from the incoming transition, including the 900ms fade.
 The next photograph still waits for successful loading and decoding before reveal.
-Our Moments is portrait-only: dsc06605, dsc06116, and dsc06236. The two landscape
-foreground photos and their unused imports were removed from this collection.
-Its three dots match the three portraits; the borderless layout and 3-second
-cycle continue. Together keeps its separate photo collection.
+Our Moments has six images: dsc06605, dsc06116, dsc06236, dsc06519,
+dsc06519-1, and 20261024-225227-collage. The final three entries are supplied
+collages, shown in full. The black-outfit collage is on the closing page. Together
+has eight images, adding dsc06057, dsc06069, and dsc06623 to its original collection.
+The additions exclude the files containing Save the Date photos. Six and eight
+selectors follow the respective collections, using 40px touch targets on phones
+and 44px from the small breakpoint.
+Both pages retain the shared 3,000ms cycle, including the existing fade.
 The opening screen now opens by tapping the envelope artwork. The separate rose
 Open invitation CTA and arrow are removed, replaced with a quiet Tap the envelope
 to open hint. The envelope keeps keyboard activation and an accessible name;
@@ -244,8 +274,29 @@ off to the invitation as before.
 
 Forward page turns now include a brief blush-rose petal breeze, following the
 existing 1.25-second fold. `PageTurnPetals.tsx` mounts only during a forward
-transition, with twelve paths on desktop and eight on phones. A generated
+transition, with fourteen paths on desktop and ten on phones. A generated
 96px transparent lossless WebP is shared by all particles; the exact built-in
 ImageGen prompt is in `page-turn-blush-petal.webp.json`. The effect fades out
-within 1.23 seconds, clears with the page turn, never intercepts input, and is
+within 1.20 seconds, clears with the page turn, never intercepts input, and is
 omitted for reduced motion. Previous-page turns keep their existing fold.
+
+The refined petals use short curved arcs instead of the former wide sweeps.
+Travel is capped at 160px horizontally and 44px vertically; small varied tilts
+replace the large spins. Individual peak opacity stays between .45 and .64,
+with staggered arrivals and soft fades. The existing transparent sprite is
+reused, without extra artwork, shadows, or animated filters.
+
+Content entrances use `utilities/usePageEntrances.ts` and
+`styles/entrances.module.css`. Explicit `data-cr-reveal` groups keep the existing
+DOM and layouts intact. The opening and all twenty-two pages use 850ms ease-in-out
+opacity and a 24px rise, with 120ms sibling staggers capped at 600ms. A page waits
+for the fold to finish; its internal reading regions reveal unseen content as
+it enters view. Groups reveal once, preserve authored transforms, and remain
+visible on revisits. Keyboard focus reveals immediately; pointer focus does not
+snap moving buttons during a tap. Reduced motion and missing observer support
+show content immediately. Dynamic form nodes use the same observer rules.
+
+The envelope monogram reads C & R on one horizontal baseline. It sits at the
+center of the ivory label, with a smaller ampersand and a font size tied to the
+envelope width (28cqw). The compact-screen font override was removed so the
+monogram scales with the same envelope on every screen.

@@ -34,7 +34,7 @@ export default function PhotoSlideshow({ visible, fullBleed = false }: { visible
       show.select(index);
     }}>
     {!fullBleed && <SlideshowBackdrop />}
-    <div className={fullBleed ? "absolute inset-0" : `${styles.slideshowFrame} relative shrink-0`}>
+    <div data-cr-reveal className={fullBleed ? "absolute inset-0" : `${styles.slideshowFrame} relative shrink-0`}>
       <div className="absolute inset-0 isolate overflow-hidden">
         {show.mounted.map(index => {
           const photo = photos[index];
@@ -54,12 +54,12 @@ export default function PhotoSlideshow({ visible, fullBleed = false }: { visible
         <span className="absolute -bottom-[.5em] -right-4" aria-hidden="true">Reboden</span>
       </h2>}
     </div>
-    <div className={`${fullBleed ? `${styles.slideshowControls} absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full px-2` : "relative shrink-0"} z-10 flex items-center justify-center`} aria-label="Slideshow controls">
+    <div data-cr-reveal className={`${fullBleed ? `${styles.slideshowControls} absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full px-2` : "relative shrink-0"} z-10 flex items-center justify-center`} aria-label="Slideshow controls">
       {photos.map((photo, index) => {
         const playback = index === show.active && !show.reducedMotion;
         const label = playback ? `Photo ${index + 1}: ${show.paused ? "resume" : "pause"} slideshow` : `Show photo ${index + 1}`;
         return <button key={photo.src.src} type="button" aria-label={label} title={label} aria-current={index === show.active ? "true" : undefined} data-slideshow-playback={playback ? true : undefined}
-        onClick={() => playback ? show.toggle() : show.select(index)} className="flex size-11 items-center justify-center rounded-full">
+        onClick={() => playback ? show.toggle() : show.select(index)} className={`flex shrink-0 items-center justify-center rounded-full sm:size-11 ${fullBleed ? "size-9" : "size-10"}`}>
         <span aria-hidden="true" className={`${styles.slideshowDot} h-1.5 rounded-full ${index === show.active ? "w-5" : "w-1.5 opacity-60"}`} />
       </button>;
       })}

@@ -3,16 +3,19 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 import { pageFold } from "../../../components/invitation-motion/page-fold";
+import usePageEntrances from "../utilities/usePageEntrances";
 
 // Match Leslie & Serj's corner fold, including its pace and easing.
 const pageTurn = { duration: 1.25, ease: [0.38, 0.05, 0.25, 1] as const };
 export type PageTransition = { from: string; to: string; direction: 1 | -1 };
 
-export default function PageLeaf({ id, label, active, transition, className, onTurnComplete, children }: {
+export default function PageLeaf({ id, label, active, transition, className, onTurnComplete, children, revealReady }: {
   id: string; label: string; active: boolean; transition: PageTransition | null;
   className: string; onTurnComplete: (id: string) => void; children: ReactNode;
+  revealReady: boolean;
 }) {
   const page = useRef<HTMLElement>(null);
+  usePageEntrances(page, revealReady);
   const gradient = useId();
   const shadow = useId();
   const reduced = useReducedMotion();

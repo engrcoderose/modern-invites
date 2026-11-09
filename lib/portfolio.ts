@@ -5,6 +5,11 @@ import jaydeeIllustration from "@/app/jaydee-and-bea/assets/designs/hero-couples
 import { TreeDance, SunlitPortrait } from "@/app/anjo-and-jasmin/prenup-media";
 import { photos as marioInahPhotos } from "@/app/mario-and-inah/data/photos";
 import { prenupMedia as edcelAprealPhotos } from "@/app/edcel-and-apreal/data/photo-media";
+import { heroPhotos as marianDeejayPhotos } from "@/app/marian-and-deejay/data/hero-photos";
+import marianDeejayPortrait from "@/app/marian-and-deejay/assets/images/Prenup/optimized/nhut7427.webp";
+import { usPhotos as aljayErlynPhotos } from "@/app/aljay-and-erlyn/data/photos";
+import claudiaBackground from "@/app/claudia-at-18/assets/outfits/lean-back-pose.png";
+import claudiaPortrait from "@/app/claudia-at-18/assets/outfits/happy-birthday.png";
 
 export type PortfolioItem = {
  id: string; title: string; category: string; description: string; href: string;
@@ -31,6 +36,32 @@ import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenu
 import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
 
 const invitationCatalog: PortfolioItem[] = [
+  {
+    id: "marian-and-deejay",
+    title: "Marian & Dee Jay",
+    category: "Wedding Invitation",
+    description: "Ribbon envelope opening, photo slideshows, prenup film, music, and RSVP.",
+    href: "https://mariananddeejaywedding.moderninvites.com/",
+    bgImage: marianDeejayPhotos[0].src,
+    previewImage: marianDeejayPortrait,
+    previewAlt: "Marian and Dee Jay walking together through a golden corridor in their wedding attire",
+    accent: "#6b4935",
+    accentLight: "#fff8e8",
+    tags: ["Signature", "Yellow & Brown"],
+  },
+  {
+    id: "aljay-and-erlyn",
+    title: "Aljay & Erlyn",
+    category: "Wedding Invitation",
+    description: "Garden opening, page-turn animations, love story, photo slideshows, music, and RSVP.",
+    href: "https://aljayanderlynwedding.moderninvites.com/",
+    bgImage: aljayErlynPhotos[3].src,
+    previewImage: aljayErlynPhotos[0].src,
+    previewAlt: aljayErlynPhotos[0].alt,
+    accent: "#414636",
+    accentLight: "#f2ede0",
+    tags: ["Signature", "Olive & Ivory"],
+  },
   {
     id: "edcel-and-apreal",
     title: "Edcel & Apreal",
@@ -67,7 +98,6 @@ const invitationCatalog: PortfolioItem[] = [
   },
   {
     id: "jaydee-and-bea", title: "Jaydee & Bea", category: "Wedding Invitation",
-    hidden: true,
     description: "Floral illustrations, love story, and event details.",
     href: "https://jaydeeandbeawedding.moderninvites.com/", bgImage: jaydeeBackground, previewImage: jaydeeIllustration,
     previewAlt: "Garden couple illustration from Jaydee and Bea’s invitation",
@@ -139,6 +169,19 @@ const invitationCatalog: PortfolioItem[] = [
     accent: "#5a1024",
     accentLight: "#f6ebe8",
     tags: ["Modern Luxury", "Burgundy & Gold"],
+  },
+  {
+    id: "claudia-at-18",
+    title: "Claudia at 18",
+    category: "18th Birthday Debut",
+    description: "Sapphire-blue styling, animated opening, photo gallery, and 18 traditions.",
+    href: "/claudia-at-18",
+    bgImage: claudiaBackground,
+    previewImage: claudiaPortrait,
+    previewAlt: "Sample birthday portrait from Claudia’s eighteenth birthday invitation",
+    accent: "#1d3474",
+    accentLight: "#e6edff",
+    tags: ["18th Birthday", "Sapphire Blue"],
   },
   {
     id: "stephanie-at-18",

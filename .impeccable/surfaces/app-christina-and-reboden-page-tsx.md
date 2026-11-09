@@ -657,3 +657,157 @@ Visited all seven entourage chapters: no side-decoration nodes or horizontal
 overflow. Confirmed painted layouts on mobile 390x844 and desktop 1440x900.
 No console errors. Scoped lint and isolated production build with type checks
 pass. Evidence: `.impeccable/review/christina-clean-entourage/`.
+
+### Elegant entrances and five-image Our Moments
+Added an explicit reveal marker to content across the opening and all twenty
+pages. A scoped observer prepares each atomic composition before activation,
+then reveals it once at 12% visibility inside the active page. Internal scroll
+regions also trigger reveals. CSS uses 850ms ease-in-out opacity, an independent
+24px translate, and 120ms staggers capped at 600ms. Fold geometry, child
+transforms, backgrounds, and existing slideshow crossfades retain ownership of
+their properties. Persistent visible states prevent cleanup flashes. Keyboard
+focus settles content immediately, while pointer focus avoids moving a button
+between pointerdown and click. Reduced motion and missing IntersectionObserver
+fall back to visible content; hidden documents settle running effects.
+
+Our Moments now has five portrait-format images, adding the supplied dsc06519
+and dsc06519-1 three-photo collages. Five dots follow the data collection; the
+3-second timing, decode-before-reveal, 900ms crossfade, borderless composition,
+and separate Together collection remain.
+
+Verified actual painted mobile entrance frames and computed progression from
+24px/opacity 0 to no translation/opacity 1, including 120ms stagger intervals.
+Visited all twenty pages on desktop: every chapter had prepared groups, zero
+visible-but-pending groups, and no horizontal overflow. Story paragraphs stayed
+pending below view, entered when scrolling, settled at the end, and stayed
+visible when returning. Checked compact RSVP step changes, keyboard-focus
+visibility, preview completion, and a direct fifth-photo tap during entrance.
+All five images loaded, retained portrait dimensions, and autoplay wrapped to
+the first image. Reduced-motion and observer-fallback branches were checked in
+code; the browser adapter lacks media-preference emulation. Scoped lint,
+TypeScript, and the isolated production build pass without private credentials
+or backend access. Evidence: `.impeccable/review/christina-entrances/`.
+
+### Restrained petal refinement
+Replaced the twelve/eight-petal wide sweep with six desktop and four mobile
+petals following short curved arcs. Horizontal drift caps at 160px and vertical
+fall at 44px. Varied low-angle tilts replace 145–240-degree spins and the broad
+3D flip; opacity peaks at .45–.64. Each glide lasts 1030ms with up to 150ms
+stagger, so the final fade completes before the unchanged 1250ms fold. The
+existing transparent sprite is reused. Pointer and reduced-motion behavior stay
+intact; no new assets, dependencies, or animation state were added.
+
+Inspected painted mobile and desktop frames: four/six petals, curved movement,
+soft fades, minimal tilts, and an opaque page fold. Confirmed capped desktop
+travel, zero remaining petals after the turn, no backward-page effect, no
+horizontal overflow, and no console errors. Scoped lint and isolated production
+build with type checks pass. Reduced-motion fallback checked in code. Evidence:
+`.impeccable/review/christina-elegant-petals/`.
+
+### Single-line monogram and fuller petals
+Changed the envelope's stacked C, ampersand, and R into a single centered flex
+baseline. Typography now follows the envelope's inline-size container at 28cqw,
+with a smaller ampersand and no compact-screen font override. Centered the line
+within the ivory label. Expanded the existing curved petal sweep to fourteen
+paths on desktop and ten on mobile, retaining low opacity, small tilts, and the
+160px/44px travel caps. Stagger reaches 170ms and fades finish within 1200ms,
+before the unchanged 1250ms fold. No new assets or state were introduced.
+
+Verified 390x844 and 320x568: monogram text stays within the envelope on one line
+with no horizontal overflow. Reviewed desktop opening, keyboard activation, and
+painted fourteen/ten-petal turns. Confirmed all petals fade and are removed after
+the turn; no console errors. Scoped lint and isolated production build with type
+checks pass. Evidence: `.impeccable/review/christina-monogram-fuller-petals/`.
+
+### Still photo after the love story
+Added Our love as page 4 of 21, directly between Our love story and The ceremony.
+PhotoBreakSlide uses the existing optimized dsc06556 beach image, the established
+full-page photo styling, and the shared entrance/fold behavior. Portrait screens
+show the whole photograph over a blurred fill; landscape screens fill the page.
+Both layers use the same responsive quality-85 URL. No photo controls, timers,
+new artwork, or dependencies were added. The chapter menu still groups the
+story/photo pair under Our love story, and the page counter derives 21 from data.
+RSVP remains immediately before the closing page.
+
+Verified story 3/21 -> photo 4/21 -> ceremony 5/21 and backward navigation.
+Inspected mobile and desktop layouts, loaded foreground/backdrop images with an
+identical optimized URL, contain/cover behavior, and no horizontal overflow or
+console errors. Scoped lint and isolated production build with type checks pass.
+Evidence: `.impeccable/review/christina-story-photo/`.
+
+### Full photo after FAQs
+Added Hand in hand as page 19 of 22, immediately after FAQs and before the
+hashtag page. The optimized dsc06542 hand-holding photo uses a centered full-cover
+crop on mobile and desktop. PhotoBreakSlide now accepts typed photo/title data
+and a fullBleed option; the existing story break retains its adaptive treatment.
+The new cover page uses one responsive quality-85 image with crop-aware sizes,
+no background duplicate, no photo controls, and the established entrance/fold.
+Navigation counters derive 22 from data; RSVP remains the penultimate page.
+
+Verified FAQs 18/22 -> photo 19/22 -> hashtag 20/22 and backward navigation.
+Inspected portrait and landscape framing with the hands and ring in view, full
+page-height image coverage, one loaded image, no horizontal overflow, and no
+console errors. Scoped lint and isolated production build with type checks pass.
+Evidence: `.impeccable/review/christina-faq-photo/`.
+
+### Household search and one-form RSVP
+Replaced the two-step preview with full-name search, explicit matching-household
+selection, and one inline reply form containing every invited guest's attendance,
+conditional dietary notes, and one optional household message. The blush photo,
+ivory panel, and ornamental heading remain. Components under components/rsvp
+separate presentation and local flow; data/rsvp-preview.ts contains explicitly
+fictional household fixtures. The pure search helper reuses the repository's
+normalizer and shared RSVP types. No database IDs, network calls, credentials,
+admin records, or persistence were introduced.
+
+Verified exact-name and empty searches, first/last-name validation, household
+selection, required guest answers, attendee dietary fields, local completion,
+editing, same-household draft retention, and different-household reset. Mobile
+390x844 and 320x568 preserve internal scrolling and fixed navigation with no
+horizontal overflow; desktop reviewed at 1280x720. Five pure local tests, scoped
+ESLint, TypeScript, and isolated production build pass. Console has no errors.
+Evidence: `.impeccable/review/christina-household-rsvp/`.
+
+### Different photo after FAQs
+Replaced dsc06542 (already represented in Save the Date) with the previously
+unused optimized dsc06549. The page label is now You & me; its existing internal
+id remains stable. The full-cover frame, responsive quality-85 sizing, lazy
+loading, entrance, and fold are retained. An 18% horizontal focal point keeps
+Reboden's face visible in portrait phone crops. The original photo remains in
+the asset collection; no new source assets were added.
+
+### Seven images in both slideshows
+Added the two remaining collages to Our Moments and dsc06057/dsc06069 to Together,
+excluding the four unused files with Save the Date similarities. Each collection
+now contains seven images and seven selectors. Mobile selectors use 40px targets
+so all seven fit at 320px; desktop retains 44px. Both pages share the unchanged
+3000ms interval and 900ms fade, with decoding before reveal and an opaque outgoing
+layer. Static imports reuse existing optimized source assets; no dependencies,
+custom image loaders, or playback changes were introduced.
+
+Verified all four new images, seven selectors, phone and desktop compositions,
+no horizontal overflow at 320x568, manual selection, resume, and seven-to-one
+autoplay wraps. Observed first-gallery advances about 3 seconds apart; both use
+the same timer. Console error log is empty. Scoped ESLint and the isolated Next
+production build/type check pass. Evidence: `.impeccable/review/christina-seven-slides/`.
+
+### Complete photo break and closing photo exchange
+You & me now opts into showWholePhoto on PhotoBreakSlide: object-contain on
+every viewport, a centered complete photograph, and a matching dimmed blurred
+fill. Foreground and background share one quality-85 responsive URL; contain
+sizes follow the smaller of stage width and ratio-adjusted stage height. The
+earlier story break retains its adaptive fit and navigation is unchanged.
+
+Moved the former closing photograph dsc06623 into Together as its eighth image.
+The closing page now displays collage-and-corrections, keeping its entire
+composition with object-contain and a source-ratio frame. Our Moments remains
+at six images after the requested collage removal. Together uses 36px phone
+selectors so eight fit at 320px; desktop targets remain 44px. Both galleries
+retain the shared 3000ms interval and 900ms crossfade.
+
+Verified complete You & me framing on phone and desktop, a 640px responsive
+phone image versus 1080px desktop image, the full closing collage at 390x844
+and 320x568, the eighth Together photograph, and all eight selectors within
+320px without horizontal overflow. No console errors. Scoped ESLint, repository
+TypeScript, and isolated production build pass. Evidence:
+`.impeccable/review/christina-photo-swap/`.

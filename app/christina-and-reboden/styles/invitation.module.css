@@ -33,14 +33,14 @@
 .garden { object-position: center; }
 .coverWash { background: linear-gradient(180deg, rgb(245 237 223 / 20%), rgb(245 237 223 / 45%) 45%, var(--cr-cream) 88%); }
 .coverMessage { font-family: var(--cr-script), cursive; font-size: clamp(24px, 3vw, 33px); line-height: 1.25; }
-.envelope { width: clamp(170px, 25dvh, 270px); aspect-ratio: 423 / 557; filter: drop-shadow(0 15px 18px rgb(81 67 51 / 15%)); }
-.monogram { top: 44%; padding-left: 4%; font-family: var(--cr-script), cursive; font-size: clamp(52px, 8dvh, 82px); line-height: .9; color: #a96870; }
-.monogram span { display: block; margin: -6px 0; font-size: .4em; }
+.envelope { width: clamp(170px, 25dvh, 270px); aspect-ratio: 423 / 557; container-type: inline-size; filter: drop-shadow(0 15px 18px rgb(81 67 51 / 15%)); }
+.monogram { top: 64%; transform: translateY(-50%); font-family: var(--cr-script), cursive; font-size: 28cqw; line-height: 1; color: #a96870; }
+.monogram span { font-size: .4em; }
 .couple { font-family: var(--cr-script), cursive; font-size: clamp(42px, 6.5vw, 76px); font-weight: 400; line-height: 1.1; }
 .coverDate { font-size: 12px; letter-spacing: .12em; }
 .primary { background: #9b5d68; color: var(--cr-paper); border-radius: 2px; transition: background .2s; }
 .primary:hover { background: #7e4651; }
-.primary:disabled { cursor: wait; opacity: .75; }
+.primary:disabled { cursor: default; opacity: .55; }
 .dateFrame { width: min(490px, 100%, calc((100dvh - 240px) * 2 / 3)); aspect-ratio: 2 / 3; container-type: inline-size; }
 .countdownValue { font-size: clamp(20px, 2.5vw, 28px); line-height: 1; font-variant-numeric: tabular-nums; }
 .dateFrame .dateHeading { top: 24%; font-size: 10.5cqw; line-height: 1.2; white-space: nowrap; }
@@ -148,7 +148,6 @@
   .cover .envelope { width: 150px; }
   .cover .couple { font-size: 43px; }
   .cover > div:last-child { gap: 10px; }
-  .monogram { font-size: 47px; }
 }
 @media (max-height: 600px) {
   .header { height: 50px; }

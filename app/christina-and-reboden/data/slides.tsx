@@ -5,6 +5,7 @@ import VenueSlide from "../sections/VenueSlide";
 import PhotoSlideshow from "../sections/PhotoSlideshow";
 import TimelineSlide from "../sections/TimelineSlide";
 import StorySlide from "../sections/StorySlide";
+import PhotoBreakSlide from "../sections/PhotoBreakSlide";
 import { EntourageSlide, NameColumns, NameGroup, SponsorSlide } from "../sections/EntourageSlide";
 import SecondarySponsorsSlide from "../sections/SecondarySponsorsSlide";
 import WeddingPartySlide from "../sections/WeddingPartySlide";
@@ -12,6 +13,7 @@ import RsvpSlide from "../sections/RsvpSlide";
 import AttireSlide from "../sections/AttireSlide";
 import FaqSlide from "../sections/FaqSlide";
 import HashtagSlide from "../sections/HashtagSlide";
+import { faqBreakPhoto, storyBreakPhoto } from "./media";
 
 export type InvitationSlide = { id: string; label: string; tone: "cream" | "blue" | "pink" | "story"; content: ReactNode };
 
@@ -20,6 +22,7 @@ export function createSlides(activeSlideId?: string): InvitationSlide[] {
     { id: "save-the-date", label: "Save the date", tone: "cream", content: <SaveTheDate active={activeSlideId === "save-the-date"} /> },
     { id: "invitation", label: "The invitation", tone: "cream", content: <WeddingInvitation /> },
     { id: "our-story", label: "Our love story", tone: "story", content: <StorySlide /> },
+    { id: "our-love", label: "Our love", tone: "cream", content: <PhotoBreakSlide photo={storyBreakPhoto} title="Our love" /> },
     { id: "ceremony", label: "The ceremony", tone: "cream", content: <VenueSlide kind="ceremony" /> },
     { id: "reception", label: "The reception", tone: "cream", content: <VenueSlide kind="reception" /> },
     { id: "our-moments", label: "Our moments", tone: "cream", content: <PhotoSlideshow visible={activeSlideId === "our-moments"} /> },
@@ -34,6 +37,7 @@ export function createSlides(activeSlideId?: string): InvitationSlide[] {
     { id: "together", label: "Together", tone: "cream", content: <PhotoSlideshow visible={activeSlideId === "together"} fullBleed /> },
     { id: "attire", label: "The dress code", tone: "cream", content: <AttireSlide /> },
     { id: "questions-1", label: "FAQs", tone: "cream", content: <FaqSlide /> },
+    { id: "hand-in-hand", label: "You & me", tone: "cream", content: <PhotoBreakSlide photo={faqBreakPhoto} title="You & me" showWholePhoto /> },
     { id: "hashtag", label: "Our hashtag", tone: "cream", content: <HashtagSlide /> },
     { id: "rsvp", label: "Kindly RSVP", tone: "pink", content: <RsvpSlide /> },
     { id: "forever", label: "See you there", tone: "cream", content: <ClosingSlide /> },
