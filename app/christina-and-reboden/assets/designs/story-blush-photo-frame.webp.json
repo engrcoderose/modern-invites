@@ -1,0 +1,14 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Reference image: the attached painted wedding flower artwork. Create a premium enchanted-wedding PORTRAIT PHOTO SURROUND in a soft blush pink motif. Portrait canvas exactly 3:4 aspect ratio. A delicate antique-gold filigree rectangle with small soft blush roses (#ebc7c6 and pale rose), a few ivory orchids, muted sage leaves and two delicate pale blush butterflies. Light watercolor and fine painted goldwork, romantic storybook wedding stationery. The LOWER LEFT corner has the main airy rose-and-orchid spray with a graceful trailing vine along the outer left edge; the UPPER RIGHT corner has a smaller matching floral spray. Other edges remain slim fine gold scrollwork with small buds. Keep every blossom and butterfly mainly within the OUTER 10% of the canvas. Leave a completely EMPTY TRANSPARENT rectangular photo window covering the middle 80% of canvas width AND the middle 80% of canvas height, aligned exactly at x=10% to90%, y=10% to90%. Do not put any petals, gold curls or butterflies across the central photo window. Transparent alpha through the entire central photo window and outside the painted ornament; no white panel, paper, glass, background wash, checkerboard, heavy shadow or backing. Minimal outer transparent margin; every floral tip fully visible. Output only the decorative surround: NO photo, NO people, NO text or lettering, no monogram, no banner or scroll. Subtle blush tones, not saturated coral or hot pink. This is an overlay around a real couple portrait and must keep their faces completely unobstructed.",
+  "reference": "flower-design.webp",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1bb41-b01f-7982-87a4-71af1fa9cad7/exec-a4ec4e59-b94b-4026-ae90-b56a0a6fb558.png",
+  "transparentBackground": true,
+  "optimization": {
+    "maxWidth": 900,
+    "format": "webp",
+    "quality": 90,
+    "alphaQuality": 100
+  },
+  "sourcePreserved": true
+}

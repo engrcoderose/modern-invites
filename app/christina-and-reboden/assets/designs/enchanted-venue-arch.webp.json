@@ -1,0 +1,9 @@
+{
+  "prompt": "Generate a refined ENCHANTED WEDDING ARCH as one standalone transparent PNG asset for Christina & Reboden's venue pages. The first attached image is only a reference for the tall proportions and generous empty opening; the second supplies the romantic painted floral style. Create a graceful rounded ivory architectural arch with slender fluted columns, champagne-gold moulding and modest carved botanical details, wrapped in airy sage foliage, blush-pink roses, cream orchids, a few dusty-blue blossoms, and delicate cascading wisteria. Soft painterly realism, premium storybook garden stationery, restrained and elegant rather than dense. Portrait aspect ratio approximately 860:1246. Full arch and column bases visible with only 2% outer margin. Keep both side columns and all foliage confined to the outer 14% of the image on each side. Keep the ornamental floral crown mainly in the top 15%, bases mainly in bottom 7%. Leave a very large clear central opening spanning the middle 70% of width from 19% height down to 91% height, for live venue photo and text on mobile and desktop. TRUE TRANSPARENT ALPHA throughout the opening and outside the arch. No background scenery, sky, paper, floor rectangle, people, furniture, text, lettering, symbols, lights, or deep cast shadows. Do not fill the opening with any color or flowers.",
+  "tool": "image_gen.imagegen",
+  "references": [
+    "assets/designs/arch.webp",
+    "assets/designs/flower-design.webp"
+  ],
+  "transparent_background": true
+}

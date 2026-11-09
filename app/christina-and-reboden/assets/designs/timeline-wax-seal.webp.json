@@ -1,0 +1,6 @@
+{
+  "prompt": "Generate one small decorative wax seal for an elegant wedding timeline. Use the attached image only as a style reference for its blush pink wax seal at the top. Isolate the seal alone, front-facing, centered on a transparent square canvas with 5% empty outer margin. Dusty blush and antique rose wax with a gently irregular scalloped circular rim, delicate embossed botanical curls around the inner border, subtle realistic highlights and shallow stamped relief. Leave the central round writing area blank so live C & R initials can be added in code. No letters, words, logos, ribbons, paper, schedules, borders outside the seal, or cast shadow extending beyond the seal. The entire exterior must be true transparent alpha. Refined romantic stationery, softly aged rather than glossy plastic.",
+  "tool": "image_gen.imagegen",
+  "reference": "C:/Users/rosas/AppData/Local/Temp/codex-clipboard-872b31cb-490f-45aa-80d8-7aa7931d6fa0.png",
+  "transparent_background": true
+}

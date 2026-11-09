@@ -1,0 +1,12 @@
+{
+  "prompt": "Edit the attached floral pedestal image: remove ONLY its plain white background, making the background fully transparent alpha. Preserve the exact ivory carved classical stone urn and ornate pedestal, the pink and cream roses, tiny pink filler flowers, pale blossoms, green leaves and trailing ivy, their natural colours, existing lighting and composition. Keep the whole floral arrangement and the entire pedestal base visible. Frame the subject tightly in a portrait canvas with about 2% transparent margin, no cropping of flowers or base. Do not add anything, no floor, no shadow rectangle, no backdrop, no new flowers, no lettering, no watermark. This is a clean cutout for the bottom corners of an elegant wedding invitation. The urn, flowers and carved pedestal must remain faithful to the supplied image. Output TRUE transparent background outside the subject, including all spaces between stems.",
+  "tool": "image_gen.imagegen",
+  "reference": "User-provided floral urn and pedestal, codex-clipboard-195b51cf-4337-42ab-8fef-28b4083d9c80.png",
+  "transparent_background": true,
+  "optimization": {
+    "format": "webp",
+    "width": 640,
+    "quality": 90,
+    "alphaQuality": 100
+  }
+}

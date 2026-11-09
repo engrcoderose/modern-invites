@@ -1,0 +1,18 @@
+{
+  "prompt": "Edit target: the first image, the existing transparent ivory-and-gold floral wedding arch. The second image is ONLY a layout reference for a very spacious opening with the columns pushed to the outside edges. Create a refined wider-opening version of the FIRST arch, preserving its painterly ivory stone, champagne gold mouldings, blush roses, cream orchids, dusty blue blossoms, sage leaves and lavender wisteria. Portrait canvas aspect ratio 2:3. Make the two long elegant columns noticeably SLIMMER, keeping each pillar and its attached foliage confined to the outermost 8% of the canvas; bases may reach 13%. Place pillars close to the canvas edges. The clear opening must span at least 82% of canvas width below 30% height. A delicate rounded arch and the same floral crown span the top, leaving a wide usable central opening from about 18% height to 92% height. Keep crown airy and shallow, primarily above 16% height. Entire bases visible with minimal outer margin. Preserve the existing flowers and architectural style, change the geometry for more interior negative space. TRUE transparent alpha in the whole opening and outside the artwork. Output only the standalone decorative arch asset, with NO background, damask, sky, photo, people, venue details, text, heading, monogram, buttons, borders around canvas, floor, watermark, or new embellishments. Do not reproduce any invitation content from the second reference. A clean, elegant thin frame around a large empty opening.",
+  "tool": "image_gen.imagegen",
+  "references": [
+    "assets/designs/enchanted-venue-arch.webp",
+    "User-provided spacious arch layout reference, 92bc6101-db39-45fb-981e-474bac28fd8a.png"
+  ],
+  "transparent_background": true,
+  "source_dimensions": {
+    "width": 1024,
+    "height": 1536
+  },
+  "optimization": {
+    "format": "webp",
+    "quality": 92,
+    "alphaQuality": 100
+  }
+}

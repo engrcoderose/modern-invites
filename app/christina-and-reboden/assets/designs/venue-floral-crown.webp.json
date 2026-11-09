@@ -1,0 +1,9 @@
+{
+  "origin": "User-provided assets/designs/venue-design.png",
+  "optimization": {
+    "format": "webp",
+    "quality": 90,
+    "alphaQuality": 100
+  },
+  "transparencyPreserved": true
+}

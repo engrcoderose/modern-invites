@@ -1,0 +1,13 @@
+{
+  "source": "Built-in ImageGen",
+  "generatedFile": "exec-89697975-3c89-41f7-ac49-ba874adf4201.png",
+  "prompt": "Use case: illustration-story. Asset type: tiny transparent wedding animation sprite. Create exactly ONE individual blush pink rose petal, viewed close-up at a slight angle, a naturally irregular softly cupped heart-like petal with a curled edge and delicate botanical watercolor texture. Romantic enchanted wedding palette, pale ivory pink center with a richer dusty rose rim. A single isolated petal centered, filling about 80 percent of the canvas. True transparent background, clean alpha silhouette. No whole flower, no leaves, no stem, no text, no border, no drop shadow outside the petal, no extra petals. Refined realistic botanical watercolor artwork, legible even when rendered at 16-28 pixels.",
+  "optimization": {
+    "width": 96,
+    "height": 96,
+    "fit": "contain",
+    "format": "webp",
+    "lossless": true,
+    "preserveTransparency": true
+  }
+}

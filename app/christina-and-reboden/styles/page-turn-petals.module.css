@@ -1,0 +1,24 @@
+.field { container-type: size; }
+.petal {
+  width: var(--petal-size);
+  aspect-ratio: 1;
+  opacity: 0;
+  animation: petal-breeze 1100ms cubic-bezier(.18, .6, .35, 1) var(--petal-delay) both;
+}
+
+@keyframes petal-breeze {
+  0% { opacity: 0; transform: translate3d(0, 0, 0) rotate(var(--petal-start)) rotateY(0deg) scale(.7); }
+  16% { opacity: .9; }
+  58% { opacity: .8; }
+  100% { opacity: 0; transform: translate3d(var(--petal-x), var(--petal-y), 0) rotate(var(--petal-end)) rotateY(130deg) scale(.9); }
+}
+
+@media (max-width: 640px) {
+  .petal { width: calc(var(--petal-size) * .75); }
+  .petal:nth-child(n + 9) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field { display: none; }
+  .petal { animation: none; }
+}

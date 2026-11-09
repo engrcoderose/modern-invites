@@ -1,0 +1,19 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Use the attached floral wedding border as the visual reference. Create a SINGLE exceptionally slender vertical side-border ornament for elegant wedding entourage stationery. Preserve the reference's hand-painted antique olive-gold filigree scrolls, tiny blush pink flowers, a few pale lavender-blue forget-me-nots, sage leaves, and delicate translucent pale pink butterflies. Simplify the heavy corner bouquets into a light airy climbing vine: very fine winding gold/sage stems, small flowers spaced along the stem, restrained small curled flourishes, and just one or two small butterflies tucked near the vine. No large bouquets or wide branches. The whole ornament silhouette should be very tall and narrow, roughly 1:10 width-to-height. Center the slim ornament on a portrait canvas with ample fully transparent space on either side if necessary. The top and bottom taper to fine stems with a little clear space so the ornament can be repeated vertically without a hard cut. It will be displayed as a 16–44 pixel wide decorative strip at both outer sides of a cream wedding page, so keep the outline clean and the colors legible but subtle. True transparent alpha everywhere outside the stems, leaves, blossoms and butterflies. Remove ALL white background and paper texture. Not a full rectangular frame; one vertical side only. No text, lettering, monogram, logos, watermark, thick gold rule, shadows, white matte or background wash. High-quality delicate watercolor stationery artwork, consistent with the reference, all ornament tips fully visible.",
+  "reference": "download.jpg",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1bb41-b01f-7982-87a4-71af1fa9cad7/exec-cece879f-fcc8-4b5c-9cf8-aa19684ad0d3.png",
+  "transparentBackground": true,
+  "optimization": {
+    "format": "webp",
+    "quality": 90,
+    "alphaQuality": 100,
+    "crop": {
+      "left": 284,
+      "top": 0,
+      "width": 172,
+      "height": 2172
+    },
+    "note": "Removed excess transparent canvas margins; visible watercolor and original alpha preserved. Source kept."
+  }
+}

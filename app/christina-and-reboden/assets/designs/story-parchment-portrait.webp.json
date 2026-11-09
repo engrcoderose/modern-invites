@@ -1,0 +1,6 @@
+{
+  "prompt": "Create a production-ready decorative blank parchment scroll asset for Christina & Reboden's enchanted wedding invitation. The attached image is a STYLE REFERENCE, not an edit target: preserve its champagne cream parchment, dusty-blue rolled edges, antique gold rococo ornament, and romantic painted material. Generate a PORTRAIT scroll, approximately 3:4 aspect ratio, centered, front-facing and symmetrical. The actual scroll should nearly fill the canvas with only 3% transparent outer margins. Keep side rolls narrow, about 9% of total width each, with small refined gold details; keep top and bottom edges thin so the central smooth very pale champagne writing area occupies at least 77% of width and 80% of height. No text, letters, monogram, icons, flowers, people, photographs, or cast shadow extending far outside. All area outside the irregular scroll silhouette must be truly transparent alpha, not white or a checkerboard. Maintain a light, elegant appearance with high readability for live dark text that will later be placed over the center.",
+  "tool": "image_gen.imagegen",
+  "reference": "C:/Users/rosas/Downloads/Christina & Reboden/love-story-design.png",
+  "transparent_background": true
+}

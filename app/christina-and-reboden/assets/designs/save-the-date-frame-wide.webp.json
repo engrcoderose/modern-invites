@@ -1,0 +1,15 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Edit this existing wedding stationery frame, preserving its distinctive antique watercolor gold filigree, pale sage panels, cream and pale lilac tiny blossoms, muted botanical leaves, central crest and bottom gold flourish. Change ONLY the frame geometry to make its central opening substantially wider, so a live 'Save the Date' heading and date can sit comfortably inside. Portrait canvas aspect ratio 2:3. Push both vertical sides toward the outer edges and make the floral side clusters slimmer. Keep all side rails and blossoms within the outer 12% on each side between 22% and 83% of canvas height, leaving a clear transparent opening at least 74% of the total canvas width. Keep the elaborate central top crest and connecting scrollwork mainly in the top 18% of the canvas; the lower floral corners and gold flourish belong in the bottom 16%. Preserve the romantic light pastel and warm antique gold palette and delicate hand-painted style. Keep the full outer frame visible with minimal transparent margin, no clipping of the crest or bottom tip. True transparent alpha in the whole central opening and outside the frame. Output only the blank decorative frame: NO text, NO letters or numbers, NO Save the Date lettering, NO date, NO photos, NO people, NO background pattern, NO paper panel, NO extra border, NO watermark. This is the same frame made roomier, with the flowers and rails separated farther apart rather than stretched or distorted.",
+  "reference": "save-the-date-design.webp",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1bb41-b01f-7982-87a4-71af1fa9cad7/exec-0181bcc7-8b5f-4934-9011-6cd99d7b46f9.png",
+  "transparentBackground": true,
+  "width": 1024,
+  "height": 1536,
+  "optimization": {
+    "format": "webp",
+    "quality": 90,
+    "alphaQuality": 100
+  },
+  "purpose": "Wider central opening for the live Save the Date heading without distorting the floral sides."
+}

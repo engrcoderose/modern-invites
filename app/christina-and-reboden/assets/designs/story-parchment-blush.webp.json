@@ -1,0 +1,14 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "Edit target: the attached blank landscape parchment scroll. Preserve its front-facing horizontal composition, complete rolled ends, fine antique gold carved ornament, blank light champagne writing surface and proportions. Change the dusty blue color of BOTH rolled sides to soft blush pink (#ebc7c6), with pale rose watercolor shading, to match an enchanted blush-pink wedding. Add only a few delicate blush rosebuds, ivory petals and fine sage/gold trailing tendrils at the two OUTER LOWER corners, kept outside the central writing surface. Keep the broad middle completely blank, light cream and uncluttered for a live heading; no flowers in that center. Same refined watercolor and painted gold style. Landscape canvas close to 3:2, full scroll fills the canvas with only 2-3% transparent outer margin, no clipped rolled ends or tendrils. True transparent alpha everywhere outside the actual scroll and tiny floral details. Preserve opacity and light paint INSIDE the parchment. NO text, letters, monogram, symbols, people, photo, thick shadow, white background, paper panel, color wash or checkerboard. Output a standalone blush-pink-and-gold blank parchment asset.",
+  "reference": "story-parchment-landscape.webp",
+  "generatedSource": "C:/Users/rosas/.codex/generated_images/01a1bb41-b01f-7982-87a4-71af1fa9cad7/exec-0936bee5-154b-42a1-86aa-255978d9bed1.png",
+  "transparentBackground": true,
+  "optimization": {
+    "maxWidth": 900,
+    "format": "webp",
+    "quality": 90,
+    "alphaQuality": 100
+  },
+  "sourcePreserved": true
+}

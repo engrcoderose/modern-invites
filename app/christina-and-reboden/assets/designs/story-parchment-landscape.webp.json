@@ -1,0 +1,6 @@
+{
+  "prompt": "Edit target: the attached landscape parchment artwork. Remove all white background OUTSIDE the actual parchment scroll silhouette and replace it with true transparent alpha. Preserve the champagne cream writing surface, dusty-blue rolled sides, antique gold ornament, painted texture, and front-facing horizontal composition. Reframe on a landscape canvas close to 3:2 with the full scroll filling the canvas and only 2–3% transparent outer margin. Keep the center completely blank, light, and wide for live dark text. Do not add text, symbols, flowers, people, a white rectangle, a checkerboard, or a heavy exterior shadow. Preserve all light-colored paint inside the scroll; only the outside background is transparent. This is a standalone decorative web asset for an enchanted wedding invitation.",
+  "tool": "image_gen.imagegen",
+  "reference": "C:/Users/rosas/Downloads/Christina & Reboden/love-story-design.png",
+  "transparent_background": true
+}

@@ -1,0 +1,23 @@
+/* Leslie & Serj's plaque and stationery panel, in this couple's blush palette. */
+.plaque {
+  background: var(--cr-paper);
+  border: 1px solid var(--cr-gold);
+  border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%;
+  outline: 2px solid #e4dac2;
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px rgb(81 67 51 / 16%);
+}
+.plaqueOrnament { background: var(--cr-paper); }
+.heading {
+  font-family: var(--cr-script), cursive;
+  font-size: clamp(30px, 7.5vw, 36px);
+  font-weight: 400;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.card {
+  background: var(--cr-paper);
+  color: var(--cr-ink);
+  border-color: var(--cr-line);
+  box-shadow: 0 14px 50px rgb(81 67 51 / 18%);
+}
