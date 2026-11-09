@@ -79,7 +79,7 @@
   background: var(--mj-palette-0);
 }
 .mj-invitation .mj-timeline-panel { fill: var(--mj-cream); stroke: var(--mj-palette-2); stroke-width: 1; }
-.mj-invitation .mj-timeline-icon { filter: brightness(0); opacity: .65; }
+.mj-invitation .mj-timeline-icon:not([data-original-ink]) { filter: brightness(0); opacity: .65; }
 .mj-invitation .mj-timeline-track { background: repeating-linear-gradient(to bottom, var(--mj-palette-4) 0 2px, transparent 2px 8px); }
 .mj-invitation .mj-timeline-heart { color: var(--mj-secondary); transition: color .4s ease-in-out; }
 .mj-invitation .mj-timeline-heart[data-reached="true"] { color: var(--mj-timeline-accent); }

@@ -74,8 +74,8 @@ export default function ScheduleTimeline() {
       <ol ref={listRef}>
         {timelineItems.map((item, index) => (
           <li key={`${item.time}-${item.label}`} className="relative grid grid-cols-[3rem_minmax(0,1fr)] items-center gap-x-6 py-4 text-left sm:grid-cols-[4.5rem_minmax(0,1fr)] sm:gap-x-10 sm:py-5">
-            <div data-mj-reveal aria-hidden="true" className="flex items-center justify-center">
-              {item.artwork && <Image src={item.artwork} alt="" sizes="(min-width: 640px) 72px, 48px" className="mj-timeline-icon h-14 w-full max-w-12 object-contain sm:h-20 sm:max-w-[4.5rem]" />}
+            <div data-mj-reveal aria-hidden="true" className={`flex items-center justify-center${item.preserveArtworkInk ? " mix-blend-multiply" : ""}`}>
+              {item.artwork && <Image src={item.artwork} alt="" data-original-ink={item.preserveArtworkInk || undefined} sizes="(min-width: 640px) 72px, 48px" className="mj-timeline-icon h-14 w-full max-w-12 object-contain sm:h-20 sm:max-w-[4.5rem]" />}
             </div>
             <TimelineHeart progress={progress} position={track.stations[index] ?? index / Math.max(1, timelineItems.length - 1)} active={open && tracking} reducedMotion={reducedMotion} />
             <div data-mj-stagger className="min-w-0">

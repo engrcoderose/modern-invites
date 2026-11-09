@@ -1,4 +1,4 @@
-import church from "../assets/designs/timeline_church.png";
+import church from "../assets/designs/timeline-church-inc-v1.webp";
 import camera from "../assets/designs/timeline_camera.png";
 import reception from "../assets/designs/timeline_reception.png";
 import guestArrival from "../assets/designs/timeline_guest_arrival.png";
@@ -12,4 +12,5 @@ const artwork = [church, camera, reception, guestArrival, program, dinner];
 export const timelineItems = wedding.timeline.map((item, index) => ({
   ...item,
   artwork: artwork[index],
+  preserveArtworkInk: artwork[index] === church,
 }));
