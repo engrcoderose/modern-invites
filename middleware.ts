@@ -6,14 +6,18 @@ export async function middleware(request: NextRequest) {
   // Subdomain roots are rewritten after middleware. Direct requests to these
   // retired page paths must not serve a second copy of these invitations.
   const pathname = request.nextUrl.pathname.replace(/\/+$/, "");
-  if (pathname === "/mario-and-inah" || pathname === "/edcel-and-apreal" || pathname === "/jaydee-and-bea") {
+  if ([
+    "/mario-and-inah", "/edcel-and-apreal", "/jaydee-and-bea",
+    "/marian-and-deejay", "/marian-and-deejay/calendar",
+    "/marian-and-dee-jay", "/marian-and-dee-jay/calendar",
+  ].includes(pathname)) {
     // Next's server URL may use its internal loopback address. For local
     // production previews, check the incoming host rather than that address.
     const hostname = pathname !== "/mario-and-inah"
       ? (request.headers.get("host") ?? request.nextUrl.host).replace(/:\d+$/, "").toLowerCase()
       : request.nextUrl.hostname;
     const localPreview = ["localhost", "127.0.0.1", "[::1]"].includes(hostname);
-    // Edcel & Apreal and Jaydee & Bea also allow local production previews.
+    // These invitations also allow local production previews.
     // Keep Mario & Inah's existing development-only exception unchanged.
     if (localPreview && (pathname !== "/mario-and-inah" || process.env.NODE_ENV === "development")) {
       return NextResponse.next();
@@ -31,6 +35,10 @@ export const config = {
     "/mario-and-inah",
     "/edcel-and-apreal",
     "/jaydee-and-bea",
+    "/marian-and-deejay",
+    "/marian-and-deejay/calendar",
+    "/marian-and-dee-jay",
+    "/marian-and-dee-jay/calendar",
     "/admin/:path*",
     "/dashboard/:path*",
     "/api/dashboard/:path*",

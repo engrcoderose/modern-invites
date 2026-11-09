@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getInvitationUrl } from "@/lib/invitation-url";
 import InvitationExperience from "./components/InvitationExperience";
 import HeroSection from "./sections/HeroSection";
 import FilmSection from "./sections/FilmSection";
@@ -20,9 +21,16 @@ import Footer from "./sections/Footer";
 import wedding from "./data/wedding-details.json";
 import { citadel } from "./styles/fonts";
 
+const invitationUrl = getInvitationUrl("marian-and-deejay");
+const title = `${wedding.couple.display} | ${wedding.date.display}`;
+const description = `Join ${wedding.couple.display} as they celebrate their wedding in Baguio on ${wedding.date.display}.`;
+
 export const metadata: Metadata = {
-  title: `${wedding.couple.display} | ${wedding.date.display}`,
-  description: `Join ${wedding.couple.display} as they celebrate their wedding in Baguio on ${wedding.date.display}.`,
+  metadataBase: new URL(invitationUrl),
+  title,
+  description,
+  alternates: { canonical: invitationUrl },
+  openGraph: { title, description, url: invitationUrl, type: "website", locale: "en_PH" },
   robots: { index: false, follow: false },
 };
 

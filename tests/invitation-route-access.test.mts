@@ -37,6 +37,10 @@ function loadMiddleware(environment: "development" | "production"): MiddlewareUn
 for (const [name, slug, domain] of [
   ["Edcel", "edcel-and-apreal", "edcelandaprealwedding.moderninvites.com"],
   ["Jaydee", "jaydee-and-bea", "jaydeeandbeawedding.moderninvites.com"],
+  ["Marian", "marian-and-deejay", "mariananddeejaywedding.moderninvites.com"],
+  ["Marian calendar", "marian-and-deejay/calendar", "mariananddeejaywedding.moderninvites.com"],
+  ["Marian legacy", "marian-and-dee-jay", "mariananddeejaywedding.moderninvites.com"],
+  ["Marian legacy calendar", "marian-and-dee-jay/calendar", "mariananddeejaywedding.moderninvites.com"],
 ]) {
   test(`${name}'s retired page returns uncached 404 responses on every deployed host`, async () => {
     for (const environment of ["development", "production"] as const) {
@@ -79,7 +83,7 @@ for (const [name, slug, domain] of [
 test("the retired-page matcher excludes public roots, RSVP APIs and invitation media", () => {
   const { config } = loadMiddleware("production");
   const origin = "https://edcelandaprealwedding.moderninvites.com";
-  for (const pathname of ["/jaydee-and-bea", "/jaydee-and-bea/", "/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/admin/events"]) {
+  for (const pathname of ["/jaydee-and-bea", "/jaydee-and-bea/", "/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/marian-and-deejay", "/marian-and-deejay/", "/marian-and-deejay/calendar", "/marian-and-dee-jay", "/marian-and-dee-jay/calendar", "/admin/events"]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), true);
   }
   for (const pathname of [
@@ -88,6 +92,7 @@ test("the retired-page matcher excludes public roots, RSVP APIs and invitation m
     "/edcel-and-apreal/video/save-the-date-1080p-07f4f465.mp4",
     "/jaydee-and-bea/sharing/envelope-8dfe0d26.jpg",
     "/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3",
+    "/calendar", "/marian-and-deejay/videos/prenup-film-web-v1.mp4",
   ]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), false);
   }

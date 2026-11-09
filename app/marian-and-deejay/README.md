@@ -1,6 +1,8 @@
 # Marian & Dee Jay
 
-Invitation route: `/marian-and-deejay`.
+Public URL: `https://mariananddeejaywedding.moderninvites.com/`.
+
+Local testing route: `/marian-and-deejay`. Direct invitation paths return 404 on public hosts; the new domain serves the invitation at its root. The RSVP event slug stays `marian-and-deejay`. Hosting rollout and verification notes are in `docs/custom-domain.md`.
 
 `data/wedding-details.json` owns the confirmed invitation content and the six supplied palette colors. Names use title case; the social hashtag uses its confirmed case. The original questionnaire is in `docs/e-invites.xlsx`.
 
@@ -68,6 +70,8 @@ The entourage design uses the supplied yellow floral pattern, four brown floral 
 The dedicated `sections/Footer.tsx` retains the closing names/date and adds a Modern Invites credit link and a keyboard-accessible Back to top link to `#home`, styled as a button. Its border, hover state, and responsive spacing follow the invitation theme.
 
 ## Checks
+
+Custom domain November 9, 2026: the requested hostname rewrites its root and calendar to this invitation; public requests to both old path spellings return uncached 404s while loopback paths remain available in development and local production. Canonical/Open Graph metadata and dashboard invitation links use the new public URL; the RSVP event slug stays unchanged. All 57 domain, route-access and dashboard tests passed, along with scoped ESLint, isolated TypeScript and a production build. Actual isolated production HTTP checks used native HTTP Host headers and verified the new-host 200 response, metadata, twenty old-path/host 404 combinations, three loopback hosts, calendar content, video range streaming, and the no-backend RSVP guard. Authentication was replaced by a synthetic stub before the isolated build; no private credentials or Supabase access were used. DNS already points to Vercel; deployment/hosting attachment was not performed and live probes returned HTTP 429. See `docs/custom-domain.md`.
 
 Sponsor columns and gallery caption November 7, 2026: swapped only the third and sixth principal sponsor rows so Elizabeth Rillera Fernandez and Editha Asuegue Gatchalian appear on the left, paired with Leodegario Presente Asuegue and Jimmy Asuegue Eslao on the right. Other names, pairings and alignment remain unchanged. Removed the caption only from the final black-outfit gallery, retaining its heading, five photos and viewer; the white-outfit carousel keeps its caption. Phone and desktop checks confirmed the column order, no horizontal overflow and the caption's absence. Scoped ESLint, isolated TypeScript and whitespace checks passed.
 

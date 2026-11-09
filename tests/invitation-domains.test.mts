@@ -9,6 +9,39 @@ import nextConfig from "../next.config.ts";
 import { getInvitationUrl } from "../lib/invitation-url.ts";
 import { isCrossSiteRequest } from "../lib/rsvp/security.ts";
 
+test("Marian and Dee Jay's custom domain serves the invitation and calendar", async () => {
+  const origin = "https://mariananddeejaywedding.moderninvites.com";
+  assert.equal(getInvitationUrl("marian-and-deejay"), `${origin}/`);
+  for (const [path, destination] of [["/", "/marian-and-deejay"], ["/calendar", "/marian-and-deejay/calendar"]]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `${origin}${path}?ref=invitation`, nextConfig });
+    assert.equal(getRewrittenUrl(response), `${origin}${destination}?ref=invitation`);
+    assert.equal(getRedirectUrl(response), null);
+  }
+});
+
+test("Marian and Dee Jay's media and APIs keep their routes and same-origin RSVP protection", async () => {
+  const host = "mariananddeejaywedding.moderninvites.com";
+  const origin = `https://${host}`;
+  for (const pathname of ["/api/rsvp/access", "/api/rsvp/search", "/api/rsvp/party", "/api/rsvp/submit", "/_next/image", "/_next/static/chunk.js", "/icon.png", "/marian-and-deejay/videos/prenup-film-web-v1.mp4"]) {
+    const response = await unstable_getResponseFromNextConfig({ url: `${origin}${pathname}`, nextConfig });
+    assert.equal(getRewrittenUrl(response), null);
+    assert.equal(getRedirectUrl(response), null);
+  }
+  assert.equal(isCrossSiteRequest({ origin, host, forwardedHost: null, fetchSite: "same-origin" }), false);
+  assert.equal(isCrossSiteRequest({ origin, host: "internal.vercel.app", forwardedHost: host, fetchSite: "same-origin" }), false);
+  assert.equal(isCrossSiteRequest({ origin: "https://other.example", host, forwardedHost: null, fetchSite: "cross-site" }), true);
+});
+
+test("Marian's invitation and calendar remain available by path on local hosts", async () => {
+  for (const origin of ["http://localhost:3018", "http://127.0.0.1:3018", "http://[::1]:3018"]) {
+    for (const pathname of ["/marian-and-deejay", "/marian-and-deejay/calendar"]) {
+      const response = await unstable_getResponseFromNextConfig({ url: `${origin}${pathname}`, nextConfig });
+      assert.equal(getRedirectUrl(response), null);
+      assert.equal(getRewrittenUrl(response), null);
+    }
+  }
+});
+
 test("Jaydee and Bea's public domain serves the invitation and preserves guest links", async () => {
   const origin = "https://jaydeeandbeawedding.moderninvites.com";
   assert.equal(getInvitationUrl("jaydee-and-bea"), `${origin}/`);
@@ -195,6 +228,9 @@ test("the main site and nonmatching hosts keep their root routes", async () => {
   for (const host of [
     "moderninvites.com",
     "www.moderninvites.com",
+    "othermariananddeejaywedding.moderninvites.com",
+    "mariananddeejayweddingXmoderninvitesXcom",
+    "mariananddeejaywedding.moderninvites.com.example.org",
     "otherjaydeeandbeawedding.moderninvites.com",
     "jaydeeandbeaweddingXmoderninvitesXcom",
     "jaydeeandbeawedding.moderninvites.com.example.org",

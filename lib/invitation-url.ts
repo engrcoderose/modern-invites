@@ -1,5 +1,6 @@
 // RSVP event identifiers stay stable when invitations move to a public domain.
 const publicInvitationUrls = new Map<string, string>([
+  ["marian-and-deejay", "https://mariananddeejaywedding.moderninvites.com/"],
   ["jaydee-and-bea", "https://jaydeeandbeawedding.moderninvites.com/"],
   ["edcel-and-apreal", "https://edcelandaprealwedding.moderninvites.com/"],
   ["ryan-and-anne", "https://ryanandannewedding.moderninvites.com/"],

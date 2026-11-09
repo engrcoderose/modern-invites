@@ -89,6 +89,16 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         {
           source: "/",
+          has: [{ type: "host", value: "mariananddeejaywedding\\.moderninvites\\.com" }],
+          destination: "/marian-and-deejay",
+        },
+        {
+          source: "/calendar",
+          has: [{ type: "host", value: "mariananddeejaywedding\\.moderninvites\\.com" }],
+          destination: "/marian-and-deejay/calendar",
+        },
+        {
+          source: "/",
           has: [
             {
               type: "host",
