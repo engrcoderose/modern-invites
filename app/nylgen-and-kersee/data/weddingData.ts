@@ -218,7 +218,7 @@ export const weddingData = {
       role: "Flower Girls",
       people: [
         { name: "Katharine Charlotte Lagos" },
-        { name: "Maria Sephyra Andrea Casal" },
+        { name: "Maria Sephyra Andrea Casal Fule" },
         { name: "Zyanah Amarah Maghirang" },
         { name: "Sky Precious Faith Berguila" },
       ],
