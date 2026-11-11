@@ -1,0 +1,6 @@
+{
+  "tool": "built-in image_gen",
+  "source": "User-supplied watercolor floral border photograph",
+  "prompt": "Use case: background-extraction. Edit the supplied floral border image. Remove only the off-white background everywhere, including the large empty center and small gaps between flowers/leaves, making those areas genuinely transparent. Preserve ALL visible foreground flowers, stems and leaves, their original watercolor details, colors, sizes and relative arrangement. Rotate the ENTIRE original composition exactly 90 degrees clockwise into a wide LANDSCAPE 16:9 frame: original top border becomes right border and original bottom border becomes left border. Keep all original visible foreground intact with no additional cropping, do not invent missing content beyond original edges. Do not rearrange, add, simplify or restyle any flowers. Keep the large central area fully transparent for countdown text. Clean smooth delicate edges, preserve pale white petals as opaque foreground. No text, no new decoration, no colored backdrop.",
+  "processing": "Compressed to 1600 x 900 WebP at quality 85, preserving transparency."
+}

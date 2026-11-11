@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
-import lace from "../assets/lace-medallion.webp";
-import satin from "../assets/pink-satin.webp";
+import ornateFrame from "../assets/hero-ornate-frame.webp";
+import floralWallpaper from "../assets/hero-floral-wallpaper.webp";
 import { celebration } from "../data/event";
 import styles from "../styles/invitation.module.css";
 import DecorativeArtwork from "../components/DecorativeArtwork";
@@ -9,14 +9,14 @@ import DecorativeArtwork from "../components/DecorativeArtwork";
 export default function HeroSection() {
   return (
     <section id="home" aria-labelledby="ashley-title" className="scroll-mt-[72px]">
-      <div className="relative isolate flex min-h-[calc(100svh-72px)] items-center justify-center overflow-hidden bg-[#b66c8a] px-3 py-12 sm:py-16">
-        <Image src={satin} alt="" aria-hidden="true" fill priority sizes="100vw" className="-z-10 object-cover" />
-        <div className="relative aspect-[2/3] w-[min(90vw,440px)] shrink-0">
-          <Image src={lace} data-reveal="artwork" alt="" aria-hidden="true" fill priority unoptimized className="object-contain" />
+      <div className="relative isolate flex min-h-[calc(100svh-72px)] items-center justify-center overflow-hidden bg-[#fcf4fa] px-1 py-12 sm:py-16">
+        <Image src={floralWallpaper} alt="" aria-hidden="true" fill priority sizes="100vw" className="-z-10 object-cover" />
+        <div className="relative aspect-[2/3] w-[min(96vw,500px)] shrink-0">
+          <Image src={ornateFrame} data-reveal="artwork" alt="" aria-hidden="true" fill priority sizes="(min-width: 521px) 500px, 96vw" className="object-contain" />
           <div className="absolute inset-x-[22%] bottom-[24%] top-[25%] flex flex-col items-center justify-center text-center text-[#784156]">
             <h1 id="ashley-title" data-reveal="heading" data-reveal-delay="120" className={styles.title}><span>Ashley</span><span className={styles.age}>at 18</span></h1>
-            <p data-reveal="message" data-reveal-delay="240" className="mt-6 text-[10px] uppercase leading-5 tracking-[0.18em] sm:text-xs">A new chapter<br />begins</p>
-            <time data-reveal="message" data-reveal-delay="360" dateTime={celebration.dateTime} className="mt-7 text-xs leading-6 tracking-[0.08em]">DECEMBER 5<br />2026</time>
+            <p data-reveal="message" data-reveal-delay="240" className="mt-5 text-[10px] uppercase leading-5 tracking-[0.18em] sm:mt-6 sm:text-xs">A new chapter<br />begins</p>
+            <time data-reveal="message" data-reveal-delay="360" dateTime={celebration.dateTime} className="mt-6 text-xs leading-6 tracking-[0.08em] sm:mt-7">DECEMBER 5<br />2026</time>
           </div>
         </div>
       </div>

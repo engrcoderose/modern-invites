@@ -1,12 +1,12 @@
 ---
 name: Ashley at 18
-description: Satin and lace stationery in pink, purple and white.
+description: Floral cameo stationery in pink, purple and white.
 colors:
   navigation-line: "#eee6f0"
   navigation-dot: "#a85fba"
   rose-script: "#9b3561"
   rose-ink: "#784156"
-  satin-base: "#b66c8a"
+  hero-paper: "#fcf4fa"
   blush-countdown: "#f8d8e4"
   lavender-venue: "#e9ddf1"
   plum-accent: "#80508f"
@@ -77,12 +77,12 @@ components:
 
 ## Overview
 
-**Creative North Star: "Satin and lace stationery"**
+**Creative North Star: "Floral cameo stationery"**
 
-Dusty rose draped satin frames an ornate ivory lace oval with a quiet opaque center. Expressive lettering carries Ashley's name and section headings. Pink, purple and white remain the confirmed palette; the supplied stationery screenshot governs this revision.
+Pink rose wallpaper surrounds an ornate lavender oval frame with pearl-white trim, a blush-pink opaque center and pink/white corner flowers. Expressive lettering carries Ashley's name and section headings. Pink, purple and white remain the confirmed palette; the supplied stationery screenshot governs this revision.
 
 **Key Characteristics:**
-- Satin texture and transparent lace artwork.
+- Rose wallpaper, carved lavender frame and floral corner clusters.
 - Rose script, lavender venue and white reply surface.
 - Four sections with direct personal RSVP.
 
@@ -94,7 +94,7 @@ Rose script and rose ink carry the stationery headings and countdown. Plum accen
 
 ### Secondary
 
-The user-supplied pink floral pattern, rotated clockwise into landscape, fills the countdown background; lavender distinguishes the venue section. Keep the dark rose countdown text readable over the pale pattern. Selected pink marks attendance and the hero link's hover state.
+A solid pink base carries the countdown, with a transparent landscape watercolor floral frame sourced from the user. The frame is contained at reduced opacity on small screens and covers the background at wider sizes, preserving a clear central area for text. Lavender distinguishes the venue section. Selected pink marks attendance and the hero link's hover state.
 
 ### Neutral
 
@@ -118,7 +118,7 @@ Satin folds and lace supply visual depth. No decorative box shadows are added. M
 
 ## Shapes
 
-An ornate oval is the signature shape. Action links are outlined pills; minimal fields and attendance choices are square. Preserve lace transparency and the opaque blank center behind the name. Do not overlay copy on lace edges.
+An ornate oval is the signature shape. Action links are outlined pills; minimal fields and attendance choices are square. Preserve lace transparency and the opaque blank center behind the name. Do not overlay copy on frame or flower edges.
 
 ## Components
 
@@ -126,7 +126,7 @@ An ornate oval is the signature shape. Action links are outlined pills; minimal 
 
 User-supplied transparent accents now complement the stationery: a pink bow and lily cluster around the white introduction, paired purple floral sprays rotated and mirrored into the venue's top corners, and quill stationery above RSVP with mirrored butterfly flowers on both sides, below the form on mobile. Keep their alpha edges, decorative empty alternatives and lazy loading. On mobile, the lilies and butterfly artwork sit in normal flow to protect copy and form controls. Desktop corner accents stay outside the central content width.
 
-Use `pink-satin.webp` behind `lace-medallion.webp`, both decorative with empty alternatives. Static imports provide hashed URLs. Satin uses responsive `next/image` sizing and default quality. The small preoptimized transparent lace asset selectively uses `unoptimized` to bypass a local optimizer loading issue; retain its 960 × 1160 source and alpha. Both immediately visible assets are prioritized. Prompts and provenance live in their adjacent JSON files. InvitationMotion applies one consistent entrance throughout all four sections: opacity 0 to the element's existing opacity, translateY 24px to zero, 850ms cubic-bezier(0.42, 0, 0.58, 1), with 120ms child stagger capped at 600ms. Headings, copy, images, links, countdown groups and local shared-form groups reveal once upon entering the viewport. No scaling, rotation, blur, bouncing or continuous loops. Pending styling is applied only after JavaScript initializes; defaults remain visible. Backwards fill holds the hidden state only during a stagger delay; final appearance lives in rendered CSS. Reduced motion and hidden tabs cancel active work and reveal pending content. Keyboard focus immediately reveals its field group.
+Use hero-floral-wallpaper.webp behind hero-ornate-frame.webp. Both are decorative static imports using the default responsive optimizer, with accurate sizes and immediate-view priority. The frame preserves transparency outside its opaque pink center. Its wrapper is 96vw up to 500px, in a 2:3 aspect ratio. Keep all names and dates clear of the corner flower clusters. Prompts and provenance are adjacent JSON files. InvitationMotion applies one consistent entrance throughout all four sections: opacity 0 to the element's existing opacity, translateY 24px to zero, 850ms cubic-bezier(0.42, 0, 0.58, 1), with 120ms child stagger capped at 600ms. Headings, copy, images, links, countdown groups and local shared-form groups reveal once upon entering the viewport. No scaling, rotation, blur, bouncing or continuous loops. Pending styling is applied only after JavaScript initializes; defaults remain visible. Backwards fill holds the hidden state only during a stagger delay; final appearance lives in rendered CSS. Reduced motion and hidden tabs cancel active work and reveal pending content. Keyboard focus immediately reveals its field group.
 
 ### Countdown and venue
 
@@ -142,12 +142,12 @@ The local callback sends and saves nothing. Keep the preview notice and explicit
 
 ### Do:
 - **Do** preserve the four-section order and pink, purple and white palette.
-- **Do** keep the name centered inside the blank lace oval on all screen sizes.
+- **Do** keep the name centered inside the blank pink oval on all screen sizes.
 - **Do** retain artwork provenance and reduced-motion behavior.
 - **Do** identify preview replies as unsaved.
 
 ### Don't:
-- **Don't** restore the superseded floral cutouts or gradient hero.
+- **Don't** restore the superseded satin/lace hero or unrelated palettes.
 - **Don't** invent event identifiers or imply production submission works.
 - **Don't** access private environment files or Supabase for verification.
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import countdownPattern from "../assets/countdown-pattern.webp";
+import countdownFlorals from "../assets/countdown-florals.webp";
 import { celebration } from "../data/event";
 import { getTimeRemaining } from "../utilities/countdown";
 import styles from "../styles/invitation.module.css";
@@ -24,7 +24,7 @@ export default function CountdownSection() {
 
   return (
     <section id="countdown" aria-labelledby="countdown-title" className="relative isolate scroll-mt-[72px] overflow-hidden bg-[#f8d8e4] px-6 py-20 text-[#784156] sm:px-10 sm:py-24">
-      <Image src={countdownPattern} alt="" aria-hidden="true" fill sizes="100vw" className="-z-10 object-cover" />
+      <Image src={countdownFlorals} alt="" aria-hidden="true" fill sizes="100vw" className="-z-10 object-contain opacity-50 lg:object-cover lg:opacity-80" />
       <div className="mx-auto max-w-4xl text-center">
         <h2 id="countdown-title" data-reveal="heading" className={`${styles.sectionTitle} text-5xl sm:text-7xl`}>{arrived ? "The celebration begins" : "Counting the moments"}</h2>
         <p data-reveal="message" data-reveal-delay="120" className="mt-5 text-sm leading-7">Counting down to {celebration.date} at {celebration.arrival}, Philippine time.</p>

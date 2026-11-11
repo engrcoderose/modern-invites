@@ -142,16 +142,16 @@
     }
   ],
   "narrative": {
-    "northStar": "Satin and lace stationery",
-    "overview": "Dusty rose draped satin frames an ornate ivory lace oval with a quiet opaque center. Expressive lettering carries Ashley's name and section headings. Pink, purple and white remain the confirmed palette; the supplied stationery screenshot governs this revision.",
+    "northStar": "Floral cameo stationery",
+    "overview": "Pink rose wallpaper, lavender carved oval, white trim, blush center and corner flower clusters follow the latest supplied hero reference. The established four-section content, navigation, animations and RSVP behavior remain.",
     "keyCharacteristics": [
-      "Satin texture and transparent lace artwork.",
+      "Rose wallpaper and a transparent ornate floral oval frame.",
       "Rose script, lavender venue and white reply surface.",
       "Four sections with direct personal RSVP.",
       "Photo-derived architectural watercolor with transparent painted edges in the venue section.",
-      "Landscape pink floral pattern behind the countdown, sourced from the user and rotated 90 degrees clockwise.",
       "User-supplied pink lilies, ribbon, quill stationery, mirrored purple floral top corners and butterfly accents, extracted on transparent backgrounds.",
-      "Sticky centered Home / Details / RSVP navigation with a small active-section dot and 72px anchor clearance."
+      "Sticky centered Home / Details / RSVP navigation with a small active-section dot and 72px anchor clearance.",
+      "Solid pink countdown with a photo-derived transparent landscape watercolor floral border."
     ],
     "rules": [],
     "dos": [
