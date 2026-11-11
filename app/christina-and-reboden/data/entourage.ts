@@ -32,11 +32,11 @@ export const bridesmaids = [
   "Ms. Shekinah Joy Gapay", "Ms. Justine San Juan", "Mrs. Jhenny Lynne Sarmiento",
   "Mrs. Nerissa Ignacio", "Mrs. Zyrene Fulgar", "Mrs. Paula Marie Morante",
   "Ms. Rialil Pacquiao", "Ms. Lara Mariolette Magno", "Ms. Ma. Samantha Rafaella Villanueva",
-  "Ms. Kezia Jane Canona", "Ms. Hazel Jane Peña", "Ms. Domina Marie Santos",
+  "Ms. Kezia Jane Canona", "Ms. Hazel Jane Paña", "Ms. Domina Marie Santos",
   "Ms. Reizl Monique Caliliw", "Ms. Florellei Ullero",
 ];
 export const groomsmen = [
-  "Mr. Pee-Jay Opinion", "Mr. Joemarie Mendoza", "Mr. Marco Delen", "Mr. Paulo Concepcion",
+  "Mr. Pee-Jay Opinion", "Mr. Joe Mari Mendoza", "Mr. Ray Marko Delen", "Mr. Paulo Concepcion",
   "Mr. Vanness Pacquiao", "Mr. Carter Roll", "Mr. Jerum Galang", "Mr. Jobert Italia",
   "Mr. Adrian Villegas", "Mr. Edwin Hernandez",
 ];
@@ -46,5 +46,5 @@ export const bearers = [
   { title: "Coin bearers", names: ["Ronaldavid Pielago", "Shantal Aizen Velasquez"] },
   { title: "Papal blessing bearer", names: ["Cade Vionzo San Juan"] },
 ];
-export const flowerGirls = ["Charlice Ellyza Melchor", "Christine Ellyiah Melchor", "Chrizilyn Ellyrah Melchor", "Caily Vienna San Juan"];
+export const flowerGirls = ["Charlice Ellyza Melchor", "Christine Ellyiah Melchor", "Chrizilyn Ellyrah Melchor", "Caily Vianna San Juan"];
 export const furbabies = ["Molly San Juan Pacquiao", "Zoey San Juan Pacquiao", "Maisie San Juan Pacquiao", "JayKay San Juan Pacquiao"];

@@ -1,0 +1,6 @@
+{
+  "source": "User-supplied decoration",
+  "tool": "built-in image_gen",
+  "operation": "Background extraction preserving supplied artwork",
+  "prompt": "Use case: background-extraction. Prepare this supplied decoration as a genuine transparent PNG cutout for an invitation website. Preserve the pink translucent ribbon bow with its two long flowing tails as closely as possible: same shapes, colors, arrangement, material and style. Remove only the plain white/gray or baked checkerboard background outside the subject, including background gaps between petals/leaves/ribbon tails, preserving translucent material and delicate edges. Trim excess empty canvas, keep the complete subject intact, no new objects, no new text, no restyling. Transparent background."
+}

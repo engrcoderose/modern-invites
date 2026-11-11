@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T00:00:00+08:00",
+  "title": "Design System: Ashley at 18",
+  "extensions": {
+    "colorMeta": {
+      "rose-script": {
+        "role": "primary",
+        "displayName": "Stationery Rose"
+      },
+      "blush-countdown": {
+        "role": "secondary",
+        "displayName": "Blush Pink"
+      },
+      "lavender-venue": {
+        "role": "secondary",
+        "displayName": "Venue Lavender"
+      },
+      "plum-accent": {
+        "role": "primary",
+        "displayName": "Control Plum"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Ashley Lettering",
+        "purpose": "Imperial Script name inside the blank lace oval."
+      },
+      "headline": {
+        "displayName": "Stationery Headings",
+        "purpose": "Imperial Script section titles. Kindly RSVP uses 48px mobile and 72px from 640px to avoid clipping."
+      },
+      "supporting": {
+        "displayName": "Editorial Supporting Type",
+        "purpose": "Instrument Serif age, invitation, numerals and venue details."
+      },
+      "medallionCaption": {
+        "displayName": "Medallion Caption",
+        "purpose": "Decorative Inter caption, 10px mobile and 12px from 640px."
+      }
+    },
+    "shadows": [
+      {
+        "name": "decorative-none",
+        "value": "none",
+        "purpose": "Hero, section surfaces and minimal fields use tonal separation without decorative shadows."
+      },
+      {
+        "name": "inherited-submit",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Small default Tailwind shadow inherited from the shared Button; an exception to the flat decorative system."
+      }
+    ],
+    "motion": [
+      {
+        "name": "entrance-duration",
+        "value": "850ms",
+        "purpose": "Consistent one-time viewport entrance for invitation content and form groups."
+      },
+      {
+        "name": "entrance-distance",
+        "value": "24px",
+        "purpose": "Subtle vertical rise; independent translate preserves artwork rotations."
+      },
+      {
+        "name": "child-stagger",
+        "value": "120ms",
+        "purpose": "Child sequence capped at 600ms."
+      },
+      {
+        "name": "easing",
+        "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+        "purpose": "Soft ease-in-out."
+      },
+      {
+        "name": "accessibility",
+        "value": "reduced-motion and focus recovery",
+        "purpose": "Skip/cancel nonessential reveals; keyboard focus immediately shows a control group; visible no-JavaScript fallback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Outlined RSVP Anchor",
+      "kind": "button",
+      "refersTo": "button-hero",
+      "description": "Fine rose pill linking the white hero introduction to the form.",
+      "html": "<a class=\"ds-hero-button\" href=\"#rsvp\">Kindly RSVP <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M12 5v14m-7-7 7 7 7-7\"/></svg></a>",
+      "css": ".ds-hero-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:12px 28px;border-radius:9999px;border:1px solid #9b3561;background:transparent;color:#9b3561;text-decoration:none;font:14px Inter,sans-serif;transition:background-color 150ms}.ds-hero-button:hover{background:#fce0eb}.ds-hero-button:focus-visible{outline:2px solid #80508f;outline-offset:4px}"
+    },
+    {
+      "name": "Submit RSVP",
+      "kind": "button",
+      "refersTo": "button-submit",
+      "description": "Shared full-width submit control; sample has no submission behavior.",
+      "html": "<button class=\"ds-submit\" type=\"button\">Submit RSVP</button>",
+      "css": ".ds-submit{width:100%;min-height:44px;padding:8px 24px;background:#553361;color:white;border:0;border-radius:6px;box-shadow:0 1px 3px 0 rgb(0 0 0 / .1),0 1px 2px -1px rgb(0 0 0 / .1);font:500 14px Inter,sans-serif;transition:opacity 150ms}.ds-submit:hover{opacity:.9}.ds-submit:focus-visible{outline:2px solid #80508f;outline-offset:4px}.ds-submit:disabled{opacity:.5;pointer-events:none}"
+    },
+    {
+      "name": "Minimal Name Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square, shadow-free labeled input using the shared minimal form appearance.",
+      "html": "<label class=\"ds-field\">Full name<input autocomplete=\"name\" required></label>",
+      "css": ".ds-field{display:grid;gap:8px;color:#553361;font:14px Inter,sans-serif}.ds-field input{min-width:0;min-height:48px;padding:4px 12px;border:1px solid #d9a5be;border-radius:0;background:transparent;color:#553361;box-shadow:none;font:16px Inter,sans-serif}.ds-field input:hover{border-color:#ae83b7}.ds-field input:focus-visible{outline:2px solid #80508f;outline-offset:4px}@media(min-width:640px){.ds-field input{min-height:56px}}"
+    },
+    {
+      "name": "Attendance Choice",
+      "kind": "custom",
+      "refersTo": "attendance-selected",
+      "description": "Two equal radio choices; checked state uses a plum outline and lilac fill.",
+      "html": "<fieldset class=\"ds-attendance\"><legend>Will you attend?</legend><label><input type=\"radio\" name=\"ds-attendance\" checked>Yes</label><label><input type=\"radio\" name=\"ds-attendance\">No</label></fieldset>",
+      "css": ".ds-attendance{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0;border:0;color:#553361;font:16px Inter,sans-serif}.ds-attendance legend{font-size:14px;margin-bottom:8px}.ds-attendance label{display:flex;align-items:center;gap:12px;min-height:48px;padding:12px 16px;border:1px solid #d9a5be;cursor:pointer}.ds-attendance label:has(:checked){border-color:#80508f;background:#fce0eb}.ds-attendance input{accent-color:#80508f;width:16px;height:16px}.ds-attendance input:focus-visible{outline:2px solid #80508f;outline-offset:4px}"
+    },
+    {
+      "name": "Invitation Navigation",
+      "kind": "nav",
+      "description": "Quiet client identity paired with the RSVP anchor.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Invitation\"><span>Ashley Sanchez</span><a href=\"#rsvp\">Kindly RSVP</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;padding:0 24px;background:#ffffff;color:#705379;font:14px Inter,sans-serif}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;color:inherit;text-decoration:none;border-bottom:1px solid #b98cae}.ds-nav a:hover{color:#452456}.ds-nav a:focus-visible{outline:2px solid #80508f;outline-offset:4px}"
+    },
+    {
+      "name": "Countdown Unit",
+      "kind": "custom",
+      "description": "Editorial serif numerals above compact sans-serif unit labels.",
+      "html": "<dl class=\"ds-countdown\"><div><dt>Days</dt><dd>24</dd></div><div><dt>Hours</dt><dd>03</dd></div><div><dt>Minutes</dt><dd>12</dd></div><div><dt>Seconds</dt><dd>08</dd></div></dl>",
+      "css": ".ds-countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:24px;background:#dfc5ed;color:#553361;text-align:center}.ds-countdown div{display:flex;flex-direction:column;gap:12px}.ds-countdown dt{font:12px Inter,sans-serif}.ds-countdown dd{order:-1;margin:0;font:48px/1 'Instrument Serif',Georgia,serif;font-variant-numeric:tabular-nums}@media(min-width:640px){.ds-countdown{gap:32px}.ds-countdown dd{font-size:72px}.ds-countdown dt{font-size:14px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Satin and lace stationery",
+    "overview": "Dusty rose draped satin frames an ornate ivory lace oval with a quiet opaque center. Expressive lettering carries Ashley's name and section headings. Pink, purple and white remain the confirmed palette; the supplied stationery screenshot governs this revision.",
+    "keyCharacteristics": [
+      "Satin texture and transparent lace artwork.",
+      "Rose script, lavender venue and white reply surface.",
+      "Four sections with direct personal RSVP.",
+      "Photo-derived architectural watercolor with transparent painted edges in the venue section.",
+      "Landscape pink floral pattern behind the countdown, sourced from the user and rotated 90 degrees clockwise.",
+      "User-supplied pink lilies, ribbon, quill stationery, mirrored purple floral top corners and butterfly accents, extracted on transparent backgrounds.",
+      "Sticky centered Home / Details / RSVP navigation with a small active-section dot and 72px anchor clearance."
+    ],
+    "rules": [],
+    "dos": [
+      "Do preserve the four-section order and pink, purple and white palette.",
+      "Do keep the name centered inside the blank lace oval on all screen sizes.",
+      "Do retain artwork provenance and reduced-motion behavior.",
+      "Do identify preview replies as unsaved."
+    ],
+    "donts": [
+      "Don't restore the superseded floral cutouts or gradient hero.",
+      "Don't invent event identifiers or imply production submission works.",
+      "Don't access private environment files or Supabase for verification."
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "source": "User-supplied Casa Dominguez venue photograph",
+  "prompt": "Use case: style-transfer. Asset type: watercolor venue illustration for Ashley at 18 invitation website. Transform the supplied photo of Casa Dominguez into an elegant hand-painted architectural watercolor. Preserve the exact recognizable building: gray gabled roof and triangular glass facade, white window grid, dark entrance doors, long right wing, wooden annex at left, tree at left and surrounding tropical landscaping. Preserve camera perspective and building proportions. Delicate translucent pigment washes, fine confident architectural detail, soft green foliage, subtle muted pink and lavender shadows suited to pink/purple/white invitation stationery. Remove excess blank sky; building and gardens are central and generous in frame. Soft irregular watercolor edges dissolve into genuine transparency around the exterior, especially sky and ground edges; retain the painted building and foreground plants. No text, added buildings, invented decoration, frames, logos or people. Landscape composition."
+}

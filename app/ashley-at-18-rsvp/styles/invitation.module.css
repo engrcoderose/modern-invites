@@ -1,0 +1,52 @@
+.invitation {
+  --smart-rsvp-accent: #80508f;
+  --smart-rsvp-accent-hover: #643b73;
+  --smart-rsvp-heading: #553361;
+  --smart-rsvp-border: #ae83b7;
+  --smart-rsvp-border-soft: #d9a5be;
+  --smart-rsvp-soft: #fce0eb;
+  color: #553c60;
+  background: #ffffff;
+  font-family: var(--font-inter), sans-serif;
+  caret-color: #80508f;
+}
+
+.invitation ::selection { background: #e5c9e9; color: #452456; }
+.invitation :focus-visible { outline: 2px solid #80508f; outline-offset: 4px; }
+
+/* Applied only by the motion controller; without JavaScript content is visible. */
+.invitation [data-reveal-state="pending"] {
+  opacity: 0;
+  translate: 0 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invitation [data-reveal-state="pending"] {
+    opacity: revert;
+    translate: none;
+  }
+}
+
+.title {
+  font-family: var(--font-imperial), cursive;
+  font-size: clamp(3.5rem, 12vw, 4.5rem);
+  line-height: 1.1;
+  color: #9b3561;
+}
+
+.age {
+  color: #694075;
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 2rem;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.sectionTitle {
+  font-family: var(--font-imperial), cursive;
+  font-weight: 400;
+  line-height: 1.2;
+}
+

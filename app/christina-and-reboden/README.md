@@ -56,7 +56,8 @@ reserve matching scrollbar space at both edges to keep side margins balanced.
 
 The Dress Code combines principal-sponsor and guest attire on one page. Ninong
 requires Barong Tagalog and black pants; Ninang requires a gray floor-length
-gown. Guest illustrations, descriptions, motif swatches, restrictions, and the
+gown. Each principal sponsor role now has its own illustrated attire example.
+The guest ladies' gown is dusty blue. Guest illustrations, descriptions, motif swatches, restrictions, and the
 closing attire message remain together here. The separate Sponsors’ attire
 slide and contents-menu entry are removed. Compact screens scroll internally.
 
@@ -88,8 +89,20 @@ original proportions with content positioned relative to each frame.
   opening, and shared stationery elements.
 - `styles/invitation.module.css`: scoped palette, typography, artwork, and motion.
 
-The questionnaire uses both “JayKaay” in the story and “JayKay” in the entourage.
-Both supplied spellings are retained pending confirmation.
+The November 11 revision document corrects the story's puppy name to “Jaykay”.
+The entourage's existing “JayKay” capitalization is retained. The same revision
+confirms Hazel Jane Paña, Joe Mari Mendoza, Ray Marko Delen, Caily Vianna San Juan,
+and the Bride’s flower girls heading.
+
+The timeline now uses Noto Serif for its heading and descriptions as well as
+times. Container width and height both govern type size and seal/header spacing,
+keeping multiline entries within their rows on shorter laptop screens.
+
+The built-in ImageGen tool edited the existing dresscode-girls artwork into
+`assets/designs/dresscode-gown-dusty-blue.webp` and `dresscode-gown-gray.webp`.
+Both retain alpha, are resized to 640px tall, and use WebP quality 85. Their exact
+edit prompts and original generated paths are recorded in adjacent `.webp.json`
+sidecars. The original pink illustration is retained as a source asset.
 
 ## Photos and audio
 

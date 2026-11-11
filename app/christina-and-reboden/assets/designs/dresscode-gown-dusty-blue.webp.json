@@ -1,0 +1,8 @@
+{
+  "tool": "Built-in image_gen",
+  "intent": "precise-object-edit",
+  "reference": "dresscode-girls.webp",
+  "source": "C:\\Users\\rosas\\.codex\\generated_images\\01a1bb41-b01f-7982-87a4-71af1fa9cad7\\exec-16373e7f-0765-4ed9-8531-e5696949a68f.png",
+  "prompt": "Edit target: the provided existing transparent wedding dress-code illustration. Preserve the exact woman's face, hair, skin tone, pose, body proportions, full floor-length silhouette, floral appliques, sash, flowing fabric folds, fine outlined illustration style, and entire head-to-hem framing. Change ONLY the gown's color. No extra objects, no text, no border, no shadow plane. Preserve genuinely transparent background and clean alpha edges. The entire figure must remain visible with a small transparent margin. Recolor all the gown and fabric floral decorations to an elegant muted DUSTY BLUE matching #aac5d4. Natural lighter blue highlights and deeper blue folds; no pink fabric remains. This is the guest ladies' wedding attire illustration.",
+  "optimization": "Resized to 640px height, WebP quality 85, alpha preserved"
+}

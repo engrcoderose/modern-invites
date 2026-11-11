@@ -1,0 +1,720 @@
+@font-face {
+  font-family: "OP Noto Serif";
+  src: url("/oliver-and-precious/fonts/noto-serif.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OP Noto Serif";
+  src: url("/oliver-and-precious/fonts/noto-serif-italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 62.5% 100%;
+  font-display: swap;
+}
+
+/* Outgoing leaves remain mounted only during their turn and are inert. */
+.op-opening-screen {
+  font-family: "OP Noto Serif", serif;
+}
+.op-opening-shade {
+  background: radial-gradient(ellipse at 50% 40%, #07100a14, #07100a80);
+}
+.op-cover-artwork { object-fit: contain; }
+.op-opening-illustration { width: 100%; height: 100%; inset: 0; }
+.op-book {
+  --op-controls-height: calc(78px + env(safe-area-inset-bottom));
+  grid-template-rows: 70px minmax(0, 1fr);
+  background: var(--op-paper);
+  color: var(--op-ink);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-family: "OP Noto Serif", serif;
+}
+.op-book * {
+  box-sizing: border-box;
+}
+.op-book :is(button, a, select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.op-book button,
+.op-book a,
+.op-book select {
+  -webkit-tap-highlight-color: transparent;
+}
+.op-book button {
+  cursor: pointer;
+}
+.op-book button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.op-skip {
+  background: var(--op-paper);
+}
+.op-skip:focus {
+  top: 10px;
+}
+.op-label {
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.op-body {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--op-muted);
+  max-width: 510px;
+  margin: 0 auto;
+}
+.op-heading {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 22px auto;
+}
+.op-script-heading {
+  letter-spacing: 0;
+  font-size: clamp(48px, 6vw, 78px);
+}
+.op-ornament {
+  width: 130px;
+  height: 27px;
+  margin: 22px auto;
+}
+.op-monogram {
+  line-height: 1;
+}
+.op-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.op-text-button {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.op-text-button {
+  border-bottom: 1px solid currentColor;
+}
+.op-button {
+  border: 1px solid var(--op-olive);
+  transition: background 0.2s;
+}
+.op-button-outline:hover {
+  background: #dfe1cd;
+}
+.op-button-solid {
+  background: var(--op-olive);
+  color: #fbf7e8;
+}
+.op-button-solid:hover {
+  background: #4b502a;
+}
+
+.op-nav {
+  background: var(--op-paper);
+  border-bottom: 1px solid var(--op-line);
+}
+.op-brand-date {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  border-left: 1px solid var(--op-line);
+}
+.op-desktop-nav {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.op-desktop-nav a {
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.op-desktop-nav a:last-child {
+  border: 1px solid var(--op-olive);
+  padding: 10px 18px;
+}
+.op-book-stage {
+  touch-action: pan-y pinch-zoom;
+  isolation: isolate;
+  background: #313b29;
+}
+.op-book-leaf {
+  outline: none;
+}
+.op-book-page {
+  outline: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, #fffdf440, transparent 70%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, #ac9b761c),
+    var(--op-paper);
+}
+.op-book-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%238b8263' opacity='.32' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.op-page-content {
+  scrollbar-width: thin;
+}
+.op-page-content > div {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 950px;
+  margin: auto;
+}
+/* Overflow is a last-resort accessibility fallback for zoom and very short screens. */
+.op-tone-olive {
+  color: #f2efdb;
+}
+.op-tone-olive .op-body {
+  color: #e0e1c9;
+}
+.op-tone-olive::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #d4d6b24d;
+  outline: 1px solid #d4d6b220;
+  outline-offset: 5px;
+  pointer-events: none;
+}
+
+
+.op-map {
+  border: 0;
+  margin: 20px auto 0;
+}
+.op-names sup {
+  font-size: 10px;
+  font-style: normal;
+  margin-left: 2px;
+  color: #d9dcad;
+}
+.op-review-note {
+  font-size: 10px;
+  color: #d9ddbc;
+  margin: 26px 0 0;
+}
+.op-faq-page {
+  max-width: 660px !important;
+}
+.op-faq-item {
+  border-top: 1px solid var(--op-line);
+}
+.op-faq-item summary {
+  font-size: 15px;
+  line-height: 1.6;
+  list-style: none;
+}
+.op-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.op-faq-item summary:focus-visible {
+  outline: 2px solid var(--op-olive, #5a6946);
+  outline-offset: 3px;
+}
+.op-faq-answer.op-body {
+  max-width: none;
+}
+.op-faq-item[open] .op-faq-answer {
+  animation: op-faq-answer-in 250ms ease-out;
+}
+@keyframes op-faq-answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.op-photo-page figure {
+  position: relative;
+  flex: 1;
+  min-height: 200px;
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  border: 1px solid var(--op-line);
+}
+.op-photo-page img {
+  object-fit: contain;
+  padding: 12px;
+}
+.op-story .op-body {
+  white-space: pre-line;
+}
+
+.op-book-controls {
+  grid-template-columns: 140px minmax(0, 1fr) 140px;
+  padding: 8px 5% max(8px, env(safe-area-inset-bottom));
+  background: transparent;
+}
+.op-dark-pagination .op-book-controls {
+  background: linear-gradient(180deg, transparent, #101b12c9);
+  color: var(--op-paper);
+  text-shadow: 0 1px 5px #000b;
+}
+.op-dark-pagination .op-page-position > p {
+  color: var(--op-paper);
+}
+.op-dark-pagination .op-page-arrow:hover:not(:disabled) {
+  background: #f2ede01a;
+}
+.op-page-arrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.op-page-arrow:hover:not(:disabled) {
+  background: #e9ebdf;
+}
+.op-page-position > p {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--op-muted);
+  margin-top: 3px;
+}
+.op-page-count {
+  font-variant-numeric: tabular-nums;
+}
+.op-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: calc(100% - 36px);
+  max-width: 490px;
+  max-height: 85dvh;
+  padding: 40px 30px;
+  background: var(--op-paper);
+  color: var(--op-ink);
+  text-align: center;
+  border: 1px solid var(--op-olive);
+  box-shadow: 0 30px 90px #1e251d40;
+}
+.op-dialog::backdrop {
+  background: #28301f88;
+  backdrop-filter: blur(5px);
+}
+.op-dialog .op-heading {
+  font-size: 40px;
+}
+.op-dialog > .op-ornament {
+  margin: 0 auto 23px;
+}
+
+@media (max-width: 700px) {
+  .op-book {
+    --op-controls-height: calc(74px + env(safe-area-inset-bottom));
+    grid-template-rows: 60px minmax(0, 1fr);
+  }
+  .op-brand-date {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .op-mobile-nav {
+    padding: 10px 6% 18px;
+    background: var(--op-paper);
+    border-bottom: 1px solid var(--op-line);
+    box-shadow: 0 12px 20px #343a211a;
+  }
+  .op-mobile-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #c9cbb755;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .op-body {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+  .op-label {
+    font-size: 9px;
+    letter-spacing: 0.13em;
+  }
+  .op-heading {
+    font-size: 44px;
+    margin: 18px auto;
+  }
+  .op-script-heading {
+    font-size: clamp(40px, 12vw, 60px);
+  }
+
+  .op-tone-olive::after {
+    inset: 12px;
+    outline-offset: 4px;
+  }
+  .op-review-note {
+    font-size: 9px;
+    margin-top: 23px;
+  }
+  .op-faq-page .op-heading {
+    font-size: 44px;
+  }
+  .op-faq-item summary {
+    font-size: 13px;
+  }
+  .op-faq-page .op-faq-answer {
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .op-book-controls {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .op-page-arrow > span {
+    display: none;
+  }
+  .op-dialog {
+    padding: 40px 23px 28px;
+  }
+  .op-dialog .op-heading {
+    font-size: 35px;
+  }
+}
+@media (max-height: 720px) {
+  .op-review-note {
+    margin-top: 15px;
+  }
+}
+@media (max-height: 590px) {
+  .op-book {
+    --op-controls-height: calc(66px + env(safe-area-inset-bottom));
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
+  .op-mobile-nav {
+    top: 52px;
+  }
+  .op-faq-page .op-heading {
+    font-size: 36px;
+  }
+  .op-faq-item summary {
+    font-size: 12px;
+  }
+  .op-faq-page .op-faq-answer {
+    font-size: 10px;
+    line-height: 1.7;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .op-book * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Vintage woodland stationery, adapted to the invitation's horizontal pages. */
+.op-book {
+  --op-paper: #ffffff;
+  --op-olive: #5a6946;
+  --op-ink: #414636;
+  --op-muted: #646650;
+  --op-line: #b5bda9;
+  --op-gold: #c89da4;
+}
+.op-label {
+  letter-spacing: 0.15em;
+}
+.op-book-page::before {
+  opacity: 0.3;
+}
+.op-monogram {
+  display: inline-block;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.op-monogram img {
+  object-fit: contain;
+
+}
+.op-woodland {
+  background: #263420;
+}
+.op-woodland img {
+  object-fit: cover;
+  object-position: center;
+}
+.op-woodland::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 30%, #101a124d),
+    linear-gradient(180deg, #17221318, #111e174f);
+}
+.op-tone-woodland {
+  color: var(--op-paper);
+}
+.op-tone-woodland > .op-woodland::after {
+  background:
+    radial-gradient(ellipse at 50% 45%, #17221880, #101a12b8),
+    linear-gradient(180deg, #17221818, #17221838);
+}
+.op-tone-woodland .op-body {
+  color: #f2ede0;
+}
+
+.op-tone-olive {
+  background:
+    radial-gradient(ellipse at 50% 35%, #52604466, transparent 70%),
+    linear-gradient(135deg, #36432e, #293727);
+}
+.op-tone-sage {
+  background: radial-gradient(ellipse at 50% 40%, #eeeadd, #dedecb);
+}
+.op-ornament {
+  color: var(--op-gold);
+}
+.op-tone-olive .op-ornament {
+  color: #d2c5a0;
+}
+.op-script-accent {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+}
+.op-attire-page {
+  max-width: 620px !important;
+}
+.op-attire-page > .op-heading {
+  font-size: 42px;
+}
+.op-attire-page .op-body {
+  font-family: "OP Noto Serif", serif;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.op-attire-reference {
+  width: min(460px, 100%, max(180px, calc((100svh - 520px) * 3 / 2)));
+  background: var(--op-paper);
+  border: 1px solid #ac9b7680;
+  outline: 1px solid #ac9b763d;
+  outline-offset: 4px;
+  box-shadow:
+    0 8px 24px #413b2814,
+    inset 0 0 18px #ac9b7612;
+}
+.op-gifts-page {
+  max-width: 570px !important;
+}
+.op-gift-copy .op-body {
+  line-height: 1.3;
+}
+.op-rsvp-page {
+  max-width: 560px !important;
+}
+.op-rsvp-plaque {
+  background: var(--op-paper);
+  color: var(--op-ink);
+  border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%;
+  border: 1px solid #ac9b76;
+  outline: 2px solid #e4dac2;
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px #101c2433;
+}
+.op-rsvp-plaque > h2 {
+  font-size: clamp(30px, 7.5vw, 36px);
+  line-height: 1.1;
+}
+.op-rsvp-card {
+  background: var(--op-paper);
+  color: var(--op-ink);
+  border: 1px solid #baa987;
+  border-radius: 6px;
+  box-shadow: 0 14px 50px #111a1633;
+}
+.op-rsvp-card .op-body {
+  color: var(--op-muted);
+}
+.op-photo-page figure {
+  outline: 3px double var(--op-gold);
+  outline-offset: 4px;
+  background: #eee7d6;
+}
+
+@media (max-width: 700px) {
+  .op-attire-page > .op-heading {
+    font-size: clamp(34px, 5svh, 44px);
+  }
+  .op-attire-page .op-body {
+    font-size: 12px;
+  }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  .op-rsvp-card {
+    padding: 23px 18px;
+  }
+}
+
+/* Client typography: Anastasia for headings, OP Noto Serif for readable details. */
+.op-book
+  :is(
+    h1,
+    h2,
+    h3,
+    .op-heading,
+    .op-script-heading,
+    .op-script-accent,
+    .op-rsvp-plaque > h2
+  ) {
+  font-family: var(--font-op-anastasia), cursive;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+.op-heading em {
+  font-style: normal;
+}
+
+.op-book h3.op-rsvp-form-heading {
+  font-family: "OP Noto Serif", serif;
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+/* A single stationery scale across parents, sponsors and both party pages. */
+.op-names {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+}
+.op-page-title {
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .op-names {
+    font-size: clamp(10px, 2.82vw, 11px);
+  }
+  .op-page-title {
+    font-size: 12px;
+  }
+}
+
+.op-gratitude-heading {
+  font-size: clamp(28px, 6.5vw, 40px);
+}
+.op-book h3.op-party-serif-title,
+.op-book .op-party-group h3.op-label,
+.op-book h4.op-party-role {
+  font-family: "OP Noto Serif", serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.op-book h3.op-party-serif-title {
+  font-size: 18px;
+}
+@media (max-width: 700px) {
+  .op-book h3.op-party-serif-title,
+  .op-book .op-party-group h3.op-label,
+  .op-book h4.op-party-role {
+    font-size: 11px;
+  }
+  .op-book h3.op-party-serif-title {
+    font-size: 13px;
+  }
+}
+
+/* Full-width ivory invitation with the couple's formal names. */
+.op-is-cover .op-page-content {
+  padding: 0;
+}
+.op-page-content > .op-opening-layout {
+  max-width: none;
+}
+.op-opening-panel::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid #ac9b7657;
+  pointer-events: none;
+}
+.op-opening-names {
+  font-size: clamp(28px, 3.1vw, 40px);
+  line-height: 1.2;
+}
+@media (max-width: 700px) {
+  .op-opening-panel::after {
+    inset: 10px;
+  }
+  .op-opening-names {
+    font-size: clamp(23px, 6.4vw, 30px);
+  }
+}
+
+/* Shared woodland stationery for the ceremony and reception. */
+.op-portrait-frame {
+  width: min(560px, 100%, calc((100svh - 300px) * 3 / 4));
+}
+.op-photo-break-names {
+  font-size: clamp(48px, 7svh, 68px);
+  text-shadow: 0 2px 15px #172015b3;
+}
+.op-photo-slide {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+.op-photo-slide-enter {
+  animation: op-photo-crossfade 600ms ease-in-out both;
+}
+@keyframes op-photo-crossfade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .op-photo-slide-enter {
+    animation: none;
+  }
+}
+
+.op-venues {
+  border: 1px solid #dfd9be80;
+  outline: 1px solid #dfd9be40;
+  outline-offset: 7px;
+}
+.op-venue-name {
+  font-size: clamp(34px, 3.7vw, 46px);
+}
+@media (max-width: 700px) {
+  .op-venue-name {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+}

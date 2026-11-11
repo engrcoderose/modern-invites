@@ -33,7 +33,7 @@ export function createSlides(activeSlideId?: string): InvitationSlide[] {
     { id: "bridesmaids", label: "Bridesmaids", tone: "cream", content: <WeddingPartySlide title="Our Bridesmaids" names={bridesmaids} /> },
     { id: "groomsmen", label: "Groomsmen", tone: "cream", content: <WeddingPartySlide title="Our Groomsmen" names={groomsmen} /> },
     { id: "bearers", label: "Our bearers", tone: "cream", content: <EntourageSlide title="Our Bearers"><NameColumns groups={bearers} /></EntourageSlide> },
-    { id: "flowers-and-furbabies", label: "Flowers & furbabies", tone: "cream", content: <EntourageSlide title="Our Little Loves"><div className="flex flex-col gap-7"><NameGroup title="Flower girls" names={flowerGirls} /><NameGroup title="Our beloved furbabies" names={furbabies} /></div></EntourageSlide> },
+    { id: "flowers-and-furbabies", label: "Flowers & furbabies", tone: "cream", content: <EntourageSlide title="Our Little Loves"><div className="flex flex-col gap-7"><NameGroup title="Bride’s flower girls" names={flowerGirls} /><NameGroup title="Our beloved furbabies" names={furbabies} /></div></EntourageSlide> },
     { id: "together", label: "Together", tone: "cream", content: <PhotoSlideshow visible={activeSlideId === "together"} fullBleed /> },
     { id: "attire", label: "The dress code", tone: "cream", content: <AttireSlide /> },
     { id: "questions-1", label: "FAQs", tone: "cream", content: <FaqSlide /> },

@@ -82,14 +82,14 @@
 .venueMap:hover { background: #dfb3b7; }
 .textLink { color: var(--cr-ink); text-decoration: underline; text-underline-offset: 5px; text-decoration-color: var(--cr-gold); }
 .textLink:hover { color: #78562e; }
-.timelineFrame { container-type: inline-size; }
-.timelineHeader { padding-top: 15cqw; }
-.timelineSeal { top: 0; left: 50%; width: 14cqw; aspect-ratio: 1; transform: translate(-50%, -8%); }
+.timelineFrame { container-type: size; }
+.timelineHeader { padding-top: min(15cqw, 14cqh); }
+.timelineSeal { top: 0; left: 50%; width: min(14cqw, 13cqh); aspect-ratio: 1; transform: translate(-50%, -8%); }
 .timelineMonogram { font-family: var(--cr-script), cursive; font-size: 4.2cqw; color: #93565b; padding-bottom: 3%; }
-.timelineHeading { font-family: var(--cr-script), cursive; font-size: clamp(26px, 8.4cqw, 47px); font-weight: 400; line-height: 1.2; white-space: nowrap; }
+.timelineHeading { font-family: var(--cr-serif), Georgia, serif; font-size: clamp(19px, min(5.4cqw, 5cqh), 29px); font-weight: 400; line-height: 1.35; text-wrap: balance; }
 .timeline li { border-color: rgb(81 67 51 / 28%); }
 .timelineTime { font-family: var(--cr-serif), Georgia, serif; font-size: clamp(9px, 2.7cqw, 14px); white-space: nowrap; }
-.timelineTitle { font-family: var(--cr-script), cursive; font-size: clamp(18px, 5.5cqw, 30px); line-height: 1.04; text-wrap: balance; }
+.timelineTitle { font-family: var(--cr-serif), Georgia, serif; font-size: clamp(12px, min(3.2cqw, 2.8cqh), 16px); line-height: 1.4; text-wrap: balance; }
 .groupTitle { font-family: var(--cr-serif), Georgia, serif; font-weight: 400; font-size: 12px; line-height: 1.5; text-transform: uppercase; letter-spacing: .07em; color: #74572e; }
 .secondaryParty .groupTitle { font-weight: 600; }
 .secondaryParty ul { font-style: italic; }
@@ -157,7 +157,7 @@
   .stationery { gap: 9px; }
   .heading { font-size: 35px; }
   .groupTitle { font-size: 11px; }
-  .timelineTitle { font-size: 16px; line-height: 1.03; }
+  .timelineTitle { font-size: clamp(10px, 2.8cqh, 14px); }
   .dateFrame { width: min(100%, calc((100dvh - 198px) * 2 / 3)); }
   .venueCrown { width: min(44cqw, 28cqh, 140px); }
   .venueTitle { font-size: 32px; }

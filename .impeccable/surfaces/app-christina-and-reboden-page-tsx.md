@@ -811,3 +811,35 @@ and 320x568, the eighth Together photograph, and all eight selectors within
 320px without horizontal overflow. No console errors. Scoped ESLint, repository
 TypeScript, and isolated production build pass. Evidence:
 `.impeccable/review/christina-photo-swap/`.
+
+### Client revision document November 11
+Applied Wedding_Website_Revisions.docx by section name, preserving the current
+22-page order despite the document's older page-count description. Corrected
+Jaykay in the story, Hazel Jane Paña, Joe Mari Mendoza, Ray Marko Delen, Caily
+Vianna San Juan, and Bride’s flower girls. Existing unrelated names and event
+details remain unchanged.
+
+Replaced timeline heading and event calligraphy with Noto Serif. Container width
+and height now govern type size, seal size, and header padding, retaining the
+eight equal rows while avoiding crowding in short laptop windows. The 1280x600
+confirmation measured every event paragraph shorter than its row, including
+all multiline entries. Confirmed the same at 320x568.
+
+Added full-length Ninong and Ninang attire examples. Reused the existing barong
+illustration, generated transparent gray and dusty-blue gown edits with built-in
+ImageGen, and optimized each to 451x640 WebP at quality 85 (38KB/40KB). Exact
+prompts and source paths are in adjacent .webp.json sidecars. The guest ladies'
+gown now uses dusty blue; all palette swatches, restrictions, and the closing
+attire note remain in the existing keyboard-scrollable reading region.
+
+Verified corrected copy in rendered story/entourage pages, timeline at laptop
+and compact mobile sizes, loaded attire illustrations at 1440x900 and 390x844,
+and keyboard access to the entire dress-code reading region. No horizontal
+overflow or console errors. Scoped ESLint, repository TypeScript, and the
+isolated production build pass without private environment files or backend
+access. Evidence: `.impeccable/review/christina-client-revisions/`.
+
+The dress-code reading region reserves 48px below its closing note so the note
+can enter the reveal observer's viewport before the scroll limit. Confirmed at
+390x844 after End: opacity 1, no residual translation, and the full note visible
+above the fixed footer. No shared animation behavior was changed.

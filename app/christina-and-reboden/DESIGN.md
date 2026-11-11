@@ -97,12 +97,14 @@ Rose identifies the opening and RSVP actions; its deeper variant supplies hover 
 Cream damask supports the venue pages, following the latest supplied reference. Dusty blue remains in the palette and timeline base. The love story uses a solid `#f5e9d8` background and matching scrollbar track. Blush supports the envelope and RSVP chapter.
 
 The timeline follows the supplied reference: all eight schedule rows on one
-textured ivory sheet, serif times at left, centered script descriptions at
+textured ivory sheet, serif times at left, centered readable serif descriptions at
 right, fine horizontal rules, and a blush botanical wax seal above the heading.
 The supplied opening garden image fills the entire timeline page behind the
 paper, using a centered cover crop on mobile and desktop. The paper fills the
 available stage height up to 800px, allowing taller rows on phones while all
-eight entries stay on one page.
+eight entries stay on one page. Noto Serif also replaces the script timeline
+heading. Container-height-aware type, seal, and header spacing prevent crowding
+in short laptop windows while preserving the paper, rules, and eight-row layout.
 
 ### Neutral
 
@@ -139,6 +141,11 @@ The Dress Code combines principal-sponsor requirements and guest attire in one
 chapter. Sponsor details sit above the guest illustrations, motif swatches,
 and restrictions. The closing attire message remains below. The page uses an
 internal reading region when its content exceeds the available stage height.
+Ninong and Ninang each have a full-length attire illustration above their
+description, using the original cream barong/black pants and a matching gray
+gown. The guest ladies' gown is dusty blue. The two gown color edits preserve
+the supplied illustration style and transparent edges; the palette swatches and
+other attire instructions remain unchanged.
 
 FAQs uses one page of native disclosure rows, following Leslie & Serj's
 accordion pattern. Warm divider lines, readable serif questions, rotating
