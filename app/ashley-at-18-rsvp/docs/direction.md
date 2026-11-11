@@ -16,4 +16,4 @@ ASSETS: Generated hero-floral-wallpaper.webp and transparent hero-ornate-frame.w
 
 ## Integration boundary
 
-No admin record is known. Shared OpenRsvpForm is preview-only with a local callback; nothing is sent or saved. The owner's record and final configuration are required before enabling the established API flow. Do not read private environment files or access Supabase.
+OpenRsvpForm displays direct name entry and attendance in one step, using the owner-supplied slug ashley-at-18-rsvp with the established submission API. No separate name search/check, access initialization or preview callback remains. The server still enforces event availability, access mode, deadlines and duplicates on submission. The admin event must be active with Open RSVP enabled; live persistence has not been verified. Do not read private environment files or access Supabase.

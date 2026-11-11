@@ -158,11 +158,11 @@
       "Do preserve the four-section order and pink, purple and white palette.",
       "Do keep the name centered inside the blank lace oval on all screen sizes.",
       "Do retain artwork provenance and reduced-motion behavior.",
-      "Do identify preview replies as unsaved."
+      "Do show confirmation only after the API accepts a reply."
     ],
     "donts": [
       "Don't restore the superseded floral cutouts or gradient hero.",
-      "Don't invent event identifiers or imply production submission works.",
+      "Don't invent event identifiers or claim live verification without evidence.",
       "Don't access private environment files or Supabase for verification."
     ]
   }

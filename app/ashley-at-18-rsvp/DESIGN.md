@@ -136,7 +136,7 @@ The countdown updates once per second, begins with dashes, clamps to zero after 
 
 Hero and map links use fine outlined pills with soft hover fills. Focus uses a 2px plum outline offset by 4px. The shared minimal `OpenRsvpForm` accepts the guest's full name directly, one reply per person. Square fields use soft rose borders; checked attendance adds plum borders and pale pink fill. Preserve conditional dietary needs, validation, pending protection and confirmation focus.
 
-The local callback sends and saves nothing. Keep the preview notice and explicit sample confirmation until the owner supplies the event record and established integration is connected.
+OpenRsvpForm posts directly to the established submission API with the owner-supplied ashley-at-18-rsvp slug. Preserve the single-step form, editable full name and hidden email field. Do not introduce a separate name-search/check step. Backend submission enforces event access, deadlines and duplicates; live persistence has not been verified.
 
 ## Do's and Don'ts
 
@@ -144,10 +144,10 @@ The local callback sends and saves nothing. Keep the preview notice and explicit
 - **Do** preserve the four-section order and pink, purple and white palette.
 - **Do** keep the name centered inside the blank pink oval on all screen sizes.
 - **Do** retain artwork provenance and reduced-motion behavior.
-- **Do** identify preview replies as unsaved.
+- **Do** show confirmation only after the API accepts a reply.
 
 ### Don't:
 - **Don't** restore the superseded satin/lace hero or unrelated palettes.
-- **Don't** invent event identifiers or imply production submission works.
+- **Don't** invent event identifiers or claim live verification without evidence.
 - **Don't** access private environment files or Supabase for verification.
 

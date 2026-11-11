@@ -4,15 +4,15 @@ Route: `/ashley-at-18-rsvp`. Client content is isolated here; event details are 
 
 The reference-led design uses pink rose wallpaper and an ornate lavender-and-white oval with a blush center, with pink, purple and white. Exactly four sections: HERO (including its white introduction), COUNTDOWN, VENUE, OPEN RSVP. Confirmed arrival: 3 PM, December 5, 2026, Philippine time, at Casa Dominguez. No program start or RSVP deadline is invented.
 
-## Frontend preview
+## RSVP integration
 
 The sticky navigation uses centered Home, Details and RSVP anchors. Details covers the countdown and venue; a small purple dot and `aria-current` track the current section. Sections reserve 72px scroll clearance. Desktop/mobile link destinations, active state, sticky placement and keyboard Home activation were checked; targeted lint and repository type checks passed for this navigation revision.
 
 The optional email field is disabled for Ashley through the existing form field configuration. Full name, attendance, optional phone, conditional dietary needs and optional message remain.
 
-The shared minimal `OpenRsvpForm` accepts a full name directly, attendance, optional contact details, conditional dietary needs and an optional message. One response is for one person. The local callback sends and saves nothing; the form and confirmation state preview behavior.
+The shared minimal `OpenRsvpForm` uses a single step: full name, attendance, optional phone, conditional dietary needs and optional message. Email remains hidden. There is no separate name-search or name-check screen. Its default production submitter posts directly to `/api/rsvp/open` using the owner-supplied slug `ashley-at-18-rsvp` in `data/rsvp.ts`. Preview mode and the local no-op callback are removed. Validation, loading protection, errors and successful-save confirmation remain.
 
-After draft approval, the owner creates the event through the established admin workflow and confirms its slug and deadline. Replace `previewEvent` with actual configuration and connect the established open-RSVP flow; remove the local callback and preview prop only after integration is configured and verified. No private environment access or Supabase execution is authorized.
+Local event metadata supplies display content only. The submission API enforces the real access mode, deadline, event availability and duplicate-response rules. The matching admin event must be active with Open RSVP enabled; removing the name-check screen does not change this requirement. No admin record or schema was changed. Private environment files and live Supabase were not accessed. Live persistence remains unverified; the owner should confirm the deployed event configuration and submit a test reply through the website.
 
 ## Artwork and design
 
@@ -33,8 +33,10 @@ Watercolor addition verified at 1440px and 390px: the optimized image loads, its
 
 ## Validation
 
+RSVP connection: targeted ESLint, repository TypeScript and 27 existing local open-RSVP/field tests passed. Database tests used an isolated in-memory PGlite instance with synthetic records, not Supabase. The sandbox blocked the default test runner child processes; rerunning with `--test-isolation=none` passed. No live API request or deployment verification was performed.
+
 Latest floral-hero revision: targeted lint, repository TypeScript and an isolated production build passed. Both new optimized images loaded at 390px and 1440px; screenshots `ornate-hero-mobile.png` and `ornate-hero-desktop.png` show clear name/date placement and no horizontal overflow. Older satin/lace screenshot and review records below refer to the superseded hero.
 
 Animation revision: consistent 24px upward fades, 0-to-original opacity, 850ms ease-in-out and 120ms stagger across all four sections, including form groups and buttons. Backwards fill holds opacity zero during delay; final styles remain ordinary CSS. No-JavaScript and reduced-motion states remain visible, and keyboard focus reveals a group immediately. Controller checks passed for timing, stagger, pending visibility, keyboard recovery, once-only reveals and cleanup. Lint, repository types and the isolated production build passed. Browser checks confirmed pending-to-settled transitions, keyboard navigation, and the absence of the email field. Reduced motion was tested using synthetic media-query events.
 
-Final targeted ESLint, repository TypeScript checks and an isolated production build passed. Current full-page screenshots at repository-root `.impeccable/review/ashley/desktop.png` and `mobile.png` were inspected at 1440px and 390px: all four sections are present, no horizontal overflow was found, and lace and satin loaded. The shorter “Kindly RSVP” heading uses 48px mobile/72px wide script to prevent clipping. Fresh finish review: ship as a frontend draft, with no material findings in the final desktop/mobile captures and client code. The reviewer did not independently exercise live interactions or assistive technology. No private environment files were read and no Supabase calls were made. Production RSVP integration remains pending.
+Final targeted ESLint, repository TypeScript checks and an isolated production build passed. Current full-page screenshots at repository-root `.impeccable/review/ashley/desktop.png` and `mobile.png` were inspected at 1440px and 390px: all four sections are present, no horizontal overflow was found, and lace and satin loaded. The shorter “Kindly RSVP” heading uses 48px mobile/72px wide script to prevent clipping. Fresh finish review: ship as a frontend draft, with no material findings in the final desktop/mobile captures and client code. The reviewer did not independently exercise live interactions or assistive technology. No private environment files were read and no Supabase calls were made. That historical review predates the API integration described above.
