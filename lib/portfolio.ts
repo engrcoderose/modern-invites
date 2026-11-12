@@ -10,6 +10,8 @@ import marianDeejayPortrait from "@/app/marian-and-deejay/assets/images/Prenup/o
 import { usPhotos as aljayErlynPhotos } from "@/app/aljay-and-erlyn/data/photos";
 import claudiaBackground from "@/app/claudia-at-18/assets/outfits/lean-back-pose.png";
 import claudiaPortrait from "@/app/claudia-at-18/assets/outfits/happy-birthday.png";
+import ashleyBackground from "@/app/ashley-at-18-rsvp/assets/hero-floral-wallpaper.webp";
+import ashleyFrame from "@/app/ashley-at-18-rsvp/assets/hero-ornate-frame.webp";
 
 export type PortfolioItem = {
  id: string; title: string; category: string; description: string; href: string;
@@ -36,6 +38,20 @@ import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenu
 import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
 
 const invitationCatalog: PortfolioItem[] = [
+  {
+    id: "ashley-at-18-rsvp",
+    title: "Ashley at 18 RSVP",
+    category: "18th Birthday Debut",
+    description: "Pink florals, an ornate lavender frame, countdown, venue details, and open RSVP.",
+    href: "/ashley-at-18-rsvp",
+    bgImage: ashleyBackground,
+    previewImage: ashleyFrame,
+    previewAlt: "Ornate lavender and pearl-white floral frame from Ashley’s eighteenth birthday RSVP invitation",
+    previewFit: "contain",
+    accent: "#784156",
+    accentLight: "#fcf4fa",
+    tags: ["RSVP", "Pink & Lavender"],
+  },
   {
     id: "marian-and-deejay",
     title: "Marian & Dee Jay",
