@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PhotoFrame } from "../components/Stationery";
+import VenueLettering from "../components/VenueLettering";
 import { artwork, photos, venueArtworkSizes } from "../data/media";
 import { wedding } from "../data/wedding";
 import styles from "../styles/invitation.module.css";
@@ -23,8 +24,8 @@ export default function VenueSlide({ kind }: { kind: "ceremony" | "reception" })
       <div className={`${styles.venueImageTrim} pointer-events-none absolute -bottom-3 -left-[8%] w-[116%]`} aria-hidden="true"><Image src={artwork.venueTrim} alt="" fill sizes={venueArtworkSizes.trim} className="object-cover" /></div>
     </div>
     <div data-cr-reveal className="relative z-10 w-[82%] max-w-[380px] shrink-0 text-center">
-      <h3 className={styles.venueName}>{venue.name}</h3>
-      <p className={styles.venueNote}>{venue.note}</p>
+      <h3 className={styles.venueName}><VenueLettering text={venue.name} /></h3>
+      <p className={styles.venueNote}><VenueLettering text={venue.note} /></p>
     </div>
     <p data-cr-reveal className={`${styles.venueTime} relative z-10 w-[68%] shrink-0 text-center uppercase`}>{venue.time}</p>
     <p data-cr-reveal className={`${styles.venueAddress} relative z-10 w-[56%] max-w-sm shrink-0 text-center uppercase [@media(max-height:600px)]:w-[68%]`}>{venue.address}</p>

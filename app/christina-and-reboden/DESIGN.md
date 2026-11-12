@@ -4,7 +4,9 @@ description: "Floral wedding stationery in a full-viewport presentation."
 colors:
   cream: "#f5eddf"
   paper: "#fffaf1"
-  ink: "#514333"
+  ink: "#385d70"
+  ink-hover: "#29495b"
+  ink-on-photo: "#c2d8e5"
   gold: "#91703e"
   blue: "#aac5d4"
   story: "#f5e9d8"
@@ -50,12 +52,12 @@ spacing:
   desktop-inset: "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.rose}"
-    textColor: "{colors.paper}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.control}"
     padding: "12px 28px"
   button-primary-hover:
-    backgroundColor: "{colors.rose-deep}"
+    backgroundColor: "#f4e1df"
   field:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
@@ -63,10 +65,6 @@ components:
     padding: "10px 12px"
   text-link:
     textColor: "{colors.ink}"
-  preview-notice:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    padding: "8px 16px"
 ---
 
 # Design System: Christina & Reboden
@@ -90,7 +88,12 @@ The implementation presents one invitation page at a time inside a fixed viewpor
 
 ### Primary
 
-Rose identifies the opening and RSVP actions; its deeper variant supplies hover feedback. Gold serves focus outlines, ornaments, link underlines, and progress.
+Dusty-blue ink carries every live text role, including opening monograms,
+section headings, entourage labels, navigation, music details, and RSVP fields.
+The darker #385d70 shade keeps small text readable on cream and blush. Text over
+photography uses light dusty blue #c2d8e5 with a soft dark shadow on script names.
+Paper RSVP buttons retain blue labels with a pale blush hover. Gold serves focus
+outlines, ornaments, link underlines, and progress.
 
 ### Secondary
 
@@ -108,9 +111,9 @@ in short laptop windows while preserving the paper, rules, and eight-row layout.
 
 ### Neutral
 
-Cream forms the stage and contents surface. Paper separates the header, footer, fields, and preview notice. Warm ink carries text, while the muted line color defines rails and chapter dividers.
+Cream forms the stage and contents surface. Paper separates the header, footer, fields, and RSVP panel. Dusty-blue ink carries text, while the muted line color defines rails and chapter dividers.
 
-**The Paper and Ink Rule.** Preserve warm ink on pale stationery surfaces for essential event information; decorative artwork frames that information.
+**The Paper and Ink Rule.** Preserve readable dusty-blue ink on pale stationery surfaces for essential event information; decorative artwork frames that information.
 
 ## Typography
 
@@ -120,7 +123,7 @@ Cream forms the stage and contents surface. Paper separates the header, footer, 
 
 Script supplies the invitation's expressive voice. Serif handles passages, names lists, and event details; sans handles navigation, counters, status, and form controls.
 
-The frontmatter records the main heading, couple-name, small-script, story-reading, control-label, and entourage-group roles. Formal and venue names use expressive script, while venue times and addresses use the reading serif. The single story page uses 13px serif text with 1.85 line height, retaining every paragraph.
+The frontmatter records the main heading, couple-name, small-script, story-reading, control-label, and entourage-group roles. Formal names use expressive script. Venue names and their notes use a script initial for each word with Noto Serif italic for its remaining letters; times and addresses retain the reading serif. The single story page uses 13px serif text with 1.85 line height, retaining every paragraph.
 
 **The Reading Face Rule.** Keep long passages and essential field instructions in readable serif or sans text; reserve script for names, short messages, and headings.
 
@@ -142,8 +145,10 @@ chapter. Sponsor details sit above the guest illustrations, motif swatches,
 and restrictions. The closing attire message remains below. The page uses an
 internal reading region when its content exceeds the available stage height.
 Ninong and Ninang each have a full-length attire illustration above their
-description, using the original cream barong/black pants and a matching gray
-gown. The guest ladies' gown is dusty blue. The two gown color edits preserve
+description, using an embroidered ivory Barong Tagalog with black pants and a
+matching gray gown. All four attire illustrations share the principal-sponsor
+height: clamp(84px, 12dvh, 112px), retaining their natural proportions. The guest
+ladies' gown is dusty blue. The two gown color edits and Ninong's barong edit preserve
 the supplied illustration style and transparent edges; the palette swatches and
 other attire instructions remain unchanged.
 
@@ -166,11 +171,13 @@ Controls use restrained (2px) corners. Ornate scroll edges, floral frames, arche
 
 ### Buttons
 
-The rose primary button uses paper text, a small radius, sans labels, and generous tap height. Opening uses a (48px) minimum height; RSVP uses (44px). Hover deepens rose. Disabled opening feedback retains the action label while preventing repeated activation.
+The primary RSVP button uses paper fill, dusty-blue text, a fine stationery border,
+a small radius, sans labels, and generous tap height. Hover adds a pale blush fill.
+The opening remains a tappable envelope; its monogram and hint also use blue ink.
 
 ### Inputs / Fields
 
-Paper inputs use warm ink, a muted one-pixel border, (2px) corners, and sans text. Inputs and textareas use (16px) entry text. The shared scoped focus treatment is a gold (2px) outline with (5px) offset. RSVP follows Leslie & Serj's separate script heading plaque and ivory stationery panel, adapted to blush and antique gold. The plaque has a fine gold border, an inset-looking outline, and a small ornament across its top edge. The panel is at most 560px wide with a subtle shadow, roomy fields, and an uppercase rose action. The deadline and explicit local-preview notice sit above the form. An optimized beach photograph sits beneath a blush wash; its phone crop occupies the upper 42% of the page to retain both faces. A dedicated internal reading region keeps the household form accessible on short screens. Replies are neither sent nor saved, and RSVP remains the penultimate chapter.
+Paper inputs use dusty-blue ink, a muted one-pixel border, (2px) corners, and sans text. Inputs and textareas use (16px) entry text. The shared scoped focus treatment is a gold (2px) outline with (5px) offset. RSVP follows Leslie & Serj's separate script heading plaque and ivory stationery panel, adapted to blush and antique gold. The plaque has a fine gold border, an inset-looking outline, and a small ornament across its top edge. The panel is at most 560px wide with a subtle shadow, roomy fields, and an uppercase blue-text action on paper fill. The confirmed deadline sits above the name-search form. An optimized beach photograph sits beneath a blush wash; its phone crop occupies the upper 42% of the page to retain both faces. A dedicated internal reading region keeps the household form accessible on short screens. Replies are submitted through the established RSVP API, and RSVP remains the penultimate chapter.
 
 ### Navigation
 
@@ -178,7 +185,7 @@ Paper rails contain the script name shortcut, contents toggle, Previous/Next act
 
 ### Stationery and Artwork
 
-A recurring ornament, centered script heading, and focused content group establish the page rhythm. The ornament's transparent margins are cropped in a (160px × 52px) viewport so its goldwork reads at the intended size. Save-the-date title, date, and supplied collage have separate proportional positions inside one frame. Both venues use cream damask, the supplied ivory/blush floral bow, the original venue watercolors with gold scroll trim, and matching flower urns on carved pedestals. Script titles and venue names, uppercase serif details, and blush rectangular map buttons follow the supplied reference. The pedestal cutout was created from the user's image with ImageGen; its source prompt accompanies the optimized WebP. The earlier arch is retained as historical artwork and is no longer rendered. The story's beach portrait carries flowers and an overlapping parchment title; all paragraphs follow below in a readable, scrollable column. The complete black-outfit collage anchors the closing page in its original aspect ratio. The three selected prenup masters are static imports with responsive Next Image sizing, quality 85, and lazy loading. The supplied venue watercolors use static imports from assets/photos/ with responsive sizing and lazy loading.
+A recurring ornament, centered script heading, and focused content group establish the page rhythm. The ornament's transparent margins are cropped in a (160px × 52px) viewport so its goldwork reads at the intended size. Save-the-date title, date, and supplied collage have separate proportional positions inside one frame. Both venues use cream damask, the supplied ivory/blush floral bow, the original venue watercolors with gold scroll trim, and matching flower urns on carved pedestals. Script titles, venue names with script initials and italic-serif remaining letters, uppercase serif details, and blush rectangular map buttons follow the supplied reference. The pedestal cutout was created from the user's image with ImageGen; its source prompt accompanies the optimized WebP. The earlier arch is retained as historical artwork and is no longer rendered. The story's beach portrait carries flowers and an overlapping parchment title; all paragraphs follow below in a readable, scrollable column. The complete black-outfit collage anchors the closing page in its original aspect ratio. The three selected prenup masters are static imports with responsive Next Image sizing, quality 85, and lazy loading. The supplied venue watercolors use static imports from assets/photos/ with responsive sizing and lazy loading.
 
 ### Opening and Page Motion
 
@@ -215,9 +222,11 @@ RSVP begins with a full-name search and an explicit household selection, using
 the existing Leslie & Serj interaction pattern. The selected household's guests,
 attendance choices, attendee dietary notes, and optional message share one inline
 form. There is no reply wizard or second details page. Search, empty results,
-required answers, completion, editing, and switching households work locally.
-Fictional sample households and the no-save notice clearly identify the preview;
-live guest lookup and persistence remain pending confirmed admin configuration.
+required answers, completion, and switching households follow the shared API flow.
+The form uses the shared RSVP hooks and existing access/search/party/submit
+APIs for the configured christina-and-reboden event slug. There are no sample
+households or preview instructions. Server-returned response scope, limits,
+locks, and closure control the form; success requires a confirmed save response.
 
 ## Do's and Don'ts
 
@@ -226,14 +235,14 @@ live guest lookup and persistence remain pending confirmed admin configuration.
 - **Do** keep client artwork, fonts, tokens, and styling scoped to this invitation.
 - **Do** preserve transparent artwork edges and reserve their inner areas for text.
 - **Do** paginate dense material while retaining persistent navigation.
-- **Do** keep preview and missing-photo status explicit.
+- **Do** show honest loading, save-error, locked, and closed RSVP states.
 - **Do** retain keyboard, focus, touch, and reduced-motion behavior.
 
 ### Don't:
 
 - **Don't** use script for long passages or form instructions.
 - **Don't** introduce document scrolling; the story, principal sponsors, secondary sponsors, dress code, and FAQs use internal reading regions within the presentation.
-- **Don't** represent preview replies as persisted RSVPs.
+- **Don't** confirm a reply before the save API succeeds.
 - **Don't** treat pending photographs, audio, or backend setup as completed design evidence.
 
 

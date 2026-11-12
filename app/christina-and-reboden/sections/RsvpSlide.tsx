@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import RsvpPreview from "../components/rsvp/RsvpPreview";
+import RsvpFlow from "../components/rsvp/RsvpFlow";
 import { wedding } from "../data/wedding";
 import { artwork, photos } from "../data/media";
 import styles from "../styles/invitation.module.css";
 import rsvpStyles from "../styles/rsvp.module.css";
 
-// Intentionally local: connect to the established RSVP flow after admin setup.
 export default function RsvpSlide() {
   return <div className="relative h-full">
     {photos.rsvp.src && <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[42%] sm:h-full">
@@ -24,8 +23,7 @@ export default function RsvpSlide() {
         </div>
         <div className={`${rsvpStyles.card} w-full shrink-0 rounded-md border px-[22px] py-6 sm:px-[35px] sm:py-[30px]`}>
           <p data-cr-reveal className="text-[13px] leading-6">Please respond by <strong className="font-medium">{wedding.deadline}</strong></p>
-          <p data-cr-reveal className="mt-2 border-b border-[var(--cr-line)] pb-4 text-[11px] leading-5">RSVP preview · Sample households only.<br />Replies are not sent or saved.</p>
-          <RsvpPreview />
+          <RsvpFlow />
         </div>
       </div>
     </div>

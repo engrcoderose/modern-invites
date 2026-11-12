@@ -2,6 +2,13 @@
 
 Route: `/christina-and-reboden`
 
+Live text now uses dusty-blue ink (#385d70), with a darker blue hover (#29495b)
+and light dusty-blue text (#c2d8e5) over photography. This covers headings, body
+copy, monograms, labels, navigation, links, music details, and RSVP fields.
+RSVP buttons use paper fill and blue labels to retain contrast. Pale surface
+contrast is 6.09:1 on cream, 6.81:1 on paper, 5.91:1 on the story background,
+and 4.55:1 on blush. Existing decorative artwork and image colors are preserved.
+
 An enchanted, non-scrolling wedding invitation based on the supplied design PNG
 and Signature Package questionnaire. The invitation currently has 22 slides,
 including the full story and full entourage. Previous/Next, horizontal swipes,
@@ -57,7 +64,10 @@ reserve matching scrollbar space at both edges to keep side margins balanced.
 The Dress Code combines principal-sponsor and guest attire on one page. Ninong
 requires Barong Tagalog and black pants; Ninang requires a gray floor-length
 gown. Each principal sponsor role now has its own illustrated attire example.
-The guest ladies' gown is dusty blue. Guest illustrations, descriptions, motif swatches, restrictions, and the
+All four illustrations use the principal-sponsor height, clamped from 84px to
+112px at 12dvh, with natural aspect ratios. Ninong has a distinct embroidered
+ivory Barong Tagalog illustration. The guest ladies' gown is dusty blue.
+Guest illustrations, descriptions, motif swatches, restrictions, and the
 closing attire message remain together here. The separate Sponsors’ attire
 slide and contents-menu entry are removed. Compact screens scroll internally.
 
@@ -104,6 +114,13 @@ Both retain alpha, are resized to 640px tall, and use WebP quality 85. Their exa
 edit prompts and original generated paths are recorded in adjacent `.webp.json`
 sidecars. The original pink illustration is retained as a source asset.
 
+Ninong's refined barong is `assets/designs/dresscode-ninong-barong.webp`, a
+transparent built-in ImageGen edit of `dresscode-men.webp`, optimized to 240x720
+WebP at quality 85. Its exact edit prompt is in the adjacent `.webp.json`.
+`AttireIllustration` in `sections/AttireSlide.tsx` gives every figure one height
+rule and derives responsive image widths from its aspect ratio. The former
+larger guest-figure CSS rules have been removed.
+
 ## Photos and audio
 
 All 23 supplied prenup photos are optimized losslessly in
@@ -149,7 +166,12 @@ come from the supplied design files; schedule text remains live JSX.
 Both venue pages follow the latest cream floral reference, replacing the arch.
 `sections/VenueSlide.tsx` composes the supplied floral bow, portrait damask,
 original venue watercolors, gold scroll trim, flower pedestals, and blush map
-button. Script venue names sit above readable serif times and addresses.
+button. Each word in both venue names and their supporting notes begins in
+Fleur De Leah script, followed by Noto Serif italic. `VenueLettering` preserves
+whole words for wrapping and provides an uninterrupted screen-reader label.
+The italic font reuses the repository's local Latin WOFF2, is isolated under
+`--cr-serif-italic`, and is not preloaded on the opening screen. Times and
+addresses keep their existing readable serif styling.
 Container-relative artwork sizes keep the entire composition within the stage.
 The flower pedestal was cut out from the supplied image with ImageGen and
 optimized to `assets/designs/venue-floral-pedestal.webp`; its prompt is in the
@@ -173,46 +195,60 @@ play option available. The original source remains in `assets/music/`.
 
 ## RSVP integration
 
-`sections/RsvpSlide.tsx` composes an explicitly labeled frontend preview.
-Guests search by full name, select the matching household, then answer for
-every invited member in one inline form. There is no two-step reply wizard.
-Attendance is required for each guest; dietary notes appear for attendees,
-with one optional household message. Editing or reselecting the same household
-preserves its draft; selecting a different household resets the fields.
-Replies exist only in React state and are never sent or saved.
+`sections/RsvpSlide.tsx` connects to the existing RSVP backend through
+`components/rsvp/RsvpFlow.tsx`. The event slug is configured once in
+`data/wedding.ts` as `christina-and-reboden`; no numeric event or invitation IDs
+are embedded in this invitation. The shared `useSmartRsvp` hook calls
+`/api/rsvp/access`, `/api/rsvp/search`, and `/api/rsvp/party`; `usePartyResponse`
+sends the selected invitation's returned guest IDs to `/api/rsvp/submit`.
 
-`components/rsvp/` separates search, household form, and flow state.
-`data/rsvp-preview.ts` contains explicitly fictional sample households, with
-preview keys rather than database IDs. `utilities/rsvpPreview.ts` reuses the
-repository's pure name normalizer and shared RSVP types. Local tests in
-`tests/christina-rsvp-preview.test.mts` cover exact-name matching, middle initials,
-ambiguous results, required attendance, and household limits. No backend calls
-run in this preview; real household lookup still requires confirmed admin setup.
+Guests search by full name, select a returned household, and answer in one inline
+form. Attendance is required for every returned guest; attendees can provide
+dietary notes, with one optional message. The server controls household versus
+individual scope, guest limits, response locks, access, and closure. Individual
+mode renders only the server-returned guest list. Confirmed success appears
+only after a successful API response. Failed requests retain an error and retry
+path, and closed or already-confirmed responses cannot be submitted again.
+The form guards concurrent submissions and disables fields while saving.
+
+All production sample households, preview instructions, fake success state,
+and their obsolete local helper/tests have been removed. The FAQ now describes
+the live search-and-reply flow. No database records or shared API code changed.
 
 Its styling follows Leslie & Serj's RSVP: a separate ornamental heading plaque
-and an ivory form panel, adapted to this client's blush background and rose
-action. The deadline and local-preview notice remain visible above the fields.
+and an ivory form panel, adapted to this client's blush background and dusty-blue
+text. The confirmed deadline remains visible above the fields.
 `styles/rsvp.module.css` owns the decorative plaque and panel; layout stays in
 JSX utilities. On short screens, only the RSVP reading region scrolls, keeping
 all form states reachable within the fixed invitation page.
 
-After the admin event is created by the user, connect to the repository’s
-established `components/smart-rsvp/` flow with confirmed event configuration,
-guest/household limits, enabled fields, and deadline. Do not invent event IDs
-or create records to enable this draft. Update the FAQ about RSVP availability
-at the same time. No API routes, database records, or shared configuration were
-changed.
+Before live use, confirm in the admin UI that the intended event uses slug
+`christina-and-reboden`, name-search access, the intended household/individual
+response mode, and its real imported guest list and deadline. If its existing
+slug differs, update only `wedding.rsvp.eventSlug`. Event lookup and persistence
+were not verified against the live backend under this repository's credential
+and Supabase boundaries. No admin record was created or changed.
+
+Integration QA used isolated local synthetic API fixtures, never production
+routes or credentials. Verified complete request payloads, one successful
+household save, individual scope, missing/ambiguous matches, locked replies,
+capacity limits, recoverable search/load/save failures, and closure during
+search or submission. The fixture routes were confined to the ignored isolated
+preview directory and removed after QA, together with their compiled build.
+They are not part of the application. Evidence is under
+`.impeccable/review/christina-live-rsvp/`.
 
 ## Verification
 
 - Repository TypeScript check and scoped ESLint.
-- Isolated Next production build with only this invitation; no private env files
-  or backend integration were included.
+- Isolated Next production build with this invitation and synthetic RSVP routes;
+  no private env files or live backend access were included.
 - Browser layout checks at 320×568, 390×844, 768×1024, 1280×720, and 1440×900.
 - Presentation checked for clipping at 320×568. The full story has an intentional
   internal reading scroll; the invitation itself remains fixed.
 - Opening, chapter menu, Previous/Next boundaries, keyboard arrows, Home/End,
-  Escape, required RSVP fields, attending/declining, and preview completion.
+  Escape, required RSVP fields, attending/declining, and API-confirmed completion
+  using synthetic local fixtures.
 - Forward/backward intermediate fold frames, rapid keyboard navigation, and
   RSVP state preserved across page turns. Shared fold output matches the
   original Leslie & Serj function across 404 sampled responsive frames.

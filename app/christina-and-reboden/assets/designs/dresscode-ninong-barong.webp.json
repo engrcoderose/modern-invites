@@ -1,0 +1,8 @@
+{
+  "tool": "Built-in image_gen",
+  "intent": "precise-object-edit",
+  "reference": "dresscode-men.webp",
+  "source": "C:/Users/rosas/.codex/generated_images/01a1bb41-b01f-7982-87a4-71af1fa9cad7/exec-c544561f-fbed-42d9-a5f0-4ad1248a1f65.png",
+  "prompt": "Edit target: the supplied transparent full-body male wedding attire illustration. Preserve the man's face, hairstyle, skin tone, pose, hands, black formal trousers, black shoes, thin outlined illustrated style, and full head-to-shoe framing. Replace ONLY his shirt with a clearly recognizable traditional Filipino BARONG TAGALOG: an elegant ivory/champagne piña-jusi shirt with lightly translucent woven fabric over a plain white undershirt, refined symmetrical embroidered floral/vine panels running down both sides of the center chest placket, subtle embroidery around the button placket and cuffs, a neat traditional pointed collar, long sleeves, and a straight untucked hem reaching below the hips. It must look ceremonial and traditionally Filipino, not like an ordinary printed button-down, suit jacket, or tucked-in shirt. No tie, no jacket, no additional accessories. Keep black slacks and polished black shoes fully visible. Match the current romantic wedding dress-code illustration style. Entire figure isolated on a genuinely transparent background, narrow full-body portrait composition with minimal transparent margin. No text, no border, no background scene or ground shadow.",
+  "optimization": "Resized to 720px tall, WebP quality 85, transparency preserved."
+}

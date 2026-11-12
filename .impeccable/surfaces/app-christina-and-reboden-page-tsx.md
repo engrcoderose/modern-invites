@@ -843,3 +843,82 @@ The dress-code reading region reserves 48px below its closing note so the note
 can enter the reveal observer's viewport before the scroll limit. Confirmed at
 390x844 after End: opacity 1, no residual translation, and the full note visible
 above the fixed footer. No shared animation behavior was changed.
+
+### Equal attire illustration sizes and traditional Ninong barong
+All four figures now reuse AttireIllustration with the principal sponsors'
+existing clamp(84px, 12dvh, 112px) height. Image widths and responsive sizes derive
+from each static asset's natural ratio. Removed the larger guest-figure CSS and
+its short-screen override. Ninong uses a distinct transparent illustration with
+ivory piña-style fabric, embroidered chest panels and cuffs, a traditional collar,
+and an untucked hem over black slacks. Built-in ImageGen edited the original male
+figure; the optimized 240x720 WebP and exact prompt sidecar are stored as
+assets/designs/dresscode-ninong-barong.webp and .webp.json. Guest artwork,
+Ninang's gray gown, dusty-blue ladies' gown, and attire instructions remain.
+
+Measured all four figures at equal heights: 86.39px at 1280x720, 101.27px at
+390x844, and 84px at 320x568. Inspected painted desktop/mobile layouts and the
+new barong, loaded images, no horizontal overflow, and no console errors.
+Confirmed the closing note reveals after End on compact mobile. Scoped ESLint,
+repository TypeScript, isolated production build, and diff whitespace checks
+pass. Evidence: `.impeccable/review/christina-equal-attire/`.
+
+### Dusty-blue typography trial
+Changed the client ink token to #385d70, with #29495b for hover and #c2d8e5
+for text over photography. Applied these text roles to monograms, headings,
+body copy, entourage labels, navigation, links, form fields, and music details.
+The photo-page script names retain their typography with a soft dark shadow.
+RSVP buttons now use paper fill and blue text, with pale blush hover, so blue
+labels remain readable. Decorative artwork, palette swatches, layout, and
+invitation behavior are unchanged; text embedded in supplied images remains
+part of those images.
+
+Contrast calculations for the main ink are 6.09:1 on cream, 6.81:1 on paper,
+5.91:1 on the story background, and 4.55:1 on blush. Reviewed mobile cover,
+attire, and RSVP, plus desktop slideshow and timeline; inspected computed
+text colors, the enabled search button, and all music-card text. No horizontal
+overflow or console errors. Scoped ESLint and isolated production build with
+type validation pass. Evidence: `.impeccable/review/christina-blue-text/`.
+
+### Script word initials with italic-serif venue lettering
+Both ceremony and reception names and their supporting notes now use Fleur De
+Leah for each word's first letter and genuine Noto Serif italic for the remaining
+letters. VenueLettering preserves spaces and punctuation, keeps words together
+while wrapping, and exposes one uninterrupted screen-reader string. Section
+titles, dates, addresses, map links, content, artwork, and dusty-blue ink remain.
+
+Reused the repository's existing 47,936-byte Noto Serif Latin italic WOFF2,
+copied into this client's licensed font folder. A separate --cr-serif-italic
+font variable avoids altering existing body and entourage typography; it is not
+preloaded on the opening. Venue line heights accommodate the larger script
+initials, with compact-screen sizing for the long cathedral name.
+
+Reviewed ceremony on desktop and 390px mobile, reception on 390px and 320x568,
+actual script/italic font assignments, exact accessible names, wrapping, and
+no horizontal overflow or console errors. Scoped ESLint and isolated production
+build with type validation pass. Font hash matches the existing repository copy.
+Evidence: `.impeccable/review/christina-venue-lettering/`.
+
+### Live RSVP connection
+Replaced the local preview with RsvpFlow using existing useSmartRsvp and
+usePartyResponse hooks. wedding.rsvp.eventSlug is christina-and-reboden, matching
+the invitation route. Access, search, party loading, and saving use the existing
+RSVP APIs; numeric invitation and guest IDs come only from their responses.
+Preserved the inline search -> household selection -> one-form reply design,
+blush photo, ivory card, dusty-blue text, optional dietary/message fields, and
+confirmed deadline. Removed production sample fixtures, fake confirmation,
+preview helper/data/tests, and all preview wording. Updated the RSVP FAQ.
+
+The form respects household/individual scope, per-guest required answers,
+capacity limits, server response locks, and RSVP_CLOSED during search, party
+load, or submission. Saves disable controls and have an in-flight guard.
+Only a successful API response displays confirmation; failures preserve the
+form and offer retry. Local synthetic fixtures verified empty/ambiguous search,
+full-name validation, exact household and individual submission payloads,
+capacity and lock protection, recovery from search/load/save failures, and
+closure during search and submission. No production routes, credentials, or
+Supabase access were used. Real event existence/settings and persisted replies
+remain unverified; README records the admin checks for the configured slug.
+
+Scoped lint, root TypeScript, and isolated production build pass. Reviewed
+390px mobile form/search and desktop search states; no runtime console errors.
+Evidence: `.impeccable/review/christina-live-rsvp/verification.json` and PNGs.

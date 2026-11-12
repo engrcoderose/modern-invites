@@ -15,6 +15,7 @@ import damask from "../assets/designs/bg-pattern.webp";
 import ornament from "../assets/designs/design-2.webp";
 import lady from "../assets/designs/dresscode-gown-dusty-blue.webp";
 import ninang from "../assets/designs/dresscode-gown-gray.webp";
+import ninong from "../assets/designs/dresscode-ninong-barong.webp";
 import gentleman from "../assets/designs/dresscode-men.webp";
 import envelope from "../assets/designs/envelope.webp";
 import scroll from "../assets/designs/story-parchment-blush.webp";
@@ -24,7 +25,7 @@ import dateCollage from "../assets/designs/save-the-date-images.webp";
 import paper from "../assets/designs/paper-bg.webp";
 import waxSeal from "../assets/designs/timeline-wax-seal.webp";
 
-export const artwork = { venueCrown, venuePedestal, venueTrim, venueDamask, garden, damask, ornament, lady, ninang, gentleman, envelope, scroll, storyFrame, frame, dateCollage, paper, waxSeal };
+export const artwork = { venueCrown, venuePedestal, venueTrim, venueDamask, garden, damask, ornament, lady, ninang, ninong, gentleman, envelope, scroll, storyFrame, frame, dateCollage, paper, waxSeal };
 
 export type PhotoBreakPhoto = { src: StaticImageData; alt: string; position: string };
 

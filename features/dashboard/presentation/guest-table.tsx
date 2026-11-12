@@ -28,7 +28,8 @@ interface GuestTableProps {
   eventId: number;
   guestPage: DashboardGuestPage;
   canManage: boolean;
-  showSongRequests?: boolean;
+  showMessages?: boolean;
+  messageColumnLabel?: string;
   search?: string;
   attendanceStatus?: DashboardAttendanceStatus;
   updateAction: GuestMutationAction;
@@ -277,7 +278,8 @@ export function GuestTable({
   eventId,
   guestPage,
   canManage,
-  showSongRequests = false,
+  showMessages = true,
+  messageColumnLabel = "Message",
   search,
   attendanceStatus,
   updateAction,
@@ -306,7 +308,7 @@ export function GuestTable({
       <div className="overflow-visible rounded-2xl border border-black/10 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table
-            className={`w-full text-left text-sm ${showSongRequests ? "min-w-[1100px]" : "min-w-[900px]"}`}
+            className={`w-full text-left text-sm ${showMessages ? "min-w-[1100px]" : "min-w-[900px]"}`}
           >
             <thead className="border-b border-black/10 bg-black/[0.02] text-xs uppercase tracking-wider text-ink-muted">
               <tr>
@@ -316,9 +318,9 @@ export function GuestTable({
                 <th className="px-5 py-4 font-semibold">
                   Dietary notes
                 </th>
-                {showSongRequests ? (
+                {showMessages ? (
                   <th scope="col" className="px-5 py-4 font-semibold">
-                    Song request
+                    {messageColumnLabel}
                   </th>
                 ) : null}
                 <th className="px-5 py-4 font-semibold">RSVP status</th>
@@ -359,7 +361,7 @@ export function GuestTable({
                       {guest.dietaryRestrictions ?? "None"}
                     </p>
                   </td>
-                  {showSongRequests ? (
+                  {showMessages ? (
                     <td className="min-w-[12rem] max-w-[20rem] px-5 py-4 text-ink-muted">
                       <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">
                         {guest.message?.trim() || "None"}

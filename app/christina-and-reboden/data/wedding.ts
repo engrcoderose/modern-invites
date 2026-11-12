@@ -7,6 +7,7 @@ export const wedding = {
   weekday: "Saturday",
   hashtag: "#DENfoundhisEveryTINg",
   deadline: "December 28, 2026",
+  rsvp: { eventSlug: "christina-and-reboden" },
   ceremony: {
     name: "Minor Basilica and Cathedral Parish of Immaculate Conception",
     note: "Diocese of Malolos",
@@ -35,7 +36,7 @@ export const timeline = [
 
 export const faqs = [
   { question: "When should I RSVP?", answer: `Please respond by ${wedding.deadline}.` },
-  { question: "How can I RSVP?", answer: "The RSVP form will be available here once guest responses open. This draft includes a preview of the form." },
+  { question: "How can I RSVP?", answer: "Enter your first and last name in the RSVP section, select your household, and respond for the invited guests listed. Your reply is confirmed when the form shows that it has been saved." },
   { question: "Are children invited?", answer: "To allow all guests to relax and enjoy the evening, our celebration is adults-only, with the exception of children in our entourage." },
   { question: "Can I bring a plus one?", answer: "Our numbers are really tight so we’re only able to accommodate the guests listed on the invite. Thank you for understanding." },
   { question: "Can I take photos during the ceremony?", answer: `Yes, please use our hashtag ${wedding.hashtag} so we can share in the memories too!` },
