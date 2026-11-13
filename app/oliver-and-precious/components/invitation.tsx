@@ -6,12 +6,11 @@ import { animate, AnimatePresence, motion, useMotionValue, useReducedMotion } fr
 import BookPage from "./book-page";
 import OpeningScreen from "./opening-screen";
 import { wedding } from "../data";
-import { Monogram } from "./artwork";
+import { Monogram, StationeryCorners } from "./artwork";
 import { createInvitationPages } from "../sections/pages";
 import { MusicControl } from "./music-control";
 import { WoodlandBackdrop } from "./woodland-backdrop";
 import { media } from "../data/media";
-const slideshowBackground = media.background;
 
 const chapters = [
   ["The Wedding Venue", "the-day"],
@@ -80,9 +79,8 @@ export default function Invitation() {
   const pageIds = pages.map((page) => page.id).join("|");
   const lastIndex = pages.length - 1;
   const current = pages[active] || pages[0];
-  const immersivePhoto = current.id === "together";
   const darkPagination =
-    immersivePhoto || current.tone === "woodland" || current.tone === "olive";
+    current.tone === "woodland" || current.tone === "olive";
   const turnTo = useCallback(
     (index: number, focus = true) => {
       const next = Math.max(0, Math.min(index, lastIndex));
@@ -121,7 +119,8 @@ export default function Invitation() {
       const aliases: Record<string, string> = {
         invitation: "home",
         reception: "the-day",
-        
+        "photo-break": "the-day",
+        together: "attire",
         "with-love": "save-the-date",
         "honor-attendants": "wedding-party",
         "principal-sponsors-1": "principal-sponsors",
@@ -344,14 +343,17 @@ export default function Invitation() {
               {current.tone === "woodland" && (
                 <WoodlandBackdrop
                   src={
-                    current.id === "photo-break" || current.id === "the-day"
-                      ? slideshowBackground
+                    current.id === "the-day"
+                      ? media.background
                       : undefined
                   }
                 />
               )}
+              {current.id !== "entourage" && current.id !== "the-day" && (
+                <StationeryCorners />
+              )}
               <div
-                className={`op-page-content ${immersivePhoto ? "h-full" : "h-[calc(100%-var(--op-controls-height))]"} py-10 px-[10%] text-center flex flex-col overflow-y-auto overscroll-contain [@media(max-width:700px)]:py-8 [@media(max-width:700px)]:px-[9%] relative z-[1] ${current.fullBleed ? "!p-0" : ""} ${current.id === "the-day" ? "[@media(max-width:700px)]:!px-[7%] [@media(max-width:700px)]:!py-5" : ""}`}
+                className={`op-page-content h-[calc(100%-var(--op-controls-height))] py-10 px-[10%] text-center flex flex-col overflow-y-auto overscroll-contain [@media(max-width:700px)]:py-8 [@media(max-width:700px)]:px-[9%] relative z-[1] ${current.id === "the-day" ? "[@media(max-width:700px)]:!px-[7%] [@media(max-width:700px)]:!py-5" : ""}`}
               >
                 {current.content}
               </div>

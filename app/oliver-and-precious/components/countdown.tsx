@@ -18,7 +18,6 @@ export function Countdown() {
     }, 1000);
     return () => window.clearInterval(interval);
   }, []);
-  if (remaining === 0) return <p className="op-body">Our wedding day · {wedding.date}</p>;
   const seconds = Math.floor((remaining ?? 0) / 1000);
   const units = [
     [Math.floor(seconds / 86400), "Days"],
@@ -30,7 +29,11 @@ export function Countdown() {
     <div
       className="op-countdown grid w-full max-w-[520px] grid-cols-4 gap-5 py-3 [@media(max-width:700px)]:gap-3"
       role="timer"
-      aria-label={wedding.ceremonyISO ? `Countdown to ${wedding.date} at ${wedding.ceremonyTime}` : "Wedding date to be announced"}
+      aria-label={remaining === 0
+        ? `Countdown complete for ${wedding.date}`
+        : wedding.ceremonyISO
+          ? `Countdown to ${wedding.date} at ${wedding.ceremonyTime}`
+          : "Wedding date to be announced"}
       aria-live="off"
     >
       {units.map(([value, label], index) => (

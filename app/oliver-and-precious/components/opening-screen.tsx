@@ -213,7 +213,7 @@ export default function OpeningScreen({
             </motion.span>
           </motion.span>
           <motion.span
-            className="border-b border-[#f2ede04d] px-2 py-3 text-[11px] uppercase tracking-[0.2em] transition-colors group-hover:border-[#f2ede0] group-focus-visible:outline group-focus-visible:outline-1 group-focus-visible:outline-offset-4"
+            className="border-b border-[#f2ede04d] px-2 py-3 text-[11px] uppercase tracking-[0.2em] transition-colors group-hover:border-white group-focus-visible:outline group-focus-visible:outline-1 group-focus-visible:outline-offset-4"
             style={{ opacity: promptOpacity }}
           >
             Click to open

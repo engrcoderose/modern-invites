@@ -5,7 +5,6 @@ import type { InvitationPage } from "./types";
 import { wedding } from "../data";
 import { media } from "../data/media";
 import { Venue } from "../components/venue";
-import PhotoBreak from "../components/photo-break";
 import { photoPages } from "./photo-pages";
 
 export function introductionPages(): InvitationPage[] {
@@ -63,19 +62,12 @@ export function introductionPages(): InvitationPage[] {
       content: (
         <div className="op-venues px-8 py-9 [@media(max-width:700px)]:flex [@media(max-width:700px)]:min-h-full [@media(max-width:700px)]:flex-col [@media(max-width:700px)]:px-3 [@media(max-width:700px)]:py-3">
           <h2 className="sr-only">The Wedding Venue</h2>
-          <div className="grid grid-cols-2 gap-12 [@media(max-width:700px)]:flex-1 [@media(max-width:700px)]:grid-cols-1 [@media(max-width:700px)]:grid-rows-2 [@media(max-width:700px)]:gap-6">
+          <div className="grid grid-cols-2 gap-12 [@media(max-width:700px)]:flex-1 [@media(max-width:700px)]:grid-cols-1 [@media(max-width:700px)]:grid-rows-[repeat(2,minmax(min-content,1fr))] [@media(max-width:700px)]:gap-6">
             <Venue />
             <Venue reception />
           </div>
         </div>
       ),
-    },
-    {
-      id: "photo-break",
-      label: "Us",
-      tone: "woodland",
-      fullBleed: true,
-      content: <PhotoBreak />,
     },
   ];
 }

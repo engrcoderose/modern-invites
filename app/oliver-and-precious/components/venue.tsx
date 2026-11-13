@@ -1,21 +1,29 @@
 "use client";
 
-import { ArrowUpRight, Flower2, Trees } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { wedding } from "../data";
+import { media } from "../data/media";
 
 export function Venue({ reception = false }: { reception?: boolean }) {
   const venue = reception ? wedding.reception : wedding.ceremony;
   return (
     <section
-      className="flex min-w-0 flex-col items-center gap-3 [@media(max-width:700px)]:h-full [@media(max-width:700px)]:justify-center [@media(max-width:700px)]:gap-1"
+      className="flex min-w-0 flex-col items-center gap-3 [@media(max-width:700px)]:justify-center [@media(max-width:700px)]:gap-1"
       aria-label={reception ? "The reception" : "The ceremony"}
     >
-      <div className="flex flex-col items-center gap-3 [@media(max-width:700px)]:gap-1">
+      <div className="flex shrink-0 flex-col items-center gap-3 [@media(max-width:700px)]:gap-1">
         <div
-          className="op-venue-art relative h-[140px] w-[210px] max-w-full [@media(max-width:700px)]:h-[clamp(60px,calc(15svh-40px),110px)] [@media(max-width:700px)]:w-[165px]"
-          aria-hidden="true"
+          className="op-venue-art h-[140px] w-[210px] max-w-full shrink-0 [@media(max-width:700px)]:h-[120px] [@media(max-width:700px)]:w-[180px]"
         >
-          {reception ? <Trees className="h-full w-full text-[#5a6946]" strokeWidth={0.7} /> : <Flower2 className="h-full w-full text-[#5a6946]" strokeWidth={0.7} />}
+          <Image
+            src={reception ? media.receptionVenue : media.ceremonyVenue}
+            alt={reception
+              ? "Line illustration of Cove Garden's Talisay Pavillion reception venue"
+              : "Line illustration of the Cove Garden ceremony pavilion"}
+            sizes="(max-width: 700px) 180px, 210px"
+            className="block h-full w-full object-contain"
+          />
         </div>
         <p className="op-label">
           {reception ? wedding.reception.introduction : "The Ceremony"}
@@ -31,11 +39,6 @@ export function Venue({ reception = false }: { reception?: boolean }) {
       {venue.address && (
         <p className="max-w-[340px] text-[12px] leading-relaxed [@media(max-width:700px)]:text-[clamp(10.5px,1.5svh,12px)] [@media(max-width:700px)]:leading-normal">
           {venue.address}
-        </p>
-      )}
-      {reception && wedding.reception.parking && (
-        <p className="max-w-[340px] text-[12px] leading-relaxed [@media(max-width:700px)]:text-[clamp(10.5px,1.5svh,12px)] [@media(max-width:700px)]:leading-normal">
-          {wedding.reception.parking}
         </p>
       )}
       {venue.mapUrl && (

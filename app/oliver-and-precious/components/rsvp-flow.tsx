@@ -22,13 +22,10 @@ import {
 } from "@/components/smart-rsvp";
 import { wedding } from "../data";
 import { Ornament } from "./artwork";
+import RsvpPreview from "./rsvp-preview";
+import { buttonClass, inputClass, labelClass } from "./rsvp-form-styles";
 
 const eventSlug = wedding.slug;
-const inputClass =
-  "mt-2 w-full border border-[#bfb59a] bg-[#fffdf440] px-3 py-3 text-base text-[#414636] placeholder:text-[#646650] disabled:opacity-60";
-const buttonClass =
-  "op-button op-button-solid inline-flex min-h-11 w-full items-center justify-center gap-3 px-5 py-3 disabled:opacity-50";
-const labelClass = "block text-left text-[11px] leading-relaxed tracking-wide";
 
 function ClosedRsvp() {
   return <RsvpClosedNotice appearance="minimal" titleClassName="op-heading" message={coupleRsvpClosedMessage} className="mt-7 text-[#414636]" />;
@@ -434,6 +431,7 @@ function ActiveRsvpFlow() {
 
 export default function RsvpFlow() {
   if (wedding.rsvpEnabled) return <ActiveRsvpFlow />;
+  if (wedding.rsvpPreviewEnabled) return <RsvpPreview />;
   return (
     <div className="mt-7 space-y-6">
       <p role="status" className="op-body">RSVP is not yet open. Please check back here to confirm your attendance once the form becomes available.</p>

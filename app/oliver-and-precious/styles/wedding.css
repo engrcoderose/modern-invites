@@ -106,18 +106,18 @@
   border-bottom: 1px solid currentColor;
 }
 .op-button {
-  border: 1px solid var(--op-olive);
+  border: 1px solid var(--op-pink-ink);
   transition: background 0.2s;
 }
 .op-button-outline:hover {
-  background: #dfe1cd;
+  background: var(--op-pink-soft);
 }
 .op-button-solid {
-  background: var(--op-olive);
-  color: #fbf7e8;
+  background: var(--op-pink-ink);
+  color: #ffffff;
 }
 .op-button-solid:hover {
-  background: #4b502a;
+  background: #783b50;
 }
 
 .op-nav {
@@ -141,7 +141,8 @@
   gap: 12px;
 }
 .op-desktop-nav a:last-child {
-  border: 1px solid var(--op-olive);
+  border: 1px solid var(--op-pink-ink);
+  color: var(--op-pink-ink);
   padding: 10px 18px;
 }
 .op-book-stage {
@@ -155,8 +156,8 @@
 .op-book-page {
   outline: none;
   background:
-    radial-gradient(ellipse at 50% 40%, #fffdf440, transparent 70%),
-    radial-gradient(ellipse at 50% 50%, transparent 55%, #ac9b761c),
+    radial-gradient(ellipse at 50% 40%, #f4d5df30, transparent 70%),
+    radial-gradient(ellipse at 50% 50%, transparent 55%, #b6778b14),
     var(--op-paper);
 }
 .op-book-page::before {
@@ -214,7 +215,10 @@
   max-width: 660px !important;
 }
 .op-faq-item {
-  border-top: 1px solid var(--op-line);
+  border-top: 1px solid var(--op-pink-rule);
+}
+.op-faq-item summary > svg {
+  color: var(--op-pink-ink);
 }
 .op-faq-item summary {
   font-size: 15px;
@@ -423,6 +427,16 @@
   }
 }
 
+/* Blush stationery accents stay local to this invitation and its opening. */
+.op-book,
+.op-opening-screen {
+  --op-pink: #b6778b;
+  --op-pink-ink: #8d4b61;
+  --op-pink-soft: #f7e9ee;
+  --op-pink-light: #ebbdcb;
+  --op-pink-rule: #ddbdc8;
+}
+
 /* Vintage woodland stationery, adapted to the invitation's horizontal pages. */
 .op-book {
   --op-paper: #ffffff;
@@ -430,7 +444,18 @@
   --op-ink: #414636;
   --op-muted: #646650;
   --op-line: #b5bda9;
-  --op-gold: #c89da4;
+  --op-gold: var(--op-pink);
+}
+.op-stationery-corners {
+  color: var(--op-pink);
+  opacity: 0.85;
+}
+.op-tone-woodland .op-stationery-corners,
+.op-tone-olive .op-stationery-corners {
+  color: #dfd9be;
+}
+.op-countdown {
+  color: var(--op-pink-ink);
 }
 .op-label {
   letter-spacing: 0.15em;
@@ -491,7 +516,7 @@
   color: var(--op-gold);
 }
 .op-tone-olive .op-ornament {
-  color: #d2c5a0;
+  color: var(--op-pink-light);
 }
 .op-script-accent {
   font-size: 42px;
@@ -530,11 +555,11 @@
   max-width: 560px !important;
 }
 .op-rsvp-plaque {
-  background: var(--op-paper);
-  color: var(--op-ink);
+  background: var(--op-pink-soft);
+  color: var(--op-pink-ink);
   border-radius: 45% 45% 25% 25% / 25% 25% 40% 40%;
-  border: 1px solid #ac9b76;
-  outline: 2px solid #e4dac2;
+  border: 1px solid var(--op-pink);
+  outline: 2px solid var(--op-pink-light);
   outline-offset: 3px;
   box-shadow: 0 8px 24px #101c2433;
 }
@@ -545,7 +570,7 @@
 .op-rsvp-card {
   background: var(--op-paper);
   color: var(--op-ink);
-  border: 1px solid #baa987;
+  border: 1px solid var(--op-pink-rule);
   border-radius: 6px;
   box-shadow: 0 14px 50px #111a1633;
 }
@@ -592,6 +617,13 @@
 }
 .op-heading em {
   font-style: normal;
+}
+
+.op-book h3.op-timeline-event-title {
+  font-family: "OP Noto Serif", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .op-book h3.op-rsvp-form-heading {
@@ -660,7 +692,7 @@
   content: "";
   position: absolute;
   inset: 18px;
-  border: 1px solid #ac9b7657;
+  border: 1px solid var(--op-pink-rule);
   pointer-events: none;
 }
 .op-opening-names {
@@ -677,34 +709,6 @@
 }
 
 /* Shared woodland stationery for the ceremony and reception. */
-.op-portrait-frame {
-  width: min(560px, 100%, calc((100svh - 300px) * 3 / 4));
-}
-.op-photo-break-names {
-  font-size: clamp(48px, 7svh, 68px);
-  text-shadow: 0 2px 15px #172015b3;
-}
-.op-photo-slide {
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-.op-photo-slide-enter {
-  animation: op-photo-crossfade 600ms ease-in-out both;
-}
-@keyframes op-photo-crossfade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .op-photo-slide-enter {
-    animation: none;
-  }
-}
-
 .op-venues {
   border: 1px solid #dfd9be80;
   outline: 1px solid #dfd9be40;

@@ -2,7 +2,7 @@
 
 import { ChevronDown } from "lucide-react";
 import type { InvitationPage } from "./types";
-import { faqs } from "../data";
+import { faqs, wedding } from "../data";
 import { Ornament } from "../components/artwork";
 import { Countdown } from "../components/countdown";
 import RsvpFlow from "../components/rsvp-flow";
@@ -42,7 +42,7 @@ export function closingPages(): InvitationPage[] {
               className="pointer-events-none absolute -top-3 inset-x-0 flex justify-center"
               aria-hidden="true"
             >
-              <Ornament className="h-6 w-[76px] rounded-full bg-[var(--op-paper)] px-2 text-[#9d916a]" />
+              <Ornament className="h-6 w-[76px] rounded-full bg-[var(--op-pink-soft)] px-2 text-[var(--op-pink)]" />
             </div>
             <h2 className="whitespace-nowrap text-center">Kindly Reply</h2>
           </div>
@@ -64,6 +64,7 @@ export function closingPages(): InvitationPage[] {
             We can&apos;t wait to celebrate with you!
           </h2>
           <Countdown />
+          <p className="op-body">Our wedding day · {wedding.date}</p>
         </div>
       ),
     },

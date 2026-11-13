@@ -5,18 +5,11 @@ import { ArrowUpRight, Check } from "lucide-react";
 import type { InvitationActions, InvitationPage } from "./types";
 import { wedding, attireDetails } from "../data";
 import { Ornament } from "../components/artwork";
-import PhotoBreak from "../components/photo-break";
 import { photoPages } from "./photo-pages";
 
 export function detailPages({ copyHashtag, copied, copyError }: InvitationActions): InvitationPage[] {
   const galleryPhotos = wedding.galleryPhotos.slice(0, 30 - Math.min(30, wedding.storyPhotos.length));
   return [
-    {
-      id: "together",
-      label: "Together",
-      fullBleed: true,
-      content: <PhotoBreak fullPage />,
-    },
     ...photoPages(galleryPhotos, "Our moments", "our-moments"),
     ...[
           {

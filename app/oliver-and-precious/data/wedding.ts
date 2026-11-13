@@ -11,11 +11,11 @@ export const wedding = {
   groom: "Oliver E. Bartolome",
   brideShort: "Precious",
   groomShort: "Oliver",
-  date: "18 March 2026",
-  dateISO: "2026-03-18",
+  date: "18 March 2027",
+  dateISO: "2027-03-18",
   ceremonyTime: "3:00 PM",
-  // Wednesday, 18 March 2026 at 3:00 PM in Philippine time (UTC+08:00).
-  ceremonyISO: "2026-03-18T15:00:00+08:00",
+  // Thursday, 18 March 2027 at 3:00 PM in Philippine time (UTC+08:00).
+  ceremonyISO: "2027-03-18T15:00:00+08:00",
   ceremony: {
     name: "Cove Garden",
     address: "Cagayan de Oro",
@@ -27,7 +27,6 @@ export const wedding = {
     introduction: "Reception to follow at",
     time: "7:00 PM",
     address: "Cagayan de Oro",
-    parking: "Parking is available at the venue." as string | null,
     mapUrl: "https://www.google.com/maps/search/?api=1&query=Cove+Garden+Talisay+Pavillion+Cagayan+de+Oro",
     mapEmbedUrl: null as string | null,
   },
@@ -40,6 +39,8 @@ export const wedding = {
   contact: null as { name: string; href: string; label: string } | null,
   // Enable only after the owner provisions this event and its guest list.
   rsvpEnabled: false,
+  // Browser-only sample flow; never mounts the live RSVP hooks.
+  rsvpPreviewEnabled: true,
   rsvpQuestions: [] as { id: string; question: string; placeholder: string; type: "text" }[],
   gifts: {
     message:
