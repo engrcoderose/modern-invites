@@ -92,14 +92,14 @@ export function validateImportRows(input: unknown): {
         rowNumber,
         message: "Dietary notes must contain at most 500 characters.",
       });
-    const key = importNameKey(fullName);
+    const invitationKey = importNameKey(householdName || fullName);
+    const key = JSON.stringify([invitationKey, importNameKey(fullName)]);
     if (names.has(key))
       issues.push({
         rowNumber,
-        message: `This guest name also appears on row ${names.get(key)}. Remove the duplicate or add guests with identical names manually.`,
+        message: `This guest name also appears on row ${names.get(key)} in the same household. Remove the duplicate or use a different household for a different guest.`,
       });
     names.set(key, rowNumber);
-    const invitationKey = importNameKey(householdName || fullName);
     const prior = invitations.get(invitationKey);
     if (prior) {
       // A solo invitation must not accidentally become a named household.

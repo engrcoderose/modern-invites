@@ -105,7 +105,7 @@ export function ImportGuests({ eventId }: { eventId: number }) {
         <div className="space-y-2 rounded-xl bg-sage-50 p-4 text-sm leading-6">
           <p><strong>One guest per row.</strong> Guest name is required. Household, Guest type, and Dietary notes are optional.</p>
           <p>Leave Household blank for an individual invitation with one guest. Use the same household name to group guests; its maximum is the number of guests listed.</p>
-          <p>Existing guests and RSVP responses stay unchanged. Matching names or households must be resolved before importing.</p>
+          <p>Existing guests and RSVP responses stay unchanged. Guests with the same name are allowed in different households. Duplicate names within a household and existing household names must be resolved before importing.</p>
           <Button type="button" variant="outline" className="mt-1 bg-white" onClick={downloadTemplate}><Download aria-hidden="true" />Download CSV template</Button>
           <p className="text-xs text-ink-muted">Open the template in Excel and replace the example guests. Up to 500 guests, 2 MB. Excel uses “Guest List” or the first sheet. Use text values, not formulas.</p>
         </div>

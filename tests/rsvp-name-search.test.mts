@@ -84,3 +84,18 @@ test("database pattern metacharacters are escaped and repository failures propag
     async findCandidates() { throw new Error("Database unavailable"); },
   }, { eventId: 7, fullName: "John Rey Sergio" }), /Database unavailable/);
 });
+
+test("identical guest names in different households remain separate selectable invitations", async () => {
+  const matches = await searchInvitationsWithoutMiddleInitials({
+    async findCandidates() {
+      return [
+        { ...guest("Maria Santos", 12), household_name: "Reyes Family" },
+        { ...guest("Maria Santos", 13), household_name: "Cruz Family" },
+      ];
+    },
+  }, { eventId: 7, fullName: "Maria Santos" });
+  assert.deepEqual(matches, [
+    { invitation_id: 12, household_name: "Reyes Family", matched_guest_name: "Maria Santos" },
+    { invitation_id: 13, household_name: "Cruz Family", matched_guest_name: "Maria Santos" },
+  ]);
+});

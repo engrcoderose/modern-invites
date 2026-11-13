@@ -24,6 +24,7 @@ before(async () => {
     create table rsvps(id bigint primary key, invitation_id bigint references invitations, message text);
   `);
   await db.exec(await readFile(new URL("../supabase/migrations/20260927_rsvp_guest_import.sql", import.meta.url), "utf8"));
+  await db.exec(await readFile(new URL("../supabase/migrations/20261114_household_scoped_guest_import.sql", import.meta.url), "utf8"));
 });
 after(async () => { await db?.close(); });
 beforeEach(async () => {
@@ -60,7 +61,7 @@ test("preview writes nothing; import creates pending guests and counted househol
 
 test("existing guests, empty households, and RSVP responses are protected", async () => {
   await db.exec("insert into invitations(event_id, household_name, max_attendees) values(1, 'Existing', 3), (1, 'Empty', 2); insert into guests(invitation_id,full_name,guest_type,attendance_status) values(1, 'Maria Santos','adult','attending'); insert into rsvps values(1,1,'Keep this reply');");
-  const result = await invoke([row(" maria   santos "), row("New Person", "Empty")]);
+  const result = await invoke([row(" maria   santos ", " existing "), row("New Person", "Empty")]);
   assert.equal(result.issues.length, 2);
   assert.equal(await count("guests"), 1);
   assert.equal(await count("rsvp_guest_imports"), 0);
@@ -82,6 +83,40 @@ test("new request IDs still reject already imported names", async () => {
   const result = await invoke([row("Maria")], false, 1, "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb");
   assert.equal(result.issues.length, 1);
   assert.equal(await count("guests"), 1);
+});
+
+test("preview and import allow identical names in different households and a solo invitation", async () => {
+  const rows = [row("Maria Santos", "Reyes Family"), row(" MARIA  SANTOS ", "Cruz Family"), row("Maria Santos")];
+  assert.deepEqual(await invoke(rows, true), { guestCount: 3, invitationCount: 3, issues: [] });
+  assert.equal(await count("guests"), 0);
+  const saved = await invoke(rows);
+  assert.deepEqual(saved, { guestCount: 3, invitationCount: 3, issues: [] });
+  assert.deepEqual(await invoke(rows), saved);
+  assert.equal(await count("guests"), 3);
+  assert.equal(await count("invitations"), 3);
+});
+
+test("an existing name in another household does not block a new household or solo invitation", async () => {
+  await invoke([row("Maria Santos", "Existing Family")]);
+  const result = await invoke([row(" maria  santos ", "New Family"), row("Maria Santos")], false, 1, "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb");
+  assert.deepEqual(result, { guestCount: 2, invitationCount: 2, issues: [] });
+  assert.equal(await count("guests"), 3);
+});
+
+test("an existing solo name does not block the same name in a new household", async () => {
+  await invoke([row("Maria Santos")]);
+  const result = await invoke([row("Maria Santos", "New Family")], false, 1, "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb");
+  assert.deepEqual(result.issues, []);
+  assert.equal(await count("guests"), 2);
+});
+
+test("database rejects normalized duplicate names within the same household in preview and save", async () => {
+  const rows = [row("Jose\u0301 Santos", " Pen\u0303a  Family "), row("JOSÉ SANTOS", "peña family")];
+  for (const preview of [true, false]) {
+    await assert.rejects(invoke(rows, preview), /duplicate guest names/);
+  }
+  assert.equal(await count("guests"), 0);
+  assert.equal(await count("rsvp_guest_imports"), 0);
 });
 
 test("authorization rejects viewers, other events, suspended profiles, and anonymous callers", async () => {

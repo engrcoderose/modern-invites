@@ -90,6 +90,27 @@ test("duplicate names normalize whitespace and case, while identical household n
   assert.equal(importInvitationCount(result.rows), 1);
 });
 
+test("identical guest names are allowed in different households, including a solo invitation", () => {
+  const result = guestTableToRows([
+    ["Guest name", "Household"],
+    [" Maria  Santos ", "Reyes Family"],
+    ["maria santos", "Cruz Family"],
+    ["Maria Santos", ""],
+  ]);
+  assert.deepEqual(result.issues, []);
+  assert.equal(importInvitationCount(result.rows), 3);
+});
+
+test("household and guest Unicode composition, case and whitespace still detect duplicates", () => {
+  const result = guestTableToRows([
+    ["Guest name", "Household"],
+    ["Jose\u0301 Santos", " Pen\u0303a  Family "],
+    ["JOSÉ SANTOS", "peña family"],
+  ]);
+  assert.equal(result.issues.length, 1);
+  assert.match(result.issues[0].message, /also appears on row 2/);
+});
+
 test("individual and household name collisions, invalid types and long notes are reported", () => {
   const result = guestTableToRows([["Guest name", "Household", "Guest type", "Dietary notes"], ["Maria Santos", "", "Adult", ""], ["Juan Santos", "Maria Santos", "Baby", "x".repeat(501)]]);
   assert.equal(result.issues.length, 3);
