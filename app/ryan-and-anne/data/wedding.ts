@@ -24,8 +24,8 @@ export const wedding = {
     mapUrl: null as string | null,
   },
   hashtag: "#ParadiseToPantoja",
-  rsvpDeadline: "November 14, 2026",
-  rsvpDeadlineISO: "2026-11-14",
+  rsvpDeadline: "November 20, 2026",
+  rsvpDeadlineISO: "2026-11-20",
   rsvpEventSlug: "ryan-and-anne",
   music: {
     title: "You’re Still The One",
