@@ -3,15 +3,27 @@
 Public URL: `https://christinaandrebodenwedding.moderninvites.com/`
 
 Internal/local route: `/christina-and-reboden`. The public hostname's root
-rewrites to this route. Old links on `moderninvites.com` and
-`www.moderninvites.com` redirect permanently to the new public URL, preserving
-query parameters. RSVP keeps the `christina-and-reboden` event slug; APIs,
-photos, music, and Next.js assets keep their existing paths.
+rewrites to this route, preserving query parameters. Direct requests to the
+old path return an uncached 404 on every public host, including
+`moderninvites.com`, `www.moderninvites.com`, the custom subdomain, and Vercel
+preview domains. The path remains accessible on `localhost`, `127.0.0.1`, and
+`[::1]` in development and local production previews. RSVP keeps the
+`christina-and-reboden` event slug; APIs, photos, music, and Next.js assets keep
+their existing paths.
 
 Deploy the routing changes to the existing Modern Invites Vercel project and
 attach `christinaandrebodenwedding.moderninvites.com` to its production
 environment. Use the DNS records Vercel provides and confirm valid TLS before
 sharing the address. These source changes do not provision DNS or hosting.
+
+Guest dress-code artwork separates the three gentlemen from the three ladies.
+The transparent `dresscode-gentlemen-enchanted.png` and
+`dresscode-ladies-enchanted.png` illustrations in `assets/designs/` were made
+with built-in image generation from the supplied attire reference and existing
+enchanted fashion artwork. Matching `.png.json` sidecars retain the exact
+prompts. The sponsors' illustrations and confirmed dress-code text are
+preserved. Both guest groups use contained responsive images with the same
+height limits as the sponsors, constrained to their columns on narrow phones.
 
 Live text now uses dusty-blue ink (#385d70), with a darker blue hover (#29495b)
 and light dusty-blue text (#c2d8e5) over photography. This covers headings, body

@@ -14,12 +14,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/christina-and-reboden",
-        has: [{ type: "host", value: "(?:www\\.)?moderninvites\\.com" }],
-        destination: "https://christinaandrebodenwedding.moderninvites.com",
-        permanent: true,
-      },
-      {
         source: "/",
         has: [
           {

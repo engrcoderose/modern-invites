@@ -35,6 +35,7 @@ function loadMiddleware(environment: "development" | "production"): MiddlewareUn
 }
 
 for (const [name, slug, domain] of [
+  ["Christina", "christina-and-reboden", "christinaandrebodenwedding.moderninvites.com"],
   ["Edcel", "edcel-and-apreal", "edcelandaprealwedding.moderninvites.com"],
   ["Jaydee", "jaydee-and-bea", "jaydeeandbeawedding.moderninvites.com"],
   ["Marian", "marian-and-deejay", "mariananddeejaywedding.moderninvites.com"],
@@ -83,7 +84,7 @@ for (const [name, slug, domain] of [
 test("the retired-page matcher excludes public roots, RSVP APIs and invitation media", () => {
   const { config } = loadMiddleware("production");
   const origin = "https://edcelandaprealwedding.moderninvites.com";
-  for (const pathname of ["/jaydee-and-bea", "/jaydee-and-bea/", "/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/marian-and-deejay", "/marian-and-deejay/", "/marian-and-deejay/calendar", "/marian-and-dee-jay", "/marian-and-dee-jay/calendar", "/admin/events"]) {
+  for (const pathname of ["/christina-and-reboden", "/christina-and-reboden/", "/jaydee-and-bea", "/jaydee-and-bea/", "/edcel-and-apreal", "/edcel-and-apreal/", "/mario-and-inah", "/marian-and-deejay", "/marian-and-deejay/", "/marian-and-deejay/calendar", "/marian-and-dee-jay", "/marian-and-dee-jay/calendar", "/admin/events"]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), true);
   }
   for (const pathname of [
@@ -93,6 +94,8 @@ test("the retired-page matcher excludes public roots, RSVP APIs and invitation m
     "/jaydee-and-bea/sharing/envelope-8dfe0d26.jpg",
     "/jaydee-and-bea/music/could-i-love-you-any-more-2a7f2771.mp3",
     "/calendar", "/marian-and-deejay/videos/prenup-film-web-v1.mp4",
+    "/christina-and-reboden/audio/thinking-out-loud-a263bf85.mp3",
+    "/christina-and-reboden/photos/prenup/dsc06605.jpg",
   ]) {
     assert.equal(unstable_doesMiddlewareMatch({ config, nextConfig: {}, url: `${origin}${pathname}` }), false);
   }

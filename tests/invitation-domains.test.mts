@@ -17,11 +17,11 @@ test("Christina and Reboden's public domain serves the invitation and preserves 
   assert.equal(getRedirectUrl(response), null);
 });
 
-test("Christina and Reboden's old main-site links redirect while local previews remain accessible", async () => {
+test("Christina and Reboden's retired route is not redirected ahead of middleware", async () => {
   for (const host of ["moderninvites.com", "www.moderninvites.com"]) {
     const response = await unstable_getResponseFromNextConfig({ url: `https://${host}/christina-and-reboden?ref=invitation`, nextConfig });
-    assert.equal(response.status, 308);
-    assert.equal(getRedirectUrl(response), "https://christinaandrebodenwedding.moderninvites.com/?ref=invitation");
+    assert.equal(getRedirectUrl(response), null);
+    assert.equal(getRewrittenUrl(response), null);
   }
   for (const origin of ["http://localhost:3000", "http://127.0.0.1:3018", "http://[::1]:3018"]) {
     const response = await unstable_getResponseFromNextConfig({ url: `${origin}/christina-and-reboden`, nextConfig });
