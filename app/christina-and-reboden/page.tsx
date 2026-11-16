@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getInvitationUrl } from "@/lib/invitation-url";
 import Invitation from "./components/Invitation";
 import styles from "./styles/invitation.module.css";
 
@@ -8,6 +9,9 @@ const serif = localFont({ src: "./assets/fonts/noto-serif-latin.woff2", variable
 const serifItalic = localFont({ src: "./assets/fonts/noto-serif-latin-italic.woff2", variable: "--cr-serif-italic", display: "swap", weight: "400", style: "italic", preload: false });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getInvitationUrl("christina-and-reboden")),
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
   title: "Christina & Reboden | January 23, 2027",
   description: "Together with their families, Christina and Reboden invite you to celebrate their wedding in Malolos, Bulacan, on January 23, 2027.",
   robots: { index: false, follow: false },

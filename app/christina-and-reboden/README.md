@@ -1,6 +1,17 @@
 # Christina & Reboden
 
-Route: `/christina-and-reboden`
+Public URL: `https://christinaandrebodenwedding.moderninvites.com/`
+
+Internal/local route: `/christina-and-reboden`. The public hostname's root
+rewrites to this route. Old links on `moderninvites.com` and
+`www.moderninvites.com` redirect permanently to the new public URL, preserving
+query parameters. RSVP keeps the `christina-and-reboden` event slug; APIs,
+photos, music, and Next.js assets keep their existing paths.
+
+Deploy the routing changes to the existing Modern Invites Vercel project and
+attach `christinaandrebodenwedding.moderninvites.com` to its production
+environment. Use the DNS records Vercel provides and confirm valid TLS before
+sharing the address. These source changes do not provision DNS or hosting.
 
 Live text now uses dusty-blue ink (#385d70), with a darker blue hover (#29495b)
 and light dusty-blue text (#c2d8e5) over photography. This covers headings, body
