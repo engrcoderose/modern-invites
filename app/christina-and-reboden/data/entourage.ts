@@ -1,5 +1,5 @@
 export const parents = [
-  { title: "Parents of the bride", names: ["Mr. Joaquin SA. San Juan III", "Mrs. Irene San Juan"] },
+  { title: "Parents of the bride", names: ["Mr. Joaquin San Juan III", "Mrs. Irene San Juan"] },
   { title: "Parents of the groom", names: ["Mr. Edgar Pacquiao", "Mrs. Angelita Pacquiao"] },
 ];
 export const honorAttendants = [
