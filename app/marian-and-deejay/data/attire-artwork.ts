@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import men from "../assets/images/attire-men-transparent-v1.png";
-import women from "../assets/images/attire-women-transparent-v1.png";
+import women from "../assets/images/attire-women-mixed-lengths-v2.png";
 import sponsors from "../assets/images/attire-sponsors-transparent-v1.png";
 
 export interface AttireArtwork {
@@ -17,8 +17,8 @@ export const maleGuestArt: AttireArtwork = {
 };
 export const femaleGuestArt: AttireArtwork = {
   src: women,
-  alt: "Three ladies in light yellow, pastel yellow and butter yellow floor-length gowns",
-  crop: { left: 148, top: 32, width: 1329, height: 967 },
+  alt: "Three ladies in yellow formal attire: a knee-length dress, a below-the-knee dress and an optional floor-length gown",
+  crop: { left: 200, top: 12, width: 1288, height: 993 },
 };
 export const sponsorArt: AttireArtwork = {
   src: sponsors,

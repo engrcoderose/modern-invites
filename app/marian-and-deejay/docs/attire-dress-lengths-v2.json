@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-16",
+  "tool": "Built-in image_gen",
+  "mode": "precise-object-edit",
+  "source": "assets/images/attire-women-transparent-v1.png",
+  "output": "assets/images/attire-women-mixed-lengths-v2.png",
+  "prompt": "Use case: precise-object-edit. Edit target: the provided three-woman yellow wedding guest fashion illustration. Primary request: shorten ONLY the left woman's skirt to knee-length (hem at the knee, clearly exposing lower legs and elegant closed-toe shoes), and the middle woman's skirt to below-the-knee midi length (hem at mid-calf, clearly exposing ankles and shoes). Keep the right woman's floor-length gown unchanged. Preserve the same three faceless women, hairstyles, poses, upper dress designs, sleeves, necklines, waistlines, body proportions, relative positions, watercolor/fashion-illustration rendering, and yellow shades. Do not crop the people to simulate shorter dresses; shorten the actual skirts and reveal anatomically natural legs. Keep all feet at the same baseline. Transparent background with clean real alpha, no glow, no colored haze, no backdrop or ground plane, no shadows outside figures, no text or labels. Keep gentle light-yellow/pastel-yellow/butter-yellow palette and fine fabric details. Intended for the female guest attire panel of an elegant wedding invitation. Deliver one landscape image with all three full figures and safe margins.",
+  "dimensions": { "width": 1536, "height": 1024 },
+  "bytes": 2076020,
+  "validation": {
+    "alpha": "Verified genuine transparency; original alpha preserved without postprocessing.",
+    "composition": "Left: knee-length. Middle: below-the-knee. Right: floor-length. Full figures and shoes remain visible.",
+    "preview": "Isolated Next.js attire section with local assets, Citadel font and Georgia body fallback. No private environment files or backend integrations loaded.",
+    "viewportWidths": [320, 390, 768, 1440],
+    "result": "All section images loaded; no horizontal overflow; mobile and desktop artwork visually reviewed; no browser errors. The isolated above-the-fold preview emitted a Next Image LCP priority warning for the unchanged sponsor artwork, which stays lazy-loaded in the full invitation."
+  }
+}
