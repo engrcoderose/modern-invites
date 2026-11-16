@@ -7,6 +7,7 @@ export async function middleware(request: NextRequest) {
   // retired page paths must not serve a second copy of these invitations.
   const pathname = request.nextUrl.pathname.replace(/\/+$/, "");
   if ([
+    "/christina-and-reboden",
     "/mario-and-inah", "/edcel-and-apreal", "/jaydee-and-bea",
     "/marian-and-deejay", "/marian-and-deejay/calendar",
     "/marian-and-dee-jay", "/marian-and-dee-jay/calendar",
@@ -32,6 +33,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/christina-and-reboden",
     "/mario-and-inah",
     "/edcel-and-apreal",
     "/jaydee-and-bea",
