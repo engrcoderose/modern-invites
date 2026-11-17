@@ -9,7 +9,7 @@ export const honorAttendants = [
 export const principalSponsors = [
   ["Vice Mayor Roberto Perez", "Hon. Joan Angela Gacula"],
   ["Hon. Aldrin Sta. Ana", "Mrs. Christine Temblique"],
-  ["Atty. Wilfredo Arceo", "Mrs. Lea Castro"],
+  ["Atty. Wilfredo Arceo", "Ms. Lea Castro"],
   ["Dr. Rolando Mendoza", "Mrs. Virgie De Jesus"],
   ["Mr. Ruben Mercado", "Mrs. Yollanda Villanueva"],
   ["Mr. Melvin Talha", "Mrs. Marjorie Tan"],
@@ -42,7 +42,7 @@ export const groomsmen = [
 ];
 export const bearers = [
   { title: "Ring bearers", names: ["Reinald Zion Ligon", "Gilliane Raine Jamito"] },
-  { title: "Bible bearers", names: ["Marcus Elijah Delen", "Selena Rizs Hernandez"] },
+  { title: "Bible bearers", names: ["Marcus Elijah Delen", "Selena Risz Hernandez"] },
   { title: "Coin bearers", names: ["Ronaldavid Pielago", "Shantal Aizen Velasquez"] },
   { title: "Papal blessing bearer", names: ["Cade Vionzo San Juan"] },
 ];
