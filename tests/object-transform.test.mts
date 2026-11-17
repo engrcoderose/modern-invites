@@ -39,3 +39,15 @@ test("custom table sizes retain every chair with valid geometry", () => {
     }
   }
 });
+
+test("carpet and stairs handles extend both axes, follow rotation and preserve text styling", () => {
+  for (const kind of ["carpet", "stairs"] as const) {
+    const item: SeatingLandmark = { ...wall, kind, width: 180, height: 60, labelFontSize: 32, labelColor: "#ffffff" };
+    const extended = resizeObject(item, "se", { x: 300, y: 100 });
+    assert.deepEqual(objectSize(extended), { width: 780, height: 260 });
+    assert.deepEqual(extended, { ...item, width: 780, height: 260 });
+    assert.deepEqual(objectSize(resizeObject({ ...item, rotation: 90 }, "e", { x: 0, y: 300 })), { width: 780, height: 60 });
+    assert.deepEqual(objectSize(resizeObject(item, "se", { x: 10000, y: 10000 })), { width: 6000, height: 6000 });
+    assert.deepEqual(objectSize(resizeObject(item, "se", { x: -10000, y: -10000 })), { width: 20, height: 8 });
+  }
+});

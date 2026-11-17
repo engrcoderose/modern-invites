@@ -93,7 +93,7 @@ export function FloorPlan({ plan, guests, selectedId, highlightedId, highlighted
     <defs><pattern id={gridId} width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--seat-map-grid, #eff0ec)" strokeWidth="1" /></pattern></defs>
     <rect width={canvas.width} height={canvas.height} fill={`url(#${gridId})`} onPointerDown={event => { if (event.button === 0) onSelect?.(undefined); }} />
     <rect x="20" y="20" width={canvas.width - 40} height={canvas.height - 40} fill="none" stroke="var(--seat-map-border, #b7c9bf)" strokeDasharray="8 6" pointerEvents="none" />
-    {plan.landmarks.map(item => <g key={item.id} transform={`translate(${objectPosition(item, canvas).x} ${objectPosition(item, canvas).y}) rotate(${item.rotation ?? 0})`} {...interaction(item)} aria-label={`${item.name}, venue object`} className="cursor-pointer focus:outline-none focus:[&>rect]:stroke-forest focus:[&>rect]:stroke-[4px]">
+    {[...plan.landmarks].sort((a, b) => Number(b.kind === "carpet") - Number(a.kind === "carpet")).map(item => <g key={item.id} transform={`translate(${objectPosition(item, canvas).x} ${objectPosition(item, canvas).y}) rotate(${item.rotation ?? 0})`} {...interaction(item)} aria-label={`${item.name}, venue object`} className="cursor-pointer focus:outline-none focus:[&>rect]:stroke-forest focus:[&>rect]:stroke-[4px]">
       <VenueArtwork item={item} selected={selectedId === item.id} showSelection={!editable || !onTransform} />
     </g>)}
     {plan.tables.map(table => {

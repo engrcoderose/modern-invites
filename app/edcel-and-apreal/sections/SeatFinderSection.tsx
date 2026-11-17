@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Heart } from "lucide-react";
 import EmbossedBackdrop from "../components/EmbossedBackdrop";
 import FloralAccent from "../components/FloralAccent";
@@ -20,10 +21,10 @@ export default function SeatFinderSection() {
         <h2 id="ea-seat-finder-title" className={`${styles.title} mt-6`}>
           <span className="block sm:inline">Your place at </span><em className="block sm:inline">our celebration.</em>
         </h2>
-        <button type="button" disabled aria-describedby="ea-seat-finder-note" className="mt-8 inline-flex min-h-14 w-full cursor-default items-center justify-center gap-5 rounded-full bg-[var(--ea-wine)] px-6 py-4 text-sm text-[var(--ea-paper)] sm:w-auto sm:px-8">
-          Find my seat<ArrowRight size={18} aria-hidden="true" />
-        </button>
-        <p id="ea-seat-finder-note" className="mx-auto mt-4 max-w-md text-xs leading-6 text-[var(--ea-text)]">Table assignments will be shared once finalized.</p>
+        <Link href={`/seat-finder/events/${wedding.rsvp.eventSlug}`} target="_blank" rel="noopener noreferrer" aria-describedby="ea-seat-finder-note" className="mt-8 inline-flex min-h-14 w-full items-center justify-center gap-5 rounded-full bg-[var(--ea-wine)] px-6 py-4 text-sm text-[var(--ea-paper)] transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--ea-wine)] sm:w-auto sm:px-8">
+          Find my seat<span className="sr-only"> (opens in a new tab)</span><ArrowRight size={18} aria-hidden="true" />
+        </Link>
+        <p id="ea-seat-finder-note" className="mx-auto mt-4 max-w-md text-xs leading-6 text-[var(--ea-text)]">Search your full invited name to find your table. Seating details appear once the plan is published.</p>
         <div className="mx-auto mt-10 max-w-md border-t border-[var(--ea-line)] pt-6">
           <p className="text-[10px] uppercase tracking-[.2em] text-[var(--ea-text)]">The reception</p>
           <p className="mt-3 text-xl leading-relaxed sm:text-2xl">{wedding.reception.name}</p>

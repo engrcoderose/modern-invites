@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { VENUE_KINDS } from "./venue-objects.ts";
+import { VENUE_KINDS, MAX_EXTENDABLE_VENUE_SIZE, MIN_LABEL_FONT_SIZE, MAX_LABEL_FONT_SIZE, venueSizeLimits } from "./venue-objects.ts";
 
 export const TABLE_SHAPES = [
   "round",
@@ -52,14 +52,23 @@ export const landmarkSchema = z
     name: z.string().trim().min(1).max(60),
     showLabel: z.boolean().optional(),
     kind: z.enum(VENUE_KINDS),
+    labelFontSize: z.number().finite().min(MIN_LABEL_FONT_SIZE).max(MAX_LABEL_FONT_SIZE).optional(),
+    labelColor: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
     x: position,
     y: position,
     // Optional for compatibility with saved layouts created before venue sizing.
-    width: z.number().finite().min(20).max(180).optional(),
-    height: z.number().finite().min(8).max(100).optional(),
+    width: z.number().finite().min(20).max(MAX_EXTENDABLE_VENUE_SIZE).optional(),
+    height: z.number().finite().min(8).max(MAX_EXTENDABLE_VENUE_SIZE).optional(),
     rotation: z.number().finite().min(0).max(359).optional(),
   })
-  .strict();
+  .strict()
+  .superRefine((item, context) => {
+    const limits = venueSizeLimits(item.kind);
+    for (const [axis, max] of [["width", limits.maxWidth], ["height", limits.maxHeight]] as const) {
+      if (item[axis] !== undefined && item[axis] > max)
+        context.addIssue({ code: "custom", path: [axis], message: `Object ${axis} must be at most ${max}.` });
+    }
+  });
 export const planSchema = z
   .object({
     version: z.literal(1),

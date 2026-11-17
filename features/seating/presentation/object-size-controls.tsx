@@ -1,16 +1,18 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { objectSize, type FloorObject } from "./object-transform";
+import { venueSizeLimits } from "../domain/venue-objects";
 
 export function ObjectSizeControls({ item, onChange }: { item: FloorObject; onChange(item: FloorObject): void }) {
   const table = "capacity" in item;
   const uniform = table && (item.shape === "round" || item.shape === "square");
   const radius = table && item.shape === "round";
   const size = objectSize(item);
+  const limits = table ? { minWidth: 60, minHeight: 40, maxWidth: 240, maxHeight: 200 } : venueSizeLimits(item.kind);
   const fields = uniform
     ? [{ axis: "width" as const, label: radius ? "Radius" : "Side length", value: radius ? size.width / 2 : size.width, min: radius ? 30 : 60, max: radius ? 100 : 200 }]
-    : [{ axis: "width" as const, label: "Length", value: size.width, min: table ? 60 : 20, max: table ? 240 : 180 },
-      { axis: "height" as const, label: "Width", value: size.height, min: table ? 40 : 8, max: table ? 200 : 100 }];
+    : [{ axis: "width" as const, label: "Length", value: size.width, min: limits.minWidth, max: limits.maxWidth },
+      { axis: "height" as const, label: "Width", value: size.height, min: limits.minHeight, max: limits.maxHeight }];
   function change(axis: "width" | "height", value: number, min: number, max: number) {
     if (!Number.isFinite(value)) return;
     const bounded = Math.min(max, Math.max(min, value));

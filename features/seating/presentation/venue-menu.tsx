@@ -9,7 +9,7 @@ import { VenueArtwork } from "./venue-artwork";
 
 const groups: { title: string; kinds: VenueKind[] }[] = [
   { title: "Buffet tables · without seats", kinds: ["buffet_long", "buffet_square", "buffet_round", "buffet_oval"] },
-  { title: "Room & structure", kinds: ["label", "pillar", "wall", "door", "door_right", "door_left", "entrance", "dance_floor", "dance_floor_round", "stage", "stage_half_round", "tent", "area"] },
+  { title: "Room & structure", kinds: ["label", "pillar", "wall", "door", "door_right", "door_left", "entrance", "stairs", "carpet", "dance_floor", "dance_floor_round", "stage", "stage_half_round", "tent", "area"] },
   { title: "Signs & event details", kinds: ["accessibility", "high_chair", "toilets", "toilet_booth", "arrow", "target", "cake", "gifts", "tree", "bar", "couple"] },
 ];
 

@@ -1,5 +1,5 @@
 import type { SeatingLandmark, SeatingTable } from "../domain/seating-plan";
-import { VENUE_OBJECTS } from "../domain/venue-objects.ts";
+import { VENUE_OBJECTS, venueSizeLimits } from "../domain/venue-objects.ts";
 import { tableDimensions } from "./table-geometry.ts";
 import { DEFAULT_CANVAS } from "../domain/seating-plan.ts";
 
@@ -27,14 +27,15 @@ export function resizeObject(item: FloorObject, handle: ResizeHandle, delta: Map
   const horizontal = handle.includes("e") ? 1 : handle.includes("w") ? -1 : 0;
   const vertical = handle.includes("s") ? 1 : handle.includes("n") ? -1 : 0;
   const table = "capacity" in item;
+  const limits = table ? { minWidth: 60, minHeight: 40, maxWidth: 240, maxHeight: 200 } : venueSizeLimits(item.kind);
   if (table && (item.shape === "round" || item.shape === "square")) {
     const changes = [horizontal ? dx * horizontal : null, vertical ? dy * vertical : null].filter((value): value is number => value !== null);
     const diameter = bound(width + 2 * changes.reduce((sum, value) => sum + value, 0) / changes.length, 60, 200);
     return { ...item, width: diameter, height: diameter };
   }
   return { ...item,
-    width: bound(width + dx * horizontal * 2, table ? 60 : 20, table ? 240 : 180),
-    height: bound(height + dy * vertical * 2, table ? 40 : 8, table ? 200 : 100),
+    width: bound(width + dx * horizontal * 2, limits.minWidth, limits.maxWidth),
+    height: bound(height + dy * vertical * 2, limits.minHeight, limits.maxHeight),
   };
 }
 

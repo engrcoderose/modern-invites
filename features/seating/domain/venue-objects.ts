@@ -2,7 +2,7 @@ export const VENUE_KINDS = [
   "entrance", "dance_floor", "couple", "stage", "bar", "door", "wall", "label", "area",
   "buffet_long", "buffet_square", "buffet_round", "buffet_oval", "pillar", "door_right", "door_left",
   "dance_floor_round", "stage_half_round", "tent", "accessibility", "high_chair", "toilets", "toilet_booth",
-  "arrow", "target", "cake", "gifts", "tree",
+  "arrow", "target", "cake", "gifts", "tree", "carpet", "stairs",
 ] as const;
 export type VenueKind = typeof VENUE_KINDS[number];
 
@@ -16,6 +16,8 @@ export const VENUE_OBJECTS: Record<VenueKind, { name: string; width: number; hei
   wall: { name: "Wall", width: 160, height: 12 },
   label: { name: "Label", width: 130, height: 32 },
   area: { name: "Area", width: 180, height: 100 },
+  carpet: { name: "Carpet", width: 180, height: 60 },
+  stairs: { name: "Stairs", width: 100, height: 80 },
   buffet_long: { name: "Long buffet table", width: 130, height: 50 },
   buffet_square: { name: "Square buffet table", width: 65, height: 65 },
   buffet_round: { name: "Round buffet table", width: 75, height: 75 },
@@ -36,3 +38,15 @@ export const VENUE_OBJECTS: Record<VenueKind, { name: string; width: number; hei
   gifts: { name: "Gifts", width: 65, height: 65 },
   tree: { name: "Tree", width: 70, height: 85 },
 };
+
+export const MAX_EXTENDABLE_VENUE_SIZE = 6000;
+export const MIN_LABEL_FONT_SIZE = 8;
+export const MAX_LABEL_FONT_SIZE = 72;
+export const DEFAULT_LABEL_COLOR = "#173d32";
+
+export function venueSizeLimits(kind: VenueKind) {
+  const extendable = kind === "carpet" || kind === "stairs";
+  return { minWidth: 20, minHeight: 8,
+    maxWidth: extendable ? MAX_EXTENDABLE_VENUE_SIZE : 180,
+    maxHeight: extendable ? MAX_EXTENDABLE_VENUE_SIZE : 100 };
+}

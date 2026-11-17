@@ -278,7 +278,7 @@ test("expanded seating migration preserves legacy data and publishes a private-a
   assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
   const legacy = await publicCall("select get_published_seating_layout('example') result");
   assert.equal('canvas' in legacy!.plan!, false);
-  const document = { ...plan(), canvas: { width: 6000, height: 6000 }, tables: plan().tables.map(table => ({ ...table, shape: "half_round", x: 1.5, y: 99 })), landmarks: VENUE_KINDS.map((kind, index) => ({
+  const document = { ...plan(), canvas: { width: 6000, height: 6000 }, tables: plan().tables.map(table => ({ ...table, shape: "half_round", x: 1.5, y: 99 })), landmarks: VENUE_KINDS.filter(kind => kind !== "carpet" && kind !== "stairs").map((kind, index) => ({
     id: `bbbbbbbb-bbbb-4bbb-8bbb-${String(index + 1).padStart(12, "0")}`, name: VENUE_OBJECTS[kind].name, kind, x: 50, y: 50,
     width: VENUE_OBJECTS[kind].width, height: VENUE_OBJECTS[kind].height, rotation: 90,
   })) };
@@ -320,6 +320,80 @@ test("optional-label migration retains stored layouts and publishes label visibi
   const visible = { ...document, tables: document.tables.map(table => ({ ...table, showLabel: true })), landmarks: document.landmarks.map(item => ({ ...item, showLabel: true })) };
   await save(visible, 2, true);
   assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...visible, assignments: [] });
+  await db.exec("update event_members set role='viewer'");
+  await assert.rejects(save(document, 3), /not permitted/);
+});
+
+test("carpet and label-style migration preserves records, validates bounds and publishes styles privately", async () => {
+  await save(plan(), 0, true);
+  const before = (await db.query("select * from event_seating_plans")).rows;
+  const migration = await readFile(new URL("../supabase/migrations/20261117_seating_carpet_and_label_styles.sql", import.meta.url), "utf8");
+  await db.exec(migration); await db.exec(migration);
+  assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
+  const landmarks = VENUE_KINDS.filter(kind => kind !== "stairs").map((kind, index) => ({
+    id: `bbbbbbbb-bbbb-4bbb-8bbb-${String(index + 1).padStart(12, "0")}`, name: VENUE_OBJECTS[kind].name, kind, x: 50, y: 50,
+    width: kind === "carpet" ? 6000 : VENUE_OBJECTS[kind].width, height: kind === "carpet" ? 6000 : VENUE_OBJECTS[kind].height,
+    labelFontSize: 32, labelColor: "#AB1234", showLabel: true,
+  }));
+  const document = { ...plan(), canvas: { width: 6000, height: 6000 }, landmarks };
+  await save(document, 1, true);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  const carpet = landmarks.find(item => item.kind === "carpet")!;
+  for (const fields of [{ labelFontSize: 7 }, { labelFontSize: 73 }, { labelFontSize: null }, { labelFontSize: "32" }, { labelColor: null }, { labelColor: "red" }, { labelColor: "#123" }, { width: 6001 }, { height: 6001 }, { width: null }, { kind: "wall", width: 181, height: 12 }, { kind: "wall", width: 160, height: 101 }]) {
+    await assert.rejects(save({ ...document, landmarks: [{ ...carpet, ...fields }] }, 2), /Invalid venue object|Invalid seating document/);
+  }
+  for (const labelFontSize of [8, 72]) {
+    await save({ ...document, landmarks: [{ ...carpet, width: 20, height: 8, labelFontSize }] }, labelFontSize === 8 ? 2 : 3);
+  }
+  // A draft save keeps the previously published carpet and styling intact.
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  await db.exec("update event_members set role='viewer'");
+  await assert.rejects(save(document, 4), /not permitted/);
+  await db.exec("set role anon");
+  await assert.rejects(db.query("select save_event_seating_plan(1,4,$1,true)", [JSON.stringify(document)]), /permission denied/);
+  await db.exec("reset role");
+});
+
+test("stairs migration preserves plans and saves and publishes resizable styled stairs", async () => {
+  await save(plan(), 0, true);
+  const before = (await db.query("select * from event_seating_plans")).rows;
+  const migration = await readFile(new URL("../supabase/migrations/20261117_seating_stairs.sql", import.meta.url), "utf8");
+  await db.exec(migration); await db.exec(migration);
+  assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
+  const landmarks = VENUE_KINDS.map((kind, index) => ({
+    id: `bbbbbbbb-bbbb-4bbb-8bbb-${String(index + 1).padStart(12, "0")}`, name: VENUE_OBJECTS[kind].name, kind, x: 50, y: 50,
+    width: VENUE_OBJECTS[kind].width, height: VENUE_OBJECTS[kind].height,
+    rotation: 90, labelFontSize: 24, labelColor: "#803640", showLabel: true,
+  }));
+  const document = { ...plan(), landmarks };
+  await save(document, 1);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...plan(), assignments: [] });
+  await save(document, 2, true);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  const stairs = landmarks.find(item => item.kind === "stairs")!;
+  await save({ ...document, landmarks: [{ ...stairs, width: 180, height: 100 }] }, 3);
+  for (const fields of [{ width: 181 }, { height: 101 }, { width: 19 }, { height: 7 }, { rotation: 360 }]) {
+    await assert.rejects(save({ ...document, landmarks: [{ ...stairs, ...fields }] }, 4), /Invalid venue object/);
+  }
+  await db.exec("update event_members set role='viewer'");
+  await assert.rejects(save(document, 4), /not permitted/);
+});
+
+test("extendable stairs migration preserves records and publishes large stairs with carpet limits", async () => {
+  await save(plan(), 0, true);
+  const before = (await db.query("select * from event_seating_plans")).rows;
+  const migration = await readFile(new URL("../supabase/migrations/20261118_seating_extendable_stairs.sql", import.meta.url), "utf8");
+  await db.exec(migration); await db.exec(migration);
+  assert.deepEqual((await db.query("select * from event_seating_plans")).rows, before);
+  const stairs = { id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", name: "Long stairs", kind: "stairs", x: 50, y: 50,
+    width: 6000, height: 6000, rotation: 90, labelFontSize: 24, labelColor: "#803640", showLabel: true };
+  const document = { ...plan(), canvas: { width: 6000, height: 6000 }, landmarks: [stairs] };
+  await save(document, 1, true);
+  assert.deepEqual((await publicCall("select get_published_seating_layout('example') result"))!.plan, { ...document, assignments: [] });
+  for (const fields of [{ width: 6001 }, { height: 6001 }, { width: 19 }, { height: 7 }, { width: null }, { height: "1000" }, { kind: "wall", width: 181, height: 12 }, { kind: "stage", width: 150, height: 101 }]) {
+    await assert.rejects(save({ ...document, landmarks: [{ ...stairs, ...fields }] }, 2), /Invalid venue object|Invalid seating document/);
+  }
+  await save({ ...document, landmarks: [{ ...stairs, kind: "carpet" }] }, 2);
   await db.exec("update event_members set role='viewer'");
   await assert.rejects(save(document, 3), /not permitted/);
 });

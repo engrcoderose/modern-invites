@@ -1,3 +1,6 @@
+"use client";
+
+import { useId, useState } from "react";
 import { Copy, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,9 +50,16 @@ export function TableInspector({
   onAssign(guestId: number, tableId: string, seatNumber?: number): void;
 }) {
   const table = "capacity" in item;
+  const [panel, setPanel] = useState<"add" | "seated" | "settings">("add");
+  const panelId = useId();
   const count = plan.assignments.filter(
     (assignment) => assignment.tableId === item.id,
   ).length;
+  const panels = [
+    { id: "add", label: "Add guests" },
+    { id: "seated", label: `Seated (${count})` },
+    { id: "settings", label: "Settings" },
+  ] as const;
   return (
     <aside
       aria-label="Selected floor plan object"
@@ -83,18 +93,36 @@ export function TableInspector({
             variant="ghost"
             size="icon"
             onClick={onClose}
-            aria-label="Close table details"
+            aria-label="Close object details"
           >
             <X className="size-4" aria-hidden="true" />
           </Button>
         </div>
       </div>
+      {table && <div role="tablist" aria-label="Table tools" className="grid shrink-0 grid-cols-3 border-b px-3" onKeyDown={event => {
+        const index = panels.findIndex(tab => tab.id === panel);
+        const next = event.key === "ArrowRight" ? (index + 1) % panels.length
+          : event.key === "ArrowLeft" ? (index + panels.length - 1) % panels.length
+          : event.key === "Home" ? 0 : event.key === "End" ? panels.length - 1 : undefined;
+        if (next === undefined) return;
+        event.preventDefault();
+        setPanel(panels[next].id);
+        event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
+      }}>
+        {panels.map(tab => <button key={tab.id} type="button" role="tab" id={`${panelId}-${tab.id}-tab`} aria-controls={`${panelId}-${tab.id}-panel`} aria-selected={panel === tab.id} tabIndex={panel === tab.id ? 0 : -1} onClick={() => setPanel(tab.id)} className={`min-h-12 border-b-2 px-1 py-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-forest ${panel === tab.id ? "border-forest text-forest" : "border-transparent text-ink-muted hover:text-forest"}`}>{tab.label}</button>)}
+      </div>}
+      {table && panels.filter(tab => tab.id !== "settings").map(tab => <div key={tab.id} role="tabpanel" id={`${panelId}-${tab.id}-panel`} aria-labelledby={`${panelId}-${tab.id}-tab`} hidden={panel !== tab.id} className="flex min-h-0 flex-col [&[hidden]]:hidden">
+        <TableGuestPicker table={item} plan={plan} guests={guests} disabled={disabled} view={tab.id} onAssign={onAssign} />
+      </div>)}
       <div
         key={item.id}
-        role="region"
-        aria-label="Scrollable object details"
+        role={table ? "tabpanel" : "region"}
+        id={table ? `${panelId}-settings-panel` : undefined}
+        aria-labelledby={table ? `${panelId}-settings-tab` : undefined}
+        aria-label={table ? undefined : "Scrollable object details"}
+        hidden={table && panel !== "settings"}
         tabIndex={0}
-        className="min-h-0 overflow-y-auto overscroll-contain space-y-5 p-4 [scrollbar-gutter:stable] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-forest"
+        className="min-h-0 overflow-y-auto overscroll-contain space-y-5 p-4 [scrollbar-gutter:stable] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-forest [&[hidden]]:hidden"
       >
         <fieldset disabled={disabled} className="space-y-4 disabled:opacity-70">
           <legend className="sr-only">
@@ -270,16 +298,6 @@ export function TableInspector({
             Remove {table ? "table" : "venue object"}
           </Button>
         </fieldset>
-        {table && (
-          <TableGuestPicker
-            key={item.id}
-            table={item}
-            plan={plan}
-            guests={guests}
-            disabled={disabled}
-            onAssign={onAssign}
-          />
-        )}
       </div>
     </aside>
   );

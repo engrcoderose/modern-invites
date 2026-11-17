@@ -5,7 +5,7 @@ import { Armchair, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createFetchWithTimeout } from "@/lib/supabase/fetch-with-timeout";
 import type { SeatingPlan } from "../domain/seating-plan";
-import { FloorPlanView } from "./floor-plan-view";
+import { GuestFloorPlan } from "./guest-floor-plan";
 import { cn } from "@/lib/utils";
 
 export interface GuestSeatFinderPresentation {
@@ -42,7 +42,7 @@ export function GuestSeatFinder({ name, slug, plan, presentation = {} }: { name:
         <Button type="submit" disabled={pending} className={cn("h-12 bg-forest text-white hover:bg-forest-light", classes.button)}><Search aria-hidden="true" className="size-4" />{pending ? "Finding…" : "Find my seat"}</Button>
       </form>
       <div role="status" className="text-center">{table ? <div className={cn("rounded-xl border border-eucalyptus/40 bg-white p-5", classes.result)}><p className={cn("text-xs uppercase tracking-widest text-ink-muted", classes.resultHint)}>Your table</p><p className={cn("mt-2 font-elegant text-3xl", classes.tableName)}>{table.name}</p>{seatNumber !== undefined && <p className="mt-2 text-lg font-semibold">Seat {seatNumber}</p>}<p className={cn("mt-2 text-sm text-ink-muted", classes.resultHint)}>{seatNumber === undefined ? "Your table is highlighted below." : "Your seat is highlighted in gold below. Zoom in to see the seat numbers."}</p></div> : message && <p className="mx-auto max-w-xl text-sm leading-6">{message}</p>}</div>
-      <div className={classes.map}>{presentation.mapHeading}<FloorPlanView plan={plan} highlightedId={tableId} highlightedSeatNumber={seatNumber} showOccupancy={false} /></div>
+      <div className={classes.map}>{presentation.mapHeading}<GuestFloorPlan plan={plan} highlightedId={tableId} highlightedSeatNumber={seatNumber} /></div>
       {presentation.footer ?? <p className="text-center text-xs text-ink-muted">Need help? The welcome team will guide you to your table.</p>}
     </div>
   </main>;

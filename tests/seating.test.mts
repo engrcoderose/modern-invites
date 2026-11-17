@@ -68,9 +68,25 @@ test("venue objects accept every supported type and retain legacy object documen
     const legacy = { id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", name: VENUE_OBJECTS[kind].name, kind, x: 50, y: 50 };
     assert.deepEqual(planSchema.parse({ ...plan(), landmarks: [legacy] }).landmarks[0], legacy);
     assert.equal(planSchema.safeParse({ ...plan(), landmarks: [{ ...legacy, width: VENUE_OBJECTS[kind].width, height: VENUE_OBJECTS[kind].height, rotation: 90 }] }).success, true);
-    for (const fields of [{ width: 0 }, { width: 181 }, { height: 101 }, { height: null }, { rotation: 360 }, { rotation: NaN }, { kind: "unsupported" }, { hiddenPayload: true }]) {
+    const extendable = kind === "carpet" || kind === "stairs";
+    for (const fields of [{ width: 0 }, { width: extendable ? 6001 : 181 }, { height: extendable ? 6001 : 101 }, { height: null }, { rotation: 360 }, { rotation: NaN }, { kind: "unsupported" }, { hiddenPayload: true }]) {
       assert.equal(planSchema.safeParse({ ...plan(), landmarks: [{ ...legacy, ...fields }] }).success, false);
     }
+  }
+});
+
+test("carpets and stairs extend beyond legacy venue limits and label styles survive schema parsing", () => {
+  const carpet = { id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb", name: "Aisle", kind: "carpet", x: 50, y: 50, width: 6000, height: 6000, labelFontSize: 48, labelColor: "#Ab12EF" };
+  assert.deepEqual(planSchema.parse({ ...plan(), landmarks: [carpet] }).landmarks[0], carpet);
+  const stairs = { ...carpet, kind: "stairs", name: "Stairs" };
+  assert.deepEqual(planSchema.parse({ ...plan(), landmarks: [stairs] }).landmarks[0], stairs);
+  for (const fields of [{ labelFontSize: 7 }, { labelFontSize: 73 }, { labelFontSize: null }, { labelFontSize: "24" }, { labelFontSize: Infinity }, { labelColor: null }, { labelColor: "red" }, { labelColor: "#abc" }, { labelColor: "#12345678" }]) {
+    assert.equal(planSchema.safeParse({ ...plan(), landmarks: [{ ...carpet, ...fields }] }).success, false);
+  }
+  for (const kind of VENUE_KINDS.filter(kind => kind !== "carpet" && kind !== "stairs")) {
+    const item = { ...carpet, kind, width: 180, height: 100 };
+    assert.equal(planSchema.safeParse({ ...plan(), landmarks: [item] }).success, true);
+    assert.equal(planSchema.safeParse({ ...plan(), landmarks: [{ ...item, width: 181 }] }).success, false);
   }
 });
 test("table dimensions are optional for legacy plans and reject invalid sizes", () => {

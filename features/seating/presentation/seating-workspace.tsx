@@ -160,9 +160,9 @@ export function SeatingWorkspace({ event, initial, guests }: {
         <VenueMenu disabled={disabled} onAdd={addLandmark} onAddTable={addTable} />
       </fieldset>
       <CanvasControls plan={plan} disabled={disabled} onChange={update} />
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_420px] xl:grid-cols-[minmax(0,1fr)_480px]">
         <div className="min-w-0"><FloorPlanView fillWidth plan={plan} guests={guests} selectedId={selectedId} editable={!disabled} onSelect={setSelectedId} onMove={moveItem} onTransform={changeItem} /><p className="mt-2 text-xs text-ink-muted">Hover over a table to see its guests. Select an object, then drag its circular handles to resize or the top arrow to rotate. Hold Shift to snap rotation. Filled chairs indicate numbered seat assignments. Select a table to see seat numbers. Zoom in for finer adjustments.</p></div>
-        {selected ? <TableInspector item={selected} plan={plan} guests={guests} disabled={disabled} onChange={changeItem} onDelete={removeItem} onDuplicate={duplicateItem} onClose={() => setSelectedId(undefined)} onAssign={assignGuest} /> : <div className="rounded-xl border border-dashed p-5 text-sm leading-6 text-ink-muted">Select a table or venue object to edit its details and position.</div>}
+        {selected ? <TableInspector key={selected.id} item={selected} plan={plan} guests={guests} disabled={disabled} onChange={changeItem} onDelete={removeItem} onDuplicate={duplicateItem} onClose={() => setSelectedId(undefined)} onAssign={assignGuest} /> : <div className="rounded-xl border border-dashed p-5 text-sm leading-6 text-ink-muted">Select a table or venue object to edit its details and position.</div>}
       </div>
     </>}
     {tab === "guests" && <div className="space-y-4">

@@ -1,6 +1,7 @@
 import { Label } from "@/components/ui/label";
 import type { SeatingLandmark } from "../domain/seating-plan";
 import { VENUE_KINDS, VENUE_OBJECTS, type VenueKind } from "../domain/venue-objects";
+import { VenueLabelControls } from "./venue-label-controls";
 
 export function VenueControls({ item, onChange }: { item: SeatingLandmark; onChange(item: SeatingLandmark): void }) {
   const defaults = VENUE_OBJECTS[item.kind];
@@ -14,5 +15,6 @@ export function VenueControls({ item, onChange }: { item: SeatingLandmark; onCha
         {VENUE_KINDS.map(kind => <option key={kind} value={kind}>{VENUE_OBJECTS[kind].name}</option>)}
       </select>
     </div>
+    <VenueLabelControls item={item} onChange={onChange} />
   </div>;
 }

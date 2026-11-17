@@ -44,6 +44,8 @@ Photo crossfades, text reveals, countdown flowers, decorative parallax, timeline
 
 The confirmed event slug `edcel-and-apreal` connects the existing shared SmartRsvpFlow. The backend supplies invitation access, guest records, household capacity, deadlines and response rules. This client does not invent database identifiers or create event records.
 
+The active **Find my seat** link opens `/seat-finder/events/edcel-and-apreal` in a new tab using the same confirmed event slug. It reuses the shared published-plan page and exact-name search. For guest lookup to be available, the existing event must include **RSVP and Seat Finder** under Admin → Events and its seating plan must be published through Seat Finder. An unpublished plan shows the shared “Seating details coming soon” screen. Service settings and publication have not been verified against the live backend.
+
 Never load real environment files, credentials or Supabase for checks. Use an isolated frontend copy with synthetic RSVP data. Run appropriate scoped lint, TypeScript and isolated production-build checks. Real iOS Safari and live RSVP verification require separate checks within the repository's access boundaries.
 
 Domain regressions are covered by `tests/invitation-domains.test.mts`, `tests/invitation-route-access.test.mts` and `tests/client-dashboard.test.mts`. The middleware tests use synthetic environments and replace the auth import before execution, preventing backend access. The isolated production check verifies the public root, retired-path 404s, localhost access, canonical metadata and unchanged API/media routing.
