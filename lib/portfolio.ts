@@ -1,4 +1,7 @@
 import type { StaticImageData } from "next/image";
+import { createElement, type ReactNode } from "react";
+import AshleyPreviewDetails from "@/app/ashley-at-18-rsvp/components/PortfolioPreviewDetails";
+import ChristinaPreviewMonogram from "@/app/christina-and-reboden/components/PortfolioPreviewMonogram";
 import { getPhoto } from "@/app/ryan-and-anne/data/prenup-media";
 import jaydeeBackground from "@/app/jaydee-and-bea/assets/designs/hero-watercolor-background.webp";
 import jaydeeIllustration from "@/app/jaydee-and-bea/assets/designs/hero-couples.webp";
@@ -12,12 +15,16 @@ import claudiaBackground from "@/app/claudia-at-18/assets/outfits/lean-back-pose
 import claudiaPortrait from "@/app/claudia-at-18/assets/outfits/happy-birthday.png";
 import ashleyBackground from "@/app/ashley-at-18-rsvp/assets/hero-floral-wallpaper.webp";
 import ashleyFrame from "@/app/ashley-at-18-rsvp/assets/hero-ornate-frame.webp";
+import christinaGarden from "@/app/christina-and-reboden/assets/designs/bg-opening.webp";
+import christinaEnvelope from "@/app/christina-and-reboden/assets/designs/envelope.webp";
+import { media as darellRoselleArtwork } from "@/app/darelle-and-roselle/data/media";
 
 export type PortfolioItem = {
  id: string; title: string; category: string; description: string; href: string;
  hidden?: boolean;
  bgImage: StaticImageData; previewImage: StaticImageData;
  accent: string; accentLight: string; tags: string[]; previewAlt?: string; previewFit?: "cover" | "contain";
+ previewOverlay?: ReactNode;
 };
 
 function ryanPhoto(id: string): StaticImageData {
@@ -39,6 +46,35 @@ import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Ma
 
 const invitationCatalog: PortfolioItem[] = [
   {
+    id: "christina-and-reboden",
+    title: "Christina & Reboden",
+    category: "Wedding Invitation",
+    description: "Floral envelope opening, page-turn animations, love story, photo slideshow, music, and RSVP.",
+    href: "https://christinaandrebodenwedding.moderninvites.com/",
+    bgImage: christinaGarden,
+    previewImage: christinaEnvelope,
+    previewAlt: "Blush floral envelope with Christina and Reboden’s blue C & R monogram on an ornate ivory invitation",
+    previewFit: "contain",
+    previewOverlay: createElement(ChristinaPreviewMonogram),
+    accent: "#385d70",
+    accentLight: "#f5eddf",
+    tags: ["Enchanted Garden", "Dusty Blue & Blush"],
+  },
+  {
+    id: "darell-and-roselle",
+    title: "Darell & Roselle",
+    category: "Wedding Invitation",
+    description: "Woodland opening, animated monogram, event details, entourage, music, and RSVP.",
+    href: "/darell-and-roselle",
+    bgImage: darellRoselleArtwork.cover,
+    previewImage: darellRoselleArtwork.framedMonogram,
+    previewAlt: "Ornamental green DR monogram from Darell and Roselle’s wedding invitation",
+    previewFit: "contain",
+    accent: "#414636",
+    accentLight: "#f2ede0",
+    tags: ["Woodland", "Olive & Ivory"],
+  },
+  {
     id: "ashley-at-18-rsvp",
     title: "Ashley at 18 RSVP",
     category: "18th Birthday Debut",
@@ -46,8 +82,9 @@ const invitationCatalog: PortfolioItem[] = [
     href: "/ashley-at-18-rsvp",
     bgImage: ashleyBackground,
     previewImage: ashleyFrame,
-    previewAlt: "Ornate lavender and pearl-white floral frame from Ashley’s eighteenth birthday RSVP invitation",
+    previewAlt: "Ashley at 18 — A new chapter begins, December 5, 2026, inside an ornate lavender floral frame",
     previewFit: "contain",
+    previewOverlay: createElement(AshleyPreviewDetails),
     accent: "#784156",
     accentLight: "#fcf4fa",
     tags: ["RSVP", "Pink & Lavender"],

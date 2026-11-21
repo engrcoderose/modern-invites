@@ -1,0 +1,5 @@
+.details { color: #784156; }
+.name { font-family: var(--font-imperial), cursive; font-size: 17cqw; line-height: 1.1; color: #9b3561; }
+.age { font-family: var(--font-instrument-serif), Georgia, serif; font-size: 8cqw; line-height: 1.2; font-style: italic; color: #694075; }
+.message { font-size: 2.8cqw; line-height: 1.5; letter-spacing: .18em; }
+.date { font-size: 3cqw; line-height: 2; letter-spacing: .08em; }

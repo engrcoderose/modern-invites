@@ -1,0 +1,7 @@
+/* Fit the source artwork exactly so live lettering follows its contained image,
+   including when the surrounding preview frame has a different aspect ratio. */
+.artwork {
+  width: min(100cqw, calc(100cqh * var(--preview-ratio)));
+  aspect-ratio: var(--preview-ratio);
+  container-type: inline-size;
+}

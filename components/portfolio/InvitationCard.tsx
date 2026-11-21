@@ -6,6 +6,8 @@ import { ArrowUpRight } from "lucide-react";
 import type { PortfolioItem } from "@/lib/portfolio";
 import { motion } from "framer-motion";
 import useMarketingReducedMotion from "@/components/landing/useMarketingReducedMotion";
+import type { CSSProperties } from "react";
+import styles from "./invitation-card.module.css";
 
 const AnimatedLink = motion.create(Link);
 const AnimatedImage = motion.create(Image);
@@ -14,6 +16,7 @@ type Props = { item: PortfolioItem; priority?: boolean; sizes: string; variant?:
 
 export default function InvitationCard({ item, priority = false, sizes, variant = "portfolio" }: Props) {
   const reducedMotion = useMarketingReducedMotion();
+  const previewImage = <Image src={item.previewImage} alt={item.previewAlt ?? `${item.title} invitation preview`} fill priority={priority} className={item.previewFit === "contain" ? "object-contain" : "object-cover object-top"} sizes="160px" />;
   return (
     <article className="h-full min-w-0">
       <AnimatedLink initial="rest" animate="rest" whileHover={reducedMotion ? undefined : "hover"} whileFocus={reducedMotion ? undefined : "hover"} href={item.href} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.title} invitation (opens in a new tab)`} className="group flex h-full flex-col overflow-hidden rounded-xl border border-forest/15 bg-white hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-4">
@@ -22,7 +25,14 @@ export default function InvitationCard({ item, priority = false, sizes, variant 
           <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 flex items-center justify-center py-4">
             <motion.div className="relative aspect-[3/4] h-full overflow-hidden rounded-lg border-4 border-white/90 shadow-xl" style={{ backgroundColor: item.accentLight }} variants={{ rest: { rotate: -4 }, hover: { rotate: 0 } }} transition={{ duration: reducedMotion ? 0 : 0.4 }}>
-              <Image src={item.previewImage} alt={item.previewAlt ?? `${item.title} invitation preview`} fill priority={priority} className={item.previewFit === "contain" ? "object-contain p-2" : "object-cover object-top"} sizes="160px" />
+              {item.previewFit === "contain" ? (
+                <div className="absolute inset-2 flex items-center justify-center [container-type:size]">
+                  <div className={`${styles.artwork} relative`} style={{ "--preview-ratio": item.previewImage.width / item.previewImage.height } as CSSProperties}>
+                    {previewImage}
+                    {item.previewOverlay}
+                  </div>
+                </div>
+              ) : previewImage}
             </motion.div>
           </div>
           <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
