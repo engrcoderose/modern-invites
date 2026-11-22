@@ -1,3 +1,8 @@
+export const giftRegistry = {
+  title: "Gift Registry",
+  message: "With all that we have, we’ve been truly blessed. Your presence and prayers are all that we request. But if you desire to give nonetheless, a monetary gift is one we suggest.",
+} as const;
+
 export const faqs = [
   {
     question: "What time should we arrive?",

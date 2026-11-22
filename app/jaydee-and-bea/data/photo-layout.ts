@@ -16,6 +16,7 @@ export const photoBreaks = {
 };
 
 export const rsvpPhoto = photos.ljd4660;
+export const giftPhoto = photos.dscf0810;
 
 const photoSource = (photo: GalleryPhoto) => typeof photo.src === "string" ? photo.src : photo.src.src;
 
@@ -24,6 +25,7 @@ const usedPhotoSources = new Set([
   photoBreaks.afterStory,
   photoBreaks.afterEntourage,
   rsvpPhoto,
+  giftPhoto,
   ...Object.values(storyPhotoSources),
 ].map(photoSource));
 

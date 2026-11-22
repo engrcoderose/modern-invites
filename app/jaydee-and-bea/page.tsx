@@ -11,6 +11,7 @@ import DetailsSection from "./sections/DetailsSection";
 import TimelineSection from "./sections/TimelineSection";
 import EntourageSection from "./sections/EntourageSection";
 import AttireSection from "./sections/AttireSection";
+import GiftSection from "./sections/GiftSection";
 import GallerySection from "./sections/GallerySection";
 import PhotoBreakSection from "./sections/PhotoBreakSection";
 import PhotoSlideSection from "./sections/PhotoSlideSection";
@@ -62,6 +63,7 @@ export default function Page() {
           <PhotoBreakSection id="entourage-photo" photo={photoBreaks.afterEntourage} />
           <DetailsSection />
           <AttireSection />
+          <GiftSection />
           <HashtagSection />
           <GallerySection id="gallery-more" title="More little moments." photos={galleries[1]} />
           <FaqSection />
