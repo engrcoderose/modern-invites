@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { marketingRedirects } from "./lib/marketing-routes";
 
 const nextConfig: NextConfig = {
   webpack(config) {
@@ -13,6 +14,7 @@ const nextConfig: NextConfig = {
   distDir: process.env.NEXT_DIST_DIR || ".next",
   async redirects() {
     return [
+      ...marketingRedirects,
       {
         source: "/",
         has: [

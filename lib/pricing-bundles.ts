@@ -1,4 +1,4 @@
-import { MODULAR_FEATURES, PRICING_PACKAGES, type ModularFeature, type PackageId } from "./pricing";
+import { MODULAR_FEATURES, PRICING_PACKAGES, type ModularFeature, type PackageId } from "./pricing.ts";
 
 type PricingBundle = {
   id: string;

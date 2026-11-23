@@ -13,9 +13,9 @@ const questions = [
         {PRICING_PACKAGES.map((packageDetails) =>
           `${packageDetails.name} is ₱${packageDetails.price}`,
         ).join(", ")}
-        . All packages are a one-time payment. See the complete comparison on our{" "}
-        <Link href="/pricing" className="font-semibold text-forest underline underline-offset-4">
-          pricing page
+        . All packages are a one-time payment. See all inclusions in our{" "}
+        <Link href="/#pricing-packages" className="font-semibold text-brand-700 underline underline-offset-4">
+          package comparison
         </Link>
         .
       </p>
@@ -64,15 +64,15 @@ const questions = [
 
 export default function FrequentlyAskedQuestions({ variant = "default" }: { variant?: "default" | "home" }) {
   return (
-    <section id="faq" className={`scroll-mt-24 bg-ivory px-4 sm:px-6 lg:px-8 ${variant === "home" ? "border-t border-forest/15 py-16 sm:py-20" : "py-24 lg:py-32"}`}>
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
+    <section id="faq" className="section-lilac scroll-mt-24 px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div className="mx-auto max-w-4xl">
         <ScrollReveal direction="left">
-          <div>
-            {variant !== "home" && <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.28em] text-eucalyptus-dark">Good to know</p>}
-            <h2 className={variant === "home" ? "home-heading text-forest" : "font-instrumentSerif text-5xl leading-[1.02] tracking-[-0.02em] text-ink sm:text-6xl"}>
-              {variant === "home" ? "Common questions" : <>A few questions, <span className="italic text-eucalyptus-dark">answered.</span></>}
+          <div className="mb-12 text-center">
+            <h2 className="section-title text-marketing-ink">
+              {variant === "home" ? "Common questions" : <>A few questions, <span className="italic text-brand-700">answered.</span></>}
             </h2>
-            {variant !== "home" && <p className="mt-5 max-w-md text-base leading-7 text-ink-muted">
+            {variant !== "home" && <p className="mt-7 text-sm text-brand-800">Good to know</p>}
+            {variant !== "home" && <p className="mx-auto mt-5 max-w-md text-base leading-7 text-marketing-muted">
               Still deciding what fits your event? Send us a message and we’ll help you choose.
             </p>}
           </div>

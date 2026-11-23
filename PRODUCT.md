@@ -18,7 +18,7 @@ All three audiences belong in the product context. Feature availability and acce
 
 Modern Invites provides personalized invitation websites for celebrations, supported by guest and event management tools. Guests should be able to understand the event and complete its enabled actions; clients and staff should be able to organize the corresponding information within their permitted access.
 
-The marketing website presents the service, sample invitations, and inquiry paths. Existing marketing content also offers print-ready invitation designs; do not expand those claims without confirmation.
+The marketing website has one scrolling homepage at `/`, with services, full pricing, About, FAQ, and package inquiries. `/portfolio` is its only separate marketing page. Former About, Pricing, Gallery, and inquiry URLs redirect to their replacement sections or portfolio; client invitations and admin/client tools remain independent. The marketing website presents the service, sample invitations, and inquiry paths. Existing marketing content also offers print-ready invitation designs; do not expand those claims without confirmation.
 
 ## Operating Context
 

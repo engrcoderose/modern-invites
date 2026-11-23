@@ -1,12 +1,11 @@
 import {
-  CheckCircle2,
   FileHeart,
   MessageCircleHeart,
   Send,
 } from "lucide-react";
-import { PRICING_PACKAGES } from "@/lib/pricing";
 import ScrollReveal from "@/components/landing/ScrollReveal";
 import SectionHeading from "@/components/landing/SectionHeading";
+import PackageFinder from "./PackageFinder";
 
 const bookingSteps = [
   {
@@ -35,95 +34,45 @@ const bookingSteps = [
 export default function PricingGuide() {
   return (
     <>
-      <section className="bg-ivory px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="A quick way to choose"
-            title={
-              <>
-                Find the package that fits{" "}
-                <span className="italic text-eucalyptus-dark">your story.</span>
-              </>
-            }
-            description="Start with the kind of experience you want your guests to have. You can always ask us to help you compare."
-          />
+      <PackageFinder />
 
-          <div className="mt-14 divide-y divide-forest/10 border-y border-forest/10">
-            {PRICING_PACKAGES.map((packageDetails, index) => (
-              <ScrollReveal key={packageDetails.id} delay={index * 0.06}>
-                <article className="grid gap-6 py-9 sm:grid-cols-[0.55fr_1fr_1fr] sm:items-center lg:py-11">
-                  <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-eucalyptus-dark">
-                      Package 0{index + 1}
-                    </p>
-                    <h3 className="mt-2 font-instrumentSerif text-3xl text-ink sm:text-4xl">
-                      {packageDetails.name}
-                    </h3>
-                  </div>
-                  <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-marketing-muted">
-                      Best for
-                    </p>
-                    <p className="mt-2 text-sm font-semibold text-forest sm:text-base">
-                      {packageDetails.bestFor}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-marketing-muted">
-                      Standout experience
-                    </p>
-                    <p className="mt-2 flex items-start gap-2 text-sm text-ink-muted sm:text-base">
-                      <CheckCircle2
-                        className="mt-0.5 h-4 w-4 shrink-0 text-eucalyptus-dark"
-                        aria-hidden="true"
-                      />
-                      {packageDetails.highlight}
-                    </p>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-forest px-4 py-24 text-white sm:px-6 lg:px-8 lg:py-32">
+      <section className="bg-marketing-paper px-5 py-24 text-marketing-ink sm:px-6 lg:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Booking and payment"
             title={
               <>
                 Simple from first message to{" "}
-                <span className="italic text-champagne-light">final link.</span>
+                <span className="italic text-brand-700">final link.</span>
               </>
             }
             description="A clear three-step process keeps the project moving and gives you time to review before launch."
             align="center"
-            tone="dark"
+            tone="light"
           />
 
-          <ol className="relative mt-16 grid gap-5 before:absolute before:left-[16.6%] before:right-[16.6%] before:top-12 before:hidden before:border-t before:border-dashed before:border-white/20 before:content-[''] lg:grid-cols-3 lg:before:block">
+          <ol className="relative mt-16 grid gap-5 before:absolute before:left-[16.6%] before:right-[16.6%] before:top-12 before:hidden before:border-t before:border-dashed before:border-brand-700/15 before:content-[''] lg:grid-cols-3 lg:before:block">
             {bookingSteps.map(
               ({ icon: Icon, number, title, description }, index) => (
                 <li key={number} className="relative">
                   <ScrollReveal delay={index * 0.1} className="h-full">
-                    <div className="h-full rounded-[1.75rem] border border-white/10 bg-forest-light p-7 sm:p-9">
+                    <div className="studio-step h-full rounded-[2rem] p-8">
                       <div className="flex items-center justify-between">
-                        <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-champagne text-forest shadow-lg">
+                        <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-brand-300 text-brand-700 shadow-lg">
                           <Icon
                             className="h-6 w-6"
                             strokeWidth={1.6}
                             aria-hidden="true"
                           />
                         </span>
-                        <span className="font-instrumentSerif text-3xl italic text-marketing-muted-inverse">
+                        <span className="font-elegant text-3xl italic text-marketing-muted">
                           {number}
                         </span>
                       </div>
-                      <h3 className="mt-10 font-instrumentSerif text-3xl">
+                      <h3 className="mt-10 font-elegant text-3xl">
                         {title}
                       </h3>
-                      <p className="mt-3 text-sm leading-6 text-marketing-muted-inverse">
+                      <p className="mt-3 text-sm leading-6 text-marketing-muted">
                         {description}
                       </p>
                     </div>
@@ -134,11 +83,11 @@ export default function PricingGuide() {
           </ol>
 
           <ScrollReveal delay={0.15}>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-center text-xs text-marketing-muted-inverse sm:flex-row sm:gap-8 sm:text-sm">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 rounded-2xl border border-white bg-white/50 px-6 py-5 text-center text-xs text-marketing-muted sm:flex-row sm:gap-8 sm:text-sm">
               <span>No hidden monthly fees</span>
-              <span className="hidden h-1 w-1 rounded-full bg-champagne sm:block" />
+              <span className="hidden h-1 w-1 rounded-full bg-brand-300 sm:block" />
               <span>Included revisions vary by package</span>
-              <span className="hidden h-1 w-1 rounded-full bg-champagne sm:block" />
+              <span className="hidden h-1 w-1 rounded-full bg-brand-300 sm:block" />
               <span>Turnaround begins after all materials are received</span>
             </div>
           </ScrollReveal>

@@ -1,7 +1,35 @@
-/* Fit the source artwork exactly so live lettering follows its contained image,
-   including when the surrounding preview frame has a different aspect ratio. */
-.artwork {
-  width: min(100cqw, calc(100cqh * var(--preview-ratio)));
-  aspect-ratio: var(--preview-ratio);
-  container-type: inline-size;
+.media {
+  isolation: isolate;
+  background: linear-gradient(130deg, color-mix(in srgb, var(--sample-ground) 80%, #d3cbf9), #e1dcf9);
+}
+.phone {
+  background: linear-gradient(115deg, #79777f, #222127 16%, #525159 48%, #16151b 78%, #9b99a2);
+  box-shadow: inset 0 0 0 1px #ffffff38, -8px 15px 18px -10px #30234270, 0 3px 5px #30234240;
+}
+.phone::before,
+.phone::after {
+  content: "";
+  position: absolute;
+  width: 1.7%;
+  border-radius: 2px;
+  background: linear-gradient(#9b99a2, #3d3b43, #77757e);
+}
+.phone::before { left: -1%; top: 20%; height: 18%; }
+.phone::after { right: -1%; top: 28%; height: 13%; }
+.camera {
+  background: radial-gradient(circle at 78% 50%, #27314a 0 6%, transparent 9%), #121116;
+  box-shadow: 0 0 0 1px #00000038;
+}
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, #ffffff26 50%, transparent 65%);
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .media::after { transition: transform 900ms cubic-bezier(.22, 1, .36, 1); }
+  .collectionCard:hover .media::after,
+  .collectionCard:focus-visible .media::after { transform: translateX(110%); }
 }

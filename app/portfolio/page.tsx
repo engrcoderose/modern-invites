@@ -1,15 +1,16 @@
 "use client";
 
 import { getImageProps } from "next/image";
+import PageEntrance from "@/components/marketing/PageEntrance";
 import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import MarketingAnalytics from "@/components/MarketingAnalytics";
 import Footer from "@/components/Footer";
 import SeatFinderSection from "@/components/portfolio/SeatFinderSection";
-import { CONTACT_URL } from "@/lib/site";
 
 import { portfolioItems } from "@/lib/portfolio";
 import InvitationCard from "@/components/portfolio/InvitationCard";
+import { portfolioPhoneSizes } from "@/components/portfolio/image-sizes";
 import MotionLink from "@/components/landing/MotionLink";
 import ScrollReveal from "@/components/landing/ScrollReveal";
 
@@ -27,13 +28,11 @@ const invitationGroups = [
   },
 ];
 
-const backgroundImageSizes = "(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc(50vw - 36px), (max-width: 1151px) calc(33.333vw - 37.333px), 347px";
-const previewImageSizes = "160px";
 // Preload each additional first-row card only when its column is visible.
 const desktopImagePreloads = invitationGroups[0].items.slice(1, 3).flatMap((item, index) =>
   [
-    { src: item.bgImage, sizes: backgroundImageSizes },
-    { src: item.previewImage, sizes: previewImageSizes },
+    { src: item.screens.opening, sizes: portfolioPhoneSizes },
+    { src: item.screens.hero, sizes: portfolioPhoneSizes },
   ].map(({ src, sizes }) => ({
     ...getImageProps({ src, sizes, alt: "", fill: true }).props,
     media: index === 0 ? "(min-width: 640px)" : "(min-width: 1024px)",
@@ -42,7 +41,7 @@ const desktopImagePreloads = invitationGroups[0].items.slice(1, 3).flatMap((item
 
 export default function PortfolioPage() {
   return (
-    <div className="marketing-site min-h-screen bg-white">
+    <div className="marketing-site min-h-screen bg-marketing-paper">
       {desktopImagePreloads.map((image) => (
         <link
           key={image.src}
@@ -56,27 +55,25 @@ export default function PortfolioPage() {
       ))}
       <Navigation />
 
-      <main>
-        <section className="bg-gradient-to-b from-sage-50 to-white px-4 pb-8 pt-28 sm:px-6 sm:pt-32 lg:px-8">
-          <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 xl:flex-row xl:items-end">
-            <div className="max-w-xl">
-              <ScrollReveal as="p" className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-sage-600">
-                Our work
-              </ScrollReveal>
-              <ScrollReveal as="h1" delay={0.06} className="font-elegant text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+      <PageEntrance>
+        <section className="bg-brand-100 px-5 pb-14 pt-32 sm:px-6 sm:pb-20 sm:pt-40 lg:px-8">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center">
+            <div className="max-w-2xl">
+              <ScrollReveal as="h1" delay={0.06} className="page-title text-marketing-ink">
                 <span className="block">A little inspiration.</span>
               </ScrollReveal>
-              <ScrollReveal as="p" delay={0.12} className="mt-4 max-w-lg text-base leading-7 text-gray-600">
+              <ScrollReveal as="p" delay={0.12} className="mx-auto mt-7 max-w-lg text-base leading-8 text-marketing-muted">
                 Find a style that feels like you. Explore our invitation
                 designs and try the full experience.
               </ScrollReveal>
+              <p className="mt-6 text-sm text-brand-800">Our work</p>
             </div>
-            <nav aria-label="Portfolio sections" className="flex shrink-0 flex-wrap gap-2">
+            <nav aria-label="Portfolio sections" className="flex shrink-0 flex-wrap justify-center gap-2">
               {invitationGroups.map((group) => (
                 <MotionLink
                   key={group.id}
                   href={`#${group.id}`}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-sage-700 px-5 text-sm font-semibold text-white hover:bg-sage-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full bg-brand-700 px-5 text-sm font-semibold text-white hover:bg-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-4"
                 >
                   {group.title}
                   <span className="rounded-full bg-white/15 px-1.5 py-0.5 text-xs">{group.items.length}</span>
@@ -84,7 +81,7 @@ export default function PortfolioPage() {
               ))}
               <MotionLink
                 href="#seat-finder"
-                className="inline-flex min-h-11 items-center rounded-full border border-sage-200 bg-white px-5 text-sm font-semibold text-sage-700 hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-600 focus-visible:ring-offset-4"
+                className="inline-flex min-h-11 items-center rounded-full border border-brand-200 bg-white px-5 text-sm font-semibold text-brand-700 hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-4"
               >
                 Seat Finder
               </MotionLink>
@@ -98,21 +95,23 @@ export default function PortfolioPage() {
               key={group.id}
               id={group.id}
               aria-labelledby={`${group.id}-title`}
-              className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-12 sm:px-6 lg:px-8"
+              className={`scroll-mt-24 ${groupIndex === 0 ? "bg-marketing-paper" : "section-lilac"}`}
             >
-              <ScrollReveal className="mb-5 flex flex-wrap items-center justify-between gap-3 border-t border-sage-100 pt-6">
-                <h2 id={`${group.id}-title`} className="font-elegant text-2xl font-bold text-gray-900 sm:text-3xl">
-                  {group.title}
-                </h2>
-                <p className="text-xs text-gray-500">Explore a live sample ↗</p>
-              </ScrollReveal>
+              <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8">
+                <ScrollReveal className="mb-10 flex flex-wrap items-end justify-between gap-5 pb-4">
+                  <h2 id={`${group.id}-title`} className="font-elegant text-4xl text-marketing-ink sm:text-5xl">
+                    {group.title}
+                  </h2>
+                  <p className="text-xs text-marketing-muted">Explore a live sample ↗</p>
+                </ScrollReveal>
 
-              <div className="grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-                {group.items.map((item, index) => (
-                  <ScrollReveal key={item.id} delay={(index % 3) * 0.08} className="h-full min-w-0">
-                    <InvitationCard item={item} priority={groupIndex === 0 && index === 0} sizes={backgroundImageSizes} />
-                  </ScrollReveal>
-                ))}
+                <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((item, index) => (
+                    <ScrollReveal key={item.id} delay={(index % 3) * 0.06} className="h-full min-w-0">
+                      <InvitationCard item={item} priority={groupIndex === 0 && index === 0} sizes={portfolioPhoneSizes} />
+                    </ScrollReveal>
+                  ))}
+                </div>
               </div>
             </section>
           ))}
@@ -120,23 +119,21 @@ export default function PortfolioPage() {
 
         <SeatFinderSection />
 
-        <section className="bg-sage-700 px-4 py-10 sm:px-6 lg:px-8">
+        <section className="bg-brand-100 px-5 py-16 sm:px-6 sm:py-20 lg:px-8">
           <ScrollReveal direction="fade" className="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <div>
-              <h2 className="font-elegant text-3xl font-bold text-white">Ready to create yours?</h2>
-              <p className="mt-2 text-sm leading-6 text-sage-100">Let’s make an invitation that feels like your celebration.</p>
+              <h2 className="font-elegant text-4xl text-marketing-ink sm:text-5xl">Ready to create yours?</h2>
+              <p className="mt-5 text-base leading-8 text-marketing-muted">Let’s make an invitation that feels like your celebration.</p>
             </div>
             <MotionLink
-              href={CONTACT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-full bg-white px-6 py-3 text-sm font-semibold text-sage-700 hover:bg-sage-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-sage-700"
+              href="/#inquire"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-5 self-start rounded-full bg-brand-700 px-7 py-3 text-sm font-medium text-white hover:bg-brand-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-800 focus-visible:ring-offset-4 focus-visible:ring-offset-brand-100"
             >
               Get started <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </MotionLink>
           </ScrollReveal>
         </section>
-      </main>
+      </PageEntrance>
 
       <Footer />
       <MarketingAnalytics />

@@ -1,0 +1,216 @@
+.hero {
+  --hero-ink: theme('colors.marketing.ink');
+  --hero-romance: theme('colors.marketing.romance');
+  --hero-violet: theme('colors.brand.700');
+  --hero-violet-hover: theme('colors.brand.800');
+  --hero-focus: theme('colors.brand.800');
+  color: var(--hero-ink);
+}
+
+.hero ::selection {
+  color: white;
+  background: var(--hero-focus);
+}
+
+.heading {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(2.5rem, 4.9vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.emphasis {
+  color: var(--hero-romance);
+}
+.highlights {
+  background: linear-gradient(90deg, transparent, theme('colors.white / 45%') 25%, theme('colors.white / 45%') 75%, transparent);
+}
+.highlightValue {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.primaryAction {
+  color: white;
+  background: var(--hero-violet);
+}
+.primaryAction:hover {
+  background: var(--hero-violet-hover);
+}
+.secondaryAction {
+  color: var(--hero-focus);
+  border-color: var(--hero-violet);
+  background: theme('colors.marketing.paper');
+}
+.secondaryAction:hover {
+  background: theme('colors.brand.100');
+}
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible,
+.phoneLink:focus-visible {
+  outline: 2px solid var(--hero-focus);
+  outline-offset: 5px;
+}
+.butterfly {
+  left: 5%;
+  top: -8%;
+  transform: rotate(-14deg);
+}
+.bouquet {
+  right: 2%;
+  top: -9%;
+  transform: rotate(12deg);
+}
+.locket {
+  left: 10%;
+  bottom: -3%;
+  transform: rotate(-12deg);
+}
+.glasses {
+  right: 7%;
+  bottom: -4%;
+  transform: rotate(9deg);
+}
+.previews {
+  list-style: none;
+}
+
+/* Stable overlapping frames share a baseline, like the reference's four phones. */
+.phone {
+  width: clamp(5.4rem, 12.5vw, 9rem);
+  aspect-ratio: 9 / 19;
+  padding: 4px;
+  border-radius: 12% / 5.7%;
+  background: linear-gradient(
+    115deg,
+    #b8b7b5,
+    #292725 15%,
+    #797772 48%,
+    #171716 80%,
+    #a5a39e
+  );
+  box-shadow: 0 8px 18px #48356526;
+  container-type: inline-size;
+}
+.phone + .phone {
+  margin-left: -14px;
+}
+.phone:nth-child(1) {
+  z-index: 4;
+}
+.phone:nth-child(2) {
+  z-index: 3;
+}
+.phone:nth-child(3) {
+  z-index: 2;
+}
+.phone:nth-child(4) {
+  z-index: 1;
+}
+.phone:focus-within {
+  z-index: 5;
+}
+.phoneLink {
+  border-radius: 10% / 4.8%;
+  background: #30251f;
+}
+.notch {
+  width: 57%;
+  height: 4.5%;
+  border-radius: 0 0 12px 12px;
+  background: #161513;
+}
+.notch::after {
+  content: "";
+  position: absolute;
+  top: 35%;
+  right: 13%;
+  width: 5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #343838;
+}
+.homeIndicator {
+  background: #fff9edbf;
+}
+.previewShade {
+  background: linear-gradient(
+    180deg,
+    #20120a08 10%,
+    #20120a42 38%,
+    #20120acc 100%
+  );
+}
+.phone:nth-child(3) .previewShade {
+  background: linear-gradient(180deg, #26081105, #350a1bd9);
+}
+.previewContent {
+  color: #fff2da;
+}
+.previewIntro,
+.previewFooter {
+  font-size: 4.3cqw;
+  line-height: 1.6;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.previewNames {
+  font-family:
+    var(--font-imperial), var(--font-instrument-serif), Georgia, serif;
+  font-size: 25cqw;
+  font-weight: 400;
+  line-height: 0.95;
+}
+.previewNames > span {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 12cqw;
+  font-style: italic;
+}
+.previewRule {
+  background: #fff2da9c;
+}
+.previewFooter {
+  font-size: 3.7cqw;
+  letter-spacing: 0.1em;
+}
+.phone:nth-child(2) .previewShade {
+  background: #e6ca9940;
+}
+
+@media (max-width: 639px) {
+  .heading {
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+  .phone {
+    width: min(24vw, 5.4rem);
+  }
+  .butterfly {
+    left: -4%;
+    top: -10%;
+  }
+  .bouquet {
+    right: -6%;
+    top: -12%;
+  }
+  .locket {
+    left: -5%;
+    bottom: 13%;
+  }
+  .glasses {
+    right: -6%;
+    bottom: 9%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .phoneLink {
+    transition: filter 180ms ease-out;
+  }
+  .phoneLink:hover {
+    filter: brightness(1.12);
+  }
+}

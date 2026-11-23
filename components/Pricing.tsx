@@ -3,7 +3,6 @@ import ScrollReveal from "@/components/landing/ScrollReveal";
 import SectionHeading from "@/components/landing/SectionHeading";
 import PackageCard from "@/components/pricing/PackageCard";
 import ModularPricing from "@/components/pricing/ModularPricing";
-import DigitalInvitationsPricing from "@/components/pricing/DigitalInvitationsPricing";
 import PricingGuide from "@/components/pricing/PricingGuide";
 import PricingHero from "@/components/pricing/PricingHero";
 import PricingBenefits from "@/components/pricing/PricingBenefits";
@@ -16,7 +15,7 @@ export default function Pricing() {
 
       <section
         id="pricing-packages"
-        className="scroll-mt-24 bg-white px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+        className="scroll-mt-24 bg-marketing-paper px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
       >
         <div className="mx-auto max-w-7xl">
           <SectionHeading
@@ -24,7 +23,7 @@ export default function Pricing() {
             title={
               <>
                 Everything listed.{" "}
-                <span className="italic text-eucalyptus-dark">
+                <span className="italic text-brand-700">
                   Nothing vague.
                 </span>
               </>
@@ -45,7 +44,7 @@ export default function Pricing() {
           </div>
 
           <ScrollReveal delay={0.12}>
-            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-ink-muted">
+            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-marketing-muted">
               Package turnaround and revision timing may vary with project
               complexity and current workload. We’ll confirm the schedule before
               work begins.
@@ -55,7 +54,6 @@ export default function Pricing() {
       </section>
 
       <ModularPricing />
-      <DigitalInvitationsPricing />
 
       <PricingGuide />
     </>

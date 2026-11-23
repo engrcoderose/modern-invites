@@ -1,0 +1,105 @@
+/* Shared marketing surfaces. Invitation and operational pages keep their themes. */
+.marketing-site {
+  color: theme('colors.marketing.ink');
+  accent-color: theme('colors.brand.700');
+  caret-color: theme('colors.brand.700');
+}
+
+.marketing-site ::selection {
+  color: theme('colors.brand.950');
+  background: theme('colors.brand.200');
+}
+
+.marketing-site .marketing-atmosphere {
+  background-color: theme('colors.brand.100');
+  background-image: url('./assets/lavender-atmosphere.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.marketing-site .section-title,
+.marketing-site .page-title {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.marketing-site .section-title { font-size: clamp(2.1rem, 4.2vw, 4rem); }
+.marketing-site .page-title { font-size: clamp(2.65rem, 5.2vw, 4.75rem); }
+
+.marketing-site.studio-wash,
+.marketing-site .studio-wash {
+  background: radial-gradient(ellipse at 8% 42%, #d3cbf94d, transparent 65%), #f0edfc;
+}
+
+/* Richer separators alternate with the paper and brand-100 utility surfaces.
+   Keep these scoped so individual invitation themes remain independent. */
+.marketing-site .section-lilac {
+  background: linear-gradient(145deg, theme('colors.brand.200'), theme('colors.brand.100'));
+}
+.marketing-site .section-lavender {
+  background: linear-gradient(145deg, theme('colors.brand.300'), theme('colors.brand.200'));
+}
+.marketing-site .studio-button {
+  border: 1px solid #fff;
+  background: #ffffffb3;
+  box-shadow: 0 8px 20px -14px #59457a66, inset 0 1px 0 #fff;
+}
+.marketing-site .studio-service-panel {
+  background: linear-gradient(125deg, #ffffffb3, #e1dcf9b3);
+  border: 1px solid #fff;
+  box-shadow: 0 24px 50px -34px #57427a55;
+}
+.marketing-site .studio-feature-sheet {
+  background: linear-gradient(150deg, #ffffffb3, #e1dcf966);
+  border: 1px solid #fff;
+  box-shadow: 0 24px 44px -36px #57427a66;
+}
+.marketing-site .studio-step {
+  background: linear-gradient(145deg, #ffffffcc, #e1dcf9);
+  border: 1px solid #fff;
+  box-shadow: 0 22px 38px -28px #57427a66;
+}
+.marketing-site .studio-price {
+  background: linear-gradient(155deg, #faf8ff, #e1dcf9b3);
+  border: 1px solid #fff;
+  box-shadow: 0 24px 42px -30px #57427a66;
+}
+.marketing-site .studio-price-featured {
+  background: linear-gradient(145deg, #d3cbf9, #b3b0f8);
+  box-shadow: 0 24px 46px -28px #57427a88;
+}
+.marketing-site .studio-question {
+  background: linear-gradient(100deg, #ffffffbf, #e1dcf94d);
+  border: 1px solid #fff;
+  box-shadow: 0 12px 22px -20px #57427a66;
+}
+.marketing-site .studio-question[data-state="open"] { background: #faf8ff; }
+.marketing-site .studio-closing {
+  background: radial-gradient(ellipse at 50% 110%, #b3b0f8, transparent 75%), linear-gradient(120deg, #e1dcf9, #f6effb);
+  border: 1px solid #fff;
+  box-shadow: 0 24px 50px -35px #57427a66;
+}
+
+.marketing-site .closing-panel::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid theme('colors.white / 70%');
+  border-radius: 32px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marketing-site .link-arrow { transition: transform 250ms cubic-bezier(.22, 1, .36, 1); }
+  .marketing-site a:hover .link-arrow,
+  .marketing-site a:focus-visible .link-arrow { transform: translate(3px, -3px); }
+  .marketing-site .studio-button { transition: background-color 250ms ease, transform 350ms cubic-bezier(.22,1,.36,1), box-shadow 350ms ease; }
+  .marketing-site .studio-button:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 12px 24px -16px #59457a88; }
+  .marketing-site .studio-step { transition: transform 400ms cubic-bezier(.22,1,.36,1); }
+  .marketing-site .studio-step:hover { transform: translateY(-5px); }
+}
+

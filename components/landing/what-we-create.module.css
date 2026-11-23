@@ -1,0 +1,23 @@
+.section {
+  background:
+    radial-gradient(ellipse at 50% 0%, theme('colors.brand.200 / 45%'), transparent 65%),
+    theme('colors.brand.50');
+}
+
+.card {
+  border: 1px solid theme('colors.white');
+  background: linear-gradient(140deg, theme('colors.white / 85%'), theme('colors.brand.100 / 55%'));
+  box-shadow: 0 20px 36px -30px theme('colors.brand.900 / 35%');
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: theme('colors.brand.300');
+  box-shadow: 0 24px 40px -28px theme('colors.brand.900 / 35%');
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: border-color 220ms ease, box-shadow 300ms ease;
+  }
+}

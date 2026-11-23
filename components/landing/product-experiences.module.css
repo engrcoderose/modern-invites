@@ -1,0 +1,18 @@
+.artwork::before {
+  content: "";
+  position: absolute;
+  inset: 10% -3% 4%;
+  background: radial-gradient(ellipse at center, #d3cbf999, #e1dcf933 54%, transparent 72%);
+  pointer-events: none;
+}
+
+.title {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+
+.title em { color: theme('colors.brand.700'); }

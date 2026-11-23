@@ -2,7 +2,7 @@
 
 import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
 
-const trackedPaths = new Set(["/", "/pricing", "/portfolio"]);
+const trackedPaths = new Set(["/", "/portfolio"]);
 
 function beforeSend(event: BeforeSendEvent) {
   const pathname = new URL(event.url).pathname.replace(/\/+$/, "") || "/";

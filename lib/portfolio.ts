@@ -1,62 +1,24 @@
-import type { StaticImageData } from "next/image";
-import { createElement, type ReactNode } from "react";
-import AshleyPreviewDetails from "@/app/ashley-at-18-rsvp/components/PortfolioPreviewDetails";
-import ChristinaPreviewMonogram from "@/app/christina-and-reboden/components/PortfolioPreviewMonogram";
-import { getPhoto } from "@/app/ryan-and-anne/data/prenup-media";
-import jaydeeBackground from "@/app/jaydee-and-bea/assets/designs/hero-watercolor-background.webp";
-import jaydeeIllustration from "@/app/jaydee-and-bea/assets/designs/hero-couples.webp";
-import { TreeDance, SunlitPortrait } from "@/app/anjo-and-jasmin/prenup-media";
-import { photos as marioInahPhotos } from "@/app/mario-and-inah/data/photos";
-import { prenupMedia as edcelAprealPhotos } from "@/app/edcel-and-apreal/data/photo-media";
-import { heroPhotos as marianDeejayPhotos } from "@/app/marian-and-deejay/data/hero-photos";
-import marianDeejayPortrait from "@/app/marian-and-deejay/assets/images/Prenup/optimized/nhut7427.webp";
-import { usPhotos as aljayErlynPhotos } from "@/app/aljay-and-erlyn/data/photos";
-import claudiaBackground from "@/app/claudia-at-18/assets/outfits/lean-back-pose.png";
-import claudiaPortrait from "@/app/claudia-at-18/assets/outfits/happy-birthday.png";
-import ashleyBackground from "@/app/ashley-at-18-rsvp/assets/hero-floral-wallpaper.webp";
-import ashleyFrame from "@/app/ashley-at-18-rsvp/assets/hero-ornate-frame.webp";
-import christinaGarden from "@/app/christina-and-reboden/assets/designs/bg-opening.webp";
-import christinaEnvelope from "@/app/christina-and-reboden/assets/designs/envelope.webp";
-import { media as darellRoselleArtwork } from "@/app/darelle-and-roselle/data/media";
+import { portfolioScreens, type InvitationScreens } from "./portfolio-screens";
 
 export type PortfolioItem = {
- id: string; title: string; category: string; description: string; href: string;
- hidden?: boolean;
- bgImage: StaticImageData; previewImage: StaticImageData;
- accent: string; accentLight: string; tags: string[]; previewAlt?: string; previewFit?: "cover" | "contain";
- previewOverlay?: ReactNode;
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  href: string;
+  hidden?: boolean;
+  accentLight: string;
+  tags: string[];
+  screens: InvitationScreens;
 };
 
-function ryanPhoto(id: string): StaticImageData {
-  const photo = getPhoto(id);
-  return typeof photo.src === "string" ? { src: photo.src, width: photo.width, height: photo.height } : photo.src;
-}
-import stephHeroBg from "@/app/stephanie-at-18/assets/bg/hero-background.jpg";
-import ericHeroBg from "@/app/eric-and-li/assets/hero-background.png";
-import stephaniePhoto from "@/app/stephanie-at-18/assets/HeroPhoto.png";
-import ericCoupleImg from "@/app/eric-and-li/assets/images/gallery-one-couple.jpg";
-import isabellaBackground from "@/app/isabella-and-daniel/assets/romantic-couple.jpg";
-import isabellaCouple from "@/app/isabella-and-daniel/assets/walking-couple.jpg";
-import nylgenKerseeBackground from "@/app/nylgen-and-kersee/assets/sitting.jpg";
-import nylgenKerseeCouple from "@/app/nylgen-and-kersee/assets/romantically-running.webp";
-import joshuaBeaBackground from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396174.jpg";
-import joshuaBeaCouple from "@/app/joshua-and-bea/assets/images/prenup/pexels-king-caplis-471600979-36396110.jpg";
-import vincentGabrielleBackground from "@/app/vincent-and-gabrielle/assets/prenup/bg-invite.jpg";
-import vincentGabrielleCouple from "@/app/vincent-and-gabrielle/assets/prenup/Main1-2.jpg";
-
-const invitationCatalog: PortfolioItem[] = [
+const invitationCatalog: Omit<PortfolioItem, "screens">[] = [
   {
     id: "christina-and-reboden",
     title: "Christina & Reboden",
     category: "Wedding Invitation",
     description: "Floral envelope opening, page-turn animations, love story, photo slideshow, music, and RSVP.",
     href: "https://christinaandrebodenwedding.moderninvites.com/",
-    bgImage: christinaGarden,
-    previewImage: christinaEnvelope,
-    previewAlt: "Blush floral envelope with Christina and Reboden’s blue C & R monogram on an ornate ivory invitation",
-    previewFit: "contain",
-    previewOverlay: createElement(ChristinaPreviewMonogram),
-    accent: "#385d70",
     accentLight: "#f5eddf",
     tags: ["Enchanted Garden", "Dusty Blue & Blush"],
   },
@@ -66,11 +28,6 @@ const invitationCatalog: PortfolioItem[] = [
     category: "Wedding Invitation",
     description: "Woodland opening, animated monogram, event details, entourage, music, and RSVP.",
     href: "/darell-and-roselle",
-    bgImage: darellRoselleArtwork.cover,
-    previewImage: darellRoselleArtwork.framedMonogram,
-    previewAlt: "Ornamental green DR monogram from Darell and Roselle’s wedding invitation",
-    previewFit: "contain",
-    accent: "#414636",
     accentLight: "#f2ede0",
     tags: ["Woodland", "Olive & Ivory"],
   },
@@ -80,12 +37,6 @@ const invitationCatalog: PortfolioItem[] = [
     category: "18th Birthday Debut",
     description: "Pink florals, an ornate lavender frame, countdown, venue details, and open RSVP.",
     href: "/ashley-at-18-rsvp",
-    bgImage: ashleyBackground,
-    previewImage: ashleyFrame,
-    previewAlt: "Ashley at 18 — A new chapter begins, December 5, 2026, inside an ornate lavender floral frame",
-    previewFit: "contain",
-    previewOverlay: createElement(AshleyPreviewDetails),
-    accent: "#784156",
     accentLight: "#fcf4fa",
     tags: ["RSVP", "Pink & Lavender"],
   },
@@ -95,10 +46,6 @@ const invitationCatalog: PortfolioItem[] = [
     category: "Wedding Invitation",
     description: "Ribbon envelope opening, photo slideshows, prenup film, music, and RSVP.",
     href: "https://mariananddeejaywedding.moderninvites.com/",
-    bgImage: marianDeejayPhotos[0].src,
-    previewImage: marianDeejayPortrait,
-    previewAlt: "Marian and Dee Jay walking together through a golden corridor in their wedding attire",
-    accent: "#6b4935",
     accentLight: "#fff8e8",
     tags: ["Signature", "Yellow & Brown"],
   },
@@ -108,10 +55,6 @@ const invitationCatalog: PortfolioItem[] = [
     category: "Wedding Invitation",
     description: "Garden opening, page-turn animations, love story, photo slideshows, music, and RSVP.",
     href: "https://aljayanderlynwedding.moderninvites.com/",
-    bgImage: aljayErlynPhotos[3].src,
-    previewImage: aljayErlynPhotos[0].src,
-    previewAlt: aljayErlynPhotos[0].alt,
-    accent: "#414636",
     accentLight: "#f2ede0",
     tags: ["Signature", "Olive & Ivory"],
   },
@@ -122,10 +65,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Animated envelope opening, prenup film, love story, photo galleries, music, and RSVP.",
     href: "https://edcelandaprealwedding.moderninvites.com/",
-    bgImage: edcelAprealPhotos["burgundy-gown-rooftop-terrace-wide.webp"],
-    previewImage: edcelAprealPhotos["burgundy-gown-terrace-linked-arms-full-length.webp"],
-    previewAlt: "Edcel and Apreal arm in arm on a vintage terrace in a black suit and burgundy gown",
-    accent: "#4b0f1f",
     accentLight: "#e7c9cd",
     tags: ["Luxury", "Burgundy & Old Rose"],
   },
@@ -136,40 +75,45 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Floral details, photo slideshows, music, and RSVP.",
     href: "https://marioandinahwedding.moderninvites.com",
-    bgImage: marioInahPhotos.welcome.src,
-    previewImage: marioInahPhotos.invitation.src,
-    previewAlt: marioInahPhotos.invitation.alt,
-    accent: "#414b36",
     accentLight: "#f5f0e4",
     tags: ["Signature", "Pastel Garden"],
   },
   {
-    id: "ryan-and-anne", title: "Ryan & Anne", category: "Wedding Invitation",
+    id: "ryan-and-anne",
+    title: "Ryan & Anne",
+    category: "Wedding Invitation",
     description: "Envelope opening, love story, galleries, and RSVP.",
-    href: "https://ryanandannewedding.moderninvites.com/", bgImage: ryanPhoto("cafe-overhead-portrait"), previewImage: ryanPhoto("cafe-doorway-facing-portrait"),
-    accent: "#29251f", accentLight: "#f5f0e7", tags: ["Signature", "Editorial", "Black & Champagne"],
+    href: "https://ryanandannewedding.moderninvites.com/",
+    accentLight: "#f5f0e7",
+    tags: ["Signature", "Editorial", "Black & Champagne"],
   },
   {
-    id: "jaydee-and-bea", title: "Jaydee & Bea", category: "Wedding Invitation",
+    id: "jaydee-and-bea",
+    title: "Jaydee & Bea",
+    category: "Wedding Invitation",
     description: "Floral illustrations, love story, and event details.",
-    href: "https://jaydeeandbeawedding.moderninvites.com/", bgImage: jaydeeBackground, previewImage: jaydeeIllustration,
-    previewAlt: "Garden couple illustration from Jaydee and Bea’s invitation",
-    previewFit: "contain",
-    accent: "#455f4b", accentLight: "#f7f4e9", tags: ["Signature", "Whimsical Garden", "Illustrated"],
+    href: "https://jaydeeandbeawedding.moderninvites.com/",
+    accentLight: "#f7f4e9",
+    tags: ["Signature", "Whimsical Garden", "Illustrated"],
   },
   {
-    id: "anjo-and-jasmin", title: "Anjo & Jasmin", category: "Wedding Invitation",
+    id: "anjo-and-jasmin",
+    title: "Anjo & Jasmin",
+    category: "Wedding Invitation",
     hidden: true,
     description: "Envelope opening, prenup film, galleries, love story, and RSVP.",
-    href: "/anjo-and-jasmin", bgImage: TreeDance, previewImage: SunlitPortrait,
-    accent: "#755b35", accentLight: "#f5f0e7", tags: ["Luxury", "Ivory & Gold", "Cinematic"],
+    href: "/anjo-and-jasmin",
+    accentLight: "#f5f0e7",
+    tags: ["Luxury", "Ivory & Gold", "Cinematic"],
   },
   {
-    id: "adi-and-jules", title: "Adi & Jules", category: "Wedding Invitation",
+    id: "adi-and-jules",
+    title: "Adi & Jules",
+    category: "Wedding Invitation",
     description: "A romantic garden theme with an animated envelope opening, prenup film, photo galleries, love story, RSVP, and a reception seat finder.",
-    href: "/adi-and-jules", bgImage: TreeDance, previewImage: SunlitPortrait,
-    previewAlt: "Couple portrait in the Adi and Jules portfolio invitation",
-    accent: "#755b35", accentLight: "#f5f0e7", tags: ["Luxury", "Seat Finder"],
+    href: "/adi-and-jules",
+    accentLight: "#f5f0e7",
+    tags: ["Luxury", "Seat Finder"],
   },
   {
     id: "vincent-and-gabrielle",
@@ -178,9 +122,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Page-turn animations, photo slideshows, music, and countdown.",
     href: "/vincent-and-gabrielle",
-    bgImage: vincentGabrielleBackground,
-    previewImage: vincentGabrielleCouple,
-    accent: "#4b502a",
     accentLight: "#f2ede0",
     tags: ["Signature Bundle", "Olive & Ivory"],
   },
@@ -191,9 +132,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Love story, galleries, maps, music, and animations.",
     href: "/joshua-and-bea-wedding",
-    bgImage: joshuaBeaBackground,
-    previewImage: joshuaBeaCouple,
-    accent: "#52664d",
     accentLight: "#faf4f1",
     tags: ["Signature", "Pastel Garden"],
   },
@@ -204,9 +142,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Botanical details, cinematic welcome, and RSVP.",
     href: "/nylgen-and-kersee",
-    bgImage: nylgenKerseeBackground,
-    previewImage: nylgenKerseeCouple,
-    accent: "#455f4b",
     accentLight: "#f3f5ed",
     tags: ["Classic Bundle", "Botanical", "Ivory & Sage"],
   },
@@ -217,9 +152,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Cinematic storytelling, music, and RSVP.",
     href: "/isabella-and-daniel",
-    bgImage: isabellaBackground,
-    previewImage: isabellaCouple,
-    accent: "#5a1024",
     accentLight: "#f6ebe8",
     tags: ["Modern Luxury", "Burgundy & Gold"],
   },
@@ -229,10 +161,6 @@ const invitationCatalog: PortfolioItem[] = [
     category: "18th Birthday Debut",
     description: "Sapphire-blue styling, animated opening, photo gallery, and 18 traditions.",
     href: "/claudia-at-18",
-    bgImage: claudiaBackground,
-    previewImage: claudiaPortrait,
-    previewAlt: "Sample birthday portrait from Claudia’s eighteenth birthday invitation",
-    accent: "#1d3474",
     accentLight: "#e6edff",
     tags: ["18th Birthday", "Sapphire Blue"],
   },
@@ -243,9 +171,6 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Dress guides, 18 roses and candles program, and RSVP.",
     href: "/stephanie-at-18",
-    bgImage: stephHeroBg,
-    previewImage: stephaniePhoto,
-    accent: "#ac243d",
     accentLight: "#fff6d2",
     tags: ["18th Birthday", "Red & Yellow"],
   },
@@ -256,13 +181,15 @@ const invitationCatalog: PortfolioItem[] = [
     description:
       "Love story, countdown, attire guide, seat finder, and RSVP.",
     href: "/eric-and-li",
-    bgImage: ericHeroBg,
-    previewImage: ericCoupleImg,
-    accent: "#4e2a0d",
     accentLight: "#f7efe4",
     tags: ["Luxury", "Coffee & Brown"],
   },
 ];
 
-export const portfolioItems = invitationCatalog.filter((item) => !item.hidden);
-
+export const portfolioItems: PortfolioItem[] = invitationCatalog
+  .filter(item => !item.hidden)
+  .map(item => {
+    const screens = portfolioScreens[item.id];
+    if (!screens) throw new Error(`Missing opening and hero captures for ${item.id}`);
+    return { ...item, screens };
+  });

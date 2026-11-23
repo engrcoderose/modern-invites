@@ -1,4 +1,5 @@
 @import "./nylgen-and-kersee/styles/theme.css";
+@import "../components/marketing/theme.css";
 
 @tailwind base;
 @tailwind components;

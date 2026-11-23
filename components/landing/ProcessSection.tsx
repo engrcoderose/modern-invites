@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
+import StudioHeading from "@/components/marketing/StudioHeading";
 
 const steps = [
   { title: "Choose your package", description: "Match the features to your budget." },
@@ -8,18 +9,17 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="scroll-mt-24 border-y border-forest/15 bg-sage-100 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+    <section id="process" className="section-lilac scroll-mt-24 px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end lg:gap-12">
-          <ScrollReveal as="h2" className="home-heading max-w-xl text-forest">From idea to invitation.</ScrollReveal>
-          <ScrollReveal as="p" delay={0.08} className="max-w-sm text-sm leading-7 text-marketing-muted">Most invitations are ready in 3–7 business days after we receive your content.</ScrollReveal>
-        </div>
-        <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-12">
+        <StudioHeading description="Most invitations are ready in 3–7 business days after we receive your content.">From idea to <em className="text-brand-700">invitation.</em></StudioHeading>
+        <ol className="studio-journey relative mt-14 grid gap-6 lg:mb-12 lg:grid-cols-3 lg:gap-8">
           {steps.map((step, index) => (
-            <li key={step.title}>
-              <ScrollReveal delay={index * 0.08} className="flex gap-4">
-                <span className="font-instrumentSerif text-4xl leading-none text-eucalyptus-dark" aria-hidden="true">{index + 1}.</span>
-                <div><h3 className="text-base font-semibold text-forest">{step.title}</h3><p className="mt-2 max-w-sm text-sm leading-6 text-marketing-muted">{step.description}</p></div>
+            <li key={step.title} className={index === 1 ? "lg:pt-8" : index === 2 ? "lg:pt-16" : ""}>
+              <ScrollReveal delay={index * 0.1} className="h-full">
+                <div className="studio-step relative flex h-full flex-col items-start rounded-[2rem] p-8 sm:p-10">
+                <span className="mb-8 font-elegant text-5xl italic leading-none text-brand-700" aria-hidden="true">0{index + 1}</span>
+                <div><h3 className="font-elegant text-2xl leading-snug text-marketing-ink sm:text-3xl">{step.title}</h3><p className="mt-4 max-w-sm text-sm leading-7 text-marketing-muted">{step.description}</p></div>
+                </div>
               </ScrollReveal>
             </li>
           ))}
